@@ -269,13 +269,7 @@
         </div>
       </div>
 
-      <div class="flex items-center space-x-2 sm:space-x-3 shrink-0">
-        <!-- Badge de Prueba Gratuita Activa -->
-        <div class="hidden lg:flex items-center space-x-2 text-xs bg-emerald-50 border border-emerald-200 text-emerald-900 px-3 py-1.5 rounded-lg">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span class="font-semibold text-[11px]" id="topbar-trial-text">14 Días Gratis Activos (Sin Tarjeta)</span>
-        </div>
-
+      <div class="flex items-center space-x-2 sm:space-x-2.5 shrink-0">
         <!-- Switch de Idioma Superior -->
         <div class="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 text-xs font-medium">
           <button onclick="setUiLanguage('es')" class="lang-pill px-1.5 sm:px-2 py-1 rounded text-[10px] sm:text-[11px] font-semibold transition" data-lang="es">🇪🇸 ES</button>
@@ -283,13 +277,17 @@
           <button onclick="setUiLanguage('pt')" class="lang-pill px-1.5 sm:px-2 py-1 rounded text-[10px] sm:text-[11px] font-medium text-slate-600 hover:text-slate-900 transition" data-lang="pt">🇧🇷 PT</button>
         </div>
 
-        <button onclick="switchStep('step-simulator')" class="hidden md:inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition-colors shadow-subtle">
-          <i data-lucide="play" class="w-3.5 h-3.5 text-slate-600"></i>
-          <span data-i18n="btnTestSimulator">Probar en Simulador</span>
+        <!-- Botón Vincular a Mi Web -->
+        <button onclick="openWebsiteWidgetModal('general')" class="inline-flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-bold text-emerald-950 bg-emerald-100 hover:bg-emerald-200 border border-emerald-300 rounded-lg transition shadow-2xs">
+          <span>🌐</span>
+          <span class="hidden sm:inline">Mi Web</span>
         </button>
-        <button onclick="openBusinessConfigModal()" class="inline-flex items-center space-x-1.5 px-2.5 sm:px-3.5 py-1.5 text-xs font-medium text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg transition-colors shadow-subtle">
-          <i data-lucide="settings" class="w-3.5 h-3.5 text-emerald-300"></i>
-          <span class="hidden sm:inline">Mi Negocio</span>
+
+        <!-- Botón Cargar / Cambiar Mi Empresa -->
+        <button onclick="openBusinessConfigModal()" class="inline-flex items-center space-x-1.5 px-2.5 sm:px-3.5 py-1.5 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg transition-colors shadow-subtle shrink-0">
+          <span class="text-sm">🏢</span>
+          <span class="company-display-name truncate max-w-[100px] sm:max-w-[160px]">Pizzería Roma Artesanal</span>
+          <span class="text-[10px] text-emerald-300 hidden sm:inline">✏️</span>
         </button>
       </div>
     </header>
@@ -313,6 +311,39 @@
           <p class="text-xs sm:text-sm text-slate-600 max-w-3xl leading-relaxed" data-i18n="hubSubtitle">
             Asistentes autónomos para automatizar la atención comercial, las cobranzas recurrentes y la administración contable de tu negocio. Operan de forma continua, sin ausencias y con integración directa a tus herramientas de trabajo.
           </p>
+        </div>
+
+        <!-- TARJETA DESTACADA: NEGOCIO ACTIVO & VINCULACIÓN WEB -->
+        <div class="p-4 sm:p-5 bg-white border-2 border-emerald-600/30 rounded-xl shadow-subtle flex flex-col md:flex-row items-start md:items-center justify-between gap-4 bg-gradient-to-r from-emerald-50/40 via-white to-white">
+          <div class="flex items-start space-x-3.5">
+            <div class="w-10 h-10 rounded-xl bg-[#1B4332] text-white flex items-center justify-center text-lg font-bold shrink-0 shadow-xs">
+              🏢
+            </div>
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="text-[10px] font-mono uppercase font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded">Comercio Activo</span>
+                <span class="text-[10px] text-emerald-600 font-semibold flex items-center space-x-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                  <span>14 días de prueba gratis</span>
+                </span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 mt-0.5 company-display-name">Pizzería Roma Artesanal</h3>
+              <p class="text-xs text-slate-600 mt-0.5">
+                Rubro: <span id="hub-company-rubro" class="font-medium text-slate-800">Gastronomía & Delivery</span> · 
+                WhatsApp: <span id="hub-company-phone" class="font-mono text-slate-800">+54 9 11 5566-7788</span>
+              </p>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+            <button onclick="openWebsiteWidgetModal('general')" class="flex-1 md:flex-none px-3.5 py-2.5 bg-emerald-100 hover:bg-emerald-200 text-emerald-950 font-bold text-xs rounded-lg transition shadow-2xs flex items-center justify-center space-x-1.5">
+              <span>🌐</span>
+              <span>Vincular a Mi Página Web</span>
+            </button>
+            <button onclick="openBusinessConfigModal()" class="flex-1 md:flex-none px-4 py-2.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white font-bold text-xs rounded-lg transition shadow-subtle flex items-center justify-center space-x-1.5">
+              <i data-lucide="edit-3" class="w-3.5 h-3.5 text-emerald-300"></i>
+              <span>Cargar Datos de Mi Empresa →</span>
+            </button>
+          </div>
         </div>
 
         <!-- BANNER DE PRUEBA GRATUITA 14 DÍAS (CERO RIESGO / SIN TARJETA) -->
@@ -1421,20 +1452,21 @@
       <!-- PASO 5: ASISTENTE CONTABLE (EMAIL -> DRIVE -> SHEETS) -->
       <!-- ======================================================== -->
       <section id="step-accounting" class="step-content space-y-6 hidden">
-        <!-- Top Navigation Banner -->
+        <!-- Top Navigation Banner (Limpio) -->
         <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
           <div class="flex items-center space-x-2">
-            <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 transition shadow-subtle">
+            <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 transition shadow-subtle">
               <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-slate-700"></i>
-              <span class="btn-smart-back-text">← Volver</span>
-            </button>
-            <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200 bg-white transition shadow-xs" title="Ver la lista con los 4 empleados">
-              <i data-lucide="layout-grid" class="w-3.5 h-3.5 text-slate-500"></i>
-              <span>Hub de Empleados</span>
+              <span>← Hub de Empleados</span>
             </button>
           </div>
           <div class="flex items-center space-x-2">
             <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-700 border border-slate-200 font-medium">3. Asistente Contable (Facturas a Excel & Drive)</span>
+            <button onclick="openBusinessConfigModal()" class="inline-flex items-center space-x-1 px-2.5 py-1 text-xs bg-emerald-50 text-emerald-900 border border-emerald-300 rounded-lg hover:bg-emerald-100 transition shadow-2xs">
+              <span>🏢</span>
+              <span class="company-display-name font-semibold truncate max-w-[120px] sm:max-w-none">Pizzería Roma</span>
+              <span class="text-[10px] text-emerald-700 font-semibold">✏️ Cambiar</span>
+            </button>
           </div>
         </div>
 
@@ -1469,77 +1501,91 @@
           <!-- ESTRUCTURA ESTÁNDAR OBLIGATORIA: 3 BLOQUES OPERATIVOS -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
             <!-- BLOQUE 1: INTEGRACIÓN & CANALES (CONEXIÓN EN 1 CLIC) -->
-            <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle">
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
-                  <i data-lucide="link" class="w-3.5 h-3.5 text-emerald-600"></i>
-                  <span>Bloque 1 · Integración & Canales</span>
-                </span>
-                <span class="text-[10px] font-mono px-1.5 py-0.5 bg-emerald-50 text-emerald-700 font-semibold rounded border border-emerald-200">1-CLIC CONECTADO</span>
-              </div>
-              <h4 class="text-xs font-bold text-slate-900">Autenticación de Gmail & Drive</h4>
-              <p class="text-[11px] text-slate-600 leading-tight">Canales por donde ingresan los comprobantes y destino de archivos.</p>
-              
-              <div class="space-y-1.5 text-xs">
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                  <span class="flex items-center space-x-1.5">
-                    <i data-lucide="mail" class="w-3.5 h-3.5 text-red-500"></i>
-                    <span>Casilla Gmail (OAuth)</span>
-                  </span>
-                  <span class="text-[10px] text-emerald-700 font-semibold">● Vinculado</span>
-                </div>
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                  <span class="flex items-center space-x-1.5">
-                    <i data-lucide="hard-drive" class="w-3.5 h-3.5 text-blue-600"></i>
-                    <span>Google Drive (/Facturas/)</span>
-                  </span>
-                  <span class="text-[10px] text-emerald-700 font-semibold">● Vinculado</span>
-                </div>
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-1">
-                  <span class="text-[10px] font-semibold text-slate-600 uppercase">Email exclusivo de reenvío:</span>
-                  <div class="flex items-center space-x-1">
-                    <input type="text" id="acc-email-input" readonly value="facturas+pizzeria-roma@changared.com" class="w-full text-[11px] font-mono px-2 py-1 bg-white border border-slate-200 rounded text-slate-800">
-                    <button onclick="copyAccountingEmail()" class="p-1 bg-white hover:bg-slate-100 border border-slate-200 rounded text-slate-600" title="Copiar email">
-                      <i data-lucide="copy" class="w-3 h-3"></i>
-                    </button>
+          <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-3 shadow-subtle">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
+                <i data-lucide="link" class="w-3.5 h-3.5 text-emerald-600"></i>
+                <span>Bloque 1 · Integración & Canales</span>
+              </span>
+              <span class="text-[10px] font-mono px-2 py-0.5 bg-emerald-50 text-emerald-700 font-bold rounded border border-emerald-200">1-CLIC LISTO</span>
+            </div>
+            <h4 class="text-xs font-bold text-slate-900">WhatsApp & Widget para Tu Web</h4>
+            <p class="text-[11px] text-slate-600 leading-tight">Canales directos por donde tus clientes consultan y compran.</p>
+            
+            <div class="space-y-2 text-xs">
+              <!-- Canal 1: WhatsApp Business -->
+              <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-lg flex items-center justify-between gap-2">
+                <div class="flex items-center space-x-2 min-w-0">
+                  <div class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
+                    <i data-lucide="smartphone" class="w-4 h-4"></i>
+                  </div>
+                  <div class="min-w-0">
+                    <span class="font-bold text-slate-900 block truncate text-xs">WhatsApp Business</span>
+                    <span class="text-[10px] text-emerald-700 font-semibold block truncate">● Conectado (+54 9 11 4455-6677)</span>
                   </div>
                 </div>
+                <button onclick="openWhatsAppModal('vendedor')" class="shrink-0 px-2.5 py-1 text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 rounded-md transition shadow-2xs">
+                  Ver QR
+                </button>
+              </div>
+
+              <!-- Canal 2: Widget para Página Web -->
+              <div class="p-2.5 bg-emerald-50/80 border border-emerald-200 rounded-lg flex items-center justify-between gap-2">
+                <div class="flex items-center space-x-2 min-w-0">
+                  <div class="w-7 h-7 rounded-lg bg-[#1B4332] text-white flex items-center justify-center shrink-0 text-sm">
+                    🌐
+                  </div>
+                  <div class="min-w-0">
+                    <span class="font-bold text-emerald-950 block truncate text-xs">Vincular a Mi Página Web</span>
+                    <span class="text-[10px] text-emerald-700 block truncate">Tiendanube, Shopify, WordPress o HTML</span>
+                  </div>
+                </div>
+                <button onclick="openWebsiteWidgetModal('vendedor')" class="shrink-0 px-2.5 py-1 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-md transition shadow-2xs">
+                  Código Web →
+                </button>
               </div>
             </div>
+          </div>
 
-            <!-- BLOQUE 2: BASE DE CONOCIMIENTO / DATOS DE ENTRADA -->
-            <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle">
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
-                  <i data-lucide="database" class="w-3.5 h-3.5 text-emerald-600"></i>
-                  <span>Bloque 2 · Datos de Entrada</span>
-                </span>
-                <span class="text-[10px] font-mono text-slate-600">REGLAS AFIP</span>
-              </div>
-              <h4 class="text-xs font-bold text-slate-900">Parámetros Fiscales & Control</h4>
-              <p class="text-[11px] text-slate-600 leading-tight">Datos del negocio para categorizar y validar facturas.</p>
-
-              <div class="space-y-1.5 text-xs">
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                  <span class="text-slate-600">CUIT Empresa:</span>
-                  <span class="font-mono font-semibold text-slate-900">30-71829381-4</span>
-                </div>
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                  <span class="text-slate-600">Condición Fiscal:</span>
-                  <span class="font-semibold text-emerald-800">Responsable Inscripto</span>
-                </div>
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
-                  <span class="text-[10px] font-semibold text-slate-600 uppercase">Centros de Costos:</span>
-                  <div class="text-[11px] text-slate-800 font-medium">Materia prima, Servicios, Alquiler, Sueldos</div>
-                </div>
-                <div class="p-2 bg-amber-50 border border-amber-200 rounded text-[10px] text-amber-900 flex items-center space-x-1.5">
-                  <i data-lucide="shield-alert" class="w-3.5 h-3.5 text-amber-600 shrink-0"></i>
-                  <span>Alerta si el CUIT emisor está inactivo en AFIP</span>
-                </div>
-              </div>
+          <!-- BLOQUE 2: BASE DE CONOCIMIENTO / DATOS DE ENTRADA -->
+          <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-3 shadow-subtle">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
+                <i data-lucide="database" class="w-3.5 h-3.5 text-emerald-600"></i>
+                <span data-i18n="b2Title">Bloque 2 · Datos de Entrada</span>
+              </span>
+              <button onclick="openCitasConfigModal()" class="text-[10px] font-bold text-emerald-800 hover:text-emerald-950 bg-emerald-100 hover:bg-emerald-200 px-2 py-0.5 rounded border border-emerald-300 transition">
+                ✏️ EDITAR SERVICIOS
+              </button>
             </div>
+            <h4 class="text-xs font-bold text-slate-900" data-i18n="citasB2Heading">Servicios, Duración & Profesionales</h4>
+            <p class="text-[11px] text-slate-600 leading-tight" data-i18n="citasB2Sub">Reglas de duración y política de confirmación.</p>
 
-            <!-- BLOQUE 3: AUTOMATIZACIÓN & ACCIÓN DE SALIDA -->
+            <div class="space-y-1.5 text-xs">
+              <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
+                <span class="text-slate-600">Servicios Activos:</span>
+                <span class="font-semibold text-slate-900" id="citas-display-services-count">4 prestaciones</span>
+              </div>
+              <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
+                <span class="text-slate-600">Profesionales / Boxes:</span>
+                <span class="font-semibold text-emerald-800" id="citas-display-staff-count">3 profesionales</span>
+              </div>
+              <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
+                <span class="text-[10px] font-semibold text-slate-600 uppercase" data-i18n="citasDepositRule">Política de Seña Previa:</span>
+                <div class="text-[11px] text-slate-800 font-medium" id="citas-display-deposit-text">Seña $5.000 con Mercado Pago para reservar</div>
+              </div>
+              <div class="p-2 bg-amber-50 border border-amber-200 rounded text-[10px] text-amber-900 flex items-center space-x-1.5">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-amber-600 shrink-0"></i>
+                <span data-i18n="citasAntiNoShow">Si no abonan la seña en 15 min, el turno se libera</span>
+              </div>
+              <button onclick="openCitasConfigModal()" class="w-full py-2 px-3 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg text-xs font-semibold text-slate-800 transition flex items-center justify-center space-x-1.5 shadow-2xs">
+                <i data-lucide="settings-2" class="w-3.5 h-3.5 text-slate-600"></i>
+                <span>Configurar Precios, Duración & Seña →</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- BLOQUE 3: AUTOMATIZACIÓN & ACCIÓN DE SALIDA -->
             <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle">
               <div class="flex items-center justify-between">
                 <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
@@ -1657,15 +1703,19 @@
           </div>
         </div>
 
-        <div class="flex justify-between pt-2">
-          <button onclick="switchStep('step-billing')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition-colors">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-200">
+          <button onclick="switchStep('step-hub')" class="w-full sm:w-auto inline-flex items-center justify-center space-x-1.5 px-3.5 py-2 text-xs font-medium text-slate-600 hover:text-slate-900 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition shadow-2xs">
             <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-            <span>Volver a Planes</span>
+            <span>Ir a Otro Empleado</span>
           </button>
-          <button onclick="switchStep('step-talleexacto')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-colors">
-            <span>Ver Asesor de Talles (Moda)</span>
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </button>
+          <div class="flex flex-wrap items-center justify-end gap-2 w-full sm:w-auto">
+            <button onclick="simulateInvoiceTrigger('telecom')" class="flex-1 sm:flex-none px-3.5 py-2 text-xs font-bold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg transition flex items-center justify-center space-x-1.5">
+              <span>📄</span><span>Probar Subir Factura PDF</span>
+            </button>
+            <button onclick="openAccountingModal()" class="flex-1 sm:flex-none px-4 py-2 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg transition shadow-subtle flex items-center justify-center space-x-1.5">
+              <span>📧</span><span>Conectar Gmail & Drive</span>
+            </button>
+          </div>
         </div>
       </section>
 
@@ -2203,6 +2253,24 @@
             </div>
           </div>
         </div>
+
+        <!-- Acciones Operativas del Vendedor IA -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-200">
+          <button onclick="switchStep('step-hub')" class="w-full sm:w-auto inline-flex items-center justify-center space-x-1.5 px-3.5 py-2 text-xs font-medium text-slate-600 hover:text-slate-900 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition shadow-2xs">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+            <span>Ir a Otro Empleado</span>
+          </button>
+          <div class="flex flex-wrap items-center justify-end gap-2 w-full sm:w-auto">
+            <button onclick="openWebsiteWidgetModal('vendedor')" class="flex-1 sm:flex-none inline-flex items-center justify-center space-x-1.5 px-4 py-2 text-xs font-bold text-emerald-950 bg-emerald-100 hover:bg-emerald-200 border border-emerald-300 rounded-lg transition shadow-2xs">
+              <span>🌐</span>
+              <span>Código para Mi Página Web</span>
+            </button>
+            <button onclick="openWhatsAppModal('vendedor')" class="flex-1 sm:flex-none inline-flex items-center justify-center space-x-1.5 px-4 py-2 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg transition shadow-subtle">
+              <i data-lucide="smartphone" class="w-3.5 h-3.5 text-emerald-300"></i>
+              <span>Vincular WhatsApp (QR)</span>
+            </button>
+          </div>
+        </div>
       </section>
 
       <!-- ======================================================== -->
@@ -2269,16 +2337,12 @@
       <!-- 5. AGENDADOR DE CITAS & TURNOS (WHATSAPP & GOOGLE CALENDAR) -->
       <!-- ======================================================== -->
       <section id="step-citas" class="step-content space-y-6 hidden">
-        <!-- Top Navigation Banner -->
+        <!-- Top Navigation Banner (Limpio, Sin Botones Duplicados) -->
         <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
           <div class="flex items-center space-x-2">
-            <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 transition shadow-subtle">
+            <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 transition shadow-subtle">
               <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-slate-700"></i>
-              <span class="btn-smart-back-text">← Volver</span>
-            </button>
-            <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200 bg-white transition shadow-xs" title="Ver la lista con los 5 empleados">
-              <i data-lucide="layout-grid" class="w-3.5 h-3.5 text-slate-500"></i>
-              <span data-i18n="btnHub">Hub de Empleados</span>
+              <span>← Hub de Empleados</span>
             </button>
           </div>
           <div class="flex items-center space-x-2">
@@ -2286,6 +2350,11 @@
               <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               <span data-i18n="citasBadge">5. Agendador de Citas (Google Calendar)</span>
             </span>
+            <button onclick="openBusinessConfigModal()" class="inline-flex items-center space-x-1 px-2.5 py-1 text-xs bg-emerald-50 text-emerald-900 border border-emerald-300 rounded-lg hover:bg-emerald-100 transition shadow-2xs">
+              <span>🏢</span>
+              <span class="company-display-name font-semibold truncate max-w-[120px] sm:max-w-none">Pizzería Roma</span>
+              <span class="text-[10px] text-emerald-700 font-semibold">✏️ Cambiar</span>
+            </button>
           </div>
         </div>
 
@@ -2582,15 +2651,21 @@
           </div>
         </div>
 
-        <div class="flex justify-between pt-2">
-          <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition-colors">
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-200">
+          <button onclick="switchStep('step-hub')" class="w-full sm:w-auto inline-flex items-center justify-center space-x-1.5 px-3.5 py-2 text-xs font-medium text-slate-600 hover:text-slate-900 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition shadow-2xs">
             <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-            <span class="btn-smart-back-text">← Volver</span>
+            <span>Ir a Otro Empleado</span>
           </button>
-          <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-colors">
-            <span data-i18n="btnSeeAllEmployees">Ver Todos los Empleados</span>
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </button>
+          <div class="flex flex-wrap items-center justify-end gap-2 w-full sm:w-auto">
+            <button onclick="openWebsiteWidgetModal('citas')" class="flex-1 sm:flex-none inline-flex items-center justify-center space-x-1.5 px-4 py-2 text-xs font-bold text-emerald-950 bg-emerald-100 hover:bg-emerald-200 border border-emerald-300 rounded-lg transition shadow-2xs">
+              <span>🌐</span>
+              <span>Código para Mi Página Web</span>
+            </button>
+            <button onclick="openWhatsAppModal('citas')" class="flex-1 sm:flex-none inline-flex items-center justify-center space-x-1.5 px-4 py-2 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg transition shadow-subtle">
+              <i data-lucide="smartphone" class="w-3.5 h-3.5 text-emerald-300"></i>
+              <span>Vincular WhatsApp (QR)</span>
+            </button>
+          </div>
         </div>
       </section>
 
@@ -2639,56 +2714,495 @@
     </div>
   </div>
 
-  <!-- MODAL: PERSONALIZAR CON MI NEGOCIO REAL (ONBOARDING) -->
-  <div id="modal-business-config" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-white border border-slate-200 rounded-xl max-w-lg w-full p-6 shadow-2xl space-y-4">
+  <!-- MODAL: PERSONALIZAR CON MI NEGOCIO REAL (ONBOARDING GLOBAL) -->
+  <div id="modal-business-config" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-        <div>
-          <h3 class="text-sm font-bold text-slate-900">Configurar con los Datos de Tu Propio Negocio</h3>
-          <p class="text-[11px] text-slate-500">Personaliza la plataforma para tu comercio en 1 clic (14 días gratis sin tarjeta).</p>
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center text-lg">
+            🏢
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900">Configurar con los Datos de Tu Propio Negocio</h3>
+            <p class="text-[11px] text-slate-500">Personaliza la plataforma para tu comercio en 1 clic (14 días gratis sin tarjeta).</p>
+          </div>
         </div>
-        <button onclick="closeBusinessConfigModal()" class="text-slate-500 hover:text-slate-700">
+        <button onclick="closeBusinessConfigModal()" class="text-slate-500 hover:text-slate-700 p-1">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3.5 text-xs">
+        <div>
+          <label class="block font-bold text-slate-800 mb-1">Nombre de Tu Negocio o Empresa</label>
+          <input type="text" id="cfg-custom-name" placeholder="Ej: Barbería Don Lucas / Clínica Dental San Martín / Cabañas del Valle" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-semibold focus:bg-white focus:ring-1 focus:ring-emerald-600 outline-none">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">Rubro Principal</label>
+            <select id="cfg-custom-rubro" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900">
+              <option value="Gastronomía & Delivery">Gastronomía & Delivery</option>
+              <option value="Turnos & Citas (Barbería, Estética, Salud)">Turnos & Citas (Barbería, Estética, Salud)</option>
+              <option value="Comercio & Tienda Online">Comercio & Tienda Online</option>
+              <option value="Hotelería & Turismo">Hotelería & Turismo</option>
+              <option value="Servicios Profesionales">Servicios Profesionales</option>
+              <option value="Gimnasio & Cuotas">Gimnasio & Cuotas Recurrentes</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">Tu Teléfono de WhatsApp</label>
+            <input type="tel" id="cfg-custom-phone" placeholder="Ej: +54 9 11 5566-7788" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">Email de Contacto / Calendario</label>
+            <input type="email" id="cfg-custom-email" placeholder="contacto@minegocio.com" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 text-xs">
+          </div>
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">Página Web o Tienda Online</label>
+            <input type="url" id="cfg-custom-website" placeholder="https://minegocio.com" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 text-xs">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">Horarios de Atención</label>
+            <input type="text" id="cfg-custom-hours" placeholder="Lunes a Sábado: 09:00 a 20:00" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 text-xs">
+          </div>
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">Seña sugerida para turnos ($)</label>
+            <input type="number" id="cfg-custom-deposit" placeholder="5000" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-bold text-xs">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-medium text-slate-700 mb-1">Breve Descripción o Política Clave</label>
+          <textarea id="cfg-custom-desc" rows="2" placeholder="Ej: Atendemos de 9 a 20 hs. Envíos gratis a partir de $15.000. Aceptamos Mercado Pago..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 text-xs"></textarea>
+        </div>
+      </div>
+
+      <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-[11px] text-emerald-900 flex items-center space-x-2">
+        <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+        <span>Prueba Gratuita Activa: Se actualizarán todos los empleados virtuales a los datos de tu empresa con 14 días gratis sin compromiso.</span>
+      </div>
+
+      <div class="flex justify-end space-x-2 pt-2 border-t border-slate-100">
+        <button onclick="closeBusinessConfigModal()" class="px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg">Cancelar</button>
+        <button onclick="saveCustomBusiness()" class="px-4 py-2 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg shadow-subtle">Guardar y Activar Mi Negocio →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: VINCULAR A MI PÁGINA WEB (WIDGET EMBEBIBLE 1-CLIC) -->
+  <div id="modal-website-widget" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-2xl max-w-2xl w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center text-lg">
+            🌐
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900">Vincular Asistente Virtual a Tu Página Web o E-commerce</h3>
+            <p class="text-[11px] text-slate-500">Agrega el chat de <span class="company-display-name font-semibold text-slate-800">Pizzería Roma Artesanal</span> en tu tienda o sitio en 2 minutos.</p>
+          </div>
+        </div>
+        <button onclick="closeWebsiteWidgetModal()" class="text-slate-500 hover:text-slate-700 p-1 rounded-lg">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Selector de Plataformas -->
+      <div class="space-y-2">
+        <label class="block text-[11px] uppercase font-mono font-bold text-slate-600">Selecciona tu plataforma:</label>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+          <button onclick="selectWidgetPlatform('tiendanube')" class="widget-plat-tab px-3 py-2 rounded-lg border border-emerald-600 bg-emerald-50 text-emerald-950 text-xs font-bold transition flex items-center justify-center space-x-1.5 shadow-2xs" data-plat="tiendanube">
+            <span>🛒</span><span>Tiendanube</span>
+          </button>
+          <button onclick="selectWidgetPlatform('shopify')" class="widget-plat-tab px-3 py-2 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-medium transition flex items-center justify-center space-x-1.5" data-plat="shopify">
+            <span>🛍️</span><span>Shopify</span>
+          </button>
+          <button onclick="selectWidgetPlatform('wordpress')" class="widget-plat-tab px-3 py-2 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-medium transition flex items-center justify-center space-x-1.5" data-plat="wordpress">
+            <span>📝</span><span>WordPress</span>
+          </button>
+          <button onclick="selectWidgetPlatform('custom')" class="widget-plat-tab px-3 py-2 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-medium transition flex items-center justify-center space-x-1.5" data-plat="custom">
+            <span>💻</span><span>Web Propia</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Snippet HTML Listo para Copiar -->
+      <div class="space-y-1.5">
+        <div class="flex items-center justify-between">
+          <label class="block text-[11px] uppercase font-mono font-bold text-slate-600">Código HTML para tu sitio (pegar antes de &lt;/body&gt;):</label>
+          <button onclick="copyWidgetCode()" class="inline-flex items-center space-x-1 text-xs font-bold text-emerald-700 hover:text-emerald-900">
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            <span id="btn-copy-widget-text">Copiar Código HTML</span>
+          </button>
+        </div>
+        <div class="relative">
+          <textarea id="widget-code-textarea" readonly rows="3" class="w-full text-xs font-mono p-3 bg-slate-900 text-emerald-300 rounded-lg border border-slate-700 focus:outline-none"></textarea>
+        </div>
+      </div>
+
+      <!-- Instrucciones según plataforma -->
+      <div id="widget-plat-instructions" class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl text-xs space-y-1.5 text-slate-700 leading-relaxed">
+        <strong class="text-slate-900 block font-semibold mb-1">🛒 Cómo instalar en Tiendanube (1 minuto):</strong>
+        <ol class="list-decimal list-inside space-y-1 text-slate-700">
+          <li>Entrá a tu Administrador de Tiendanube &gt; <strong>Configuraciones</strong> &gt; <strong>Códigos de seguimiento</strong>.</li>
+          <li>Buscá la sección <strong>"Código para pie de página"</strong> y pegá el código copiado arriba.</li>
+          <li>Hacé clic en <strong>Guardar cambios</strong>. ¡El botón de WhatsApp flotará en tu tienda de inmediato!</li>
+        </ol>
+      </div>
+
+      <!-- Enlace Directo Web -->
+      <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl space-y-1.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="font-bold text-emerald-950 flex items-center space-x-1.5">
+            <span>🔗</span><span>Link Directo a Pantalla Completa (Ideal para historias de Instagram o bio):</span>
+          </span>
+          <button onclick="copyDirectChatLink()" class="font-bold text-emerald-800 hover:text-emerald-950 text-[11px]">
+            Copiar Link
+          </button>
+        </div>
+        <div class="flex items-center space-x-2">
+          <input type="text" id="widget-direct-link-input" readonly value="https://changared.com/chat/pizzeria-roma" class="flex-1 text-xs font-mono px-3 py-1.5 bg-white border border-emerald-200 rounded text-slate-800">
+          <a id="widget-direct-link-btn" href="#" target="_blank" class="px-3 py-1.5 bg-[#1B4332] text-white rounded text-xs font-semibold hover:bg-[#2D6A4F] transition whitespace-nowrap">
+            Abrir ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Botón Destacado: Probar Widget Flotante en Pantalla -->
+      <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-slate-100">
+        <button onclick="toggleFloatingChat(true); closeWebsiteWidgetModal();" class="w-full sm:w-auto px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-lg transition shadow-subtle flex items-center justify-center space-x-2">
+          <i data-lucide="eye" class="w-4 h-4"></i>
+          <span>👁️ Probar Widget Flotante en Esta Pantalla (Ver Cómo Queda)</span>
+        </button>
+        <button onclick="closeWebsiteWidgetModal()" class="w-full sm:w-auto px-4 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: VINCULAR WHATSAPP BUSINESS (QR SCANNER) -->
+  <div id="modal-whatsapp-qr" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center">
+            <i data-lucide="smartphone" class="w-4 h-4 text-emerald-700"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900">Vincular WhatsApp Business</h3>
+            <p class="text-[11px] text-slate-500">Escanea el código QR con tu celular en 1 clic.</p>
+          </div>
+        </div>
+        <button onclick="closeWhatsAppModal()" class="text-slate-500 hover:text-slate-700 p-1">
           <i data-lucide="x" class="w-4 h-4"></i>
         </button>
       </div>
 
       <div class="space-y-3 text-xs">
         <div>
-          <label class="block font-medium text-slate-700 mb-1">Nombre de Tu Negocio o Empresa</label>
-          <input type="text" id="cfg-custom-name" placeholder="Ej: Ferretería Central / Cabañas del Lago / Sushi Tokio" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-medium">
+          <label class="block font-medium text-slate-700 mb-1">Tu Número de WhatsApp Comercial</label>
+          <input type="text" id="wa-modal-phone" value="+54 9 11 5566-7788" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs">
+          <p class="text-[10px] text-slate-500 mt-1">Funciona con tu número de siempre sin necesidad de comprar otro chip.</p>
         </div>
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block font-medium text-slate-700 mb-1">Rubro Principal</label>
-            <select id="cfg-custom-rubro" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900">
-              <option value="Gastronomía & Delivery">Gastronomía & Delivery</option>
-              <option value="Comercio & Retail">Comercio & Tienda Minorista</option>
-              <option value="Hotelería & Turismo">Hotelería & Alojamiento</option>
-              <option value="Servicios Profesionales">Servicios & Oficinas</option>
-              <option value="Gimnasio & Cuotas">Gimnasio & Cuotas Recurrentes</option>
-            </select>
+
+        <!-- Caja de QR -->
+        <div class="border border-slate-200 bg-slate-50 rounded-xl p-4 flex flex-col items-center justify-center space-y-2.5">
+          <div id="wa-qr-box" class="w-40 h-40 bg-white border border-slate-300 rounded-lg p-3 flex flex-col items-center justify-center relative shadow-sm">
+            <svg class="w-32 h-32 text-slate-800" viewBox="0 0 100 100" fill="currentColor">
+              <rect x="5" y="5" width="25" height="25" rx="3" fill="#1E293B"/>
+              <rect x="10" y="10" width="15" height="15" rx="2" fill="#FFFFFF"/>
+              <rect x="13" y="13" width="9" height="9" fill="#1E293B"/>
+
+              <rect x="70" y="5" width="25" height="25" rx="3" fill="#1E293B"/>
+              <rect x="75" y="10" width="15" height="15" rx="2" fill="#FFFFFF"/>
+              <rect x="78" y="13" width="9" height="9" fill="#1E293B"/>
+
+              <rect x="5" y="70" width="25" height="25" rx="3" fill="#1E293B"/>
+              <rect x="10" y="75" width="15" height="15" rx="2" fill="#FFFFFF"/>
+              <rect x="13" y="78" width="9" height="9" fill="#1E293B"/>
+
+              <rect x="35" y="10" width="8" height="8" fill="#1E293B"/>
+              <rect x="48" y="15" width="12" height="8" fill="#1E293B"/>
+              <rect x="35" y="25" width="6" height="6" fill="#1E293B"/>
+              <rect x="45" y="35" width="10" height="10" fill="#1B4332"/>
+              <rect x="60" y="45" width="12" height="8" fill="#1E293B"/>
+              <rect x="10" y="40" width="8" height="12" fill="#1E293B"/>
+              <rect x="25" y="45" width="10" height="8" fill="#1E293B"/>
+              <rect x="38" y="55" width="12" height="10" fill="#1E293B"/>
+              <rect x="70" y="40" width="8" height="12" fill="#1E293B"/>
+              <rect x="85" y="45" width="10" height="8" fill="#1E293B"/>
+              <rect x="70" y="70" width="12" height="8" fill="#1E293B"/>
+              <rect x="85" y="75" width="8" height="15" fill="#1E293B"/>
+              <rect x="45" y="75" width="15" height="10" fill="#1E293B"/>
+            </svg>
+            <div id="wa-qr-status-indicator" class="absolute inset-0 bg-white/95 backdrop-blur-xs flex flex-col items-center justify-center p-3 text-center hidden">
+              <i data-lucide="check-circle" class="w-10 h-10 text-emerald-600 mb-1"></i>
+              <span class="text-xs font-bold text-slate-900">¡Línea Vinculada!</span>
+              <span class="text-[10px] text-emerald-700">Atendiendo en tiempo real</span>
+            </div>
           </div>
-          <div>
-            <label class="block font-medium text-slate-700 mb-1">Tu Teléfono de WhatsApp</label>
-            <input type="tel" id="cfg-custom-phone" placeholder="Ej: 5491144556677" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900">
+          <div class="text-center">
+            <span class="text-[10px] text-slate-500 font-mono">El código QR se actualiza en <strong id="wa-qr-timer">35s</strong></span>
           </div>
         </div>
-        <div>
-          <label class="block font-medium text-slate-700 mb-1">Breve Descripción o Política Clave</label>
-          <textarea id="cfg-custom-desc" rows="2" placeholder="Ej: Atendemos de 9 a 20 hs. Envíos gratis a partir de $15.000. Aceptamos Mercado Pago y efectivo..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900"></textarea>
-        </div>
+
+        <ol class="space-y-1 text-[11px] text-slate-600 list-decimal list-inside bg-slate-50 p-2.5 rounded-lg border border-slate-200">
+          <li>Abre <strong>WhatsApp</strong> en tu teléfono.</li>
+          <li>Ve a <strong>Ajustes / Menú &gt; Dispositivos vinculados</strong>.</li>
+          <li>Toca <strong>Vincular un dispositivo</strong> y apunta tu cámara a la pantalla.</li>
+        </ol>
       </div>
 
-      <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-[11px] text-emerald-900 flex items-center space-x-2">
-        <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-        <span>Prueba Gratuita Activa: Se creará un entorno dedicado para tu empresa con 14 días gratis sin compromiso.</span>
-      </div>
-
-      <div class="flex justify-end space-x-2 pt-2 border-t border-slate-100">
-        <button onclick="closeBusinessConfigModal()" class="px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg">Cancelar</button>
-        <button onclick="saveCustomBusiness()" class="px-4 py-2 text-xs font-medium text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg shadow-subtle font-semibold">Guardar y Activar Mi Negocio →</button>
+      <div class="flex items-center justify-between gap-2 pt-2 border-t border-slate-100">
+        <button onclick="toggleWhatsAppConnection()" id="btn-toggle-wa-connect" class="flex-1 py-2 px-3 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg transition shadow-subtle flex items-center justify-center space-x-1.5">
+          <i data-lucide="camera" class="w-3.5 h-3.5"></i>
+          <span id="wa-toggle-btn-text">📸 Simular Escaneo Exitoso</span>
+        </button>
+        <button onclick="closeWhatsAppModal()" class="py-2 px-3 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg">
+          Cerrar
+        </button>
       </div>
     </div>
+  </div>
+
+  <!-- MODAL: CONECTAR GOOGLE CALENDAR (OAUTH) -->
+  <div id="modal-google-calendar" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-800 flex items-center justify-center">
+            <i data-lucide="calendar" class="w-4 h-4 text-blue-700"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900">Sincronizar Google Calendar</h3>
+            <p class="text-[11px] text-slate-500">Conecta tu cuenta de Google para agendar en tiempo real.</p>
+          </div>
+        </div>
+        <button onclick="closeGoogleCalendarModal()" class="text-slate-500 hover:text-slate-700 p-1">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-medium text-slate-700 mb-1">Cuenta de Gmail / Google Workspace</label>
+          <input type="email" id="cal-modal-email" value="turnos.roma@gmail.com" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-medium">
+        </div>
+
+        <div>
+          <label class="block font-medium text-slate-700 mb-1">Calendario a Utilizar</label>
+          <select id="cal-modal-calendar" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900">
+            <option value="primary">Calendario Principal (turnos en tiempo real)</option>
+            <option value="changared_citas">Turnos & Citas Changared (Exclusivo)</option>
+            <option value="consultorio_1">Consultorio / Box 1</option>
+          </select>
+        </div>
+
+        <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg text-[11px] text-blue-900 space-y-1">
+          <div class="font-bold flex items-center space-x-1">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-blue-600"></i>
+            <span>Sincronización Bidireccional Activa</span>
+          </div>
+          <p class="text-blue-800 leading-tight">Si bloqueas un horario manualmente en tu celular, la IA lo detectará al instante y no ofrecerá ese turno a tus clientes.</p>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end space-x-2 pt-2 border-t border-slate-100">
+        <button onclick="closeGoogleCalendarModal()" class="px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg">Cancelar</button>
+        <button onclick="saveGoogleCalendarAccount()" class="px-4 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-subtle flex items-center space-x-1.5">
+          <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          <span>Guardar y Sincronizar Calendar</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CONFIGURAR SERVICIOS, SEÑA & PROFESIONALES -->
+  <div id="modal-citas-config" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center text-lg">
+            📅
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900">Configurar Servicios, Seña & Horarios</h3>
+            <p class="text-[11px] text-slate-500">Define tus prestaciones para que el Agendador IA informe precios y tome turnos.</p>
+          </div>
+        </div>
+        <button onclick="closeCitasConfigModal()" class="text-slate-500 hover:text-slate-700 p-1">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3.5 text-xs">
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">Monto de Seña Previa ($)</label>
+            <input type="number" id="citas-cfg-deposit" value="5000" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-bold">
+            <span class="text-[10px] text-slate-500">Cobro obligatorio vía Mercado Pago</span>
+          </div>
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">Tiempo Límite para Abonar Seña</label>
+            <select id="citas-cfg-timeout" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900">
+              <option value="15">15 minutos (Recomendado)</option>
+              <option value="30">30 minutos</option>
+              <option value="60">1 hora</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-medium text-slate-700 mb-1">Horario de Atención de Turnos</label>
+          <input type="text" id="citas-cfg-hours" value="Lunes a Sábado: 09:00 a 20:00 (Turnos cada 45 min)" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900">
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="font-bold text-slate-800 uppercase text-[10px] tracking-wider">Lista de Servicios / Prestaciones Activas:</label>
+            <button onclick="addCitasServiceRow()" class="text-[11px] font-bold text-emerald-700 hover:text-emerald-900">
+              + Agregar Servicio
+            </button>
+          </div>
+          <div id="citas-services-list" class="space-y-2 max-h-48 overflow-y-auto pr-1">
+            <!-- Filas inyectadas -->
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end space-x-2 pt-2 border-t border-slate-100">
+        <button onclick="closeCitasConfigModal()" class="px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg">Cancelar</button>
+        <button onclick="saveCitasConfig()" class="px-4 py-2 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg shadow-subtle">
+          Guardar y Actualizar Agenda
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: CONFIGURAR PARÁMETROS CONTABLES (GMAIL, DRIVE & AFIP) -->
+  <div id="modal-accounting-config" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center text-lg">
+            📄
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900">Configuración Asistente Contable</h3>
+            <p class="text-[11px] text-slate-500">Parámetros de lectura de comprobantes y Google Sheets.</p>
+          </div>
+        </div>
+        <button onclick="closeAccountingModal()" class="text-slate-500 hover:text-slate-700 p-1">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-medium text-slate-700 mb-1">Casilla Gmail Monitoreada (OAuth)</label>
+          <input type="email" id="acc-cfg-gmail" value="compras.roma@gmail.com" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900">
+        </div>
+        <div>
+          <label class="block font-medium text-slate-700 mb-1">Carpeta de Destino en Google Drive</label>
+          <input type="text" id="acc-cfg-drive" value="/Contabilidad 2026/Facturas de Proveedores" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs">
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">CUIT Empresa</label>
+            <input type="text" id="acc-cfg-cuit" value="30-71829381-4" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs">
+          </div>
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">Condición Fiscal</label>
+            <select id="acc-cfg-tax" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900">
+              <option value="RI">Responsable Inscripto</option>
+              <option value="Monotributo">Monotributo</option>
+              <option value="Exento">Exento</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end space-x-2 pt-2 border-t border-slate-100">
+        <button onclick="closeAccountingModal()" class="px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg">Cancelar</button>
+        <button onclick="saveAccountingConfig()" class="px-4 py-2 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg shadow-subtle">
+          Guardar Configuración
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- WIDGET FLOTANTE INTERACTIVO DE PÁGINA WEB (VISTA PREVIA EN VIVO) -->
+  <div id="changared-floating-widget" class="fixed bottom-5 right-5 z-50 flex flex-col items-end pointer-events-auto">
+    <!-- Ventana de Chat Flotante -->
+    <div id="floating-chat-window" class="hidden w-[330px] sm:w-[370px] h-[480px] max-h-[80vh] bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col mb-3 transition-all duration-300 transform scale-95 opacity-0">
+      <!-- Header del Widget Flotante -->
+      <div class="bg-[#1B4332] text-white p-3.5 flex items-center justify-between shadow-xs">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-base border border-white/20">
+            🤖
+          </div>
+          <div>
+            <div class="text-xs font-bold leading-tight company-display-name">Pizzería Roma Artesanal</div>
+            <div class="text-[10px] text-emerald-300 font-medium flex items-center space-x-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span>En línea 24/7 · Changared Widget</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center space-x-1">
+          <button onclick="toggleFloatingChat(false)" class="text-white/80 hover:text-white p-1 rounded-lg transition" title="Cerrar widget">
+            <i data-lucide="x" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Cuerpo de Mensajes del Widget -->
+      <div id="floating-chat-messages" class="flex-1 p-3.5 overflow-y-auto space-y-2.5 bg-slate-50 text-xs">
+        <div class="flex justify-center">
+          <span class="text-[10px] bg-slate-200/70 text-slate-600 px-2.5 py-0.5 rounded-full font-mono">
+            Widget Web Activo en tu Página
+          </span>
+        </div>
+        <div class="flex items-start space-x-2 max-w-[85%]">
+          <div class="bg-white border border-slate-200 text-slate-800 p-3 rounded-2xl rounded-tl-sm shadow-2xs leading-relaxed text-xs">
+            ¡Hola! 👋 Bienvenido a <strong class="company-display-name">Pizzería Roma Artesanal</strong>. ¿En qué te puedo ayudar hoy?
+          </div>
+        </div>
+      </div>
+
+      <!-- Sugerencias Rápidas en el Widget -->
+      <div class="px-3 py-1.5 bg-slate-100/70 border-t border-slate-200 flex flex-wrap gap-1 text-[11px]">
+        <button onclick="sendFloatingQuery('Hola! Quiero agendar un turno')" class="px-2 py-1 bg-white hover:bg-slate-50 border border-slate-200 rounded text-slate-700 transition">📅 Agendar Turno</button>
+        <button onclick="sendFloatingQuery('Hola! Qué precios tienen en el catálogo?')" class="px-2 py-1 bg-white hover:bg-slate-50 border border-slate-200 rounded text-slate-700 transition">📦 Ver Precios</button>
+        <button onclick="sendFloatingQuery('Cuáles son los horarios de atención?')" class="px-2 py-1 bg-white hover:bg-slate-50 border border-slate-200 rounded text-slate-700 transition">⏰ Horarios</button>
+      </div>
+
+      <!-- Input de Mensaje del Widget -->
+      <div class="p-2.5 bg-white border-t border-slate-200 flex items-center space-x-2">
+        <input type="text" id="floating-input" onkeypress="if(event.key==='Enter') sendFloatingMessage()" placeholder="Escribe un mensaje..." class="flex-1 text-xs px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 outline-none">
+        <button onclick="sendFloatingMessage()" class="px-3 py-2 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded-lg transition shadow-2xs">
+          <i data-lucide="send" class="w-3.5 h-3.5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Botón Lanzador Circular (Launcher Bubble) -->
+    <button onclick="toggleFloatingChat()" id="floating-launcher-btn" class="flex items-center space-x-2 px-4 py-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded-full shadow-2xl transition-all duration-200 group border-2 border-emerald-400/40 hover:scale-105">
+      <div class="relative">
+        <i data-lucide="message-circle" class="w-5 h-5 text-emerald-300"></i>
+        <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 border border-[#1B4332] animate-ping"></span>
+        <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 border border-[#1B4332]"></span>
+      </div>
+      <span class="text-xs font-bold pr-1 hidden sm:inline" id="floating-launcher-text">Chatear con el Asistente</span>
+    </button>
   </div>
 
   <!-- TOAST NOTIFICACIÓN -->
@@ -3646,14 +4160,18 @@
     }
 
     function updateBackButtons() {
-      let prevTitle = 'Volver';
+      let prevTitle = 'Hub de Empleados';
       if (navigationHistory.length > 0) {
         const lastStep = navigationHistory[navigationHistory.length - 1];
-        prevTitle = getStepTitle(lastStep);
+        if (lastStep === 'step-hub') {
+          prevTitle = 'Hub de Empleados';
+        } else {
+          prevTitle = getStepTitle(lastStep);
+        }
       } else if (VENDEDOR_STEPS.includes(currentStepId) && currentStepId !== 'step-simulator') {
         prevTitle = getStepTitle('step-simulator');
       } else {
-        prevTitle = getStepTitle('step-hub');
+        prevTitle = 'Hub de Empleados';
       }
 
       const backPrefix = currentUiLang === 'en' ? '← Back to ' : (currentUiLang === 'pt' ? '← Voltar para ' : '← Volver a ');
@@ -3797,10 +4315,120 @@
       document.getElementById('modal-prod-desc').value = '';
     }
 
+    // =========================================================
+    // GESTIÓN GLOBAL DE EMPRESA Y CONFIGURACIÓN DINÁMICA
+    // =========================================================
+    const DEFAULT_COMPANY_DATA = {
+      name: "Pizzería Roma Artesanal",
+      slug: "pizzeria-roma",
+      rubro: "Gastronomía & Delivery",
+      phone: "+54 9 11 5566-7788",
+      email: "turnos.roma@gmail.com",
+      website: "https://pizzeriaroma.com",
+      hours: "Lunes a Sábado: 09:00 a 20:00 (Turnos cada 45 min)",
+      currency: "ARS",
+      deposit: "5000",
+      desc: "Pizzería tradicional italiana a la leña ubicada en el centro. Horario: 19:30 a 00:00 todos los días.",
+      whatsappConnected: true,
+      calendarConnected: true,
+      calendarEmail: "turnos.roma@gmail.com",
+      services: [
+        { id: 1, name: "Corte & Barba Clásico", duration: "45 min", price: 8500 },
+        { id: 2, name: "Limpieza Facial Profunda", duration: "60 min", price: 14000 },
+        { id: 3, name: "Consulta Médica / Nutrición", duration: "30 min", price: 12000 },
+        { id: 4, name: "Sesión Masajes / Spa", duration: "50 min", price: 16000 }
+      ]
+    };
+
+    let currentCompany = (function() {
+      try {
+        const saved = localStorage.getItem('changared_company_data');
+        if (saved) return Object.assign({}, DEFAULT_COMPANY_DATA, JSON.parse(saved));
+      } catch(e) {}
+      return Object.assign({}, DEFAULT_COMPANY_DATA);
+    })();
+
+    function slugify(text) {
+      return text.toString().toLowerCase()
+        .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .trim()
+        .replace(/\s+/g, '-')
+        .replace(/[^\w\-]+/g, '')
+        .replace(/\-\-+/g, '-');
+    }
+
+    function applyCompanyDataToUI() {
+      document.querySelectorAll('.company-display-name').forEach(el => {
+        el.innerText = currentCompany.name;
+      });
+
+      const sidebarName = document.getElementById('sidebar-business-name');
+      if (sidebarName) sidebarName.innerText = currentCompany.name;
+
+      const hubRubro = document.getElementById('hub-company-rubro');
+      if (hubRubro) hubRubro.innerText = currentCompany.rubro;
+
+      const hubPhone = document.getElementById('hub-company-phone');
+      if (hubPhone) hubPhone.innerText = currentCompany.phone;
+
+      const simChatTitle = document.getElementById('sim-chat-title');
+      if (simChatTitle) simChatTitle.innerText = currentCompany.name;
+
+      const citasChatTitle = document.getElementById('citas-chat-title');
+      if (citasChatTitle) citasChatTitle.innerText = currentCompany.name;
+
+      const inputName = document.getElementById('input-business-name');
+      if (inputName) inputName.value = currentCompany.name;
+
+      const inputSlug = document.getElementById('input-business-id');
+      if (inputSlug) inputSlug.value = currentCompany.slug;
+
+      const inputDesc = document.getElementById('input-business-desc');
+      if (inputDesc) inputDesc.value = currentCompany.desc || '';
+
+      const accEmailInput = document.getElementById('acc-email-input');
+      if (accEmailInput) accEmailInput.value = `facturas+${currentCompany.slug}@changared.com`;
+
+      const webhookInput = document.getElementById('webhook-endpoint-input');
+      if (webhookInput) webhookInput.value = `http://localhost:3000/api/webhook/${currentCompany.slug}`;
+
+      const citasEmail = document.getElementById('citas-account-email');
+      if (citasEmail) citasEmail.innerText = currentCompany.calendarEmail || currentCompany.email;
+
+      const citasHours = document.getElementById('citas-display-hours');
+      if (citasHours) citasHours.innerText = currentCompany.hours;
+
+      const depositEl = document.getElementById('citas-display-deposit-text');
+      if (depositEl) depositEl.innerText = `Seña ${Number(currentCompany.deposit || 5000).toLocaleString('es-AR')} con Mercado Pago para reservar`;
+
+      const servicesCountEl = document.getElementById('citas-display-services-count');
+      if (servicesCountEl) servicesCountEl.innerText = `${currentCompany.services.length} prestaciones`;
+
+      const waBadge = document.getElementById('citas-status-wa');
+      if (waBadge) {
+        if (currentCompany.whatsappConnected) {
+          waBadge.innerText = `● Vinculado (${currentCompany.phone})`;
+          waBadge.className = "text-[10px] text-emerald-700 font-semibold block truncate";
+        } else {
+          waBadge.innerText = `○ No vinculado (Escanear QR)`;
+          waBadge.className = "text-[10px] text-amber-700 font-semibold block truncate";
+        }
+      }
+
+      updateWidgetCodeSnippet();
+    }
+
     function openBusinessConfigModal() {
       const modal = document.getElementById('modal-business-config');
       if (modal) {
-        document.getElementById('cfg-custom-name').value = currentBusiness.name || '';
+        document.getElementById('cfg-custom-name').value = currentCompany.name || '';
+        if (document.getElementById('cfg-custom-rubro')) document.getElementById('cfg-custom-rubro').value = currentCompany.rubro || 'Gastronomía & Delivery';
+        if (document.getElementById('cfg-custom-phone')) document.getElementById('cfg-custom-phone').value = currentCompany.phone || '';
+        if (document.getElementById('cfg-custom-email')) document.getElementById('cfg-custom-email').value = currentCompany.email || '';
+        if (document.getElementById('cfg-custom-website')) document.getElementById('cfg-custom-website').value = currentCompany.website || '';
+        if (document.getElementById('cfg-custom-hours')) document.getElementById('cfg-custom-hours').value = currentCompany.hours || '';
+        if (document.getElementById('cfg-custom-deposit')) document.getElementById('cfg-custom-deposit').value = currentCompany.deposit || '5000';
+        if (document.getElementById('cfg-custom-desc')) document.getElementById('cfg-custom-desc').value = currentCompany.desc || '';
         modal.classList.remove('hidden');
       }
     }
@@ -3812,30 +4440,430 @@
 
     function saveCustomBusiness() {
       const name = document.getElementById('cfg-custom-name').value.trim();
-      const rubro = document.getElementById('cfg-custom-rubro').value;
-      const phone = document.getElementById('cfg-custom-phone').value.trim();
-      const desc = document.getElementById('cfg-custom-desc').value.trim();
-
       if (!name) {
         alert("Por favor ingresa el nombre de tu negocio.");
         return;
       }
+      const rubro = document.getElementById('cfg-custom-rubro') ? document.getElementById('cfg-custom-rubro').value : currentCompany.rubro;
+      const phone = document.getElementById('cfg-custom-phone') ? document.getElementById('cfg-custom-phone').value.trim() : currentCompany.phone;
+      const email = document.getElementById('cfg-custom-email') ? document.getElementById('cfg-custom-email').value.trim() : currentCompany.email;
+      const website = document.getElementById('cfg-custom-website') ? document.getElementById('cfg-custom-website').value.trim() : currentCompany.website;
+      const hours = document.getElementById('cfg-custom-hours') ? document.getElementById('cfg-custom-hours').value.trim() : currentCompany.hours;
+      const deposit = document.getElementById('cfg-custom-deposit') ? document.getElementById('cfg-custom-deposit').value.trim() : currentCompany.deposit;
+      const desc = document.getElementById('cfg-custom-desc') ? document.getElementById('cfg-custom-desc').value.trim() : currentCompany.desc;
 
-      currentBusiness.name = name;
-      if (desc) currentBusiness.description = desc;
+      currentCompany.name = name;
+      currentCompany.slug = slugify(name);
+      if (rubro) currentCompany.rubro = rubro;
+      if (phone) currentCompany.phone = phone;
+      if (email) {
+        currentCompany.email = email;
+        currentCompany.calendarEmail = email;
+      }
+      if (website) currentCompany.website = website;
+      if (hours) currentCompany.hours = hours;
+      if (deposit) currentCompany.deposit = deposit;
+      if (desc) currentCompany.desc = desc;
 
-      // Actualizar UI en vivo
-      const sidebarName = document.getElementById('sidebar-business-name');
-      if (sidebarName) sidebarName.innerText = name;
+      try {
+        localStorage.setItem('changared_company_data', JSON.stringify(currentCompany));
+      } catch(e) {}
 
-      const chatTitle = document.getElementById('sim-chat-title');
-      if (chatTitle) chatTitle.innerText = name;
-
-      const inputName = document.getElementById('input-business-name');
-      if (inputName) inputName.value = name;
-
+      applyCompanyDataToUI();
       closeBusinessConfigModal();
-      showToast(`¡Excelente! Entorno configurado para: ${name} (14 días gratis activos)`);
+      showToast(`✓ ¡Entorno configurado para: ${name}! Todos los empleados se adaptaron a tu empresa.`);
+    }
+
+    // =========================================================
+    // WIDGET EMBEBIBLE PARA PÁGINA WEB & FLOATING WIDGET
+    // =========================================================
+    let currentWidgetAgent = 'general';
+    let currentWidgetPlatform = 'tiendanube';
+
+    function openWebsiteWidgetModal(agent) {
+      if (agent) currentWidgetAgent = agent;
+      updateWidgetCodeSnippet();
+      selectWidgetPlatform(currentWidgetPlatform);
+      const modal = document.getElementById('modal-website-widget');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeWebsiteWidgetModal() {
+      const modal = document.getElementById('modal-website-widget');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function selectWidgetPlatform(plat) {
+      currentWidgetPlatform = plat;
+      document.querySelectorAll('.widget-plat-tab').forEach(btn => {
+        if (btn.getAttribute('data-plat') === plat) {
+          btn.className = "widget-plat-tab px-3 py-2 rounded-lg border border-emerald-600 bg-emerald-50 text-emerald-950 text-xs font-bold transition flex items-center justify-center space-x-1.5 shadow-2xs";
+        } else {
+          btn.className = "widget-plat-tab px-3 py-2 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-medium transition flex items-center justify-center space-x-1.5";
+        }
+      });
+
+      const instructionsBox = document.getElementById('widget-plat-instructions');
+      if (!instructionsBox) return;
+
+      const guide = {
+        tiendanube: `
+          <strong class="text-slate-900 block font-semibold mb-1">🛒 Cómo instalar en Tiendanube (1 minuto):</strong>
+          <ol class="list-decimal list-inside space-y-1 text-slate-700">
+            <li>Entrá a tu Administrador de Tiendanube &gt; <strong>Configuraciones</strong> &gt; <strong>Códigos de seguimiento</strong>.</li>
+            <li>Buscá la sección <strong>"Código para pie de página"</strong> y pegá el código copiado arriba.</li>
+            <li>Hacé clic en <strong>Guardar cambios</strong>. ¡El botón de WhatsApp flotará en tu tienda de inmediato!</li>
+          </ol>
+        `,
+        shopify: `
+          <strong class="text-slate-900 block font-semibold mb-1">🛍️ Cómo instalar en Shopify (1 minuto):</strong>
+          <ol class="list-decimal list-inside space-y-1 text-slate-700">
+            <li>En tu panel de Shopify, ve a <strong>Tienda online &gt; Temas</strong>.</li>
+            <li>En tu tema activo, haz clic en <strong>Acciones &gt; Editar código</strong>.</li>
+            <li>Abre el archivo <code>layout/theme.liquid</code>, baja hasta el final y pega el código justo antes de la etiqueta <code>&lt;/body&gt;</code>.</li>
+            <li>Guarda los cambios.</li>
+          </ol>
+        `,
+        wordpress: `
+          <strong class="text-slate-900 block font-semibold mb-1">📝 Cómo instalar en WordPress / WooCommerce:</strong>
+          <ol class="list-decimal list-inside space-y-1 text-slate-700">
+            <li>En tu panel de WordPress, instala el plugin gratuito <strong>WPCode (Insert Headers and Footers)</strong>.</li>
+            <li>Ve a <strong>Code Snippets &gt; Header & Footer</strong>.</li>
+            <li>Pega el código en la casilla <strong>"Footer"</strong> y haz clic en <strong>Save Changes</strong>.</li>
+          </ol>
+        `,
+        custom: `
+          <strong class="text-slate-900 block font-semibold mb-1">💻 Cómo instalar en tu Página Web Propia (HTML / React / PHP):</strong>
+          <ol class="list-decimal list-inside space-y-1 text-slate-700">
+            <li>Abre el archivo principal de tu plantilla web (<code>index.html</code>, <code>footer.php</code>, o <code>App.jsx</code>).</li>
+            <li>Pega el código HTML directamente antes del cierre de la etiqueta <code>&lt;/body&gt;</code>.</li>
+            <li>Publica tus cambios y el widget comenzará a atender visitantes 24/7.</li>
+          </ol>
+        `
+      };
+
+      instructionsBox.innerHTML = guide[plat] || guide.custom;
+    }
+
+    function updateWidgetCodeSnippet() {
+      const codeArea = document.getElementById('widget-code-textarea');
+      const directLinkInput = document.getElementById('widget-direct-link-input');
+      const directLinkBtn = document.getElementById('widget-direct-link-btn');
+
+      const slug = currentCompany.slug || 'pizzeria-roma';
+      const agent = currentWidgetAgent || 'general';
+
+      const snippet = `<!-- Widget Changared IA - ${currentCompany.name} -->\n<script src="https://cdn.changared.com/widget.js" data-tenant="${slug}" data-agent="${agent}" data-color="#1B4332" defer><\/script>`;
+
+      if (codeArea) codeArea.value = snippet;
+
+      const directUrl = `https://changared.com/chat/${slug}?agent=${agent}`;
+      if (directLinkInput) directLinkInput.value = directUrl;
+      if (directLinkBtn) directLinkBtn.href = directUrl;
+    }
+
+    function copyWidgetCode() {
+      const codeArea = document.getElementById('widget-code-textarea');
+      if (codeArea) {
+        navigator.clipboard.writeText(codeArea.value);
+        const btnText = document.getElementById('btn-copy-widget-text');
+        if (btnText) {
+          btnText.innerText = "✓ ¡Código Copiado!";
+          setTimeout(() => btnText.innerText = "Copiar Código HTML", 2500);
+        }
+        showToast("✓ ¡Código del widget copiado al portapapeles!");
+      }
+    }
+
+    function copyDirectChatLink() {
+      const input = document.getElementById('widget-direct-link-input');
+      if (input) {
+        navigator.clipboard.writeText(input.value);
+        showToast("✓ Enlace directo copiado al portapapeles");
+      }
+    }
+
+    let isFloatingChatOpen = false;
+
+    function toggleFloatingChat(forceOpen) {
+      const windowEl = document.getElementById('floating-chat-window');
+      if (!windowEl) return;
+
+      if (forceOpen === true) {
+        isFloatingChatOpen = true;
+      } else if (forceOpen === false) {
+        isFloatingChatOpen = false;
+      } else {
+        isFloatingChatOpen = !isFloatingChatOpen;
+      }
+
+      if (isFloatingChatOpen) {
+        windowEl.classList.remove('hidden');
+        setTimeout(() => {
+          windowEl.classList.remove('scale-95', 'opacity-0');
+          windowEl.classList.add('scale-100', 'opacity-100');
+        }, 10);
+        const input = document.getElementById('floating-input');
+        if (input) setTimeout(() => input.focus(), 150);
+      } else {
+        windowEl.classList.remove('scale-100', 'opacity-100');
+        windowEl.classList.add('scale-95', 'opacity-0');
+        setTimeout(() => {
+          windowEl.classList.add('hidden');
+        }, 200);
+      }
+    }
+
+    function sendFloatingQuery(text) {
+      const input = document.getElementById('floating-input');
+      if (input) {
+        input.value = text;
+        sendFloatingMessage();
+      }
+    }
+
+    function sendFloatingMessage() {
+      const input = document.getElementById('floating-input');
+      if (!input) return;
+      const text = input.value.trim();
+      if (!text) return;
+
+      const container = document.getElementById('floating-chat-messages');
+      if (!container) return;
+
+      const userBubble = document.createElement('div');
+      userBubble.className = "flex items-start justify-end space-x-2 max-w-[85%] ml-auto";
+      userBubble.innerHTML = `
+        <div class="bg-[#1B4332] text-white p-2.5 rounded-2xl rounded-tr-sm shadow-2xs leading-relaxed text-xs">
+          ${escapeHtml(text)}
+        </div>
+      `;
+      container.appendChild(userBubble);
+      input.value = '';
+      container.scrollTop = container.scrollHeight;
+
+      setTimeout(() => {
+        let reply = "";
+        const q = text.toLowerCase();
+        if (q.includes('turno') || q.includes('cita') || q.includes('agendar') || q.includes('hora')) {
+          reply = `¡Con gusto te agendo! 📅 En <strong>${currentCompany.name}</strong> tenemos turnos disponibles en tiempo real con Google Calendar.<br><br>¿Para qué día y en qué horario preferís tu cita? (Seña de ${Number(currentCompany.deposit || 5000).toLocaleString('es-AR')} vía Mercado Pago para confirmar).`;
+        } else if (q.includes('precio') || q.includes('cuanto') || q.includes('cuesta') || q.includes('catalogo') || q.includes('menú') || q.includes('menu')) {
+          reply = `¡Hola! 👋 Te paso nuestra lista oficial de servicios y precios de <strong>${currentCompany.name}</strong>:<br><br>` + 
+            currentCompany.services.map(s => `• <strong>${s.name}:</strong> ${Number(s.price).toLocaleString('es-AR')} (${s.duration})`).join('<br>') +
+            `<br><br>¿Te gustaría agendar alguno o hacernos un pedido?`;
+        } else if (q.includes('horario') || q.includes('donde') || q.includes('ubicacion')) {
+          reply = `⏰ Nuestro horario de atención en <strong>${currentCompany.name}</strong> es: <em>${currentCompany.hours}</em>.<br><br>📍 Respondemos consultas 24/7 de forma automática.`;
+        } else {
+          reply = `¡Hola! 👋 Gracias por comunicarte con <strong>${currentCompany.name}</strong>. Tomamos tu consulta en tiempo real. ¿En qué podemos ayudarte hoy?`;
+        }
+
+        const botBubble = document.createElement('div');
+        botBubble.className = "flex items-start space-x-2 max-w-[85%]";
+        botBubble.innerHTML = `
+          <div class="bg-white border border-slate-200 text-slate-800 p-2.5 rounded-2xl rounded-tl-sm shadow-2xs leading-relaxed text-xs">
+            ${reply}
+          </div>
+        `;
+        container.appendChild(botBubble);
+        container.scrollTop = container.scrollHeight;
+      }, 400);
+    }
+
+    // =========================================================
+    // MODAL WHATSAPP QR INTERACTIVO
+    // =========================================================
+    let waTimerInterval = null;
+
+    function openWhatsAppModal(context) {
+      const modal = document.getElementById('modal-whatsapp-qr');
+      if (modal) {
+        const phoneInput = document.getElementById('wa-modal-phone');
+        if (phoneInput) phoneInput.value = currentCompany.phone || '+54 9 11 5566-7788';
+
+        updateWhatsAppModalState();
+        modal.classList.remove('hidden');
+
+        let seconds = 40;
+        const timerEl = document.getElementById('wa-qr-timer');
+        if (waTimerInterval) clearInterval(waTimerInterval);
+        waTimerInterval = setInterval(() => {
+          seconds--;
+          if (seconds <= 0) seconds = 45;
+          if (timerEl) timerEl.innerText = `${seconds}s`;
+        }, 1000);
+      }
+    }
+
+    function closeWhatsAppModal() {
+      const modal = document.getElementById('modal-whatsapp-qr');
+      if (modal) modal.classList.add('hidden');
+      if (waTimerInterval) clearInterval(waTimerInterval);
+    }
+
+    function updateWhatsAppModalState() {
+      const overlay = document.getElementById('wa-qr-status-indicator');
+      const btn = document.getElementById('btn-toggle-wa-connect');
+      const btnText = document.getElementById('wa-toggle-btn-text');
+
+      if (currentCompany.whatsappConnected) {
+        if (overlay) overlay.classList.remove('hidden');
+        if (btn) {
+          btn.className = "flex-1 py-2 px-3 text-xs font-bold text-red-700 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg transition shadow-2xs flex items-center justify-center space-x-1.5";
+          if (btnText) btnText.innerText = "Desvincular Línea";
+        }
+      } else {
+        if (overlay) overlay.classList.add('hidden');
+        if (btn) {
+          btn.className = "flex-1 py-2 px-3 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg transition shadow-subtle flex items-center justify-center space-x-1.5";
+          if (btnText) btnText.innerText = "📸 Simular Escaneo Exitoso / Conectar";
+        }
+      }
+    }
+
+    function toggleWhatsAppConnection() {
+      const phoneInput = document.getElementById('wa-modal-phone');
+      if (phoneInput && phoneInput.value.trim()) {
+        currentCompany.phone = phoneInput.value.trim();
+      }
+
+      currentCompany.whatsappConnected = !currentCompany.whatsappConnected;
+      try {
+        localStorage.setItem('changared_company_data', JSON.stringify(currentCompany));
+      } catch(e) {}
+
+      updateWhatsAppModalState();
+      applyCompanyDataToUI();
+
+      if (currentCompany.whatsappConnected) {
+        showToast(`✓ ¡Línea de WhatsApp (${currentCompany.phone}) vinculada exitosamente!`);
+        setTimeout(() => closeWhatsAppModal(), 800);
+      } else {
+        showToast("Línea de WhatsApp desvinculada");
+      }
+    }
+
+    // =========================================================
+    // MODAL GOOGLE CALENDAR (OAUTH)
+    // =========================================================
+    function openGoogleCalendarModal() {
+      const modal = document.getElementById('modal-google-calendar');
+      if (modal) {
+        const input = document.getElementById('cal-modal-email');
+        if (input) input.value = currentCompany.calendarEmail || currentCompany.email || 'turnos.roma@gmail.com';
+        modal.classList.remove('hidden');
+      }
+    }
+
+    function closeGoogleCalendarModal() {
+      const modal = document.getElementById('modal-google-calendar');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function saveGoogleCalendarAccount() {
+      const input = document.getElementById('cal-modal-email');
+      if (!input || !input.value.trim()) {
+        alert("Por favor ingresa tu cuenta de Gmail.");
+        return;
+      }
+      currentCompany.calendarEmail = input.value.trim();
+      currentCompany.calendarConnected = true;
+      try {
+        localStorage.setItem('changared_company_data', JSON.stringify(currentCompany));
+      } catch(e) {}
+
+      applyCompanyDataToUI();
+      closeGoogleCalendarModal();
+      showToast(`✓ Google Calendar sincronizado en tiempo real con ${currentCompany.calendarEmail}`);
+    }
+
+    // =========================================================
+    // MODAL CONFIGURACIÓN DE CITAS, SERVICIOS & SEÑA
+    // =========================================================
+    function openCitasConfigModal() {
+      const modal = document.getElementById('modal-citas-config');
+      if (!modal) return;
+
+      const depositInput = document.getElementById('citas-cfg-deposit');
+      if (depositInput) depositInput.value = currentCompany.deposit || '5000';
+
+      const hoursInput = document.getElementById('citas-cfg-hours');
+      if (hoursInput) hoursInput.value = currentCompany.hours || 'Lunes a Sábado: 09:00 a 20:00 (Turnos cada 45 min)';
+
+      renderCitasServicesEditor();
+      modal.classList.remove('hidden');
+    }
+
+    function closeCitasConfigModal() {
+      const modal = document.getElementById('modal-citas-config');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function renderCitasServicesEditor() {
+      const list = document.getElementById('citas-services-list');
+      if (!list) return;
+
+      list.innerHTML = currentCompany.services.map((s, idx) => `
+        <div class="p-2 bg-slate-50 border border-slate-200 rounded-lg flex items-center justify-between gap-2">
+          <input type="text" value="${escapeHtml(s.name)}" onchange="currentCompany.services[${idx}].name=this.value" class="flex-1 text-xs px-2 py-1 bg-white border border-slate-200 rounded font-medium text-slate-900">
+          <input type="text" value="${escapeHtml(s.duration)}" onchange="currentCompany.services[${idx}].duration=this.value" class="w-20 text-xs px-2 py-1 bg-white border border-slate-200 rounded text-slate-700 font-mono">
+          <input type="number" value="${s.price}" onchange="currentCompany.services[${idx}].price=+this.value" class="w-24 text-xs px-2 py-1 bg-white border border-slate-200 rounded text-slate-900 font-mono font-bold">
+          <button onclick="removeCitasServiceRow(${idx})" class="text-slate-400 hover:text-red-500 p-1">✕</button>
+        </div>
+      `).join('');
+    }
+
+    function addCitasServiceRow() {
+      const newId = currentCompany.services.length + 1;
+      currentCompany.services.push({
+        id: newId,
+        name: "Nueva Prestación",
+        duration: "45 min",
+        price: 9000
+      });
+      renderCitasServicesEditor();
+    }
+
+    function removeCitasServiceRow(idx) {
+      if (currentCompany.services.length <= 1) {
+        alert("Debes mantener al menos 1 servicio activo.");
+        return;
+      }
+      currentCompany.services.splice(idx, 1);
+      renderCitasServicesEditor();
+    }
+
+    function saveCitasConfig() {
+      const depInput = document.getElementById('citas-cfg-deposit');
+      if (depInput) currentCompany.deposit = depInput.value.trim() || '5000';
+
+      const hoursInput = document.getElementById('citas-cfg-hours');
+      if (hoursInput) currentCompany.hours = hoursInput.value.trim() || currentCompany.hours;
+
+      try {
+        localStorage.setItem('changared_company_data', JSON.stringify(currentCompany));
+      } catch(e) {}
+
+      applyCompanyDataToUI();
+      closeCitasConfigModal();
+      showToast("✓ Configuración de servicios y seña guardada con éxito");
+    }
+
+    // =========================================================
+    // MODAL ASISTENTE CONTABLE
+    // =========================================================
+    function openAccountingModal() {
+      const modal = document.getElementById('modal-accounting-config');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeAccountingModal() {
+      const modal = document.getElementById('modal-accounting-config');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function saveAccountingConfig() {
+      closeAccountingModal();
+      showToast("✓ Configuración contable y cuenta de Gmail guardada");
     }
 
     function activarPruebaGratis() {
@@ -4801,6 +5829,7 @@
     loadAccountingInvoices();
     updateFitMap();
     calcLoss();
+    applyCompanyDataToUI();
   </script>
 </body>
 </html>

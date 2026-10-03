@@ -733,6 +733,23 @@
         </div>
       </div>
 
+      <!-- Canal 4: Widget Embebible para Web de Hotel / Restaurante -->
+      <div class="channel-box">
+        <div style="max-width: 580px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+            <strong style="font-size: 14px; color: var(--ink);">Canal 4: Widget Flotante para Tu Página Web (Tiendanube / WordPress / HTML)</strong>
+            <span class="badge-channel badge-connected">1-CLIC EMBED</span>
+          </div>
+          <p style="font-size: 12px; color: var(--mute); line-height: 1.4;">
+            Permite que turistas reserven directamente desde tu página web en su idioma con botón flotante interactivo.
+          </p>
+          <input type="text" id="multi-snippet-code" readonly value="&lt;script src=&quot;https://cdn.changared.com/widget.js&quot; data-tenant=&quot;posada-alerces&quot; data-agent=&quot;turismo&quot; defer&gt;&lt;/script&gt;" class="input-field" style="background:#F4EFE6; font-family: monospace; font-size: 11px;">
+        </div>
+        <div>
+          <button class="btn btn-primary" onclick="copiarSnippetMulti()">📋 Copiar Código HTML</button>
+        </div>
+      </div>
+
       <!-- Canal 3: Enlace Directo para Web e Instagram -->
       <div class="channel-box">
         <div style="max-width: 580px;">
@@ -965,6 +982,13 @@
       showToast("Generando código QR para vincular WhatsApp Business...");
     }
 
+    
+    function copiarSnippetMulti() {
+      const code = '<script src="https://cdn.changared.com/widget.js" data-tenant="posada-alerces" data-agent="turismo" defer><\/script>';
+      navigator.clipboard.writeText(code);
+      flash("✓ Código HTML del widget para tu web copiado al portapapeles.");
+    }
+  
     function copiarLinkWeb() {
       const link = "https://wa.me/5492944558899?text=Hello!%20I%20would%20like%20information";
       navigator.clipboard.writeText(link).then(() => {

@@ -534,13 +534,23 @@
           <div style="display: flex; flex-direction: column; gap: 6px; font-size: 12px;">
             <div style="padding: 6px 10px; background: #FAF8F2; border-radius: 4px; border: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center;">
               <span>📱 WhatsApp Web / Envíos</span>
-              <span style="color: var(--verde); font-weight: 700;">Conectado</span>
+              <button onclick="conectarWhatsAppCobranzas()" class="btn-light" style="padding: 2px 8px; font-size: 10px; font-weight: 700; color: var(--verde); cursor: pointer;">
+                <span id="txt-wa-cobranzas">● Conectado (+54 9 11 4455-6677)</span>
+              </button>
             </div>
             <div style="padding: 6px 10px; background: #FAF8F2; border-radius: 4px; border: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center;">
               <span>💳 Mercado Pago (OAuth)</span>
-              <span style="color: var(--verde); font-weight: 700;">Vinculado</span>
+              <button onclick="conectarMercadoPagoCobranzas()" class="btn-light" style="padding: 2px 8px; font-size: 10px; font-weight: 700; color: var(--verde); cursor: pointer;">
+                <span id="txt-mp-cobranzas">● Vinculado</span>
+              </button>
             </div>
-            <button onclick="document.getElementById('file-import-deudas').click()" class="btn-light" style="width: 100%; justify-content: center; font-size: 11px; padding: 6px 8px;">
+            <div style="padding: 6px 10px; background: #DDEBDD; border-radius: 4px; border: 1px solid var(--verde); display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-weight: 600; color: var(--verde-osc);">🌐 Vincular a Mi Página Web</span>
+              <button onclick="abrirModalWebCobranzas()" class="btn-dark" style="padding: 3px 8px; font-size: 10px; font-weight: 700; cursor: pointer;">
+                Código Web →
+              </button>
+            </div>
+            <button onclick="document.getElementById('file-import-deudas').click()" class="btn-light" style="width: 100%; justify-content: center; font-size: 11px; padding: 6px 8px; cursor: pointer;">
               📁 Importar Excel / CSV de Deudores
             </button>
             <input type="file" id="file-import-deudas" accept=".csv, .xlsx, .xls" style="display: none;" onchange="importarArchivoDeudas(event)">
@@ -984,6 +994,26 @@
       flash(`Pago de ${deuda.nombre} registrado correctamente. Recibo Oficial N° ${nuevoRecibo.recibo} emitido.`);
       renderDeudas();
       renderCobros();
+    }
+
+    
+    function conectarWhatsAppCobranzas() {
+      const txt = document.getElementById('txt-wa-cobranzas');
+      const tel = prompt("Ingresa el número de WhatsApp comercial para cobranzas:", "5491144556677");
+      if (tel) {
+        if (txt) txt.innerText = "● Conectado (+" + tel.replace(/[^0-9]/g, '') + ")";
+        flash("✓ Línea de WhatsApp vinculada para cobranzas");
+      }
+    }
+
+    function conectarMercadoPagoCobranzas() {
+      flash("✓ Cuenta de Mercado Pago vinculada. Acreditación automática IPN activa.");
+    }
+
+    function abrirModalWebCobranzas() {
+      const code = '<!-- Widget Cobranzas Changared -->\n<script src="https://cdn.changared.com/widget.js" data-tenant="cobranzas" data-agent="cobranzas" defer><\/script>';
+      navigator.clipboard.writeText(code);
+      flash("✓ Código HTML para tu página web copiado al portapapeles. Pégalo en tu web o tienda.");
     }
 
     function agregarDeuda() {
