@@ -13,7 +13,7 @@ export const handleLemonSqueezyWebhook = async (req, res, next) => {
     const event = req.body;
     const eventName = event?.meta?.event_name;
     const customData = event?.meta?.custom_data || {};
-    const businessId = customData.business_id || customData.businessId || 'pizzeria-roma';
+    const businessId = customData.business_id || customData.businessId || 'mi-empresa';
 
     console.log(`[LemonSqueezy Webhook] Evento recibido: ${eventName} para tenant: ${businessId}`);
 
@@ -47,7 +47,7 @@ export const handleMercadoPagoBillingWebhook = async (req, res, next) => {
   try {
     const payload = req.body;
     const type = payload?.type || payload?.action;
-    const businessId = req.query.businessId || payload?.data?.metadata?.business_id || 'pizzeria-roma';
+    const businessId = req.query.businessId || payload?.data?.metadata?.business_id || 'mi-empresa';
 
     console.log(`[MercadoPago Billing] Webhook recibido: ${type} para tenant: ${businessId}`);
 

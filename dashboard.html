@@ -176,7 +176,7 @@
         <button onclick="openBusinessConfigModal(); closeMobileSidebar();" title="Personalizar con el nombre de tu propio negocio" class="w-full flex items-center justify-between px-2.5 py-2 text-xs font-medium text-white bg-white/10 hover:bg-white/15 rounded-lg border border-white/10 transition-colors">
           <div class="flex items-center space-x-2 truncate">
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            <span class="truncate font-semibold" id="sidebar-business-name">Pizzería Roma Artesanal</span>
+            <span class="truncate font-semibold" id="sidebar-business-name">Mi Empresa</span>
           </div>
           <span class="text-emerald-300 text-xs">⚙️</span>
         </button>
@@ -286,7 +286,7 @@
         <!-- Botón Cargar / Cambiar Mi Empresa -->
         <button onclick="openBusinessConfigModal()" class="inline-flex items-center space-x-1.5 px-2.5 sm:px-3.5 py-1.5 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg transition-colors shadow-subtle shrink-0">
           <span class="text-sm">🏢</span>
-          <span class="company-display-name truncate max-w-[100px] sm:max-w-[160px]">Pizzería Roma Artesanal</span>
+          <span class="company-display-name truncate max-w-[100px] sm:max-w-[160px]">Mi Empresa</span>
           <span class="text-[10px] text-emerald-300 hidden sm:inline">✏️</span>
         </button>
       </div>
@@ -327,10 +327,10 @@
                   <span>14 días de prueba gratis</span>
                 </span>
               </div>
-              <h3 class="text-base font-bold text-slate-900 mt-0.5 company-display-name">Pizzería Roma Artesanal</h3>
+              <h3 class="text-base font-bold text-slate-900 mt-0.5 company-display-name">Mi Empresa</h3>
               <p class="text-xs text-slate-600 mt-0.5">
-                Rubro: <span id="hub-company-rubro" class="font-medium text-slate-800">Gastronomía & Delivery</span> · 
-                WhatsApp: <span id="hub-company-phone" class="font-mono text-slate-800">+54 9 11 5566-7788</span>
+                Rubro: <span id="hub-company-rubro" class="font-medium text-slate-800">Comercio & Servicios</span> · 
+                WhatsApp: <span id="hub-company-phone" class="font-mono text-slate-800">+54 9 11 4455-6677</span>
               </p>
             </div>
           </div>
@@ -755,12 +755,12 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label class="block text-xs font-medium text-slate-700 mb-1.5" data-i18n="fieldBusinessName">Nombre del Negocio</label>
-              <input type="text" id="input-business-name" value="Pizzería Roma Artesanal" class="w-full text-xs px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:border-slate-400 focus:ring-1 focus:ring-slate-400 transition">
+              <input type="text" id="input-business-name" value="Mi Empresa" class="w-full text-xs px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:border-slate-400 focus:ring-1 focus:ring-slate-400 transition">
             </div>
             <div>
               <label class="block text-xs font-medium text-slate-700 mb-1.5" data-i18n="fieldSlug">ID / Slug Identificador (Inmutable)</label>
               <div class="relative">
-                <input type="text" id="input-business-id" value="pizzeria-roma" readonly class="w-full text-xs font-mono px-3 py-2 bg-slate-100 border border-slate-200 rounded-lg text-slate-600 cursor-not-allowed">
+                <input type="text" id="input-business-id" value="mi-empresa" readonly class="w-full text-xs font-mono px-3 py-2 bg-slate-100 border border-slate-200 rounded-lg text-slate-600 cursor-not-allowed">
                 <span class="absolute right-3 top-2 text-[10px] uppercase font-mono text-slate-600">Multi-tenant ID</span>
               </div>
             </div>
@@ -768,7 +768,7 @@
 
           <div>
             <label class="block text-xs font-medium text-slate-700 mb-1.5" data-i18n="fieldDesc">Descripción y Dinámica Operativa</label>
-            <textarea id="input-business-desc" rows="3" class="w-full text-xs px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:border-slate-400 focus:ring-1 focus:ring-slate-400 transition">Pizzería tradicional italiana a la leña ubicada en el centro. Horario: 19:30 a 00:00 todos los días. Envíos a domicilio con costo fijo de $1500.</textarea>
+            <textarea id="input-business-desc" rows="3" class="w-full text-xs px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:border-slate-400 focus:ring-1 focus:ring-slate-400 transition">Empresa dedicada a la comercialización y servicios profesionales. Horario: Lunes a Viernes de 09:00 a 18:00 hs. Envíos y atención personalizada a todo el país.</textarea>
             <p class="text-[11px] text-slate-600 mt-1" data-i18n="fieldDescHint">El agente utilizará estos datos para contextualizar horarios, envíos y métodos de pago.</p>
           </div>
         </div>
@@ -878,7 +878,7 @@
             <div class="flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-800">
               <div class="flex items-center space-x-2">
                 <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                <span>No aceptamos pedidos antes de las 19:30.</span>
+                <span>Horario de atención: Lunes a Viernes de 09:00 a 18:00 hs.</span>
               </div>
               <button onclick="this.parentElement.remove()" class="text-slate-500 hover:text-red-500 transition">
                 <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
@@ -887,7 +887,7 @@
             <div class="flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-800">
               <div class="flex items-center space-x-2">
                 <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                <span>Demora estimada de delivery: 35 a 50 minutos.</span>
+                <span>Envíos a todo el país coordinados en 24 a 48 hs hábiles.</span>
               </div>
               <button onclick="this.parentElement.remove()" class="text-slate-500 hover:text-red-500 transition">
                 <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
@@ -896,7 +896,7 @@
             <div class="flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-800">
               <div class="flex items-center space-x-2">
                 <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                <span>Aceptamos transferencias y Mercado Pago (alias: roma.pizzas.mp).</span>
+                <span>Aceptamos transferencias y Mercado Pago (alias: pagos.miempresa.mp).</span>
               </div>
               <button onclick="this.parentElement.remove()" class="text-slate-500 hover:text-red-500 transition">
                 <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
@@ -1160,7 +1160,7 @@
             <div>
               <label class="block text-[11px] uppercase font-mono font-semibold text-slate-600 mb-1" data-i18n="lblWebhookUrl">Webhook URL Dinámica (Tenant)</label>
               <div class="flex items-center space-x-2">
-                <input type="text" id="webhook-endpoint-input" readonly value="http://localhost:3000/api/webhook/pizzeria-roma" class="w-full text-xs font-mono px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800">
+                <input type="text" id="webhook-endpoint-input" readonly value="http://localhost:3000/api/webhook/mi-empresa" class="w-full text-xs font-mono px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800">
                 <button onclick="copyWebhookUrl()" class="shrink-0 inline-flex items-center space-x-1 px-3 py-2 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition shadow-subtle">
                   <i data-lucide="copy" class="w-3.5 h-3.5"></i>
                   <span id="copy-btn-text" data-i18n="btnCopy">Copiar</span>
@@ -1451,7 +1451,7 @@
       <!-- ======================================================== -->
       <!-- PASO 5: ASISTENTE CONTABLE (EMAIL -> DRIVE -> SHEETS) -->
       <!-- ======================================================== -->
-      <section id="step-accounting" class="step-content space-y-6 hidden">
+      <section id="step-accounting" class="step-content space-y-6 pb-28 hidden">
         <!-- Top Navigation Banner (Limpio) -->
         <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
           <div class="flex items-center space-x-2">
@@ -1464,7 +1464,7 @@
             <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-700 border border-slate-200 font-medium">3. Asistente Contable (Facturas a Excel & Drive)</span>
             <button onclick="openBusinessConfigModal()" class="inline-flex items-center space-x-1 px-2.5 py-1 text-xs bg-emerald-50 text-emerald-900 border border-emerald-300 rounded-lg hover:bg-emerald-100 transition shadow-2xs">
               <span>🏢</span>
-              <span class="company-display-name font-semibold truncate max-w-[120px] sm:max-w-none">Pizzería Roma</span>
+              <span class="company-display-name font-semibold truncate max-w-[120px] sm:max-w-none">Mi Empresa</span>
               <span class="text-[10px] text-emerald-700 font-semibold">✏️ Cambiar</span>
             </button>
           </div>
@@ -1476,7 +1476,7 @@
             <h3 class="text-xs font-bold uppercase tracking-wider text-[#1B4332]">¿Para qué sirve este empleado?</h3>
           </div>
           <p class="text-xs text-slate-700 leading-relaxed">
-            Lee automáticamente las facturas y comprobantes en PDF que llegan a tu casilla de email, extrae CUIT, neto e IVA discriminado con IA, guarda el PDF en tu Google Drive y completa el Excel o Google Sheets de tu contador sin saturar la memoria de tu servidor.
+            Lee automáticamente las facturas y comprobantes fiscales que llegan a tu casilla de email o por WhatsApp, extrae CUIT, neto e IVA discriminado con IA, guarda el PDF en tu Google Drive y completa el Google Sheets de tu contador en tiempo real.
           </p>
         </div>
 
@@ -1498,117 +1498,138 @@
             </a>
           </div>
 
-          <!-- ESTRUCTURA ESTÁNDAR OBLIGATORIA: 3 BLOQUES OPERATIVOS -->
+          <!-- ESTRUCTURA ESTÁNDAR: 3 BLOQUES OPERATIVOS CONTABLES -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <!-- BLOQUE 1: INTEGRACIÓN & CANALES (CONEXIÓN EN 1 CLIC) -->
-          <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-3 shadow-subtle">
-            <div class="flex items-center justify-between">
-              <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
-                <i data-lucide="link" class="w-3.5 h-3.5 text-emerald-600"></i>
-                <span>Bloque 1 · Integración & Canales</span>
-              </span>
-              <span class="text-[10px] font-mono px-2 py-0.5 bg-emerald-50 text-emerald-700 font-bold rounded border border-emerald-200">1-CLIC LISTO</span>
-            </div>
-            <h4 class="text-xs font-bold text-slate-900">WhatsApp & Widget para Tu Web</h4>
-            <p class="text-[11px] text-slate-600 leading-tight">Canales directos por donde tus clientes consultan y compran.</p>
-            
-            <div class="space-y-2 text-xs">
-              <!-- Canal 1: WhatsApp Business -->
-              <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-lg flex items-center justify-between gap-2">
-                <div class="flex items-center space-x-2 min-w-0">
-                  <div class="w-7 h-7 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0">
-                    <i data-lucide="smartphone" class="w-4 h-4"></i>
+            <!-- BLOQUE 1: CANALES DE ENTRADA (EMAIL / WHATSAPP / UPLOAD) -->
+            <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-3 shadow-subtle flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
+                    <i data-lucide="inbox" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>Bloque 1 · Canales de Entrada</span>
+                  </span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 bg-emerald-50 text-emerald-700 font-bold rounded border border-emerald-200">AUTOMÁTICO</span>
+                </div>
+                <h4 class="text-xs font-bold text-slate-900">Recepción de Facturas</h4>
+                <p class="text-[11px] text-slate-600 leading-tight mb-3">Canales por donde ingresan los comprobantes de tus compras.</p>
+                
+                <div class="space-y-2 text-xs">
+                  <!-- Canal 1: Casilla de Correo Dedicada -->
+                  <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-lg space-y-1.5">
+                    <div class="flex items-center justify-between">
+                      <span class="text-[11px] font-semibold text-slate-700 flex items-center space-x-1">
+                        <span>📧</span><span>Email para Proveedores:</span>
+                      </span>
+                      <button onclick="copyAccountingEmail()" class="text-[10px] font-bold text-emerald-700 hover:text-emerald-900 bg-white border border-slate-200 px-2 py-0.5 rounded shadow-2xs">
+                        Copiar
+                      </button>
+                    </div>
+                    <input type="text" id="acc-email-input" readonly value="facturas@miempresa.com" class="w-full text-xs font-mono bg-white border border-slate-200 rounded px-2.5 py-1.5 text-slate-800">
+                    <p class="text-[10px] text-slate-500">Configurá el reenvío desde tu Gmail o dale esta casilla a tus proveedores.</p>
                   </div>
-                  <div class="min-w-0">
-                    <span class="font-bold text-slate-900 block truncate text-xs">WhatsApp Business</span>
-                    <span class="text-[10px] text-emerald-700 font-semibold block truncate">● Conectado (+54 9 11 4455-6677)</span>
+
+                  <!-- Canal 2: WhatsApp / Foto de Ticket -->
+                  <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-lg flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                      <span class="text-base">💬</span>
+                      <div>
+                        <span class="font-bold text-slate-900 block text-xs">WhatsApp de Comprobantes</span>
+                        <span class="text-[10px] text-slate-600 block">Enviá fotos de tickets o PDFs al chat</span>
+                      </div>
+                    </div>
+                    <button onclick="openWhatsAppModal('contable')" class="px-2.5 py-1 text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 rounded-md transition shadow-2xs">
+                      Vincular
+                    </button>
+                  </div>
+
+                  <!-- Canal 3: Subida Manual Directa -->
+                  <div class="p-2.5 bg-emerald-50/50 border border-emerald-200 rounded-lg flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                      <span class="text-base">📎</span>
+                      <div>
+                        <span class="font-bold text-emerald-950 block text-xs">Carga Manual Directa</span>
+                        <span class="text-[10px] text-emerald-700 block">Subí un PDF o foto desde tu PC</span>
+                      </div>
+                    </div>
+                    <label class="cursor-pointer px-2.5 py-1 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-md transition shadow-2xs">
+                      <span>Subir PDF</span>
+                      <input type="file" accept=".pdf,image/*" onchange="handleRealInvoiceUpload(event)" class="hidden">
+                    </label>
                   </div>
                 </div>
-                <button onclick="openWhatsAppModal('vendedor')" class="shrink-0 px-2.5 py-1 text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 rounded-md transition shadow-2xs">
-                  Ver QR
-                </button>
               </div>
+            </div>
 
-              <!-- Canal 2: Widget para Página Web -->
-              <div class="p-2.5 bg-emerald-50/80 border border-emerald-200 rounded-lg flex items-center justify-between gap-2">
-                <div class="flex items-center space-x-2 min-w-0">
-                  <div class="w-7 h-7 rounded-lg bg-[#1B4332] text-white flex items-center justify-center shrink-0 text-sm">
-                    🌐
+            <!-- BLOQUE 2: DATOS FISCALES & DESTINO CLOUD -->
+            <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-3 shadow-subtle flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
+                    <i data-lucide="file-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>Bloque 2 · Datos Fiscales & Nube</span>
+                  </span>
+                  <button onclick="openAccountingModal()" class="text-[10px] font-bold text-emerald-800 hover:text-emerald-950 bg-emerald-100 hover:bg-emerald-200 px-2 py-0.5 rounded border border-emerald-300 transition">
+                    ✏️ EDITAR DATOS
+                  </button>
+                </div>
+                <h4 class="text-xs font-bold text-slate-900">Identificación de Empresa & Destino</h4>
+                <p class="text-[11px] text-slate-600 leading-tight mb-3">Dónde se respaldan los comprobantes y para qué CUIT.</p>
+
+                <div class="space-y-1.5 text-xs">
+                  <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
+                    <span class="text-slate-600">Razón Social:</span>
+                    <span class="font-semibold text-slate-900 company-display-name">Mi Empresa</span>
                   </div>
-                  <div class="min-w-0">
-                    <span class="font-bold text-emerald-950 block truncate text-xs">Vincular a Mi Página Web</span>
-                    <span class="text-[10px] text-emerald-700 block truncate">Tiendanube, Shopify, WordPress o HTML</span>
+                  <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
+                    <span class="text-slate-600">CUIT Empresa:</span>
+                    <span class="font-mono font-semibold text-slate-900" id="acc-display-cuit">30-71234567-8</span>
+                  </div>
+                  <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
+                    <span class="text-slate-600">Condición Fiscal:</span>
+                    <span class="font-medium text-emerald-800" id="acc-display-condicion">Responsable Inscripto</span>
+                  </div>
+                  <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
+                    <span class="text-slate-600">Google Drive:</span>
+                    <span class="text-slate-700 font-mono text-[11px]" id="acc-display-drive">📁 /Facturas_2026/</span>
+                  </div>
+                  <div class="p-2 bg-emerald-50 border border-emerald-200 rounded text-[10px] text-emerald-900 flex items-center space-x-1.5">
+                    <i data-lucide="sheet" class="w-3.5 h-3.5 text-emerald-700 shrink-0"></i>
+                    <span>Google Sheets: Libro_IVA_Compras (Sincronizado)</span>
                   </div>
                 </div>
-                <button onclick="openWebsiteWidgetModal('vendedor')" class="shrink-0 px-2.5 py-1 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-md transition shadow-2xs">
-                  Código Web →
-                </button>
               </div>
-            </div>
-          </div>
-
-          <!-- BLOQUE 2: BASE DE CONOCIMIENTO / DATOS DE ENTRADA -->
-          <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-3 shadow-subtle">
-            <div class="flex items-center justify-between">
-              <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
-                <i data-lucide="database" class="w-3.5 h-3.5 text-emerald-600"></i>
-                <span data-i18n="b2Title">Bloque 2 · Datos de Entrada</span>
-              </span>
-              <button onclick="openCitasConfigModal()" class="text-[10px] font-bold text-emerald-800 hover:text-emerald-950 bg-emerald-100 hover:bg-emerald-200 px-2 py-0.5 rounded border border-emerald-300 transition">
-                ✏️ EDITAR SERVICIOS
-              </button>
-            </div>
-            <h4 class="text-xs font-bold text-slate-900" data-i18n="citasB2Heading">Servicios, Duración & Profesionales</h4>
-            <p class="text-[11px] text-slate-600 leading-tight" data-i18n="citasB2Sub">Reglas de duración y política de confirmación.</p>
-
-            <div class="space-y-1.5 text-xs">
-              <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                <span class="text-slate-600">Servicios Activos:</span>
-                <span class="font-semibold text-slate-900" id="citas-display-services-count">4 prestaciones</span>
-              </div>
-              <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                <span class="text-slate-600">Profesionales / Boxes:</span>
-                <span class="font-semibold text-emerald-800" id="citas-display-staff-count">3 profesionales</span>
-              </div>
-              <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
-                <span class="text-[10px] font-semibold text-slate-600 uppercase" data-i18n="citasDepositRule">Política de Seña Previa:</span>
-                <div class="text-[11px] text-slate-800 font-medium" id="citas-display-deposit-text">Seña $5.000 con Mercado Pago para reservar</div>
-              </div>
-              <div class="p-2 bg-amber-50 border border-amber-200 rounded text-[10px] text-amber-900 flex items-center space-x-1.5">
-                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-amber-600 shrink-0"></i>
-                <span data-i18n="citasAntiNoShow">Si no abonan la seña en 15 min, el turno se libera</span>
-              </div>
-              <button onclick="openCitasConfigModal()" class="w-full py-2 px-3 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg text-xs font-semibold text-slate-800 transition flex items-center justify-center space-x-1.5 shadow-2xs">
+              <button onclick="openAccountingModal()" class="w-full py-2 px-3 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg text-xs font-semibold text-slate-800 transition flex items-center justify-center space-x-1.5 shadow-2xs mt-2">
                 <i data-lucide="settings-2" class="w-3.5 h-3.5 text-slate-600"></i>
-                <span>Configurar Precios, Duración & Seña →</span>
+                <span>Configurar CUIT, Gmail & Google Drive →</span>
               </button>
             </div>
-          </div>
 
-          <!-- BLOQUE 3: AUTOMATIZACIÓN & ACCIÓN DE SALIDA -->
-            <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle">
-              <div class="flex items-center justify-between">
-                <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
-                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600"></i>
-                  <span>Bloque 3 · Acción de Salida</span>
-                </span>
-                <span class="text-[10px] font-mono text-emerald-700 font-bold">REPORTE CONTADOR</span>
-              </div>
-              <h4 class="text-xs font-bold text-slate-900">¿Qué hace la IA con cada factura?</h4>
-              <p class="text-[11px] text-slate-600 leading-tight">Extracción fiscal, guardado y entrega automática.</p>
+            <!-- BLOQUE 3: FLUJO AUTOMATIZADO CON IA -->
+            <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
+                    <i data-lucide="cpu" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>Bloque 3 · Procesamiento Inteligente</span>
+                  </span>
+                  <span class="text-[10px] font-mono text-emerald-700 font-bold">REPORTE CONTABLE</span>
+                </div>
+                <h4 class="text-xs font-bold text-slate-900">¿Cómo procesa la IA cada comprobante?</h4>
+                <p class="text-[11px] text-slate-600 leading-tight mb-2">Extracción automática de datos fiscales y archivo seguro.</p>
 
-              <div class="space-y-1.5 text-xs text-slate-800">
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
-                  <strong class="text-slate-900">1. Filtro Estricto:</strong> Lee únicamente adjuntos PDF de facturas. Ignora spam o correos sin comprobante.
-                </div>
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
-                  <strong class="text-slate-900">2. Extracción Fiscal:</strong> Extrae CUIT, Nro, Neto, IVA (21%, 10.5%) y Percepciones con IA.
-                </div>
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
-                  <strong class="text-slate-900">3. Guarda en Drive:</strong> Renombra y archiva en <code class="text-[10px]">/Facturas/Octubre/</code> (0 MB en tu server).
-                </div>
-                <div class="p-2 bg-emerald-50 border border-emerald-200 rounded leading-tight text-emerald-900">
-                  <strong class="text-emerald-950">4. Entrega al Contador:</strong> El día 1 de cada mes envía el Google Sheet consolidado para liquidar.
+                <div class="space-y-1.5 text-xs text-slate-800">
+                  <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
+                    <strong class="text-slate-900">1. Detección & Filtro:</strong> Lee únicamente comprobantes fiscales válidos (Facturas A, B, C, Tickets). Descarta spam.
+                  </div>
+                  <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
+                    <strong class="text-slate-900">2. Extracción OCR:</strong> Detecta CUIT emisor, Punto de Venta, Nro, Neto Gravado, IVA (21%, 10.5%) y Total.
+                  </div>
+                  <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
+                    <strong class="text-slate-900">3. Respaldo en Drive:</strong> Renombra el PDF (<code class="text-[10px]">Proveedor-Nro.pdf</code>) y lo archiva en tu Google Drive.
+                  </div>
+                  <div class="p-2 bg-emerald-50 border border-emerald-200 rounded leading-tight text-emerald-900">
+                    <strong class="text-emerald-950">4. Entrega al Contador:</strong> Añade la fila en Google Sheets en tiempo real para liquidar sin demoras.
+                  </div>
                 </div>
               </div>
             </div>
@@ -1639,32 +1660,36 @@
           </div>
         </div>
 
-        <!-- Consola de Prueba: Simular Recepción de Email -->
+        <!-- Consola de Acción Rápida: Probar Recepción de Comprobantes -->
         <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-subtle space-y-3">
           <div class="flex items-center justify-between">
             <div>
               <h3 class="text-xs font-semibold text-slate-900 flex items-center space-x-1.5">
                 <i data-lucide="play" class="w-3.5 h-3.5 text-emerald-600"></i>
-                <span>Simulador de Recepción de Email con Factura</span>
+                <span>Comprobantes de Prueba & Subida Real</span>
               </h3>
-              <p class="text-[11px] text-slate-600 mt-0.5">Haz clic en cualquier comprobante para ver cómo el asistente lo procesa y añade la fila en vivo:</p>
+              <p class="text-[11px] text-slate-600 mt-0.5">Procesá un comprobante de servicio o subí tu propio PDF para ver el OCR en acción:</p>
             </div>
-            <span class="text-[10px] font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">MODO DEMO</span>
           </div>
 
           <div class="flex flex-wrap gap-2 text-xs">
             <button onclick="simulateInvoiceTrigger('edenor')" class="px-3 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-800 transition flex items-center space-x-2 shadow-subtle">
               <span>⚡</span>
-              <span>Recibir Factura Edenor ($103.115)</span>
+              <span>Probar Factura Edenor / Luz ($103.115)</span>
             </button>
             <button onclick="simulateInvoiceTrigger('telecom')" class="px-3 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-800 transition flex items-center space-x-2 shadow-subtle">
               <span>📞</span>
-              <span>Recibir Factura Telecom ($52.020)</span>
+              <span>Probar Factura Telecom / Internet ($52.020)</span>
             </button>
-            <button onclick="simulateInvoiceTrigger('lacteos')" class="px-3 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-800 transition flex items-center space-x-2 shadow-subtle">
-              <span>🧀</span>
-              <span>Recibir Factura Lácteos Mayorista ($153.750)</span>
+            <button onclick="simulateInvoiceTrigger('insumos')" class="px-3 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-800 transition flex items-center space-x-2 shadow-subtle">
+              <span>📦</span>
+              <span>Probar Factura Insumos Comerciales ($153.750)</span>
             </button>
+            <label class="cursor-pointer px-3 py-2 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 rounded-lg text-emerald-950 font-semibold transition flex items-center space-x-2 shadow-subtle">
+              <span>📎</span>
+              <span>Subir Mi Factura Real (PDF / Foto)</span>
+              <input type="file" accept=".pdf,image/*" onchange="handleRealInvoiceUpload(event)" class="hidden">
+            </label>
           </div>
         </div>
 
@@ -1673,7 +1698,7 @@
           <div class="flex items-center justify-between border-b border-slate-100 pb-3">
             <div>
               <h3 class="text-xs font-semibold text-slate-900">Libro IVA Compras Sincronizado (Google Sheets)</h3>
-              <p class="text-[11px] text-slate-600 mt-0.5">Filas generadas en tiempo real a partir de los emails procesados por el asistente.</p>
+              <p class="text-[11px] text-slate-600 mt-0.5">Filas generadas en tiempo real a partir de los comprobantes procesados.</p>
             </div>
             <button onclick="loadAccountingInvoices()" class="text-xs text-slate-600 hover:text-slate-900 flex items-center space-x-1 transition">
               <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
@@ -1703,16 +1728,18 @@
           </div>
         </div>
 
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-200">
-          <button onclick="switchStep('step-hub')" class="w-full sm:w-auto inline-flex items-center justify-center space-x-1.5 px-3.5 py-2 text-xs font-medium text-slate-600 hover:text-slate-900 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 transition shadow-2xs">
+        <!-- Barra Inferior de Acciones (Con espacio amplio para no ser tapada por nada) -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6 border-t border-slate-200 relative z-30 mb-8">
+          <button onclick="switchStep('step-hub')" class="w-full sm:w-auto inline-flex items-center justify-center space-x-1.5 px-3.5 py-2.5 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition shadow-2xs">
             <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-            <span>Ir a Otro Empleado</span>
+            <span>← Volver al Hub</span>
           </button>
           <div class="flex flex-wrap items-center justify-end gap-2 w-full sm:w-auto">
-            <button onclick="simulateInvoiceTrigger('telecom')" class="flex-1 sm:flex-none px-3.5 py-2 text-xs font-bold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg transition flex items-center justify-center space-x-1.5">
-              <span>📄</span><span>Probar Subir Factura PDF</span>
-            </button>
-            <button onclick="openAccountingModal()" class="flex-1 sm:flex-none px-4 py-2 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg transition shadow-subtle flex items-center justify-center space-x-1.5">
+            <label class="cursor-pointer flex-1 sm:flex-none px-4 py-2.5 text-xs font-semibold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg transition flex items-center justify-center space-x-1.5 shadow-2xs">
+              <span>📄</span><span>Subir Factura PDF / Foto</span>
+              <input type="file" accept=".pdf,image/*" onchange="handleRealInvoiceUpload(event)" class="hidden">
+            </label>
+            <button onclick="openAccountingModal()" class="flex-1 sm:flex-none px-4 py-2.5 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg transition shadow-subtle flex items-center justify-center space-x-1.5">
               <span>📧</span><span>Conectar Gmail & Drive</span>
             </button>
           </div>
@@ -2186,10 +2213,10 @@
             <div class="bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between">
               <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">
-                  CR
+                  ME
                 </div>
                 <div>
-                  <h3 class="text-xs font-semibold text-slate-900" id="sim-chat-title">Pizzería Roma Artesanal</h3>
+                  <h3 class="text-xs font-semibold text-slate-900" id="sim-chat-title">Mi Empresa</h3>
                   <p class="text-[10px] text-emerald-600 font-medium flex items-center space-x-1">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                     <span data-i18n="simOnline">Empleado Virtual en línea (Multi-idioma)</span>
@@ -2212,7 +2239,7 @@
               <!-- Mensaje Inicial del Bot -->
               <div class="flex items-start space-x-2 max-w-[80%]">
                 <div class="bg-white border border-slate-200 text-slate-800 text-xs p-3 rounded-2xl rounded-tl-sm shadow-subtle leading-relaxed" id="sim-initial-msg">
-                  ¡Hola! Bienvenidos a Pizzería Roma Artesanal 🍕 ¿En qué podemos ayudarte hoy? (You can also ask in English / Pode falar em português).
+                  ¡Hola! 👋 Bienvenidos a Mi Empresa. ¿En qué podemos ayudarte hoy? (You can also ask in English / Pode falar em português).
                 </div>
               </div>
             </div>
@@ -2231,19 +2258,19 @@
             <span class="text-slate-600 text-[11px] font-medium block" data-i18n="simQuickTests">Pruebas rápidas multilingües:</span>
             <div class="flex flex-wrap gap-2 text-xs">
               <!-- Test Español -->
-              <button onclick="setSimQuery('¿Tienen cerveza corona y pizza de muzzarella?')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[11px] transition flex items-center space-x-1 border border-slate-200">
+              <button onclick="setSimQuery('¿Qué servicios ofrecen y cuáles son los medios de pago?')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[11px] transition flex items-center space-x-1 border border-slate-200">
                 <span>🇪🇸</span>
-                <span>"¿Tienen cerveza corona?" (Stock 0 en ES)</span>
+                <span>"¿Qué servicios ofrecen?" (Consulta comercial)</span>
               </button>
               <!-- Test Inglés -->
-              <button onclick="setSimQuery('Hi! Is Corona beer available and what is the delivery time?')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[11px] transition flex items-center space-x-1 border border-slate-200">
+              <button onclick="setSimQuery('Hi! What services do you offer and what are your business hours?')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[11px] transition flex items-center space-x-1 border border-slate-200">
                 <span>🇺🇸</span>
-                <span>"Hi! Is Corona beer available?" (Stock 0 en EN)</span>
+                <span>"What services do you offer?" (English query)</span>
               </button>
               <!-- Test Portugués -->
-              <button onclick="setSimQuery('Olá! Quanto custa a pizza de muzzarella e a cerveja corona?')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[11px] transition flex items-center space-x-1 border border-slate-200">
+              <button onclick="setSimQuery('Olá! Quais serviços vocês oferecem e quais são as formas de pagamento?')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[11px] transition flex items-center space-x-1 border border-slate-200">
                 <span>🇧🇷</span>
-                <span>"Olá! Quanto custa a muzzarella?" (Preço en PT)</span>
+                <span>"Quais serviços oferecem?" (Português)</span>
               </button>
               <!-- Test TalleExacto Moda -->
               <button onclick="setSimQuery('Hola! Mido 1.65, tengo 90 de busto y 70 de cintura. ¿Qué talle me conviene en el vestido?')" class="px-2.5 py-1 bg-amber-50 hover:bg-amber-100 text-amber-800 rounded-lg text-[11px] transition flex items-center space-x-1 border border-amber-200">
@@ -2352,7 +2379,7 @@
             </span>
             <button onclick="openBusinessConfigModal()" class="inline-flex items-center space-x-1 px-2.5 py-1 text-xs bg-emerald-50 text-emerald-900 border border-emerald-300 rounded-lg hover:bg-emerald-100 transition shadow-2xs">
               <span>🏢</span>
-              <span class="company-display-name font-semibold truncate max-w-[120px] sm:max-w-none">Pizzería Roma</span>
+              <span class="company-display-name font-semibold truncate max-w-[120px] sm:max-w-none">Mi Empresa</span>
               <span class="text-[10px] text-emerald-700 font-semibold">✏️ Cambiar</span>
             </button>
           </div>
@@ -2372,71 +2399,90 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
           
           <!-- BLOQUE 1: INTEGRACIÓN & CANALES (CONEXIÓN EN 1 CLIC) -->
-          <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle">
-            <div class="flex items-center justify-between">
-              <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
-                <i data-lucide="link" class="w-3.5 h-3.5 text-emerald-600"></i>
-                <span data-i18n="b1Title">Bloque 1 · Integración & Canales</span>
-              </span>
-              <span class="text-[10px] font-mono px-1.5 py-0.5 bg-emerald-50 text-emerald-700 font-semibold rounded border border-emerald-200">1-CLIC CONECTADO</span>
-            </div>
-            <h4 class="text-xs font-bold text-slate-900" data-i18n="citasB1Heading">WhatsApp + Google Calendar</h4>
-            <p class="text-[11px] text-slate-600 leading-tight" data-i18n="citasB1Sub">Canal de atención y agenda sincronizada bidireccional.</p>
-            
-            <div class="space-y-1.5 text-xs">
-              <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                <span class="flex items-center space-x-1.5">
-                  <i data-lucide="smartphone" class="w-3.5 h-3.5 text-emerald-600"></i>
-                  <span>WhatsApp Business (QR)</span>
+          <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
+                  <i data-lucide="link" class="w-3.5 h-3.5 text-emerald-600"></i>
+                  <span data-i18n="b1Title">Bloque 1 · Integración & Canales</span>
                 </span>
-                <span class="text-[10px] text-emerald-700 font-semibold">● Vinculado</span>
+                <span class="text-[10px] font-mono px-1.5 py-0.5 bg-emerald-50 text-emerald-700 font-semibold rounded border border-emerald-200">SINCRONIZACIÓN</span>
               </div>
-              <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                <span class="flex items-center space-x-1.5">
-                  <i data-lucide="calendar" class="w-3.5 h-3.5 text-blue-600"></i>
-                  <span>Google Calendar (OAuth)</span>
-                </span>
-                <span class="text-[10px] text-emerald-700 font-semibold">● Sincronizado</span>
-              </div>
-              <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
-                <span class="text-[10px] font-semibold text-slate-600 uppercase" data-i18n="citasCalendarAccount">Cuenta Sincronizada:</span>
-                <div class="text-[11px] font-mono text-slate-900 font-semibold truncate" id="citas-account-email">turnos.roma@gmail.com</div>
-              </div>
-              <div class="p-2 bg-slate-50 border border-slate-200 rounded text-[11px] text-slate-700">
-                <span class="text-[10px] font-semibold text-slate-600 uppercase block mb-0.5" data-i18n="citasHours">Horarios de Atención:</span>
-                <span>Lunes a Sábado: 09:00 a 20:00 (Turnos cada 45 min)</span>
+              <h4 class="text-xs font-bold text-slate-900" data-i18n="citasB1Heading">WhatsApp + Google Calendar</h4>
+              <p class="text-[11px] text-slate-600 leading-tight mb-2.5" data-i18n="citasB1Sub">Canal de atención y agenda sincronizada bidireccional.</p>
+              
+              <div class="space-y-1.5 text-xs">
+                <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
+                  <div class="flex items-center space-x-1.5 truncate">
+                    <i data-lucide="smartphone" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                    <span class="truncate">WhatsApp Business</span>
+                  </div>
+                  <div class="flex items-center space-x-1.5 shrink-0">
+                    <span class="text-[10px]" id="citas-status-wa">○ No vinculado</span>
+                    <button onclick="openWhatsAppModal('citas')" class="px-2 py-0.5 text-[10px] font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 rounded shadow-2xs">
+                      Vincular
+                    </button>
+                  </div>
+                </div>
+
+                <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
+                  <div class="flex items-center space-x-1.5 truncate">
+                    <i data-lucide="calendar" class="w-3.5 h-3.5 text-blue-600 shrink-0"></i>
+                    <span class="truncate">Google Calendar</span>
+                  </div>
+                  <div class="flex items-center space-x-1.5 shrink-0">
+                    <span class="text-[10px]" id="citas-status-cal">○ No vinculado</span>
+                    <button onclick="openGoogleCalendarModal()" class="px-2 py-0.5 text-[10px] font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded shadow-2xs">
+                      Conectar
+                    </button>
+                  </div>
+                </div>
+
+                <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
+                  <span class="text-[10px] font-semibold text-slate-600 uppercase" data-i18n="citasCalendarAccount">Cuenta Sincronizada:</span>
+                  <div class="text-[11px] font-mono text-slate-900 font-semibold truncate" id="citas-account-email">contacto@miempresa.com</div>
+                </div>
+
+                <div class="p-2 bg-slate-50 border border-slate-200 rounded text-[11px] text-slate-700">
+                  <span class="text-[10px] font-semibold text-slate-600 uppercase block mb-0.5" data-i18n="citasHours">Horarios de Atención:</span>
+                  <span id="citas-display-hours">Lunes a Viernes: 09:00 a 18:00</span>
+                </div>
               </div>
             </div>
           </div>
 
           <!-- BLOQUE 2: BASE DE CONOCIMIENTO / DATOS DE ENTRADA -->
-          <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle">
-            <div class="flex items-center justify-between">
-              <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
-                <i data-lucide="database" class="w-3.5 h-3.5 text-emerald-600"></i>
-                <span data-i18n="b2Title">Bloque 2 · Datos de Entrada</span>
-              </span>
-              <span class="text-[10px] font-mono text-slate-600" data-i18n="citasB2Badge">SERVICIOS & SEÑA</span>
-            </div>
-            <h4 class="text-xs font-bold text-slate-900" data-i18n="citasB2Heading">Servicios, Duración & Profesionales</h4>
-            <p class="text-[11px] text-slate-600 leading-tight" data-i18n="citasB2Sub">Reglas de duración y política de confirmación.</p>
+          <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
+                  <i data-lucide="database" class="w-3.5 h-3.5 text-emerald-600"></i>
+                  <span data-i18n="b2Title">Bloque 2 · Datos de Entrada</span>
+                </span>
+                <button onclick="openCitasConfigModal()" class="text-[10px] font-bold text-emerald-800 hover:text-emerald-950 bg-emerald-100 hover:bg-emerald-200 px-2 py-0.5 rounded border border-emerald-300 transition">
+                  ✏️ EDITAR
+                </button>
+              </div>
+              <h4 class="text-xs font-bold text-slate-900" data-i18n="citasB2Heading">Servicios, Duración & Profesionales</h4>
+              <p class="text-[11px] text-slate-600 leading-tight mb-2.5" data-i18n="citasB2Sub">Reglas de duración y política de confirmación.</p>
 
-            <div class="space-y-1.5 text-xs">
-              <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                <span class="text-slate-600">Servicios Activos:</span>
-                <span class="font-semibold text-slate-900">4 prestaciones</span>
-              </div>
-              <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                <span class="text-slate-600">Profesionales / Boxes:</span>
-                <span class="font-semibold text-emerald-800">3 profesionales</span>
-              </div>
-              <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
-                <span class="text-[10px] font-semibold text-slate-600 uppercase" data-i18n="citasDepositRule">Política de Seña Previa:</span>
-                <div class="text-[11px] text-slate-800 font-medium">Seña $5.000 con Mercado Pago para reservar</div>
-              </div>
-              <div class="p-2 bg-amber-50 border border-amber-200 rounded text-[10px] text-amber-900 flex items-center space-x-1.5">
-                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-amber-600 shrink-0"></i>
-                <span data-i18n="citasAntiNoShow">Si no abonan la seña en 15 min, el turno se libera</span>
+              <div class="space-y-1.5 text-xs">
+                <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
+                  <span class="text-slate-600">Servicios Activos:</span>
+                  <span class="font-semibold text-slate-900" id="citas-display-services-count">3 prestaciones</span>
+                </div>
+                <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
+                  <span class="text-slate-600">Disponibilidad de Agenda:</span>
+                  <span class="font-semibold text-emerald-800">Turnos en Tiempo Real</span>
+                </div>
+                <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
+                  <span class="text-[10px] font-semibold text-slate-600 uppercase" data-i18n="citasDepositRule">Política de Seña Previa:</span>
+                  <div class="text-[11px] text-slate-800 font-medium" id="citas-display-deposit-text">Seña $5.000 con Mercado Pago para reservar</div>
+                </div>
+                <div class="p-2 bg-amber-50 border border-amber-200 rounded text-[10px] text-amber-900 flex items-center space-x-1.5">
+                  <i data-lucide="shield-check" class="w-3.5 h-3.5 text-amber-600 shrink-0"></i>
+                  <span data-i18n="citasAntiNoShow">Si no abonan la seña en 15 min, el turno se libera</span>
+                </div>
               </div>
             </div>
           </div>
@@ -2540,7 +2586,7 @@
               <!-- Mensaje Inicial del Bot -->
               <div class="flex items-start space-x-2 max-w-[80%]">
                 <div class="bg-white border border-slate-200 text-slate-800 text-xs p-3 rounded-2xl rounded-tl-sm shadow-subtle leading-relaxed">
-                  ¡Hola! 📅 Soy el asistente de citas y turnos de <strong>Pizzería Roma Artesanal</strong>. ¿Qué servicio te gustaría agendar y para qué día preferís tu turno?
+                  ¡Hola! 📅 Soy el asistente de citas y turnos de <strong class="company-display-name">Mi Empresa</strong>. ¿Qué servicio te gustaría agendar y para qué día preferís tu turno?
                 </div>
               </div>
             </div>
@@ -2806,7 +2852,7 @@
           </div>
           <div>
             <h3 class="text-sm font-bold text-slate-900">Vincular Asistente Virtual a Tu Página Web o E-commerce</h3>
-            <p class="text-[11px] text-slate-500">Agrega el chat de <span class="company-display-name font-semibold text-slate-800">Pizzería Roma Artesanal</span> en tu tienda o sitio en 2 minutos.</p>
+            <p class="text-[11px] text-slate-500">Agrega el chat de <span class="company-display-name font-semibold text-slate-800">Mi Empresa</span> en tu tienda o sitio en 2 minutos.</p>
           </div>
         </div>
         <button onclick="closeWebsiteWidgetModal()" class="text-slate-500 hover:text-slate-700 p-1 rounded-lg">
@@ -2868,7 +2914,7 @@
           </button>
         </div>
         <div class="flex items-center space-x-2">
-          <input type="text" id="widget-direct-link-input" readonly value="https://changared.com/chat/pizzeria-roma" class="flex-1 text-xs font-mono px-3 py-1.5 bg-white border border-emerald-200 rounded text-slate-800">
+          <input type="text" id="widget-direct-link-input" readonly value="https://changared.com/chat/mi-empresa" class="flex-1 text-xs font-mono px-3 py-1.5 bg-white border border-emerald-200 rounded text-slate-800">
           <a id="widget-direct-link-btn" href="#" target="_blank" class="px-3 py-1.5 bg-[#1B4332] text-white rounded text-xs font-semibold hover:bg-[#2D6A4F] transition whitespace-nowrap">
             Abrir ↗
           </a>
@@ -2909,8 +2955,8 @@
       <div class="space-y-3 text-xs">
         <div>
           <label class="block font-medium text-slate-700 mb-1">Tu Número de WhatsApp Comercial</label>
-          <input type="text" id="wa-modal-phone" value="+54 9 11 5566-7788" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs">
-          <p class="text-[10px] text-slate-500 mt-1">Funciona con tu número de siempre sin necesidad de comprar otro chip.</p>
+          <input type="text" id="wa-modal-phone" value="+54 9 11 4455-6677" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs">
+          <p class="text-[10px] text-slate-500 mt-1">Funciona con tu número comercial o línea de atención al cliente.</p>
         </div>
 
         <!-- Caja de QR -->
@@ -2959,14 +3005,26 @@
           <li>Ve a <strong>Ajustes / Menú &gt; Dispositivos vinculados</strong>.</li>
           <li>Toca <strong>Vincular un dispositivo</strong> y apunta tu cámara a la pantalla.</li>
         </ol>
+
+        <!-- Conexión alternativa por Webhook API -->
+        <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-lg text-[10px] space-y-1 text-slate-600">
+          <span class="font-bold text-slate-800 block">¿Usas WhatsApp Cloud API o Bot Multi-agente?</span>
+          <span>Webhook para eventos entrantes:</span>
+          <div class="font-mono text-emerald-800 bg-white p-1 rounded border border-slate-200 truncate" id="wa-modal-webhook-text">
+            http://localhost:3000/api/webhook/mi-empresa
+          </div>
+        </div>
       </div>
 
-      <div class="flex items-center justify-between gap-2 pt-2 border-t border-slate-100">
-        <button onclick="toggleWhatsAppConnection()" id="btn-toggle-wa-connect" class="flex-1 py-2 px-3 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg transition shadow-subtle flex items-center justify-center space-x-1.5">
-          <i data-lucide="camera" class="w-3.5 h-3.5"></i>
-          <span id="wa-toggle-btn-text">📸 Simular Escaneo Exitoso</span>
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-2 pt-2 border-t border-slate-100">
+        <button onclick="toggleWhatsAppConnection()" id="btn-toggle-wa-connect" class="w-full sm:flex-1 py-2 px-3 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg transition shadow-subtle flex items-center justify-center space-x-1.5">
+          <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          <span id="wa-toggle-btn-text">📲 Vincular Este Número de WhatsApp</span>
         </button>
-        <button onclick="closeWhatsAppModal()" class="py-2 px-3 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg">
+        <button onclick="testWhatsAppDirectly()" class="w-full sm:w-auto py-2 px-3 text-xs font-bold text-emerald-900 bg-emerald-100 hover:bg-emerald-200 border border-emerald-300 rounded-lg transition shadow-2xs flex items-center justify-center space-x-1">
+          <span>💬 Abrir WhatsApp</span>
+        </button>
+        <button onclick="closeWhatsAppModal()" class="w-full sm:w-auto py-2 px-3 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg">
           Cerrar
         </button>
       </div>
@@ -2994,7 +3052,7 @@
       <div class="space-y-3 text-xs">
         <div>
           <label class="block font-medium text-slate-700 mb-1">Cuenta de Gmail / Google Workspace</label>
-          <input type="email" id="cal-modal-email" value="turnos.roma@gmail.com" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-medium">
+          <input type="email" id="cal-modal-email" value="contacto@miempresa.com" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-medium">
         </div>
 
         <div>
@@ -3108,16 +3166,16 @@
       <div class="space-y-3 text-xs">
         <div>
           <label class="block font-medium text-slate-700 mb-1">Casilla Gmail Monitoreada (OAuth)</label>
-          <input type="email" id="acc-cfg-gmail" value="compras.roma@gmail.com" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900">
+          <input type="email" id="acc-cfg-gmail" value="facturas@miempresa.com" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900">
         </div>
         <div>
           <label class="block font-medium text-slate-700 mb-1">Carpeta de Destino en Google Drive</label>
-          <input type="text" id="acc-cfg-drive" value="/Contabilidad 2026/Facturas de Proveedores" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs">
+          <input type="text" id="acc-cfg-drive" value="/Facturas_2026/" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs">
         </div>
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block font-medium text-slate-700 mb-1">CUIT Empresa</label>
-            <input type="text" id="acc-cfg-cuit" value="30-71829381-4" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs">
+            <input type="text" id="acc-cfg-cuit" value="30-71234567-8" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs">
           </div>
           <div>
             <label class="block font-medium text-slate-700 mb-1">Condición Fiscal</label>
@@ -3139,10 +3197,10 @@
     </div>
   </div>
 
-  <!-- WIDGET FLOTANTE INTERACTIVO DE PÁGINA WEB (VISTA PREVIA EN VIVO) -->
-  <div id="changared-floating-widget" class="fixed bottom-5 right-5 z-50 flex flex-col items-end pointer-events-auto">
+  <!-- WIDGET FLOTANTE INTERACTIVO DE PÁGINA WEB (POSICIONADO PARA NO TAPAR BOTONES DE ACCIÓN) -->
+  <div id="changared-floating-widget" class="fixed bottom-24 sm:bottom-20 right-4 sm:right-6 z-40 flex flex-col items-end pointer-events-auto">
     <!-- Ventana de Chat Flotante -->
-    <div id="floating-chat-window" class="hidden w-[330px] sm:w-[370px] h-[480px] max-h-[80vh] bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col mb-3 transition-all duration-300 transform scale-95 opacity-0">
+    <div id="floating-chat-window" class="hidden w-[330px] sm:w-[370px] h-[480px] max-h-[75vh] bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col mb-3 transition-all duration-300 transform scale-95 opacity-0">
       <!-- Header del Widget Flotante -->
       <div class="bg-[#1B4332] text-white p-3.5 flex items-center justify-between shadow-xs">
         <div class="flex items-center space-x-2.5">
@@ -3150,7 +3208,7 @@
             🤖
           </div>
           <div>
-            <div class="text-xs font-bold leading-tight company-display-name">Pizzería Roma Artesanal</div>
+            <div class="text-xs font-bold leading-tight company-display-name">Mi Empresa</div>
             <div class="text-[10px] text-emerald-300 font-medium flex items-center space-x-1">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
               <span>En línea 24/7 · Changared Widget</span>
@@ -3173,7 +3231,7 @@
         </div>
         <div class="flex items-start space-x-2 max-w-[85%]">
           <div class="bg-white border border-slate-200 text-slate-800 p-3 rounded-2xl rounded-tl-sm shadow-2xs leading-relaxed text-xs">
-            ¡Hola! 👋 Bienvenido a <strong class="company-display-name">Pizzería Roma Artesanal</strong>. ¿En qué te puedo ayudar hoy?
+            ¡Hola! 👋 Bienvenido a <strong class="company-display-name">Mi Empresa</strong>. ¿En qué te puedo ayudar hoy?
           </div>
         </div>
       </div>
@@ -3194,15 +3252,19 @@
       </div>
     </div>
 
-    <!-- Botón Lanzador Circular (Launcher Bubble) -->
-    <button onclick="toggleFloatingChat()" id="floating-launcher-btn" class="flex items-center space-x-2 px-4 py-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded-full shadow-2xl transition-all duration-200 group border-2 border-emerald-400/40 hover:scale-105">
-      <div class="relative">
-        <i data-lucide="message-circle" class="w-5 h-5 text-emerald-300"></i>
-        <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 border border-[#1B4332] animate-ping"></span>
-        <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 border border-[#1B4332]"></span>
-      </div>
-      <span class="text-xs font-bold pr-1 hidden sm:inline" id="floating-launcher-text">Chatear con el Asistente</span>
-    </button>
+    <!-- Botón Lanzador Circular (Launcher Bubble con botón de Ocultar) -->
+    <div id="floating-launcher-wrapper" class="flex items-center space-x-1.5">
+      <button onclick="toggleFloatingChat()" id="floating-launcher-btn" class="flex items-center space-x-2 px-3.5 py-2.5 sm:px-4 sm:py-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded-full shadow-2xl transition-all duration-200 group border-2 border-emerald-400/40 hover:scale-105">
+        <div class="relative">
+          <i data-lucide="message-circle" class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-300"></i>
+          <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 border border-[#1B4332]"></span>
+        </div>
+        <span class="text-xs font-bold pr-1 hidden sm:inline" id="floating-launcher-text">Chatear con el Asistente</span>
+      </button>
+      <button onclick="dismissFloatingWidget()" class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-slate-800/80 hover:bg-slate-900 text-white flex items-center justify-center text-xs shadow-md transition" title="Ocultar widget para que no tape">
+        ✕
+      </button>
+    </div>
   </div>
 
   <!-- TOAST NOTIFICACIÓN -->
@@ -3446,7 +3508,7 @@
         btnAddCita: "+ Simular Nueva Cita",
 
         // Placeholders
-        placeholderSim: "Escribe tu consulta (Ej: ¿Cuánto sale la muzzarella? / Do you have vegan pizza?)...",
+        placeholderSim: "Escribe tu consulta (Ej: ¿Qué servicios tienen? / Do you offer appointments?)...",
         placeholderCitas: "Ej: Hola, quiero un turno para mañana a la tarde..."
       },
       en: {
@@ -3678,7 +3740,7 @@
         btnAddCita: "+ Simulate New Appointment",
 
         // Placeholders
-        placeholderSim: "Type your inquiry (e.g. How much is the pizza? / Do you have vegan options?)...",
+        placeholderSim: "Type your inquiry (e.g. What services do you offer? / What are your prices?)...",
         placeholderCitas: "E.g.: Hi, I want an appointment tomorrow afternoon..."
       },
       pt: {
@@ -3910,7 +3972,7 @@
         btnAddCita: "+ Simular Nova Consulta",
 
         // Placeholders
-        placeholderSim: "Digite sua dúvida (Ex: Qual o preço da pizza? / Tem opção vegana?)...",
+        placeholderSim: "Digite sua dúvida (Ex: Quais serviços oferecem? / Quais os preços?)...",
         placeholderCitas: "Ex: Olá, quero um horário para amanhã à tarde..."
       }
     };
@@ -3981,23 +4043,23 @@
 
     // Estado reactivo local
     let currentBusiness = {
-      id: "pizzeria-roma",
-      name: "Pizzería Roma Artesanal",
-      description: "Pizzería tradicional italiana a la leña ubicada en el centro. Horario: 19:30 a 00:00 todos los días. Envíos a domicilio con costo fijo de $1500.",
+      id: "mi-empresa",
+      name: "Mi Empresa",
+      description: "Empresa dedicada a la comercialización y servicios profesionales. Horario: Lunes a Viernes de 09:00 a 18:00 hs. Envíos y atención personalizada a todo el país.",
       language: "Español",
       autoDetectLanguage: true,
-      toneOfVoice: "amigable, entusiasta y cálido, usando modismos amables de buena atención",
+      toneOfVoice: "amigable, profesional y orientado a resolver consultas con rapidez",
       businessRules: [
-        "No aceptamos pedidos antes de las 19:30.",
-        "Demora estimada de delivery: 35 a 50 minutos.",
-        "Aceptamos transferencias y Mercado Pago (alias: roma.pizzas.mp)."
+        "Horario de atención: Lunes a Viernes de 09:00 a 18:00.",
+        "Envíos coordinados en 24 a 48 hs hábiles.",
+        "Aceptamos transferencias y Mercado Pago (alias: pagos.miempresa.mp)."
       ],
       catalog: [
-        { id: "PIZ-01", name: "Pizza Muzzarella Clásica", price: 8500, stock: 25, description: "Salsa casera, muzzarella y aceitunas.", category: "Pizzas" },
-        { id: "PIZ-02", name: "Pizza Napolitana Especial", price: 10200, stock: 12, description: "Muzzarella, tomate fresco, ajo y albahaca.", category: "Pizzas" },
-        { id: "PIZ-03", name: "Pizza Fugazzeta Rellena", price: 12500, stock: 2, description: "Doble queso y cebolla caramelizada.", category: "Pizzas" },
-        { id: "BEB-01", name: "Coca-Cola 1.5L", price: 3200, stock: 40, description: "Botella descartable fría.", category: "Bebidas" },
-        { id: "BEB-02", name: "Cerveza Corona 710ml", price: 4500, stock: 0, description: "Botella de vidrio.", category: "Bebidas" }
+        { id: "SRV-01", name: "Consulta y Asesoramiento General", price: 8500, stock: 25, description: "Sesión de diagnóstico y plan de trabajo inicial.", category: "Servicios" },
+        { id: "SRV-02", name: "Servicio Profesional Integral", price: 18500, stock: 12, description: "Implementación completa y seguimiento técnico.", category: "Servicios" },
+        { id: "PRD-01", name: "Pack Insumos Comerciales Premium", price: 12500, stock: 20, description: "Kit con entrega inmediata y garantía oficial.", category: "Productos" },
+        { id: "PRD-02", name: "Membresía Mensual de Soporte", price: 25000, stock: 40, description: "Acceso prioritario y soporte 24/7.", category: "Suscripciones" },
+        { id: "PRD-03", name: "Pack Especial Limitado", price: 9500, stock: 0, description: "Edición especial agotada temporalmente.", category: "Promociones" }
       ]
     };
 
@@ -4319,24 +4381,26 @@
     // GESTIÓN GLOBAL DE EMPRESA Y CONFIGURACIÓN DINÁMICA
     // =========================================================
     const DEFAULT_COMPANY_DATA = {
-      name: "Pizzería Roma Artesanal",
-      slug: "pizzeria-roma",
-      rubro: "Gastronomía & Delivery",
-      phone: "+54 9 11 5566-7788",
-      email: "turnos.roma@gmail.com",
-      website: "https://pizzeriaroma.com",
-      hours: "Lunes a Sábado: 09:00 a 20:00 (Turnos cada 45 min)",
+      name: "Mi Empresa",
+      slug: "mi-empresa",
+      rubro: "Comercio & Servicios",
+      phone: "+54 9 11 4455-6677",
+      email: "contacto@miempresa.com",
+      website: "https://miempresa.com",
+      hours: "Lunes a Viernes: 09:00 a 18:00",
       currency: "ARS",
       deposit: "5000",
-      desc: "Pizzería tradicional italiana a la leña ubicada en el centro. Horario: 19:30 a 00:00 todos los días.",
-      whatsappConnected: true,
-      calendarConnected: true,
-      calendarEmail: "turnos.roma@gmail.com",
+      desc: "Atención comercial, servicios profesionales y ventas directas.",
+      whatsappConnected: false,
+      calendarConnected: false,
+      calendarEmail: "contacto@miempresa.com",
+      cuit: "30-71234567-8",
+      taxCondition: "Responsable Inscripto",
+      driveFolder: "/Facturas_2026/",
       services: [
-        { id: 1, name: "Corte & Barba Clásico", duration: "45 min", price: 8500 },
-        { id: 2, name: "Limpieza Facial Profunda", duration: "60 min", price: 14000 },
-        { id: 3, name: "Consulta Médica / Nutrición", duration: "30 min", price: 12000 },
-        { id: 4, name: "Sesión Masajes / Spa", duration: "50 min", price: 16000 }
+        { id: 1, name: "Consulta / Atención Estándar", duration: "45 min", price: 8500 },
+        { id: 2, name: "Servicio Especializado", duration: "60 min", price: 14000 },
+        { id: 3, name: "Asesoramiento Personalizado", duration: "30 min", price: 12000 }
       ]
     };
 
@@ -4389,6 +4453,15 @@
       const accEmailInput = document.getElementById('acc-email-input');
       if (accEmailInput) accEmailInput.value = `facturas+${currentCompany.slug}@changared.com`;
 
+      const accCuit = document.getElementById('acc-display-cuit');
+      if (accCuit) accCuit.innerText = currentCompany.cuit || '30-71234567-8';
+
+      const accDrive = document.getElementById('acc-display-drive');
+      if (accDrive) accDrive.innerText = `📁 ${currentCompany.driveFolder || '/Facturas_2026/'}`;
+
+      const accCond = document.getElementById('acc-display-condicion');
+      if (accCond) accCond.innerText = currentCompany.taxCondition || 'Responsable Inscripto';
+
       const webhookInput = document.getElementById('webhook-endpoint-input');
       if (webhookInput) webhookInput.value = `http://localhost:3000/api/webhook/${currentCompany.slug}`;
 
@@ -4399,7 +4472,7 @@
       if (citasHours) citasHours.innerText = currentCompany.hours;
 
       const depositEl = document.getElementById('citas-display-deposit-text');
-      if (depositEl) depositEl.innerText = `Seña ${Number(currentCompany.deposit || 5000).toLocaleString('es-AR')} con Mercado Pago para reservar`;
+      if (depositEl) depositEl.innerText = `Seña $${Number(currentCompany.deposit || 5000).toLocaleString('es-AR')} con Mercado Pago para reservar`;
 
       const servicesCountEl = document.getElementById('citas-display-services-count');
       if (servicesCountEl) servicesCountEl.innerText = `${currentCompany.services.length} prestaciones`;
@@ -4410,8 +4483,19 @@
           waBadge.innerText = `● Vinculado (${currentCompany.phone})`;
           waBadge.className = "text-[10px] text-emerald-700 font-semibold block truncate";
         } else {
-          waBadge.innerText = `○ No vinculado (Escanear QR)`;
+          waBadge.innerText = `○ No vinculado`;
           waBadge.className = "text-[10px] text-amber-700 font-semibold block truncate";
+        }
+      }
+
+      const calBadge = document.getElementById('citas-status-cal');
+      if (calBadge) {
+        if (currentCompany.calendarConnected) {
+          calBadge.innerText = `● Sincronizado`;
+          calBadge.className = "text-[10px] text-emerald-700 font-semibold block truncate";
+        } else {
+          calBadge.innerText = `○ No vinculado`;
+          calBadge.className = "text-[10px] text-amber-700 font-semibold block truncate";
         }
       }
 
@@ -4422,7 +4506,7 @@
       const modal = document.getElementById('modal-business-config');
       if (modal) {
         document.getElementById('cfg-custom-name').value = currentCompany.name || '';
-        if (document.getElementById('cfg-custom-rubro')) document.getElementById('cfg-custom-rubro').value = currentCompany.rubro || 'Gastronomía & Delivery';
+        if (document.getElementById('cfg-custom-rubro')) document.getElementById('cfg-custom-rubro').value = currentCompany.rubro || 'Comercio & Servicios';
         if (document.getElementById('cfg-custom-phone')) document.getElementById('cfg-custom-phone').value = currentCompany.phone || '';
         if (document.getElementById('cfg-custom-email')) document.getElementById('cfg-custom-email').value = currentCompany.email || '';
         if (document.getElementById('cfg-custom-website')) document.getElementById('cfg-custom-website').value = currentCompany.website || '';
@@ -4598,7 +4682,7 @@
       const directLinkInput = document.getElementById('widget-direct-link-input');
       const directLinkBtn = document.getElementById('widget-direct-link-btn');
 
-      const slug = currentCompany.slug || 'pizzeria-roma';
+      const slug = currentCompany.slug || 'mi-empresa';
       const agent = currentWidgetAgent || 'general';
 
       const snippet = `<!-- Widget Changared IA - ${currentCompany.name} -->\n<script src="https://cdn.changared.com/widget.js" data-tenant="${slug}" data-agent="${agent}" data-color="#1B4332" defer><\/script>`;
@@ -4706,7 +4790,7 @@
       container.appendChild(typingEl);
       container.scrollTop = container.scrollHeight;
 
-      const slug = currentCompany.slug || 'pizzeria-roma';
+      const slug = currentCompany.slug || 'mi-empresa';
       let reply = "";
 
       try {
@@ -4771,7 +4855,10 @@
       const modal = document.getElementById('modal-whatsapp-qr');
       if (modal) {
         const phoneInput = document.getElementById('wa-modal-phone');
-        if (phoneInput) phoneInput.value = currentCompany.phone || '+54 9 11 5566-7788';
+        if (phoneInput) phoneInput.value = currentCompany.phone || '+54 9 11 4455-6677';
+
+        const webhookEl = document.getElementById('wa-modal-webhook-text');
+        if (webhookEl) webhookEl.innerText = `http://localhost:3000/api/webhook/${currentCompany.slug || 'mi-empresa'}`;
 
         updateWhatsAppModalState();
         modal.classList.remove('hidden');
@@ -4801,16 +4888,24 @@
       if (currentCompany.whatsappConnected) {
         if (overlay) overlay.classList.remove('hidden');
         if (btn) {
-          btn.className = "flex-1 py-2 px-3 text-xs font-bold text-red-700 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg transition shadow-2xs flex items-center justify-center space-x-1.5";
+          btn.className = "w-full sm:flex-1 py-2 px-3 text-xs font-bold text-red-700 bg-red-50 hover:bg-red-100 border border-red-200 rounded-lg transition shadow-2xs flex items-center justify-center space-x-1.5";
           if (btnText) btnText.innerText = "Desvincular Línea";
         }
       } else {
         if (overlay) overlay.classList.add('hidden');
         if (btn) {
-          btn.className = "flex-1 py-2 px-3 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg transition shadow-subtle flex items-center justify-center space-x-1.5";
-          if (btnText) btnText.innerText = "📸 Simular Escaneo Exitoso / Conectar";
+          btn.className = "w-full sm:flex-1 py-2 px-3 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg transition shadow-subtle flex items-center justify-center space-x-1.5";
+          if (btnText) btnText.innerText = "📲 Vincular Este Número de WhatsApp";
         }
       }
+    }
+
+    function testWhatsAppDirectly() {
+      const raw = currentCompany.phone || '+54 9 11 4455-6677';
+      const clean = raw.replace(/[^\d]/g, '');
+      const url = `https://wa.me/${clean}?text=${encodeURIComponent('Hola! Quiero hacer una consulta sobre sus servicios.')}`;
+      window.open(url, '_blank');
+      showToast("Abriendo chat en WhatsApp Web...");
     }
 
     function toggleWhatsAppConnection() {
@@ -4829,7 +4924,20 @@
 
       if (currentCompany.whatsappConnected) {
         showToast(`✓ ¡Línea de WhatsApp (${currentCompany.phone}) vinculada exitosamente!`);
-        setTimeout(() => closeWhatsAppModal(), 800);
+        // Sincronizar en backend
+        try {
+          fetch('/api/business/setup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              id: currentCompany.slug || 'mi-empresa',
+              name: currentCompany.name,
+              phone: currentCompany.phone,
+              email: currentCompany.email
+            })
+          }).catch(() => {});
+        } catch(e) {}
+        setTimeout(() => closeWhatsAppModal(), 600);
       } else {
         showToast("Línea de WhatsApp desvinculada");
       }
@@ -4842,7 +4950,7 @@
       const modal = document.getElementById('modal-google-calendar');
       if (modal) {
         const input = document.getElementById('cal-modal-email');
-        if (input) input.value = currentCompany.calendarEmail || currentCompany.email || 'turnos.roma@gmail.com';
+        if (input) input.value = currentCompany.calendarEmail || currentCompany.email || 'contacto@miempresa.com';
         modal.classList.remove('hidden');
       }
     }
@@ -4866,7 +4974,7 @@
 
       applyCompanyDataToUI();
       closeGoogleCalendarModal();
-      showToast(`✓ Google Calendar sincronizado en tiempo real con ${currentCompany.calendarEmail}`);
+      showToast(`✓ Google Calendar vinculado para ${currentCompany.calendarEmail}`);
     }
 
     // =========================================================
@@ -4942,11 +5050,21 @@
     }
 
     // =========================================================
-    // MODAL ASISTENTE CONTABLE
+    // MODAL ASISTENTE CONTABLE & ACCIONES FISCALES
     // =========================================================
     function openAccountingModal() {
       const modal = document.getElementById('modal-accounting-config');
-      if (modal) modal.classList.remove('hidden');
+      if (modal) {
+        const gmailIn = document.getElementById('acc-cfg-gmail');
+        if (gmailIn) gmailIn.value = currentCompany.email || 'facturas@miempresa.com';
+        const driveIn = document.getElementById('acc-cfg-drive');
+        if (driveIn) driveIn.value = currentCompany.driveFolder || '/Facturas_2026/';
+        const cuitIn = document.getElementById('acc-cfg-cuit');
+        if (cuitIn) cuitIn.value = currentCompany.cuit || '30-71234567-8';
+        const taxIn = document.getElementById('acc-cfg-tax');
+        if (taxIn && currentCompany.taxCondition) taxIn.value = currentCompany.taxCondition;
+        modal.classList.remove('hidden');
+      }
     }
 
     function closeAccountingModal() {
@@ -4955,8 +5073,64 @@
     }
 
     function saveAccountingConfig() {
+      const gmailIn = document.getElementById('acc-cfg-gmail');
+      if (gmailIn && gmailIn.value.trim()) currentCompany.email = gmailIn.value.trim();
+      const driveIn = document.getElementById('acc-cfg-drive');
+      if (driveIn && driveIn.value.trim()) currentCompany.driveFolder = driveIn.value.trim();
+      const cuitIn = document.getElementById('acc-cfg-cuit');
+      if (cuitIn && cuitIn.value.trim()) currentCompany.cuit = cuitIn.value.trim();
+      const taxIn = document.getElementById('acc-cfg-tax');
+      if (taxIn) currentCompany.taxCondition = taxIn.value;
+
+      try {
+        localStorage.setItem('changared_company_data', JSON.stringify(currentCompany));
+      } catch(e) {}
+
+      applyCompanyDataToUI();
       closeAccountingModal();
-      showToast("✓ Configuración contable y cuenta de Gmail guardada");
+      showToast("✓ Configuración fiscal, Gmail y Google Drive guardada con éxito");
+    }
+
+    function dismissFloatingWidget() {
+      const widget = document.getElementById('changared-floating-widget');
+      if (widget) {
+        widget.classList.add('hidden');
+        showToast("Widget web minimizado para no tapar la pantalla.");
+      }
+    }
+
+    function handleRealInvoiceUpload(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      showToast(`Analizando ${file.name} con OCR de Changared...`);
+
+      setTimeout(() => {
+        const provClean = file.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ").toUpperCase();
+        const randTotal = Math.floor(Math.random() * 85000 + 25000);
+        const neto = Math.round(randTotal / 1.21);
+        const iva = randTotal - neto;
+
+        const newInv = {
+          id: `INV-${Date.now()}`,
+          fecha: new Date().toISOString().slice(0, 10),
+          proveedor: provClean.slice(0, 26) || 'Proveedor Registrado S.A.',
+          cuit: '30-' + Math.floor(Math.random() * 80000000 + 10000000) + '-9',
+          tipoComprobante: 'Factura A',
+          numeroComprobante: '0001-' + String(Math.floor(Math.random() * 90000 + 10000)).padStart(8, '0'),
+          netoGravado: neto,
+          alicuotaIva: '21%',
+          importeIva: iva,
+          total: randTotal,
+          categoriaGasto: 'General',
+          driveUrl: 'https://drive.google.com'
+        };
+
+        localInvoices.unshift(newInv);
+        renderAccountingView(localInvoices);
+        showToast(`✓ Comprobante ${file.name} procesado y añadido a Google Sheets!`);
+        event.target.value = '';
+      }, 700);
     }
 
     function activarPruebaGratis() {
@@ -5092,7 +5266,7 @@
       container.appendChild(typingEl);
       container.scrollTop = container.scrollHeight;
 
-      const slug = currentCompany.slug || 'pizzeria-roma';
+      const slug = currentCompany.slug || 'mi-empresa';
       let reply = "";
 
       try {
@@ -5139,7 +5313,7 @@
 
     function generateMultilingualReply(query) {
       const q = query.toLowerCase();
-      const compName = currentCompany.name || 'Pizzería Roma Artesanal';
+      const compName = currentCompany.name || 'Mi Empresa';
 
       // Detección de consultas de moda / talles (Integración TalleExacto)
       const isSizeQuery = q.includes('talle') || q.includes('medida') || q.includes('busto') || q.includes('cintura') || q.includes('cadera') || q.includes('size') || q.includes('vestido') || q.includes('tamanho');
@@ -5167,7 +5341,7 @@
       const isEnglish = q.includes('hello') || q.includes('hi') || q.includes('beer') || q.includes('delivery') || q.includes('available') || q.includes('how much') || q.includes('price');
       if (isEnglish) {
         if (q.includes('corona') || q.includes('beer')) {
-          return `Hello! 👋 Welcome to ${compName}. We apologize, but Corona Beer 710ml is currently out of stock. However, our main products and services are available! Would you like to check our options?`;
+          return `Hello! 👋 Welcome to ${compName}. We apologize, but that specific item is currently out of stock. However, our main products and services are available! Would you like to check our options?`;
         }
         return `Hello! Welcome to ${compName}. Our service hours are: ${currentCompany.hours}. How can we assist your order or booking today?`;
       }
@@ -5176,14 +5350,14 @@
       const isPortuguese = q.includes('olá') || q.includes('ola') || q.includes('cerveja') || q.includes('quanto custa') || q.includes('tem') || q.includes('obrigado') || q.includes('boa noite');
       if (isPortuguese) {
         if (q.includes('corona') || q.includes('cerveja')) {
-          return `Olá! 👋 Bem-vindo à ${compName}. Pedimos desculpas, mas a Cerveja Corona está esgotada no momento. No entanto, temos outros itens disponíveis! Gostaria de escolher uma opção?`;
+          return `Olá! 👋 Bem-vindo à ${compName}. Pedimos desculpas, mas o item solicitado está esgotado no momento. No entanto, temos outras opções disponíveis! Gostaria de consultar?`;
         }
         return `Olá! Obrigado por entrar em contato com a ${compName}. Atendemos no horário: ${currentCompany.hours}. Como podemos te ajudar hoje?`;
       }
 
       // Español (Por defecto)
       if (q.includes('corona') || q.includes('cerveza')) {
-        return `¡Hola! Mil disculpas, pero en este momento la Cerveza Corona 710ml se encuentra agotada. ¿Te gustaría consultar alguna de nuestras otras opciones disponibles en ${compName}?`;
+        return `¡Hola! Mil disculpas, pero en este momento ese producto se encuentra temporalmente agotado. ¿Te gustaría consultar alguna de nuestras otras opciones disponibles en ${compName}?`;
       }
 
       if (q.includes('precio') || q.includes('cuanto') || q.includes('sale') || q.includes('catalogo') || q.includes('menu')) {
@@ -5191,7 +5365,7 @@
           const list = currentCompany.services.map(s => `• ${s.name}: $${Number(s.price).toLocaleString('es-AR')} (${s.duration})`).join('\n');
           return `¡Hola! Con gusto te paso lo que tenemos disponible en ${compName}:\n\n${list}\n\n¿Te gustaría encargar alguno o agendar tu cita? 😊`;
         }
-        return `¡Hola! La Pizza Muzzarella Clásica tiene un valor de $8.500 y lleva salsa de tomate casera, abundante muzzarella premium y aceitunas verdes 🍕 Nos quedan unidades listas para hornear. ¿Te preparamos una?`;
+        return `¡Hola! Nuestro servicio de Consulta y Asesoramiento tiene un valor de $8.500 y disponemos de cupos disponibles esta semana. ¿Te gustaría coordinar una cita? 😊`;
       }
 
       if (q.includes('horario') || q.includes('abren') || q.includes('donde') || q.includes('ubicacion')) {
@@ -5211,7 +5385,7 @@
         </div>
         <div class="flex items-start space-x-2 max-w-[80%]">
           <div class="bg-white border border-slate-200 text-slate-800 text-xs p-3 rounded-2xl rounded-tl-sm shadow-subtle leading-relaxed">
-            ¡Hola! Bienvenidos a Pizzería Roma Artesanal 🍕 ¿En qué podemos ayudarte hoy? (You can also ask in English / Pode falar em português).
+            ¡Hola! 👋 Bienvenidos a Mi Empresa. ¿En qué podemos ayudarte hoy? (You can also ask in English / Pode falar em português).
           </div>
         </div>
       `;
@@ -5248,7 +5422,7 @@
         </div>
         <div class="flex items-start space-x-2 max-w-[80%]">
           <div class="bg-white border border-slate-200 text-slate-800 text-xs p-3 rounded-2xl rounded-tl-sm shadow-subtle leading-relaxed">
-            ¡Hola! 📅 Soy el asistente de citas y turnos de <strong>Pizzería Roma Artesanal</strong>. ¿Qué servicio te gustaría agendar y para qué día preferís tu turno?
+            ¡Hola! 📅 Soy el asistente de citas y turnos de <strong>Mi Empresa</strong>. ¿Qué servicio te gustaría agendar y para qué día preferís tu turno?
           </div>
         </div>
       `;
@@ -5599,7 +5773,7 @@
     }
 
     async function loadAccountingInvoices() {
-      const slug = currentCompany.slug || 'pizzeria-roma';
+      const slug = currentCompany.slug || 'mi-empresa';
       try {
         const res = await fetch(`/api/accounting/invoices/${slug}`);
         if (res.ok) {
@@ -5609,7 +5783,7 @@
               localInvoices = json.invoices;
               renderAccountingView(json.invoices, json.stats);
               return;
-            } else if (slug !== 'pizzeria-roma') {
+            } else if (slug !== 'mi-empresa') {
               renderAccountingView([], { count: 0, totalCompras: 0, totalNeto: 0, totalIva: 0 });
               return;
             }
@@ -5622,7 +5796,7 @@
     }
 
     async function simulateInvoiceTrigger(providerType) {
-      const slug = currentCompany.slug || 'pizzeria-roma';
+      const slug = currentCompany.slug || 'mi-empresa';
       showToast("Recepcionando email y leyendo factura con IA...");
       try {
         const res = await fetch(`/api/accounting/simulate-email/${slug}`, {

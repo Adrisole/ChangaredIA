@@ -19,7 +19,7 @@ class GoogleSheetsService {
       const initial = [
         {
           id: 'INV-20261001-01',
-          businessId: 'pizzeria-roma',
+          businessId: 'mi-empresa',
           fecha: '2026-10-01',
           proveedor: 'Telecom Argentina S.A.',
           cuit: '30-63945373-8',
@@ -38,7 +38,7 @@ class GoogleSheetsService {
         },
         {
           id: 'INV-20261002-02',
-          businessId: 'pizzeria-roma',
+          businessId: 'mi-empresa',
           fecha: '2026-10-02',
           proveedor: 'Edenor S.A.',
           cuit: '30-65511620-2',
