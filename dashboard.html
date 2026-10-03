@@ -241,14 +241,14 @@
   <!-- ======================================================== -->
   <main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
 
-    <!-- Topbar con Breadcrumb y Acciones Globales -->
+    <!-- Topbar con Breadcrumb Dinámico y Acciones Globales -->
     <header class="h-16 px-8 border-b border-slate-200 bg-white/80 backdrop-blur sticky top-0 z-10 flex items-center justify-between">
-      <div class="flex items-center space-x-2 text-xs text-slate-600">
-        <span class="hover:text-slate-800 cursor-pointer">Changared</span>
+      <div class="flex items-center space-x-2 text-xs text-slate-600" id="breadcrumb-container">
+        <button onclick="switchStep('step-hub')" class="hover:text-slate-900 font-medium transition cursor-pointer">Changared</button>
         <span>/</span>
-        <span class="hover:text-slate-800 cursor-pointer" data-i18n="breadcrumbTenants">Tenants</span>
-        <span>/</span>
-        <span class="text-slate-900 font-semibold" data-i18n="breadcrumbTitle">Configuración de Empleado Virtual</span>
+        <div id="breadcrumb-dynamic" class="flex items-center space-x-2">
+          <span class="text-slate-900 font-semibold">¿Qué empleado buscas?</span>
+        </div>
       </div>
 
       <div class="flex items-center space-x-3">
@@ -605,12 +605,49 @@
       <!-- ======================================================== -->
       <section id="step-identity" class="step-content space-y-6 hidden">
         <!-- Top Back Navigation -->
-        <div class="flex items-center justify-between pb-2 border-b border-slate-200">
-          <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 transition shadow-subtle">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-            <span>← Volver a Empleados</span>
-          </button>
-          <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-600 border border-slate-200 font-medium">Ajustes: Identidad del Negocio</span>
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
+          <div class="flex items-center space-x-2">
+            <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 transition shadow-subtle">
+              <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-slate-700"></i>
+              <span class="btn-smart-back-text">← Volver</span>
+            </button>
+            <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200 bg-white transition shadow-xs" title="Ver la lista con los 4 empleados">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5 text-slate-500"></i>
+              <span>Hub de Empleados</span>
+            </button>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-700 border border-slate-200 font-medium">1. Vendedor IA · Identidad & Tono</span>
+          </div>
+        </div>
+
+        <!-- Barra de Navegación del Vendedor IA (Sub-tabs) -->
+        <div class="vendedor-nav-bar bg-[#F0F5F2] border border-[#CDE0D5] rounded-xl p-2.5 flex flex-col md:flex-row md:items-center justify-between gap-2.5 shadow-subtle">
+          <div class="flex flex-wrap items-center gap-1.5 text-xs">
+            <span class="text-[10px] font-mono font-bold text-[#1B4332] uppercase tracking-wider px-2 py-1 bg-emerald-100 border border-emerald-300 rounded-md">
+              1. Vendedor IA
+            </span>
+            <div class="inline-flex bg-white p-0.5 rounded-lg border border-slate-200 shadow-2xs">
+              <button onclick="switchStep('step-simulator')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-simulator">
+                💬 Chat en Vivo
+              </button>
+              <button onclick="switchStep('step-catalog')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-catalog">
+                📦 Catálogo & Precios
+              </button>
+              <button onclick="switchStep('step-identity')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-semibold bg-[#1B4332] text-white shadow-xs transition" data-vstep="step-identity">
+                ⚙️ Identidad & Reglas
+              </button>
+              <button onclick="switchStep('step-whatsapp')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-whatsapp">
+                📱 Vincular WhatsApp (QR)
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2 shrink-0">
+            <button onclick="switchStep('step-simulator')" class="w-full sm:w-auto px-3.5 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white font-semibold text-xs rounded-lg transition shadow-subtle flex items-center justify-center space-x-1.5">
+              <i data-lucide="play" class="w-3.5 h-3.5 text-emerald-300"></i>
+              <span>Probar en Chat en Vivo →</span>
+            </button>
+          </div>
         </div>
 
         <!-- Card: Datos Básicos del Negocio -->
@@ -773,11 +810,21 @@
           </div>
         </div>
 
-        <div class="flex justify-end pt-2">
-          <button onclick="switchStep('step-catalog')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-colors">
-            <span data-i18n="btnContinueToCatalog">Continuar a Inventario & Stock</span>
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-slate-100">
+          <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition-colors shadow-subtle">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+            <span class="btn-smart-back-text">← Volver</span>
           </button>
+          <div class="flex items-center space-x-2">
+            <button onclick="switchStep('step-simulator')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-semibold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg transition-colors shadow-subtle">
+              <i data-lucide="play" class="w-3.5 h-3.5 text-emerald-300"></i>
+              <span>Probar Cambios en Chat en Vivo →</span>
+            </button>
+            <button onclick="switchStep('step-catalog')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-slate-800 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors">
+              <span data-i18n="btnContinueToCatalog">Ir a Catálogo & Stock</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
         </div>
       </section>
 
@@ -786,12 +833,49 @@
       <!-- ======================================================== -->
       <section id="step-catalog" class="step-content space-y-6 hidden">
         <!-- Top Back Navigation -->
-        <div class="flex items-center justify-between pb-2 border-b border-slate-200">
-          <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 transition shadow-subtle">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-            <span>← Volver a Empleados</span>
-          </button>
-          <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-600 border border-slate-200 font-medium">Ajustes: Catálogo & Stock</span>
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
+          <div class="flex items-center space-x-2">
+            <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 transition shadow-subtle">
+              <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-slate-700"></i>
+              <span class="btn-smart-back-text">← Volver</span>
+            </button>
+            <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200 bg-white transition shadow-xs" title="Ver la lista con los 4 empleados">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5 text-slate-500"></i>
+              <span>Hub de Empleados</span>
+            </button>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-700 border border-slate-200 font-medium">1. Vendedor IA · Catálogo & Stock</span>
+          </div>
+        </div>
+
+        <!-- Barra de Navegación del Vendedor IA (Sub-tabs) -->
+        <div class="vendedor-nav-bar bg-[#F0F5F2] border border-[#CDE0D5] rounded-xl p-2.5 flex flex-col md:flex-row md:items-center justify-between gap-2.5 shadow-subtle">
+          <div class="flex flex-wrap items-center gap-1.5 text-xs">
+            <span class="text-[10px] font-mono font-bold text-[#1B4332] uppercase tracking-wider px-2 py-1 bg-emerald-100 border border-emerald-300 rounded-md">
+              1. Vendedor IA
+            </span>
+            <div class="inline-flex bg-white p-0.5 rounded-lg border border-slate-200 shadow-2xs">
+              <button onclick="switchStep('step-simulator')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-simulator">
+                💬 Chat en Vivo
+              </button>
+              <button onclick="switchStep('step-catalog')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-semibold bg-[#1B4332] text-white shadow-xs transition" data-vstep="step-catalog">
+                📦 Catálogo & Precios
+              </button>
+              <button onclick="switchStep('step-identity')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-identity">
+                ⚙️ Identidad & Reglas
+              </button>
+              <button onclick="switchStep('step-whatsapp')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-whatsapp">
+                📱 Vincular WhatsApp (QR)
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2 shrink-0">
+            <button onclick="switchStep('step-simulator')" class="w-full sm:w-auto px-3.5 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white font-semibold text-xs rounded-lg transition shadow-subtle flex items-center justify-center space-x-1.5">
+              <i data-lucide="play" class="w-3.5 h-3.5 text-emerald-300"></i>
+              <span>Probar en Chat en Vivo →</span>
+            </button>
+          </div>
         </div>
 
         <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
@@ -849,15 +933,21 @@
           </div>
         </div>
 
-        <div class="flex justify-between pt-2">
-          <button onclick="switchStep('step-identity')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition-colors">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-slate-100">
+          <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition-colors shadow-subtle">
             <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-            <span data-i18n="btnBackToIdentity">Volver a Identidad</span>
+            <span class="btn-smart-back-text">← Volver</span>
           </button>
-          <button onclick="switchStep('step-whatsapp')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-colors">
-            <span data-i18n="btnContinueToWA">Continuar a Conexión WhatsApp</span>
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </button>
+          <div class="flex items-center space-x-2">
+            <button onclick="switchStep('step-simulator')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-semibold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg transition-colors shadow-subtle">
+              <i data-lucide="play" class="w-3.5 h-3.5 text-emerald-300"></i>
+              <span>Probar Catálogo en Chat en Vivo →</span>
+            </button>
+            <button onclick="switchStep('step-whatsapp')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-slate-800 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors">
+              <span data-i18n="btnContinueToWA">Continuar a Conexión WhatsApp</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
         </div>
       </section>
 
@@ -866,12 +956,49 @@
       <!-- ======================================================== -->
       <section id="step-whatsapp" class="step-content space-y-6 hidden">
         <!-- Top Back Navigation -->
-        <div class="flex items-center justify-between pb-2 border-b border-slate-200">
-          <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 transition shadow-subtle">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-            <span>← Volver a Empleados</span>
-          </button>
-          <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-600 border border-slate-200 font-medium">Ajustes: Conexión WhatsApp</span>
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
+          <div class="flex items-center space-x-2">
+            <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 transition shadow-subtle">
+              <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-slate-700"></i>
+              <span class="btn-smart-back-text">← Volver</span>
+            </button>
+            <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200 bg-white transition shadow-xs" title="Ver la lista con los 4 empleados">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5 text-slate-500"></i>
+              <span>Hub de Empleados</span>
+            </button>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-700 border border-slate-200 font-medium">1. Vendedor IA · Conexión WhatsApp (QR)</span>
+          </div>
+        </div>
+
+        <!-- Barra de Navegación del Vendedor IA (Sub-tabs) -->
+        <div class="vendedor-nav-bar bg-[#F0F5F2] border border-[#CDE0D5] rounded-xl p-2.5 flex flex-col md:flex-row md:items-center justify-between gap-2.5 shadow-subtle">
+          <div class="flex flex-wrap items-center gap-1.5 text-xs">
+            <span class="text-[10px] font-mono font-bold text-[#1B4332] uppercase tracking-wider px-2 py-1 bg-emerald-100 border border-emerald-300 rounded-md">
+              1. Vendedor IA
+            </span>
+            <div class="inline-flex bg-white p-0.5 rounded-lg border border-slate-200 shadow-2xs">
+              <button onclick="switchStep('step-simulator')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-simulator">
+                💬 Chat en Vivo
+              </button>
+              <button onclick="switchStep('step-catalog')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-catalog">
+                📦 Catálogo & Precios
+              </button>
+              <button onclick="switchStep('step-identity')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-identity">
+                ⚙️ Identidad & Reglas
+              </button>
+              <button onclick="switchStep('step-whatsapp')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-semibold bg-[#1B4332] text-white shadow-xs transition" data-vstep="step-whatsapp">
+                📱 Vincular WhatsApp (QR)
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2 shrink-0">
+            <button onclick="switchStep('step-simulator')" class="w-full sm:w-auto px-3.5 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white font-semibold text-xs rounded-lg transition shadow-subtle flex items-center justify-center space-x-1.5">
+              <i data-lucide="play" class="w-3.5 h-3.5 text-emerald-300"></i>
+              <span>Probar en Chat en Vivo →</span>
+            </button>
+          </div>
         </div>
 
         <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-5">
@@ -959,15 +1086,21 @@
           </div>
         </div>
 
-        <div class="flex justify-between pt-2">
-          <button onclick="switchStep('step-catalog')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition-colors">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-slate-100">
+          <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition-colors shadow-subtle">
             <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-            <span data-i18n="btnBackToCatalog">Volver a Catálogo</span>
+            <span class="btn-smart-back-text">← Volver</span>
           </button>
-          <button onclick="switchStep('step-billing')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-colors">
-            <span>Continuar a Planes & Facturación</span>
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </button>
+          <div class="flex items-center space-x-2">
+            <button onclick="switchStep('step-simulator')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-semibold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg transition-colors shadow-subtle">
+              <i data-lucide="play" class="w-3.5 h-3.5 text-emerald-300"></i>
+              <span>Probar en Chat en Vivo →</span>
+            </button>
+            <button onclick="switchStep('step-billing')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-slate-800 bg-slate-100 hover:bg-slate-200 rounded-lg transition-colors">
+              <span>Continuar a Planes & Facturación</span>
+              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </button>
+          </div>
         </div>
       </section>
 
@@ -976,12 +1109,18 @@
       <!-- ======================================================== -->
       <section id="step-billing" class="step-content space-y-6 hidden">
         <!-- Top Back Navigation -->
-        <div class="flex items-center justify-between pb-2 border-b border-slate-200">
-          <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 transition shadow-subtle">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-            <span>← Volver a Empleados</span>
-          </button>
-          <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-600 border border-slate-200 font-medium">Planes & Suscripción</span>
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
+          <div class="flex items-center space-x-2">
+            <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 transition shadow-subtle">
+              <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-slate-700"></i>
+              <span class="btn-smart-back-text">← Volver</span>
+            </button>
+            <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200 bg-white transition shadow-xs" title="Ver la lista con los 4 empleados">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5 text-slate-500"></i>
+              <span>Hub de Empleados</span>
+            </button>
+          </div>
+          <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-700 border border-slate-200 font-medium">Planes & Suscripción</span>
         </div>
 
         <!-- Card: Estado de Suscripción Actual & Consumo de Cuota -->
@@ -1219,12 +1358,19 @@
       <!-- ======================================================== -->
       <section id="step-accounting" class="step-content space-y-6 hidden">
         <!-- Top Navigation Banner -->
-        <div class="flex items-center justify-between pb-2 border-b border-slate-200">
-          <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 transition">
-            <span>← Elegir otro empleado</span>
-          </button>
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
           <div class="flex items-center space-x-2">
-            <span class="text-xs font-semibold text-slate-800">3. Asistente Contable (Facturas a Excel & Drive)</span>
+            <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 transition shadow-subtle">
+              <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-slate-700"></i>
+              <span class="btn-smart-back-text">← Volver</span>
+            </button>
+            <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200 bg-white transition shadow-xs" title="Ver la lista con los 4 empleados">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5 text-slate-500"></i>
+              <span>Hub de Empleados</span>
+            </button>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-700 border border-slate-200 font-medium">3. Asistente Contable (Facturas a Excel & Drive)</span>
           </div>
         </div>
 
@@ -1464,12 +1610,22 @@
       <!-- ======================================================== -->
       <section id="step-talleexacto" class="step-content space-y-6 hidden">
         <!-- Top Navigation Banner -->
-        <div class="flex items-center justify-between pb-2 border-b border-slate-200">
-          <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 transition">
-            <span>← Elegir otro empleado</span>
-          </button>
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
           <div class="flex items-center space-x-2">
-            <span class="text-xs font-semibold text-slate-800">Módulo Especial Moda: TalleExacto</span>
+            <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 transition shadow-subtle">
+              <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-slate-700"></i>
+              <span class="btn-smart-back-text">← Volver</span>
+            </button>
+            <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200 bg-white transition shadow-xs" title="Ver la lista con los 4 empleados">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5 text-slate-500"></i>
+              <span>Hub de Empleados</span>
+            </button>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xs font-mono px-2.5 py-1 rounded bg-[#FAF7EE] text-[#8A5A1E] border border-[#E6DCC3] font-medium">Módulo Especial Moda: TalleExacto</span>
+            <a href="/talleexacto.html" target="_blank" class="px-2.5 py-1 bg-[#8A5A1E] hover:bg-[#6E4817] text-white rounded-lg text-xs font-semibold transition shadow-subtle">
+              Landing Oficial ↗
+            </a>
           </div>
         </div>
 
@@ -1747,12 +1903,48 @@
       <!-- ======================================================== -->
       <section id="step-simulator" class="step-content space-y-6 hidden">
         <!-- Top Navigation Banner -->
-        <div class="flex items-center justify-between pb-2 border-b border-slate-200">
-          <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 transition">
-            <span>← Elegir otro empleado</span>
-          </button>
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
           <div class="flex items-center space-x-2">
-            <span class="text-xs font-semibold text-slate-800">1. Vendedor IA (WhatsApp 24/7)</span>
+            <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 transition shadow-subtle">
+              <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-slate-700"></i>
+              <span class="btn-smart-back-text">← Volver</span>
+            </button>
+            <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200 bg-white transition shadow-xs" title="Ver la lista con los 4 empleados">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5 text-slate-500"></i>
+              <span>Hub de Empleados</span>
+            </button>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xs font-mono px-2.5 py-1 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold">1. Vendedor IA (WhatsApp 24/7)</span>
+          </div>
+        </div>
+
+        <!-- Barra de Navegación del Vendedor IA (Sub-tabs) -->
+        <div class="vendedor-nav-bar bg-[#F0F5F2] border border-[#CDE0D5] rounded-xl p-2.5 flex flex-col md:flex-row md:items-center justify-between gap-2.5 shadow-subtle">
+          <div class="flex flex-wrap items-center gap-1.5 text-xs">
+            <span class="text-[10px] font-mono font-bold text-[#1B4332] uppercase tracking-wider px-2 py-1 bg-emerald-100 border border-emerald-300 rounded-md">
+              1. Vendedor IA
+            </span>
+            <div class="inline-flex bg-white p-0.5 rounded-lg border border-slate-200 shadow-2xs">
+              <button onclick="switchStep('step-simulator')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-semibold bg-[#1B4332] text-white shadow-xs transition" data-vstep="step-simulator">
+                💬 Chat en Vivo
+              </button>
+              <button onclick="switchStep('step-catalog')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-catalog">
+                📦 Catálogo & Precios
+              </button>
+              <button onclick="switchStep('step-identity')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-identity">
+                ⚙️ Identidad & Reglas
+              </button>
+              <button onclick="switchStep('step-whatsapp')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-whatsapp">
+                📱 Vincular WhatsApp (QR)
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center space-x-2 shrink-0">
+            <span class="text-[11px] font-mono text-emerald-800 font-medium bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200 flex items-center space-x-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span>Modo Simulación Activo</span>
+            </span>
           </div>
         </div>
 
@@ -1954,13 +2146,20 @@
       <!-- ======================================================== -->
       <section id="step-cobranzas" class="step-content space-y-4 hidden">
         <!-- Top Navigation Bar -->
-        <div class="flex items-center justify-between pb-3 border-b border-slate-200">
-          <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 transition">
-            <span>← Elegir otro empleado</span>
-          </button>
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
+          <div class="flex items-center space-x-2">
+            <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 transition shadow-subtle">
+              <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-slate-700"></i>
+              <span class="btn-smart-back-text">← Volver</span>
+            </button>
+            <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200 bg-white transition shadow-xs" title="Ver la lista con los 4 empleados">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5 text-slate-500"></i>
+              <span>Hub de Empleados</span>
+            </button>
+          </div>
           <div class="flex items-center space-x-3">
             <span class="text-xs font-semibold text-slate-800">2. Gestor de Cobranzas (WhatsApp & Mercado Pago)</span>
-            <a href="/cobranzas.html" target="_blank" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition">
+            <a href="/cobranzas.html" target="_blank" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded-lg text-xs font-semibold transition shadow-subtle">
               Abrir en Pantalla Completa ↗
             </a>
           </div>
@@ -1977,13 +2176,20 @@
       <!-- ======================================================== -->
       <section id="step-multilingual" class="step-content space-y-4 hidden">
         <!-- Top Navigation Bar -->
-        <div class="flex items-center justify-between pb-3 border-b border-slate-200">
-          <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 transition">
-            <span>← Elegir otro empleado</span>
-          </button>
+        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
+          <div class="flex items-center space-x-2">
+            <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 transition shadow-subtle">
+              <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-slate-700"></i>
+              <span class="btn-smart-back-text">← Volver</span>
+            </button>
+            <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1 px-2.5 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 border border-slate-200 bg-white transition shadow-xs" title="Ver la lista con los 4 empleados">
+              <i data-lucide="layout-grid" class="w-3.5 h-3.5 text-slate-500"></i>
+              <span>Hub de Empleados</span>
+            </button>
+          </div>
           <div class="flex items-center space-x-3">
             <span class="text-xs font-semibold text-slate-800">4. Asistente Multilingüe & Turismo (Concierge 24/7)</span>
-            <a href="/multilingue.html" target="_blank" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition">
+            <a href="/multilingue.html" target="_blank" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded-lg text-xs font-semibold transition shadow-subtle">
               Abrir en Pantalla Completa ↗
             </a>
           </div>
@@ -2473,12 +2679,42 @@
       ]
     };
 
-    // Navegación de Pasos
-    function switchStep(stepId) {
+    // ========================================================
+    // SISTEMA INTELIGENTE DE HISTORIAL Y NAVEGACIÓN
+    // ========================================================
+    let navigationHistory = [];
+    let currentStepId = 'step-hub';
+
+    const STEP_NAMES = {
+      'step-hub': 'Hub de Empleados',
+      'step-simulator': '1. Vendedor IA (Chat)',
+      'step-catalog': 'Catálogo & Precios',
+      'step-identity': 'Identidad & Reglas',
+      'step-whatsapp': 'Vincular WhatsApp (QR)',
+      'step-cobranzas': '2. Gestor de Cobranzas',
+      'step-accounting': '3. Asistente Contable',
+      'step-multilingual': '4. Asistente Multilingüe',
+      'step-talleexacto': 'TalleExacto (Moda)',
+      'step-billing': 'Planes & Facturación'
+    };
+
+    const VENDEDOR_STEPS = ['step-simulator', 'step-catalog', 'step-identity', 'step-whatsapp'];
+
+    function switchStep(stepId, pushHistory = true) {
+      if (!stepId) return;
+
+      // Guardar en la pila de historial si cambiamos de pantalla
+      if (pushHistory && currentStepId && currentStepId !== stepId) {
+        navigationHistory.push(currentStepId);
+      }
+      currentStepId = stepId;
+
+      // Ocultar todas las secciones y mostrar la activa
       document.querySelectorAll('.step-content').forEach(el => el.classList.add('hidden'));
       const target = document.getElementById(stepId);
       if (target) target.classList.remove('hidden');
 
+      // Actualizar pestañas principales si existen
       document.querySelectorAll('.tab-btn').forEach(btn => {
         btn.classList.remove('text-slate-900', 'border-slate-900', 'font-semibold');
         btn.classList.add('text-slate-600', 'border-transparent');
@@ -2489,6 +2725,7 @@
         activeTab.classList.remove('text-slate-600', 'border-transparent');
       }
 
+      // Actualizar items del menú lateral
       document.querySelectorAll('.nav-item').forEach(btn => {
         btn.classList.remove('bg-white/15', 'text-white', 'font-semibold');
         btn.classList.add('text-emerald-100');
@@ -2499,8 +2736,112 @@
         activeNav.classList.remove('text-emerald-100');
       }
 
+      // Actualizar historial de la URL del navegador
+      try {
+        if (pushHistory) {
+          history.pushState({ stepId: stepId }, '', '#' + stepId);
+        }
+      } catch (e) {}
+
+      // Actualizar botones contextuales de Volver
+      updateBackButtons();
+
+      // Actualizar migas de pan superiores dinámicas
+      updateDynamicBreadcrumb(stepId);
+
+      // Actualizar sub-tabs del Vendedor IA
+      updateVendedorTabs(stepId);
+
+      // Refrescar iconos Lucide
+      if (window.lucide && typeof lucide.createIcons === 'function') {
+        lucide.createIcons();
+      }
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    function goBack() {
+      if (navigationHistory.length > 0) {
+        const previousStep = navigationHistory.pop();
+        switchStep(previousStep, false);
+      } else {
+        // Fallback inteligente: si estabas configurando Vendedor IA, volver al simulador
+        if (VENDEDOR_STEPS.includes(currentStepId) && currentStepId !== 'step-simulator') {
+          switchStep('step-simulator', false);
+        } else {
+          switchStep('step-hub', false);
+        }
+      }
+    }
+
+    function updateBackButtons() {
+      let prevTitle = 'Volver';
+      if (navigationHistory.length > 0) {
+        const lastStep = navigationHistory[navigationHistory.length - 1];
+        prevTitle = STEP_NAMES[lastStep] || 'Pantalla anterior';
+      } else if (VENDEDOR_STEPS.includes(currentStepId) && currentStepId !== 'step-simulator') {
+        prevTitle = '1. Vendedor IA (Chat)';
+      } else {
+        prevTitle = 'Hub de Empleados';
+      }
+
+      document.querySelectorAll('.btn-smart-back-text').forEach(el => {
+        el.innerText = `← Volver a ${prevTitle}`;
+      });
+    }
+
+    function updateDynamicBreadcrumb(stepId) {
+      const container = document.getElementById('breadcrumb-dynamic');
+      if (!container) return;
+
+      if (stepId === 'step-hub') {
+        container.innerHTML = `<span class="text-slate-900 font-semibold">¿Qué empleado buscas?</span>`;
+      } else if (VENDEDOR_STEPS.includes(stepId)) {
+        const currentTitle = STEP_NAMES[stepId] || stepId;
+        container.innerHTML = `
+          <button onclick="switchStep('step-hub')" class="hover:text-slate-900 transition font-medium">Empleados</button>
+          <span>/</span>
+          <button onclick="switchStep('step-simulator')" class="hover:text-emerald-800 transition font-medium ${stepId === 'step-simulator' ? 'text-emerald-900 font-bold' : 'text-slate-700'}">1. Vendedor IA</button>
+          ${stepId !== 'step-simulator' ? `<span>/</span><span class="text-slate-900 font-semibold">${currentTitle}</span>` : ''}
+        `;
+      } else {
+        const currentTitle = STEP_NAMES[stepId] || stepId;
+        container.innerHTML = `
+          <button onclick="switchStep('step-hub')" class="hover:text-slate-900 transition font-medium">Empleados</button>
+          <span>/</span>
+          <span class="text-slate-900 font-semibold">${currentTitle}</span>
+        `;
+      }
+    }
+
+    function updateVendedorTabs(stepId) {
+      document.querySelectorAll('.vendedor-tab').forEach(tab => {
+        const targetStep = tab.getAttribute('data-vstep');
+        if (targetStep === stepId) {
+          tab.classList.add('bg-[#1B4332]', 'text-white', 'font-semibold', 'shadow-xs');
+          tab.classList.remove('text-slate-600', 'hover:text-slate-900', 'font-medium');
+        } else {
+          tab.classList.remove('bg-[#1B4332]', 'text-white', 'font-semibold', 'shadow-xs');
+          tab.classList.add('text-slate-600', 'hover:text-slate-900', 'font-medium');
+        }
+      });
+    }
+
+    // Soporte para botón ATRÁS del navegador físico / ratón
+    window.addEventListener('popstate', (e) => {
+      if (e.state && e.state.stepId) {
+        switchStep(e.state.stepId, false);
+      } else if (window.location.hash) {
+        const hashStep = window.location.hash.replace('#', '');
+        if (document.getElementById(hashStep)) {
+          switchStep(hashStep, false);
+        } else {
+          goBack();
+        }
+      } else {
+        goBack();
+      }
+    });
 
     // Selector de Tono
     document.querySelectorAll('.tone-card').forEach(card => {
