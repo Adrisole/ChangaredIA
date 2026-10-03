@@ -51,13 +51,18 @@ export const createApp = () => {
   // Montar rutas de la API bajo /api
   app.use('/api', apiRouter);
 
-  // Ruta 404
+  // Manejo de URLs históricas y 404 (SEO Recovery 301)
   app.use('*', (req, res) => {
-    res.status(404).json({
-      success: false,
-      error: 'NOT_FOUND',
-      message: `El endpoint '${req.originalUrl}' no existe en Changared.`,
-    });
+    if (req.originalUrl.startsWith('/api')) {
+      return res.status(404).json({
+        success: false,
+        error: 'NOT_FOUND',
+        message: `El endpoint '${req.originalUrl}' no existe en Changared.`,
+      });
+    }
+
+    // Redirigir cualquier enlace antiguo del Changared previo al home (SEO 301 permanente)
+    return res.redirect(301, '/');
   });
 
   // Manejador central de errores
