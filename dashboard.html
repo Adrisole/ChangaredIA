@@ -148,25 +148,32 @@
     }
   </style>
 </head>
-<body class="h-full flex text-slate-900 selection:bg-brand-100 selection:text-brand-900">
+<body class="h-full flex text-slate-900 selection:bg-brand-100 selection:text-brand-900 overflow-x-hidden">
+
+  <!-- Backdrop oscuro para móvil cuando el menú está abierto -->
+  <div id="mobile-sidebar-backdrop" onclick="closeMobileSidebar()" class="fixed inset-0 bg-slate-950/60 backdrop-blur-xs z-40 hidden md:hidden transition-opacity duration-300 opacity-0 pointer-events-none"></div>
 
   <!-- ======================================================== -->
-  <!-- BARRA LATERAL (SIDEBAR B2B MINIMALISTA) -->
+  <!-- BARRA LATERAL (SIDEBAR B2B MINIMALISTA RESPONSIVE) -->
   <!-- ======================================================== -->
-  <aside class="w-64 bg-[#1B4332] text-white flex flex-col shrink-0 select-none border-r border-[#143225] min-h-screen" style="background-color: #1B4332 !important;">
-    <div class="bg-[#1B4332]">
+  <aside id="main-sidebar" class="fixed inset-y-0 left-0 z-50 w-72 max-w-[85vw] bg-[#1B4332] text-white flex flex-col shrink-0 select-none border-r border-[#143225] h-full shadow-2xl -translate-x-full transition-transform duration-300 ease-in-out md:translate-x-0 md:static md:w-64 md:h-auto md:min-h-screen md:shadow-none overflow-y-auto" style="background-color: #1B4332 !important;">
+    <div class="bg-[#1B4332] flex-1 flex flex-col">
       <!-- Header de Marca -->
-      <div class="h-16 px-5 border-b border-white/10 flex items-center justify-between bg-[#1B4332]">
+      <div class="h-16 px-4 sm:px-5 border-b border-white/10 flex items-center justify-between bg-[#1B4332] shrink-0">
         <div class="flex items-center space-x-2.5">
           <img src="/logo-white.png" alt="ChangaRed" class="h-7 w-auto object-contain">
           <span class="text-[10px] uppercase font-mono tracking-wider font-semibold px-1.5 py-0.5 rounded bg-white/10 text-emerald-200 border border-white/10">B2B</span>
         </div>
+        <!-- Botón cerrar menú solo visible en móvil -->
+        <button onclick="closeMobileSidebar()" class="md:hidden p-1.5 rounded-lg text-emerald-200 hover:text-white hover:bg-white/10 transition" aria-label="Cerrar menú">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
       </div>
 
       <!-- Selector de Tenant (Negocio Activo) -->
-      <div class="p-3 border-b border-white/10 bg-[#1B4332]">
+      <div class="p-3 border-b border-white/10 bg-[#1B4332] shrink-0">
         <label class="block text-[11px] uppercase tracking-wider font-semibold text-emerald-200/70 px-2 mb-1.5" data-i18n="activeBusiness">Negocio activo</label>
-        <button onclick="openBusinessConfigModal()" title="Personalizar con el nombre de tu propio negocio" class="w-full flex items-center justify-between px-2.5 py-2 text-xs font-medium text-white bg-white/10 hover:bg-white/15 rounded-lg border border-white/10 transition-colors">
+        <button onclick="openBusinessConfigModal(); closeMobileSidebar();" title="Personalizar con el nombre de tu propio negocio" class="w-full flex items-center justify-between px-2.5 py-2 text-xs font-medium text-white bg-white/10 hover:bg-white/15 rounded-lg border border-white/10 transition-colors">
           <div class="flex items-center space-x-2 truncate">
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
             <span class="truncate font-semibold" id="sidebar-business-name">Pizzería Roma Artesanal</span>
@@ -176,7 +183,7 @@
       </div>
 
       <!-- Navegación del Dashboard (Solo Texto Limpio, Sin Dibujitos) -->
-      <nav class="p-3 space-y-1 bg-[#1B4332]">
+      <nav class="p-3 space-y-1 bg-[#1B4332] flex-1 overflow-y-auto">
         <div class="px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-emerald-200/70" data-i18n="navSectionMain">Principal</div>
         
         <button onclick="switchStep('step-hub')" id="nav-step-hub" class="nav-item w-full text-left px-3 py-2 text-xs font-semibold rounded-lg text-white bg-white/15 transition-colors" data-i18n="navStepHub">
@@ -243,45 +250,52 @@
   <!-- ======================================================== -->
   <!-- ÁREA DE CONTENIDO PRINCIPAL -->
   <!-- ======================================================== -->
-  <main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+  <main class="flex-1 flex flex-col min-w-0 overflow-y-auto w-full">
 
     <!-- Topbar con Breadcrumb Dinámico y Acciones Globales -->
-    <header class="h-16 px-8 border-b border-slate-200 bg-white/80 backdrop-blur sticky top-0 z-10 flex items-center justify-between">
-      <div class="flex items-center space-x-2 text-xs text-slate-600" id="breadcrumb-container">
-        <button onclick="switchStep('step-hub')" class="hover:text-slate-900 font-medium transition cursor-pointer">Changared</button>
-        <span>/</span>
-        <div id="breadcrumb-dynamic" class="flex items-center space-x-2">
-          <span class="text-slate-900 font-semibold">¿Qué empleado buscas?</span>
+    <header class="h-16 px-3 sm:px-6 md:px-8 border-b border-slate-200 bg-white/90 backdrop-blur sticky top-0 z-20 flex items-center justify-between">
+      <div class="flex items-center space-x-2 sm:space-x-3 min-w-0">
+        <!-- Botón Hamburguesa solo visible en móvil (< md) -->
+        <button onclick="toggleMobileSidebar()" class="md:hidden p-2 -ml-1 text-slate-700 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition shrink-0" aria-label="Abrir menú">
+          <i data-lucide="menu" class="w-5 h-5 text-slate-800"></i>
+        </button>
+
+        <div class="flex items-center space-x-1.5 text-xs text-slate-600 truncate" id="breadcrumb-container">
+          <button onclick="switchStep('step-hub')" class="hover:text-slate-900 font-medium transition cursor-pointer hidden sm:inline">Changared</button>
+          <span class="hidden sm:inline">/</span>
+          <div id="breadcrumb-dynamic" class="flex items-center space-x-1.5 truncate">
+            <span class="text-slate-900 font-semibold truncate">¿Qué empleado buscas?</span>
+          </div>
         </div>
       </div>
 
-      <div class="flex items-center space-x-3">
+      <div class="flex items-center space-x-2 sm:space-x-3 shrink-0">
         <!-- Badge de Prueba Gratuita Activa -->
-        <div class="hidden sm:flex items-center space-x-2 text-xs bg-emerald-50 border border-emerald-200 text-emerald-900 px-3 py-1.5 rounded-lg">
+        <div class="hidden lg:flex items-center space-x-2 text-xs bg-emerald-50 border border-emerald-200 text-emerald-900 px-3 py-1.5 rounded-lg">
           <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
           <span class="font-semibold text-[11px]" id="topbar-trial-text">14 Días Gratis Activos (Sin Tarjeta)</span>
         </div>
 
         <!-- Switch de Idioma Superior -->
         <div class="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 text-xs font-medium">
-          <button onclick="setUiLanguage('es')" class="lang-pill px-2 py-1 rounded text-[11px] font-semibold transition" data-lang="es">🇪🇸 ES</button>
-          <button onclick="setUiLanguage('en')" class="lang-pill px-2 py-1 rounded text-[11px] font-medium text-slate-600 hover:text-slate-900 transition" data-lang="en">🇺🇸 EN</button>
-          <button onclick="setUiLanguage('pt')" class="lang-pill px-2 py-1 rounded text-[11px] font-medium text-slate-600 hover:text-slate-900 transition" data-lang="pt">🇧🇷 PT</button>
+          <button onclick="setUiLanguage('es')" class="lang-pill px-1.5 sm:px-2 py-1 rounded text-[10px] sm:text-[11px] font-semibold transition" data-lang="es">🇪🇸 ES</button>
+          <button onclick="setUiLanguage('en')" class="lang-pill px-1.5 sm:px-2 py-1 rounded text-[10px] sm:text-[11px] font-medium text-slate-600 hover:text-slate-900 transition" data-lang="en">🇺🇸 EN</button>
+          <button onclick="setUiLanguage('pt')" class="lang-pill px-1.5 sm:px-2 py-1 rounded text-[10px] sm:text-[11px] font-medium text-slate-600 hover:text-slate-900 transition" data-lang="pt">🇧🇷 PT</button>
         </div>
 
-        <button onclick="switchStep('step-simulator')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition-colors shadow-subtle">
+        <button onclick="switchStep('step-simulator')" class="hidden md:inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition-colors shadow-subtle">
           <i data-lucide="play" class="w-3.5 h-3.5 text-slate-600"></i>
           <span data-i18n="btnTestSimulator">Probar en Simulador</span>
         </button>
-        <button onclick="openBusinessConfigModal()" class="inline-flex items-center space-x-1.5 px-3.5 py-1.5 text-xs font-medium text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg transition-colors shadow-subtle">
+        <button onclick="openBusinessConfigModal()" class="inline-flex items-center space-x-1.5 px-2.5 sm:px-3.5 py-1.5 text-xs font-medium text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg transition-colors shadow-subtle">
           <i data-lucide="settings" class="w-3.5 h-3.5 text-emerald-300"></i>
-          <span>Mi Negocio</span>
+          <span class="hidden sm:inline">Mi Negocio</span>
         </button>
       </div>
     </header>
 
     <!-- Contenedor Principal Centrado con Ancho Controlado -->
-    <div class="max-w-5xl w-full mx-auto px-8 py-8 space-y-6">
+    <div class="max-w-5xl w-full mx-auto px-4 sm:px-8 py-5 sm:py-8 space-y-6">
 
       <!-- ======================================================== -->
       <!-- PANTALLA PRINCIPAL: EMPLEADOS VIRTUALES B2B -->
@@ -3495,8 +3509,50 @@
 
     const VENDEDOR_STEPS = ['step-simulator', 'step-catalog', 'step-identity', 'step-whatsapp'];
 
+    // =========================================================
+    // CONTROL DEL MENÚ LATERAL RESPONSIVE EN MÓVIL
+    // =========================================================
+    function openMobileSidebar() {
+      const sidebar = document.getElementById('main-sidebar');
+      const backdrop = document.getElementById('mobile-sidebar-backdrop');
+      if (sidebar && backdrop) {
+        sidebar.classList.remove('-translate-x-full');
+        sidebar.classList.add('translate-x-0');
+        backdrop.classList.remove('hidden', 'opacity-0', 'pointer-events-none');
+        backdrop.classList.add('opacity-100', 'pointer-events-auto');
+        document.body.classList.add('overflow-hidden');
+      }
+    }
+
+    function closeMobileSidebar() {
+      const sidebar = document.getElementById('main-sidebar');
+      const backdrop = document.getElementById('mobile-sidebar-backdrop');
+      if (sidebar && backdrop) {
+        sidebar.classList.remove('translate-x-0');
+        sidebar.classList.add('-translate-x-full');
+        backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+        backdrop.classList.add('opacity-0', 'pointer-events-none');
+        setTimeout(() => {
+          if (sidebar.classList.contains('-translate-x-full')) {
+            backdrop.classList.add('hidden');
+          }
+        }, 300);
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    function toggleMobileSidebar() {
+      const sidebar = document.getElementById('main-sidebar');
+      if (sidebar && sidebar.classList.contains('-translate-x-full')) {
+        openMobileSidebar();
+      } else {
+        closeMobileSidebar();
+      }
+    }
+
     function switchStep(stepId, pushHistory = true) {
       if (!stepId) return;
+      closeMobileSidebar();
 
       // Guardar en la pila de historial si cambiamos de pantalla
       if (pushHistory && currentStepId && currentStepId !== stepId) {
