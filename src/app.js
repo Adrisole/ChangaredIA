@@ -32,6 +32,17 @@ export const createApp = () => {
     res.sendFile(path.resolve('./public/cobranzas.html'));
   });
 
+  // Rutas SEO (Google & Motores de Búsqueda)
+  app.get('/robots.txt', (req, res) => {
+    res.type('text/plain');
+    res.sendFile(path.resolve('./public/robots.txt'));
+  });
+
+  app.get('/sitemap.xml', (req, res) => {
+    res.type('application/xml');
+    res.sendFile(path.resolve('./public/sitemap.xml'));
+  });
+
   // Montar rutas de la API bajo /api
   app.use('/api', apiRouter);
 

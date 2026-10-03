@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Allow: /cobranzas
+Allow: /talleexacto
+Allow: /cobranzas.html
+Allow: /talleexacto.html
+
+Sitemap: https://changared.com/sitemap.xml
