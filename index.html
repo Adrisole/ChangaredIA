@@ -153,10 +153,10 @@
   <!-- ======================================================== -->
   <!-- BARRA LATERAL (SIDEBAR B2B MINIMALISTA) -->
   <!-- ======================================================== -->
-  <aside class="w-64 bg-[#1B4332] text-white flex flex-col justify-between shrink-0 select-none border-r border-[#143225]">
-    <div>
+  <aside class="w-64 bg-[#1B4332] text-white flex flex-col shrink-0 select-none border-r border-[#143225] min-h-screen" style="background-color: #1B4332 !important;">
+    <div class="bg-[#1B4332]">
       <!-- Header de Marca -->
-      <div class="h-16 px-5 border-b border-white/10 flex items-center justify-between">
+      <div class="h-16 px-5 border-b border-white/10 flex items-center justify-between bg-[#1B4332]">
         <div class="flex items-center space-x-2.5">
           <img src="/logo-white.png" alt="ChangaRed" class="h-7 w-auto object-contain">
           <span class="text-[10px] uppercase font-mono tracking-wider font-semibold px-1.5 py-0.5 rounded bg-white/10 text-emerald-200 border border-white/10">B2B</span>
@@ -164,7 +164,7 @@
       </div>
 
       <!-- Selector de Tenant (Negocio Activo) -->
-      <div class="p-3 border-b border-white/10">
+      <div class="p-3 border-b border-white/10 bg-[#1B4332]">
         <label class="block text-[11px] uppercase tracking-wider font-semibold text-emerald-200/70 px-2 mb-1.5" data-i18n="activeBusiness">Negocio activo</label>
         <button class="w-full flex items-center justify-between px-2.5 py-2 text-xs font-medium text-white bg-white/10 hover:bg-white/15 rounded-lg border border-white/10 transition-colors">
           <div class="flex items-center space-x-2 truncate">
@@ -176,7 +176,7 @@
       </div>
 
       <!-- Navegación del Dashboard (Solo Texto Limpio, Sin Dibujitos) -->
-      <nav class="p-3 space-y-1">
+      <nav class="p-3 space-y-1 bg-[#1B4332]">
         <div class="px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-emerald-200/70">Principal</div>
         
         <button onclick="switchStep('step-hub')" id="nav-step-hub" class="nav-item w-full text-left px-3 py-2 text-xs font-semibold rounded-lg text-white bg-white/15 transition-colors">
@@ -224,31 +224,15 @@
         <button onclick="switchStep('step-billing')" id="nav-step-billing" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-200/90 hover:text-white hover:bg-white/10 transition-colors">
           Planes & Suscripción
         </button>
-      </nav>
-    </div>
 
-    <!-- Footer de Sidebar (Estado y Selector de Idioma) -->
-    <div class="p-3 border-t border-white/10 space-y-2">
-      <!-- Selector de Idioma UI -->
-      <div class="flex items-center justify-between px-2.5 py-1.5 bg-black/20 rounded-lg text-xs text-emerald-200">
-        <span class="text-[11px] font-medium" data-i18n="uiLangLabel">Idioma UI:</span>
-        <div class="flex items-center space-x-1 font-mono text-[11px] font-semibold">
-          <button onclick="setUiLanguage('es')" id="btn-lang-es" class="px-1.5 py-0.5 rounded bg-emerald-500 text-slate-950 font-bold">ES</button>
-          <button onclick="setUiLanguage('en')" id="btn-lang-en" class="px-1.5 py-0.5 rounded text-emerald-300 hover:text-white">EN</button>
-          <button onclick="setUiLanguage('pt')" id="btn-lang-pt" class="px-1.5 py-0.5 rounded text-emerald-300 hover:text-white">PT</button>
-        </div>
-      </div>
-
-      <div class="px-3 py-2 bg-black/20 rounded-lg">
-        <div class="flex items-center justify-between text-xs font-medium text-white mb-1">
+        <div class="pt-4 mt-3 px-3 border-t border-white/10 text-[11px] text-emerald-200/70 flex items-center justify-between">
           <span class="flex items-center space-x-1.5">
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            <span class="font-semibold" data-i18n="employeeStatus">Empleado Activo</span>
+            <span class="font-medium text-white">Changared B2B</span>
           </span>
-          <span class="text-[11px] font-mono text-emerald-300">v1.0.0</span>
+          <span class="font-mono text-[10px] text-emerald-300">v1.0</span>
         </div>
-        <p class="text-[11px] text-emerald-200/70 truncate" data-i18n="employeeModel">OpenAI / Detección Multi-idioma</p>
-      </div>
+      </nav>
     </div>
   </aside>
 
@@ -1728,7 +1712,7 @@
 
         <!-- Vista Integrada del Gestor de Cobranzas -->
         <div class="border border-slate-200 rounded-lg overflow-hidden bg-[#F6EFDF] shadow-sm">
-          <iframe src="/cobranzas.html" title="Gestor de Cobranzas" style="width: 100%; min-height: 860px; border: none; display: block;"></iframe>
+          <iframe id="iframe-cobranzas" src="/cobranzas.html" title="Gestor de Cobranzas" style="width: 100%; min-height: 520px; border: none; display: block; transition: height 0.2s ease;"></iframe>
         </div>
       </section>
 
@@ -1751,7 +1735,7 @@
 
         <!-- Vista Integrada del Asistente Multilingüe -->
         <div class="border border-slate-200 rounded-lg overflow-hidden bg-[#F6EFDF] shadow-sm">
-          <iframe src="/multilingue.html" title="Asistente Multilingüe y Turismo" style="width: 100%; min-height: 860px; border: none; display: block;"></iframe>
+          <iframe id="iframe-multilingual" src="/multilingue.html" title="Asistente Multilingüe y Turismo" style="width: 100%; min-height: 520px; border: none; display: block; transition: height 0.2s ease;"></iframe>
         </div>
       </section>
 
@@ -2148,6 +2132,16 @@
 
     // Inicializar iconos
     lucide.createIcons();
+
+    // Auto-ajuste dinamico de altura de iframes embebidos para eliminar espacios vacios
+    window.addEventListener('message', function(e) {
+      if (e.data && e.data.type === 'resize-iframe' && e.data.id) {
+        const el = document.getElementById(e.data.id);
+        if (el && e.data.height) {
+          el.style.height = (Math.max(480, e.data.height + 15)) + 'px';
+        }
+      }
+    });
 
     // Estado reactivo local
     let currentBusiness = {

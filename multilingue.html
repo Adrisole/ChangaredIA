@@ -511,7 +511,18 @@
       showToast("Políticas turísticas guardadas correctamente.");
     }
 
-    renderTuristas();
+    function syncIframeHeight() {
+      if (window.parent && window.parent !== window) {
+        const height = document.documentElement.scrollHeight || document.body.scrollHeight;
+        window.parent.postMessage({ type: 'resize-iframe', id: 'iframe-multilingual', height: height }, '*');
+      }
+    }
+
+    window.addEventListener('load', () => {
+      renderTuristas();
+      syncIframeHeight();
+    });
+    window.addEventListener('resize', syncIframeHeight);
   </script>
 </body>
 </html>
