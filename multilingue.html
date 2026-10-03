@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SEO Primario 100/100 -->
-  <title>Asistente Multilingüe & Turismo 24/7 por WhatsApp — Changared</title>
-  <meta name="description" content="Atención automatizada en inglés, portugués, francés y español por WhatsApp para hoteles, gastronomía y turismo. Reservas, cartas y pagos internacionales sin barreras de idioma.">
-  <meta name="keywords" content="asistente multilingue whatsapp, atencion turistas whatsapp, bot hotel reservas, bot restaurante ingles portugues, concierge virtual 24/7, changared turismo">
+  <title>Asistente Multilingüe & Concierge Turístico 24/7 — Changared</title>
+  <meta name="description" content="Automatiza la atención de turistas en hoteles, cabañas y restaurantes por WhatsApp en más de 10 idiomas. Cierra reservas directas sin comisiones, comparte cartas en PDF y gestiona cobros en Pix y USD.">
+  <meta name="keywords" content="asistente multilingue turismo, concierge whatsapp, bot hoteles reservas directas, bot restaurantes carta ingles portugues, cobrar en pix argentina turistas, changared hospitalidad">
   <meta name="author" content="Changared">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   <meta name="theme-color" content="#1B4332">
@@ -20,16 +20,16 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://changared.com/multilingue.html">
-  <meta property="og:title" content="Asistente Multilingüe & Turismo 24/7 por WhatsApp — Changared">
-  <meta property="og:description" content="Atención continua para turistas en inglés, portugués y español. Menús, reservas y medios de pago sin fricción.">
+  <meta property="og:title" content="Asistente Multilingüe & Concierge Turístico 24/7 — Changared">
+  <meta property="og:description" content="Atención de turistas en +10 idiomas. Reservas directas sin comisión de Booking, menú digital y medios de cobro Pix/USD.">
   <meta property="og:image" content="https://changared.com/og-image.png">
   <meta property="og:locale" content="es_AR">
   <meta property="og:site_name" content="Changared">
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Asistente Multilingüe & Turismo 24/7 por WhatsApp — Changared">
-  <meta name="twitter:description" content="Atención continua para turistas en inglés, portugués y español. Menús, reservas y medios de pago sin fricción.">
+  <meta name="twitter:title" content="Asistente Multilingüe & Concierge Turístico 24/7 — Changared">
+  <meta name="twitter:description" content="Atención de turistas en +10 idiomas. Reservas directas sin comisión de Booking, menú digital y medios de cobro Pix/USD.">
   <meta name="twitter:image" content="https://changared.com/og-image.png">
 
   <!-- Schema.org JSON-LD -->
@@ -37,11 +37,11 @@
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Asistente Multilingüe y Turismo Changared",
+    "name": "Asistente Multilingüe y Concierge Turístico Changared",
     "operatingSystem": "All",
     "applicationCategory": "BusinessApplication",
     "url": "https://changared.com/multilingue.html",
-    "description": "Atención autónoma multilingüe por WhatsApp para negocios turísticos y gastronómicos.",
+    "description": "Atención autónoma multilingüe por WhatsApp para negocios turísticos, hotelería y gastronomía.",
     "publisher": {
       "@type": "Organization",
       "name": "Changared",
@@ -61,6 +61,8 @@
       --verde-suave: #DDEBDD;
       --rojo: #A5472F;
       --rojo-suave: #F3DDD3;
+      --oro: #8A5A1E;
+      --oro-suave: #F7EED9;
       --font-serif: Georgia, 'Times New Roman', serif;
       --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
@@ -76,89 +78,196 @@
       color: var(--ink);
       font-family: var(--font-sans);
       min-height: 100vh;
-      line-height: 1.4;
+      line-height: 1.45;
       -webkit-font-smoothing: antialiased;
     }
 
+    /* Barra Superior Institucional */
     .header-bar {
       background: var(--verde-osc);
       color: #FFFFFF;
-      padding: 12px 20px;
+      padding: 16px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
       border-bottom: 1px solid rgba(255,255,255,0.1);
     }
 
     .header-title {
       font-family: var(--font-serif);
-      font-size: 17px;
+      font-size: 20px;
       font-weight: 700;
       letter-spacing: -0.01em;
     }
 
-    .header-badge {
-      font-size: 11px;
-      font-family: monospace;
-      color: #A3E635;
-      background: rgba(0,0,0,0.25);
-      padding: 3px 8px;
-      border-radius: 4px;
+    .header-sub {
+      font-size: 12px;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    .nav-back-link {
+      color: #FFFBF1;
+      text-decoration: none;
+      font-size: 12px;
       font-weight: 600;
+      border: 1px solid rgba(255, 251, 241, 0.3);
+      padding: 6px 14px;
+      border-radius: 6px;
+      transition: background 0.15s;
+    }
+
+    .nav-back-link:hover {
+      background: rgba(255, 251, 241, 0.15);
     }
 
     .container {
       max-width: 980px;
       margin: 0 auto;
-      padding: 24px 16px;
+      padding: 20px 16px 40px;
     }
 
-    .tabs {
+    /* Banner de Propuesta de Valor & ROI */
+    .roi-banner {
+      background: #FFFFFF;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    .roi-title {
+      font-family: var(--font-serif);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--verde-osc);
+      margin-bottom: 4px;
+    }
+
+    .roi-desc {
+      font-size: 13px;
+      color: var(--mute);
+      margin-bottom: 14px;
+    }
+
+    .roi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px;
+    }
+
+    .roi-item {
+      background: #FAF8F2;
+      border: 1px solid #EFE8D6;
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+
+    .roi-item-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--verde-osc);
       display: flex;
-      gap: 4px;
-      border-bottom: 2px solid var(--line);
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+
+    .roi-item-text {
+      font-size: 12px;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+
+    /* Barra de Progreso / Onboarding en 3 Pasos */
+    .steps-nav {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
       margin-bottom: 20px;
     }
 
-    .tab-btn {
-      background: transparent;
-      border: none;
-      padding: 9px 16px;
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--mute);
+    .step-badge {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 10px 14px;
       cursor: pointer;
-      border-bottom: 3px solid transparent;
-      margin-bottom: -2px;
       transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .tab-btn.active {
+    .step-badge.active {
+      background: var(--verde-osc);
+      border-color: var(--verde-osc);
+      color: #FFFFFF;
+      box-shadow: 0 2px 6px rgba(27, 67, 50, 0.2);
+    }
+
+    .step-badge.active .step-num {
+      background: #FFFFFF;
       color: var(--verde-osc);
-      border-bottom-color: var(--verde-osc);
-      background: rgba(45, 106, 79, 0.04);
     }
 
+    .step-badge.active .step-sub {
+      color: rgba(255,255,255,0.8);
+    }
+
+    .step-num {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #ECE5D0;
+      color: var(--ink);
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .step-label {
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .step-sub {
+      font-size: 11px;
+      color: var(--mute);
+      margin-top: 2px;
+    }
+
+    /* Tarjetas y Contenedores */
     .card {
       background: var(--card);
       border: 1px solid var(--line);
-      border-radius: 6px;
-      padding: 18px;
+      border-radius: 10px;
+      padding: 20px;
       margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
     }
 
     .card-title {
       font-family: var(--font-serif);
-      font-size: 15px;
+      font-size: 17px;
       font-weight: 700;
       color: var(--ink);
       margin-bottom: 4px;
     }
 
     .card-subtitle {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--mute);
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .kpi-row {
@@ -169,9 +278,9 @@
     }
 
     .kpi-card {
-      background: var(--card);
+      background: #FFFFFF;
       border: 1px solid var(--line);
-      border-radius: 6px;
+      border-radius: 8px;
       padding: 14px;
     }
 
@@ -185,7 +294,7 @@
 
     .kpi-value {
       font-family: var(--font-serif);
-      font-size: 22px;
+      font-size: 24px;
       font-weight: 700;
       color: var(--verde-osc);
       margin-top: 4px;
@@ -198,30 +307,44 @@
     }
 
     .btn {
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       border: none;
-      border-radius: 4px;
-      padding: 7px 12px;
-      font-size: 12px;
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-size: 13px;
       font-weight: 600;
       cursor: pointer;
       transition: background 0.15s ease;
       text-decoration: none;
-      text-align: center;
+      font-family: inherit;
     }
 
     .btn-primary {
-      background: var(--verde-osc);
+      background: var(--verde);
       color: #FFFFFF;
+      border: 1px solid var(--verde);
     }
 
     .btn-primary:hover {
-      background: var(--verde);
+      background: var(--verde-osc);
+    }
+
+    .btn-dark {
+      background: var(--verde-osc);
+      color: #FFFFFF;
+      border: 1px solid var(--verde-osc);
+    }
+
+    .btn-dark:hover {
+      background: #143225;
     }
 
     .btn-secondary {
       background: #ECE5D0;
       color: var(--ink);
+      border: 1px solid #DFD7BF;
     }
 
     .btn-secondary:hover {
@@ -231,16 +354,17 @@
     .input-field {
       width: 100%;
       border: 1px solid var(--line);
-      border-radius: 4px;
-      padding: 8px 10px;
+      border-radius: 6px;
+      padding: 9px 12px;
       font-size: 13px;
       background: #FFFFFF;
       color: var(--ink);
       margin-top: 4px;
+      font-family: inherit;
     }
 
     .input-field:focus {
-      outline: 1px solid var(--verde);
+      outline: none;
       border-color: var(--verde);
     }
 
@@ -252,7 +376,7 @@
 
     .table th {
       text-align: left;
-      padding: 10px;
+      padding: 10px 12px;
       background: #ECE5D0;
       color: var(--ink);
       font-weight: 700;
@@ -260,7 +384,7 @@
     }
 
     .table td {
-      padding: 10px;
+      padding: 12px;
       border-bottom: 1px solid var(--line);
       vertical-align: middle;
     }
@@ -269,35 +393,84 @@
       background: rgba(0,0,0,0.015);
     }
 
-    .status-warning {
-      color: var(--rojo);
-      font-weight: 700;
-    }
-
     .status-ok {
       color: var(--verde);
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .toast {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
+      bottom: 24px;
+      right: 24px;
       background: var(--verde-osc);
       color: #FFFFFF;
-      padding: 10px 16px;
-      border-radius: 4px;
-      font-size: 12px;
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-size: 13px;
       font-weight: 600;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 14px rgba(0,0,0,0.2);
       opacity: 0;
-      transition: opacity 0.2s ease;
+      transform: translateY(10px);
+      transition: all 0.2s ease;
       pointer-events: none;
       z-index: 100;
     }
 
     .toast.show {
       opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Cajas destacadas de Onboarding */
+    .knowledge-section {
+      background: #FFFFFF;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .knowledge-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--verde-osc);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .knowledge-desc {
+      font-size: 12px;
+      color: var(--mute);
+      margin-bottom: 12px;
+    }
+
+    .channel-box {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px;
+      background: #FFFFFF;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .badge-channel {
+      font-size: 11px;
+      font-family: monospace;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+
+    .badge-connected {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
     }
   </style>
 </head>
@@ -305,58 +478,328 @@
 
   <!-- Barra Superior Institucional -->
   <header class="header-bar">
-    <div style="display: flex; align-items: center; gap: 12px;">
-      <a href="/" style="color: #A3E635; text-decoration: none; font-size: 12px; font-weight: 600;">← Volver al Panel</a>
-      <span style="color: rgba(255,255,255,0.3);">|</span>
-      <img src="/logo-icon-white.png" alt="ChangaRed" style="height: 24px; width: auto;">
-      <h1 class="header-title">4. Asistente Multilingüe & Turismo</h1>
+    <div style="display: flex; align-items: center; gap: 14px;">
+      <img src="/logo-icon-white.png" alt="ChangaRed" style="height: 32px; width: auto;">
+      <div>
+        <h1 class="header-title">4. Asistente Multilingüe & Concierge Turístico</h1>
+        <p class="header-sub">Hotelería, Cabañas, Gastronomía & Bodegas · Atención 24/7 en +10 Idiomas</p>
+      </div>
     </div>
-    <span class="header-badge">Multi-idioma 24/7 Activo</span>
+    <a href="/index.html" class="nav-back-link">← Volver al Panel Changared</a>
   </header>
 
   <main class="container">
 
-    <!-- Navegación por Solapas -->
-    <nav class="tabs">
-      <button class="tab-btn active" onclick="switchTab('consultas')" id="tab-consultas">Consultas de Turistas</button>
-      <button class="tab-btn" onclick="switchTab('negocio')" id="tab-negocio">Perfil & Políticas Turísticas</button>
-      <button class="tab-btn" onclick="switchTab('plantillas')" id="tab-plantillas">Plantillas Multilingües</button>
+    <!-- BANNER DE PROPUESTA DE VALOR REAL (¿Por qué el negocio contrata esto?) -->
+    <section class="roi-banner">
+      <h2 class="roi-title">¿Qué hace exactamente este empleado en tu negocio día a día?</h2>
+      <p class="roi-desc">
+        Elimina la pérdida de turistas extranjeros por barreras idiomáticas, reduce horas de recepción y convierte preguntas en reservas directas sin comisiones externas.
+      </p>
+
+      <div class="roi-grid">
+        <div class="roi-item">
+          <div class="roi-item-title">
+            <span>🛎️</span>
+            <span>1. Reservas Directas sin Comisión</span>
+          </div>
+          <p class="roi-item-text">
+            El turista consulta por WhatsApp o web en su idioma y la IA le cotiza estadías o mesas según tus tarifas oficiales, cerrando la reserva directa <strong>ahorrando el 15% al 20% de comisión de Booking o Airbnb</strong>.
+          </p>
+        </div>
+
+        <div class="roi-item">
+          <div class="roi-item-title">
+            <span>🌎</span>
+            <span>2. Atención Fluida en +10 Idiomas 24/7</span>
+          </div>
+          <p class="roi-item-text">
+            Si un visitante de Brasil escribe en portugués, un europeo en inglés o francés, el asistente <strong>detecta el idioma natal al instante</strong> y responde con modismos amables y precisión técnica en menos de 2 segundos.
+          </p>
+        </div>
+
+        <div class="roi-item">
+          <div class="roi-item-title">
+            <span>💳</span>
+            <span>3. Descarga Operativa & Medios de Pago</span>
+          </div>
+          <p class="roi-item-text">
+            Envía automáticamente la <strong>Carta en PDF</strong>, clave de Wi-Fi, ubicación con mapa, políticas de check-in y formas de cobro internacional (<strong>Pix de Brasil, Dólares en efectivo y tarjetas</strong>).
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- GUÍA PASO A PASO: RECORRIDO DEL COMERCIO -->
+    <nav class="steps-nav">
+      <div class="step-badge active" onclick="switchStep('step-knowledge')" id="nav-step-knowledge">
+        <div class="step-num">1</div>
+        <div>
+          <div class="step-label">Carga tu Información</div>
+          <div class="step-sub">Carta, horarios, tarifas y pagos</div>
+        </div>
+      </div>
+
+      <div class="step-badge" onclick="switchStep('step-channels')" id="nav-step-channels">
+        <div class="step-num">2</div>
+        <div>
+          <div class="step-label">Conecta tus Canales</div>
+          <div class="step-sub">WhatsApp QR, Mesas y Web</div>
+        </div>
+      </div>
+
+      <div class="step-badge" onclick="switchStep('step-operation')" id="nav-step-operation">
+        <div class="step-num">3</div>
+        <div>
+          <div class="step-label">Atención & Radar en Vivo</div>
+          <div class="step-sub">Consultas en vivo y simulador</div>
+        </div>
+      </div>
     </nav>
 
-    <!-- SOLAPA 1: CONSULTAS RECIENTES DE TURISTAS -->
-    <section id="content-consultas">
-      <!-- Métricas Resumen -->
+    <!-- ======================================================== -->
+    <!-- PASO 1: BASE DE CONOCIMIENTO (¿CÓMO APRENDE LA IA?) -->
+    <!-- ======================================================== -->
+    <section id="view-step-knowledge" class="card">
+      <div style="border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 16px;">
+        <h2 class="card-title">Paso 1 · Base de Conocimiento y Políticas del Establecimiento</h2>
+        <p class="card-subtitle" style="margin-bottom: 0;">
+          Completá los datos clave de tu hotel, cabaña o restaurante. El asistente inyectará esta información en su motor cognitivo para responder a turistas con 100% de rigurosidad sin inventar nada.
+        </p>
+      </div>
+
+      <!-- Bloque A: Identidad y Ubicación -->
+      <div class="knowledge-section">
+        <div class="knowledge-title">📍 A. Datos Principales y Ubicación del Negocio</div>
+        <div class="knowledge-desc">Nombre, actividad y coordenadas de acceso que la IA enviará cuando un turista pregunte "¿Cómo llego?".</div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px;">
+          <div>
+            <label style="font-size: 12px; font-weight: 700;">Nombre del Establecimiento</label>
+            <input type="text" id="cfg-nombre" class="input-field" value="Posada & Bistró Los Alerces">
+          </div>
+          <div>
+            <label style="font-size: 12px; font-weight: 700;">Tipo de Actividad</label>
+            <select class="input-field" id="cfg-rubro">
+              <option selected>Hotel / Cabañas / Alojamiento Turístico</option>
+              <option>Restaurante / Bar / Bistró Gastronómico</option>
+              <option>Bodega / Excursiones / Turismo Aventura</option>
+            </select>
+          </div>
+          <div>
+            <label style="font-size: 12px; font-weight: 700;">Dirección y Enlace de Google Maps</label>
+            <input type="text" id="cfg-maps" class="input-field" value="Av. San Martín 1240 · https://maps.app.goo.gl/alerces">
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloque B: Carta / Menú en PDF y Tarifas -->
+      <div class="knowledge-section">
+        <div class="knowledge-title">📜 B. Carta Digital, Menú o Tarifario de Habitaciones</div>
+        <div class="knowledge-desc">El enlace o archivo que la IA enviará cuando el turista pida la carta, los precios o las fotos del lugar.</div>
+
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px; align-items: flex-end;">
+          <div>
+            <label style="font-size: 12px; font-weight: 700;">Enlace público o archivo a la Carta / Menú digital (PDF)</label>
+            <input type="text" id="cfg-menu" class="input-field" value="https://posadalosalerces.com/carta-temporada.pdf">
+          </div>
+          <div>
+            <button class="btn btn-secondary" style="width: 100%; justify-content: center;" onclick="simularSubidaPDF()">
+              📎 Subir Nuevo PDF
+            </button>
+          </div>
+        </div>
+        <div id="pdf-status" style="margin-top: 8px; font-size: 11px; color: var(--verde); font-weight: 600;">
+          ✓ Documento "carta-temporada.pdf" indexado: 24 platos, 8 vinos y 6 opciones de habitaciones leídos.
+        </div>
+      </div>
+
+      <!-- Bloque C: Horarios, Check-in y Políticas de Reserva -->
+      <div class="knowledge-section">
+        <div class="knowledge-title">🕒 C. Horarios, Check-in / Check-out y Política de Seña</div>
+        <div class="knowledge-desc">Reglas operativas estrictas que el asistente respetará al momento de coordinar una llegada o reserva.</div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px;">
+          <div>
+            <label style="font-size: 12px; font-weight: 700;">Horarios Operativos / Check-in & Out</label>
+            <input type="text" id="cfg-horarios" class="input-field" value="Check-in: 14:00 a 22:00 | Check-out: 10:30 | Cocina: 19:30 a 23:30">
+          </div>
+          <div>
+            <label style="font-size: 12px; font-weight: 700;">Política de Seña para Confirmar</label>
+            <input type="text" id="cfg-sena" class="input-field" value="Se solicita el 50% de seña para bloquear estadía o mesa mayor a 4 personas">
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloque D: Medios de Cobro Aceptados a Turistas -->
+      <div class="knowledge-section">
+        <div class="knowledge-title">💵 D. Medios de Pago Internacionales (Sin Fricción)</div>
+        <div class="knowledge-desc">Define claramente cómo pueden abonar los turistas extranjeros para no perder ventas por dudas cambiarias.</div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;">
+          <div style="background: #FAF8F2; padding: 10px; border-radius: 6px; border: 1px solid var(--line);">
+            <label style="font-size: 12px; font-weight: 700; color: var(--verde-osc);">🇧🇷 Brasil (Pix & Reales)</label>
+            <input type="text" id="cfg-pix" class="input-field" value="Aceptamos Pix al cambio oficial del día y Reales billete">
+          </div>
+          <div style="background: #FAF8F2; padding: 10px; border-radius: 6px; border: 1px solid var(--line);">
+            <label style="font-size: 12px; font-weight: 700; color: var(--verde-osc);">🇺🇸 Dólares en Efectivo (USD)</label>
+            <input type="text" id="cfg-usd" class="input-field" value="Aceptamos USD billete en buen estado al tipo MEP / Blue del día">
+          </div>
+          <div style="background: #FAF8F2; padding: 10px; border-radius: 6px; border: 1px solid var(--line);">
+            <label style="font-size: 12px; font-weight: 700; color: var(--verde-osc);">💳 Tarjetas Internacionales</label>
+            <input type="text" id="cfg-tarjetas" class="input-field" value="Visa, Mastercard y Amex sin recargo en mostrador">
+          </div>
+        </div>
+      </div>
+
+      <!-- Bloque E: Preguntas Frecuentes Críticas de Hospitalidad -->
+      <div class="knowledge-section">
+        <div class="knowledge-title">❓ E. Preguntas Frecuentes Críticas (Hospitalidad)</div>
+        <div class="knowledge-desc">Respuestas automáticas a las consultas que saturan la recepción o los mozos.</div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+          <div>
+            <label style="font-size: 12px; font-weight: 700;">📶 Red y Clave de Wi-Fi</label>
+            <input type="text" id="cfg-wifi" class="input-field" value="Red: Alerces_Huespedes | Clave: Patagonia2026">
+          </div>
+          <div>
+            <label style="font-size: 12px; font-weight: 700;">🍞 Menú Especial / Celíacos / Veganos</label>
+            <input type="text" id="cfg-diet" class="input-field" value="Contamos con pan sin TACC certificado y platos veganos señalizados">
+          </div>
+          <div>
+            <label style="font-size: 12px; font-weight: 700;">🐾 Política de Mascotas (Pet Friendly)</label>
+            <input type="text" id="cfg-pets" class="input-field" value="Aceptamos perros pequeños en el sector de cabañas con aviso previo">
+          </div>
+          <div>
+            <label style="font-size: 12px; font-weight: 700;">🚗 Estacionamiento / Cocheras</label>
+            <input type="text" id="cfg-parking" class="input-field" value="Estacionamiento cerrado y gratuito dentro del predio">
+          </div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 16px; flex-wrap: wrap; gap: 10px;">
+        <span style="font-size: 12px; color: var(--mute);">Todos los cambios se aplican de forma inmediata al motor de atención.</span>
+        <button onclick="guardarBaseConocimiento()" class="btn btn-dark">
+          💾 Guardar Base de Conocimiento y Continuar al Paso 2 →
+        </button>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- PASO 2: CONEXIÓN A CANALES (¿CÓMO SE INTEGRA?) -->
+    <!-- ======================================================== -->
+    <section id="view-step-channels" class="card" style="display: none;">
+      <div style="border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 16px;">
+        <h2 class="card-title">Paso 2 · Conexión a Canales de Atención</h2>
+        <p class="card-subtitle" style="margin-bottom: 0;">
+          Elige por dónde interactuará el Asistente Multilingüe con tus huéspedes y comensales. No requiere cambiar tu número ni contratar sistemas complejos.
+        </p>
+      </div>
+
+      <!-- Canal 1: WhatsApp Business Principal -->
+      <div class="channel-box">
+        <div style="max-width: 580px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+            <strong style="font-size: 14px; color: var(--ink);">Canal 1: Línea de WhatsApp del Establecimiento</strong>
+            <span class="badge-channel badge-connected">● ACTIVO Y VINCULADO</span>
+          </div>
+          <p style="font-size: 12px; color: var(--mute); line-height: 1.4;">
+            El asistente se vincula a tu número mediante escaneo de código QR (Dispositivos Vinculados). Atiende automáticamente y, si un cliente solicita hablar con una persona, deriva el chat al personal de guardia.
+          </p>
+          <div style="font-size: 12px; font-family: monospace; color: var(--verde-osc); margin-top: 6px;">
+            Línea conectada: <strong>+54 9 294 455-8899</strong> (Posada Los Alerces)
+          </div>
+        </div>
+        <div style="text-align: right;">
+          <button class="btn btn-secondary" onclick="reconductWhatsApp()">Re-escanear QR</button>
+        </div>
+      </div>
+
+      <!-- Canal 2: Cartelería QR para Mesas, Habitaciones y Recepción -->
+      <div class="channel-box">
+        <div style="max-width: 580px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+            <strong style="font-size: 14px; color: var(--ink);">Canal 2: Cartel QR Imprimible para Mesas & Recepción</strong>
+            <span class="badge-channel" style="background:#e0f2fe; color:#0369a1; border:1px solid #bae6fd;">AUTOSERVICIO FÍSICO</span>
+          </div>
+          <p style="font-size: 12px; color: var(--mute); line-height: 1.4;">
+            Genera un cartel en PDF listo para imprimir en español, inglés y portugués: <em>"Escanee para ver el menú, clave de Wi-Fi o hacer preguntas en su idioma"</em>. El turista escanea con su cámara y abre el concierge en su WhatsApp.
+          </p>
+        </div>
+        <div>
+          <button class="btn btn-primary" onclick="descargarCartelQR()">
+            📥 Descargar Cartel QR (PDF Listo)
+          </button>
+        </div>
+      </div>
+
+      <!-- Canal 3: Enlace Directo para Web e Instagram -->
+      <div class="channel-box">
+        <div style="max-width: 580px;">
+          <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+            <strong style="font-size: 14px; color: var(--ink);">Canal 3: Enlace Directo para Web / Instagram Bio</strong>
+            <span class="badge-channel" style="background:#f1f5f9; color:#475569; border:1px solid #e2e8f0;">LINK RÁPIDO</span>
+          </div>
+          <p style="font-size: 12px; color: var(--mute); line-height: 1.4;">
+            Copia el enlace directo para añadir a tu perfil de Instagram o como botón flotante en la web de tu hotel o restaurante.
+          </p>
+          <input type="text" readonly value="https://wa.me/5492944558899?text=Hello!%20I%20would%20like%20information" class="input-field" style="background:#F4EFE6; font-family: monospace; font-size: 11px;">
+        </div>
+        <div>
+          <button class="btn btn-secondary" onclick="copiarLinkWeb()">📋 Copiar Enlace</button>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; margin-top: 16px;">
+        <button onclick="switchStep('step-operation')" class="btn btn-dark">
+          Ir a Atención & Radar en Vivo (Paso 3) →
+        </button>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- PASO 3: ATENCIÓN AUTÓNOMA & RADAR EN VIVO -->
+    <!-- ======================================================== -->
+    <section id="view-step-operation" class="card" style="display: none;">
+      <div style="border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 16px;">
+        <h2 class="card-title">Paso 3 · Operación Autónoma & Radar de Turistas</h2>
+        <p class="card-subtitle" style="margin-bottom: 0;">
+          Monitorea cómo el Asistente responde consultas reales en cualquier idioma y utiliza el simulador para testear tus políticas.
+        </p>
+      </div>
+
+      <!-- Métricas Resumen Operativas -->
       <div class="kpi-row">
         <div class="kpi-card">
-          <div class="kpi-label">Consultas Internacionales</div>
-          <div class="kpi-value" id="kpi-total-queries">18 hoy</div>
-          <div class="kpi-sub">100% respondidas en &lt; 2 seg</div>
+          <div class="kpi-label">Consultas Internacionales Hoy</div>
+          <div class="kpi-value" id="kpi-total-queries">24 turistas</div>
+          <div class="kpi-sub">100% respondidas en menos de 2 seg</div>
         </div>
         <div class="kpi-card">
           <div class="kpi-label">Idiomas Más Consultados</div>
-          <div class="kpi-value">Inglés / Portugués</div>
-          <div class="kpi-sub">62% Brasil, 28% USA / Europa</div>
+          <div class="kpi-value">Portugués / Inglés</div>
+          <div class="kpi-sub">65% Brasil, 25% USA, 10% Europa</div>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">Reservas & Pedidos Guiados</div>
-          <div class="kpi-value" id="kpi-reservas-count">7 concretadas</div>
-          <div class="kpi-sub">Sin intermediarios ni comisión</div>
+          <div class="kpi-label">Reservas Directas Concretadas</div>
+          <div class="kpi-value" id="kpi-reservas-count">9 concretadas</div>
+          <div class="kpi-sub">Ahorro estimado en comisiones: $142.000</div>
         </div>
       </div>
 
       <!-- Tabla de Consultas en Vivo -->
-      <div class="card">
-        <h2 class="card-title">Interacciones en Tiempo Real con Turistas</h2>
-        <p class="card-subtitle">El asistente detecta el idioma natal del visitante y responde contextualizando cartas, horarios y medios de cobro.</p>
-        
+      <div style="margin-bottom: 20px;">
+        <h3 style="font-size: 14px; font-weight: 700; margin-bottom: 8px; color: var(--ink);">
+          Historial de Interacciones Recientes por WhatsApp
+        </h3>
         <table class="table">
           <thead>
             <tr>
-              <th>Origen / Turista</th>
-              <th>Idioma</th>
-              <th>Consulta Real por WhatsApp</th>
-              <th>Estado IA</th>
-              <th>Acción</th>
+              <th>Turista / Origen</th>
+              <th>Idioma Detectado</th>
+              <th>Consulta Recibida</th>
+              <th>Respuesta Autónoma de la IA</th>
+              <th>Estado</th>
             </tr>
           </thead>
           <tbody id="turistas-table-body">
@@ -365,73 +808,23 @@
         </table>
       </div>
 
-      <!-- Simulador Rápido de Consulta -->
-      <div class="card">
-        <h3 class="card-title">Simular Consulta en Cualquier Idioma</h3>
-        <p class="card-subtitle">Escribe como si fueras un turista extranjero para probar la respuesta inmediata:</p>
-        <div style="display: flex; gap: 8px; margin-top: 8px;">
-          <input type="text" id="sim-input" placeholder="Ej: Do you take dollars or Pix? What time does the kitchen open?" class="input-field" style="margin-top: 0; flex: 1;">
-          <button onclick="enviarSimulacion()" class="btn btn-primary" style="white-space: nowrap;">Probar Respuesta →</button>
-        </div>
-        <div id="sim-output" style="margin-top: 10px; display: none; padding: 12px; background: #ECE5D0; border-radius: 4px; font-size: 13px;"></div>
-      </div>
-    </section>
-
-    <!-- SOLAPA 2: CONFIGURACIÓN DEL NEGOCIO TURÍSTICO -->
-    <section id="content-negocio" style="display: none;">
-      <div class="card">
-        <h2 class="card-title">Políticas del Establecimiento para Turistas</h2>
-        <p class="card-subtitle">Estos datos se inyectan en el motor de IA para resolver preguntas de extranjeros de forma rigurosa.</p>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
-          <div>
-            <label style="font-size: 12px; font-weight: 700;">Nombre del Establecimiento</label>
-            <input type="text" id="cfg-nombre" value="Posada & Bistró Los Alerces" class="input-field">
-          </div>
-          <div>
-            <label style="font-size: 12px; font-weight: 700;">Tipo de Actividad</label>
-            <select class="input-field" id="cfg-tipo">
-              <option selected>Hotel / Cabañas / Alojamiento</option>
-              <option>Restaurante / Bar / Cafetería</option>
-              <option>Bodega / Visitas Guiadas / Excursiones</option>
-            </select>
-          </div>
-          <div>
-            <label style="font-size: 12px; font-weight: 700;">Horario de Atención / Check-in</label>
-            <input type="text" value="Check-in: 14:00 a 22:00 | Desayuno: 07:30 a 10:30" class="input-field">
-          </div>
-          <div>
-            <label style="font-size: 12px; font-weight: 700;">Medios de Cobro Aceptados a Turistas</label>
-            <input type="text" value="Efectivo USD (al tipo MEP del día), Reales, Tarjetas Extranjeras, Pix" class="input-field">
-          </div>
+      <!-- Simulador de Pruebas en Vivo -->
+      <div style="background: #FAF8F2; border: 1px solid var(--line); border-radius: 8px; padding: 16px;">
+        <h3 style="font-size: 14px; font-weight: 700; margin-bottom: 4px; color: var(--verde-osc);">
+          Simulador Interactivo de Prueba (Ponelo a prueba en cualquier idioma)
+        </h3>
+        <p style="font-size: 12px; color: var(--mute); margin-bottom: 10px;">
+          Escribe una consulta típica como si fueras un turista (en inglés, portugués, francés o español) para verificar cómo responde aplicando tus datos:
+        </p>
+        
+        <div style="display: flex; gap: 8px;">
+          <input type="text" id="sim-input" placeholder="Ej: Vocês aceitam Pix? Tem opções sem glúten no café?" class="input-field" style="margin-top: 0; flex: 1;">
+          <button onclick="enviarSimulacion()" class="btn btn-dark" style="white-space: nowrap;">
+            Simular Respuesta →
+          </button>
         </div>
 
-        <div style="margin-top: 16px;">
-          <button onclick="guardarPoliticas()" class="btn btn-primary">Guardar Configuración Turística</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- SOLAPA 3: PLANTILLAS MULTILINGÜES -->
-    <section id="content-plantillas" style="display: none;">
-      <div class="card">
-        <h2 class="card-title">Plantillas Automáticas de Bienvenida & Ubicación</h2>
-        <p class="card-subtitle">Modelos de respuesta aprobados para enviar links de mapa, menú en PDF y políticas de pago.</p>
-
-        <div style="display: flex; flex-direction: column; gap: 12px;">
-          <div style="padding: 12px; border: 1px solid var(--line); border-radius: 4px; background: #FFFFFF;">
-            <div style="font-size: 11px; font-weight: 700; color: var(--mute); text-transform: uppercase;">Inglés (English): Bienvenida & Menú</div>
-            <p style="font-size: 13px; margin-top: 4px; color: var(--ink);">
-              "Hello {name}! Welcome to {business}. You can explore our menu and seasonal specials here: {link}. We accept international credit cards and USD cash."
-            </p>
-          </div>
-          <div style="padding: 12px; border: 1px solid var(--line); border-radius: 4px; background: #FFFFFF;">
-            <div style="font-size: 11px; font-weight: 700; color: var(--mute); text-transform: uppercase;">Portugués (Português): Boas-vindas & Pagamento</div>
-            <p style="font-size: 13px; margin-top: 4px; color: var(--ink);">
-              "Olá {name}! Seja muito bem-vindo ao {business}. Aceitamos cartões internacionais, reais em espécie e Pix. Confira nosso cardápio completo: {link}."
-            </p>
-          </div>
-        </div>
+        <div id="sim-output" style="margin-top: 12px; display: none; padding: 14px; background: #FFFFFF; border: 1px solid var(--line); border-radius: 6px; font-size: 13px; line-height: 1.45;"></div>
       </div>
     </section>
 
@@ -440,11 +833,44 @@
   <div id="toast" class="toast">Aviso del sistema</div>
 
   <script>
+    // Datos iniciales de demostración contextualizados en hospitalidad real
     const INITIAL_TURISTAS = [
-      { id: 1, nombre: "John Smith", pais: "USA", lang: "Inglés", query: "Hi! Can we book a table for 4 tonight around 8:30 PM?", estado: "Confirmado", resp: "Hello John! Yes, we have a table available at 8:30 PM. I'll note your name." },
-      { id: 2, nombre: "Mariana Silva", pais: "Brasil", lang: "Portugués", query: "Vocês aceitam pagamento em reais ou Pix diretamente no balcão?", estado: "Informado", resp: "Olá Mariana! Sim, aceitamos reais e Pix com a cotação do dia sem burocracia." },
-      { id: 3, nombre: "Pierre Laurent", pais: "Francia", lang: "Francés", query: "Bonjour, quel est le délai pour le check-in tardif ce soir?", estado: "Confirmado", resp: "Bonjour Pierre! Notre réception est ouverte 24h/24, aucun problème pour votre arrivée tardive." },
-      { id: 4, nombre: "Lucas Müller", pais: "Alemania", lang: "Inglés", query: "Hello, do you offer gluten-free bread for breakfast?", estado: "Informado", resp: "Hello Lucas! Yes, we offer certified gluten-free options upon request." }
+      { 
+        id: 1, 
+        nombre: "Mariana da Silva", 
+        pais: "Brasil 🇧🇷", 
+        lang: "Português", 
+        query: "Olá! Vocês aceitam pagamento com Pix no restaurante? Até que horas fica aberta a cozinha?", 
+        resp: "Olá Mariana! Sim, aceitamos Pix e reais em espécie com cotação do dia. Nossa cozinha funciona das 19h30 às 23h30. Você pode conferir nosso cardápio completo aqui: https://posadalosalerces.com/carta-temporada.pdf",
+        estado: "Informado & Link"
+      },
+      { 
+        id: 2, 
+        nombre: "John Anderson", 
+        pais: "USA 🇺🇸", 
+        lang: "English", 
+        query: "Hello! We are looking for a cabin for 4 people this weekend. Do you have availability and what is the rate?", 
+        resp: "Hello John! Yes, we have our Superior Family Cabin available for 4 guests this weekend at $120 USD/night. To confirm your booking directly without third-party fees, we require a 50% deposit. Would you like me to hold it for you?",
+        estado: "Reserva Iniciada"
+      },
+      { 
+        id: 3, 
+        nombre: "Lucas Moreau", 
+        pais: "Francia 🇫🇷", 
+        lang: "Français", 
+        query: "Bonjour! Est-ce que vous avez des options de petit-déjeuner sans gluten? Merci!", 
+        resp: "Bonjour Lucas! Oui, nous disposons de pain sans gluten certifié et d'options adaptées pour le petit-déjeuner. Il suffit de le signaler à votre arrivée!",
+        estado: "Confirmado"
+      },
+      { 
+        id: 4, 
+        nombre: "Thiago Oliveira", 
+        pais: "Brasil 🇧🇷", 
+        lang: "Português", 
+        query: "Qual é a senha do Wi-Fi e onde fica o estacionamento?", 
+        resp: "Olá Thiago! A rede Wi-Fi é 'Alerces_Huespedes' (senha: Patagonia2026). Nosso estacionamento privativo e coberto fica no pátio interno com portão automático gratuito.",
+        estado: "Resuelto"
+      }
     ];
 
     let turistas = [...INITIAL_TURISTAS];
@@ -453,37 +879,35 @@
       const t = document.getElementById('toast');
       t.innerText = msg;
       t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 2500);
+      setTimeout(() => t.classList.remove('show'), 2800);
+      syncIframeHeight();
+    }
+
+    function switchStep(stepId) {
+      document.getElementById('view-step-knowledge').style.display = stepId === 'step-knowledge' ? 'block' : 'none';
+      document.getElementById('view-step-channels').style.display = stepId === 'step-channels' ? 'block' : 'none';
+      document.getElementById('view-step-operation').style.display = stepId === 'step-operation' ? 'block' : 'none';
+
+      document.getElementById('nav-step-knowledge').classList.toggle('active', stepId === 'step-knowledge');
+      document.getElementById('nav-step-channels').classList.toggle('active', stepId === 'step-channels');
+      document.getElementById('nav-step-operation').classList.toggle('active', stepId === 'step-operation');
+
+      syncIframeHeight();
     }
 
     function renderTuristas() {
       const tbody = document.getElementById('turistas-table-body');
       tbody.innerHTML = turistas.map(t => `
         <tr>
-          <td><strong>${t.nombre}</strong> <span style="font-size: 11px; color: var(--mute);">(${t.pais})</span></td>
-          <td><span style="font-family: monospace; font-size: 11px; font-weight: 600;">${t.lang}</span></td>
-          <td style="max-width: 320px; font-size: 12px; color: var(--ink);">${t.query}</td>
+          <td><strong>${t.nombre}</strong><br><span style="font-size: 11px; color: var(--mute);">${t.pais}</span></td>
+          <td><span style="font-family: monospace; font-size: 11px; font-weight: 700; color: var(--verde-osc);">${t.lang}</span></td>
+          <td style="max-width: 240px; font-size: 12px; color: var(--ink);">${t.query}</td>
+          <td style="max-width: 300px; font-size: 12px; color: #1e293b; background: #fafaf9; border-radius: 4px; padding: 6px 10px;">${t.resp}</td>
           <td><span class="status-ok">${t.estado}</span></td>
-          <td>
-            <button onclick="verRespuesta(${t.id})" class="btn btn-secondary">Ver Respuesta</button>
-          </td>
         </tr>
       `).join('');
-    }
 
-    function verRespuesta(id) {
-      const t = turistas.find(x => x.id === id);
-      if (!t) return;
-      alert("Respuesta enviada a " + t.nombre + " (" + t.lang + "):\n\n\"" + t.resp + "\"");
-    }
-
-    function switchTab(tab) {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.getElementById('tab-' + tab).classList.add('active');
-
-      document.getElementById('content-consultas').style.display = tab === 'consultas' ? 'block' : 'none';
-      document.getElementById('content-negocio').style.display = tab === 'negocio' ? 'block' : 'none';
-      document.getElementById('content-plantillas').style.display = tab === 'plantillas' ? 'block' : 'none';
+      syncIframeHeight();
     }
 
     function enviarSimulacion() {
@@ -494,21 +918,60 @@
       const output = document.getElementById('sim-output');
       output.style.display = 'block';
 
+      const wifiVal = document.getElementById('cfg-wifi').value;
+      const pixVal = document.getElementById('cfg-pix').value;
+      const dietVal = document.getElementById('cfg-diet').value;
+      const menuVal = document.getElementById('cfg-menu').value;
+      const hoursVal = document.getElementById('cfg-horarios').value;
+
       let reply = "";
-      if (/olá|vocês|obrigado|reais|pix/i.test(val)) {
-        reply = "🇧🇷 [Português Detectado]: Olá! Aceitamos cartões internacionais, Pix e reais. Nosso horário de atendimento é contínuo e teremos grande prazer em recebê-lo!";
-      } else if (/bonjour|merci|réservation/i.test(val)) {
-        reply = "🇫🇷 [Français Détecté]: Bonjour! Nous acceptons les cartes internationales et les devises étrangères. C'est un plaisir de vous accueillir!";
+      if (/olá|vocês|pix|cardápio|reais/i.test(val)) {
+        reply = `🇧🇷 [Português Detectado]: Olá! ${pixVal}. Nosso cardápio digital está disponível em: ${menuVal}. ${dietVal}. Horários: ${hoursVal}.`;
+      } else if (/bonjour|merci|gluten|wifi/i.test(val)) {
+        reply = `🇫🇷 [Français Détecté]: Bonjour! ${dietVal}. Pour le réseau Wi-Fi: ${wifiVal}. Horaires: ${hoursVal}. N'hésitez pas si vous avez d'autres questions!`;
+      } else if (/hello|hi|booking|rate|dollars|usd|wifi/i.test(val)) {
+        reply = `🇺🇸 [English Detected]: Hello! We accept USD cash and international credit cards. For Wi-Fi: ${wifiVal}. You can view our menu or room specs here: ${menuVal}. ${hoursVal}.`;
       } else {
-        reply = "🇺🇸 [English Detected]: Hello! We accept all major international credit cards and USD cash. Our kitchen is open until 11:30 PM. We'd love to have you with us!";
+        reply = `🇪🇸 [Español]: ¡Hola! ${pixVal}. Red Wi-Fi: ${wifiVal}. Podes consultar nuestra carta en: ${menuVal}. Horarios: ${hoursVal}.`;
       }
 
-      output.innerHTML = "<strong>Respuesta IA Generada:</strong><br>" + reply;
-      showToast("Consulta procesada en el idioma del cliente.");
+      output.innerHTML = `<strong>Respuesta Generada por el Asistente Multilingüe:</strong><br><span style="color:var(--verde-osc);">${reply}</span>`;
+      showToast("Consulta procesada en el idioma nativo del turista.");
+      syncIframeHeight();
     }
 
-    function guardarPoliticas() {
-      showToast("Políticas turísticas guardadas correctamente.");
+    function guardarBaseConocimiento() {
+      showToast("Base de conocimiento actualizada con éxito.");
+      switchStep('step-channels');
+    }
+
+    function simularSubidaPDF() {
+      const el = document.getElementById('pdf-status');
+      el.innerHTML = "<em>Subiendo y procesando PDF con IA...</em>";
+      setTimeout(() => {
+        el.innerHTML = "✓ Documento <strong>'Carta_Bistro_2026.pdf'</strong> procesado con éxito: 32 platos discriminados, alergias y carta de cócteles.";
+        showToast("PDF indexado por el Asistente.");
+        syncIframeHeight();
+      }, 1000);
+    }
+
+    function descargarCartelQR() {
+      showToast("Descargando Cartel QR Imprimible (A4 para Recepción y Mesas)...");
+      const fakeUrl = "https://changared.com/qr-demo-turismo.pdf";
+      window.open(fakeUrl, '_blank');
+    }
+
+    function reconductWhatsApp() {
+      showToast("Generando código QR para vincular WhatsApp Business...");
+    }
+
+    function copiarLinkWeb() {
+      const link = "https://wa.me/5492944558899?text=Hello!%20I%20would%20like%20information";
+      navigator.clipboard.writeText(link).then(() => {
+        showToast("Enlace de WhatsApp copiado al portapapeles.");
+      }).catch(() => {
+        prompt("Copiar enlace:", link);
+      });
     }
 
     function syncIframeHeight() {
@@ -522,6 +985,7 @@
       renderTuristas();
       syncIframeHeight();
     });
+
     window.addEventListener('resize', syncIframeHeight);
   </script>
 </body>
