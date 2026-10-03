@@ -2,7 +2,9 @@ User-agent: *
 Allow: /
 Allow: /cobranzas
 Allow: /talleexacto
+Allow: /multilingue
 Allow: /cobranzas.html
 Allow: /talleexacto.html
+Allow: /multilingue.html
 
 Sitemap: https://changared.com/sitemap.xml

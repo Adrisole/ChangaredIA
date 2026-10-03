@@ -199,6 +199,10 @@
           3. Asistente Contable (Facturas)
         </button>
 
+        <button onclick="switchStep('step-multilingual')" id="nav-step-multilingual" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
+          4. Asistente Multilingüe (Turismo)
+        </button>
+
         <div class="pt-3 px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-emerald-200/70">Especial Moda</div>
 
         <button onclick="switchStep('step-talleexacto')" id="nav-step-talleexacto" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
@@ -305,8 +309,8 @@
           </p>
         </div>
 
-        <!-- Los 3 Empleados Virtuales Universales -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <!-- Los 4 Empleados Virtuales Universales -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
 
           <!-- 1. Vendedor IA -->
           <div class="bg-white border border-slate-200 hover:border-[#2D6A4F] rounded-lg p-5 flex flex-col justify-between transition-all">
@@ -324,7 +328,7 @@
                 <div class="mt-3 p-3 bg-slate-50 border border-slate-200 rounded text-xs text-slate-700 space-y-1">
                   <span class="font-bold text-slate-900 block text-[11px] uppercase tracking-wide text-[#1B4332]">¿Para qué sirve?</span>
                   <p class="leading-relaxed">
-                    Atiende a tus clientes en WhatsApp día y noche. Consulta precios y stock en tiempo real, informa horarios y toma pedidos en español, inglés o portugués sin intervención manual.
+                    Atiende a tus clientes en WhatsApp día y noche. Consulta precios y stock en tiempo real, informa horarios y toma pedidos en cualquier idioma sin intervención manual.
                   </p>
                 </div>
               </div>
@@ -339,7 +343,7 @@
                 </li>
                 <li class="flex items-start space-x-2">
                   <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span>Detección automática de idioma del cliente</span>
+                  <span>Respuestas automáticas en menos de 2 segundos</span>
                 </li>
               </ul>
             </div>
@@ -437,6 +441,51 @@
               <button onclick="switchStep('step-accounting')" class="flex-1 py-2 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition">
                 Ver Excel en Vivo →
               </button>
+            </div>
+          </div>
+
+          <!-- 4. Asistente Multilingüe (Turismo & Hospitalidad) -->
+          <div class="bg-white border border-slate-200 hover:border-[#2D6A4F] rounded-lg p-5 flex flex-col justify-between transition-all">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                <span class="text-[10px] font-mono font-semibold tracking-wider text-slate-600 uppercase">
+                  Turismo & Hotelería
+                </span>
+                <span class="text-[10px] font-mono text-[#2D6A4F] font-bold">Multi-idioma 24/7</span>
+              </div>
+              <div>
+                <h3 class="text-base font-serif font-bold text-slate-900" style="font-family: Georgia, serif;">
+                  4. Asistente Multilingüe & Turismo
+                </h3>
+                <div class="mt-3 p-3 bg-slate-50 border border-slate-200 rounded text-xs text-slate-700 space-y-1">
+                  <span class="font-bold text-slate-900 block text-[11px] uppercase tracking-wide text-[#1B4332]">¿Para qué sirve?</span>
+                  <p class="leading-relaxed">
+                    Atiende turistas y huéspedes en inglés, portugués, francés y español por WhatsApp. Informa cartas, menús, reservas, horarios, ubicación y formas de pago internacional (USD, Pix, tarjetas) sin barreras de idioma.
+                  </p>
+                </div>
+              </div>
+              <ul class="text-xs text-slate-600 space-y-2 pt-1 font-sans">
+                <li class="flex items-start space-x-2">
+                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
+                  <span>Fluidez nativa en inglés, portugués, francés y español</span>
+                </li>
+                <li class="flex items-start space-x-2">
+                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
+                  <span>Gestiona reservas, cartas gastronómicas y ubicación</span>
+                </li>
+                <li class="flex items-start space-x-2">
+                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
+                  <span>Informa pagos internacionales (USD, Pix, Tarjeta)</span>
+                </li>
+              </ul>
+            </div>
+            <div class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-2">
+              <button onclick="switchStep('step-multilingual')" class="flex-1 py-2 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition">
+                Probar Asistente →
+              </button>
+              <a href="/multilingue.html" target="_blank" class="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded text-xs font-medium transition">
+                Pantalla Completa ↗
+              </a>
             </div>
           </div>
 
@@ -1682,6 +1731,29 @@
         <!-- Vista Integrada del Gestor de Cobranzas -->
         <div class="border border-slate-200 rounded-lg overflow-hidden bg-[#F6EFDF] shadow-sm">
           <iframe src="/cobranzas.html" title="Gestor de Cobranzas" style="width: 100%; min-height: 860px; border: none; display: block;"></iframe>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- 4. ASISTENTE MULTILINGÜE & TURISMO (CONCIERGE 24/7) -->
+      <!-- ======================================================== -->
+      <section id="step-multilingual" class="step-content space-y-4 hidden">
+        <!-- Top Navigation Bar -->
+        <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+          <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 transition">
+            <span>← Elegir otro empleado</span>
+          </button>
+          <div class="flex items-center space-x-3">
+            <span class="text-xs font-semibold text-slate-800">4. Asistente Multilingüe & Turismo (Concierge 24/7)</span>
+            <a href="/multilingue.html" target="_blank" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition">
+              Abrir en Pantalla Completa ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Vista Integrada del Asistente Multilingüe -->
+        <div class="border border-slate-200 rounded-lg overflow-hidden bg-[#F6EFDF] shadow-sm">
+          <iframe src="/multilingue.html" title="Asistente Multilingüe y Turismo" style="width: 100%; min-height: 860px; border: none; display: block;"></iframe>
         </div>
       </section>
 
