@@ -166,12 +166,12 @@
       <!-- Selector de Tenant (Negocio Activo) -->
       <div class="p-3 border-b border-white/10 bg-[#1B4332]">
         <label class="block text-[11px] uppercase tracking-wider font-semibold text-emerald-200/70 px-2 mb-1.5" data-i18n="activeBusiness">Negocio activo</label>
-        <button class="w-full flex items-center justify-between px-2.5 py-2 text-xs font-medium text-white bg-white/10 hover:bg-white/15 rounded-lg border border-white/10 transition-colors">
+        <button onclick="openBusinessConfigModal()" title="Personalizar con el nombre de tu propio negocio" class="w-full flex items-center justify-between px-2.5 py-2 text-xs font-medium text-white bg-white/10 hover:bg-white/15 rounded-lg border border-white/10 transition-colors">
           <div class="flex items-center space-x-2 truncate">
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
             <span class="truncate font-semibold" id="sidebar-business-name">Pizzería Roma Artesanal</span>
           </div>
-          <span class="text-emerald-300 text-xs">↕</span>
+          <span class="text-emerald-300 text-xs">⚙️</span>
         </button>
       </div>
 
@@ -252,6 +252,12 @@
       </div>
 
       <div class="flex items-center space-x-3">
+        <!-- Badge de Prueba Gratuita Activa -->
+        <div class="hidden sm:flex items-center space-x-2 text-xs bg-emerald-50 border border-emerald-200 text-emerald-900 px-3 py-1.5 rounded-lg">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span class="font-semibold text-[11px]" id="topbar-trial-text">14 Días Gratis Activos (Sin Tarjeta)</span>
+        </div>
+
         <!-- Switch de Idioma Superior -->
         <div class="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 text-xs font-medium">
           <button onclick="setUiLanguage('es')" class="lang-pill px-2 py-1 rounded text-[11px] font-semibold transition" data-lang="es">🇪🇸 ES</button>
@@ -263,9 +269,9 @@
           <i data-lucide="play" class="w-3.5 h-3.5 text-slate-600"></i>
           <span data-i18n="btnTestSimulator">Probar en Simulador</span>
         </button>
-        <button onclick="saveAllChanges()" class="inline-flex items-center space-x-1.5 px-3.5 py-1.5 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-colors shadow-subtle">
-          <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
-          <span data-i18n="btnSaveConfig">Guardar Configuración</span>
+        <button onclick="openBusinessConfigModal()" class="inline-flex items-center space-x-1.5 px-3.5 py-1.5 text-xs font-medium text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg transition-colors shadow-subtle">
+          <i data-lucide="settings" class="w-3.5 h-3.5 text-emerald-300"></i>
+          <span>Mi Negocio</span>
         </button>
       </div>
     </header>
@@ -289,6 +295,88 @@
           <p class="text-xs sm:text-sm text-slate-600 max-w-3xl leading-relaxed">
             Asistentes autónomos para automatizar la atención comercial, las cobranzas recurrentes y la administración contable de tu negocio. Operan de forma continua, sin ausencias y con integración directa a tus herramientas de trabajo.
           </p>
+        </div>
+
+        <!-- BANNER DE PRUEBA GRATUITA 14 DÍAS (CERO RIESGO / SIN TARJETA) -->
+        <div class="p-5 bg-gradient-to-r from-[#1B4332] to-[#2D6A4F] text-white rounded-xl shadow-md flex flex-col md:flex-row items-center justify-between gap-5 border border-emerald-700/60">
+          <div class="space-y-1.5 text-center md:text-left">
+            <div class="inline-flex items-center space-x-2">
+              <span class="px-2 py-0.5 rounded bg-emerald-400 text-slate-950 font-mono text-[10px] font-bold uppercase tracking-wider">
+                Garantía 100% Sin Riesgo
+              </span>
+              <span class="text-xs text-emerald-200">· Sin tarjeta de crédito requerida</span>
+            </div>
+            <h2 class="text-lg font-serif font-bold text-white">
+              Probá a los 4 Empleados Virtuales Gratis por 14 Días
+            </h2>
+            <p class="text-xs text-emerald-100/90 max-w-2xl leading-relaxed">
+              Conectá tu propio WhatsApp y cargá los datos de tu comercio. Si en 14 días no aumentás tus ventas o no te ahorra horas de trabajo real, no pagás ni un solo peso.
+            </p>
+          </div>
+          <div class="flex items-center gap-3 shrink-0">
+            <button onclick="openBusinessConfigModal()" class="px-4 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold text-xs rounded-lg shadow-sm transition whitespace-nowrap">
+              Configurar Mi Negocio Gratis →
+            </button>
+            <button onclick="switchStep('step-billing')" class="px-3 py-2.5 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold rounded-lg transition whitespace-nowrap border border-white/20">
+              Ver Planes
+            </button>
+          </div>
+        </div>
+
+        <!-- TABLERO EJECUTIVO DE RETORNO (ROI REAL EN EL COMERCIO) -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-mono uppercase tracking-wider font-bold text-slate-600">
+              Impacto Económico Estimado para tu Negocio
+            </span>
+            <span class="text-[11px] text-emerald-700 font-semibold font-mono">El software se paga solo</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
+              <div class="flex items-center justify-between text-slate-500 text-xs mb-1">
+                <span class="font-bold uppercase tracking-wider text-[10px] text-slate-600">Ventas Cerradas con IA</span>
+                <span class="text-emerald-700 font-bold text-[10px] px-1.5 py-0.5 rounded bg-emerald-50 border border-emerald-200">Fuera de hora</span>
+              </div>
+              <div class="text-2xl font-serif font-bold text-slate-900">$420.000</div>
+              <div class="text-[11px] text-slate-600 mt-1">28 pedidos tomados de noche, feriados y domingos</div>
+            </div>
+
+            <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
+              <div class="flex items-center justify-between text-slate-500 text-xs mb-1">
+                <span class="font-bold uppercase tracking-wider text-[10px] text-slate-600">Deudas Recuperadas</span>
+                <span class="text-emerald-700 font-bold text-[10px] px-1.5 py-0.5 rounded bg-emerald-50 border border-emerald-200">Mercado Pago</span>
+              </div>
+              <div class="text-2xl font-serif font-bold text-emerald-800">$185.000</div>
+              <div class="text-[11px] text-slate-600 mt-1">Cobros recuperados en 3 avisos sin fricción ni llamadas</div>
+            </div>
+
+            <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
+              <div class="flex items-center justify-between text-slate-500 text-xs mb-1">
+                <span class="font-bold uppercase tracking-wider text-[10px] text-slate-600">Horas Ahorradas al Equipo</span>
+                <span class="text-blue-700 font-bold text-[10px] px-1.5 py-0.5 rounded bg-blue-50 border border-blue-200">Equipo libre</span>
+              </div>
+              <div class="text-2xl font-serif font-bold text-slate-900">38 Horas</div>
+              <div class="text-[11px] text-slate-600 mt-1">Ahorro en responder precios, facturas y comprobantes</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BANNER DE TRANQUILIDAD: MATA-MIEDOS & RED DE SEGURIDAD HUMANA -->
+        <div class="p-4 bg-[#FAF7EE] border border-[#E6DCC3] rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div class="space-y-1">
+            <div class="flex items-center space-x-2">
+              <span class="text-[#1B4332] font-bold text-xs uppercase tracking-wider">🛡️ Tu Tranquilidad Comercial Primero:</span>
+              <span class="text-[11px] text-slate-600 font-mono">Control Humano 100%</span>
+            </div>
+            <p class="text-xs text-slate-700 leading-relaxed">
+              <strong>✓ Tu mismo número de siempre:</strong> Funciona sobre tu WhatsApp actual sin comprar otro chip (igual que WhatsApp Web). Podés seguir chateando vos desde tu celular cuando quieras.<br>
+              <strong>✓ Red de seguridad anti-errores:</strong> Si un cliente escribe <em>"humano"</em>, hace una queja o pide hablar con alguien, la IA se silencia de inmediato y hace sonar una alerta en tu teléfono.
+            </p>
+          </div>
+          <button onclick="openBusinessConfigModal()" class="px-3.5 py-2 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-semibold rounded-lg transition shrink-0 whitespace-nowrap shadow-sm">
+            ⚙️ Personalizar Mi Negocio
+          </button>
         </div>
 
         <!-- Los 4 Empleados Virtuales Universales -->
@@ -955,6 +1043,27 @@
                 🌎 Dólares USD (Internacional)
               </button>
             </div>
+          </div>
+
+          <!-- DESTACADO: PRUEBA GRATUITA 14 DÍAS SIN TARJETA -->
+          <div class="p-6 bg-gradient-to-r from-[#1B4332] via-[#245741] to-[#2D6A4F] text-white rounded-xl shadow-md border border-emerald-700/60 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="space-y-1.5">
+              <div class="inline-flex items-center space-x-2">
+                <span class="px-2.5 py-0.5 rounded bg-emerald-400 text-slate-950 font-mono text-[10px] font-bold uppercase tracking-wider">
+                  Acceso Total Gratis
+                </span>
+                <span class="text-xs text-emerald-200">· Sin ingresar tarjeta de crédito</span>
+              </div>
+              <h3 class="text-base sm:text-lg font-serif font-bold text-white">
+                Comenzá con 14 Días de Prueba Gratuita (Los 4 Empleados Incluidos)
+              </h3>
+              <p class="text-xs text-emerald-100/90 max-w-xl leading-relaxed">
+                Conectá tu WhatsApp hoy mismo y poné a prueba al Vendedor, al Cobrador, al Asistente Contable y al Concierge Multilingüe con tus propios datos. Si no te genera más plata ni te ahorra tiempo real, no pagás nada.
+              </p>
+            </div>
+            <button onclick="activarPruebaGratis()" class="px-5 py-3 bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold text-xs rounded-lg shadow-sm transition whitespace-nowrap shrink-0">
+              Comenzar Prueba Gratis (14 Días) →
+            </button>
           </div>
 
           <!-- Parrilla de Planes (Good - Better - Best) -->
@@ -1931,6 +2040,58 @@
     </div>
   </div>
 
+  <!-- MODAL: PERSONALIZAR CON MI NEGOCIO REAL (ONBOARDING) -->
+  <div id="modal-business-config" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-xl max-w-lg w-full p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div>
+          <h3 class="text-sm font-bold text-slate-900">Configurar con los Datos de Tu Propio Negocio</h3>
+          <p class="text-[11px] text-slate-500">Personaliza la plataforma para tu comercio en 1 clic (14 días gratis sin tarjeta).</p>
+        </div>
+        <button onclick="closeBusinessConfigModal()" class="text-slate-500 hover:text-slate-700">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-medium text-slate-700 mb-1">Nombre de Tu Negocio o Empresa</label>
+          <input type="text" id="cfg-custom-name" placeholder="Ej: Ferretería Central / Cabañas del Lago / Sushi Tokio" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-medium">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">Rubro Principal</label>
+            <select id="cfg-custom-rubro" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900">
+              <option value="Gastronomía & Delivery">Gastronomía & Delivery</option>
+              <option value="Comercio & Retail">Comercio & Tienda Minorista</option>
+              <option value="Hotelería & Turismo">Hotelería & Alojamiento</option>
+              <option value="Servicios Profesionales">Servicios & Oficinas</option>
+              <option value="Gimnasio & Cuotas">Gimnasio & Cuotas Recurrentes</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-medium text-slate-700 mb-1">Tu Teléfono de WhatsApp</label>
+            <input type="tel" id="cfg-custom-phone" placeholder="Ej: 5491144556677" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900">
+          </div>
+        </div>
+        <div>
+          <label class="block font-medium text-slate-700 mb-1">Breve Descripción o Política Clave</label>
+          <textarea id="cfg-custom-desc" rows="2" placeholder="Ej: Atendemos de 9 a 20 hs. Envíos gratis a partir de $15.000. Aceptamos Mercado Pago y efectivo..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900"></textarea>
+        </div>
+      </div>
+
+      <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-[11px] text-emerald-900 flex items-center space-x-2">
+        <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
+        <span>Prueba Gratuita Activa: Se creará un entorno dedicado para tu empresa con 14 días gratis sin compromiso.</span>
+      </div>
+
+      <div class="flex justify-end space-x-2 pt-2 border-t border-slate-100">
+        <button onclick="closeBusinessConfigModal()" class="px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg">Cancelar</button>
+        <button onclick="saveCustomBusiness()" class="px-4 py-2 text-xs font-medium text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg shadow-subtle font-semibold">Guardar y Activar Mi Negocio →</button>
+      </div>
+    </div>
+  </div>
+
   <!-- TOAST NOTIFICACIÓN -->
   <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 text-white px-4 py-2.5 rounded-lg text-xs font-medium shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 flex items-center space-x-2 z-50">
     <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
@@ -2418,6 +2579,52 @@
       document.getElementById('modal-prod-price').value = '';
       document.getElementById('modal-prod-stock').value = '';
       document.getElementById('modal-prod-desc').value = '';
+    }
+
+    function openBusinessConfigModal() {
+      const modal = document.getElementById('modal-business-config');
+      if (modal) {
+        document.getElementById('cfg-custom-name').value = currentBusiness.name || '';
+        modal.classList.remove('hidden');
+      }
+    }
+
+    function closeBusinessConfigModal() {
+      const modal = document.getElementById('modal-business-config');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function saveCustomBusiness() {
+      const name = document.getElementById('cfg-custom-name').value.trim();
+      const rubro = document.getElementById('cfg-custom-rubro').value;
+      const phone = document.getElementById('cfg-custom-phone').value.trim();
+      const desc = document.getElementById('cfg-custom-desc').value.trim();
+
+      if (!name) {
+        alert("Por favor ingresa el nombre de tu negocio.");
+        return;
+      }
+
+      currentBusiness.name = name;
+      if (desc) currentBusiness.description = desc;
+
+      // Actualizar UI en vivo
+      const sidebarName = document.getElementById('sidebar-business-name');
+      if (sidebarName) sidebarName.innerText = name;
+
+      const chatTitle = document.getElementById('sim-chat-title');
+      if (chatTitle) chatTitle.innerText = name;
+
+      const inputName = document.getElementById('input-business-name');
+      if (inputName) inputName.value = name;
+
+      closeBusinessConfigModal();
+      showToast(`¡Excelente! Entorno configurado para: ${name} (14 días gratis activos)`);
+    }
+
+    function activarPruebaGratis() {
+      showToast("¡Prueba Gratuita de 14 Días Activada! 0 pesos hoy, sin tarjeta.");
+      openBusinessConfigModal();
     }
 
     function deleteProductRow(btn) {
