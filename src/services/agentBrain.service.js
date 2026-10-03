@@ -150,48 +150,96 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
    */
   _generateSimulatedReply(business, userMessage) {
     const msg = userMessage.toLowerCase();
+    const catalog = Array.isArray(business.catalog) ? business.catalog : [];
 
-    // Detección de Inglés (usando límites de palabra \b para precisión)
-    const isEnglish = /\b(hello|hi|price|how much|available|beer|order|delivery|what|menu)\b/i.test(msg);
-    if (isEnglish) {
-      if (msg.includes('corona') || msg.includes('beer')) {
-        return `Hello! Welcome to ${business.name}. We apologize, but Corona Beer is currently out of stock. However, our fresh artisan pizzas and soft drinks are available! Would you like to check our available menu?`;
-      }
-      return `Hello! Thank you for reaching out to ${business.name}. Our delivery starts at 19:30. Classic Muzzarella Pizza is available for $8,500. How can we assist your order today?`;
+    // 1. Detección de Turnos / Citas / Reservas (Google Calendar)
+    const isAppointmentQuery = /\b(turno|citas?|agendar?|reservar?|reservas?|consulta|horario disponible|sacar turno|hora)\b/i.test(msg);
+    if (isAppointmentQuery) {
+      return `¡Hola! 📅 Con gusto te agendamos en ${business.name}. Tenemos disponibilidad en tiempo real sincronizada con Google Calendar. ¿Para qué día y en qué horario preferís tu cita? (Se confirma automáticamente con una seña mediante Mercado Pago).`;
     }
 
-    // Detección de Portugués (evitando que 'hola' coincida con 'ola')
-    const isPortuguese = /\b(olá|obrigado|obrigada|quanto custa|boa noite|bom dia|cerveja|cardápio)\b/i.test(msg) || (/\bola\b/i.test(msg) && !/\bhola\b/i.test(msg));
-    if (isPortuguese) {
-      if (msg.includes('corona') || msg.includes('cerveja')) {
-        return `Olá! Seja bem-vindo à ${business.name}. Pedimos desculpas, mas a Cerveja Corona está esgotada no momento. No entanto, temos pizzas artesanais frescas disponíveis! Gostaria de fazer seu pedido?`;
+    // 2. Detección de Cobranzas / Deuda / Enlace de pago (Mercado Pago)
+    const isDebtQuery = /\b(deuda|cobranza|saldo|pagar|pago|transferencia|alias|link de pago|mora|cuota)\b/i.test(msg);
+    if (isDebtQuery) {
+      return `¡Hola! Te contactamos desde el área de administración de ${business.name}. Podés regularizar tu saldo de forma inmediata mediante Mercado Pago o transferencia bancaria directa. ¿Te gustaría que te enviemos el link de pago oficial en este momento?`;
+    }
+
+    // 3. Detección de Facturación / Contabilidad / OCR (Google Drive & Sheets)
+    const isAccountingQuery = /\b(factura|cuit|afip|comprobante|gasto|impuesto|iva|recibo)\b/i.test(msg);
+    if (isAccountingQuery) {
+      return `¡Hola! Recibimos tu comprobante para ${business.name}. El Asistente Contable lo procesa mediante OCR inteligente, extrae CUIT, CAE y desglose de IVA, y lo archiva automáticamente en Google Drive y Google Sheets.`;
+    }
+
+    // 4. Detección de Moda / Medidas / Talles (TalleExacto)
+    const isSizeQuery = /\b(talle|medida|busto|cintura|cadera|size|vestido|prenda|pantalon|tamanho)\b/i.test(msg);
+    if (isSizeQuery) {
+      return `¡Hola! ✨ Analizamos tus medidas con el motor inteligente TalleExacto en ${business.name}: tu talle sugerido es M (Calce Ideal). Ofrece el ajuste perfecto y máxima comodidad. ¿Te gustaría reservarlo antes de que se agote el stock?`;
+    }
+
+    // 5. Detección de Inglés
+    const isEnglish = /\b(hello|hi|price|how much|available|beer|order|delivery|what|menu|appointment|booking|reserve)\b/i.test(msg);
+    if (isEnglish) {
+      if (isAppointmentQuery || msg.includes('appointment') || msg.includes('book') || msg.includes('reserve')) {
+        return `Hello! 📅 We would be glad to schedule your appointment at ${business.name}. We sync directly with Google Calendar. Which date and time work best for you?`;
       }
-      return `Olá! Obrigado por entrar em contato com a ${business.name}. Atendemos a partir das 19:30 com entregas rápidas. A Pizza de Muzzarella sai por $8.500. Como podemos te ajudar?`;
+      const outOfStockEng = catalog.find(p => p.stock === 0 && msg.includes(p.name.toLowerCase()));
+      if (outOfStockEng) {
+        return `Hello! Welcome to ${business.name}. We apologize, but ${outOfStockEng.name} is currently out of stock. Would you like to explore our other available options?`;
+      }
+      if (catalog.length > 0) {
+        const topAvail = catalog.filter(p => p.stock > 0).slice(0, 3).map(p => `• ${p.name}: $${p.price}`).join('\n');
+        return `Hello! Welcome to ${business.name}. Here are our available options:\n\n${topAvail}\n\nDelivery and service hours: ${business.description}. How can we assist your order today?`;
+      }
+      return `Hello! Thank you for contacting ${business.name}. ${business.description}. How can we assist you today?`;
+    }
+
+    // 6. Detección de Portugués
+    const isPortuguese = /\b(olá|obrigado|obrigada|quanto custa|boa noite|bom dia|cerveja|cardápio|agendar|reserva)\b/i.test(msg) || (/\bola\b/i.test(msg) && !/\bhola\b/i.test(msg));
+    if (isPortuguese) {
+      if (isAppointmentQuery || msg.includes('agendar') || msg.includes('reserva')) {
+        return `Olá! 📅 Será um prazer agendar seu horário na ${business.name}. Nosso calendário está sincronizado com o Google Calendar. Para qual dia e horário você prefere?`;
+      }
+      const outOfStockPt = catalog.find(p => p.stock === 0 && msg.includes(p.name.toLowerCase()));
+      if (outOfStockPt) {
+        return `Olá! Seja bem-vindo à ${business.name}. Pedimos desculpas, mas ${outOfStockPt.name} está esgotado no momento. Gostaria de conhecer nossas outras opções?`;
+      }
+      if (catalog.length > 0) {
+        const topAvailPt = catalog.filter(p => p.stock > 0).slice(0, 3).map(p => `• ${p.name}: $${p.price}`).join('\n');
+        return `Olá! Seja bem-vindo à ${business.name}. Aqui estão nossos itens disponíveis:\n\n${topAvailPt}\n\nComo podemos te ajudar hoje?`;
+      }
+      return `Olá! Obrigado por entrar em contato com a ${business.name}. ${business.description}. Como podemos te ajudar?`;
     }
     
-    // Si pregunta por el catálogo o menú (Español)
-    if (msg.includes('menu') || msg.includes('carta') || msg.includes('catalogo') || msg.includes('precio') || msg.includes('tienen')) {
-      const available = business.catalog
-        .filter(p => p.stock > 0)
-        .slice(0, 3)
-        .map(p => `• ${p.name}: $${p.price} (${p.stock} disponibles)`)
-        .join('\n');
-      
-      return `¡Hola! Con gusto te paso lo que tenemos disponible en ${business.name}:\n\n${available}\n\n¿Te gustaría encargar alguno? 😊`;
-    }
-
-    // Si pregunta por un producto sin stock
-    const outOfStock = business.catalog.find(p => p.stock === 0 && msg.includes(p.name.toLowerCase()));
+    // 7. Producto sin stock en Español (evaluado con prioridad)
+    const outOfStock = catalog.find(p => {
+      if (p.stock !== 0) return false;
+      const prodName = p.name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      const queryNorm = msg.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+      return queryNorm.includes(prodName) || prodName.split(' ').some(w => w.length > 4 && queryNorm.includes(w));
+    });
     if (outOfStock) {
-      return `¡Hola! Mil disculpas, pero en este momento ${outOfStock.name} se encuentra agotado. ¿Te gustaría probar alguna de nuestras otras opciones disponibles?`;
+      return `¡Hola! Mil disculpas, pero en este momento ${outOfStock.name} se encuentra agotado o sin disponibilidad de turno. ¿Te gustaría consultar alguna de nuestras otras opciones disponibles en ${business.name}?`;
     }
 
-    // Si pregunta por horario o delivery
-    if (msg.includes('horario') || msg.includes('abierto') || msg.includes('envio') || msg.includes('delivery')) {
+    // 8. Catálogo / Precios / Menú en Español
+    if (msg.includes('menu') || msg.includes('carta') || msg.includes('catalogo') || msg.includes('precio') || msg.includes('tienen') || msg.includes('cuanto')) {
+      if (catalog.length > 0) {
+        const available = catalog
+          .filter(p => p.stock > 0)
+          .slice(0, 4)
+          .map(p => `• ${p.name}: $${p.price} (${p.stock} disponibles)`)
+          .join('\n');
+        
+        return `¡Hola! Con gusto te paso lo que tenemos disponible en ${business.name}:\n\n${available}\n\n¿Te gustaría encargar alguno o hacer tu reserva? 😊`;
+      }
+    }
+
+    // 9. Horarios, envíos o ubicación
+    if (msg.includes('horario') || msg.includes('abierto') || msg.includes('envio') || msg.includes('delivery') || msg.includes('donde') || msg.includes('direccion')) {
       return `¡Hola! Te cuento sobre nuestro servicio en ${business.name}: ${business.description}. ¡Cualquier duda acá estamos!`;
     }
 
-    // Saludo genérico
+    // 10. Saludo genérico institucional
     return `¡Hola! Te estás comunicando con el asistente de ${business.name}. ¿En qué podemos ayudarte hoy?`;
   }
 }

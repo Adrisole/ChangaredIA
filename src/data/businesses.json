@@ -83,5 +83,53 @@
     ],
     "createdAt": "2026-10-03T13:18:35.307Z",
     "updatedAt": "2026-10-03T13:18:35.311Z"
+  },
+  "clinica-dental-test": {
+    "id": "clinica-dental-test",
+    "name": "Centro Odontológico Dental Test",
+    "description": "Consultorio dental privado especializado en ortodoncia, implantes y estética. Horario de atención: 09:00 a 19:00 hs.",
+    "rubro": "Salud y Odontología",
+    "phone": "+54 9 11 9988-7766",
+    "email": "turnos@dentaltest.com",
+    "hours": "Lunes a Viernes 09:00 a 19:00",
+    "website": "",
+    "deposit": 6000,
+    "toneOfVoice": "profesional, empático, formal y orientado al paciente",
+    "language": "Español",
+    "autoDetectLanguage": true,
+    "businessRules": [
+      "Atención con turno previo únicamente.",
+      "Seña obligatoria de $6.000 para reservar consulta de ortodoncia.",
+      "Aceptamos Mercado Pago y transferencias bancarias."
+    ],
+    "catalog": [
+      {
+        "id": "SRV-01",
+        "name": "Limpieza Dental y Profilaxis",
+        "price": 15000,
+        "stock": 20,
+        "description": "",
+        "category": "Odontología"
+      },
+      {
+        "id": "SRV-02",
+        "name": "Consulta Diagnóstico General",
+        "price": 8000,
+        "stock": 30,
+        "description": "",
+        "category": "Odontología"
+      },
+      {
+        "id": "SRV-03",
+        "name": "Blanqueamiento Láser",
+        "price": 45000,
+        "stock": 0,
+        "description": "",
+        "category": "Estética"
+      }
+    ],
+    "services": [],
+    "createdAt": "2026-10-03T22:24:13.904Z",
+    "updatedAt": "2026-10-03T22:24:13.905Z"
   }
 }

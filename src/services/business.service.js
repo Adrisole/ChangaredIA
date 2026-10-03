@@ -46,11 +46,18 @@ export class BusinessService {
       id: businessId,
       name: name.trim(),
       description: description.trim(),
+      rubro: payload.rubro || 'General',
+      phone: payload.phone || '',
+      email: payload.email || '',
+      hours: payload.hours || '',
+      website: payload.website || '',
+      deposit: Number(payload.deposit) || 5000,
       toneOfVoice: toneOfVoice || 'amigable, respetuoso y dispuesto a ayudar',
       language: payload.language || 'Español',
       autoDetectLanguage: payload.autoDetectLanguage !== undefined ? Boolean(payload.autoDetectLanguage) : true,
       businessRules: normalizedRules,
       catalog: normalizedCatalog,
+      services: Array.isArray(payload.services) ? payload.services : [],
       createdAt: new Date().toISOString(),
     };
 

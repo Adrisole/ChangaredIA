@@ -4469,9 +4469,57 @@
         localStorage.setItem('changared_company_data', JSON.stringify(currentCompany));
       } catch(e) {}
 
+      // Sincronizar en el Backend Multi-Tenant de Changared
+      const backendPayload = {
+        id: currentCompany.slug,
+        name: currentCompany.name,
+        description: currentCompany.desc || `${currentCompany.name} - Rubro: ${currentCompany.rubro}. Horario: ${currentCompany.hours}. Tel: ${currentCompany.phone}`,
+        rubro: currentCompany.rubro,
+        phone: currentCompany.phone,
+        email: currentCompany.email,
+        hours: currentCompany.hours,
+        website: currentCompany.website,
+        deposit: currentCompany.deposit,
+        toneOfVoice: currentCompany.tone || 'amigable, respetuoso y dispuesto a ayudar',
+        language: 'Español',
+        autoDetectLanguage: true,
+        businessRules: [
+          `Horario de atención: ${currentCompany.hours}`,
+          `Teléfono de contacto: ${currentCompany.phone}`,
+          `Rubro: ${currentCompany.rubro}`,
+          `Seña de reserva: $${currentCompany.deposit}`
+        ],
+        catalog: Array.isArray(currentCompany.services) && currentCompany.services.length > 0
+          ? currentCompany.services.map((s, idx) => ({
+              id: `SRV-${idx + 1}`,
+              name: s.name,
+              price: s.price,
+              stock: 10,
+              description: `Duración: ${s.duration}`,
+              category: currentCompany.rubro || 'Servicios'
+            }))
+          : [
+              { id: 'SRV-1', name: 'Atención General', price: 10000, stock: 10, description: 'Servicio estándar', category: 'General' }
+            ],
+        services: currentCompany.services || []
+      };
+
+      fetch('/api/business/setup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(backendPayload)
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log('[Changared API] Negocio sincronizado en backend:', data);
+      })
+      .catch(err => {
+        console.warn('[Changared API] Backend local/offline:', err);
+      });
+
       applyCompanyDataToUI();
       closeBusinessConfigModal();
-      showToast(`✓ ¡Entorno configurado para: ${name}! Todos los empleados se adaptaron a tu empresa.`);
+      showToast(`✓ ¡Entorno configurado y sincronizado para: ${name}! Todos los empleados se adaptaron a tu empresa.`);
     }
 
     // =========================================================
@@ -4622,7 +4670,7 @@
       }
     }
 
-    function sendFloatingMessage() {
+    async function sendFloatingMessage() {
       const input = document.getElementById('floating-input');
       if (!input) return;
       const text = input.value.trim();
@@ -4642,31 +4690,76 @@
       input.value = '';
       container.scrollTop = container.scrollHeight;
 
-      setTimeout(() => {
-        let reply = "";
+      // Indicador de escritura en vivo
+      const typingId = 'float-typing-' + Date.now();
+      const typingEl = document.createElement('div');
+      typingEl.id = typingId;
+      typingEl.className = "flex items-start space-x-2 max-w-[85%]";
+      typingEl.innerHTML = `
+        <div class="bg-white border border-slate-200 text-slate-500 p-2.5 rounded-2xl rounded-tl-sm shadow-2xs text-[11px] flex items-center space-x-1.5">
+          <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></span>
+          <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce [animation-delay:0.2s]"></span>
+          <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce [animation-delay:0.4s]"></span>
+          <span class="text-[11px] text-slate-400 pl-1 font-medium">Escribiendo...</span>
+        </div>
+      `;
+      container.appendChild(typingEl);
+      container.scrollTop = container.scrollHeight;
+
+      const slug = currentCompany.slug || 'pizzeria-roma';
+      let reply = "";
+
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3500);
+        const res = await fetch(`/api/webhook/${slug}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: text,
+            from: currentCompany.phone || '+5491100000000'
+          }),
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+
+        if (res.ok) {
+          const json = await res.json();
+          if (json.success && json.agentResponse?.text) {
+            reply = escapeHtml(json.agentResponse.text).replace(/\n/g, '<br>');
+          }
+        }
+      } catch (e) {
+        console.warn("[Floating Chat] Webhook API fallback:", e);
+      }
+
+      // Fallback cognitivo en caso de desconexión
+      if (!reply) {
         const q = text.toLowerCase();
         if (q.includes('turno') || q.includes('cita') || q.includes('agendar') || q.includes('hora')) {
-          reply = `¡Con gusto te agendo! 📅 En <strong>${currentCompany.name}</strong> tenemos turnos disponibles en tiempo real con Google Calendar.<br><br>¿Para qué día y en qué horario preferís tu cita? (Seña de ${Number(currentCompany.deposit || 5000).toLocaleString('es-AR')} vía Mercado Pago para confirmar).`;
+          reply = `¡Con gusto te agendo! 📅 En <strong>${currentCompany.name}</strong> tenemos turnos disponibles en tiempo real con Google Calendar.<br><br>¿Para qué día y en qué horario preferís tu cita? (Seña de $${Number(currentCompany.deposit || 5000).toLocaleString('es-AR')} vía Mercado Pago para confirmar).`;
         } else if (q.includes('precio') || q.includes('cuanto') || q.includes('cuesta') || q.includes('catalogo') || q.includes('menú') || q.includes('menu')) {
-          reply = `¡Hola! 👋 Te paso nuestra lista oficial de servicios y precios de <strong>${currentCompany.name}</strong>:<br><br>` + 
-            currentCompany.services.map(s => `• <strong>${s.name}:</strong> ${Number(s.price).toLocaleString('es-AR')} (${s.duration})`).join('<br>') +
-            `<br><br>¿Te gustaría agendar alguno o hacernos un pedido?`;
+          const svcs = (currentCompany.services || []).map(s => `• <strong>${s.name}:</strong> $${Number(s.price).toLocaleString('es-AR')} (${s.duration})`).join('<br>');
+          reply = `¡Hola! 👋 Te paso nuestra lista oficial de servicios y precios de <strong>${currentCompany.name}</strong>:<br><br>${svcs || 'Servicios personalizados disponibles'}<br><br>¿Te gustaría agendar alguno o hacernos un pedido?`;
         } else if (q.includes('horario') || q.includes('donde') || q.includes('ubicacion')) {
           reply = `⏰ Nuestro horario de atención en <strong>${currentCompany.name}</strong> es: <em>${currentCompany.hours}</em>.<br><br>📍 Respondemos consultas 24/7 de forma automática.`;
         } else {
           reply = `¡Hola! 👋 Gracias por comunicarte con <strong>${currentCompany.name}</strong>. Tomamos tu consulta en tiempo real. ¿En qué podemos ayudarte hoy?`;
         }
+      }
 
-        const botBubble = document.createElement('div');
-        botBubble.className = "flex items-start space-x-2 max-w-[85%]";
-        botBubble.innerHTML = `
-          <div class="bg-white border border-slate-200 text-slate-800 p-2.5 rounded-2xl rounded-tl-sm shadow-2xs leading-relaxed text-xs">
-            ${reply}
-          </div>
-        `;
-        container.appendChild(botBubble);
-        container.scrollTop = container.scrollHeight;
-      }, 400);
+      const existingTyping = document.getElementById(typingId);
+      if (existingTyping) existingTyping.remove();
+
+      const botBubble = document.createElement('div');
+      botBubble.className = "flex items-start space-x-2 max-w-[85%]";
+      botBubble.innerHTML = `
+        <div class="bg-white border border-slate-200 text-slate-800 p-2.5 rounded-2xl rounded-tl-sm shadow-2xs leading-relaxed text-xs">
+          ${reply}
+        </div>
+      `;
+      container.appendChild(botBubble);
+      container.scrollTop = container.scrollHeight;
     }
 
     // =========================================================
@@ -4965,7 +5058,7 @@
       sendSimulatedMessage();
     }
 
-    function sendSimulatedMessage() {
+    async function sendSimulatedMessage() {
       const input = document.getElementById('sim-input-text');
       const text = input.value.trim();
       if (!text) return;
@@ -4983,74 +5076,129 @@
       input.value = '';
       container.scrollTop = container.scrollHeight;
 
-      // Respuesta inteligente multi-idioma
-      setTimeout(() => {
-        const reply = generateMultilingualReply(text);
-        const botBubble = document.createElement('div');
-        botBubble.className = "flex items-start space-x-2 max-w-[80%]";
-        botBubble.innerHTML = `
-          <div class="bg-white border border-slate-200 text-slate-800 text-xs p-3 rounded-2xl rounded-tl-sm shadow-subtle leading-relaxed whitespace-pre-line">
-            ${escapeHtml(reply)}
-          </div>
-        `;
-        container.appendChild(botBubble);
-        container.scrollTop = container.scrollHeight;
-      }, 500);
+      // Indicador de escritura en vivo
+      const typingId = 'sim-typing-' + Date.now();
+      const typingEl = document.createElement('div');
+      typingEl.id = typingId;
+      typingEl.className = "flex items-start space-x-2 max-w-[80%]";
+      typingEl.innerHTML = `
+        <div class="bg-white border border-slate-200 text-slate-500 text-xs px-3 py-2 rounded-2xl rounded-tl-sm shadow-subtle flex items-center space-x-1.5">
+          <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></span>
+          <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce [animation-delay:0.2s]"></span>
+          <span class="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce [animation-delay:0.4s]"></span>
+          <span class="text-[11px] text-slate-400 font-medium pl-1">Escribiendo respuesta...</span>
+        </div>
+      `;
+      container.appendChild(typingEl);
+      container.scrollTop = container.scrollHeight;
+
+      const slug = currentCompany.slug || 'pizzeria-roma';
+      let reply = "";
+
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 3500);
+        const res = await fetch(`/api/webhook/${slug}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            message: text,
+            from: currentCompany.phone || '+5491100000000'
+          }),
+          signal: controller.signal
+        });
+        clearTimeout(timeoutId);
+
+        if (res.ok) {
+          const json = await res.json();
+          if (json.success && json.agentResponse?.text) {
+            reply = json.agentResponse.text;
+          }
+        }
+      } catch (e) {
+        console.warn("[Simulator] Webhook API fallback:", e);
+      }
+
+      if (!reply) {
+        reply = generateMultilingualReply(text);
+      }
+
+      const existingTyping = document.getElementById(typingId);
+      if (existingTyping) existingTyping.remove();
+
+      const botBubble = document.createElement('div');
+      botBubble.className = "flex items-start space-x-2 max-w-[80%]";
+      botBubble.innerHTML = `
+        <div class="bg-white border border-slate-200 text-slate-800 text-xs p-3 rounded-2xl rounded-tl-sm shadow-subtle leading-relaxed whitespace-pre-line">
+          ${escapeHtml(reply)}
+        </div>
+      `;
+      container.appendChild(botBubble);
+      container.scrollTop = container.scrollHeight;
     }
 
     function generateMultilingualReply(query) {
       const q = query.toLowerCase();
+      const compName = currentCompany.name || 'Pizzería Roma Artesanal';
 
       // Detección de consultas de moda / talles (Integración TalleExacto)
       const isSizeQuery = q.includes('talle') || q.includes('medida') || q.includes('busto') || q.includes('cintura') || q.includes('cadera') || q.includes('size') || q.includes('vestido') || q.includes('tamanho');
       if (isSizeQuery) {
         if (q.includes('hello') || q.includes('hi') || q.includes('size')) {
-          return "Hello! ✨ According to your measurements evaluated with our TalleExacto FitMap engine 👗: your recommended size is **M (Ideal Fit)**! It provides an exact, flattering fit at the bust and comfortable room around the waist and hips. Would you like us to reserve a piece for you?";
+          return `Hello! ✨ Evaluated with the TalleExacto engine for ${compName} 👗: your recommended size is **M (Ideal Fit)**! It provides an exact, flattering fit at the bust and comfortable room around the waist and hips. Would you like us to reserve a piece for you?`;
         }
         if (q.includes('olá') || q.includes('ola') || q.includes('tamanho')) {
-          return "Olá! ✨ De acordo com suas medidas calculadas pelo nosso motor TalleExacto 👗: seu tamanho recomendado é o **M (Caimento Ideal)**! Ficará ajustado e elegante no busto e super confortável na cintura e quadril. Deseja que separemos uma peça para você?";
+          return `Olá! ✨ De acordo com o motor TalleExacto para ${compName} 👗: seu tamanho recomendado é o **M (Caimento Ideal)**! Ficará ajustado e elegante no busto e super confortável na cintura e quadril. Deseja que separemos uma peça para você?`;
         }
-        return "¡Hola! ✨ Analizamos tus medidas con nuestro motor inteligente TalleExacto 👗: tu talle recomendado es el **M (Talle Ideal)**. Te quedará entallado y favorecedor en busto y súper cómodo y holgado en cintura y caderas. ¿Te gustaría que te reservemos uno antes de que se agote el stock?";
+        return `¡Hola! ✨ Analizamos tus medidas con nuestro motor inteligente TalleExacto en ${compName} 👗: tu talle recomendado es el **M (Talle Ideal)**. Te quedará entallado y favorecedor en busto y súper cómodo y holgado en cintura y caderas. ¿Te gustaría que te reservemos uno antes de que se agote el stock?`;
+      }
+
+      // Detección de Turnos / Citas (Google Calendar)
+      if (q.includes('turno') || q.includes('cita') || q.includes('agendar') || q.includes('reserva') || q.includes('hora')) {
+        return `¡Hola! 📅 Con gusto te agendamos en ${compName}. Contamos con agenda sincronizada con Google Calendar. ¿Para qué día y en qué horario preferís tu cita? (Se confirma automáticamente con una seña de $${Number(currentCompany.deposit || 5000).toLocaleString('es-AR')} vía Mercado Pago).`;
+      }
+
+      // Detección de Cobranzas / Deuda / Mora
+      if (q.includes('deuda') || q.includes('cobro') || q.includes('pagar') || q.includes('transferencia') || q.includes('alias') || q.includes('link de pago')) {
+        return `¡Hola! Te contactamos desde administración de ${compName}. Podés cancelar o regularizar tu saldo por Mercado Pago o transferencia bancaria directa. ¿Querés que te enviemos el link de pago oficial en este momento?`;
       }
 
       // Detección Inglés
       const isEnglish = q.includes('hello') || q.includes('hi') || q.includes('beer') || q.includes('delivery') || q.includes('available') || q.includes('how much') || q.includes('price');
       if (isEnglish) {
         if (q.includes('corona') || q.includes('beer')) {
-          return "Hello! 👋 Welcome to Pizzería Roma. We apologize, but Corona Beer 710ml is currently out of stock. However, we have cold Coca-Cola 1.5L ($3,200) and delicious artisanal pizzas ready. Would you like to check our available menu?";
+          return `Hello! 👋 Welcome to ${compName}. We apologize, but Corona Beer 710ml is currently out of stock. However, our main products and services are available! Would you like to check our options?`;
         }
-        if (q.includes('muzzarella') || q.includes('pizza') || q.includes('price')) {
-          return "Hello! Our Classic Muzzarella Pizza is $8,500 🍕 (fresh tomato sauce, premium mozzarella, and olives). Delivery takes 35-50 min starting at 19:30. Would you like to place an order?";
-        }
-        return "Hello! Thank you for messaging Pizzería Roma Artesanal. We open daily from 19:30 to 00:00 with fast delivery ($1,500). How can we help you today?";
+        return `Hello! Welcome to ${compName}. Our service hours are: ${currentCompany.hours}. How can we assist your order or booking today?`;
       }
 
       // Detección Portugués
       const isPortuguese = q.includes('olá') || q.includes('ola') || q.includes('cerveja') || q.includes('quanto custa') || q.includes('tem') || q.includes('obrigado') || q.includes('boa noite');
       if (isPortuguese) {
         if (q.includes('corona') || q.includes('cerveja')) {
-          return "Olá! 👋 Seja bem-vindo à Pizzería Roma. Pedimos desculpas, mas a Cerveja Corona 710ml está esgotada no momento. No entanto, temos Coca-Cola gelada ($3.200) e nossas pizzas artesanais fresquinhas! Gostaria de escolher um sabor?";
+          return `Olá! 👋 Bem-vindo à ${compName}. Pedimos desculpas, mas a Cerveja Corona está esgotada no momento. No entanto, temos outros itens disponíveis! Gostaria de escolher uma opção?`;
         }
-        if (q.includes('muzzarella') || q.includes('pizza') || q.includes('quanto')) {
-          return "Olá! A Pizza de Muzzarella Clássica custa $8.500 🍕 (molho caseiro, queijo muzzarella especial e azeitonas). Entregas a partir das 19:30. Gostaria de confirmar seu pedido?";
-        }
-        return "Olá! Obrigado por entrar em contato com a Pizzería Roma. Atendemos todos os dias das 19:30 às 00:00. Como podemos te ajudar?";
+        return `Olá! Obrigado por entrar em contato com a ${compName}. Atendemos no horário: ${currentCompany.hours}. Como podemos te ajudar hoje?`;
       }
 
       // Español (Por defecto)
       if (q.includes('corona') || q.includes('cerveza')) {
-        return "¡Hola! Mil disculpas, pero en este momento la Cerveza Corona 710ml se encuentra agotada. ¿Te gustaría acompañar tu pedido con una Coca-Cola fría de 1.5L ($3.200) o prefieres otra opción?";
+        return `¡Hola! Mil disculpas, pero en este momento la Cerveza Corona 710ml se encuentra agotada. ¿Te gustaría consultar alguna de nuestras otras opciones disponibles en ${compName}?`;
       }
 
-      if (q.includes('muzzarella') || q.includes('precio') || q.includes('cuanto') || q.includes('sale')) {
-        return "¡Hola! La Pizza Muzzarella Clásica tiene un valor de $8.500 y lleva salsa de tomate casera, abundante muzzarella premium y aceitunas verdes 🍕 Nos quedan unidades listas para hornear. ¿Te preparamos una?";
+      if (q.includes('precio') || q.includes('cuanto') || q.includes('sale') || q.includes('catalogo') || q.includes('menu')) {
+        if (currentCompany.services && currentCompany.services.length > 0) {
+          const list = currentCompany.services.map(s => `• ${s.name}: $${Number(s.price).toLocaleString('es-AR')} (${s.duration})`).join('\n');
+          return `¡Hola! Con gusto te paso lo que tenemos disponible en ${compName}:\n\n${list}\n\n¿Te gustaría encargar alguno o agendar tu cita? 😊`;
+        }
+        return `¡Hola! La Pizza Muzzarella Clásica tiene un valor de $8.500 y lleva salsa de tomate casera, abundante muzzarella premium y aceitunas verdes 🍕 Nos quedan unidades listas para hornear. ¿Te preparamos una?`;
       }
 
-      if (q.includes('18') || q.includes('horario') || q.includes('abren')) {
-        return "¡Buenas tardes! Te comento que nuestro horario de atención y pedidos es a partir de las 19:30 hasta las 00:00 hs todos los días. ¡A partir de esa hora con muchísimo gusto te tomamos el pedido!";
+      if (q.includes('horario') || q.includes('abren') || q.includes('donde') || q.includes('ubicacion')) {
+        return `¡Buenas tardes! Te comento que nuestro horario de atención en ${compName} es: ${currentCompany.hours}. ¡Cualquier duda acá estamos!`;
       }
 
-      return "¡Hola! Gracias por comunicarte con Pizzería Roma Artesanal. ¿En qué podemos ayudarte hoy? Tenemos delivery activo a partir de las 19:30 hs.";
+      return `¡Hola! Gracias por comunicarte con ${compName}. ¿En qué podemos ayudarte hoy?`;
     }
 
     function clearChatSimulator() {
@@ -5451,14 +5599,20 @@
     }
 
     async function loadAccountingInvoices() {
+      const slug = currentCompany.slug || 'pizzeria-roma';
       try {
-        const res = await fetch('/api/accounting/invoices/pizzeria-roma');
+        const res = await fetch(`/api/accounting/invoices/${slug}`);
         if (res.ok) {
           const json = await res.json();
           if (json.success && Array.isArray(json.invoices)) {
-            localInvoices = json.invoices;
-            renderAccountingView(json.invoices, json.stats);
-            return;
+            if (json.invoices.length > 0) {
+              localInvoices = json.invoices;
+              renderAccountingView(json.invoices, json.stats);
+              return;
+            } else if (slug !== 'pizzeria-roma') {
+              renderAccountingView([], { count: 0, totalCompras: 0, totalNeto: 0, totalIva: 0 });
+              return;
+            }
           }
         }
       } catch (err) {
@@ -5468,9 +5622,10 @@
     }
 
     async function simulateInvoiceTrigger(providerType) {
+      const slug = currentCompany.slug || 'pizzeria-roma';
       showToast("Recepcionando email y leyendo factura con IA...");
       try {
-        const res = await fetch('/api/accounting/simulate-email/pizzeria-roma', {
+        const res = await fetch(`/api/accounting/simulate-email/${slug}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ providerType })
