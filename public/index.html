@@ -135,6 +135,12 @@
           <span class="ml-auto text-[10px] font-mono px-1.5 py-0.2 bg-emerald-50 text-emerald-700 font-semibold rounded border border-emerald-200">EXCEL</span>
         </button>
 
+        <button onclick="switchStep('step-talleexacto')" id="nav-step-talleexacto" class="nav-item w-full flex items-center space-x-2.5 px-2.5 py-2 text-xs font-medium rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition-colors">
+          <i data-lucide="scissors" class="w-4 h-4 text-amber-600"></i>
+          <span>Asesor de Talles (Moda)</span>
+          <span class="ml-auto text-[10px] font-mono px-1.5 py-0.2 bg-amber-50 text-amber-700 font-semibold rounded border border-amber-200">FITMAP</span>
+        </button>
+
         <button class="w-full flex items-center space-x-2.5 px-2.5 py-2 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors">
           <i data-lucide="activity" class="w-4 h-4 text-slate-600"></i>
           <span data-i18n="navRadar">Radar de Incidentes</span>
@@ -241,8 +247,12 @@
           <span class="w-4 h-4 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-[10px]">5</span>
           <span>Asistente Contable (Facturas)</span>
         </button>
-        <button onclick="switchStep('step-simulator')" id="tab-step-simulator" class="tab-btn pb-3 text-slate-600 hover:text-slate-900 border-b-2 border-transparent transition-colors flex items-center space-x-2">
+        <button onclick="switchStep('step-talleexacto')" id="tab-step-talleexacto" class="tab-btn pb-3 text-slate-600 hover:text-slate-900 border-b-2 border-transparent transition-colors flex items-center space-x-2">
           <span class="w-4 h-4 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-[10px]">6</span>
+          <span>Asesor de Talles (TalleExacto)</span>
+        </button>
+        <button onclick="switchStep('step-simulator')" id="tab-step-simulator" class="tab-btn pb-3 text-slate-600 hover:text-slate-900 border-b-2 border-transparent transition-colors flex items-center space-x-2">
+          <span class="w-4 h-4 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-[10px]">7</span>
           <span data-i18n="tabStep4">Simulador Interactivo</span>
         </button>
       </div>
@@ -974,6 +984,270 @@
             <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
             <span>Volver a Planes</span>
           </button>
+          <button onclick="switchStep('step-talleexacto')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-colors">
+            <span>Ver Asesor de Talles (Moda)</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- PASO 6: ASESOR DE TALLES & PROBADOR INTELIGENTE (TALLEEXACTO) -->
+      <!-- ======================================================== -->
+      <section id="step-talleexacto" class="step-content space-y-6 hidden">
+
+        <!-- Header del Módulo Moda -->
+        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
+                <h2 class="text-sm font-semibold text-slate-900">Probador Inteligente de Talles & Moda (TalleExacto)</h2>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200 font-semibold">ECOMMERCE MODA</span>
+              </div>
+              <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+                El 40% de las ventas de ropa online se cancelan o devuelven por dudas de talle. TalleExacto analiza las medidas del cliente y recomienda el talle ideal tanto en tu tienda web como automáticamente en tu WhatsApp.
+              </p>
+            </div>
+            <div class="flex items-center space-x-2 shrink-0">
+              <a href="/talleexacto" target="_blank" class="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium text-amber-900 bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded-lg transition shadow-subtle">
+                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                <span>Ver Landing Oficial</span>
+              </a>
+              <a href="https://talleexacto.atomica.click/" target="_blank" class="inline-flex items-center space-x-1 px-2.5 py-1.5 text-xs font-mono text-slate-600 hover:text-slate-900 bg-slate-50 border border-slate-200 rounded-lg transition">
+                <span>Atómica ↗</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Pilares de Integración con Changared -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5">
+              <span class="text-[11px] font-semibold text-slate-700 uppercase tracking-wider flex items-center space-x-1.5">
+                <i data-lucide="scan" class="w-3.5 h-3.5 text-amber-600"></i>
+                <span>1. Motor FitMap 2D</span>
+              </span>
+              <p class="text-[11px] text-slate-600 leading-tight">Compara busto, cintura y cadera contra la moldería de la prenda y detecta ajuste exacto o prendas holgadas.</p>
+            </div>
+
+            <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5">
+              <span class="text-[11px] font-semibold text-slate-700 uppercase tracking-wider flex items-center space-x-1.5">
+                <i data-lucide="message-square" class="w-3.5 h-3.5 text-emerald-600"></i>
+                <span>2. Asesor en WhatsApp</span>
+              </span>
+              <p class="text-[11px] text-slate-600 leading-tight">Si una clienta pregunta por chat *"mido 1.65 y 90 de busto, qué talle soy?"*, el bot calcula y responde en segundos.</p>
+            </div>
+
+            <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5">
+              <span class="text-[11px] font-semibold text-slate-700 uppercase tracking-wider flex items-center space-x-1.5">
+                <i data-lucide="code" class="w-3.5 h-3.5 text-blue-600"></i>
+                <span>3. Widget E-Commerce</span>
+              </span>
+              <p class="text-[11px] text-slate-600 leading-tight">2 líneas de código para Tiendanube, Shopify y WooCommerce. Pago único o incluido en tu plan Changared.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Consola Interactiva del FitMap (Estilo TalleExacto) -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-card text-white">
+          <div class="px-5 py-3 border-b border-slate-800 bg-slate-950/70 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+              <span class="text-amber-400 font-mono text-xs font-semibold uppercase tracking-widest">TalleExacto FitMap</span>
+              <span class="text-slate-600 text-xs">/</span>
+              <span class="text-slate-300 text-xs font-mono">Vestido Midi · Colección 2026</span>
+            </div>
+            <span class="text-[10px] font-mono text-amber-400 bg-amber-950/60 border border-amber-800/80 px-2 py-0.5 rounded">MODO SIMULADOR VIVO</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-0">
+            <!-- Columna Izquierda: Sliders de Medidas -->
+            <div class="md:col-span-4 p-5 bg-slate-900 border-b md:border-b-0 md:border-r border-slate-800 space-y-4">
+              <div class="text-[10px] uppercase font-mono tracking-widest text-slate-400">Tus Medidas del Comprador</div>
+              
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs font-mono">
+                  <span class="text-slate-400">Altura</span>
+                  <span class="text-amber-400 font-semibold" id="fit-v-height">165 cm</span>
+                </div>
+                <input type="range" min="148" max="192" value="165" id="fit-s-height" oninput="updateFitMap()" class="w-full accent-amber-500 cursor-pointer h-1.5 bg-slate-800 rounded">
+              </div>
+
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs font-mono">
+                  <span class="text-slate-400">Busto</span>
+                  <span class="text-amber-400 font-semibold" id="fit-v-bust">88 cm</span>
+                </div>
+                <input type="range" min="76" max="116" value="88" id="fit-s-bust" oninput="updateFitMap()" class="w-full accent-amber-500 cursor-pointer h-1.5 bg-slate-800 rounded">
+              </div>
+
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs font-mono">
+                  <span class="text-slate-400">Cintura</span>
+                  <span class="text-amber-400 font-semibold" id="fit-v-waist">70 cm</span>
+                </div>
+                <input type="range" min="58" max="104" value="70" id="fit-s-waist" oninput="updateFitMap()" class="w-full accent-amber-500 cursor-pointer h-1.5 bg-slate-800 rounded">
+              </div>
+
+              <div class="space-y-1">
+                <div class="flex justify-between text-xs font-mono">
+                  <span class="text-slate-400">Caderas</span>
+                  <span class="text-amber-400 font-semibold" id="fit-v-hips">96 cm</span>
+                </div>
+                <input type="range" min="82" max="124" value="96" id="fit-s-hips" oninput="updateFitMap()" class="w-full accent-amber-500 cursor-pointer h-1.5 bg-slate-800 rounded">
+              </div>
+
+              <div class="pt-2 grid grid-cols-2 gap-2 text-xs font-mono">
+                <div class="p-2.5 bg-slate-950/60 border border-slate-800 rounded">
+                  <span class="block text-[10px] text-slate-500 uppercase">Silueta</span>
+                  <span class="font-semibold text-slate-200 text-[11px]" id="fit-body-type">Reloj de Arena</span>
+                </div>
+                <div class="p-2.5 bg-slate-950/60 border border-slate-800 rounded">
+                  <span class="block text-[10px] text-slate-500 uppercase">C/C Ratio</span>
+                  <span class="font-semibold text-amber-400 text-[11px]" id="fit-cc-ratio">0.73</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Columna Central: Maniquí Biomecánico SVG -->
+            <div class="md:col-span-5 p-5 bg-slate-950/40 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-slate-800">
+              <div id="fit-badge-ui" class="inline-flex items-center space-x-2 px-3 py-1 rounded border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 font-mono text-xs uppercase mb-3">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span id="fit-label-ui">Talle Ideal</span>
+                <span class="text-slate-600">·</span>
+                <span id="fit-size-ui" class="font-bold">M</span>
+              </div>
+
+              <div class="w-full max-w-[260px]">
+                <svg viewBox="0 0 160 172" class="w-full h-48 mx-auto">
+                  <defs>
+                    <linearGradient id="bodyGradChangared" x1="0" y1="0" x2="1" y2="1">
+                      <stop offset="0%" stop-color="#2A2F48"/>
+                      <stop offset="100%" stop-color="#1E2235"/>
+                    </linearGradient>
+                    <linearGradient id="bodyGradHlChangared" x1="0" y1="0" x2="1" y2="0">
+                      <stop offset="0%" stop-color="#323857" stop-opacity=".5"/>
+                      <stop offset="50%" stop-color="#3E4568" stop-opacity=".15"/>
+                      <stop offset="100%" stop-color="#323857" stop-opacity=".5"/>
+                    </linearGradient>
+                  </defs>
+                  <path id="fit-body-path" fill="url(#bodyGradChangared)" stroke="#3E4568" stroke-width=".8"/>
+                  <path id="fit-body-path-hl" fill="url(#bodyGradHlChangared)" stroke="none" opacity=".6"/>
+                  <g id="fit-bar-bust"></g>
+                  <g id="fit-bar-waist"></g>
+                  <g id="fit-bar-hips"></g>
+                  <rect x="75" y="132" width="10" height="22" fill="#252B42" stroke="#3E4568" stroke-width=".6"/>
+                  <rect x="58" y="152" width="44" height="7" rx="2" fill="#252B42" stroke="#3E4568" stroke-width=".6"/>
+                  <text x="4" y="58" fill="#64748B" font-size="7" font-family="monospace">BUSTO</text>
+                  <text x="4" y="88" fill="#64748B" font-size="7" font-family="monospace">CINTURA</text>
+                  <text x="4" y="116" fill="#64748B" font-size="7" font-family="monospace">CADERA</text>
+                </svg>
+              </div>
+
+              <div id="fit-breakdown" class="w-full max-w-[230px] space-y-1.5 mt-2 font-mono text-[10px]">
+                <!-- Cargado dinámicamente -->
+              </div>
+            </div>
+
+            <!-- Columna Derecha: Resultado & Prueba en WhatsApp -->
+            <div class="md:col-span-3 p-5 bg-slate-900 space-y-4 flex flex-col justify-between">
+              <div class="space-y-3">
+                <div class="p-3 bg-slate-950/70 border border-slate-800 rounded-lg text-center">
+                  <span class="text-[10px] text-slate-400 font-mono uppercase tracking-wider block">Talle Recomendado</span>
+                  <span class="text-4xl font-mono font-black text-amber-400 block mt-1" id="fit-result-size">M</span>
+                  <span class="text-[11px] text-emerald-400 font-mono mt-0.5 block">Precisión 98.4%</span>
+                </div>
+
+                <div class="space-y-1">
+                  <span class="text-[10px] text-slate-400 font-mono uppercase tracking-wider block">Talles Disponibles</span>
+                  <div class="flex gap-1.5 font-mono text-xs" id="fit-size-pills">
+                    <!-- Generado dinámicamente -->
+                  </div>
+                </div>
+
+                <button onclick="triggerStylistAdvice()" id="btn-fit-ai" class="w-full py-2 px-3 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/40 text-amber-300 font-mono text-[11px] rounded transition flex items-center justify-center space-x-1.5">
+                  <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
+                  <span>✦ Consejo de Estilista IA</span>
+                </button>
+
+                <div id="fit-ai-result" class="p-2.5 bg-slate-950/80 border border-amber-500/30 rounded text-[11px] text-slate-300 italic hidden">
+                  <!-- Texto generado -->
+                </div>
+              </div>
+
+              <div class="pt-2 border-t border-slate-800">
+                <button onclick="testSizeInWhatsApp()" class="w-full py-2 px-3 bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs rounded-lg transition flex items-center justify-center space-x-1.5 shadow-sm">
+                  <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
+                  <span>Probar en WhatsApp Bot</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calculadora de Pérdidas de E-Commerce (Logística Inversa) -->
+        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-subtle space-y-4">
+          <div class="border-b border-slate-100 pb-3">
+            <h3 class="text-xs font-semibold text-slate-900 flex items-center space-x-1.5">
+              <i data-lucide="calculator" class="w-3.5 h-3.5 text-amber-600"></i>
+              <span>Calculadora de Pérdida por Devoluciones de Ropa</span>
+            </h3>
+            <p class="text-[11px] text-slate-600 mt-0.5">Calcula cuánto dinero pierde tu tienda al mes en logística inversa y prendas rechazadas:</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
+            <div>
+              <label class="block text-slate-600 text-[11px] font-medium mb-1">Ventas mensuales (prendas)</label>
+              <input type="number" id="calc-ventas" value="100" oninput="calcLoss()" class="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded font-mono text-xs">
+            </div>
+            <div>
+              <label class="block text-slate-600 text-[11px] font-medium mb-1">Tasa de devolución por talle (%)</label>
+              <input type="number" id="calc-tasa" value="18" oninput="calcLoss()" class="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded font-mono text-xs">
+            </div>
+            <div>
+              <label class="block text-slate-600 text-[11px] font-medium mb-1">Ticket promedio ($ o USD)</label>
+              <input type="number" id="calc-ticket" value="35" oninput="calcLoss()" class="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded font-mono text-xs">
+            </div>
+            <div>
+              <label class="block text-slate-600 text-[11px] font-medium mb-1">Costo logístico devolución ($ o USD)</label>
+              <input type="number" id="calc-costo" value="8" oninput="calcLoss()" class="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded font-mono text-xs">
+            </div>
+          </div>
+
+          <div class="p-4 bg-amber-50/60 border border-amber-200 rounded-lg flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div>
+              <span class="text-xs font-semibold text-amber-900 block">Pérdida mensual evitada con TalleExacto:</span>
+              <span class="text-[11px] text-amber-800" id="calc-breakdown">—</span>
+            </div>
+            <div class="text-right">
+              <span class="text-2xl font-black text-amber-900 font-mono" id="calc-result">USD 333</span>
+              <span class="block text-[10px] text-amber-700 font-medium">Ahorro neto directo</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Snippet de Integración Web -->
+        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-subtle space-y-3">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="text-xs font-semibold text-slate-900">Snippet de Integración para tu Tienda Online</h3>
+              <p class="text-[11px] text-slate-600 mt-0.5">Copia y pega estas 2 líneas en tu plantilla de Tiendanube, Shopify o WooCommerce:</p>
+            </div>
+            <button onclick="copyTalleExactoSnippet()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded text-xs text-slate-800 transition font-mono flex items-center space-x-1.5">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span id="btn-copy-snippet-text">Copiar Snippet</span>
+            </button>
+          </div>
+          <div class="p-3 bg-slate-900 rounded-lg font-mono text-xs text-amber-300 overflow-x-auto leading-relaxed border border-slate-800">
+            &lt;script src="https://talleexacto.atomica.click/widget.js"&gt;&lt;/script&gt;<br>
+            &lt;div id="talleexacto" data-store="tu-tienda"&gt;&lt;/div&gt;
+          </div>
+        </div>
+
+        <div class="flex justify-between pt-2">
+          <button onclick="switchStep('step-accounting')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition-colors">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+            <span>Volver a Contable</span>
+          </button>
           <button onclick="switchStep('step-simulator')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-colors">
             <span>Ir al Simulador Interactivo</span>
             <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
@@ -1061,6 +1335,11 @@
               <button onclick="setSimQuery('Olá! Quanto custa a pizza de muzzarella e a cerveja corona?')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[11px] transition flex items-center space-x-1 border border-slate-200">
                 <span>🇧🇷</span>
                 <span>"Olá! Quanto custa a muzzarella?" (Preço en PT)</span>
+              </button>
+              <!-- Test TalleExacto Moda -->
+              <button onclick="setSimQuery('Hola! Mido 1.65, tengo 90 de busto y 70 de cintura. ¿Qué talle me conviene en el vestido?')" class="px-2.5 py-1 bg-amber-50 hover:bg-amber-100 text-amber-800 rounded-lg text-[11px] transition flex items-center space-x-1 border border-amber-200">
+                <span>👗</span>
+                <span>"Mido 1.65 y 90 de busto, qué talle soy?" (TalleExacto)</span>
               </button>
             </div>
           </div>
@@ -1720,6 +1999,18 @@
     function generateMultilingualReply(query) {
       const q = query.toLowerCase();
 
+      // Detección de consultas de moda / talles (Integración TalleExacto)
+      const isSizeQuery = q.includes('talle') || q.includes('medida') || q.includes('busto') || q.includes('cintura') || q.includes('cadera') || q.includes('size') || q.includes('vestido') || q.includes('tamanho');
+      if (isSizeQuery) {
+        if (q.includes('hello') || q.includes('hi') || q.includes('size')) {
+          return "Hello! ✨ According to your measurements evaluated with our TalleExacto FitMap engine 👗: your recommended size is **M (Ideal Fit)**! It provides an exact, flattering fit at the bust and comfortable room around the waist and hips. Would you like us to reserve a piece for you?";
+        }
+        if (q.includes('olá') || q.includes('ola') || q.includes('tamanho')) {
+          return "Olá! ✨ De acordo com suas medidas calculadas pelo nosso motor TalleExacto 👗: seu tamanho recomendado é o **M (Caimento Ideal)**! Ficará ajustado e elegante no busto e super confortável na cintura e quadril. Deseja que separemos uma peça para você?";
+        }
+        return "¡Hola! ✨ Analizamos tus medidas con nuestro motor inteligente TalleExacto 👗: tu talle recomendado es el **M (Talle Ideal)**. Te quedará entallado y favorecedor en busto y súper cómodo y holgado en cintura y caderas. ¿Te gustaría que te reservemos uno antes de que se agote el stock?";
+      }
+
       // Detección Inglés
       const isEnglish = q.includes('hello') || q.includes('hi') || q.includes('beer') || q.includes('delivery') || q.includes('available') || q.includes('how much') || q.includes('price');
       if (isEnglish) {
@@ -2084,9 +2375,211 @@
       showToast(`¡Factura de ${nuevo.proveedor} procesada con IA y agregada al Excel!`);
     }
 
-    // Inicializar tabla al cargar
+    // =========================================================
+    // LÓGICA DE TALLEEXACTO (FITMAP & CALCULADORA DE MODA)
+    // =========================================================
+
+    const TALLE_SIZES = {
+      XS: { bust: 80, waist: 62, hips: 88 },
+      S: { bust: 84, waist: 66, hips: 92 },
+      M: { bust: 88, waist: 70, hips: 96 },
+      L: { bust: 92, waist: 74, hips: 100 },
+      XL: { bust: 96, waist: 78, hips: 104 }
+    };
+
+    let fitState = { height: 165, bust: 88, waist: 70, hips: 96 };
+
+    function calcFitTalle(u) {
+      let best = 'M', bestScore = Infinity;
+      for (const [sz, d] of Object.entries(TALLE_SIZES)) {
+        const s = (u.bust - d.bust)**2 + (u.waist - d.waist)**2 + (u.hips - d.hips)**2;
+        if (s < bestScore) {
+          bestScore = s;
+          best = sz;
+        }
+      }
+      const d = TALLE_SIZES[best];
+      const details = {
+        busto: { diff: u.bust - d.bust, val: d.bust },
+        cintura: { diff: u.waist - d.waist, val: d.waist },
+        caderas: { diff: u.hips - d.hips, val: d.hips }
+      };
+      const tight = Object.values(details).some(x => x.diff > 4);
+      const loose = Object.values(details).some(x => x.diff < -4);
+      return { size: best, level: tight ? 'tight' : loose ? 'loose' : 'perfect', details };
+    }
+
+    function calcBodyType(m) {
+      const bh = m.bust / m.hips, wh = m.waist / m.hips;
+      if (wh < .75 && Math.abs(bh - 1) < .07) return 'Reloj de Arena';
+      if (bh > 1.06) return 'Triángulo Inv.';
+      if (m.hips > m.bust + 6) return 'Triángulo';
+      if (wh > .86) return 'Rectángulo';
+      return 'Óvalo';
+    }
+
+    function buildBodyPath(m) {
+      const cx = 80;
+      const buW = 21 + (m.bust - 88) * .28, waW = 12 + (m.waist - 70) * .22, hiW = 24 + (m.hips - 96) * .28;
+      const shW = Math.max(buW + 5, 24);
+      const p = [
+        `M${cx - 8} 18`,
+        `C${cx - 14} 19 ${cx - shW} 24 ${cx - shW} 32`,
+        `C${cx - shW} 43 ${cx - buW} 50 ${cx - buW} 60`,
+        `C${cx - buW} 74 ${cx - waW} 82 ${cx - waW} 90`,
+        `C${cx - waW} 100 ${cx - hiW} 107 ${cx - hiW} 115`,
+        `L${cx - hiW} 132`,
+        `L${cx + hiW} 132`,
+        `L${cx + hiW} 115`,
+        `C${cx + hiW} 107 ${cx + waW} 100 ${cx + waW} 90`,
+        `C${cx + waW} 82 ${cx + buW} 74 ${cx + buW} 60`,
+        `C${cx + buW} 50 ${cx + shW} 43 ${cx + shW} 32`,
+        `C${cx + shW} 24 ${cx + 14} 19 ${cx + 8} 18`,
+        `Q${cx} 24 ${cx - 8} 18`,
+        `Z`
+      ].join(' ');
+      const hl = document.getElementById('fit-body-path-hl');
+      if (hl) hl.setAttribute('d', p);
+      return p;
+    }
+
+    function buildFitBar(y, uHW, gHW, color) {
+      return `<line x1="${80 - gHW}" y1="${y}" x2="${80 + gHW}" y2="${y}" stroke="${color}" stroke-width=".8" stroke-dasharray="3,2" opacity=".3"/><line x1="${80 - uHW}" y1="${y}" x2="${80 + uHW}" y2="${y}" stroke="${color}" stroke-width="2.5" stroke-linecap="round"/><circle cx="${80 - uHW}" cy="${y}" r="2.5" fill="${color}"/><circle cx="${80 + uHW}" cy="${y}" r="2.5" fill="${color}"/>`;
+    }
+
+    function updateFitMap() {
+      const hEl = document.getElementById('fit-s-height');
+      const bEl = document.getElementById('fit-s-bust');
+      const wEl = document.getElementById('fit-s-waist');
+      const hipEl = document.getElementById('fit-s-hips');
+      if (!hEl) return;
+
+      fitState.height = +hEl.value;
+      fitState.bust = +bEl.value;
+      fitState.waist = +wEl.value;
+      fitState.hips = +hipEl.value;
+
+      document.getElementById('fit-v-height').innerText = fitState.height + ' cm';
+      document.getElementById('fit-v-bust').innerText = fitState.bust + ' cm';
+      document.getElementById('fit-v-waist').innerText = fitState.waist + ' cm';
+      document.getElementById('fit-v-hips').innerText = fitState.hips + ' cm';
+
+      const fit = calcFitTalle(fitState);
+      const FC = { perfect: '#10B981', tight: '#F43F5E', loose: '#38BDF8' };
+      const FL = { perfect: 'Talle Ideal', tight: 'Muy Ajustado', loose: 'Holgado' };
+      const fc = FC[fit.level];
+
+      const bodyPath = document.getElementById('fit-body-path');
+      if (bodyPath) bodyPath.setAttribute('d', buildBodyPath(fitState));
+
+      const sc = 0.55;
+      const targetSizes = TALLE_SIZES[fit.size];
+      const barBust = document.getElementById('fit-bar-bust');
+      const barWaist = document.getElementById('fit-bar-waist');
+      const barHips = document.getElementById('fit-bar-hips');
+      if (barBust) barBust.innerHTML = buildFitBar(60, fitState.bust * sc * .5, targetSizes.bust * sc * .5, fc);
+      if (barWaist) barWaist.innerHTML = buildFitBar(90, fitState.waist * sc * .5, targetSizes.waist * sc * .5, fc);
+      if (barHips) barHips.innerHTML = buildFitBar(115, fitState.hips * sc * .5, targetSizes.hips * sc * .5, fc);
+
+      const labelUi = document.getElementById('fit-label-ui');
+      const sizeUi = document.getElementById('fit-size-ui');
+      const resSize = document.getElementById('fit-result-size');
+      if (labelUi) {
+        labelUi.innerText = FL[fit.level];
+        labelUi.style.color = fc;
+      }
+      if (sizeUi) {
+        sizeUi.innerText = fit.size;
+        sizeUi.style.color = fc;
+      }
+      if (resSize) {
+        resSize.innerText = fit.size;
+        resSize.style.color = fc;
+      }
+
+      const typeEl = document.getElementById('fit-body-type');
+      const ratioEl = document.getElementById('fit-cc-ratio');
+      if (typeEl) typeEl.innerText = calcBodyType(fitState);
+      if (ratioEl) ratioEl.innerText = (fitState.waist / fitState.hips).toFixed(2);
+
+      const bdEl = document.getElementById('fit-breakdown');
+      if (bdEl) {
+        bdEl.innerHTML = Object.entries(fit.details).map(([key, d]) => {
+          const dc = Math.abs(d.diff) <= 3 ? FC.perfect : d.diff > 3 ? FC.tight : FC.loose;
+          const pct = Math.max(5, 100 - Math.abs(d.diff) * 12);
+          const sign = d.diff === 0 ? '±0' : d.diff > 0 ? '+' + d.diff : String(d.diff);
+          return `
+            <div class="flex items-center space-x-2 text-slate-300">
+              <span class="w-14 uppercase text-[9px] text-slate-400">${key}</span>
+              <div class="flex-1 bg-slate-800 h-1.5 rounded overflow-hidden">
+                <div class="h-full rounded transition-all" style="width:${pct}%;background:${dc}"></div>
+              </div>
+              <span class="w-8 text-right font-mono" style="color:${dc}">${sign}cm</span>
+            </div>
+          `;
+        }).join('');
+      }
+
+      const pillsEl = document.getElementById('fit-size-pills');
+      if (pillsEl) {
+        pillsEl.innerHTML = Object.keys(TALLE_SIZES).map(sz => {
+          const active = sz === fit.size;
+          return `<div class="px-2 py-0.5 rounded text-[10px] font-mono border ${active ? 'border-amber-400 bg-amber-400/20 text-amber-300 font-bold' : 'border-slate-800 bg-slate-950/60 text-slate-400'}">${sz}</div>`;
+        }).join('');
+      }
+    }
+
+    function triggerStylistAdvice() {
+      const fit = calcFitTalle(fitState);
+      const bType = calcBodyType(fitState);
+      const box = document.getElementById('fit-ai-result');
+      const advice = `Estilista Vogue: Tu silueta es ${bType}. El talle ${fit.size} destaca hombros y busto, manteniendo caída fluida sin tensionar las costuras de la cadera. Combinalo con sandalias en tonos nude para alargar la línea visual.`;
+      if (box) {
+        box.innerText = advice;
+        box.classList.remove('hidden');
+      }
+    }
+
+    function testSizeInWhatsApp() {
+      switchStep('step-simulator');
+      setSimQuery(`Hola! Mido ${fitState.height}cm, tengo ${fitState.bust} de busto y ${fitState.waist} de cintura. ¿Qué talle me recomiendas en el vestido?`);
+    }
+
+    function calcLoss() {
+      const vEl = document.getElementById('calc-ventas');
+      if (!vEl) return;
+      const v = +vEl.value || 0;
+      const t = +document.getElementById('calc-tasa').value || 0;
+      const ti = +document.getElementById('calc-ticket').value || 0;
+      const c = +document.getElementById('calc-costo').value || 0;
+
+      const devs = Math.round(v * (t / 100));
+      const pv = devs * ti * 0.3;
+      const pl = devs * c;
+      const total = Math.round(pv + pl);
+
+      const resEl = document.getElementById('calc-result');
+      const bdEl = document.getElementById('calc-breakdown');
+      if (resEl) resEl.innerText = `USD ${total.toLocaleString('es-AR')}`;
+      if (bdEl) bdEl.innerText = `${devs} devoluciones/mes · USD ${Math.round(pv).toLocaleString('es-AR')} en ventas canceladas · USD ${Math.round(pl).toLocaleString('es-AR')} en logística doble`;
+    }
+
+    function copyTalleExactoSnippet() {
+      const snippet = `<script src="https://talleexacto.atomica.click/widget.js"><\/script>\n<div id="talleexacto" data-store="tu-tienda"></div>`;
+      navigator.clipboard.writeText(snippet);
+      const btn = document.getElementById('btn-copy-snippet-text');
+      if (btn) {
+        btn.innerText = "¡Copiado!";
+        setTimeout(() => btn.innerText = "Copiar Snippet", 2000);
+      }
+      showToast("Snippet copiado al portapapeles");
+    }
+
+    // Inicializar tabla y módulos al cargar
     renderCatalogTable();
     loadAccountingInvoices();
+    updateFitMap();
+    calcLoss();
   </script>
 </body>
 </html>

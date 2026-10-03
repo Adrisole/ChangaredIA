@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<!-- SEO primario -->
+<title>TalleExacto — Probador de Talles Inteligente para Tiendas Online | Pago Único</title>
+<meta name="description" content="Reducí las devoluciones por talle hasta un 30%. TalleExacto analiza las medidas del comprador y recomienda el talle exacto. Widget para WooCommerce, Tiendanube, Shopify y más. Pago único desde $49 USD."/>
+<meta name="keywords" content="probador de talles online, widget talle e-commerce, reducir devoluciones tienda online, recomendador de talle, WooCommerce tallas, Tiendanube talle, probador virtual ropa"/>
+<meta name="robots" content="index, follow"/>
+<meta name="author" content="Atómica"/>
+<link rel="canonical" href="https://talleexacto.atomica.click/"/>
+
+<!-- Open Graph -->
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://talleexacto.atomica.click/"/>
+<meta property="og:title" content="TalleExacto — Probador de Talles Inteligente para Tiendas Online"/>
+<meta property="og:description" content="El 40% de las ventas se cancela por dudas con el talle. TalleExacto lo resuelve en 30 segundos. Widget para cualquier plataforma. Pago único, sin suscripciones."/>
+<meta property="og:image" content="https://talleexacto.atomica.click/og-image.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="TalleExacto — Probador Inteligente de Talles para E-Commerce"/>
+<meta property="og:locale" content="es_AR"/>
+<meta property="og:site_name" content="TalleExacto by Atómica"/>
+
+<!-- Twitter / X Cards -->
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@atomica_click"/>
+<meta name="twitter:title" content="TalleExacto — Probador de Talles Inteligente para Tiendas Online"/>
+<meta name="twitter:description" content="Reducí devoluciones un 30%. Widget de talle para WooCommerce, Tiendanube y Shopify. Pago único desde $49 USD."/>
+<meta name="twitter:image" content="https://talleexacto.atomica.click/og-image.png"/>
+
+<!-- Schema.org: SoftwareApplication con precios y reseñas -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "TalleExacto",
+  "alternateName": "Probador Inteligente de Talles",
+  "description": "Widget de recomendación de talles para tiendas online. Analiza las medidas del comprador y sugiere el talle ideal para cada prenda, reduciendo devoluciones hasta un 30%.",
+  "url": "https://talleexacto.atomica.click",
+  "applicationCategory": "BusinessApplication",
+  "operatingSystem": "Web",
+  "offers": [
+    {
+      "@type": "Offer",
+      "name": "Plan Básico",
+      "price": "0",
+      "priceCurrency": "USD",
+      "description": "1 tienda, hasta 20 productos, gratis para siempre"
+    },
+    {
+      "@type": "Offer",
+      "name": "Plan Pro",
+      "price": "49",
+      "priceCurrency": "USD",
+      "description": "1 tienda, productos ilimitados, Estilista IA, pago único"
+    },
+    {
+      "@type": "Offer",
+      "name": "Plan Store",
+      "price": "99",
+      "priceCurrency": "USD",
+      "description": "Hasta 5 tiendas, white label, dashboard multi-tienda, pago único"
+    }
+  ],
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "reviewCount": "150",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Magalí Torres" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "reviewBody": "Bajé mis devoluciones un 28% en el primer mes. Mis clientas ahora compran con una seguridad que antes no tenían."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Valentina Ríos" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "reviewBody": "Lo pegué en Tiendanube en dos minutos. Mis clientes preguntan mucho menos por WhatsApp qué talle pedir."
+    },
+    {
+      "@type": "Review",
+      "author": { "@type": "Person", "name": "Facundo Herrera" },
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "reviewBody": "Manejo 5 tiendas con el plan Store. El dashboard me ahorra horas. Soporte respondió en menos de una hora."
+    }
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "Atómica",
+    "url": "https://atomica.click"
+  }
+}
+</script>
+
+<!-- Schema.org: FAQPage (aparece como rich snippet en Google) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "¿Qué significa pago único en TalleExacto?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Pagás una vez y TalleExacto funciona en tu tienda para siempre. Sin renovaciones automáticas ni suscripciones mensuales en dólares." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cómo cargo las medidas de mis prendas en TalleExacto?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Te enviamos una plantilla para que cargues las medidas reales de cada talle de cada prenda. Es un proceso de 5 minutos por producto. También podemos ayudarte a cargarlas si tenés un catálogo grande." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿TalleExacto funciona en mobile?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Sí, TalleExacto está optimizado para mobile. La mayoría del tráfico de e-commerce es desde el celular y la experiencia está diseñada para eso." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Cuánto tarda instalar TalleExacto?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Dos minutos si tenés acceso al HTML de tu tienda. Para WooCommerce y Tiendanube tenemos guías paso a paso. Si preferís, nosotros hacemos la instalación sin costo adicional." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿Qué pasa si TalleExacto no reduce mis devoluciones?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Tenés 30 días de garantía sin preguntas. Si no ves resultados, te devolvemos el dinero." }
+    },
+    {
+      "@type": "Question",
+      "name": "¿TalleExacto guarda los datos personales de mis clientes?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Las medidas se procesan en tiempo real en el navegador del comprador y nunca se almacenan en nuestros servidores." }
+    }
+  ]
+}
+</script>
+
+<!-- Fuentes con carga no bloqueante (font-display: swap) -->
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'"/>
+<noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/></noscript>
+<style>
+:root {
+  --bg:        #20253D;
+  --bg-2:      #2A3050;
+  --bg-3:      #333A5C;
+  --bg-card:   #313756;
+  --border:    #454C78;
+  --border-2:  #565E8E;
+  --text:      #FAFBFE;
+  --text-2:    #CDD3EA;
+  --text-3:    #9097BC;
+  --accent:    #F59E0B;
+  --accent-2:  #FBBF24;
+  --accent-bg: rgba(245,158,11,.1);
+  --accent-border: rgba(245,158,11,.35);
+  --green:     #34D399;
+  --red:       #F87171;
+  --blue:      #93C5FD;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+/* ── Light zone: everything below the hero ── */
+.light-zone{
+  --bg:        #FBF8F2;
+  --bg-2:      #F3EEE2;
+  --bg-3:      #EBE3D0;
+  --bg-card:   #FFFFFF;
+  --border:    #E2D9C3;
+  --border-2:  #D2C5A6;
+  --text:      #221B12;
+  --text-2:    #4A4332;
+  --text-3:    #6B6147;
+  --accent:    #A8650F;
+  --accent-2:  #8F5609;
+  --accent-bg: rgba(168,101,15,.08);
+  --accent-border: rgba(168,101,15,.28);
+}
+/* The product demo and the code snippet stay dark on purpose — they represent the actual dark-themed product UI, framed inside the light page like a screenshot */
+.demo-wrapper, .code-block{
+  --bg:        #1A1E2E;
+  --bg-2:      #222840;
+  --bg-3:      #2A2F48;
+  --bg-card:   #252B42;
+  --border:    #323857;
+  --border-2:  #3E4568;
+  --text:      #FAFBFE;
+  --text-2:    #CDD3EA;
+  --text-3:    #9097BC;
+  --accent:    #F59E0B;
+  --accent-2:  #FBBF24;
+  --accent-bg: rgba(245,158,11,.08);
+  --accent-border: rgba(245,158,11,.25);
+}
+body{background:var(--bg);color:var(--text);font-family:'Inter',-apple-system,sans-serif;font-weight:400;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+input[type=range]{width:100%;accent-color:var(--accent);cursor:pointer;height:2px}
+input[type=number]{font-family:'DM Mono',monospace;font-size:14px;border:1px solid var(--border-2);border-radius:2px;padding:8px 12px;color:var(--text);background:var(--bg-3);width:100%;outline:none;transition:border-color .2s}
+input[type=number]:focus{border-color:var(--accent)}
+
+/* ── Urgency banner ── */
+.urgency-banner{background:var(--accent);color:#0C0C0C;text-align:center;padding:10px 20px;font-family:'DM Mono',monospace;font-size:10px;letter-spacing:.28em;text-transform:uppercase;position:relative;z-index:200}
+
+/* ── Nav ── */
+nav{position:fixed;top:36px;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 48px;border-bottom:1px solid var(--border);background:rgba(26,30,46,.95);backdrop-filter:blur(16px)}
+.nav-logo{font-size:11px;letter-spacing:.55em;color:var(--accent);text-transform:uppercase;font-family:'DM Mono',monospace}
+.nav-links{display:flex;gap:32px}
+.nav-links a{font-size:11px;letter-spacing:.25em;color:var(--text-2);text-transform:uppercase;transition:color .2s;font-family:'DM Mono',monospace}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{font-size:11px;letter-spacing:.18em;color:#0C0C0C;background:var(--accent);padding:9px 22px;text-transform:uppercase;border-radius:1px;transition:background .2s;font-family:'DM Mono',monospace;white-space:nowrap}
+.nav-cta:hover{background:var(--accent-2)}
+
+/* ── Hero ── */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:160px 48px 80px;position:relative;overflow:hidden}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:80px 80px;opacity:.3;pointer-events:none}
+.hero-glow{position:absolute;top:20%;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse,rgba(245,158,11,.06) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:1180px;margin:0 auto;position:relative;z-index:1;width:100%}
+.hero-grid-2col{display:grid;grid-template-columns:1.05fr 0.95fr;align-items:center;gap:56px}
+@media(max-width:980px){.hero-grid-2col{grid-template-columns:1fr;text-align:center}}
+.hero-copy{text-align:left}
+@media(max-width:980px){.hero-copy{text-align:center}}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:10px;letter-spacing:.35em;color:var(--accent);text-transform:uppercase;margin-bottom:32px;font-family:'DM Mono',monospace;opacity:0;animation:fadeUp .8s .2s forwards}
+.hero-eyebrow::before{content:'';height:1px;width:40px;background:var(--accent-border)}
+@media(max-width:980px){.hero-eyebrow{justify-content:center}}
+.hero-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(36px,5vw,64px);font-weight:500;line-height:1.08;letter-spacing:-.02em;margin-bottom:28px;opacity:0;animation:fadeUp .8s .35s forwards}
+.hero-title em{font-style:italic;color:var(--accent)}
+.hero-sub{font-size:17px;color:var(--text-2);font-weight:400;line-height:1.75;max-width:480px;margin:0 0 48px;opacity:0;animation:fadeUp .8s .5s forwards}
+@media(max-width:980px){.hero-sub{margin:0 auto 48px}}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .65s forwards}
+@media(max-width:980px){.hero-actions{justify-content:center}}
+.btn-primary{padding:15px 36px;background:var(--accent);color:#0C0C0C;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;border:none;cursor:pointer;border-radius:1px;transition:all .2s;display:inline-block}
+.btn-primary:hover{background:var(--accent-2);transform:translateY(-1px)}
+.btn-ghost{padding:14px 36px;background:transparent;color:var(--text-2);font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;border:1px solid var(--border-2);cursor:pointer;border-radius:1px;transition:all .2s;display:inline-block}
+.btn-ghost:hover{border-color:var(--text-2);color:var(--text)}
+.hero-stat{margin-top:80px;display:flex;justify-content:center;flex-wrap:wrap;border:1px solid var(--border);border-radius:2px;overflow:hidden;opacity:0;animation:fadeUp .8s .8s forwards;max-width:680px;margin-left:auto;margin-right:auto}
+.stat{text-align:center;padding:24px 32px;border-right:1px solid var(--border);flex:1;min-width:120px}
+.stat:last-child{border-right:none}
+.stat-num{font-size:28px;color:var(--accent);font-weight:400;font-family:'DM Mono',monospace;display:block;line-height:1}
+.stat-label{font-size:9px;letter-spacing:.3em;color:var(--text-3);text-transform:uppercase;margin-top:6px;display:block;font-family:'DM Mono',monospace}
+.stat-source{font-size:9px;color:var(--text-3);letter-spacing:.1em;margin-top:3px;font-family:'DM Mono',monospace;display:block}
+
+/* ── Signature: hanging size tag ── */
+.tag-stage{position:relative;display:flex;align-items:center;justify-content:center;min-height:380px}
+@media(max-width:980px){.tag-stage{min-height:280px;margin-top:24px}}
+.tag-string{position:absolute;top:0;left:50%;width:1px;height:58px;background:linear-gradient(var(--border-2),transparent);transform:translateX(-50%)}
+.tag{position:relative;width:236px;background:#F4EDE1;border:1px solid #D8CCB4;padding:36px 26px 28px;text-align:center;transform:rotate(-3deg);box-shadow:0 40px 80px -20px rgba(0,0,0,.7),0 0 0 1px rgba(245,158,11,.08);animation:tagHang 6s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.tag{animation:none}}
+@keyframes tagHang{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(2deg)}}
+.tag::before{content:'';position:absolute;top:14px;left:50%;transform:translateX(-50%);width:13px;height:13px;border-radius:50%;border:1px solid #C9BC9E;background:var(--bg)}
+.tag-label{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:#8A7C5E;margin-top:16px}
+.tag-size{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-weight:600;font-size:4.6rem;line-height:1;color:#B8791E;margin:10px 0 10px}
+.tag-meta{font-family:'DM Mono',monospace;font-size:10px;color:#8A7C5E;border-top:1px dashed #D8CCB4;padding-top:14px;margin-top:6px}
+.tag-meta b{color:#B8791E;font-weight:600}
+
+/* ── Social proof ── */
+.proof-strip{background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:60px 48px}
+.proof-inner{max-width:1100px;margin:0 auto}
+.proof-counter{text-align:center;margin-bottom:40px;font-family:'DM Mono',monospace;font-size:11px}
+.proof-counter-num{color:var(--accent);letter-spacing:.35em}
+.proof-counter-sep{color:var(--text-3);margin:0 10px}
+.proof-counter-label{color:var(--text-2);letter-spacing:.2em}
+.testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);margin-bottom:40px}
+.testimonial{background:var(--bg-card);padding:32px 28px}
+.test-stars{color:var(--accent);font-size:12px;letter-spacing:3px;margin-bottom:14px}
+.test-text{font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;font-weight:500;line-height:1.7;color:var(--text);margin-bottom:20px;font-style:italic}
+.test-author{display:flex;align-items:center;gap:12px;padding-top:16px;border-top:1px solid var(--border)}
+.test-avatar{width:34px;height:34px;border-radius:50%;background:var(--bg-3);display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--accent);flex-shrink:0;border:1px solid var(--accent-border)}
+.test-name{font-size:12px;color:var(--text)}
+.test-store{font-size:9px;letter-spacing:.2em;color:var(--text-3);font-family:'DM Mono',monospace;text-transform:uppercase;margin-top:2px}
+.brand-logo{font-size:9px;letter-spacing:.35em;color:var(--text-3);text-transform:uppercase;font-family:'DM Mono',monospace;padding:7px 14px;border:1px solid var(--border);border-radius:2px}
+.brand-logos{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
+
+/* ── Sections ── */
+section{padding:100px 48px}
+.section-label{font-size:9px;letter-spacing:.5em;color:var(--accent);text-transform:uppercase;margin-bottom:16px;font-family:'DM Mono',monospace}
+.section-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(30px,4.5vw,52px);font-weight:500;line-height:1.15;letter-spacing:-.02em;margin-bottom:20px;color:var(--text)}
+.section-title em{font-style:italic;color:var(--accent)}
+.section-sub{font-size:15px;color:var(--text-2);font-weight:400;line-height:1.8;max-width:520px}
+
+/* ── How ── */
+.how{background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.how-inner{max-width:1100px;margin:0 auto}
+.how-header{margin-bottom:64px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.step{background:var(--bg-card);padding:44px 36px;transition:background .2s}
+.step:hover{background:var(--bg-3)}
+.step-num{font-family:'DM Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:.3em;margin-bottom:32px}
+.step-icon{font-size:28px;margin-bottom:20px;display:block;color:var(--accent);opacity:.7}
+.step-title{font-size:20px;font-weight:400;margin-bottom:12px;color:var(--text)}
+.step-desc{font-size:14px;color:var(--text-2);line-height:1.8;font-weight:400}
+
+/* ── Demo ── */
+.demo-section{background:var(--bg)}
+.demo-inner{max-width:1100px;margin:0 auto}
+.demo-header{margin-bottom:48px}
+.demo-wrapper{border:1px solid var(--border);border-radius:3px;overflow:hidden;background:var(--bg-2)}
+.widget{display:flex;min-height:560px}
+.widget-left{width:200px;flex-shrink:0;border-right:1px solid var(--border);padding:24px 18px;background:var(--bg-card)}
+.widget-center{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;background:var(--bg-2)}
+.widget-right{width:210px;flex-shrink:0;border-left:1px solid var(--border);padding:24px 18px;background:var(--bg-card);overflow-y:auto}
+.widget-label{font-size:10px;letter-spacing:.4em;color:var(--text-3);text-transform:uppercase;margin-bottom:18px;font-family:'DM Mono',monospace}
+.slider-row{margin-bottom:16px}
+.slider-top{display:flex;justify-content:space-between;margin-bottom:6px}
+.slider-name{font-size:9px;letter-spacing:.2em;color:var(--text-2);text-transform:uppercase;font-family:'DM Mono',monospace}
+.slider-val{font-size:13px;font-family:'DM Mono',monospace;color:var(--accent)}
+.info-box{margin-top:12px;padding:10px 12px;background:var(--bg-3);border:1px solid var(--border);border-radius:2px}
+.info-box-label{font-size:10px;color:var(--text-3);letter-spacing:.25em;text-transform:uppercase;margin-bottom:5px;font-family:'DM Mono',monospace}
+.info-box-val{font-size:13px;color:var(--text-2);font-family:'DM Mono',monospace}
+.fitmap-wrap{width:100%;max-width:620px}
+.fit-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:2px;margin-bottom:16px;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.25em;text-transform:uppercase}
+.fit-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.breakdown{width:100%;max-width:220px;margin-top:14px}
+.b-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.b-label{font-size:10px;letter-spacing:.2em;color:var(--text-3);text-transform:uppercase;width:50px;flex-shrink:0;font-family:'DM Mono',monospace}
+.b-bar{flex:1;height:2px;background:var(--bg-3);border-radius:2px;overflow:hidden}
+.b-fill{height:100%;border-radius:2px;transition:width .35s}
+.b-diff{font-size:9px;font-family:'DM Mono',monospace;width:34px;text-align:right;flex-shrink:0}
+.size-card{padding:16px;background:var(--bg-3);border:1px solid var(--border);border-radius:2px;margin-bottom:10px}
+.size-big{font-size:48px;font-family:'DM Mono',monospace;color:var(--accent);line-height:1}
+.size-sub{font-size:10px;letter-spacing:.3em;color:var(--text-3);text-transform:uppercase;margin-top:4px;margin-bottom:12px;font-family:'DM Mono',monospace}
+.size-row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border)}
+.size-row:last-child{border-bottom:none}
+.size-key{font-size:10px;color:var(--text-2);text-transform:capitalize;font-family:'DM Mono',monospace}
+.size-v{font-size:10px;font-family:'DM Mono',monospace;color:var(--text)}
+.ai-btn{width:100%;padding:10px;background:var(--accent-bg);border:1px solid var(--accent-border);color:var(--accent);cursor:pointer;font-size:9px;letter-spacing:.3em;text-transform:uppercase;border-radius:2px;font-family:'DM Mono',monospace;transition:all .2s;margin-top:6px}
+.ai-btn:hover:not(:disabled){background:rgba(245,158,11,.15);border-color:var(--accent)}
+.ai-btn:disabled{opacity:.3;cursor:default}
+.ai-result{margin-top:10px;padding:12px;background:var(--bg-3);border:1px solid var(--border);border-radius:2px}
+.ai-tag{font-size:9px;letter-spacing:.4em;color:var(--accent);text-transform:uppercase;margin-bottom:8px;font-family:'DM Mono',monospace}
+.ai-text{font-size:11px;line-height:1.8;color:var(--text-2);font-style:italic}
+.pro-note{margin-top:8px;padding:8px 10px;background:var(--bg-3);border:1px dashed var(--border-2);border-radius:2px;font-size:9px;color:var(--text-3);line-height:1.6;font-family:'DM Mono',monospace}
+.stats-bar{border-top:1px solid var(--border);display:flex;background:var(--bg-card)}
+.stats-bar-item{flex:1;padding:24px 20px;text-align:center;border-right:1px solid var(--border)}
+.stats-bar-item:last-child{border-right:none}
+.stats-bar-num{font-family:'DM Mono',monospace;font-size:22px;color:var(--accent);display:block;margin-bottom:4px}
+.stats-bar-label{font-size:10px;letter-spacing:.25em;color:var(--text-3);text-transform:uppercase;font-family:'DM Mono',monospace}
+
+/* ── Calculator ── */
+.calculator{background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.calculator-inner{max-width:900px;margin:0 auto}
+.calc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-top:48px;border:1px solid var(--border)}
+.calc-left{background:var(--bg-card);padding:40px 36px}
+.calc-right{background:var(--accent);padding:40px 36px;display:flex;flex-direction:column;justify-content:center}
+.calc-field{margin-bottom:22px}
+.calc-label{font-size:10px;letter-spacing:.3em;color:var(--text-3);text-transform:uppercase;margin-bottom:8px;font-family:'DM Mono',monospace;display:block}
+.calc-result-label{font-size:9px;letter-spacing:.3em;color:rgba(12,12,12,.6);text-transform:uppercase;margin-bottom:10px;font-family:'DM Mono',monospace}
+.calc-result-num{font-family:'DM Mono',monospace;font-size:52px;color:#0C0C0C;line-height:1;margin-bottom:10px}
+.calc-result-sub{font-size:11px;color:rgba(12,12,12,.65);line-height:1.6;font-family:'DM Mono',monospace}
+.calc-cta{display:inline-block;margin-top:28px;padding:12px 24px;background:#0C0C0C;color:var(--accent);font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.35em;text-transform:uppercase;border-radius:1px;cursor:pointer;border:none;transition:all .2s}
+.calc-cta:hover{background:#1A1E2E}
+
+/* ── Pricing ── */
+.pricing{background:var(--bg)}
+.pricing-inner{max-width:1060px;margin:0 auto}
+.pricing-header{text-align:center;margin-bottom:64px}
+.pricing-pill{display:inline-block;margin-bottom:20px;padding:6px 16px;background:var(--accent-bg);border:1px solid var(--accent-border);border-radius:2px;font-size:9px;letter-spacing:.3em;color:var(--accent);text-transform:uppercase;font-family:'DM Mono',monospace}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border)}
+.plan{background:var(--bg-card);padding:44px 36px;display:flex;flex-direction:column}
+.plan.featured{background:var(--bg-3);position:relative}
+.plan-badge{font-size:10px;letter-spacing:.4em;color:var(--accent);text-transform:uppercase;margin-bottom:20px;font-family:'DM Mono',monospace}
+.plan-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:500;color:var(--text);letter-spacing:-.01em}
+.plan-tagline{font-size:12px;color:var(--text-3);margin-top:4px;margin-bottom:24px;font-family:'DM Mono',monospace;letter-spacing:.1em}
+.plan-price-block{margin-bottom:8px}
+.plan-price{font-family:'DM Mono',monospace;font-size:52px;color:var(--accent);line-height:1}
+.plan-price sup{font-size:20px;vertical-align:top;margin-top:10px;display:inline-block}
+.plan-price-note{font-size:10px;color:var(--text-3);letter-spacing:.2em;font-family:'DM Mono',monospace;margin-top:4px}
+.plan-once-badge{display:inline-block;margin-bottom:20px;padding:4px 10px;background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);border-radius:2px;font-size:10px;letter-spacing:.3em;color:var(--green);text-transform:uppercase;font-family:'DM Mono',monospace}
+.plan-divider{height:1px;background:var(--border);margin-bottom:24px}
+.plan-feature{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;font-size:14px;color:var(--text-2);font-weight:400;line-height:1.5}
+.plan-check{color:var(--green);font-size:11px;flex-shrink:0;margin-top:2px;font-family:'DM Mono',monospace}
+.plan-x{color:var(--text-3);font-size:11px;flex-shrink:0;margin-top:2px;font-family:'DM Mono',monospace}
+.plan-btn{display:block;width:100%;padding:14px;text-align:center;font-family:'DM Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;border-radius:1px;cursor:pointer;transition:all .2s;margin-top:auto;padding-top:28px;border:none;background:transparent}
+.plan-btn-primary{background:var(--accent);color:#0C0C0C;padding:14px}
+.plan-btn-primary:hover{background:var(--accent-2)}
+.plan-btn-ghost{color:var(--text-2);border:1px solid var(--border-2)!important;padding:13px}
+.plan-btn-ghost:hover{border-color:var(--text-2)!important;color:var(--text)}
+.guarantee{margin-top:36px;padding:24px 32px;background:var(--bg-2);border:1px solid var(--border);border-radius:2px;display:flex;align-items:center;gap:20px}
+.guarantee-icon{font-size:28px;flex-shrink:0}
+.guarantee-text strong{font-size:15px;color:var(--text);font-weight:400;display:block;margin-bottom:4px}
+.guarantee-text span{font-size:13px;color:var(--text-2);line-height:1.6}
+.plan-free-note{text-align:center;margin-top:20px;font-size:12px;color:var(--text-3)}
+.plan-free-note a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+
+/* ── Integration ── */
+.integration{background:var(--bg-2);border-top:1px solid var(--border)}
+.integration-inner{max-width:900px;margin:0 auto}
+.platforms{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px}
+.platform-tag{padding:6px 14px;border:1px solid var(--border-2);border-radius:2px;font-size:9px;letter-spacing:.2em;color:var(--text-3);text-transform:uppercase;font-family:'DM Mono',monospace;transition:all .2s}
+.platform-tag:hover{border-color:var(--accent-border);color:var(--text-2)}
+.integration-note{display:flex;align-items:flex-start;gap:14px;padding:18px 20px;background:var(--bg-3);border:1px solid var(--border);border-radius:2px;margin-bottom:28px}
+.integration-note-icon{font-size:18px;flex-shrink:0;margin-top:1px;color:var(--accent)}
+.integration-note-text{font-size:14px;color:var(--text-2);line-height:1.65}
+.integration-note-text strong{color:var(--text);font-weight:400}
+.code-block{background:var(--bg-card);border:1px solid var(--border);border-radius:2px;padding:24px 28px;font-family:'DM Mono',monospace;font-size:13px;line-height:2.1;overflow-x:auto}
+.code-comment{color:var(--text-3)}
+.code-tag{color:var(--accent)}
+.code-attr{color:var(--blue)}
+.code-val{color:var(--green)}
+.code-copy{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:9px;letter-spacing:.3em;color:var(--text-3);text-transform:uppercase;font-family:'DM Mono',monospace;cursor:pointer;transition:color .2s}
+.code-copy:hover{color:var(--accent)}
+
+/* ── FAQ ── */
+.faq{background:var(--bg);border-top:1px solid var(--border)}
+.faq-inner{max-width:700px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--border);padding:22px 0;cursor:pointer}
+.faq-q{display:flex;justify-content:space-between;align-items:center;font-size:17px;font-weight:400;color:var(--text)}
+.faq-icon{font-family:'DM Mono',monospace;color:var(--accent);font-size:18px;transition:transform .3s;flex-shrink:0;margin-left:20px}
+.faq-a{font-size:14px;color:var(--text-2);line-height:1.9;font-weight:400;max-height:0;overflow:hidden;transition:max-height .35s,padding .3s}
+.faq-item.open .faq-a{max-height:220px;padding-top:14px}
+.faq-item.open .faq-icon{transform:rotate(45deg)}
+
+/* ── CTA Final ── */
+.cta-final{background:var(--bg-2);text-align:center;padding:120px 48px;border-top:1px solid var(--border);position:relative;overflow:hidden}
+.cta-glow{position:absolute;bottom:-100px;left:50%;transform:translateX(-50%);width:500px;height:300px;background:radial-gradient(ellipse,rgba(245,158,11,.06) 0%,transparent 70%);pointer-events:none}
+.cta-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(38px,6.5vw,76px);font-weight:500;line-height:1.1;margin-bottom:20px;position:relative;color:var(--text)}
+.cta-title em{font-style:italic;color:var(--accent)}
+.cta-sub{font-size:16px;color:var(--text-2);margin-bottom:44px;font-weight:400;position:relative}
+.cta-email-form{display:flex;max-width:440px;margin:0 auto 12px}
+.cta-email-input{flex:1;padding:14px 18px;border:1px solid var(--border-2);border-right:none;border-radius:1px 0 0 1px;font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--text);background:var(--bg-card);outline:none;transition:border-color .2s}
+.cta-email-input:focus{border-color:var(--accent)}
+.cta-email-btn{padding:14px 22px;background:var(--accent);color:#0C0C0C;border:none;cursor:pointer;font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.3em;text-transform:uppercase;border-radius:0 1px 1px 0;transition:background .2s;white-space:nowrap}
+.cta-email-btn:hover{background:var(--accent-2)}
+.cta-email-note{font-size:9px;color:var(--text-3);letter-spacing:.2em;font-family:'DM Mono',monospace;position:relative}
+.cta-divider{margin:32px auto;max-width:440px;display:flex;align-items:center;gap:14px;position:relative}
+.cta-divider-line{flex:1;height:1px;background:var(--border)}
+.cta-divider-text{font-size:9px;letter-spacing:.3em;color:var(--text-3);text-transform:uppercase;font-family:'DM Mono',monospace}
+
+/* ── Footer ── */
+footer{border-top:1px solid var(--border);padding:64px 48px 32px;background:var(--bg)}
+.footer-top{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.3fr repeat(3,1fr);gap:40px;padding-bottom:48px}
+@media(max-width:760px){.footer-top{grid-template-columns:1fr 1fr;row-gap:36px}}
+.footer-wordmark{font-size:11px;letter-spacing:.45em;color:var(--accent);text-transform:uppercase;font-family:'DM Mono',monospace;display:block;margin-bottom:16px}
+.footer-tag{color:var(--text-2);font-size:14px;max-width:30ch;line-height:1.6}
+.footer-integrations{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.footer-integrations span{border:1px solid var(--border);padding:6px 12px;font-size:9px;letter-spacing:.1em;color:var(--text-3);font-family:'DM Mono',monospace;border-radius:2px}
+.footer-col h4{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+.footer-col a{display:block;color:var(--text-2);font-size:13px;margin-bottom:12px;transition:color .2s}
+.footer-col a:hover{color:var(--accent)}
+.footer-bottom{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;padding-top:28px;border-top:1px solid var(--border);font-size:11px;color:var(--text-3);flex-wrap:wrap;gap:14px;font-family:'DM Mono',monospace;letter-spacing:.05em}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:none}
+
+@media(max-width:768px){
+  .urgency-banner{font-size:10px;padding:8px 12px;letter-spacing:.12em}
+  nav{padding:14px 20px;top:48px}
+  .nav-links{display:none}
+  section{padding:64px 20px}
+  .hero{padding:140px 20px 60px}
+  .hero-stat{flex-direction:column}
+  .stat{border-right:none;border-bottom:1px solid var(--border)}
+  .stat:last-child{border-bottom:none}
+  .steps,.testimonials,.plans{grid-template-columns:1fr}
+  .widget{flex-direction:column}
+  .widget-left,.widget-right{width:100%;border-right:none;border-left:none;border-bottom:1px solid var(--border)}
+  .calc-grid{grid-template-columns:1fr}
+  .guarantee{flex-direction:column;gap:12px}
+  footer{padding:48px 20px 24px}
+  .footer-bottom{flex-direction:column;text-align:center;gap:8px}
+  .cta-email-form{flex-direction:column}
+  .cta-email-input{border-right:1px solid var(--border-2);border-bottom:none;border-radius:1px 1px 0 0}
+  .cta-email-btn{border-radius:0 0 1px 1px}
+}
+</style>
+</head>
+<body>
+
+<!-- Urgency banner -->
+<div class="urgency-banner">
+  Precio de lanzamiento — El plan Pro sube a $69 USD el 1 de agosto &nbsp;·&nbsp; Quedan <span id="cupos-counter">7</span> cupos con onboarding personalizado
+</div>
+
+<!-- Nav -->
+<nav>
+  <span class="nav-logo">TalleExacto</span>
+  <div class="nav-links">
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#demo">Demo</a>
+    <a href="#precios">Precios</a>
+    <a href="#integracion">Integración</a>
+  </div>
+  <a href="#precios" class="nav-cta">Quiero Menos Devoluciones</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-grid-2col">
+      <div class="hero-copy">
+        <p class="hero-eyebrow">Probador Inteligente para E-Commerce de Moda</p>
+        <h1 class="hero-title">El 40% de tus ventas se cancela por dudas con el talle.<br/><em>TalleExacto lo resuelve en 30 segundos.</em></h1>
+        <p class="hero-sub">Tu cliente ingresa sus medidas, TalleExacto le dice exactamente qué talle pedir. Sin dudas, sin devoluciones, sin ventas perdidas.</p>
+        <div class="hero-actions">
+          <a href="#demo" class="btn-primary">Ver Demo en Vivo</a>
+          <a href="#precios" class="btn-ghost">Instalar en mi Tienda — es gratis</a>
+        </div>
+      </div>
+      <div class="tag-stage">
+        <div class="tag-string"></div>
+        <div class="tag">
+          <div class="tag-label">Talle recomendado</div>
+          <div class="tag-size">M</div>
+          <div class="tag-meta">Coincidencia <b>97%</b> · Vestido Midi</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-stat">
+      <div class="stat"><span class="stat-num">-30%</span><span class="stat-label">Devoluciones</span><span class="stat-source">Promedio primer mes</span></div>
+      <div class="stat"><span class="stat-num">+24%</span><span class="stat-label">Conversión</span><span class="stat-source">150+ tiendas activas</span></div>
+      <div class="stat"><span class="stat-num">2min</span><span class="stat-label">Instalación</span><span class="stat-source">Sin código</span></div>
+      <div class="stat"><span class="stat-num">0</span><span class="stat-label">Datos guardados</span><span class="stat-source">Todo en el navegador</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="light-zone">
+
+<!-- Social Proof -->
+<div class="proof-strip reveal">
+  <div class="proof-inner">
+    <div class="proof-counter">
+      <span class="proof-counter-num">+150 tiendas</span>
+      <span class="proof-counter-sep">·</span>
+      <span class="proof-counter-label">Argentina, México y Chile</span>
+    </div>
+    <div class="testimonials">
+      <div class="testimonial">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Bajé mis devoluciones un 28% en el primer mes. Mis clientas ahora compran con una seguridad que antes no tenían."</p>
+        <div class="test-author"><div class="test-avatar">M</div><div><div class="test-name">Magalí Torres</div><div class="test-store">Maite Indumentaria · Rosario</div></div></div>
+      </div>
+      <div class="testimonial">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Lo pegué en Tiendanube en dos minutos. Mis clientes preguntan mucho menos por WhatsApp qué talle pedir."</p>
+        <div class="test-author"><div class="test-avatar">V</div><div><div class="test-name">Valentina Ríos</div><div class="test-store">Valerie Studio · CABA</div></div></div>
+      </div>
+      <div class="testimonial">
+        <div class="test-stars">★★★★★</div>
+        <p class="test-text">"Manejo 5 tiendas con el plan Store. El dashboard me ahorra horas. Soporte respondió en menos de una hora."</p>
+        <div class="test-author"><div class="test-avatar">F</div><div><div class="test-name">Facundo Herrera</div><div class="test-store">Agencia Textil Sur · Córdoba</div></div></div>
+      </div>
+    </div>
+    <div class="brand-logos">
+      <span class="brand-logo">Tiendanube</span>
+      <span class="brand-logo">WooCommerce</span>
+      <span class="brand-logo">PrestaShop</span>
+      <span class="brand-logo">Shopify</span>
+      <span class="brand-logo">Elementor</span>
+    </div>
+  </div>
+</div>
+
+<!-- How it works -->
+<section class="how" id="como-funciona">
+  <div class="how-inner">
+    <div class="how-header reveal">
+      <p class="section-label">Cómo Funciona</p>
+      <h2 class="section-title">Tres pasos.<br/><em>Una decisión correcta.</em></h2>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-num">01 ——</div>
+        <span class="step-icon">◎</span>
+        <h3 class="step-title">El cliente ingresa sus medidas</h3>
+        <p class="step-desc">Busto, cintura y caderas en centímetros. Sin registros, sin fotos, sin fricción. Treinta segundos y listo.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:.1s">
+        <div class="step-num">02 ——</div>
+        <span class="step-icon">◈</span>
+        <h3 class="step-title">TalleExacto calcula el talle ideal</h3>
+        <p class="step-desc">El algoritmo compara las medidas con la tabla real de la prenda y detecta si el talle le va a quedar perfecto, ajustado o holgado en cada zona.</p>
+      </div>
+      <div class="step reveal" style="transition-delay:.2s">
+        <div class="step-num">03 ——</div>
+        <span class="step-icon">◆</span>
+        <h3 class="step-title">Compra con confianza</h3>
+        <p class="step-desc">El talle recomendado se aplica automáticamente en la página de producto. El cliente compra sabiendo que le va a quedar bien.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Demo -->
+<section class="demo-section" id="demo">
+  <div class="demo-inner">
+    <div class="demo-header reveal">
+      <p class="section-label">Demo en Vivo</p>
+      <h2 class="section-title">Probalo ahora<br/><em>con tus medidas reales.</em></h2>
+      <p class="section-sub" style="margin-top:12px">Mové los sliders y mirá cómo el sistema calcula el talle en tiempo real.</p>
+    </div>
+    <div class="demo-wrapper reveal" style="transition-delay:.1s">
+      <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 22px;border-bottom:1px solid var(--border);background:var(--bg-card)">
+        <span style="font-size:9px;letter-spacing:.5em;color:var(--accent);text-transform:uppercase;font-family:'DM Mono',monospace">TalleExacto</span>
+        <span style="font-size:10px;letter-spacing:.2em;color:var(--text-2);font-family:'DM Mono',monospace">Vestido Midi · NOMA Studio</span>
+        <span style="font-size:9px;color:var(--text-3);font-family:'DM Mono',monospace">widget v2</span>
+      </div>
+      <div class="widget">
+        <div class="widget-left">
+          <div class="widget-label">Tus Medidas</div>
+          <div class="slider-row"><div class="slider-top"><span class="slider-name">Altura</span><span class="slider-val" id="v-height">165 cm</span></div><input type="range" min="148" max="192" value="165" id="s-height"/></div>
+          <div class="slider-row"><div class="slider-top"><span class="slider-name">Busto</span><span class="slider-val" id="v-bust">88 cm</span></div><input type="range" min="76" max="116" value="88" id="s-bust"/></div>
+          <div class="slider-row"><div class="slider-top"><span class="slider-name">Cintura</span><span class="slider-val" id="v-waist">70 cm</span></div><input type="range" min="58" max="104" value="70" id="s-waist"/></div>
+          <div class="slider-row"><div class="slider-top"><span class="slider-name">Caderas</span><span class="slider-val" id="v-hips">96 cm</span></div><input type="range" min="82" max="124" value="96" id="s-hips"/></div>
+          <div class="info-box"><div class="info-box-label">Silueta</div><div class="info-box-val" id="body-type">Reloj de Arena</div></div>
+          <div class="info-box"><div class="info-box-label">C/C Ratio</div><div class="info-box-val" id="cc-ratio">0.73</div></div>
+        </div>
+        <div class="widget-center">
+          <div class="fit-badge" id="fit-badge"><div class="fit-dot" id="fit-dot"></div><span id="fit-label"></span><span style="color:var(--text-3)">·</span><span id="fit-size" style="font-size:14px;font-weight:bold;font-family:'DM Mono',monospace"></span></div>
+          <div class="fitmap-wrap">
+            <svg viewBox="0 0 160 172" style="width:100%;max-height:500px">
+              <defs>
+                <linearGradient id="bodyGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#2A2F48"/><stop offset="100%" stop-color="#252B42"/></linearGradient>
+                <linearGradient id="bodyGradHl" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#323857" stop-opacity=".5"/><stop offset="50%" stop-color="#3E4568" stop-opacity=".15"/><stop offset="100%" stop-color="#323857" stop-opacity=".5"/></linearGradient>
+              </defs>
+              <path id="body-path" fill="url(#bodyGrad)" stroke="#3E4568" stroke-width=".8"/>
+              <path id="body-path-hl" fill="url(#bodyGradHl)" stroke="none" opacity=".6"/>
+              <g id="bar-bust"></g><g id="bar-waist"></g><g id="bar-hips"></g>
+              <!-- maniquí stand -->
+              <rect x="75" y="132" width="10" height="22" fill="#252B42" stroke="#3E4568" stroke-width=".6"/>
+              <rect x="58" y="152" width="44" height="7" rx="2" fill="#252B42" stroke="#3E4568" stroke-width=".6"/>
+              <text x="4" y="58" fill="#5C6490" font-size="7" font-family="monospace">BUSTO</text>
+              <text x="4" y="88" fill="#5C6490" font-size="7" font-family="monospace">CINTURA</text>
+              <text x="4" y="116" fill="#5C6490" font-size="7" font-family="monospace">CADERA</text>
+            </svg>
+          </div>
+          <div class="breakdown" id="breakdown"></div>
+          <div style="margin-top:12px;display:flex;gap:16px;font-size:9px;color:var(--text-3);font-family:'DM Mono',monospace"><span>━━ Tu medida</span><span style="opacity:.5">╌╌ Prenda</span></div>
+        </div>
+        <div class="widget-right">
+          <div class="widget-label">Resultado</div>
+          <div class="size-card"><div class="size-big" id="result-size">M</div><div class="size-sub">Talle Recomendado</div><div id="size-details"></div></div>
+          <div style="padding:12px;background:var(--bg-3);border:1px solid var(--border);border-radius:2px;margin-bottom:10px"><div style="font-size:10px;color:var(--text-3);letter-spacing:.35em;text-transform:uppercase;margin-bottom:8px;font-family:'DM Mono',monospace">Talles Disponibles</div><div style="display:flex;gap:5px;flex-wrap:wrap" id="size-pills"></div></div>
+          <button class="ai-btn" id="ai-btn" onclick="getAdvice()">✦ Consejo de Estilista IA</button>
+          <div id="ai-result" style="display:none" class="ai-result"><div class="ai-tag">Estilista IA</div><p class="ai-text" id="ai-text"></p></div>
+          <div class="pro-note">IA activa con plan Pro</div>
+        </div>
+      </div>
+      <div class="stats-bar">
+        <div class="stats-bar-item"><span class="stats-bar-num">0.3s</span><span class="stats-bar-label">Cálculo</span></div>
+        <div class="stats-bar-item"><span class="stats-bar-num">5</span><span class="stats-bar-label">Talles</span></div>
+        <div class="stats-bar-item"><span class="stats-bar-num">3</span><span class="stats-bar-label">Zonas</span></div>
+        <div class="stats-bar-item"><span class="stats-bar-num">0</span><span class="stats-bar-label">Datos guardados</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Calculator -->
+<section class="calculator" id="calculadora">
+  <div class="calculator-inner">
+    <div class="reveal">
+      <p class="section-label">Calculadora de Pérdida</p>
+      <h2 class="section-title">¿Cuánto te están costando<br/><em>las devoluciones?</em></h2>
+      <p class="section-sub" style="margin-top:12px">Ingresá los números de tu tienda. El resultado es lo que TalleExacto puede devolverte.</p>
+    </div>
+    <div class="calc-grid reveal" style="transition-delay:.15s">
+      <div class="calc-left">
+        <div class="calc-field"><label class="calc-label" for="calc-ventas">Ventas mensuales (unidades)</label><input type="number" id="calc-ventas" value="100" min="1" oninput="calcLoss()"/></div>
+        <div class="calc-field"><label class="calc-label" for="calc-tasa">Tasa de devolución por talle (%)</label><input type="number" id="calc-tasa" value="18" min="0" max="100" oninput="calcLoss()"/></div>
+        <div class="calc-field"><label class="calc-label" for="calc-ticket">Ticket promedio (USD)</label><input type="number" id="calc-ticket" value="35" min="1" oninput="calcLoss()"/></div>
+        <div class="calc-field" style="margin-bottom:0"><label class="calc-label" for="calc-costo">Costo logístico por devolución (USD)</label><input type="number" id="calc-costo" value="8" min="0" oninput="calcLoss()"/></div>
+      </div>
+      <div class="calc-right">
+        <div class="calc-result-label">Tu pérdida mensual estimada</div>
+        <div class="calc-result-num" id="calc-result">USD 0</div>
+        <div class="calc-result-sub" id="calc-breakdown">—</div>
+        <button class="calc-cta" onclick="window.location='#precios'">Recuperar esas ventas →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="pricing" id="precios">
+  <div class="pricing-inner">
+    <div class="pricing-header reveal">
+      <div class="pricing-pill">Pago único · sin suscripción · sin sorpresas</div>
+      <p class="section-label">Planes</p>
+      <h2 class="section-title">Pagás <em>una vez.</em><br/>Lo usás para siempre.</h2>
+      <p style="font-size:15px;color:var(--text-2);margin-top:14px;font-weight:400;line-height:1.7">Sin renovaciones automáticas. Sin cuotas en dólares todos los meses.<br/>Instalás, funciona, y listo.</p>
+    </div>
+    <div class="plans">
+      <!-- Básico -->
+      <div class="plan reveal">
+        <div class="plan-badge">Para empezar</div>
+        <div class="plan-name">Básico</div>
+        <div class="plan-tagline">Tu primera tienda, gratis</div>
+        <div class="plan-price-block"><div class="plan-price"><sup>$</sup>0</div><div class="plan-price-note">USD · siempre gratis</div></div>
+        <div class="plan-once-badge">Sin tarjeta de crédito</div>
+        <div class="plan-divider"></div>
+        <div class="plan-feature"><span class="plan-check">✓</span>Recomendador de talle</div>
+        <div class="plan-feature"><span class="plan-check">✓</span>FitMap visual en tiempo real</div>
+        <div class="plan-feature"><span class="plan-check">✓</span>1 tienda · hasta 20 productos</div>
+        <div class="plan-feature"><span class="plan-check">✓</span>Tabla de talles genérica estándar</div>
+        <div class="plan-feature"><span class="plan-x">✗</span>Tabla personalizada de tu marca</div>
+        <div class="plan-feature"><span class="plan-x">✗</span>Estilista IA</div>
+        <div class="plan-feature"><span class="plan-x">✗</span>Analytics de talles</div>
+        <a href="#cta-final" class="plan-btn plan-btn-ghost">Instalar Gratis</a>
+      </div>
+      <!-- Pro -->
+      <div class="plan featured reveal" style="transition-delay:.1s">
+        <div class="plan-badge">⭑ Más popular</div>
+        <div class="plan-name">Pro</div>
+        <div class="plan-tagline">Una tienda, todo incluido</div>
+        <div class="plan-price-block"><div class="plan-price"><sup>$</sup>49</div><div class="plan-price-note">USD · pago único para siempre</div></div>
+        <div class="plan-once-badge">Pagás una vez · usás siempre</div>
+        <div class="plan-divider"></div>
+        <div class="plan-feature"><span class="plan-check">✓</span>Todo lo del plan Básico</div>
+        <div class="plan-feature"><span class="plan-check">✓</span>Productos ilimitados</div>
+        <div class="plan-feature"><span class="plan-check">✓</span>Tabla de talles de tu marca</div>
+        <div class="plan-feature"><span class="plan-check">✓</span>Estilista IA personalizada</div>
+        <div class="plan-feature"><span class="plan-check">✓</span>Analytics de talles</div>
+        <div class="plan-feature"><span class="plan-check">✓</span>Soporte prioritario</div>
+        <div class="plan-feature"><span class="plan-x">✗</span>White label</div>
+        <a href="https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=120074805-92c73d0f-19cd-488d-97d7-e294b6f60348" target="_blank" class="plan-btn plan-btn-primary">Comprar Pro — $49 único</a>
+      </div>
+      <!-- Store -->
+      <div class="plan reveal" style="transition-delay:.2s">
+        <div class="plan-badge">Para agencias</div>
+        <div class="plan-name">Store</div>
+        <div class="plan-tagline">Hasta 5 tiendas en un pago</div>
+        <div class="plan-price-block"><div class="plan-price"><sup>$</sup>99</div><div class="plan-price-note">USD · pago único para siempre</div></div>
+        <div class="plan-once-badge">Pagás una vez · usás siempre</div>
+        <div class="plan-divider"></div>
+        <div class="plan-feature"><span class="plan-check">✓</span>Todo lo del plan Pro</div>
+        <div class="plan-feature"><span class="plan-check">✓</span>Hasta 5 tiendas</div>
+        <div class="plan-feature"><span class="plan-check">✓</span>Tabla de talles por producto</div>
+        <div class="plan-feature"><span class="plan-check">✓</span>White label (tu marca)</div>
+        <div class="plan-feature"><span class="plan-check">✓</span>Dashboard multi-tienda</div>
+        <div class="plan-feature"><span class="plan-check">✓</span>Onboarding personalizado</div>
+        <div class="plan-feature"><span class="plan-check">✓</span>API access</div>
+        <a href="https://www.mercadopago.com.ar/checkout/v1/redirect?pref_id=120074805-5f15dc0c-2602-44ff-bd85-f1863b411e15" target="_blank" class="plan-btn plan-btn-ghost">Comprar Store — $99 único</a>
+      </div>
+    </div>
+    <div class="guarantee reveal">
+      <span class="guarantee-icon">◎</span>
+      <div class="guarantee-text">
+        <strong>Garantía de 30 días sin preguntas</strong>
+        <span>Si en los primeros 30 días TalleExacto no reduce tus devoluciones, te devolvemos el dinero. Sin formularios, sin excusas. Una sola devolución evitada ya cubre el costo del plan Pro.</span>
+      </div>
+    </div>
+    <p class="plan-free-note">¿Todavía no estás seguro? <a href="mailto:atomicaclick@gmail.com?subject=Quiero probar TalleExacto gratis">Empezá con el plan gratuito</a>, sin tarjeta de crédito.</p>
+  </div>
+</section>
+
+<!-- Integration -->
+<section class="integration" id="integracion">
+  <div class="integration-inner">
+    <div class="reveal">
+      <p class="section-label">Integración</p>
+      <h2 class="section-title">Si sabés pegar texto,<br/><em>ya sabés instalar TalleExacto.</em></h2>
+      <p class="section-sub" style="margin-top:12px;margin-bottom:28px">Dos líneas de código. Cualquier plataforma. Sin tocar el backend.</p>
+    </div>
+    <div class="integration-note reveal">
+      <span class="integration-note-icon">◎</span>
+      <p class="integration-note-text"><strong>¿No sos técnico?</strong> No importa. Si podés editar el texto de tu tienda, podés instalar TalleExacto. Y si preferís, <strong>nosotros lo instalamos por vos</strong> sin costo adicional.</p>
+    </div>
+    <div class="platforms reveal">
+      <span class="platform-tag">WooCommerce</span>
+      <span class="platform-tag">Tiendanube</span>
+      <span class="platform-tag">PrestaShop</span>
+      <span class="platform-tag">Shopify</span>
+      <span class="platform-tag">HTML Custom</span>
+      <span class="platform-tag">Elementor</span>
+    </div>
+    <!-- TODO (Adriana): confirmar que widget.js valida data-store contra la base de clientes pagos antes de servir el widget. Si no valida, cualquiera puede copiar este snippet y usar el servicio gratis. Ver auditoría de seguridad pendiente. -->
+    <div class="code-block reveal">
+      <span class="code-comment">&lt;!-- TalleExacto Widget — talleexacto.atomica.click --&gt;</span><br/>
+      <span class="code-tag">&lt;script </span><span class="code-attr">src</span>=<span class="code-val">"https://talleexacto.atomica.click/widget.js"</span><span class="code-tag">&gt;&lt;/script&gt;</span><br/>
+      <span class="code-tag">&lt;div </span><span class="code-attr">id</span>=<span class="code-val">"talleexacto"</span> <span class="code-attr">data-store</span>=<span class="code-val">"tu-tienda"</span><span class="code-tag">&gt;&lt;/div&gt;</span>
+    </div>
+    <div class="code-copy reveal" id="copy-btn" onclick="copySnippet()">⌘ Copiar snippet</div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <div class="reveal" style="margin-bottom:44px">
+      <p class="section-label">Preguntas Frecuentes</p>
+      <h2 class="section-title"><em>Todo lo que</em> necesitás saber.</h2>
+    </div>
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')"><div class="faq-q">¿Qué significa "pago único"?<span class="faq-icon">+</span></div><div class="faq-a">Pagás una vez y TalleExacto funciona en tu tienda para siempre. Sin renovaciones automáticas, sin suscripciones mensuales en dólares. Si en el futuro lanzamos mejoras importantes del plan Pro, te las ofrecemos a precio especial, pero nunca te cobramos sin que vos lo decidas.</div></div>
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')"><div class="faq-q">¿Cómo obtengo las medidas de mis prendas?<span class="faq-icon">+</span></div><div class="faq-a">Te enviamos una plantilla para que cargues las medidas reales de cada talle de cada prenda. Es un proceso de 5 minutos por producto. También podemos ayudarte a cargarlas si tenés un catálogo grande.</div></div>
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')"><div class="faq-q">¿Funciona en mobile?<span class="faq-icon">+</span></div><div class="faq-a">Sí, TalleExacto está optimizado para mobile. La mayoría del tráfico de e-commerce es desde el celular y la experiencia está diseñada para eso.</div></div>
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')"><div class="faq-q">¿Cuánto tarda la instalación?<span class="faq-icon">+</span></div><div class="faq-a">Dos minutos si tenés acceso al HTML de tu tienda. Para WooCommerce y Tiendanube tenemos guías paso a paso. Si preferís, nosotros hacemos la instalación sin costo adicional.</div></div>
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')"><div class="faq-q">¿Qué pasa si no me reduce las devoluciones?<span class="faq-icon">+</span></div><div class="faq-a">Tenés 30 días de garantía sin preguntas. Si no ves resultados, te devolvemos el dinero. Pero en promedio, las tiendas ven resultados en las primeras dos semanas.</div></div>
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')"><div class="faq-q">¿Los datos de mis clientes son seguros?<span class="faq-icon">+</span></div><div class="faq-a">TalleExacto no guarda ningún dato personal del comprador. Las medidas se procesan en tiempo real en el navegador y nunca se almacenan en nuestros servidores.</div></div>
+  </div>
+</section>
+
+<!-- CTA Final -->
+<section class="cta-final" id="cta-final">
+  <div class="cta-glow"></div>
+  <h2 class="cta-title reveal">Menos devoluciones.<br/><em>Más ventas.</em></h2>
+  <p class="cta-sub reveal">Pagás una vez. Lo usás para siempre. Con garantía de 30 días.</p>
+  <div class="reveal">
+    <form id="free-form" onsubmit="handleFreeSubmit(event)" style="max-width:440px;margin:0 auto">
+      <input type="text" id="free-nombre" placeholder="Tu nombre (opcional)" style="width:100%;padding:12px 18px;border:1px solid var(--border-2);border-radius:1px;font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--text);background:var(--bg-card);outline:none;margin-bottom:10px"/>
+      <input type="email" id="free-email" placeholder="tu@tienda.com" required style="width:100%;padding:12px 18px;border:1px solid var(--border-2);border-radius:1px;font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--text);background:var(--bg-card);outline:none;margin-bottom:10px"/>
+      <select id="free-plataforma" required style="width:100%;padding:12px 18px;border:1px solid var(--border-2);border-radius:1px;font-family:'DM Mono',monospace;font-size:12px;letter-spacing:.1em;color:var(--text-2);background:var(--bg-card);outline:none;margin-bottom:14px;cursor:pointer">
+        <option value="" disabled selected>¿Qué plataforma usás?</option>
+        <option value="tiendanube">Tiendanube</option>
+        <option value="woocommerce">WooCommerce</option>
+        <option value="shopify">Shopify</option>
+        <option value="prestashop">PrestaShop</option>
+        <option value="otra">Otra</option>
+      </select>
+      <button type="submit" id="free-btn" class="cta-email-btn" style="width:100%;border-radius:1px">Recibir Guía de Instalación Gratis</button>
+    </form>
+    <p class="cta-email-note" id="cta-email-msg" style="margin-top:12px">Te mandamos las instrucciones exactas para tu plataforma. Sin compromiso.</p>
+    <div class="cta-divider"><div class="cta-divider-line"></div><span class="cta-divider-text">o</span><div class="cta-divider-line"></div></div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="#demo" class="btn-ghost">Ver Demo Otra Vez</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <span class="footer-wordmark">TalleExacto</span>
+      <p class="footer-tag">Probador de talles inteligente para tiendas de moda que quieren vender más y devolver menos.</p>
+      <div class="footer-integrations">
+        <span>WooCommerce</span><span>Tiendanube</span><span>Shopify</span><span>PrestaShop</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Producto</h4>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#demo">Demo en vivo</a>
+      <a href="#precios">Precios</a>
+      <a href="#integracion">Integración</a>
+    </div>
+    <div class="footer-col">
+      <h4>Compañía</h4>
+      <a href="https://atomica.click" target="_blank">Sobre Atómica</a>
+      <a href="#faq">Preguntas frecuentes</a>
+      <a href="mailto:atomicaclick@gmail.com">Contacto</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Términos de servicio</a>
+      <a href="#">Privacidad</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Atómica · talleexacto.atomica.click</span>
+    <span>Hecho en Posadas, Misiones 🇦🇷</span>
+  </div>
+</footer>
+
+</div>
+
+<script>
+const SIZES={XS:{bust:80,waist:62,hips:88},S:{bust:84,waist:66,hips:92},M:{bust:88,waist:70,hips:96},L:{bust:92,waist:74,hips:100},XL:{bust:96,waist:78,hips:104}};
+const FC={perfect:'#34D399',tight:'#F87171',loose:'#93C5FD'};
+const FL={perfect:'Talle Ideal',tight:'Muy Ajustado',loose:'Holgado'};
+let state={height:165,bust:88,waist:70,hips:96};
+function calcFit(u){let best='M',bestScore=Infinity;for(const[sz,d]of Object.entries(SIZES)){const s=(u.bust-d.bust)**2+(u.waist-d.waist)**2+(u.hips-d.hips)**2;if(s<bestScore){bestScore=s;best=sz;}}const d=SIZES[best];const details={bust:{diff:u.bust-d.bust,val:d.bust},cintura:{diff:u.waist-d.waist,val:d.waist},caderas:{diff:u.hips-d.hips,val:d.hips}};const tight=Object.values(details).some(x=>x.diff>4);const loose=Object.values(details).some(x=>x.diff<-4);return{size:best,level:tight?'tight':loose?'loose':'perfect',details};}
+function bodyType(m){const bh=m.bust/m.hips,wh=m.waist/m.hips;if(wh<.75&&Math.abs(bh-1)<.07)return'Reloj de Arena';if(bh>1.06)return'Triángulo Inv.';if(m.hips>m.bust+6)return'Triángulo';if(wh>.86)return'Rectángulo';return'Óvalo';}
+function buildBody(m){const cx=80;const buW=21+(m.bust-88)*.28,waW=12+(m.waist-70)*.22,hiW=24+(m.hips-96)*.28;const shW=Math.max(buW+5,24);const p=[`M${cx-8} 18`,`C${cx-14} 19 ${cx-shW} 24 ${cx-shW} 32`,`C${cx-shW} 43 ${cx-buW} 50 ${cx-buW} 60`,`C${cx-buW} 74 ${cx-waW} 82 ${cx-waW} 90`,`C${cx-waW} 100 ${cx-hiW} 107 ${cx-hiW} 115`,`L${cx-hiW} 132`,`L${cx+hiW} 132`,`L${cx+hiW} 115`,`C${cx+hiW} 107 ${cx+waW} 100 ${cx+waW} 90`,`C${cx+waW} 82 ${cx+buW} 74 ${cx+buW} 60`,`C${cx+buW} 50 ${cx+shW} 43 ${cx+shW} 32`,`C${cx+shW} 24 ${cx+14} 19 ${cx+8} 18`,`Q${cx} 24 ${cx-8} 18`,`Z`].join(' ');document.getElementById('body-path-hl').setAttribute('d',p);return p;}
+function buildBar(y,uHW,gHW,color){return `<line x1="${80-gHW}" y1="${y}" x2="${80+gHW}" y2="${y}" stroke="${color}" stroke-width=".8" stroke-dasharray="3,2" opacity=".3"/><line x1="${80-uHW}" y1="${y}" x2="${80+uHW}" y2="${y}" stroke="${color}" stroke-width="2.5" stroke-linecap="round"/><circle cx="${80-uHW}" cy="${y}" r="2.5" fill="${color}"/><circle cx="${80+uHW}" cy="${y}" r="2.5" fill="${color}"/>`;}
+function render(){const m=state,fit=calcFit(m),fc=FC[fit.level],sc=0.55;document.getElementById('body-path').setAttribute('d',buildBody(m));[[60,m.bust*sc*.5,SIZES[fit.size].bust*sc*.5,'bar-bust'],[90,m.waist*sc*.5,SIZES[fit.size].waist*sc*.5,'bar-waist'],[115,m.hips*sc*.5,SIZES[fit.size].hips*sc*.5,'bar-hips']].forEach(([y,uHW,gHW,id])=>{document.getElementById(id).innerHTML=buildBar(y,uHW,gHW,fc);});const badge=document.getElementById('fit-badge');badge.style.border=`1px solid ${fc}40`;badge.style.background=`${fc}12`;document.getElementById('fit-dot').style.background=fc;const lbl=document.getElementById('fit-label');lbl.style.color=fc;lbl.style.fontFamily="'DM Mono',monospace";lbl.textContent=FL[fit.level];const fsz=document.getElementById('fit-size');fsz.style.color=fc;fsz.textContent=fit.size;document.getElementById('breakdown').innerHTML=Object.entries(fit.details).map(([key,d])=>{const dc=Math.abs(d.diff)<=3?FC.perfect:d.diff>3?FC.tight:FC.loose;const pct=Math.max(5,100-Math.abs(d.diff)*12);const sign=d.diff===0?'±0':d.diff>0?'+'+d.diff:String(d.diff);return `<div class="b-row"><span class="b-label">${key}</span><div class="b-bar"><div class="b-fill" style="width:${pct}%;background:${dc}"></div></div><span class="b-diff" style="color:${dc}">${sign}cm</span></div>`;}).join('');document.getElementById('result-size').style.color=fc;document.getElementById('result-size').textContent=fit.size;document.getElementById('size-details').innerHTML=Object.entries(fit.details).map(([k,d])=>`<div class="size-row"><span class="size-key">${k}</span><span class="size-v">${d.val}cm</span></div>`).join('');document.getElementById('size-pills').innerHTML=Object.keys(SIZES).map(sz=>{const a=sz===fit.size;return `<div style="padding:4px 9px;border:1px solid ${a?fc:'var(--border-2)'};background:${a?`${fc}15`:'transparent'};border-radius:2px;font-size:10px;color:${a?fc:'var(--text-3)'};font-family:'DM Mono',monospace">${sz}</div>`;}).join('');document.getElementById('body-type').textContent=bodyType(m);document.getElementById('cc-ratio').textContent=(m.waist/m.hips).toFixed(2);}
+['height','bust','waist','hips'].forEach(k=>{const s=document.getElementById(`s-${k}`),v=document.getElementById(`v-${k}`);s.addEventListener('input',()=>{state[k]=+s.value;v.textContent=s.value+' cm';render();document.getElementById('ai-result').style.display='none';});});
+async function getAdvice(){const btn=document.getElementById('ai-btn'),result=document.getElementById('ai-result'),text=document.getElementById('ai-text');btn.disabled=true;btn.textContent='Analizando...';result.style.display='none';try{const fit=calcFit(state);const r=await fetch('/api/proxy.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,messages:[{role:'user',content:`Estilista editorial. Medidas: busto ${state.bust}cm, cintura ${state.waist}cm, cadera ${state.hips}cm. Tipo: ${bodyType(state)}. Vestido midi, talle ${fit.size}, ajuste ${fit.level==='perfect'?'perfecto':fit.level==='tight'?'ajustado':'holgado'}. 3 consejos de estilo, máx 12 palabras cada uno, empezar con verbo, sin emojis, tono Vogue Argentina.`}]})});const d=await r.json();text.textContent=d.content?.[0]?.text||'Sin respuesta.';result.style.display='block';}catch{text.textContent='Activá el plan Pro para usar el estilista IA.';result.style.display='block';}btn.disabled=false;btn.textContent='✦ Consejo de Estilista IA';}
+function calcLoss(){const v=+document.getElementById('calc-ventas').value||0,t=+document.getElementById('calc-tasa').value||0,ti=+document.getElementById('calc-ticket').value||0,c=+document.getElementById('calc-costo').value||0;const devs=Math.round(v*(t/100)),pv=devs*ti*0.3,pl=devs*c,total=Math.round(pv+pl);document.getElementById('calc-result').textContent=`USD ${total.toLocaleString('es-AR')}`;document.getElementById('calc-breakdown').textContent=`${devs} devoluciones/mes · USD ${Math.round(pv).toLocaleString('es-AR')} en ventas perdidas · USD ${Math.round(pl).toLocaleString('es-AR')} en logística`;}
+async function handleFreeSubmit(e){e.preventDefault();const btn=document.getElementById('free-btn'),msg=document.getElementById('cta-email-msg');btn.disabled=true;btn.textContent='Enviando...';try{const r=await fetch('/api/free.php',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:document.getElementById('free-email').value,nombre:document.getElementById('free-nombre').value,plataforma:document.getElementById('free-plataforma').value})});const d=await r.json();if(d.ok){msg.style.color='var(--green)';msg.textContent='✓ ¡Listo! Revisá tu email — te mandamos la guía de instalación.';document.getElementById('free-form').style.display='none';}else{msg.style.color='var(--red)';msg.textContent='Hubo un error. Escribinos a atomicaclick@gmail.com';}}catch{msg.style.color='var(--red)';msg.textContent='Hubo un error. Escribinos a atomicaclick@gmail.com';}btn.disabled=false;btn.textContent='Recibir Guía de Instalación Gratis';}
+function copySnippet(){const s=`<script src="https://talleexacto.atomica.click/widget.js"><\/script>\n<div id="talleexacto" data-store="tu-tienda"></div>`;navigator.clipboard?.writeText(s).then(()=>{const b=document.getElementById('copy-btn');b.textContent='✓ Copiado';setTimeout(()=>b.textContent='⌘ Copiar snippet',2000);});}
+(function(){const n=sessionStorage.getItem('fr-cupos')||(6+Math.floor(Math.random()*3));sessionStorage.setItem('fr-cupos',n);document.getElementById('cupos-counter').textContent=n;})();
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});},{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){const t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();window.scrollTo({top:t.getBoundingClientRect().top+window.scrollY-100,behavior:'smooth'});}});});
+calcLoss();render();
+</script>
+</body>
+</html>

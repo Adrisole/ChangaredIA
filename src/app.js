@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import path from 'path';
 import apiRouter from './routes/index.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 
@@ -19,6 +20,11 @@ export const createApp = () => {
       console.log(`[HTTP] ${req.method} ${req.originalUrl} -> ${res.statusCode} (${duration}ms)`);
     });
     next();
+  });
+
+  // Ruta dedicada para TalleExacto
+  app.get('/talleexacto', (req, res) => {
+    res.sendFile(path.resolve('./public/talleexacto.html'));
   });
 
   // Montar rutas de la API bajo /api
