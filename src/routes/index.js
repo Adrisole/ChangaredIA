@@ -2,6 +2,7 @@ import { Router } from 'express';
 import businessRoutes from './business.routes.js';
 import webhookRoutes from './webhook.routes.js';
 import billingRoutes from './billing.routes.js';
+import accountingRoutes from './accounting.routes.js';
 import { businessService } from '../services/business.service.js';
 import { config } from '../config/env.js';
 
@@ -31,5 +32,8 @@ apiRouter.use('/webhook', webhookRoutes);
 
 // Rutas de facturación y cobro (Mercado Pago y Lemon Squeezy)
 apiRouter.use('/billing', billingRoutes);
+
+// Rutas del Asistente Contable (Facturas a Google Drive y Sheets)
+apiRouter.use('/accounting', accountingRoutes);
 
 export default apiRouter;

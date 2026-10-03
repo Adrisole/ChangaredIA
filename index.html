@@ -129,6 +129,12 @@
           <span class="ml-auto text-[10px] font-mono px-1.5 py-0.2 bg-emerald-50 text-emerald-700 font-semibold rounded border border-emerald-200">TEST</span>
         </button>
 
+        <button onclick="switchStep('step-accounting')" id="nav-step-accounting" class="nav-item w-full flex items-center space-x-2.5 px-2.5 py-2 text-xs font-medium rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition-colors">
+          <i data-lucide="file-spreadsheet" class="w-4 h-4 text-emerald-600"></i>
+          <span>Asistente Contable</span>
+          <span class="ml-auto text-[10px] font-mono px-1.5 py-0.2 bg-emerald-50 text-emerald-700 font-semibold rounded border border-emerald-200">EXCEL</span>
+        </button>
+
         <button class="w-full flex items-center space-x-2.5 px-2.5 py-2 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors">
           <i data-lucide="activity" class="w-4 h-4 text-slate-600"></i>
           <span data-i18n="navRadar">Radar de Incidentes</span>
@@ -231,8 +237,12 @@
           <span class="w-4 h-4 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-[10px]">4</span>
           <span>Planes & Suscripción</span>
         </button>
-        <button onclick="switchStep('step-simulator')" id="tab-step-simulator" class="tab-btn pb-3 text-slate-600 hover:text-slate-900 border-b-2 border-transparent transition-colors flex items-center space-x-2">
+        <button onclick="switchStep('step-accounting')" id="tab-step-accounting" class="tab-btn pb-3 text-slate-600 hover:text-slate-900 border-b-2 border-transparent transition-colors flex items-center space-x-2">
           <span class="w-4 h-4 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-[10px]">5</span>
+          <span>Asistente Contable (Facturas)</span>
+        </button>
+        <button onclick="switchStep('step-simulator')" id="tab-step-simulator" class="tab-btn pb-3 text-slate-600 hover:text-slate-900 border-b-2 border-transparent transition-colors flex items-center space-x-2">
+          <span class="w-4 h-4 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-[10px]">6</span>
           <span data-i18n="tabStep4">Simulador Interactivo</span>
         </button>
       </div>
@@ -789,6 +799,181 @@
             <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
             <span>Volver a WhatsApp</span>
           </button>
+          <button onclick="switchStep('step-accounting')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-colors">
+            <span>Ver Asistente Contable</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- PASO 5: ASISTENTE CONTABLE (EMAIL -> DRIVE -> SHEETS) -->
+      <!-- ======================================================== -->
+      <section id="step-accounting" class="step-content space-y-6 hidden">
+
+        <!-- Header del Asistente -->
+        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+            <div>
+              <div class="flex items-center space-x-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                <h2 class="text-sm font-semibold text-slate-900">Asistente Contable: Lector de Facturas & Google Drive</h2>
+              </div>
+              <p class="text-xs text-slate-600 mt-0.5">
+                Procesa facturas automáticamente cuando llegan a tu email, extrae datos fiscales con IA y las sincroniza en Google Drive y Google Sheets sin ocupar espacio en tu servidor.
+              </p>
+            </div>
+            <a href="https://docs.google.com/spreadsheets" target="_blank" class="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-lg transition shadow-subtle">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              <span>Abrir en Google Sheets</span>
+            </a>
+          </div>
+
+          <!-- Circuito de 3 Pasos (Zero Fricción) -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <!-- Paso A: Email de Recepción -->
+            <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-semibold text-slate-700 uppercase tracking-wider flex items-center space-x-1">
+                  <i data-lucide="mail" class="w-3.5 h-3.5 text-emerald-600"></i>
+                  <span>1. Email de Entrada</span>
+                </span>
+                <span class="text-[10px] font-mono px-1.5 py-0.2 bg-emerald-50 text-emerald-700 font-semibold rounded border border-emerald-200">ACTIVO</span>
+              </div>
+              <div class="flex items-center space-x-1.5">
+                <input type="text" id="acc-email-input" readonly value="facturas+pizzeria-roma@changared.com" class="w-full text-xs font-mono px-2.5 py-1.5 bg-white border border-slate-200 rounded text-slate-800">
+                <button onclick="copyAccountingEmail()" class="p-1.5 bg-white hover:bg-slate-100 border border-slate-200 rounded text-slate-600 transition" title="Copiar email">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                </button>
+              </div>
+              <p class="text-[11px] text-slate-600 leading-tight">Configura reenvío automático o dáselo a tus proveedores.</p>
+            </div>
+
+            <!-- Paso B: Google Drive -->
+            <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-semibold text-slate-700 uppercase tracking-wider flex items-center space-x-1">
+                  <i data-lucide="hard-drive" class="w-3.5 h-3.5 text-blue-600"></i>
+                  <span>2. Google Drive</span>
+                </span>
+                <span class="text-[10px] font-mono px-1.5 py-0.2 bg-blue-50 text-blue-700 font-semibold rounded border border-blue-200">STREAMING</span>
+              </div>
+              <div class="p-2 bg-white border border-slate-200 rounded text-xs text-slate-800 truncate font-mono">
+                /Facturas 2026/Octubre/
+              </div>
+              <p class="text-[11px] text-slate-600 leading-tight">El PDF original se sube directo a tu Drive (0 MB en tu server).</p>
+            </div>
+
+            <!-- Paso C: Google Sheets -->
+            <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-[11px] font-semibold text-slate-700 uppercase tracking-wider flex items-center space-x-1">
+                  <i data-lucide="table" class="w-3.5 h-3.5 text-emerald-600"></i>
+                  <span>3. Google Sheets (Excel)</span>
+                </span>
+                <span class="text-[10px] font-mono px-1.5 py-0.2 bg-emerald-50 text-emerald-700 font-semibold rounded border border-emerald-200">AUTO-FILL</span>
+              </div>
+              <div class="p-2 bg-white border border-slate-200 rounded text-xs text-slate-800 truncate font-mono">
+                Libro_IVA_Compras_2026
+              </div>
+              <p class="text-[11px] text-slate-600 leading-tight">Se añade una nueva fila con CUIT, neto e IVA discriminado.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Métricas Contables del Mes -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+          <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
+            <span class="block text-[11px] font-medium text-slate-600">Facturas Procesadas</span>
+            <span class="text-xl font-bold text-slate-900" id="acc-stat-count">3 facturas</span>
+            <span class="text-[10px] text-emerald-600 font-medium block mt-0.5">100% digitalizadas</span>
+          </div>
+          <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
+            <span class="block text-[11px] font-medium text-slate-600">Total Compras del Mes</span>
+            <span class="text-xl font-bold text-slate-900" id="acc-stat-total">$308.885</span>
+            <span class="text-[10px] text-slate-600 block mt-0.5">Suma total con impuestos</span>
+          </div>
+          <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
+            <span class="block text-[11px] font-medium text-slate-600">Crédito Fiscal IVA</span>
+            <span class="text-xl font-bold text-emerald-700" id="acc-stat-iva">$56.265</span>
+            <span class="text-[10px] text-slate-600 block mt-0.5">A deducir en declaración</span>
+          </div>
+          <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
+            <span class="block text-[11px] font-medium text-slate-600">Neto Gravado Total</span>
+            <span class="text-xl font-bold text-slate-900" id="acc-stat-neto">$245.500</span>
+            <span class="text-[10px] text-slate-600 block mt-0.5">Base imponible calculada</span>
+          </div>
+        </div>
+
+        <!-- Consola de Prueba: Simular Recepción de Email -->
+        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-subtle space-y-3">
+          <div class="flex items-center justify-between">
+            <div>
+              <h3 class="text-xs font-semibold text-slate-900 flex items-center space-x-1.5">
+                <i data-lucide="play" class="w-3.5 h-3.5 text-emerald-600"></i>
+                <span>Simulador de Recepción de Email con Factura</span>
+              </h3>
+              <p class="text-[11px] text-slate-600 mt-0.5">Haz clic en cualquier comprobante para ver cómo el asistente lo procesa y añade la fila en vivo:</p>
+            </div>
+            <span class="text-[10px] font-mono text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">MODO DEMO</span>
+          </div>
+
+          <div class="flex flex-wrap gap-2 text-xs">
+            <button onclick="simulateInvoiceTrigger('edenor')" class="px-3 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-800 transition flex items-center space-x-2 shadow-subtle">
+              <span>⚡</span>
+              <span>Recibir Factura Edenor ($103.115)</span>
+            </button>
+            <button onclick="simulateInvoiceTrigger('telecom')" class="px-3 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-800 transition flex items-center space-x-2 shadow-subtle">
+              <span>📞</span>
+              <span>Recibir Factura Telecom ($52.020)</span>
+            </button>
+            <button onclick="simulateInvoiceTrigger('lacteos')" class="px-3 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-800 transition flex items-center space-x-2 shadow-subtle">
+              <span>🧀</span>
+              <span>Recibir Factura Lácteos Mayorista ($153.750)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Tabla en Vivo de Google Sheets (Libro IVA Compras) -->
+        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-subtle space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div>
+              <h3 class="text-xs font-semibold text-slate-900">Libro IVA Compras Sincronizado (Google Sheets)</h3>
+              <p class="text-[11px] text-slate-600 mt-0.5">Filas generadas en tiempo real a partir de los emails procesados por el asistente.</p>
+            </div>
+            <button onclick="loadAccountingInvoices()" class="text-xs text-slate-600 hover:text-slate-900 flex items-center space-x-1 transition">
+              <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
+              <span>Refrescar</span>
+            </button>
+          </div>
+
+          <div class="border border-slate-200 rounded-lg overflow-x-auto">
+            <table class="w-full text-left text-xs whitespace-nowrap">
+              <thead class="bg-slate-50 border-b border-slate-200 text-slate-600 uppercase font-mono text-[10px]">
+                <tr>
+                  <th class="px-3 py-2.5 font-semibold">Fecha</th>
+                  <th class="px-3 py-2.5 font-semibold">Proveedor</th>
+                  <th class="px-3 py-2.5 font-semibold">CUIT</th>
+                  <th class="px-3 py-2.5 font-semibold">Comprobante</th>
+                  <th class="px-3 py-2.5 font-semibold">Neto Gravado</th>
+                  <th class="px-3 py-2.5 font-semibold">IVA</th>
+                  <th class="px-3 py-2.5 font-semibold">Total</th>
+                  <th class="px-3 py-2.5 font-semibold">Categoría</th>
+                  <th class="px-3 py-2.5 font-semibold text-right">Drive Backup</th>
+                </tr>
+              </thead>
+              <tbody id="accounting-table-body" class="divide-y divide-slate-100 text-slate-800 font-mono text-[11px]">
+                <!-- Cargado dinámicamente -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="flex justify-between pt-2">
+          <button onclick="switchStep('step-billing')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition-colors">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+            <span>Volver a Planes</span>
+          </button>
           <button onclick="switchStep('step-simulator')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-colors">
             <span>Ir al Simulador Interactivo</span>
             <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
@@ -797,7 +982,7 @@
       </section>
 
       <!-- ======================================================== -->
-      <!-- PASO 5: SIMULADOR INTERACTIVO CON PRUEBAS MULTILINGÜES -->
+      <!-- PASO 6: SIMULADOR INTERACTIVO CON PRUEBAS MULTILINGÜES -->
       <!-- ======================================================== -->
       <section id="step-simulator" class="step-content space-y-6 hidden">
         <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
@@ -1704,8 +1889,93 @@
       }
     }
 
+    // =========================================================
+    // LÓGICA DEL ASISTENTE CONTABLE (FACTURAS -> DRIVE -> SHEETS)
+    // =========================================================
+
+    function copyAccountingEmail() {
+      const emailInput = document.getElementById('acc-email-input');
+      if (emailInput) {
+        navigator.clipboard.writeText(emailInput.value);
+        showToast("Email contable copiado: " + emailInput.value);
+      }
+    }
+
+    async function loadAccountingInvoices() {
+      try {
+        const res = await fetch('/api/accounting/invoices/pizzeria-roma');
+        const json = await res.json();
+        if (!json.success) return;
+
+        const { stats, invoices } = json;
+
+        // Actualizar métricas contables
+        if (stats) {
+          const countEl = document.getElementById('acc-stat-count');
+          const totalEl = document.getElementById('acc-stat-total');
+          const ivaEl = document.getElementById('acc-stat-iva');
+          const netoEl = document.getElementById('acc-stat-neto');
+
+          if (countEl) countEl.innerText = `${stats.count} facturas`;
+          if (totalEl) totalEl.innerText = `$${Number(stats.totalCompras || 0).toLocaleString('es-AR')}`;
+          if (ivaEl) ivaEl.innerText = `$${Number(stats.totalIva || 0).toLocaleString('es-AR')}`;
+          if (netoEl) netoEl.innerText = `$${Number(stats.totalNeto || 0).toLocaleString('es-AR')}`;
+        }
+
+        // Renderizar tabla de Google Sheets
+        const tbody = document.getElementById('accounting-table-body');
+        if (tbody && Array.isArray(invoices)) {
+          tbody.innerHTML = '';
+          invoices.forEach(inv => {
+            const tr = document.createElement('tr');
+            tr.className = "hover:bg-slate-50/70 transition-colors";
+            tr.innerHTML = `
+              <td class="px-3 py-2.5 font-mono text-slate-600">${escapeHtml(inv.fecha || '-')}</td>
+              <td class="px-3 py-2.5 font-medium text-slate-900">${escapeHtml(inv.proveedor || '-')}</td>
+              <td class="px-3 py-2.5 text-slate-600 font-mono">${escapeHtml(inv.cuit || '-')}</td>
+              <td class="px-3 py-2.5 text-slate-700">${escapeHtml(inv.tipoComprobante || '')} ${escapeHtml(inv.numeroComprobante || '')}</td>
+              <td class="px-3 py-2.5 text-slate-700 font-medium">$${Number(inv.netoGravado || 0).toLocaleString('es-AR')}</td>
+              <td class="px-3 py-2.5 text-emerald-700 font-medium">$${Number(inv.importeIva || 0).toLocaleString('es-AR')} <span class="text-[10px] text-slate-600">(${inv.alicuotaIva || '21%'})</span></td>
+              <td class="px-3 py-2.5 text-slate-900 font-bold">$${Number(inv.total || 0).toLocaleString('es-AR')}</td>
+              <td class="px-3 py-2.5"><span class="px-2 py-0.5 rounded text-[10px] bg-slate-100 text-slate-700 border border-slate-200">${escapeHtml(inv.categoriaGasto || 'General')}</span></td>
+              <td class="px-3 py-2.5 text-right">
+                <a href="${inv.driveUrl || '#'}" target="_blank" class="inline-flex items-center space-x-1 text-blue-600 hover:text-blue-800 text-[11px] font-mono">
+                  <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+                  <span>Drive PDF</span>
+                </a>
+              </td>
+            `;
+            tbody.appendChild(tr);
+          });
+          lucide.createIcons();
+        }
+      } catch (err) {
+        console.error("Error cargando facturas contables:", err);
+      }
+    }
+
+    async function simulateInvoiceTrigger(providerType) {
+      showToast("Recepcionando email y leyendo factura con IA...");
+      try {
+        const res = await fetch('/api/accounting/simulate-email/pizzeria-roma', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ providerType })
+        });
+        const json = await res.json();
+        if (json.success && json.record) {
+          showToast(`¡Factura de ${json.record.proveedor} procesada y agregada al Excel!`);
+          await loadAccountingInvoices();
+        }
+      } catch (err) {
+        console.error("Error simulando factura:", err);
+        showToast("Error al procesar simulación.");
+      }
+    }
+
     // Inicializar tabla al cargar
     renderCatalogTable();
+    loadAccountingInvoices();
   </script>
 </body>
 </html>
