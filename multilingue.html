@@ -530,29 +530,29 @@
       </div>
     </section>
 
-    <!-- GUÍA PASO A PASO: RECORRIDO DEL COMERCIO -->
+    <!-- GUÍA ESTÁNDAR B2B: 3 BLOQUES OPERATIVOS -->
     <nav class="steps-nav">
-      <div class="step-badge active" onclick="switchStep('step-knowledge')" id="nav-step-knowledge">
+      <div class="step-badge active" onclick="switchStep('step-channels')" id="nav-step-channels">
         <div class="step-num">1</div>
         <div>
-          <div class="step-label">Carga tu Información</div>
-          <div class="step-sub">Carta, horarios, tarifas y pagos</div>
+          <div class="step-label">Bloque 1 · Integración & Canales</div>
+          <div class="step-sub">WhatsApp QR, Mesas y Enlace Web</div>
         </div>
       </div>
 
-      <div class="step-badge" onclick="switchStep('step-channels')" id="nav-step-channels">
+      <div class="step-badge" onclick="switchStep('step-knowledge')" id="nav-step-knowledge">
         <div class="step-num">2</div>
         <div>
-          <div class="step-label">Conecta tus Canales</div>
-          <div class="step-sub">WhatsApp QR, Mesas y Web</div>
+          <div class="step-label">Bloque 2 · Base de Conocimiento</div>
+          <div class="step-sub">Carta PDF, horarios, Pix/USD y FAQs</div>
         </div>
       </div>
 
       <div class="step-badge" onclick="switchStep('step-operation')" id="nav-step-operation">
         <div class="step-num">3</div>
         <div>
-          <div class="step-label">Atención & Radar en Vivo</div>
-          <div class="step-sub">Consultas en vivo y simulador</div>
+          <div class="step-label">Bloque 3 · Automatización & Salida</div>
+          <div class="step-sub">Cierre de reservas, radar y simulador</div>
         </div>
       </div>
     </nav>
@@ -562,7 +562,7 @@
     <!-- ======================================================== -->
     <section id="view-step-knowledge" class="card">
       <div style="border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 16px;">
-        <h2 class="card-title">Paso 1 · Base de Conocimiento y Políticas del Establecimiento</h2>
+        <h2 class="card-title">Bloque 2 · Base de Conocimiento y Políticas del Establecimiento</h2>
         <p class="card-subtitle" style="margin-bottom: 0;">
           Completá los datos clave de tu hotel, cabaña o restaurante. El asistente inyectará esta información en su motor cognitivo para responder a turistas con 100% de rigurosidad sin inventar nada.
         </p>
@@ -690,7 +690,7 @@
     <!-- ======================================================== -->
     <section id="view-step-channels" class="card" style="display: none;">
       <div style="border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 16px;">
-        <h2 class="card-title">Paso 2 · Conexión a Canales de Atención</h2>
+        <h2 class="card-title">Bloque 1 · Integración & Canales de Entrada (Conexión en 1 Clic)</h2>
         <p class="card-subtitle" style="margin-bottom: 0;">
           Elige por dónde interactuará el Asistente Multilingüe con tus huéspedes y comensales. No requiere cambiar tu número ni contratar sistemas complejos.
         </p>
@@ -762,7 +762,7 @@
     <!-- ======================================================== -->
     <section id="view-step-operation" class="card" style="display: none;">
       <div style="border-bottom: 1px solid var(--line); padding-bottom: 12px; margin-bottom: 16px;">
-        <h2 class="card-title">Paso 3 · Operación Autónoma & Radar de Turistas</h2>
+        <h2 class="card-title">Bloque 3 · Automatización, Acción de Salida & Radar en Vivo</h2>
         <p class="card-subtitle" style="margin-bottom: 0;">
           Monitorea cómo el Asistente responde consultas reales en cualquier idioma y utiliza el simulador para testear tus políticas.
         </p>
@@ -982,6 +982,7 @@
     }
 
     window.addEventListener('load', () => {
+      switchStep('step-channels');
       renderTuristas();
       syncIframeHeight();
     });

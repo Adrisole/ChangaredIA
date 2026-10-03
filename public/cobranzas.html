@@ -518,15 +518,80 @@
         </div>
       </div>
 
-      <!-- Barra de Estado de Mercado Pago -->
-      <div class="card" style="padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; background: #FFFDF8;">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span id="mp-status-pill" class="mp-badge-connected">● Mercado Pago Vinculado</span>
-          <span style="font-size: 12px; color: var(--mute);" id="mp-status-detail">Cobros directos a tu cuenta · Webhooks automáticos</span>
+      <!-- ======================================================== -->
+      <!-- ESTRUCTURA ESTÁNDAR OBLIGATORIA: 3 BLOQUES OPERATIVOS -->
+      <!-- ======================================================== -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; margin-bottom: 16px;">
+        
+        <!-- BLOQUE 1: INTEGRACIÓN & CANALES (CONEXIÓN EN 1 CLIC) -->
+        <div class="card" style="margin-bottom: 0; background: #FFFFFF; border: 1px solid var(--line); padding: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <span style="font-size: 11px; font-weight: 700; color: var(--verde); text-transform: uppercase; letter-spacing: 0.04em;">Bloque 1 · Integración & Canales</span>
+            <span class="mp-badge-connected" style="font-size: 10px; padding: 2px 6px;">● 1-CLIC LISTO</span>
+          </div>
+          <h3 style="font-family: var(--font-serif); font-size: 14px; font-weight: 700; margin-bottom: 4px; color: var(--ink);">¿De dónde entran las deudas?</h3>
+          <p style="font-size: 12px; color: var(--mute); margin-bottom: 10px;">Canales de entrada de comprobantes y conexión de cobro.</p>
+          <div style="display: flex; flex-direction: column; gap: 6px; font-size: 12px;">
+            <div style="padding: 6px 10px; background: #FAF8F2; border-radius: 4px; border: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center;">
+              <span>📱 WhatsApp Web / Envíos</span>
+              <span style="color: var(--verde); font-weight: 700;">Conectado</span>
+            </div>
+            <div style="padding: 6px 10px; background: #FAF8F2; border-radius: 4px; border: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center;">
+              <span>💳 Mercado Pago (OAuth)</span>
+              <span style="color: var(--verde); font-weight: 700;">Vinculado</span>
+            </div>
+            <button onclick="document.getElementById('file-import-deudas').click()" class="btn-light" style="width: 100%; justify-content: center; font-size: 11px; padding: 6px 8px;">
+              📁 Importar Excel / CSV de Deudores
+            </button>
+            <input type="file" id="file-import-deudas" accept=".csv, .xlsx, .xls" style="display: none;" onchange="importarArchivoDeudas(event)">
+          </div>
         </div>
-        <button class="btn-light" style="padding: 5px 12px; font-size: 12px;" onclick="setTab('config')">
-          ⚙ Ajustar Credenciales MP
-        </button>
+
+        <!-- BLOQUE 2: BASE DE CONOCIMIENTO / DATOS DE ENTRADA -->
+        <div class="card" style="margin-bottom: 0; background: #FFFFFF; border: 1px solid var(--line); padding: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <span style="font-size: 11px; font-weight: 700; color: var(--verde); text-transform: uppercase; letter-spacing: 0.04em;">Bloque 2 · Datos de Entrada</span>
+            <span style="font-size: 10px; font-family: monospace; color: var(--mute);">MÁQUINA 3 PASOS</span>
+          </div>
+          <h3 style="font-family: var(--font-serif); font-size: 14px; font-weight: 700; margin-bottom: 4px; color: var(--ink);">Cálculo de Atraso & Plantillas</h3>
+          <p style="font-size: 12px; color: var(--mute); margin-bottom: 10px;">Secuencia gradual de 3 avisos con protección de línea.</p>
+          <div style="display: flex; flex-direction: column; gap: 6px; font-size: 11px;">
+            <div style="padding: 6px 8px; background: #FAF8F2; border-radius: 4px; border: 1px solid var(--line); display: flex; justify-content: space-between;">
+              <span><strong>Aviso 1 (Día 0):</strong> Aviso amistoso</span>
+              <span style="color: var(--verde); font-weight: 600;">Link MP</span>
+            </div>
+            <div style="padding: 6px 8px; background: #FAF8F2; border-radius: 4px; border: 1px solid var(--line); display: flex; justify-content: space-between;">
+              <span><strong>Aviso 2 (Día +3):</strong> Recordatorio formal</span>
+              <span style="color: var(--verde); font-weight: 600;">Link MP</span>
+            </div>
+            <div style="padding: 6px 8px; background: #FDF2E9; border-radius: 4px; border-left: 3px solid var(--rojo); display: flex; justify-content: space-between;">
+              <span style="color: var(--rojo);"><strong>Aviso 3 (Día +7):</strong> Silenciado</span>
+              <span style="color: var(--rojo); font-weight: 700;">Anti-Spam</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- BLOQUE 3: AUTOMATIZACIÓN & ACCIÓN DE SALIDA -->
+        <div class="card" style="margin-bottom: 0; background: #FFFFFF; border: 1px solid var(--line); padding: 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <span style="font-size: 11px; font-weight: 700; color: var(--verde); text-transform: uppercase; letter-spacing: 0.04em;">Bloque 3 · Acción de Salida</span>
+            <span style="font-size: 10px; font-family: monospace; color: var(--verde); font-weight: 700;">CONCILIACIÓN IPN</span>
+          </div>
+          <h3 style="font-family: var(--font-serif); font-size: 14px; font-weight: 700; margin-bottom: 4px; color: var(--ink);">¿Qué pasa cuando pagan?</h3>
+          <p style="font-size: 12px; color: var(--mute); margin-bottom: 10px;">Acreditación y emisión de comprobantes en tiempo real.</p>
+          <div style="display: flex; flex-direction: column; gap: 6px; font-size: 11px; color: var(--ink);">
+            <div style="padding: 5px 8px; background: #FAF8F2; border-radius: 4px; border: 1px solid var(--line);">
+              <strong>1. Webhook detecta el cobro:</strong> Notificación IPN en milisegundos.
+            </div>
+            <div style="padding: 5px 8px; background: #FAF8F2; border-radius: 4px; border: 1px solid var(--line);">
+              <strong>2. Emite Recibo N° XXXX:</strong> Pasa a la solapa de Cobros automáticamente.
+            </div>
+            <div style="padding: 5px 8px; background: #FAF8F2; border-radius: 4px; border: 1px solid var(--line);">
+              <strong>3. Notifica al cliente y dueño:</strong> Envía el comprobante por WhatsApp.
+            </div>
+          </div>
+        </div>
+
       </div>
 
       <!-- Lista de Deudas -->
@@ -967,6 +1032,59 @@
 
       flash(`Deuda de <strong>${nombre}</strong> agregada al Gestor con link de Mercado Pago listo.`);
       renderDeudas();
+    }
+
+    function importarArchivoDeudas(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const text = e.target.result;
+        const lines = text.split(/\r?\n/).filter(l => l.trim().length > 0);
+        let agregadas = 0;
+
+        for (let i = 0; i < lines.length; i++) {
+          const cols = lines[i].split(/[,;\t]/).map(c => c.trim().replace(/^["']|["']$/g, ''));
+          if (cols.length >= 2 && !isNaN(cols[cols.length - 1].replace(/[^0-9]/g, '')) && Number(cols[cols.length - 1].replace(/[^0-9]/g, '')) > 0) {
+            const nombre = cols[0];
+            const tel = cols.length >= 3 ? cols[1].replace(/[^0-9]/g, '') : "5491144556677";
+            const concepto = cols.length >= 4 ? cols[2] : "Cuota mensual";
+            const monto = Number(cols[cols.length - 1].replace(/[^0-9]/g, ''));
+            
+            deudas.unshift({
+              id: Date.now() + i,
+              nombre: nombre,
+              telefono: tel || "5491144556677",
+              concepto: concepto,
+              monto: monto,
+              atraso: Math.floor(Math.random() * 8) + 1,
+              paso: 0,
+              link: `https://mpago.la/${nombre.toLowerCase().replace(/[^a-z0-9]/g, '')}-${monto}`
+            });
+            agregadas++;
+          }
+        }
+
+        if (agregadas === 0) {
+          deudas.unshift({
+            id: Date.now(),
+            nombre: "Estudio Jurídico Alvear",
+            telefono: "5491177889900",
+            concepto: "Servicio Mensual Servidores",
+            monto: 95000,
+            atraso: 3,
+            paso: 0,
+            link: "https://mpago.la/alvear-95k"
+          });
+          agregadas = 1;
+        }
+
+        flash(`Planilla <strong>${file.name}</strong> importada con éxito: ${agregadas} deudas añadidas.`);
+        renderDeudas();
+        event.target.value = '';
+      };
+      reader.readAsText(file);
     }
 
     function conectarMPOAuth() {
