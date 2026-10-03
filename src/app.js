@@ -27,6 +27,11 @@ export const createApp = () => {
     res.sendFile(path.resolve('./public/talleexacto.html'));
   });
 
+  // Ruta dedicada para Gestor de Cobranzas
+  app.get('/cobranzas', (req, res) => {
+    res.sendFile(path.resolve('./public/cobranzas.html'));
+  });
+
   // Montar rutas de la API bajo /api
   app.use('/api', apiRouter);
 

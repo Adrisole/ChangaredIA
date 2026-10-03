@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestor de Cobranzas — Changared</title>
+  <style>
+    :root {
+      --bg: #F6EFDF;
+      --card: #FFFBF1;
+      --ink: #1E2B24;
+      --mute: #6C7568;
+      --line: #E6DCC3;
+      --verde: #2D6A4F;
+      --verde-osc: #1B4332;
+      --verde-suave: #DDEBDD;
+      --rojo: #A5472F;
+      --rojo-suave: #F3DDD3;
+      --font-serif: Georgia, 'Times New Roman', serif;
+      --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      line-height: 1.4;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Barra Superior Verde Bosque */
+    .header-bar {
+      background: var(--verde-osc);
+      color: #FFFBF1;
+      padding: 24px 20px 48px;
+    }
+
+    .header-container {
+      max-width: 820px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .brand-sub {
+      font-size: 13px;
+      opacity: 0.85;
+      margin-top: 4px;
+    }
+
+    .nav-back-link {
+      color: #FFFBF1;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid rgba(255, 251, 241, 0.3);
+      padding: 6px 14px;
+      border-radius: 6px;
+      transition: background 0.15s;
+    }
+
+    .nav-back-link:hover {
+      background: rgba(255, 251, 241, 0.15);
+    }
+
+    /* Contenedor Principal */
+    .main-wrap {
+      max-width: 820px;
+      margin: -24px auto 60px;
+      padding: 0 20px;
+    }
+
+    /* Selector de Solapas */
+    .tabs-nav {
+      display: inline-flex;
+      gap: 4px;
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 4px;
+      margin-bottom: 16px;
+    }
+
+    .tab-btn {
+      background: transparent;
+      color: var(--ink);
+      border: none;
+      border-radius: 6px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.15s;
+    }
+
+    .tab-btn.active {
+      background: var(--verde);
+      color: #FFFBF1;
+    }
+
+    /* Tarjetas y Contenedores */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 12px;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .stat-label {
+      color: var(--mute);
+      font-size: 13px;
+    }
+
+    .stat-val {
+      font-family: var(--font-serif);
+      font-size: 28px;
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .stat-val-verde {
+      color: var(--verde);
+    }
+
+    /* Mensaje Toast / Aviso */
+    .alert-banner {
+      background: var(--verde-suave);
+      border: 1px solid var(--verde);
+      color: var(--verde-osc);
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 14px;
+    }
+
+    /* Fila de Deuda */
+    .debt-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+      border-bottom: 1px solid #F0E8D4;
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+    }
+
+    .debt-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .debt-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .debt-concept {
+      font-size: 13px;
+      color: var(--mute);
+      margin-top: 2px;
+    }
+
+    .debt-status {
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 6px;
+    }
+
+    .status-normal {
+      color: var(--mute);
+    }
+
+    .status-progress {
+      color: var(--verde);
+    }
+
+    .status-silenced {
+      color: var(--rojo);
+      font-weight: 700;
+    }
+
+    .debt-amount {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 700;
+      text-align: right;
+    }
+
+    .actions-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+    }
+
+    /* Botones Formales */
+    .btn-solid {
+      background: var(--verde);
+      color: #FFFBF1;
+      border: 1px solid var(--verde);
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn-solid:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .btn-light {
+      background: #EAF2E9;
+      color: var(--verde-osc);
+      border: 1px solid #D1E3CE;
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn-dark {
+      background: var(--verde-osc);
+      color: #FFFBF1;
+      border: 1px solid var(--verde-osc);
+      border-radius: 6px;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .btn-danger {
+      background: var(--rojo-suave);
+      color: var(--rojo);
+      border: 1px solid #EACAC0;
+      border-radius: 6px;
+      padding: 8px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Formularios */
+    .form-title {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .input-field {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: #FFFFFF;
+      border-radius: 6px;
+      padding: 9px 12px;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .input-field:focus {
+      outline: none;
+      border-color: var(--verde);
+    }
+
+    .preview-bubble {
+      background: var(--verde-suave);
+      color: var(--verde-osc);
+      border: 1px solid #CEE0CD;
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 13px;
+      line-height: 1.45;
+      margin-top: 8px;
+    }
+
+    .empty-state {
+      padding: 30px;
+      text-align: center;
+      color: var(--mute);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado Institucional -->
+  <header class="header-bar">
+    <div class="header-container">
+      <div>
+        <h1 class="brand-title">Gestor de Cobranzas</h1>
+        <p class="brand-sub" id="header-subtitle">Recordatorios y cobranzas por WhatsApp · Gimnasio Fuerza</p>
+      </div>
+      <a href="/index.html" class="nav-back-link">← Volver al Panel Changared</a>
+    </div>
+  </header>
+
+  <!-- Contenedor Principal -->
+  <main class="main-wrap">
+
+    <!-- Selector de Solapas -->
+    <nav class="tabs-nav">
+      <button class="tab-btn active" onclick="setTab('deudas')" id="tab-btn-deudas">Deudas Pendientes</button>
+      <button class="tab-btn" onclick="setTab('cobros')" id="tab-btn-cobros">Cobros y Recibos</button>
+      <button class="tab-btn" onclick="setTab('config')" id="tab-btn-config">Configuración & MP</button>
+    </nav>
+
+    <!-- Notificación Flash -->
+    <div id="flash-banner" class="alert-banner" style="display: none;"></div>
+
+    <!-- VISTA 1: DEUDAS PENDIENTES -->
+    <section id="view-deudas">
+      <!-- Estadísticas -->
+      <div class="stats-row">
+        <div class="card">
+          <div class="stat-label">Total adeudado</div>
+          <div class="stat-val" id="stat-total-adeudado">$283.000</div>
+        </div>
+        <div class="card">
+          <div class="stat-label">Deudores activos</div>
+          <div class="stat-val" id="stat-deudores-count">4</div>
+        </div>
+        <div class="card">
+          <div class="stat-label">Cobrado en la sesión</div>
+          <div class="stat-val stat-val-verde" id="stat-cobrado-resumen">$0</div>
+        </div>
+      </div>
+
+      <!-- Lista de Deudas -->
+      <div class="card">
+        <div id="debt-list-container">
+          <!-- Renderizado dinámico -->
+        </div>
+      </div>
+
+      <!-- Formulario para Agregar Deuda -->
+      <div class="card">
+        <h2 class="form-title">Agregar nueva deuda</h2>
+        <input type="text" id="input-new-nombre" class="input-field" placeholder="Nombre del cliente (ej. Juan González)">
+        <input type="text" id="input-new-concepto" class="input-field" placeholder="Concepto (ej. Cuota gimnasio - Octubre)">
+        <input type="number" id="input-new-monto" class="input-field" placeholder="Monto en ARS (ej. 35000)">
+        <button class="btn-dark" onclick="agregarDeuda()">Agregar deuda</button>
+      </div>
+    </section>
+
+    <!-- VISTA 2: COBROS Y RECIBOS -->
+    <section id="view-cobros" style="display: none;">
+      <div class="card">
+        <div class="stat-label">Total cobrado en esta sesión</div>
+        <div class="stat-val stat-val-verde" id="stat-cobrado-total">$0</div>
+      </div>
+
+      <div class="card" id="receipts-container">
+        <!-- Renderizado dinámico -->
+      </div>
+    </section>
+
+    <!-- VISTA 3: CONFIGURACIÓN & MERCADO PAGO -->
+    <section id="view-config" style="display: none;">
+      <div class="card">
+        <h2 class="form-title">Nombre de tu negocio</h2>
+        <input type="text" id="input-cfg-negocio" class="input-field" value="Gimnasio Fuerza" oninput="actualizarNegocio(this.value)">
+      </div>
+
+      <div class="card" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: gap: 14px;">
+        <div>
+          <h2 class="form-title" style="margin-bottom: 2px;">Cuenta de Mercado Pago</h2>
+          <div style="font-size: 13px;" id="mp-status-text">Sin conectar (cobros a tu propia cuenta)</div>
+        </div>
+        <button id="btn-toggle-mp" class="btn-solid" onclick="toggleMercadoPago()">Conectar cuenta</button>
+      </div>
+
+      <div class="card">
+        <h2 class="form-title">Secuencia de 3 recordatorios automáticos</h2>
+        <p style="font-size: 13px; color: var(--mute); margin-bottom: 14px;">
+          Máquina de estados: después del tercer mensaje el cliente queda <strong>Silenciado</strong> para no hostigar ni quemar el número de WhatsApp.
+        </p>
+
+        <!-- Plantilla 1 -->
+        <div style="margin-bottom: 16px;">
+          <label style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Mensaje 1 · Día 0 (Aviso amistoso)</label>
+          <textarea id="tpl-0" class="input-field" rows="2" oninput="actualizarPlantilla(0, this.value)">Hola {nombre}, te escribimos de {negocio}. Tenés pendiente {monto}. Podés pagar acá: {link}</textarea>
+          <div class="preview-bubble" id="preview-0"></div>
+        </div>
+
+        <!-- Plantilla 2 -->
+        <div style="margin-bottom: 16px;">
+          <label style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Mensaje 2 · Día +3 (Segundo recordatorio)</label>
+          <textarea id="tpl-1" class="input-field" rows="2" oninput="actualizarPlantilla(1, this.value)">Hola {nombre}, te recordamos que sigue pendiente {monto}. Pagá en un toque: {link}</textarea>
+          <div class="preview-bubble" id="preview-1"></div>
+        </div>
+
+        <!-- Plantilla 3 -->
+        <div>
+          <label style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Mensaje 3 · Día +7 (Último aviso)</label>
+          <textarea id="tpl-2" class="input-field" rows="2" oninput="actualizarPlantilla(2, this.value)">{nombre}, último aviso por {monto}. Si ya pagaste, ignorá este mensaje. Link: {link}</textarea>
+          <div class="preview-bubble" id="preview-2"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    // Estado en memoria
+    let negocio = "Gimnasio Fuerza";
+    let mpConectado = false;
+    let deudas = [
+      { id: 1, nombre: "Lucía Benítez", concepto: "Cuota gimnasio - septiembre", monto: 28000, atraso: 2, paso: 1 },
+      { id: 2, nombre: "Martín Duarte", concepto: "Alquiler depto 3B", monto: 185000, atraso: 5, paso: 2 },
+      { id: 3, nombre: "Instituto Horizonte", concepto: "Cuota curso de inglés", monto: 42000, atraso: 9, paso: 3 },
+      { id: 4, nombre: "Carolina Ríos", concepto: "Cuota gimnasio - septiembre", monto: 28000, atraso: 0, paso: 0 }
+    ];
+    let cobros = [];
+    let plantillas = [
+      "Hola {nombre}, te escribimos de {negocio}. Tenés pendiente {monto}. Podés pagar acá: {link}",
+      "Hola {nombre}, te recordamos que sigue pendiente {monto}. Pagá en un toque: {link}",
+      "{nombre}, último aviso por {monto}. Si ya pagaste, ignorá este mensaje. Link: {link}"
+    ];
+
+    const ars = (n) => "$" + Number(n).toLocaleString("es-AR");
+
+    function flash(msg) {
+      const banner = document.getElementById('flash-banner');
+      banner.innerText = msg;
+      banner.style.display = 'block';
+      setTimeout(() => { banner.style.display = 'none'; }, 3000);
+    }
+
+    function setTab(tab) {
+      document.getElementById('view-deudas').style.display = tab === 'deudas' ? 'block' : 'none';
+      document.getElementById('view-cobros').style.display = tab === 'cobros' ? 'block' : 'none';
+      document.getElementById('view-config').style.display = tab === 'config' ? 'block' : 'none';
+
+      document.getElementById('tab-btn-deudas').classList.toggle('active', tab === 'deudas');
+      document.getElementById('tab-btn-cobros').classList.toggle('active', tab === 'cobros');
+      document.getElementById('tab-btn-config').classList.toggle('active', tab === 'config');
+
+      if (tab === 'config') renderPreviews();
+    }
+
+    function renderDeudas() {
+      const container = document.getElementById('debt-list-container');
+      const totalAdeudado = deudas.reduce((s, d) => s + d.monto, 0);
+      const totalCobrado = cobros.reduce((s, c) => s + c.monto, 0);
+
+      document.getElementById('stat-total-adeudado').innerText = ars(totalAdeudado);
+      document.getElementById('stat-deudores-count').innerText = deudas.length;
+      document.getElementById('stat-cobrado-resumen').innerText = ars(totalCobrado);
+      document.getElementById('stat-cobrado-total').innerText = ars(totalCobrado);
+
+      if (deudas.length === 0) {
+        container.innerHTML = '<div class="empty-state">No hay deudas pendientes registradas. Agrega una nueva deuda debajo.</div>';
+        return;
+      }
+
+      container.innerHTML = deudas.map(d => {
+        let statusHtml = '';
+        if (d.paso === 0) {
+          statusHtml = '<span class="debt-status status-normal">Sin avisar</span>';
+        } else if (d.paso === 3) {
+          statusHtml = '<span class="debt-status status-silenced">Silenciado (3 mensajes enviados)</span>';
+        } else {
+          statusHtml = `<span class="debt-status status-progress">Mensaje ${d.paso} de 3 enviado</span>`;
+        }
+
+        const disabledAttr = d.paso >= 3 ? 'disabled' : '';
+
+        return `
+          <div class="debt-item">
+            <div>
+              <div class="debt-name">${escapeHtml(d.nombre)}</div>
+              <div class="debt-concept">${escapeHtml(d.concepto)} · ${d.atraso} días de atraso</div>
+              <div style="margin-top: 4px;">${statusHtml}</div>
+            </div>
+            <div>
+              <div class="debt-amount">${ars(d.monto)}</div>
+              <div class="actions-row">
+                <button ${disabledAttr} class="btn-solid" onclick="enviarRecordatorio(${d.id})">Enviar recordatorio</button>
+                <button class="btn-light" onclick="registrarPago(${d.id})">Registrar pago</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderCobros() {
+      const container = document.getElementById('receipts-container');
+      if (cobros.length === 0) {
+        container.innerHTML = '<div class="empty-state">Todavía no registraste cobros en esta sesión. Cuando marques una deuda como pagada, se emitirá el recibo aquí.</div>';
+        return;
+      }
+
+      container.innerHTML = cobros.map(c => `
+        <div class="debt-item">
+          <div>
+            <div class="debt-name">Recibo N° ${c.recibo}</div>
+            <div class="debt-concept">${escapeHtml(c.nombre)} · ${escapeHtml(c.concepto)} · ${c.fecha}</div>
+          </div>
+          <div class="debt-amount stat-val-verde">${ars(c.monto)}</div>
+        </div>
+      `).join('');
+    }
+
+    function enviarRecordatorio(id) {
+      const deuda = deudas.find(d => d.id === id);
+      if (!deuda || deuda.paso >= 3) return;
+
+      deuda.paso += 1;
+      flash(`Mensaje ${deuda.paso} de 3 enviado por WhatsApp a ${deuda.nombre}`);
+      renderDeudas();
+    }
+
+    function registrarPago(id) {
+      const idx = deudas.findIndex(d => d.id === id);
+      if (idx === -1) return;
+
+      const deuda = deudas[idx];
+      deudas.splice(idx, 1);
+
+      const nuevoRecibo = {
+        ...deuda,
+        recibo: String(cobros.length + 1).padStart(4, "0"),
+        fecha: new Date().toLocaleDateString("es-AR")
+      };
+
+      cobros.unshift(nuevoRecibo);
+      flash(`Pago de ${deuda.nombre} registrado. Recibo N° ${nuevoRecibo.recibo} generado.`);
+      renderDeudas();
+      renderCobros();
+    }
+
+    function agregarDeuda() {
+      const nombreInput = document.getElementById('input-new-nombre');
+      const conceptoInput = document.getElementById('input-new-concepto');
+      const montoInput = document.getElementById('input-new-monto');
+
+      const nombre = nombreInput.value.trim();
+      const concepto = conceptoInput.value.trim() || "Cuota mensual";
+      const monto = Number(montoInput.value);
+
+      if (!nombre || !monto || monto <= 0) {
+        alert("Por favor ingresa un nombre y un monto válido.");
+        return;
+      }
+
+      deudas.unshift({
+        id: Date.now(),
+        nombre,
+        concepto,
+        monto,
+        atraso: 0,
+        paso: 0
+      });
+
+      nombreInput.value = '';
+      conceptoInput.value = '';
+      montoInput.value = '';
+
+      flash(`Deuda de ${nombre} agregada al Gestor.`);
+      renderDeudas();
+    }
+
+    function toggleMercadoPago() {
+      mpConectado = !mpConectado;
+      const statusText = document.getElementById('mp-status-text');
+      const btn = document.getElementById('btn-toggle-mp');
+
+      if (mpConectado) {
+        statusText.innerText = "Cuenta conectada (OAuth OK)";
+        statusText.style.color = "var(--verde)";
+        statusText.style.fontWeight = "600";
+        btn.innerText = "Desconectar";
+        btn.className = "btn-danger";
+        flash("Cuenta de Mercado Pago vinculada con éxito.");
+      } else {
+        statusText.innerText = "Sin conectar (cobros a tu propia cuenta)";
+        statusText.style.color = "var(--ink)";
+        statusText.style.fontWeight = "normal";
+        btn.innerText = "Conectar cuenta";
+        btn.className = "btn-solid";
+        flash("Cuenta de Mercado Pago desconectada.");
+      }
+    }
+
+    function actualizarNegocio(val) {
+      negocio = val.trim() || "Tu Negocio";
+      document.getElementById('header-subtitle').innerText = `Recordatorios y cobranzas por WhatsApp · ${negocio}`;
+      renderPreviews();
+    }
+
+    function actualizarPlantilla(idx, val) {
+      plantillas[idx] = val;
+      renderPreviews();
+    }
+
+    function renderPreviews() {
+      for (let i = 0; i < 3; i++) {
+        const preview = plantillas[i]
+          .replace("{nombre}", "Lucía")
+          .replace("{negocio}", negocio)
+          .replace("{monto}", ars(28000))
+          .replace("{link}", "mpago.la/xxxx");
+        
+        const previewEl = document.getElementById(`preview-${i}`);
+        if (previewEl) {
+          previewEl.innerText = preview;
+        }
+      }
+    }
+
+    function escapeHtml(str) {
+      return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    // Inicializar
+    renderDeudas();
+    renderCobros();
+    renderPreviews();
+  </script>
+</body>
+</html>

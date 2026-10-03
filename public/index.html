@@ -71,117 +71,100 @@
   <!-- ======================================================== -->
   <!-- BARRA LATERAL (SIDEBAR B2B MINIMALISTA) -->
   <!-- ======================================================== -->
-  <aside class="w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 select-none">
+  <aside class="w-64 bg-[#1B4332] text-white flex flex-col justify-between shrink-0 select-none border-r border-[#143225]">
     <div>
       <!-- Header de Marca -->
-      <div class="h-16 px-5 border-b border-slate-100 flex items-center justify-between">
+      <div class="h-16 px-5 border-b border-white/10 flex items-center justify-between">
         <div class="flex items-center space-x-2.5">
-          <div class="w-7 h-7 bg-slate-900 rounded-md flex items-center justify-center text-white font-semibold text-sm tracking-tighter shadow-sm">
-            <span class="text-brand-500 font-black mr-0.5">C</span>R
+          <div class="w-7 h-7 bg-white rounded-md flex items-center justify-center text-[#1B4332] font-bold text-sm tracking-tighter shadow-sm">
+            CR
           </div>
-          <span class="text-sm font-semibold tracking-tight text-slate-900">Changared</span>
-          <span class="text-[10px] uppercase font-mono tracking-wider font-semibold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">B2B</span>
+          <span class="text-sm font-semibold tracking-tight text-white">Changared</span>
+          <span class="text-[10px] uppercase font-mono tracking-wider font-semibold px-1.5 py-0.5 rounded bg-white/10 text-emerald-200 border border-white/10">B2B</span>
         </div>
       </div>
 
       <!-- Selector de Tenant (Negocio Activo) -->
-      <div class="p-3 border-b border-slate-100">
-        <label class="block text-[11px] uppercase tracking-wider font-semibold text-slate-600 px-2 mb-1.5" data-i18n="activeBusiness">Negocio activo</label>
-        <button class="w-full flex items-center justify-between px-2.5 py-2 text-xs font-medium text-slate-800 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 transition-colors">
+      <div class="p-3 border-b border-white/10">
+        <label class="block text-[11px] uppercase tracking-wider font-semibold text-emerald-200/70 px-2 mb-1.5" data-i18n="activeBusiness">Negocio activo</label>
+        <button class="w-full flex items-center justify-between px-2.5 py-2 text-xs font-medium text-white bg-white/10 hover:bg-white/15 rounded-lg border border-white/10 transition-colors">
           <div class="flex items-center space-x-2 truncate">
-            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
             <span class="truncate font-semibold" id="sidebar-business-name">Pizzería Roma Artesanal</span>
           </div>
-          <i data-lucide="chevrons-up-down" class="w-3.5 h-3.5 text-slate-600 shrink-0"></i>
+          <span class="text-emerald-300 text-xs">↕</span>
         </button>
       </div>
 
-      <!-- Navegación del Dashboard -->
+      <!-- Navegación del Dashboard (Solo Texto Limpio, Sin Dibujitos) -->
       <nav class="p-3 space-y-1">
-        <div class="px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-slate-400">Principal</div>
+        <div class="px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-emerald-200/70">Principal</div>
         
-        <button onclick="switchStep('step-hub')" id="nav-step-hub" class="nav-item w-full flex items-center space-x-2.5 px-2.5 py-2 text-xs font-semibold rounded-lg text-slate-900 bg-slate-100 transition-colors">
-          <i data-lucide="layout-grid" class="w-4 h-4 text-emerald-600"></i>
-          <span>¿Qué empleado buscas?</span>
-          <span class="ml-auto text-[10px] font-mono px-1.5 py-0.2 bg-emerald-50 text-emerald-800 font-bold rounded border border-emerald-200">INICIO</span>
+        <button onclick="switchStep('step-hub')" id="nav-step-hub" class="nav-item w-full text-left px-3 py-2 text-xs font-semibold rounded-lg text-white bg-white/15 transition-colors">
+          ¿Qué empleado buscas?
         </button>
 
-        <div class="pt-3 px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-slate-400">Empleados Virtuales</div>
+        <div class="pt-3 px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-emerald-200/70">Empleados Virtuales</div>
 
-        <button onclick="switchStep('step-simulator')" id="nav-step-simulator" class="nav-item w-full flex items-center space-x-2.5 px-2.5 py-2 text-xs font-medium rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition-colors">
-          <i data-lucide="message-square" class="w-4 h-4 text-emerald-600"></i>
-          <span>1. Mostrador (WhatsApp)</span>
-          <span class="ml-auto text-[10px] font-mono px-1.5 py-0.2 bg-emerald-50 text-emerald-700 font-semibold rounded border border-emerald-200">24/7</span>
+        <button onclick="switchStep('step-simulator')" id="nav-step-simulator" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
+          1. Vendedor IA (WhatsApp 24/7)
         </button>
 
-        <button onclick="switchStep('step-accounting')" id="nav-step-accounting" class="nav-item w-full flex items-center space-x-2.5 px-2.5 py-2 text-xs font-medium rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition-colors">
-          <i data-lucide="file-spreadsheet" class="w-4 h-4 text-blue-600"></i>
-          <span>2. Contable (Facturas)</span>
-          <span class="ml-auto text-[10px] font-mono px-1.5 py-0.2 bg-blue-50 text-blue-700 font-semibold rounded border border-blue-200">EXCEL</span>
+        <button onclick="switchStep('step-cobranzas')" id="nav-step-cobranzas" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
+          2. Gestor de Cobranzas
         </button>
 
-        <!-- Botón TalleExacto Destacado en Menú Izquierdo -->
-        <button onclick="switchStep('step-talleexacto')" id="nav-step-talleexacto" class="nav-item w-full flex items-center space-x-2.5 px-2.5 py-2 text-xs font-semibold rounded-lg text-amber-950 bg-amber-50/80 hover:bg-amber-100 border border-amber-300 shadow-subtle transition-all">
-          <i data-lucide="scissors" class="w-4 h-4 text-amber-600"></i>
-          <span>3. TalleExacto (Moda)</span>
-          <span class="ml-auto text-[10px] font-mono px-1.5 py-0.2 bg-amber-100 text-amber-900 font-bold rounded border border-amber-300">FITMAP</span>
+        <button onclick="switchStep('step-accounting')" id="nav-step-accounting" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
+          3. Asistente Contable (Facturas)
         </button>
 
-        <button onclick="switchStep('step-radar')" id="nav-step-radar" class="nav-item w-full flex items-center space-x-2.5 px-2.5 py-2 text-xs font-medium rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition-colors">
-          <i data-lucide="activity" class="w-4 h-4 text-purple-600"></i>
-          <span>4. Radar E-Commerce</span>
-          <span class="ml-auto text-[10px] font-mono px-1.5 py-0.2 bg-purple-50 text-purple-700 font-semibold rounded border border-purple-200">RADAR</span>
+        <div class="pt-3 px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-emerald-200/70">Especial Moda</div>
+
+        <button onclick="switchStep('step-talleexacto')" id="nav-step-talleexacto" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
+          TalleExacto (Módulo Ropa)
         </button>
 
-        <div class="pt-3 px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-slate-400">Ajustes & Configuración</div>
+        <div class="pt-3 px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-emerald-200/70">Ajustes & Configuración</div>
 
-        <button onclick="switchStep('step-catalog')" id="nav-step-catalog" class="nav-item w-full flex items-center space-x-2.5 px-2.5 py-2 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors">
-          <i data-lucide="package" class="w-4 h-4 text-slate-500"></i>
-          <span>Catálogo & Stock</span>
+        <button onclick="switchStep('step-catalog')" id="nav-step-catalog" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-200/90 hover:text-white hover:bg-white/10 transition-colors">
+          Catálogo & Stock
         </button>
 
-        <button onclick="switchStep('step-identity')" id="nav-step-identity" class="nav-item w-full flex items-center space-x-2.5 px-2.5 py-2 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors">
-          <i data-lucide="sliders" class="w-4 h-4 text-slate-500"></i>
-          <span>Identidad del Negocio</span>
+        <button onclick="switchStep('step-identity')" id="nav-step-identity" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-200/90 hover:text-white hover:bg-white/10 transition-colors">
+          Identidad del Negocio
         </button>
 
-        <button onclick="switchStep('step-whatsapp')" id="nav-step-whatsapp" class="nav-item w-full flex items-center space-x-2.5 px-2.5 py-2 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors">
-          <i data-lucide="qr-code" class="w-4 h-4 text-slate-500"></i>
-          <span>Conectar WhatsApp (QR)</span>
+        <button onclick="switchStep('step-whatsapp')" id="nav-step-whatsapp" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-200/90 hover:text-white hover:bg-white/10 transition-colors">
+          Conectar WhatsApp (QR)
         </button>
 
-        <button onclick="switchStep('step-billing')" id="nav-step-billing" class="nav-item w-full flex items-center space-x-2.5 px-2.5 py-2 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors">
-          <i data-lucide="credit-card" class="w-4 h-4 text-slate-500"></i>
-          <span>Planes & Suscripción</span>
-          <span class="ml-auto text-[10px] font-mono px-1.5 py-0.2 bg-amber-50 text-amber-700 font-semibold rounded border border-amber-200">PRECIOS</span>
+        <button onclick="switchStep('step-billing')" id="nav-step-billing" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-200/90 hover:text-white hover:bg-white/10 transition-colors">
+          Planes & Suscripción
         </button>
       </nav>
     </div>
 
-    <!-- Footer de Sidebar (Estado del Asistente y Selector de Idioma Rápido) -->
-    <div class="p-3 border-t border-slate-100 space-y-2">
+    <!-- Footer de Sidebar (Estado y Selector de Idioma) -->
+    <div class="p-3 border-t border-white/10 space-y-2">
       <!-- Selector de Idioma UI -->
-      <div class="flex items-center justify-between px-2 py-1 bg-slate-50 rounded-lg border border-slate-200 text-xs">
-        <span class="flex items-center space-x-1.5 text-slate-600">
-          <i data-lucide="globe" class="w-3.5 h-3.5"></i>
-          <span class="text-[11px] font-medium" data-i18n="uiLangLabel">Idioma UI:</span>
-        </span>
+      <div class="flex items-center justify-between px-2.5 py-1.5 bg-black/20 rounded-lg text-xs text-emerald-200">
+        <span class="text-[11px] font-medium" data-i18n="uiLangLabel">Idioma UI:</span>
         <div class="flex items-center space-x-1 font-mono text-[11px] font-semibold">
-          <button onclick="setUiLanguage('es')" id="btn-lang-es" class="px-1.5 py-0.5 rounded bg-white shadow-subtle text-emerald-700 border border-slate-200">ES</button>
-          <button onclick="setUiLanguage('en')" id="btn-lang-en" class="px-1.5 py-0.5 rounded text-slate-600 hover:text-slate-900">EN</button>
-          <button onclick="setUiLanguage('pt')" id="btn-lang-pt" class="px-1.5 py-0.5 rounded text-slate-600 hover:text-slate-900">PT</button>
+          <button onclick="setUiLanguage('es')" id="btn-lang-es" class="px-1.5 py-0.5 rounded bg-emerald-500 text-slate-950 font-bold">ES</button>
+          <button onclick="setUiLanguage('en')" id="btn-lang-en" class="px-1.5 py-0.5 rounded text-emerald-300 hover:text-white">EN</button>
+          <button onclick="setUiLanguage('pt')" id="btn-lang-pt" class="px-1.5 py-0.5 rounded text-emerald-300 hover:text-white">PT</button>
         </div>
       </div>
 
-      <div class="px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg">
-        <div class="flex items-center justify-between text-xs font-medium text-slate-700 mb-1">
+      <div class="px-3 py-2 bg-black/20 rounded-lg">
+        <div class="flex items-center justify-between text-xs font-medium text-white mb-1">
           <span class="flex items-center space-x-1.5">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
             <span class="font-semibold" data-i18n="employeeStatus">Empleado Activo</span>
           </span>
-          <span class="text-[11px] font-mono text-slate-600">v1.0.0</span>
+          <span class="text-[11px] font-mono text-emerald-300">v1.0.0</span>
         </div>
-        <p class="text-[11px] text-slate-600 truncate" data-i18n="employeeModel">IA: OpenAI / Detección Multi-idioma</p>
+        <p class="text-[11px] text-emerald-200/70 truncate" data-i18n="employeeModel">OpenAI / Detección Multi-idioma</p>
       </div>
     </div>
   </aside>
@@ -224,224 +207,194 @@
     <div class="max-w-5xl w-full mx-auto px-8 py-8 space-y-6">
 
       <!-- ======================================================== -->
-      <!-- PANTALLA PRINCIPAL: ¿QUÉ EMPLEADO VIRTUAL NECESITAS? -->
+      <!-- PANTALLA PRINCIPAL: EMPLEADOS VIRTUALES B2B -->
       <!-- ======================================================== -->
       <section id="step-hub" class="step-content space-y-8">
         
-        <!-- Hero Header Limpio y Contundente -->
-        <div class="space-y-3 pb-3 border-b border-slate-200">
-          <div class="inline-flex items-center space-x-2 bg-emerald-50 text-emerald-800 border border-emerald-200 px-3 py-1 rounded-full text-xs font-semibold">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>Personal Autónomo con Inteligencia Artificial</span>
+        <!-- Header Limpio y Sobrio -->
+        <div class="space-y-2 pb-4 border-b border-slate-200">
+          <div class="text-[11px] font-mono uppercase tracking-wider font-semibold text-[#2D6A4F]">
+            Personal Autónomo para Empresas y Comercios
           </div>
-          <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+          <h1 class="text-2xl sm:text-3xl font-serif font-bold tracking-tight text-slate-900" style="font-family: Georgia, serif;">
             ¿Qué empleado virtual estás necesitando?
           </h1>
           <p class="text-xs sm:text-sm text-slate-600 max-w-3xl leading-relaxed">
-            Elige el asistente adecuado para tu negocio. Trabajan 24/7 sin descanso, atienden clientes en WhatsApp, resuelven tareas contables o asesoran compras de ropa por una fracción del costo de un sueldo tradicional.
+            Asistentes autónomos para automatizar la atención comercial, las cobranzas recurrentes y la administración contable de tu negocio. Operan de forma continua, sin ausencias y con integración directa a tus herramientas de trabajo.
           </p>
         </div>
 
-        <!-- Parrilla 2x2 de Empleados Virtuales -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <!-- Los 3 Empleados Virtuales Universales -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
 
-          <!-- 1. Empleado Mostrador & WhatsApp -->
-          <div class="bg-white border-2 border-slate-200 hover:border-emerald-500 rounded-2xl p-6 shadow-card hover:shadow-md transition-all flex flex-col justify-between group">
+          <!-- 1. Vendedor IA -->
+          <div class="bg-white border border-slate-200 hover:border-[#2D6A4F] rounded-lg p-5 flex flex-col justify-between transition-all">
             <div class="space-y-4">
-              <div class="flex items-center justify-between">
-                <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
-                  <i data-lucide="message-square" class="w-5 h-5"></i>
-                </div>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 font-bold uppercase tracking-wider">
-                  ATENCIÓN 24/7
+              <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                <span class="text-[10px] font-mono font-semibold tracking-wider text-slate-600 uppercase">
+                  Atención & Ventas
                 </span>
+                <span class="text-[10px] font-mono text-[#2D6A4F] font-bold">24/7</span>
               </div>
               <div>
-                <h3 class="text-base font-bold text-slate-900 group-hover:text-emerald-700 transition">
-                  1. Empleado Mostrador & Ventas (WhatsApp)
+                <h3 class="text-base font-serif font-bold text-slate-900" style="font-family: Georgia, serif;">
+                  1. Vendedor IA (WhatsApp)
                 </h3>
-                <div class="mt-2.5 p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 space-y-1">
-                  <span class="font-bold text-slate-900 block text-[11px] uppercase tracking-wide text-emerald-800">¿Para qué sirve?</span>
+                <div class="mt-3 p-3 bg-slate-50 border border-slate-200 rounded text-xs text-slate-700 space-y-1">
+                  <span class="font-bold text-slate-900 block text-[11px] uppercase tracking-wide text-[#1B4332]">¿Para qué sirve?</span>
                   <p class="leading-relaxed">
-                    Atiende a tus clientes en WhatsApp día y noche. Pasa precios de tu catálogo, verifica stock disponible en tiempo real, informa horarios y toma pedidos en español, inglés o portugués sin que tengas que responder a mano.
+                    Atiende a tus clientes en WhatsApp día y noche. Consulta precios y stock en tiempo real, informa horarios y toma pedidos en español, inglés o portugués sin intervención manual.
                   </p>
                 </div>
               </div>
-              <ul class="text-xs text-slate-600 space-y-1.5 pt-1">
-                <li class="flex items-center space-x-2">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i>
+              <ul class="text-xs text-slate-600 space-y-2 pt-1 font-sans">
+                <li class="flex items-start space-x-2">
+                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
                   <span>No pierde ventas fuera de horario comercial</span>
                 </li>
-                <li class="flex items-center space-x-2">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i>
-                  <span>Nunca ofrece productos agotados</span>
+                <li class="flex items-start space-x-2">
+                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
+                  <span>Nunca ofrece productos sin stock disponible</span>
                 </li>
-                <li class="flex items-center space-x-2">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600"></i>
-                  <span>Detecta turistas y extranjeros automáticamente</span>
+                <li class="flex items-start space-x-2">
+                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
+                  <span>Detección automática de idioma del cliente</span>
                 </li>
               </ul>
             </div>
             <div class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-2">
-              <button onclick="switchStep('step-simulator')" class="flex-1 py-2.5 px-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-semibold transition shadow-subtle flex items-center justify-center space-x-1.5">
-                <i data-lucide="play" class="w-3.5 h-3.5"></i>
-                <span>Probar Chat en Vivo →</span>
+              <button onclick="switchStep('step-simulator')" class="flex-1 py-2 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition">
+                Probar Chat en Vivo →
               </button>
-              <button onclick="switchStep('step-catalog')" class="py-2.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-medium transition" title="Configurar Catálogo">
-                <span>Catálogo</span>
+              <button onclick="switchStep('step-catalog')" class="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded text-xs font-medium transition">
+                Catálogo
               </button>
             </div>
           </div>
 
-          <!-- 2. Asistente Contable & Facturas a Excel -->
-          <div class="bg-white border-2 border-slate-200 hover:border-blue-500 rounded-2xl p-6 shadow-card hover:shadow-md transition-all flex flex-col justify-between group">
+          <!-- 2. Gestor de Cobranzas -->
+          <div class="bg-white border border-slate-200 hover:border-[#2D6A4F] rounded-lg p-5 flex flex-col justify-between transition-all">
             <div class="space-y-4">
-              <div class="flex items-center justify-between">
-                <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold">
-                  <i data-lucide="file-spreadsheet" class="w-5 h-5"></i>
-                </div>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-blue-50 text-blue-800 border border-blue-200 font-bold uppercase tracking-wider">
-                  EMAIL & DRIVE
+              <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                <span class="text-[10px] font-mono font-semibold tracking-wider text-slate-600 uppercase">
+                  Cobranzas Recurrentes
                 </span>
+                <span class="text-[10px] font-mono text-[#2D6A4F] font-bold">Mercado Pago</span>
               </div>
               <div>
-                <h3 class="text-base font-bold text-slate-900 group-hover:text-blue-700 transition">
-                  2. Asistente Contable (Facturas a Excel & Drive)
+                <h3 class="text-base font-serif font-bold text-slate-900" style="font-family: Georgia, serif;">
+                  2. Gestor de Cobranzas
                 </h3>
-                <div class="mt-2.5 p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 space-y-1">
-                  <span class="font-bold text-slate-900 block text-[11px] uppercase tracking-wide text-blue-800">¿Para qué sirve?</span>
+                <div class="mt-3 p-3 bg-slate-50 border border-slate-200 rounded text-xs text-slate-700 space-y-1">
+                  <span class="font-bold text-slate-900 block text-[11px] uppercase tracking-wide text-[#1B4332]">¿Para qué sirve?</span>
                   <p class="leading-relaxed">
-                    Lee las facturas y comprobantes en PDF que llegan a tu email, extrae CUIT, neto e IVA discriminado con IA, sube el PDF a tu Google Drive y llena automáticamente el Excel de tu contador sin saturar tu servidor.
+                    Envía recordatorios de pago automáticos en 3 pasos por WhatsApp con link directo a tu cuenta de Mercado Pago. Emite recibos oficiales y silencia deudores en gestión.
                   </p>
                 </div>
               </div>
-              <ul class="text-xs text-slate-600 space-y-1.5 pt-1">
-                <li class="flex items-center space-x-2">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-blue-600"></i>
-                  <span>Zero fricción: tus proveedores solo mandan un email</span>
+              <ul class="text-xs text-slate-600 space-y-2 pt-1 font-sans">
+                <li class="flex items-start space-x-2">
+                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
+                  <span>Secuencia automática: Día 0, Día +3 y Día +7</span>
                 </li>
-                <li class="flex items-center space-x-2">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-blue-600"></i>
-                  <span>Calcula crédito fiscal IVA y gastos mensuales</span>
+                <li class="flex items-start space-x-2">
+                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
+                  <span>Cobro directo a tu propia cuenta de Mercado Pago</span>
                 </li>
-                <li class="flex items-center space-x-2">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-blue-600"></i>
-                  <span>Tu contador recibe el Libro IVA listo en Google Sheets</span>
+                <li class="flex items-start space-x-2">
+                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
+                  <span>Alerta de deudores silenciados y emisión de recibos</span>
                 </li>
               </ul>
             </div>
             <div class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-2">
-              <button onclick="switchStep('step-accounting')" class="flex-1 py-2.5 px-3 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold transition shadow-subtle flex items-center justify-center space-x-1.5">
-                <i data-lucide="table" class="w-3.5 h-3.5 text-blue-400"></i>
-                <span>Ver Excel en Vivo & Simular →</span>
+              <button onclick="switchStep('step-cobranzas')" class="flex-1 py-2 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition">
+                Abrir Gestor →
               </button>
-            </div>
-          </div>
-
-          <!-- 3. Asesor de Moda & Talles (TalleExacto) -->
-          <div class="bg-white border-2 border-slate-200 hover:border-amber-500 rounded-2xl p-6 shadow-card hover:shadow-md transition-all flex flex-col justify-between group">
-            <div class="space-y-4">
-              <div class="flex items-center justify-between">
-                <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold">
-                  <i data-lucide="scissors" class="w-5 h-5"></i>
-                </div>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200 font-bold uppercase tracking-wider">
-                  FITMAP MODA
-                </span>
-              </div>
-              <div>
-                <h3 class="text-base font-bold text-slate-900 group-hover:text-amber-700 transition">
-                  3. Asesor de Moda & Talles (TalleExacto)
-                </h3>
-                <div class="mt-2.5 p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 space-y-1">
-                  <span class="font-bold text-slate-900 block text-[11px] uppercase tracking-wide text-amber-800">¿Para qué sirve?</span>
-                  <p class="leading-relaxed">
-                    Resuelve las dudas de medidas de tus clientas por WhatsApp y mediante un probador virtual inteligente en tu tienda online (Tiendanube/Shopify/WooCommerce). Reduce hasta un 30% las costosas devoluciones por talle equivocado.
-                  </p>
-                </div>
-              </div>
-              <ul class="text-xs text-slate-600 space-y-1.5 pt-1">
-                <li class="flex items-center space-x-2">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-amber-600"></i>
-                  <span>Probador visual interactivo 2D con maniquí</span>
-                </li>
-                <li class="flex items-center space-x-2">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-amber-600"></i>
-                  <span>Recomienda talle exacto (XS a XL) en WhatsApp</span>
-                </li>
-                <li class="flex items-center space-x-2">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-amber-600"></i>
-                  <span>Elimina el costo del doble envío por cambios</span>
-                </li>
-              </ul>
-            </div>
-            <div class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-2">
-              <button onclick="switchStep('step-talleexacto')" class="flex-1 py-2.5 px-3 bg-amber-600 hover:bg-amber-700 text-white rounded-lg text-xs font-semibold transition shadow-subtle flex items-center justify-center space-x-1.5">
-                <i data-lucide="scan" class="w-3.5 h-3.5"></i>
-                <span>Probar Probador de Talles →</span>
-              </button>
-              <a href="/talleexacto.html" target="_blank" class="py-2.5 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-medium transition flex items-center space-x-1" title="Ver Landing Oficial">
-                <span>Landing</span>
-                <i data-lucide="external-link" class="w-3 h-3"></i>
+              <a href="/cobranzas.html" target="_blank" class="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded text-xs font-medium transition">
+                Pantalla Completa ↗
               </a>
             </div>
           </div>
 
-          <!-- 4. Centinela Operativo (Radar E-Commerce) -->
-          <div class="bg-white border-2 border-slate-200 hover:border-purple-500 rounded-2xl p-6 shadow-card hover:shadow-md transition-all flex flex-col justify-between group">
+          <!-- 3. Asistente Contable -->
+          <div class="bg-white border border-slate-200 hover:border-[#2D6A4F] rounded-lg p-5 flex flex-col justify-between transition-all">
             <div class="space-y-4">
-              <div class="flex items-center justify-between">
-                <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold">
-                  <i data-lucide="activity" class="w-5 h-5"></i>
-                </div>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-50 text-purple-800 border border-purple-200 font-bold uppercase tracking-wider">
-                  CENTINELA 24/7
+              <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+                <span class="text-[10px] font-mono font-semibold tracking-wider text-slate-600 uppercase">
+                  Contabilidad & AFIP
                 </span>
+                <span class="text-[10px] font-mono text-[#2D6A4F] font-bold">Email & Drive</span>
               </div>
               <div>
-                <h3 class="text-base font-bold text-slate-900 group-hover:text-purple-700 transition">
-                  4. Centinela Operativo (Radar de Incidentes)
+                <h3 class="text-base font-serif font-bold text-slate-900" style="font-family: Georgia, serif;">
+                  3. Asistente Contable
                 </h3>
-                <div class="mt-2.5 p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 space-y-1">
-                  <span class="font-bold text-slate-900 block text-[11px] uppercase tracking-wide text-purple-800">¿Para qué sirve?</span>
+                <div class="mt-3 p-3 bg-slate-50 border border-slate-200 rounded text-xs text-slate-700 space-y-1">
+                  <span class="font-bold text-slate-900 block text-[11px] uppercase tracking-wide text-[#1B4332]">¿Para qué sirve?</span>
                   <p class="leading-relaxed">
-                    Monitorea tus ventas en Mercado Pago y Tiendanube. Detecta compras rechazadas o stock agotado al instante y envía alertas de rescate al comprador por WhatsApp antes de que se vaya a la competencia.
+                    Lee las facturas en PDF que llegan a tu email, extrae CUIT, neto e IVA discriminado con IA, organiza los archivos en tu Google Drive y llena el Excel de tu contador automáticamente.
                   </p>
                 </div>
               </div>
-              <ul class="text-xs text-slate-600 space-y-1.5 pt-1">
-                <li class="flex items-center space-x-2">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-purple-600"></i>
-                  <span>Rescata pagos caídos de Mercado Pago</span>
+              <ul class="text-xs text-slate-600 space-y-2 pt-1 font-sans">
+                <li class="flex items-start space-x-2">
+                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
+                  <span>Sin carga manual: proveedores envían la factura al email</span>
                 </li>
-                <li class="flex items-center space-x-2">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-purple-600"></i>
-                  <span>Alerta de stock crítico antes de quebrar stock</span>
+                <li class="flex items-start space-x-2">
+                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
+                  <span>Calcula crédito fiscal IVA y gastos por proveedor</span>
                 </li>
-                <li class="flex items-center space-x-2">
-                  <i data-lucide="check" class="w-3.5 h-3.5 text-purple-600"></i>
-                  <span>Triage automático de incidencias con IA</span>
+                <li class="flex items-start space-x-2">
+                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
+                  <span>Tu contador recibe el Libro IVA en Google Sheets</span>
                 </li>
               </ul>
             </div>
             <div class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-2">
-              <button onclick="switchStep('step-radar')" class="flex-1 py-2.5 px-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-xs font-semibold transition shadow-subtle flex items-center justify-center space-x-1.5">
-                <i data-lucide="radio" class="w-3.5 h-3.5"></i>
-                <span>Ver Radar en Vivo →</span>
+              <button onclick="switchStep('step-accounting')" class="flex-1 py-2 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition">
+                Ver Excel en Vivo →
               </button>
             </div>
+          </div>
+
+        </div>
+
+        <!-- Módulo Especializado: TalleExacto -->
+        <div class="p-5 bg-[#FAF7EE] border border-[#E6DCC3] rounded-lg flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="space-y-1 max-w-2xl">
+            <div class="flex items-center space-x-2">
+              <span class="text-[10px] font-mono uppercase tracking-wider font-bold text-[#8A5A1E]">Módulo Especializado Moda</span>
+              <span class="text-slate-300">•</span>
+              <span class="text-xs text-slate-600 font-medium">Tiendanube, Shopify, WooCommerce o WhatsApp</span>
+            </div>
+            <h4 class="text-base font-serif font-bold text-slate-900" style="font-family: Georgia, serif;">
+              TalleExacto — Probador Virtual & Recomendador de Medidas
+            </h4>
+            <p class="text-xs text-slate-700 leading-relaxed">
+              Resuelve las dudas de medidas de tus clientas con un probador virtual interactivo y recomendaciones automáticas por WhatsApp. Reduce hasta un 30% las costosas devoluciones por talle equivocado.
+            </p>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <button onclick="switchStep('step-talleexacto')" class="py-2 px-3.5 bg-[#8A5A1E] hover:bg-[#6E4817] text-white rounded text-xs font-semibold transition">
+              Probar Módulo →
+            </button>
+            <a href="/talleexacto.html" target="_blank" class="py-2 px-3 bg-white hover:bg-slate-100 text-slate-800 border border-[#E6DCC3] rounded text-xs font-medium transition">
+              Landing Oficial ↗
+            </a>
           </div>
         </div>
 
         <!-- Banner de Planes & Precios (Combo) -->
-        <div class="p-6 bg-gradient-to-r from-slate-900 to-slate-800 text-white rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-card">
+        <div class="p-5 bg-[#1B4332] text-white rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div class="space-y-1">
-            <span class="text-emerald-400 font-mono text-xs font-bold uppercase tracking-wider">¿Necesitas varios empleados?</span>
-            <h4 class="text-base font-bold">Arma tu combo personalizado con descuento mensual</h4>
-            <p class="text-xs text-slate-300">Planes desde $39.000 ARS (Mercado Pago) o $29 USD (Lemon Squeezy). Sin contratos de permanencia.</p>
+            <span class="text-emerald-300 font-mono text-[10px] font-bold uppercase tracking-wider">Contratación Flexible</span>
+            <h4 class="text-base font-serif font-bold" style="font-family: Georgia, serif;">Arma tu esquema personalizado de empleados</h4>
+            <p class="text-xs text-emerald-100/80">Planes desde $39.000 ARS / mes por empleado o abono unificado con descuento. Sin contratos de permanencia.</p>
           </div>
-          <button onclick="switchStep('step-billing')" class="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs rounded-xl transition shadow-subtle shrink-0">
-            Ver Planes & Precios →
+          <button onclick="switchStep('step-billing')" class="px-4 py-2 bg-white hover:bg-emerald-50 text-[#1B4332] font-semibold text-xs rounded transition shrink-0">
+            Ver Planes & Facturación →
           </button>
         </div>
 
@@ -1046,23 +999,20 @@
       <section id="step-accounting" class="step-content space-y-6 hidden">
         <!-- Top Navigation Banner -->
         <div class="flex items-center justify-between pb-2 border-b border-slate-200">
-          <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 transition shadow-subtle">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+          <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 transition">
             <span>← Elegir otro empleado</span>
           </button>
           <div class="flex items-center space-x-2">
-            <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-            <span class="text-xs font-medium text-slate-700">2. Asistente Contable (Facturas a Excel & Drive)</span>
+            <span class="text-xs font-semibold text-slate-800">3. Asistente Contable (Facturas a Excel & Drive)</span>
           </div>
         </div>
 
         <!-- Banner Explicativo: ¿Para qué sirve este empleado? -->
-        <div class="p-4 bg-blue-50 border border-blue-200 rounded-xl space-y-1">
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
           <div class="flex items-center space-x-2">
-            <i data-lucide="file-spreadsheet" class="w-4 h-4 text-blue-700"></i>
-            <h3 class="text-xs font-bold uppercase tracking-wider text-blue-900">¿Para qué sirve este empleado?</h3>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-[#1B4332]">¿Para qué sirve este empleado?</h3>
           </div>
-          <p class="text-xs text-blue-950 leading-relaxed font-medium">
+          <p class="text-xs text-slate-700 leading-relaxed">
             Lee automáticamente las facturas y comprobantes en PDF que llegan a tu casilla de email, extrae CUIT, neto e IVA discriminado con IA, guarda el PDF en tu Google Drive y completa el Excel o Google Sheets de tu contador sin saturar la memoria de tu servidor.
           </p>
         </div>
@@ -1243,23 +1193,20 @@
       <section id="step-talleexacto" class="step-content space-y-6 hidden">
         <!-- Top Navigation Banner -->
         <div class="flex items-center justify-between pb-2 border-b border-slate-200">
-          <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 transition shadow-subtle">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+          <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 transition">
             <span>← Elegir otro empleado</span>
           </button>
           <div class="flex items-center space-x-2">
-            <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
-            <span class="text-xs font-medium text-slate-700">3. Asesor de Moda & Talles (TalleExacto)</span>
+            <span class="text-xs font-semibold text-slate-800">Módulo Especial Moda: TalleExacto</span>
           </div>
         </div>
 
         <!-- Banner Explicativo: ¿Para qué sirve este empleado? -->
-        <div class="p-4 bg-amber-50 border border-amber-200 rounded-xl space-y-1">
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
           <div class="flex items-center space-x-2">
-            <i data-lucide="scissors" class="w-4 h-4 text-amber-700"></i>
-            <h3 class="text-xs font-bold uppercase tracking-wider text-amber-900">¿Para qué sirve este empleado?</h3>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-[#8A5A1E]">¿Para qué sirve este módulo?</h3>
           </div>
-          <p class="text-xs text-amber-950 leading-relaxed font-medium">
+          <p class="text-xs text-slate-700 leading-relaxed">
             Ayuda a tus clientas de indumentaria a elegir su talle exacto (XS al XXL) calculando busto, cintura y cadera con un probador interactivo 2D y en WhatsApp, reduciendo hasta un 30% las costosas devoluciones por prendas que no entran ni quedan cómodas.
           </p>
         </div>
@@ -1529,23 +1476,20 @@
       <section id="step-simulator" class="step-content space-y-6 hidden">
         <!-- Top Navigation Banner -->
         <div class="flex items-center justify-between pb-2 border-b border-slate-200">
-          <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 transition shadow-subtle">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+          <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 transition">
             <span>← Elegir otro empleado</span>
           </button>
           <div class="flex items-center space-x-2">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span class="text-xs font-medium text-slate-700">1. Empleado Mostrador & Ventas (WhatsApp)</span>
+            <span class="text-xs font-semibold text-slate-800">1. Vendedor IA (WhatsApp 24/7)</span>
           </div>
         </div>
 
         <!-- Banner Explicativo: ¿Para qué sirve este empleado? -->
-        <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-xl space-y-1">
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
           <div class="flex items-center space-x-2">
-            <i data-lucide="message-square" class="w-4 h-4 text-emerald-700"></i>
-            <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-900">¿Para qué sirve este empleado?</h3>
+            <h3 class="text-xs font-bold uppercase tracking-wider text-[#1B4332]">¿Para qué sirve este empleado?</h3>
           </div>
-          <p class="text-xs text-emerald-950 leading-relaxed font-medium">
+          <p class="text-xs text-slate-700 leading-relaxed">
             Atiende a tus clientes en WhatsApp día y noche. Pasa precios de tu catálogo, responde dudas frecuentes, verifica stock disponible en tiempo real y toma pedidos en cualquier idioma (español, inglés o portugués) sin que tengas que atender el teléfono ni perder ventas fuera de horario.
           </p>
         </div>
@@ -1638,126 +1582,25 @@
       </section>
 
       <!-- ======================================================== -->
-      <!-- PASO: 4. CENTINELA OPERATIVO (RADAR DE INCIDENTES 24/7) -->
+      <!-- 2. GESTOR DE COBRANZAS (WHATSAPP & MERCADO PAGO) -->
       <!-- ======================================================== -->
-      <section id="step-radar" class="step-content space-y-6 hidden">
-        <!-- Top Navigation Banner -->
-        <div class="flex items-center justify-between pb-2 border-b border-slate-200">
-          <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 transition shadow-subtle">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+      <section id="step-cobranzas" class="step-content space-y-4 hidden">
+        <!-- Top Navigation Bar -->
+        <div class="flex items-center justify-between pb-3 border-b border-slate-200">
+          <button onclick="switchStep('step-hub')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded text-xs font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 transition">
             <span>← Elegir otro empleado</span>
           </button>
-          <div class="flex items-center space-x-2">
-            <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse"></span>
-            <span class="text-xs font-medium text-slate-700">4. Centinela Operativo (Radar E-Commerce)</span>
+          <div class="flex items-center space-x-3">
+            <span class="text-xs font-semibold text-slate-800">2. Gestor de Cobranzas (WhatsApp & Mercado Pago)</span>
+            <a href="/cobranzas.html" target="_blank" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition">
+              Abrir en Pantalla Completa ↗
+            </a>
           </div>
         </div>
 
-        <!-- Banner Explicativo: ¿Para qué sirve este empleado? -->
-        <div class="p-4 bg-purple-50 border border-purple-200 rounded-xl space-y-1">
-          <div class="flex items-center space-x-2">
-            <i data-lucide="activity" class="w-4 h-4 text-purple-700"></i>
-            <h3 class="text-xs font-bold uppercase tracking-wider text-purple-900">¿Para qué sirve este empleado?</h3>
-          </div>
-          <p class="text-xs text-purple-950 leading-relaxed font-medium">
-            Monitorea tus ventas en Mercado Pago y Tiendanube las 24 horas. Detecta compras rechazadas o stock agotado en tiempo real y activa un rescate automático por WhatsApp con el comprador antes de que abandone la compra o se vaya con la competencia.
-          </p>
-        </div>
-
-        <!-- Métricas KPI en Vivo -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-          <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-subtle">
-            <span class="text-[11px] text-slate-500 uppercase tracking-wider font-semibold block">Pagos Rescatados</span>
-            <div class="text-lg font-bold text-slate-900 mt-1" id="radar-stat-rescues">14 ventas</div>
-            <span class="text-[11px] text-emerald-600 font-medium">+$184.200 ARS recuperados</span>
-          </div>
-          <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-subtle">
-            <span class="text-[11px] text-slate-500 uppercase tracking-wider font-semibold block">Quiebres Prevenidos</span>
-            <div class="text-lg font-bold text-purple-700 mt-1" id="radar-stat-stock">3 alertas</div>
-            <span class="text-[11px] text-slate-500">Stock crítico resuelto</span>
-          </div>
-          <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-subtle">
-            <span class="text-[11px] text-slate-500 uppercase tracking-wider font-semibold block">Tiempo de Reacción</span>
-            <div class="text-lg font-bold text-slate-900 mt-1">&lt; 35 seg</div>
-            <span class="text-[11px] text-emerald-600 font-medium">Alerta instantánea</span>
-          </div>
-          <div class="bg-white border border-slate-200 rounded-xl p-4 shadow-subtle">
-            <span class="text-[11px] text-slate-500 uppercase tracking-wider font-semibold block">Integraciones</span>
-            <div class="flex items-center space-x-1.5 mt-1.5">
-              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-              <span class="text-xs font-semibold text-slate-800">MP / Tiendanube</span>
-            </div>
-            <span class="text-[10px] text-slate-400 font-mono">Webhooks OK</span>
-          </div>
-        </div>
-
-        <!-- Radar Feed & Consola Interactiva -->
-        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
-            <div>
-              <h2 class="text-sm font-semibold text-slate-900 flex items-center space-x-2">
-                <i data-lucide="radio" class="w-4 h-4 text-purple-600"></i>
-                <span>Feed de Eventos en Tiempo Real (Radar)</span>
-              </h2>
-              <p class="text-xs text-slate-600 mt-0.5">El agente analiza cada error de pasarela o stock y decide la acción inmediata de rescate.</p>
-            </div>
-            <!-- Botones de Simulación Interactiva -->
-            <div class="flex items-center space-x-2">
-              <button onclick="simulateRadarIncident('payment')" class="px-3 py-1.5 bg-purple-600 hover:bg-purple-700 text-white rounded-lg text-xs font-semibold shadow-subtle transition flex items-center space-x-1.5">
-                <i data-lucide="zap" class="w-3.5 h-3.5"></i>
-                <span>Simular Pago Caído</span>
-              </button>
-              <button onclick="simulateRadarIncident('stock')" class="px-3 py-1.5 bg-slate-900 hover:bg-slate-800 text-white rounded-lg text-xs font-semibold shadow-subtle transition flex items-center space-x-1.5">
-                <i data-lucide="alert-triangle" class="w-3.5 h-3.5 text-amber-400"></i>
-                <span>Simular Quiebre Stock</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Lista de Incidentes Detectados -->
-          <div id="radar-incident-list" class="space-y-2.5">
-            <!-- Incidente 1 -->
-            <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-3">
-              <div class="flex items-start space-x-3">
-                <div class="w-8 h-8 rounded-lg bg-red-100 text-red-700 flex items-center justify-center shrink-0 mt-0.5">
-                  <i data-lucide="credit-card" class="w-4 h-4"></i>
-                </div>
-                <div>
-                  <div class="flex items-center space-x-2">
-                    <span class="text-xs font-bold text-slate-900">Mercado Pago: Pago Rechazado #MP-98412</span>
-                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-red-100 text-red-800 font-bold uppercase">Severidad Alta</span>
-                  </div>
-                  <p class="text-xs text-slate-600 mt-0.5">Cliente: Juan Pérez (+$32.500 ARS) • Motivo: Fondos insuficientes en tarjeta débito.</p>
-                  <p class="text-xs text-emerald-700 font-medium mt-1 flex items-center space-x-1">
-                    <i data-lucide="check" class="w-3.5 h-3.5"></i>
-                    <span>Acción IA: Mensaje WhatsApp enviado ofreciendo link de pago alternativo con 10% off.</span>
-                  </p>
-                </div>
-              </div>
-              <span class="text-[11px] font-mono text-slate-400 shrink-0">Hace 3 min</span>
-            </div>
-
-            <!-- Incidente 2 -->
-            <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl flex flex-col md:flex-row md:items-center justify-between gap-3">
-              <div class="flex items-start space-x-3">
-                <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-700 flex items-center justify-center shrink-0 mt-0.5">
-                  <i data-lucide="package-x" class="w-4 h-4"></i>
-                </div>
-                <div>
-                  <div class="flex items-center space-x-2">
-                    <span class="text-xs font-bold text-slate-900">Tiendanube: Alerta de Quiebre de Stock</span>
-                    <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-100 text-amber-800 font-bold uppercase">Severidad Media</span>
-                  </div>
-                  <p class="text-xs text-slate-600 mt-0.5">Producto: Pizza Fugazzeta Rellena • Stock restante: 1 unidad disponible.</p>
-                  <p class="text-xs text-emerald-700 font-medium mt-1 flex items-center space-x-1">
-                    <i data-lucide="check" class="w-3.5 h-3.5"></i>
-                    <span>Acción IA: Pausado automáticamente en catálogo WhatsApp para evitar sobreventas.</span>
-                  </p>
-                </div>
-              </div>
-              <span class="text-[11px] font-mono text-slate-400 shrink-0">Hace 18 min</span>
-            </div>
-          </div>
+        <!-- Vista Integrada del Gestor de Cobranzas -->
+        <div class="border border-slate-200 rounded-lg overflow-hidden bg-[#F6EFDF] shadow-sm">
+          <iframe src="/cobranzas.html" title="Gestor de Cobranzas" style="width: 100%; min-height: 860px; border: none; display: block;"></iframe>
         </div>
       </section>
 
@@ -2194,13 +2037,13 @@
       }
 
       document.querySelectorAll('.nav-item').forEach(btn => {
-        btn.classList.remove('bg-slate-100', 'text-slate-900', 'font-semibold');
-        btn.classList.add('text-slate-700');
+        btn.classList.remove('bg-white/15', 'text-white', 'font-semibold');
+        btn.classList.add('text-emerald-100');
       });
       const activeNav = document.getElementById('nav-' + stepId);
       if (activeNav) {
-        activeNav.classList.add('bg-slate-100', 'text-slate-900', 'font-semibold');
-        activeNav.classList.remove('text-slate-700');
+        activeNav.classList.add('bg-white/15', 'text-white', 'font-semibold');
+        activeNav.classList.remove('text-emerald-100');
       }
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
