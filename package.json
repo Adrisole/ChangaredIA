@@ -1,0 +1,26 @@
+{
+  "name": "changared-virtual-employee",
+  "version": "1.0.0",
+  "description": "Plataforma multi-tenant para empleados virtuales de WhatsApp con IA para tiendas y negocios",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
+  },
+  "keywords": [
+    "multi-tenant",
+    "whatsapp",
+    "ai-agent",
+    "openai",
+    "ecommerce",
+    "changared"
+  ],
+  "author": "Changared Team",
+  "license": "MIT"
+}

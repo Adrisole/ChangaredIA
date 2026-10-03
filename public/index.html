@@ -1,0 +1,1711 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full bg-slate-50">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Changared — Panel de Configuración Multi-Idioma & Empleado Virtual</title>
+
+  <!-- Tipografía Inter Oficial -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN con configuración personalizada -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#ecfdf5',
+              100: '#d1fae5',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              900: '#064e3b',
+            },
+          },
+          boxShadow: {
+            'subtle': '0 1px 2px 0 rgba(0, 0, 0, 0.04), 0 1px 1px 0 rgba(0, 0, 0, 0.02)',
+            'card': '0 1px 3px 0 rgba(0, 0, 0, 0.06), 0 1px 2px 0 rgba(0, 0, 0, 0.03)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F1F5F9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+  </style>
+</head>
+<body class="h-full flex text-slate-900 selection:bg-brand-100 selection:text-brand-900">
+
+  <!-- ======================================================== -->
+  <!-- BARRA LATERAL (SIDEBAR B2B MINIMALISTA) -->
+  <!-- ======================================================== -->
+  <aside class="w-64 bg-white border-r border-slate-200 flex flex-col justify-between shrink-0 select-none">
+    <div>
+      <!-- Header de Marca -->
+      <div class="h-16 px-5 border-b border-slate-100 flex items-center justify-between">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-7 h-7 bg-slate-900 rounded-md flex items-center justify-center text-white font-semibold text-sm tracking-tighter shadow-sm">
+            <span class="text-brand-500 font-black mr-0.5">C</span>R
+          </div>
+          <span class="text-sm font-semibold tracking-tight text-slate-900">Changared</span>
+          <span class="text-[10px] uppercase font-mono tracking-wider font-semibold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600 border border-slate-200">B2B</span>
+        </div>
+      </div>
+
+      <!-- Selector de Tenant (Negocio Activo) -->
+      <div class="p-3 border-b border-slate-100">
+        <label class="block text-[11px] uppercase tracking-wider font-semibold text-slate-600 px-2 mb-1.5" data-i18n="activeBusiness">Negocio activo</label>
+        <button class="w-full flex items-center justify-between px-2.5 py-2 text-xs font-medium text-slate-800 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 transition-colors">
+          <div class="flex items-center space-x-2 truncate">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            <span class="truncate font-semibold" id="sidebar-business-name">Pizzería Roma Artesanal</span>
+          </div>
+          <i data-lucide="chevrons-up-down" class="w-3.5 h-3.5 text-slate-600 shrink-0"></i>
+        </button>
+      </div>
+
+      <!-- Navegación del Dashboard -->
+      <nav class="p-3 space-y-1">
+        <div class="px-2 py-1.5 text-[11px] uppercase tracking-wider font-semibold text-slate-600" data-i18n="navConfigSection">Configuración</div>
+        
+        <button onclick="switchStep('step-identity')" id="nav-step-identity" class="nav-item w-full flex items-center space-x-2.5 px-2.5 py-2 text-xs font-medium rounded-lg text-slate-900 bg-slate-100 transition-colors">
+          <i data-lucide="sliders" class="w-4 h-4 text-slate-700"></i>
+          <span data-i18n="navStep1">1. Identidad & Tono</span>
+        </button>
+
+        <button onclick="switchStep('step-catalog')" id="nav-step-catalog" class="nav-item w-full flex items-center space-x-2.5 px-2.5 py-2 text-xs font-medium rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition-colors">
+          <i data-lucide="package" class="w-4 h-4 text-slate-600"></i>
+          <span data-i18n="navStep2">2. Inventario & Stock</span>
+        </button>
+
+        <button onclick="switchStep('step-whatsapp')" id="nav-step-whatsapp" class="nav-item w-full flex items-center space-x-2.5 px-2.5 py-2 text-xs font-medium rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition-colors">
+          <i data-lucide="message-square" class="w-4 h-4 text-slate-600"></i>
+          <span data-i18n="navStep3">3. Conexión WhatsApp</span>
+        </button>
+
+        <button onclick="switchStep('step-billing')" id="nav-step-billing" class="nav-item w-full flex items-center space-x-2.5 px-2.5 py-2 text-xs font-medium rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition-colors">
+          <i data-lucide="credit-card" class="w-4 h-4 text-slate-600"></i>
+          <span>4. Planes & Facturación</span>
+          <span class="ml-auto text-[10px] font-mono px-1.5 py-0.2 bg-amber-50 text-amber-700 font-semibold rounded border border-amber-200">PRO</span>
+        </button>
+
+        <div class="pt-4 px-2 py-1.5 text-[11px] uppercase tracking-wider font-semibold text-slate-600" data-i18n="navOpsSection">Operaciones</div>
+
+        <button onclick="switchStep('step-simulator')" id="nav-step-simulator" class="nav-item w-full flex items-center space-x-2.5 px-2.5 py-2 text-xs font-medium rounded-lg text-slate-700 hover:text-slate-900 hover:bg-slate-50 transition-colors">
+          <i data-lucide="terminal" class="w-4 h-4 text-slate-600"></i>
+          <span data-i18n="navSimulator">Simulador en Vivo</span>
+          <span class="ml-auto text-[10px] font-mono px-1.5 py-0.2 bg-emerald-50 text-emerald-700 font-semibold rounded border border-emerald-200">TEST</span>
+        </button>
+
+        <button class="w-full flex items-center space-x-2.5 px-2.5 py-2 text-xs font-medium rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-colors">
+          <i data-lucide="activity" class="w-4 h-4 text-slate-600"></i>
+          <span data-i18n="navRadar">Radar de Incidentes</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- Footer de Sidebar (Estado del Asistente y Selector de Idioma Rápido) -->
+    <div class="p-3 border-t border-slate-100 space-y-2">
+      <!-- Selector de Idioma UI -->
+      <div class="flex items-center justify-between px-2 py-1 bg-slate-50 rounded-lg border border-slate-200 text-xs">
+        <span class="flex items-center space-x-1.5 text-slate-600">
+          <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+          <span class="text-[11px] font-medium" data-i18n="uiLangLabel">Idioma UI:</span>
+        </span>
+        <div class="flex items-center space-x-1 font-mono text-[11px] font-semibold">
+          <button onclick="setUiLanguage('es')" id="btn-lang-es" class="px-1.5 py-0.5 rounded bg-white shadow-subtle text-emerald-700 border border-slate-200">ES</button>
+          <button onclick="setUiLanguage('en')" id="btn-lang-en" class="px-1.5 py-0.5 rounded text-slate-600 hover:text-slate-900">EN</button>
+          <button onclick="setUiLanguage('pt')" id="btn-lang-pt" class="px-1.5 py-0.5 rounded text-slate-600 hover:text-slate-900">PT</button>
+        </div>
+      </div>
+
+      <div class="px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg">
+        <div class="flex items-center justify-between text-xs font-medium text-slate-700 mb-1">
+          <span class="flex items-center space-x-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="font-semibold" data-i18n="employeeStatus">Empleado Activo</span>
+          </span>
+          <span class="text-[11px] font-mono text-slate-600">v1.0.0</span>
+        </div>
+        <p class="text-[11px] text-slate-600 truncate" data-i18n="employeeModel">IA: OpenAI / Detección Multi-idioma</p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ======================================================== -->
+  <!-- ÁREA DE CONTENIDO PRINCIPAL -->
+  <!-- ======================================================== -->
+  <main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+
+    <!-- Topbar con Breadcrumb y Acciones Globales -->
+    <header class="h-16 px-8 border-b border-slate-200 bg-white/80 backdrop-blur sticky top-0 z-10 flex items-center justify-between">
+      <div class="flex items-center space-x-2 text-xs text-slate-600">
+        <span class="hover:text-slate-800 cursor-pointer">Changared</span>
+        <span>/</span>
+        <span class="hover:text-slate-800 cursor-pointer" data-i18n="breadcrumbTenants">Tenants</span>
+        <span>/</span>
+        <span class="text-slate-900 font-semibold" data-i18n="breadcrumbTitle">Configuración de Empleado Virtual</span>
+      </div>
+
+      <div class="flex items-center space-x-3">
+        <!-- Switch de Idioma Superior -->
+        <div class="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 text-xs font-medium">
+          <button onclick="setUiLanguage('es')" class="lang-pill px-2 py-1 rounded text-[11px] font-semibold transition" data-lang="es">🇪🇸 ES</button>
+          <button onclick="setUiLanguage('en')" class="lang-pill px-2 py-1 rounded text-[11px] font-medium text-slate-600 hover:text-slate-900 transition" data-lang="en">🇺🇸 EN</button>
+          <button onclick="setUiLanguage('pt')" class="lang-pill px-2 py-1 rounded text-[11px] font-medium text-slate-600 hover:text-slate-900 transition" data-lang="pt">🇧🇷 PT</button>
+        </div>
+
+        <button onclick="switchStep('step-simulator')" class="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition-colors shadow-subtle">
+          <i data-lucide="play" class="w-3.5 h-3.5 text-slate-600"></i>
+          <span data-i18n="btnTestSimulator">Probar en Simulador</span>
+        </button>
+        <button onclick="saveAllChanges()" class="inline-flex items-center space-x-1.5 px-3.5 py-1.5 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-colors shadow-subtle">
+          <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-400"></i>
+          <span data-i18n="btnSaveConfig">Guardar Configuración</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Contenedor Principal Centrado con Ancho Controlado -->
+    <div class="max-w-5xl w-full mx-auto px-8 py-8 space-y-6">
+
+      <!-- Encabezado de Página -->
+      <div class="flex items-start justify-between">
+        <div>
+          <h1 class="text-xl font-semibold tracking-tight text-slate-900" data-i18n="pageTitle">Configuración del Empleado Virtual</h1>
+          <p class="text-xs text-slate-600 mt-1" data-i18n="pageSubtitle">Personaliza la identidad, sincroniza el catálogo de productos y configura la atención en múltiples idiomas.</p>
+        </div>
+        <div class="flex items-center space-x-2 bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-1 rounded-full text-xs font-medium">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+          <span data-i18n="badgeMultiLang">Multi-idioma Nativo</span>
+        </div>
+      </div>
+
+      <!-- Barra de Pasos / Tabs de Navegación -->
+      <div class="border-b border-slate-200 flex space-x-8 text-xs font-medium text-slate-600">
+        <button onclick="switchStep('step-identity')" id="tab-step-identity" class="tab-btn pb-3 text-slate-900 border-b-2 border-slate-900 font-semibold transition-colors flex items-center space-x-2">
+          <span class="w-4 h-4 rounded-full bg-slate-900 text-white flex items-center justify-center text-[10px]">1</span>
+          <span data-i18n="tabStep1">Identidad & Tono de Voz</span>
+        </button>
+        <button onclick="switchStep('step-catalog')" id="tab-step-catalog" class="tab-btn pb-3 text-slate-600 hover:text-slate-900 border-b-2 border-transparent transition-colors flex items-center space-x-2">
+          <span class="w-4 h-4 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-[10px]">2</span>
+          <span data-i18n="tabStep2">Inventario & Stock</span>
+        </button>
+        <button onclick="switchStep('step-whatsapp')" id="tab-step-whatsapp" class="tab-btn pb-3 text-slate-600 hover:text-slate-900 border-b-2 border-transparent transition-colors flex items-center space-x-2">
+          <span class="w-4 h-4 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-[10px]">3</span>
+          <span data-i18n="tabStep3">Conexión de WhatsApp</span>
+        </button>
+        <button onclick="switchStep('step-billing')" id="tab-step-billing" class="tab-btn pb-3 text-slate-600 hover:text-slate-900 border-b-2 border-transparent transition-colors flex items-center space-x-2">
+          <span class="w-4 h-4 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-[10px]">4</span>
+          <span>Planes & Suscripción</span>
+        </button>
+        <button onclick="switchStep('step-simulator')" id="tab-step-simulator" class="tab-btn pb-3 text-slate-600 hover:text-slate-900 border-b-2 border-transparent transition-colors flex items-center space-x-2">
+          <span class="w-4 h-4 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center text-[10px]">5</span>
+          <span data-i18n="tabStep4">Simulador Interactivo</span>
+        </button>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- PASO 1: IDENTIDAD Y TONO DE VOZ (CON MULTI-IDIOMA) -->
+      <!-- ======================================================== -->
+      <section id="step-identity" class="step-content space-y-6">
+
+        <!-- Card: Datos Básicos del Negocio -->
+        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-5">
+          <div class="border-b border-slate-100 pb-3">
+            <h2 class="text-sm font-semibold text-slate-900" data-i18n="cardProfileTitle">Perfil Operativo del Comercio</h2>
+            <p class="text-xs text-slate-600 mt-0.5" data-i18n="cardProfileSubtitle">Esta información se inyecta en el prompt del LLM para responder preguntas frecuentes.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1.5" data-i18n="fieldBusinessName">Nombre del Negocio</label>
+              <input type="text" id="input-business-name" value="Pizzería Roma Artesanal" class="w-full text-xs px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:border-slate-400 focus:ring-1 focus:ring-slate-400 transition">
+            </div>
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1.5" data-i18n="fieldSlug">ID / Slug Identificador (Inmutable)</label>
+              <div class="relative">
+                <input type="text" id="input-business-id" value="pizzeria-roma" readonly class="w-full text-xs font-mono px-3 py-2 bg-slate-100 border border-slate-200 rounded-lg text-slate-600 cursor-not-allowed">
+                <span class="absolute right-3 top-2 text-[10px] uppercase font-mono text-slate-600">Multi-tenant ID</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-medium text-slate-700 mb-1.5" data-i18n="fieldDesc">Descripción y Dinámica Operativa</label>
+            <textarea id="input-business-desc" rows="3" class="w-full text-xs px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:border-slate-400 focus:ring-1 focus:ring-slate-400 transition">Pizzería tradicional italiana a la leña ubicada en el centro. Horario: 19:30 a 00:00 todos los días. Envíos a domicilio con costo fijo de $1500.</textarea>
+            <p class="text-[11px] text-slate-600 mt-1" data-i18n="fieldDescHint">El agente utilizará estos datos para contextualizar horarios, envíos y métodos de pago.</p>
+          </div>
+        </div>
+
+        <!-- Card Nueva: Configuración de Idiomas del Agente (Multi-Language Engine) -->
+        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
+          <div class="border-b border-slate-100 pb-3 flex items-center justify-between">
+            <div>
+              <h2 class="text-sm font-semibold text-slate-900 flex items-center space-x-2">
+                <i data-lucide="languages" class="w-4 h-4 text-emerald-600"></i>
+                <span data-i18n="cardLangTitle">Configuración de Idiomas del Empleado Virtual</span>
+              </h2>
+              <p class="text-xs text-slate-600 mt-0.5" data-i18n="cardLangSubtitle">Define el idioma predeterminado de tu tienda y si el agente debe responder en otros idiomas automáticamente.</p>
+            </div>
+            <span class="text-xs font-mono px-2 py-0.5 bg-emerald-50 text-emerald-800 border border-emerald-200 rounded-full font-medium" data-i18n="badgeI18nActive">Auto-Translate Activo</span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1.5" data-i18n="fieldPrimaryLang">Idioma Principal del Negocio</label>
+              <select id="select-business-lang" class="w-full text-xs px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:border-slate-400 transition">
+                <option value="Español" selected>🇪🇸 Español (Predeterminado)</option>
+                <option value="English">🇺🇸 English (Inglés)</option>
+                <option value="Português">🇧🇷 Português (Portugués)</option>
+                <option value="Français">🇫🇷 Français (Francés)</option>
+                <option value="Italiano">🇮🇹 Italiano (Italiano)</option>
+              </select>
+              <p class="text-[11px] text-slate-600 mt-1" data-i18n="fieldPrimaryLangHint">Idioma por defecto para clientes locales.</p>
+            </div>
+
+            <!-- Switch de Auto-Detección Inteligente -->
+            <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+              <div class="flex items-center justify-between">
+                <label for="check-auto-detect" class="text-xs font-semibold text-slate-900 cursor-pointer" data-i18n="toggleAutoDetectTitle">Detección Inteligente Multilingüe</label>
+                <input type="checkbox" id="check-auto-detect" checked class="w-4 h-4 accent-emerald-600 rounded cursor-pointer">
+              </div>
+              <p class="text-[11px] text-slate-600 leading-relaxed" data-i18n="toggleAutoDetectDesc">
+                Si un turista o cliente extranjero escribe en <strong>inglés, portugués u otro idioma</strong>, el empleado virtual detecta su lengua al instante y le responde fluidamente en ese mismo idioma, manteniendo los precios y stock exactos.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card: Selector de Personalidad y Tono -->
+        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
+          <div class="border-b border-slate-100 pb-3">
+            <h2 class="text-sm font-semibold text-slate-900" data-i18n="cardToneTitle">Tono de Voz del Empleado Virtual</h2>
+            <p class="text-xs text-slate-600 mt-0.5" data-i18n="cardToneSubtitle">Selecciona cómo debe comunicarse tu agente en las conversaciones de WhatsApp.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3" id="tone-selector-container">
+            <!-- Opción 1: Amigable y Cercano -->
+            <label class="tone-card cursor-pointer border-2 border-emerald-600 bg-emerald-50/30 rounded-xl p-4 flex flex-col justify-between transition-all relative">
+              <input type="radio" name="toneOfVoice" value="amigable, entusiasta y cálido, usando modismos amables de buena atención" checked class="hidden">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-semibold text-slate-900" data-i18n="toneFriendlyTitle">Amigable & Cercano</span>
+                  <i data-lucide="smile" class="w-4 h-4 text-emerald-600"></i>
+                </div>
+                <p class="text-[11px] text-slate-600 leading-relaxed" data-i18n="toneFriendlyDesc">Cálido, cordial y accesible. Ideal para gastronomía, tiendas locales y comercio barrial.</p>
+              </div>
+              <span class="text-[10px] font-mono font-medium text-emerald-700 mt-3 block" data-i18n="toneRecommended">Recomendado</span>
+            </label>
+
+            <!-- Opción 2: Formal y Corporativo -->
+            <label class="tone-card cursor-pointer border border-slate-200 bg-white hover:border-slate-300 rounded-xl p-4 flex flex-col justify-between transition-all relative">
+              <input type="radio" name="toneOfVoice" value="formal, sobrio, conciso y profesional, con trato de cortesía" class="hidden">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-semibold text-slate-900" data-i18n="toneFormalTitle">Formal & Corporativo</span>
+                  <i data-lucide="briefcase" class="w-4 h-4 text-slate-500"></i>
+                </div>
+                <p class="text-[11px] text-slate-600 leading-relaxed" data-i18n="toneFormalDesc">Respuestas precisas, educadas y estructuradas. Ideal para servicios profesionales y B2B.</p>
+              </div>
+              <span class="text-[10px] font-mono text-slate-500 mt-3 block" data-i18n="toneInstitutional">Institucional</span>
+            </label>
+
+            <!-- Opción 3: Dinámico & Directo -->
+            <label class="tone-card cursor-pointer border border-slate-200 bg-white hover:border-slate-300 rounded-xl p-4 flex flex-col justify-between transition-all relative">
+              <input type="radio" name="toneOfVoice" value="directo, ágil, moderno y resolutivo, enfocado en respuestas rápidas" class="hidden">
+              <div>
+                <div class="flex items-center justify-between mb-2">
+                  <span class="text-xs font-semibold text-slate-900" data-i18n="toneDynamicTitle">Dinámico & Resolutivo</span>
+                  <i data-lucide="zap" class="w-4 h-4 text-slate-500"></i>
+                </div>
+                <p class="text-[11px] text-slate-600 leading-relaxed" data-i18n="toneDynamicDesc">Mensajes cortos, al grano y sin rodeos. Ideal para ecommerce masivo y jóvenes.</p>
+              </div>
+              <span class="text-[10px] font-mono text-slate-500 mt-3 block" data-i18n="toneFast">Alta velocidad</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Card: Reglas de Negocio Estrictas -->
+        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div>
+              <h2 class="text-sm font-semibold text-slate-900" data-i18n="cardRulesTitle">Reglas de Negocio Estrictas</h2>
+              <p class="text-xs text-slate-600 mt-0.5" data-i18n="cardRulesSubtitle">Límites que el agente virtual jamás violará, incluso si el cliente insiste en cualquier idioma.</p>
+            </div>
+            <button onclick="addRulePrompt()" class="inline-flex items-center space-x-1 text-xs font-medium text-emerald-700 hover:text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-lg border border-emerald-200 transition">
+              <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+              <span data-i18n="btnNewRule">Nueva regla</span>
+            </button>
+          </div>
+
+          <div id="rules-list-container" class="space-y-2">
+            <div class="flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-800">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                <span>No aceptamos pedidos antes de las 19:30.</span>
+              </div>
+              <button onclick="this.parentElement.remove()" class="text-slate-500 hover:text-red-500 transition">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+            <div class="flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-800">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                <span>Demora estimada de delivery: 35 a 50 minutos.</span>
+              </div>
+              <button onclick="this.parentElement.remove()" class="text-slate-500 hover:text-red-500 transition">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+            <div class="flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-800">
+              <div class="flex items-center space-x-2">
+                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                <span>Aceptamos transferencias y Mercado Pago (alias: roma.pizzas.mp).</span>
+              </div>
+              <button onclick="this.parentElement.remove()" class="text-slate-500 hover:text-red-500 transition">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-end pt-2">
+          <button onclick="switchStep('step-catalog')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-colors">
+            <span data-i18n="btnContinueToCatalog">Continuar a Inventario & Stock</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- PASO 2: INVENTARIO Y STOCK -->
+      <!-- ======================================================== -->
+      <section id="step-catalog" class="step-content space-y-6 hidden">
+        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
+          
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+            <div>
+              <h2 class="text-sm font-semibold text-slate-900" data-i18n="catalogTitle">Catálogo de Productos y Disponibilidad</h2>
+              <p class="text-xs text-slate-600 mt-0.5" data-i18n="catalogSubtitle">El agente NUNCA ofrecerá productos sin stock ni cambiará los precios indicados.</p>
+            </div>
+            <div class="flex items-center space-x-2">
+              <button onclick="openImportModal()" class="inline-flex items-center space-x-1 px-3 py-1.5 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition-colors shadow-subtle">
+                <i data-lucide="file-code" class="w-3.5 h-3.5 text-slate-600"></i>
+                <span data-i18n="btnImportJson">Importar JSON</span>
+              </button>
+              <button onclick="openAddProductModal()" class="inline-flex items-center space-x-1 px-3 py-1.5 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-colors shadow-subtle">
+                <i data-lucide="plus" class="w-3.5 h-3.5"></i>
+                <span data-i18n="btnAddProduct">Agregar Producto</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Métricas Resumen -->
+          <div class="grid grid-cols-3 gap-3">
+            <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg">
+              <span class="block text-[11px] font-medium text-slate-600" data-i18n="metricTotal">Total Productos</span>
+              <span class="text-base font-semibold text-slate-900" id="stat-total-products">5</span>
+            </div>
+            <div class="p-3 bg-emerald-50/50 border border-emerald-200 rounded-lg">
+              <span class="block text-[11px] font-medium text-emerald-800" data-i18n="metricInStock">Con Stock Disponible</span>
+              <span class="text-base font-semibold text-emerald-900" id="stat-in-stock">4</span>
+            </div>
+            <div class="p-3 bg-red-50/50 border border-red-200 rounded-lg">
+              <span class="block text-[11px] font-medium text-red-800" data-i18n="metricOutOfStock">Agotados (Stock 0)</span>
+              <span class="text-base font-semibold text-red-900" id="stat-out-of-stock">1</span>
+            </div>
+          </div>
+
+          <!-- Tabla de Productos Moderna -->
+          <div class="border border-slate-200 rounded-lg overflow-hidden">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-50 border-b border-slate-200 text-slate-600 uppercase font-mono text-[10px]">
+                <tr>
+                  <th class="px-4 py-3 font-semibold" data-i18n="thSku">SKU / ID</th>
+                  <th class="px-4 py-3 font-semibold" data-i18n="thProduct">Producto</th>
+                  <th class="px-4 py-3 font-semibold" data-i18n="thCategory">Categoría</th>
+                  <th class="px-4 py-3 font-semibold" data-i18n="thPrice">Precio</th>
+                  <th class="px-4 py-3 font-semibold" data-i18n="thStock">Stock</th>
+                  <th class="px-4 py-3 font-semibold text-right" data-i18n="thAction">Acción</th>
+                </tr>
+              </thead>
+              <tbody id="catalog-table-body" class="divide-y divide-slate-100 text-slate-800">
+                <!-- Generado dinámicamente -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="flex justify-between pt-2">
+          <button onclick="switchStep('step-identity')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition-colors">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+            <span data-i18n="btnBackToIdentity">Volver a Identidad</span>
+          </button>
+          <button onclick="switchStep('step-whatsapp')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-colors">
+            <span data-i18n="btnContinueToWA">Continuar a Conexión WhatsApp</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- PASO 3: CONEXIÓN DE WHATSAPP -->
+      <!-- ======================================================== -->
+      <section id="step-whatsapp" class="step-content space-y-6 hidden">
+        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-5">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div>
+              <h2 class="text-sm font-semibold text-slate-900" data-i18n="waStatusTitle">Estado de la Conexión de WhatsApp</h2>
+              <p class="text-xs text-slate-600 mt-0.5" data-i18n="waStatusSubtitle">Vincular tu línea para que el agente virtual empiece a recibir y responder mensajes en múltiples idiomas.</p>
+            </div>
+            <span id="wa-connection-badge" class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-800 border border-amber-200">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+              <span data-i18n="waStatusReady">Listo para enlazar</span>
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+            <div class="space-y-3">
+              <p class="text-xs text-slate-700 leading-relaxed" data-i18n="waDesc">
+                El empleado virtual de <strong>Changared</strong> atiende en tiempo real los mensajes entrantes sin interferir con tu aplicación personal.
+              </p>
+              <ul class="text-xs text-slate-600 space-y-1.5">
+                <li class="flex items-center space-x-2">
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600"></i>
+                  <span data-i18n="waFeature1">Compatible con números de cualquier país (+54, +52, +55, +1, etc.)</span>
+                </li>
+                <li class="flex items-center space-x-2">
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600"></i>
+                  <span data-i18n="waFeature2">Respuestas en el idioma del cliente en menos de 2 segundos</span>
+                </li>
+                <li class="flex items-center space-x-2">
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600"></i>
+                  <span data-i18n="waFeature3">Derivación a operador humano cuando sea necesario</span>
+                </li>
+              </ul>
+
+              <div class="pt-2">
+                <button onclick="simulateConnectWA()" id="btn-connect-wa" class="inline-flex items-center space-x-2 px-4 py-2.5 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg shadow-subtle transition">
+                  <i data-lucide="phone-call" class="w-4 h-4"></i>
+                  <span data-i18n="btnConnectWA">Vincular Número de WhatsApp</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Código QR Simulado -->
+            <div class="border border-slate-200 bg-slate-50/50 rounded-xl p-5 flex flex-col items-center justify-center text-center space-y-3">
+              <div class="w-36 h-36 bg-white border border-slate-200 rounded-lg p-2 flex items-center justify-center shadow-subtle relative group">
+                <div class="w-full h-full border border-dashed border-slate-300 rounded flex flex-col items-center justify-center text-slate-600">
+                  <i data-lucide="qr-code" class="w-12 h-12 text-slate-700 mb-1"></i>
+                  <span class="text-[10px] font-mono">SCAN WITH WA</span>
+                </div>
+              </div>
+              <p class="text-[11px] text-slate-600 max-w-xs" data-i18n="waScanHint">Abre WhatsApp en tu teléfono &gt; Dispositivos vinculados &gt; Vincular un dispositivo.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Webhook Meta Cloud API -->
+        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
+          <div class="border-b border-slate-100 pb-3">
+            <h2 class="text-sm font-semibold text-slate-900" data-i18n="metaApiTitle">Integración con Webhook (Meta Cloud API)</h2>
+            <p class="text-xs text-slate-600 mt-0.5" data-i18n="metaApiSubtitle">Si prefieres usar la API oficial de Meta, copia esta URL única de tu negocio.</p>
+          </div>
+
+          <div class="space-y-3">
+            <div>
+              <label class="block text-[11px] uppercase font-mono font-semibold text-slate-600 mb-1" data-i18n="lblWebhookUrl">Webhook URL Dinámica (Tenant)</label>
+              <div class="flex items-center space-x-2">
+                <input type="text" id="webhook-endpoint-input" readonly value="http://localhost:3000/api/webhook/pizzeria-roma" class="w-full text-xs font-mono px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800">
+                <button onclick="copyWebhookUrl()" class="shrink-0 inline-flex items-center space-x-1 px-3 py-2 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition shadow-subtle">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                  <span id="copy-btn-text" data-i18n="btnCopy">Copiar</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3 text-xs">
+              <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg">
+                <span class="block text-[10px] uppercase font-mono text-slate-600">Verify Token</span>
+                <span class="font-mono text-slate-900 font-semibold">changared_secret_verify_token_2026</span>
+              </div>
+              <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg">
+                <span class="block text-[10px] uppercase font-mono text-slate-600" data-i18n="lblResponseMode">Modo de Respuesta</span>
+                <span class="font-mono text-slate-900 font-semibold" data-i18n="lblResponseModeVal">Multi-idioma / OpenAI Directo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-between pt-2">
+          <button onclick="switchStep('step-catalog')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition-colors">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+            <span data-i18n="btnBackToCatalog">Volver a Catálogo</span>
+          </button>
+          <button onclick="switchStep('step-billing')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-colors">
+            <span>Continuar a Planes & Facturación</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- PASO 4: PLANES, COBRO Y FACTURACIÓN (MERCADO PAGO + LEMON SQUEEZY) -->
+      <!-- ======================================================== -->
+      <section id="step-billing" class="step-content space-y-6 hidden">
+
+        <!-- Card: Estado de Suscripción Actual & Consumo de Cuota -->
+        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div>
+              <h2 class="text-sm font-semibold text-slate-900">Suscripción Activa y Consumo Mensual</h2>
+              <p class="text-xs text-slate-600 mt-0.5">Control en tiempo real de tu cuota de conversaciones y estado de débito automático.</p>
+            </div>
+            <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span>Plan Operativo (Combo ⭐) — Activo</span>
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Métrica 1 -->
+            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
+              <div class="flex justify-between text-xs">
+                <span class="font-medium text-slate-600">Cuota de Chats Usada</span>
+                <span class="font-semibold text-slate-900">142 / 2.000 (7%)</span>
+              </div>
+              <div class="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
+                <div class="bg-emerald-500 h-2 rounded-full" style="width: 7%"></div>
+              </div>
+              <p class="text-[11px] text-slate-600">1.858 conversaciones restantes este ciclo.</p>
+            </div>
+
+            <!-- Métrica 2 -->
+            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
+              <span class="text-xs font-medium text-slate-600 block">Próxima Renovación</span>
+              <span class="text-base font-semibold text-slate-900">03 de Noviembre, 2026</span>
+              <span class="text-[11px] text-emerald-700 block font-medium">Débito automático mensual activo</span>
+            </div>
+
+            <!-- Métrica 3 -->
+            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
+              <span class="text-xs font-medium text-slate-600 block">Asistentes Habilitados</span>
+              <span class="text-base font-semibold text-slate-900">2 de 4 en tu Plan</span>
+              <span class="text-[11px] text-slate-600 block">WhatsApp Employee + Radar Operativo</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Selector de Moneda y Pasarela -->
+        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
+            <div>
+              <h2 class="text-sm font-semibold text-slate-900">Elige tu Plan de Empleados Virtuales</h2>
+              <p class="text-xs text-slate-600 mt-0.5">Sin contratos forzados. Puedes cambiar o cancelar cuando quieras.</p>
+            </div>
+
+            <!-- Toggle Moneda ARS vs USD -->
+            <div class="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-medium">
+              <button onclick="setBillingCurrency('ARS')" id="btn-curr-ars" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-900 shadow-subtle border border-slate-200 transition">
+                🇦🇷 Pesos (Mercado Pago)
+              </button>
+              <button onclick="setBillingCurrency('USD')" id="btn-curr-usd" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 transition">
+                🌎 Dólares USD (Internacional)
+              </button>
+            </div>
+          </div>
+
+          <!-- Parrilla de Planes (Good - Better - Best) -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+            <!-- Plan 1: Mostrador -->
+            <div class="border border-slate-200 rounded-xl p-5 flex flex-col justify-between hover:border-slate-300 transition-all bg-white">
+              <div>
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700">Plan Mostrador</h3>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-600">1 Asistente</span>
+                </div>
+                <div class="mb-4">
+                  <span class="text-2xl font-black text-slate-900 plan-price-mostrador">$39.000</span>
+                  <span class="text-xs text-slate-600 plan-period">ARS / mes</span>
+                </div>
+                <p class="text-xs text-slate-600 mb-4 leading-relaxed">Ideal para comercios que solo necesitan responder WhatsApp y consultar stock en horario extendido.</p>
+                <ul class="text-xs text-slate-700 space-y-2 mb-6">
+                  <li class="flex items-center space-x-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                    <span>1 Empleado Virtual de WhatsApp</span>
+                  </li>
+                  <li class="flex items-center space-x-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                    <span>Catálogo sincronizado 24/7</span>
+                  </li>
+                  <li class="flex items-center space-x-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                    <span>Detección multi-idioma nativa</span>
+                  </li>
+                  <li class="flex items-center space-x-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                    <span>Hasta 600 chats/mes</span>
+                  </li>
+                </ul>
+              </div>
+              <button onclick="triggerCheckout('plan-mostrador')" class="w-full py-2.5 px-3 text-xs font-semibold rounded-lg border border-slate-300 text-slate-800 hover:bg-slate-50 transition">
+                Contratar Mostrador
+              </button>
+            </div>
+
+            <!-- Plan 2: Combo Operativo (Destacado) -->
+            <div class="border-2 border-emerald-600 rounded-xl p-5 flex flex-col justify-between shadow-card bg-emerald-50/20 relative">
+              <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-600 text-white text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full shadow-sm">
+                ⭐ Más Elegido (Combo)
+              </span>
+              <div>
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-800">Plan Operativo</h3>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">2 Asistentes</span>
+                </div>
+                <div class="mb-4">
+                  <span class="text-2xl font-black text-slate-900 plan-price-combo">$89.000</span>
+                  <span class="text-xs text-slate-600 plan-period">ARS / mes</span>
+                </div>
+                <p class="text-xs text-slate-600 mb-4 leading-relaxed">Atiende clientes en WhatsApp y rescata compras rechazadas con el Radar Operativo.</p>
+                <ul class="text-xs text-slate-800 space-y-2 mb-6">
+                  <li class="flex items-center space-x-2 font-medium">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                    <span>Empleado Virtual WhatsApp</span>
+                  </li>
+                  <li class="flex items-center space-x-2 font-medium">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                    <span>Radar Operativo 24/7 con IA</span>
+                  </li>
+                  <li class="flex items-center space-x-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                    <span>Rescate de pagos caídos</span>
+                  </li>
+                  <li class="flex items-center space-x-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                    <span>Alertas de stock crítico a proveedores</span>
+                  </li>
+                  <li class="flex items-center space-x-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                    <span>Hasta 2.000 chats/mes</span>
+                  </li>
+                </ul>
+              </div>
+              <button onclick="triggerCheckout('combo-operativo')" class="w-full py-2.5 px-3 text-xs font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white shadow-subtle transition">
+                Plan Actual (Activo)
+              </button>
+            </div>
+
+            <!-- Plan 3: Full Empresa -->
+            <div class="border border-slate-200 rounded-xl p-5 flex flex-col justify-between hover:border-slate-300 transition-all bg-white">
+              <div>
+                <div class="flex justify-between items-start mb-2">
+                  <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700">Full Empresa</h3>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-600">4 Asistentes</span>
+                </div>
+                <div class="mb-4">
+                  <span class="text-2xl font-black text-slate-900 plan-price-empresa">$169.000</span>
+                  <span class="text-xs text-slate-600 plan-period">ARS / mes</span>
+                </div>
+                <p class="text-xs text-slate-600 mb-4 leading-relaxed">Para empresas con alto volumen y múltiples sucursales que buscan automatización integral.</p>
+                <ul class="text-xs text-slate-700 space-y-2 mb-6">
+                  <li class="flex items-center space-x-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                    <span>Suite Completa (4 Asistentes)</span>
+                  </li>
+                  <li class="flex items-center space-x-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                    <span>Conciliador financiero & comisiones</span>
+                  </li>
+                  <li class="flex items-center space-x-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                    <span>Chats ilimitados (hasta 10.000)</span>
+                  </li>
+                  <li class="flex items-center space-x-2">
+                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                    <span>Soporte prioritario 24/7</span>
+                  </li>
+                </ul>
+              </div>
+              <button onclick="triggerCheckout('full-empresa')" class="w-full py-2.5 px-3 text-xs font-semibold rounded-lg border border-slate-300 text-slate-800 hover:bg-slate-50 transition">
+                Contratar Full Empresa
+              </button>
+            </div>
+          </div>
+
+          <!-- Banner Informativo de Pasarelas -->
+          <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between text-xs text-slate-700">
+            <div class="flex items-center space-x-3">
+              <i data-lucide="shield-check" class="w-5 h-5 text-emerald-600 shrink-0"></i>
+              <div>
+                <span class="font-semibold text-slate-900" id="billing-provider-title">Procesamiento Seguro con Mercado Pago</span>
+                <p class="text-[11px] text-slate-600 mt-0.5" id="billing-provider-desc">
+                  Suscripción mensual recurrente con tarjeta o saldo de cuenta. Cancela en cualquier momento con 1 click.
+                </p>
+              </div>
+            </div>
+            <span class="font-mono text-[11px] text-slate-600 bg-white px-2.5 py-1 rounded border border-slate-200">
+              SSL 256-BIT ENCRYPTED
+            </span>
+          </div>
+        </div>
+
+        <div class="flex justify-between pt-2">
+          <button onclick="switchStep('step-whatsapp')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition-colors">
+            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
+            <span>Volver a WhatsApp</span>
+          </button>
+          <button onclick="switchStep('step-simulator')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-colors">
+            <span>Ir al Simulador Interactivo</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- ======================================================== -->
+      <!-- PASO 5: SIMULADOR INTERACTIVO CON PRUEBAS MULTILINGÜES -->
+      <!-- ======================================================== -->
+      <section id="step-simulator" class="step-content space-y-6 hidden">
+        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <div>
+              <h2 class="text-sm font-semibold text-slate-900" data-i18n="simTitle">Consola de Simulación Multi-Idioma</h2>
+              <p class="text-xs text-slate-600 mt-0.5" data-i18n="simSubtitle">Prueba cómo responde tu empleado en Español, Inglés o Portugués respetando las reglas de stock.</p>
+            </div>
+            <button onclick="clearChatSimulator()" class="text-xs text-slate-600 hover:text-slate-800 transition flex items-center space-x-1">
+              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+              <span data-i18n="btnResetChat">Reiniciar chat</span>
+            </button>
+          </div>
+
+          <!-- Ventana de Chat Estilo WhatsApp Moderno -->
+          <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50 flex flex-col h-[430px]">
+            <!-- Header de Chat -->
+            <div class="bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between">
+              <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">
+                  CR
+                </div>
+                <div>
+                  <h3 class="text-xs font-semibold text-slate-900" id="sim-chat-title">Pizzería Roma Artesanal</h3>
+                  <p class="text-[10px] text-emerald-600 font-medium flex items-center space-x-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    <span data-i18n="simOnline">Empleado Virtual en línea (Multi-idioma)</span>
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-center space-x-2 text-[10px] font-mono text-slate-600">
+                <span class="px-1.5 py-0.5 rounded bg-slate-100 border border-slate-200">🌐 Auto-Detect ON</span>
+              </div>
+            </div>
+
+            <!-- Cuerpo de Mensajes -->
+            <div id="simulator-messages" class="flex-1 p-4 overflow-y-auto space-y-3">
+              <div class="flex justify-center">
+                <span class="text-[10px] bg-slate-200/60 text-slate-600 px-2.5 py-1 rounded-full font-medium" data-i18n="simWelcome">
+                  Chat de prueba inicializado • Escribe en cualquier idioma
+                </span>
+              </div>
+
+              <!-- Mensaje Inicial del Bot -->
+              <div class="flex items-start space-x-2 max-w-[80%]">
+                <div class="bg-white border border-slate-200 text-slate-800 text-xs p-3 rounded-2xl rounded-tl-sm shadow-subtle leading-relaxed" id="sim-initial-msg">
+                  ¡Hola! Bienvenidos a Pizzería Roma Artesanal 🍕 ¿En qué podemos ayudarte hoy? (You can also ask in English / Pode falar em português).
+                </div>
+              </div>
+            </div>
+
+            <!-- Barra de Entrada de Mensaje -->
+            <div class="p-3 bg-white border-t border-slate-200 flex items-center space-x-2">
+              <input type="text" id="sim-input-text" onkeypress="handleSimEnter(event)" placeholder="Escribe en español, inglés o portugués..." class="flex-1 text-xs px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:border-slate-400">
+              <button onclick="sendSimulatedMessage()" class="px-3.5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition shadow-subtle flex items-center justify-center">
+                <i data-lucide="send" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Sugerencias Rápidas de Prueba en Varios Idiomas -->
+          <div class="space-y-1.5">
+            <span class="text-slate-600 text-[11px] font-medium block" data-i18n="simQuickTests">Pruebas rápidas multilingües:</span>
+            <div class="flex flex-wrap gap-2 text-xs">
+              <!-- Test Español -->
+              <button onclick="setSimQuery('¿Tienen cerveza corona y pizza de muzzarella?')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[11px] transition flex items-center space-x-1 border border-slate-200">
+                <span>🇪🇸</span>
+                <span>"¿Tienen cerveza corona?" (Stock 0 en ES)</span>
+              </button>
+              <!-- Test Inglés -->
+              <button onclick="setSimQuery('Hi! Is Corona beer available and what is the delivery time?')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[11px] transition flex items-center space-x-1 border border-slate-200">
+                <span>🇺🇸</span>
+                <span>"Hi! Is Corona beer available?" (Stock 0 en EN)</span>
+              </button>
+              <!-- Test Portugués -->
+              <button onclick="setSimQuery('Olá! Quanto custa a pizza de muzzarella e a cerveja corona?')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[11px] transition flex items-center space-x-1 border border-slate-200">
+                <span>🇧🇷</span>
+                <span>"Olá! Quanto custa a muzzarella?" (Preço en PT)</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- MODAL: AGREGAR PRODUCTO -->
+  <div id="modal-add-product" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-xl max-w-md w-full p-6 shadow-xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <h3 class="text-sm font-semibold text-slate-900" data-i18n="modalAddTitle">Agregar Nuevo Producto</h3>
+        <button onclick="closeAddProductModal()" class="text-slate-500 hover:text-slate-700">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-medium text-slate-700 mb-1" data-i18n="modalProdName">Nombre del Producto</label>
+          <input type="text" id="modal-prod-name" placeholder="Ej: Empanada de Carne Cortada a Cuchillo" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-medium text-slate-700 mb-1" data-i18n="modalProdPrice">Precio ($)</label>
+            <input type="number" id="modal-prod-price" placeholder="1800" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg">
+          </div>
+          <div>
+            <label class="block font-medium text-slate-700 mb-1" data-i18n="modalProdStock">Stock Inicial</label>
+            <input type="number" id="modal-prod-stock" placeholder="20" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg">
+          </div>
+        </div>
+        <div>
+          <label class="block font-medium text-slate-700 mb-1" data-i18n="modalProdCat">Categoría</label>
+          <input type="text" id="modal-prod-cat" placeholder="Empanadas / Entradas" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg">
+        </div>
+        <div>
+          <label class="block font-medium text-slate-700 mb-1" data-i18n="modalProdDesc">Descripción Breve</label>
+          <textarea id="modal-prod-desc" rows="2" placeholder="Detalles de preparación o ingredientes..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg"></textarea>
+        </div>
+      </div>
+
+      <div class="flex justify-end space-x-2 pt-2 border-t border-slate-100">
+        <button onclick="closeAddProductModal()" class="px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg" data-i18n="modalCancel">Cancelar</button>
+        <button onclick="saveNewProduct()" class="px-4 py-2 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg shadow-subtle" data-i18n="modalSave">Guardar Producto</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICACIÓN -->
+  <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 text-white px-4 py-2.5 rounded-lg text-xs font-medium shadow-lg transform translate-y-20 opacity-0 transition-all duration-300 flex items-center space-x-2 z-50">
+    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400"></i>
+    <span id="toast-text">Cambios guardados con éxito</span>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- SISTEMA MULTI-IDIOMA i18n Y LÓGICA REACTIVA -->
+  <!-- ======================================================== -->
+  <script>
+    // Diccionario i18n ultraligero
+    const translations = {
+      es: {
+        activeBusiness: "Negocio activo",
+        navConfigSection: "Configuración",
+        navStep1: "1. Identidad & Tono",
+        navStep2: "2. Inventario & Stock",
+        navStep3: "3. Conexión WhatsApp",
+        navOpsSection: "Operaciones",
+        navSimulator: "Simulador en Vivo",
+        navRadar: "Radar de Incidentes",
+        uiLangLabel: "Idioma UI:",
+        employeeStatus: "Empleado Activo",
+        employeeModel: "IA: OpenAI / Detección Multi-idioma",
+        breadcrumbTenants: "Tenants",
+        breadcrumbTitle: "Configuración de Empleado Virtual",
+        btnTestSimulator: "Probar en Simulador",
+        btnSaveConfig: "Guardar Configuración",
+        pageTitle: "Configuración del Empleado Virtual",
+        pageSubtitle: "Personaliza la identidad, sincroniza el catálogo de productos y configura la atención en múltiples idiomas.",
+        badgeMultiLang: "Multi-idioma Nativo",
+        tabStep1: "Identidad & Tono de Voz",
+        tabStep2: "Inventario & Stock",
+        tabStep3: "Conexión de WhatsApp",
+        tabStep4: "Simulador Interactivo",
+        cardProfileTitle: "Perfil Operativo del Comercio",
+        cardProfileSubtitle: "Esta información se inyecta en el prompt del LLM para responder preguntas frecuentes.",
+        fieldBusinessName: "Nombre del Negocio",
+        fieldSlug: "ID / Slug Identificador (Inmutable)",
+        fieldDesc: "Descripción y Dinámica Operativa",
+        fieldDescHint: "El agente utilizará estos datos para contextualizar horarios, envíos y métodos de pago.",
+        cardLangTitle: "Configuración de Idiomas del Empleado Virtual",
+        cardLangSubtitle: "Define el idioma predeterminado de tu tienda y si el agente debe responder en otros idiomas automáticamente.",
+        badgeI18nActive: "Auto-Translate Activo",
+        fieldPrimaryLang: "Idioma Principal del Negocio",
+        fieldPrimaryLangHint: "Idioma por defecto para clientes locales.",
+        toggleAutoDetectTitle: "Detección Inteligente Multilingüe",
+        toggleAutoDetectDesc: "Si un turista o cliente extranjero escribe en inglés, portugués u otro idioma, el empleado virtual detecta su lengua al instante y le responde fluidamente en ese mismo idioma, manteniendo los precios y stock exactos.",
+        cardToneTitle: "Tono de Voz del Empleado Virtual",
+        cardToneSubtitle: "Selecciona cómo debe comunicarse tu agente en las conversaciones de WhatsApp.",
+        toneFriendlyTitle: "Amigable & Cercano",
+        toneFriendlyDesc: "Cálido, cordial y accesible. Ideal para gastronomía, tiendas locales y comercio barrial.",
+        toneRecommended: "Recomendado",
+        toneFormalTitle: "Formal & Corporativo",
+        toneFormalDesc: "Respuestas precisas, educadas y estructuradas. Ideal para servicios profesionales y B2B.",
+        toneInstitutional: "Institucional",
+        toneDynamicTitle: "Dinámico & Resolutivo",
+        toneDynamicDesc: "Mensajes cortos, al grano y sin rodeos. Ideal para ecommerce masivo y jóvenes.",
+        toneFast: "Alta velocidad",
+        cardRulesTitle: "Reglas de Negocio Estrictas",
+        cardRulesSubtitle: "Límites que el agente virtual jamás violará, incluso si el cliente insiste en cualquier idioma.",
+        btnNewRule: "Nueva regla",
+        btnContinueToCatalog: "Continuar a Inventario & Stock",
+        catalogTitle: "Catálogo de Productos y Disponibilidad",
+        catalogSubtitle: "El agente NUNCA ofrecerá productos sin stock ni cambiará los precios indicados.",
+        btnImportJson: "Importar JSON",
+        btnAddProduct: "Agregar Producto",
+        metricTotal: "Total Productos",
+        metricInStock: "Con Stock Disponible",
+        metricOutOfStock: "Agotados (Stock 0)",
+        thSku: "SKU / ID",
+        thProduct: "Producto",
+        thCategory: "Categoría",
+        thPrice: "Precio",
+        thStock: "Stock",
+        thAction: "Acción",
+        btnBackToIdentity: "Volver a Identidad",
+        btnContinueToWA: "Continuar a Conexión WhatsApp",
+        waStatusTitle: "Estado de la Conexión de WhatsApp",
+        waStatusSubtitle: "Vincular tu línea para que el agente virtual empiece a recibir y responder mensajes en múltiples idiomas.",
+        waStatusReady: "Listo para enlazar",
+        waDesc: "El empleado virtual de Changared atiende en tiempo real los mensajes entrantes sin interferir con tu aplicación personal.",
+        waFeature1: "Compatible con números de cualquier país (+54, +52, +55, +1, etc.)",
+        waFeature2: "Respuestas en el idioma del cliente en menos de 2 segundos",
+        waFeature3: "Derivación a operador humano cuando sea necesario",
+        btnConnectWA: "Vincular Número de WhatsApp",
+        waScanHint: "Abre WhatsApp en tu teléfono > Dispositivos vinculados > Vincular un dispositivo.",
+        metaApiTitle: "Integración con Webhook (Meta Cloud API)",
+        metaApiSubtitle: "Si prefieres usar la API oficial de Meta, copia esta URL única de tu negocio.",
+        lblWebhookUrl: "Webhook URL Dinámica (Tenant)",
+        btnCopy: "Copiar",
+        lblResponseMode: "Modo de Respuesta",
+        lblResponseModeVal: "Multi-idioma / OpenAI Directo",
+        btnBackToCatalog: "Volver a Catálogo",
+        btnTestInSimulator: "Probar en el Simulador",
+        simTitle: "Consola de Simulación Multi-Idioma",
+        simSubtitle: "Prueba cómo responde tu empleado en Español, Inglés o Portugués respetando las reglas de stock.",
+        btnResetChat: "Reiniciar chat",
+        simOnline: "Empleado Virtual en línea (Multi-idioma)",
+        simWelcome: "Chat de prueba inicializado • Escribe en cualquier idioma",
+        simQuickTests: "Pruebas rápidas multilingües:",
+        modalAddTitle: "Agregar Nuevo Producto",
+        modalProdName: "Nombre del Producto",
+        modalProdPrice: "Precio ($)",
+        modalProdStock: "Stock Inicial",
+        modalProdCat: "Categoría",
+        modalProdDesc: "Descripción Breve",
+        modalCancel: "Cancelar",
+        modalSave: "Guardar Producto"
+      },
+      en: {
+        activeBusiness: "Active Business",
+        navConfigSection: "Settings",
+        navStep1: "1. Identity & Tone",
+        navStep2: "2. Inventory & Stock",
+        navStep3: "3. WhatsApp Connection",
+        navOpsSection: "Operations",
+        navSimulator: "Live Simulator",
+        navRadar: "Incident Radar",
+        uiLangLabel: "UI Language:",
+        employeeStatus: "Employee Active",
+        employeeModel: "AI: OpenAI / Multilingual Detection",
+        breadcrumbTenants: "Tenants",
+        breadcrumbTitle: "Virtual Employee Configuration",
+        btnTestSimulator: "Test in Simulator",
+        btnSaveConfig: "Save Changes",
+        pageTitle: "Virtual Employee Configuration",
+        pageSubtitle: "Customize identity, sync product catalog, and set up multi-language customer care.",
+        badgeMultiLang: "Native Multilingual",
+        tabStep1: "Identity & Tone of Voice",
+        tabStep2: "Inventory & Stock",
+        tabStep3: "WhatsApp Connection",
+        tabStep4: "Interactive Simulator",
+        cardProfileTitle: "Store Operational Profile",
+        cardProfileSubtitle: "This information is injected into the LLM prompt to answer customer inquiries.",
+        fieldBusinessName: "Business Name",
+        fieldSlug: "Identifier Slug (Immutable)",
+        fieldDesc: "Operational Description & Policies",
+        fieldDescHint: "The agent uses this data to contextualize opening hours, shipping, and payment methods.",
+        cardLangTitle: "Virtual Employee Language Settings",
+        cardLangSubtitle: "Define your store's primary language and enable automatic multilingual customer responses.",
+        badgeI18nActive: "Auto-Translate Active",
+        fieldPrimaryLang: "Primary Business Language",
+        fieldPrimaryLangHint: "Default language for local customers.",
+        toggleAutoDetectTitle: "Intelligent Multilingual Detection",
+        toggleAutoDetectDesc: "If a tourist or foreign customer writes in English, Portuguese, or another language, the virtual employee detects it and replies fluently in that language with exact prices and stock.",
+        cardToneTitle: "Virtual Employee Tone of Voice",
+        cardToneSubtitle: "Select how your virtual agent should speak in WhatsApp chats.",
+        toneFriendlyTitle: "Friendly & Warm",
+        toneFriendlyDesc: "Warm, welcoming, and polite. Ideal for restaurants, local shops, and neighborhood stores.",
+        toneRecommended: "Recommended",
+        toneFormalTitle: "Formal & Corporate",
+        toneFormalDesc: "Precise, polite, and structured answers. Ideal for professional services and B2B.",
+        toneInstitutional: "Institutional",
+        toneDynamicTitle: "Dynamic & Direct",
+        toneDynamicDesc: "Short, sharp, straight to the point. Ideal for fast fashion and younger audiences.",
+        toneFast: "High speed",
+        cardRulesTitle: "Strict Business Rules",
+        cardRulesSubtitle: "Boundaries the virtual agent will never cross, even if the customer insists in any language.",
+        btnNewRule: "New Rule",
+        btnContinueToCatalog: "Continue to Inventory & Stock",
+        catalogTitle: "Product Catalog & Availability",
+        catalogSubtitle: "The agent will NEVER sell out-of-stock items or modify defined catalog prices.",
+        btnImportJson: "Import JSON",
+        btnAddProduct: "Add Product",
+        metricTotal: "Total Products",
+        metricInStock: "Available in Stock",
+        metricOutOfStock: "Out of Stock (0)",
+        thSku: "SKU / ID",
+        thProduct: "Product",
+        thCategory: "Category",
+        thPrice: "Price",
+        thStock: "Stock",
+        thAction: "Action",
+        btnBackToIdentity: "Back to Identity",
+        btnContinueToWA: "Continue to WhatsApp",
+        waStatusTitle: "WhatsApp Connection Status",
+        waStatusSubtitle: "Link your phone number so your agent can receive and reply to WhatsApp messages in multiple languages.",
+        waStatusReady: "Ready to pair",
+        waDesc: "Changared's virtual employee handles incoming messages in real-time without disrupting your personal app.",
+        waFeature1: "Compatible with phone numbers from any country (+54, +52, +55, +1, etc.)",
+        waFeature2: "Replies in customer language in under 2 seconds",
+        waFeature3: "Seamless escalation to human operators when needed",
+        btnConnectWA: "Link WhatsApp Number",
+        waScanHint: "Open WhatsApp on your phone > Linked devices > Link a device.",
+        metaApiTitle: "Webhook Integration (Meta Cloud API)",
+        metaApiSubtitle: "If you prefer using Meta's official API, copy your store's unique endpoint.",
+        lblWebhookUrl: "Dynamic Webhook URL (Tenant)",
+        btnCopy: "Copy",
+        lblResponseMode: "Response Mode",
+        lblResponseModeVal: "Multilingual / OpenAI Direct",
+        btnBackToCatalog: "Back to Catalog",
+        btnTestInSimulator: "Test in Simulator",
+        simTitle: "Multilingual Simulation Console",
+        simSubtitle: "Test how your virtual employee responds in Spanish, English, or Portuguese respecting stock rules.",
+        btnResetChat: "Reset Chat",
+        simOnline: "Virtual Employee Online (Multilingual)",
+        simWelcome: "Test chat initialized • Type in any language",
+        simQuickTests: "Quick multilingual tests:",
+        modalAddTitle: "Add New Product",
+        modalProdName: "Product Name",
+        modalProdPrice: "Price ($)",
+        modalProdStock: "Initial Stock",
+        modalProdCat: "Category",
+        modalProdDesc: "Short Description",
+        modalCancel: "Cancel",
+        modalSave: "Save Product"
+      },
+      pt: {
+        activeBusiness: "Negócio ativo",
+        navConfigSection: "Configuração",
+        navStep1: "1. Identidade & Tom",
+        navStep2: "2. Inventário & Estoque",
+        navStep3: "3. Conexão WhatsApp",
+        navOpsSection: "Operações",
+        navSimulator: "Simulador ao Vivo",
+        navRadar: "Radar de Incidentes",
+        uiLangLabel: "Idioma da UI:",
+        employeeStatus: "Funcionário Ativo",
+        employeeModel: "IA: OpenAI / Detecção Multilíngue",
+        breadcrumbTenants: "Tenants",
+        breadcrumbTitle: "Configuração do Funcionário Virtual",
+        btnTestSimulator: "Testar no Simulador",
+        btnSaveConfig: "Salvar Configuração",
+        pageTitle: "Configuração do Funcionário Virtual",
+        pageSubtitle: "Personalize a identidade, sincronize o catálogo de produtos e configure o atendimento em vários idiomas.",
+        badgeMultiLang: "Multilíngue Nativo",
+        tabStep1: "Identidade & Tom de Voz",
+        tabStep2: "Inventário & Estoque",
+        tabStep3: "Conexão de WhatsApp",
+        tabStep4: "Simulador Interativo",
+        cardProfileTitle: "Perfil Operacional do Comércio",
+        cardProfileSubtitle: "Estas informações são injetadas no prompt do LLM para responder dúvidas com exatidão.",
+        fieldBusinessName: "Nome do Negócio",
+        fieldSlug: "ID / Slug Identificador (Imutável)",
+        fieldDesc: "Descrição e Políticas Operacionais",
+        fieldDescHint: "O agente usa estes dados para contextualizar horários, entregas e métodos de pagamento.",
+        cardLangTitle: "Configuração de Idiomas do Funcionário Virtual",
+        cardLangSubtitle: "Defina o idioma principal da sua loja e ative o atendimento multilíngue automático.",
+        badgeI18nActive: "Auto-Tradução Ativa",
+        fieldPrimaryLang: "Idioma Principal da Loja",
+        fieldPrimaryLangHint: "Idioma padrão para clientes locais.",
+        toggleAutoDetectTitle: "Detecção Inteligente Multilíngue",
+        toggleAutoDetectDesc: "Se um turista ou cliente estrangeiro escrever em inglês, espanhol ou outro idioma, o funcionário virtual detecta a língua e responde com fluência no mesmo idioma.",
+        cardToneTitle: "Tom de Voz do Funcionário Virtual",
+        cardToneSubtitle: "Escolha como seu agente deve se comunicar nas conversas do WhatsApp.",
+        toneFriendlyTitle: "Amigável & Caloroso",
+        toneFriendlyDesc: "Acolhedor, cordial e atencioso. Ideal para restaurantes e lojas locais.",
+        toneRecommended: "Recomendado",
+        toneFormalTitle: "Formal & Corporativo",
+        toneFormalDesc: "Respostas precisas, educadas e estruturadas. Ideal para serviços profissionais e B2B.",
+        toneInstitutional: "Institucional",
+        toneDynamicTitle: "Dinâmico & Resolutivo",
+        toneDynamicDesc: "Mensagens curtas, diretas ao ponto. Ideal para ecommerce e público jovem.",
+        toneFast: "Alta velocidade",
+        cardRulesTitle: "Regras de Negócio Estritas",
+        cardRulesSubtitle: "Limites que o agente virtual nunca violará, mesmo se o cliente insistir em qualquer idioma.",
+        btnNewRule: "Nova regra",
+        btnContinueToCatalog: "Continuar para Estoque",
+        catalogTitle: "Catálogo de Produtos e Disponibilidade",
+        catalogSubtitle: "O agente NUNCA venderá produtos esgotados nem alterará os preços cadastrados.",
+        btnImportJson: "Importar JSON",
+        btnAddProduct: "Adicionar Produto",
+        metricTotal: "Total Produtos",
+        metricInStock: "Com Estoque Disponível",
+        metricOutOfStock: "Esgotados (Estoque 0)",
+        thSku: "SKU / ID",
+        thProduct: "Produto",
+        thCategory: "Categoria",
+        thPrice: "Preço",
+        thStock: "Estoque",
+        thAction: "Ação",
+        btnBackToIdentity: "Voltar para Identidade",
+        btnContinueToWA: "Continuar para WhatsApp",
+        waStatusTitle: "Status da Conexão do WhatsApp",
+        waStatusSubtitle: "Vincule sua linha para que o agente virtual comece a responder em múltiplos idiomas.",
+        waStatusReady: "Pronto para vincular",
+        waDesc: "O funcionário virtual da Changared atende mensagens em tempo real sem interferir no seu app pessoal.",
+        waFeature1: "Compatível com números de qualquer país (+55, +54, +1, etc.)",
+        waFeature2: "Respostas no idioma do cliente em menos de 2 segundos",
+        waFeature3: "Encaminhamento para atendente humano quando necessário",
+        btnConnectWA: "Vincular Número de WhatsApp",
+        waScanHint: "Abra o WhatsApp no telefone > Aparelhos conectados > Conectar um aparelho.",
+        metaApiTitle: "Integração via Webhook (Meta Cloud API)",
+        metaApiSubtitle: "Se preferir usar a API oficial da Meta, copie o URL exclusivo da sua loja.",
+        lblWebhookUrl: "Webhook URL Dinâmica (Tenant)",
+        btnCopy: "Copiar",
+        lblResponseMode: "Modo de Resposta",
+        lblResponseModeVal: "Multilíngue / OpenAI Direto",
+        btnBackToCatalog: "Voltar ao Catálogo",
+        btnTestInSimulator: "Testar no Simulador",
+        simTitle: "Console de Simulação Multilíngue",
+        simSubtitle: "Teste como seu funcionário responde em espanhol, inglês ou português respeitando as regras de estoque.",
+        btnResetChat: "Reiniciar chat",
+        simOnline: "Funcionário Virtual Online (Multilíngue)",
+        simWelcome: "Chat de teste inicializado • Escreva em qualquer idioma",
+        simQuickTests: "Testes rápidos multilíngues:",
+        modalAddTitle: "Adicionar Novo Produto",
+        modalProdName: "Nome do Produto",
+        modalProdPrice: "Preço ($)",
+        modalProdStock: "Estoque Inicial",
+        modalProdCat: "Categoria",
+        modalProdDesc: "Descrição Breve",
+        modalCancel: "Cancelar",
+        modalSave: "Salvar Produto"
+      }
+    };
+
+    let currentUiLang = 'es';
+
+    function setUiLanguage(lang) {
+      if (!translations[lang]) return;
+      currentUiLang = lang;
+
+      // Actualizar pills superiores
+      document.querySelectorAll('.lang-pill').forEach(btn => {
+        if (btn.dataset.lang === lang) {
+          btn.className = "lang-pill px-2 py-1 rounded text-[11px] font-semibold bg-white text-emerald-800 shadow-subtle border border-slate-200 transition";
+        } else {
+          btn.className = "lang-pill px-2 py-1 rounded text-[11px] font-medium text-slate-600 hover:text-slate-900 transition";
+        }
+      });
+
+      // Actualizar botones de footer sidebar
+      ['es', 'en', 'pt'].forEach(l => {
+        const btn = document.getElementById('btn-lang-' + l);
+        if (btn) {
+          if (l === lang) {
+            btn.className = "px-1.5 py-0.5 rounded bg-white shadow-subtle text-emerald-700 border border-slate-200";
+          } else {
+            btn.className = "px-1.5 py-0.5 rounded text-slate-600 hover:text-slate-900";
+          }
+        }
+      });
+
+      // Traducir todos los elementos marcados con data-i18n
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+          el.innerText = translations[lang][key];
+        }
+      });
+
+      showToast(lang === 'es' ? "Idioma de la interfaz: Español" : (lang === 'en' ? "Interface language: English" : "Idioma da interface: Português"));
+    }
+
+    // Inicializar iconos
+    lucide.createIcons();
+
+    // Estado reactivo local
+    let currentBusiness = {
+      id: "pizzeria-roma",
+      name: "Pizzería Roma Artesanal",
+      description: "Pizzería tradicional italiana a la leña ubicada en el centro. Horario: 19:30 a 00:00 todos los días. Envíos a domicilio con costo fijo de $1500.",
+      language: "Español",
+      autoDetectLanguage: true,
+      toneOfVoice: "amigable, entusiasta y cálido, usando modismos amables de buena atención",
+      businessRules: [
+        "No aceptamos pedidos antes de las 19:30.",
+        "Demora estimada de delivery: 35 a 50 minutos.",
+        "Aceptamos transferencias y Mercado Pago (alias: roma.pizzas.mp)."
+      ],
+      catalog: [
+        { id: "PIZ-01", name: "Pizza Muzzarella Clásica", price: 8500, stock: 25, description: "Salsa casera, muzzarella y aceitunas.", category: "Pizzas" },
+        { id: "PIZ-02", name: "Pizza Napolitana Especial", price: 10200, stock: 12, description: "Muzzarella, tomate fresco, ajo y albahaca.", category: "Pizzas" },
+        { id: "PIZ-03", name: "Pizza Fugazzeta Rellena", price: 12500, stock: 2, description: "Doble queso y cebolla caramelizada.", category: "Pizzas" },
+        { id: "BEB-01", name: "Coca-Cola 1.5L", price: 3200, stock: 40, description: "Botella descartable fría.", category: "Bebidas" },
+        { id: "BEB-02", name: "Cerveza Corona 710ml", price: 4500, stock: 0, description: "Botella de vidrio.", category: "Bebidas" }
+      ]
+    };
+
+    // Navegación de Pasos
+    function switchStep(stepId) {
+      document.querySelectorAll('.step-content').forEach(el => el.classList.add('hidden'));
+      document.getElementById(stepId).classList.remove('hidden');
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('text-slate-900', 'border-slate-900', 'font-semibold');
+        btn.classList.add('text-slate-600', 'border-transparent');
+      });
+      const activeTab = document.getElementById('tab-' + stepId);
+      if (activeTab) {
+        activeTab.classList.add('text-slate-900', 'border-slate-900', 'font-semibold');
+        activeTab.classList.remove('text-slate-600', 'border-transparent');
+      }
+
+      document.querySelectorAll('.nav-item').forEach(btn => {
+        btn.classList.remove('bg-slate-100', 'text-slate-900');
+        btn.classList.add('text-slate-700');
+      });
+      const activeNav = document.getElementById('nav-' + stepId);
+      if (activeNav) {
+        activeNav.classList.add('bg-slate-100', 'text-slate-900');
+        activeNav.classList.remove('text-slate-700');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Selector de Tono
+    document.querySelectorAll('.tone-card').forEach(card => {
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.tone-card').forEach(c => {
+          c.classList.remove('border-emerald-600', 'bg-emerald-50/30', 'border-2');
+          c.classList.add('border-slate-200', 'bg-white', 'border');
+        });
+        card.classList.add('border-emerald-600', 'bg-emerald-50/30', 'border-2');
+        card.classList.remove('border-slate-200', 'bg-white', 'border');
+        const radio = card.querySelector('input[type="radio"]');
+        if (radio) {
+          radio.checked = true;
+          currentBusiness.toneOfVoice = radio.value;
+        }
+      });
+    });
+
+    // Agregar regla
+    function addRulePrompt() {
+      const rule = prompt("Ingresa la nueva regla estricta para tu negocio:");
+      if (rule && rule.trim()) {
+        const container = document.getElementById('rules-list-container');
+        const div = document.createElement('div');
+        div.className = "flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-800";
+        div.innerHTML = `
+          <div class="flex items-center space-x-2">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+            <span>${escapeHtml(rule.trim())}</span>
+          </div>
+          <button onclick="this.parentElement.remove()" class="text-slate-500 hover:text-red-500 transition">
+            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+          </button>
+        `;
+        container.appendChild(div);
+        lucide.createIcons();
+        showToast("Regla añadida con éxito");
+      }
+    }
+
+    // Modal de Productos
+    function openAddProductModal() {
+      document.getElementById('modal-add-product').classList.remove('hidden');
+    }
+    function closeAddProductModal() {
+      document.getElementById('modal-add-product').classList.add('hidden');
+    }
+
+    function saveNewProduct() {
+      const name = document.getElementById('modal-prod-name').value;
+      const price = document.getElementById('modal-prod-price').value;
+      const stock = document.getElementById('modal-prod-stock').value || 0;
+      const cat = document.getElementById('modal-prod-cat').value || 'General';
+      const desc = document.getElementById('modal-prod-desc').value || '';
+
+      if (!name || !price) {
+        alert("Por favor indica al menos el nombre y precio del producto.");
+        return;
+      }
+
+      const newId = `PROD-${Math.floor(Math.random() * 900 + 100)}`;
+      currentBusiness.catalog.push({
+        id: newId,
+        name,
+        price: Number(price),
+        stock: Number(stock),
+        category: cat,
+        description: desc
+      });
+
+      renderCatalogTable();
+      closeAddProductModal();
+      showToast(`Producto ${name} agregado`);
+
+      document.getElementById('modal-prod-name').value = '';
+      document.getElementById('modal-prod-price').value = '';
+      document.getElementById('modal-prod-stock').value = '';
+      document.getElementById('modal-prod-desc').value = '';
+    }
+
+    function deleteProductRow(btn) {
+      const row = btn.closest('tr');
+      row.remove();
+      updateCatalogStats();
+      showToast("Producto eliminado");
+    }
+
+    function renderCatalogTable() {
+      const tbody = document.getElementById('catalog-table-body');
+      tbody.innerHTML = '';
+
+      currentBusiness.catalog.forEach(item => {
+        const isOutOfStock = item.stock <= 0;
+        const isLowStock = item.stock > 0 && item.stock <= 3;
+
+        let badge = '';
+        if (isOutOfStock) {
+          badge = `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-red-50 text-red-800 border border-red-200">Agotado (0)</span>`;
+        } else if (isLowStock) {
+          badge = `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-amber-50 text-amber-800 border border-amber-200">${item.stock} unidades (¡Últimas!)</span>`;
+        } else {
+          badge = `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-800 border border-emerald-200">${item.stock} unidades</span>`;
+        }
+
+        const tr = document.createElement('tr');
+        tr.className = `hover:bg-slate-50/70 transition-colors ${isOutOfStock ? 'bg-red-50/20' : ''}`;
+        tr.innerHTML = `
+          <td class="px-4 py-3 font-mono text-slate-600">${item.id}</td>
+          <td class="px-4 py-3">
+            <div class="font-medium text-slate-900">${escapeHtml(item.name)}</div>
+            <div class="text-[11px] text-slate-600">${escapeHtml(item.description)}</div>
+          </td>
+          <td class="px-4 py-3 text-slate-600">${escapeHtml(item.category)}</td>
+          <td class="px-4 py-3 font-medium text-slate-900">$${Number(item.price).toLocaleString()}</td>
+          <td class="px-4 py-3">${badge}</td>
+          <td class="px-4 py-3 text-right">
+            <button onclick="deleteProductRow(this)" class="text-slate-500 hover:text-red-500 transition">
+              <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      lucide.createIcons();
+      updateCatalogStats();
+    }
+
+    function updateCatalogStats() {
+      const rows = document.querySelectorAll('#catalog-table-body tr');
+      document.getElementById('stat-total-products').innerText = rows.length;
+    }
+
+    // Simular Conexión WhatsApp
+    function simulateConnectWA() {
+      const btn = document.getElementById('btn-connect-wa');
+      const badge = document.getElementById('wa-connection-badge');
+
+      btn.disabled = true;
+      btn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i><span>Sincronizando con Meta...</span>`;
+      lucide.createIcons();
+
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.className = "inline-flex items-center space-x-2 px-4 py-2.5 text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 rounded-lg shadow-subtle transition";
+        btn.innerHTML = `<i data-lucide="check" class="w-4 h-4 text-emerald-400"></i><span>Número Vinculado (+54 9 11 4433-2211)</span>`;
+        
+        badge.className = "inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-800 border border-emerald-200";
+        badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span><span>Conectado y Atendiendo</span>`;
+        
+        lucide.createIcons();
+        showToast("¡WhatsApp vinculado exitosamente!");
+      }, 1200);
+    }
+
+    function copyWebhookUrl() {
+      const input = document.getElementById('webhook-endpoint-input');
+      navigator.clipboard.writeText(input.value);
+      const btnText = document.getElementById('copy-btn-text');
+      btnText.innerText = "¡Copiado!";
+      setTimeout(() => btnText.innerText = "Copiar", 2000);
+      showToast("URL copiada al portapapeles");
+    }
+
+    // Simulador de Chat Interactivo con Multi-idioma
+    function handleSimEnter(e) {
+      if (e.key === 'Enter') sendSimulatedMessage();
+    }
+
+    function setSimQuery(text) {
+      document.getElementById('sim-input-text').value = text;
+      sendSimulatedMessage();
+    }
+
+    function sendSimulatedMessage() {
+      const input = document.getElementById('sim-input-text');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const container = document.getElementById('simulator-messages');
+
+      const userBubble = document.createElement('div');
+      userBubble.className = "flex items-start justify-end space-x-2 max-w-[80%] ml-auto";
+      userBubble.innerHTML = `
+        <div class="bg-emerald-600 text-white text-xs p-3 rounded-2xl rounded-tr-sm shadow-subtle leading-relaxed">
+          ${escapeHtml(text)}
+        </div>
+      `;
+      container.appendChild(userBubble);
+      input.value = '';
+      container.scrollTop = container.scrollHeight;
+
+      // Respuesta inteligente multi-idioma
+      setTimeout(() => {
+        const reply = generateMultilingualReply(text);
+        const botBubble = document.createElement('div');
+        botBubble.className = "flex items-start space-x-2 max-w-[80%]";
+        botBubble.innerHTML = `
+          <div class="bg-white border border-slate-200 text-slate-800 text-xs p-3 rounded-2xl rounded-tl-sm shadow-subtle leading-relaxed whitespace-pre-line">
+            ${escapeHtml(reply)}
+          </div>
+        `;
+        container.appendChild(botBubble);
+        container.scrollTop = container.scrollHeight;
+      }, 500);
+    }
+
+    function generateMultilingualReply(query) {
+      const q = query.toLowerCase();
+
+      // Detección Inglés
+      const isEnglish = q.includes('hello') || q.includes('hi') || q.includes('beer') || q.includes('delivery') || q.includes('available') || q.includes('how much') || q.includes('price');
+      if (isEnglish) {
+        if (q.includes('corona') || q.includes('beer')) {
+          return "Hello! 👋 Welcome to Pizzería Roma. We apologize, but Corona Beer 710ml is currently out of stock. However, we have cold Coca-Cola 1.5L ($3,200) and delicious artisanal pizzas ready. Would you like to check our available menu?";
+        }
+        if (q.includes('muzzarella') || q.includes('pizza') || q.includes('price')) {
+          return "Hello! Our Classic Muzzarella Pizza is $8,500 🍕 (fresh tomato sauce, premium mozzarella, and olives). Delivery takes 35-50 min starting at 19:30. Would you like to place an order?";
+        }
+        return "Hello! Thank you for messaging Pizzería Roma Artesanal. We open daily from 19:30 to 00:00 with fast delivery ($1,500). How can we help you today?";
+      }
+
+      // Detección Portugués
+      const isPortuguese = q.includes('olá') || q.includes('ola') || q.includes('cerveja') || q.includes('quanto custa') || q.includes('tem') || q.includes('obrigado') || q.includes('boa noite');
+      if (isPortuguese) {
+        if (q.includes('corona') || q.includes('cerveja')) {
+          return "Olá! 👋 Seja bem-vindo à Pizzería Roma. Pedimos desculpas, mas a Cerveja Corona 710ml está esgotada no momento. No entanto, temos Coca-Cola gelada ($3.200) e nossas pizzas artesanais fresquinhas! Gostaria de escolher um sabor?";
+        }
+        if (q.includes('muzzarella') || q.includes('pizza') || q.includes('quanto')) {
+          return "Olá! A Pizza de Muzzarella Clássica custa $8.500 🍕 (molho caseiro, queijo muzzarella especial e azeitonas). Entregas a partir das 19:30. Gostaria de confirmar seu pedido?";
+        }
+        return "Olá! Obrigado por entrar em contato com a Pizzería Roma. Atendemos todos os dias das 19:30 às 00:00. Como podemos te ajudar?";
+      }
+
+      // Español (Por defecto)
+      if (q.includes('corona') || q.includes('cerveza')) {
+        return "¡Hola! Mil disculpas, pero en este momento la Cerveza Corona 710ml se encuentra agotada. ¿Te gustaría acompañar tu pedido con una Coca-Cola fría de 1.5L ($3.200) o prefieres otra opción?";
+      }
+
+      if (q.includes('muzzarella') || q.includes('precio') || q.includes('cuanto') || q.includes('sale')) {
+        return "¡Hola! La Pizza Muzzarella Clásica tiene un valor de $8.500 y lleva salsa de tomate casera, abundante muzzarella premium y aceitunas verdes 🍕 Nos quedan unidades listas para hornear. ¿Te preparamos una?";
+      }
+
+      if (q.includes('18') || q.includes('horario') || q.includes('abren')) {
+        return "¡Buenas tardes! Te comento que nuestro horario de atención y pedidos es a partir de las 19:30 hasta las 00:00 hs todos los días. ¡A partir de esa hora con muchísimo gusto te tomamos el pedido!";
+      }
+
+      return "¡Hola! Gracias por comunicarte con Pizzería Roma Artesanal. ¿En qué podemos ayudarte hoy? Tenemos delivery activo a partir de las 19:30 hs.";
+    }
+
+    function clearChatSimulator() {
+      const container = document.getElementById('simulator-messages');
+      container.innerHTML = `
+        <div class="flex justify-center">
+          <span class="text-[10px] bg-slate-200/60 text-slate-600 px-2.5 py-1 rounded-full font-medium">
+            Chat reiniciado • Detección multi-idioma activa
+          </span>
+        </div>
+        <div class="flex items-start space-x-2 max-w-[80%]">
+          <div class="bg-white border border-slate-200 text-slate-800 text-xs p-3 rounded-2xl rounded-tl-sm shadow-subtle leading-relaxed">
+            ¡Hola! Bienvenidos a Pizzería Roma Artesanal 🍕 ¿En qué podemos ayudarte hoy? (You can also ask in English / Pode falar em português).
+          </div>
+        </div>
+      `;
+    }
+
+    function saveAllChanges() {
+      const name = document.getElementById('input-business-name').value;
+      const desc = document.getElementById('input-business-desc').value;
+      const lang = document.getElementById('select-business-lang').value;
+      const autoDetect = document.getElementById('check-auto-detect').checked;
+      
+      currentBusiness.name = name;
+      currentBusiness.description = desc;
+      currentBusiness.language = lang;
+      currentBusiness.autoDetectLanguage = autoDetect;
+      
+      document.getElementById('sidebar-business-name').innerText = name;
+      document.getElementById('sim-chat-title').innerText = name;
+
+      showToast("Configuración guardada (Idioma: " + lang + " | Auto-Detect: " + (autoDetect ? "ON" : "OFF") + ")");
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-text').innerText = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2500);
+    }
+
+    function escapeHtml(text) {
+      return String(text).replace(/[&<>"']/g, function(m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+      });
+    }
+
+    function openImportModal() {
+      const jsonStr = prompt("Pega aquí el array de productos en formato JSON:", JSON.stringify([
+        { "name": "Faina Tradicional", "price": 2000, "stock": 15, "category": "Entradas" }
+      ], null, 2));
+
+      if (jsonStr) {
+        try {
+          const parsed = JSON.parse(jsonStr);
+          if (Array.isArray(parsed)) {
+            parsed.forEach((p, idx) => {
+              currentBusiness.catalog.push({
+                id: p.id || `PROD-IMP-${idx + 1}`,
+                name: p.name || 'Sin nombre',
+                price: p.price || 0,
+                stock: p.stock || 0,
+                category: p.category || 'General',
+                description: p.description || ''
+              });
+            });
+            renderCatalogTable();
+            showToast("Productos importados con éxito");
+          }
+        } catch(e) {
+          alert("El JSON ingresado no es válido.");
+        }
+      }
+    }
+
+    // Lógica de Facturación y Cambio de Moneda (ARS / USD)
+    let currentCurrency = 'ARS';
+
+    function setBillingCurrency(curr) {
+      currentCurrency = curr;
+      const isArs = curr === 'ARS';
+
+      // Actualizar botones de toggle
+      const btnArs = document.getElementById('btn-curr-ars');
+      const btnUsd = document.getElementById('btn-curr-usd');
+
+      if (isArs) {
+        btnArs.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-900 shadow-subtle border border-slate-200 transition";
+        btnUsd.className = "px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 transition";
+        
+        document.querySelectorAll('.plan-price-mostrador').forEach(el => el.innerText = "$39.000");
+        document.querySelectorAll('.plan-price-combo').forEach(el => el.innerText = "$89.000");
+        document.querySelectorAll('.plan-price-empresa').forEach(el => el.innerText = "$169.000");
+        document.querySelectorAll('.plan-period').forEach(el => el.innerText = "ARS / mes");
+
+        document.getElementById('billing-provider-title').innerText = "Procesamiento Seguro con Mercado Pago (Argentina)";
+        document.getElementById('billing-provider-desc').innerText = "Suscripción mensual recurrente con tarjeta o saldo de Mercado Pago en pesos argentinos. Cancela en cualquier momento.";
+        showToast("Moneda seleccionada: Pesos Argentinos (Mercado Pago)");
+      } else {
+        btnUsd.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-900 shadow-subtle border border-slate-200 transition";
+        btnArs.className = "px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 transition";
+
+        document.querySelectorAll('.plan-price-mostrador').forEach(el => el.innerText = "$29");
+        document.querySelectorAll('.plan-price-combo').forEach(el => el.innerText = "$69");
+        document.querySelectorAll('.plan-price-empresa').forEach(el => el.innerText = "$129");
+        document.querySelectorAll('.plan-period').forEach(el => el.innerText = "USD / mes");
+
+        document.getElementById('billing-provider-title').innerText = "Procesamiento Internacional Seguro con Lemon Squeezy (USD)";
+        document.getElementById('billing-provider-desc').innerText = "Acepta tarjetas internacionales, Apple Pay y PayPal en USD con débito automático mensual (liquidación directa a Wise o Payoneer).";
+        showToast("Moneda seleccionada: Dólares USD (Lemon Squeezy)");
+      }
+    }
+
+    function triggerCheckout(planId) {
+      const planName = planId === 'plan-mostrador' ? 'Plan Mostrador' : (planId === 'combo-operativo' ? 'Plan Operativo (Combo)' : 'Plan Full Empresa');
+      if (currentCurrency === 'ARS') {
+        showToast(`Redirigiendo a Checkout de Mercado Pago para ${planName}...`);
+        setTimeout(() => {
+          alert(`[Mercado Pago Checkout]\nIniciando débito automático para ${planName}.\nSe debitará mensualmente en pesos argentinos.`);
+        }, 400);
+      } else {
+        showToast(`Abriendo Checkout de Lemon Squeezy en USD para ${planName}...`);
+        setTimeout(() => {
+          alert(`[Lemon Squeezy Hosted Checkout]\nProcesando suscripción de ${planName} en USD.\nEl cobro se acreditará en tu cuenta de Wise / Payoneer.`);
+        }, 400);
+      }
+    }
+
+    // Inicializar tabla al cargar
+    renderCatalogTable();
+  </script>
+</body>
+</html>

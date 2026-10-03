@@ -1,0 +1,87 @@
+{
+  "pizzeria-roma": {
+    "id": "pizzeria-roma",
+    "name": "Pizzería Roma Artesanal",
+    "description": "Pizzería tradicional italiana a la leña ubicada en el centro. Horario: 19:30 a 00:00 todos los días. Envíos a domicilio con costo fijo de $1500.",
+    "toneOfVoice": "amigable, entusiasta y cálido, usando modismos amables de buena atención",
+    "businessRules": [
+      "No aceptamos pedidos antes de las 19:30.",
+      "Demora estimada de delivery: 35 a 50 minutos.",
+      "Aceptamos transferencias y Mercado Pago (alias: roma.pizzas.mp).",
+      "No ofrecemos pizzas por mitades salvo en las variedades clásicas."
+    ],
+    "catalog": [
+      {
+        "id": "PIZ-01",
+        "name": "Pizza Muzzarella Clásica",
+        "price": 8500,
+        "stock": 25,
+        "description": "Salsa de tomate casera, muzzarella premium, orégano y aceitunas verdes.",
+        "category": "Pizzas"
+      },
+      {
+        "id": "PIZ-02",
+        "name": "Pizza Napolitana Especial",
+        "price": 10200,
+        "stock": 12,
+        "description": "Muzzarella, rodajas de tomate fresco, ajo confitado y albahaca.",
+        "category": "Pizzas"
+      },
+      {
+        "id": "PIZ-03",
+        "name": "Pizza Fugazzeta Rellena",
+        "price": 12500,
+        "stock": 2,
+        "description": "Doble masa rellena de queso cuartirolo, cubierta con abundante cebolla caramelizada.",
+        "category": "Pizzas"
+      },
+      {
+        "id": "BEB-01",
+        "name": "Coca-Cola 1.5L",
+        "price": 3200,
+        "stock": 40,
+        "description": "Botella de 1.5 litros bien fría.",
+        "category": "Bebidas"
+      },
+      {
+        "id": "BEB-02",
+        "name": "Cerveza Corona 710ml",
+        "price": 4500,
+        "stock": 0,
+        "description": "Cerveza rubia en botella de vidrio.",
+        "category": "Bebidas"
+      }
+    ],
+    "createdAt": "2026-10-01T12:00:00.000Z",
+    "updatedAt": "2026-10-01T12:00:00.000Z"
+  },
+  "petshop-huellitas": {
+    "id": "petshop-huellitas",
+    "name": "PetShop Huellitas",
+    "description": "Tienda de alimentos y accesorios para mascotas. Envíos gratis a partir de .",
+    "toneOfVoice": "súper cariñoso, usando emojis de perritos y gatitos 🐾",
+    "businessRules": [
+      "No vendemos medicamentos sin receta veterinaria."
+    ],
+    "catalog": [
+      {
+        "id": "PROD-1",
+        "name": "Alimento Perro Adulto 15kg",
+        "price": 34000,
+        "stock": 8,
+        "description": "",
+        "category": "Alimentos"
+      },
+      {
+        "id": "PROD-2",
+        "name": "Rascador Gatos 3 Niveles",
+        "price": 42000,
+        "stock": 1,
+        "description": "",
+        "category": "Accesorios"
+      }
+    ],
+    "createdAt": "2026-10-03T13:18:35.307Z",
+    "updatedAt": "2026-10-03T13:18:35.311Z"
+  }
+}
