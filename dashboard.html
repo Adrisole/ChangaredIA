@@ -193,36 +193,30 @@
 
         <div class="pt-3 px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-emerald-200/70" data-i18n="navSectionEmployees">Empleados Virtuales</div>
 
-        <button onclick="switchStep('step-simulator')" id="nav-step-simulator" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors flex items-center justify-between">
+        <button onclick="switchStep('step-simulator')" id="nav-step-simulator" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
           <span data-i18n="navStepSimulator">1. Vendedor IA (WhatsApp 24/7)</span>
-          <span class="nav-badge-emp text-[9px] px-1.5 py-0.5 rounded font-mono font-bold" data-emp-nav="vendedor"></span>
         </button>
 
-        <button onclick="switchStep('step-cobranzas')" id="nav-step-cobranzas" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors flex items-center justify-between">
+        <button onclick="switchStep('step-cobranzas')" id="nav-step-cobranzas" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
           <span data-i18n="navStepCobranzas">2. Gestor de Cobranzas</span>
-          <span class="nav-badge-emp text-[9px] px-1.5 py-0.5 rounded font-mono font-bold" data-emp-nav="cobranzas"></span>
         </button>
 
-        <button onclick="switchStep('step-accounting')" id="nav-step-accounting" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors flex items-center justify-between">
+        <button onclick="switchStep('step-accounting')" id="nav-step-accounting" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
           <span data-i18n="navStepAccounting">3. Facturación & Gastos</span>
-          <span class="nav-badge-emp text-[9px] px-1.5 py-0.5 rounded font-mono font-bold" data-emp-nav="accounting"></span>
         </button>
 
-        <button onclick="switchStep('step-multilingual')" id="nav-step-multilingual" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors flex items-center justify-between">
+        <button onclick="switchStep('step-multilingual')" id="nav-step-multilingual" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
           <span data-i18n="navStepMultilingual">4. Asistente Multilingüe (Turismo)</span>
-          <span class="nav-badge-emp text-[9px] px-1.5 py-0.5 rounded font-mono font-bold" data-emp-nav="multilingue"></span>
         </button>
 
-        <button onclick="switchStep('step-citas')" id="nav-step-citas" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors flex items-center justify-between">
+        <button onclick="switchStep('step-citas')" id="nav-step-citas" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
           <span data-i18n="navStepCitas">5. Agendador de Citas (Turnos)</span>
-          <span class="nav-badge-emp text-[9px] px-1.5 py-0.5 rounded font-mono font-bold" data-emp-nav="citas"></span>
         </button>
 
         <div class="pt-3 px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-emerald-200/70" data-i18n="navSectionFashion">Especial Moda</div>
 
-        <button onclick="switchStep('step-talleexacto')" id="nav-step-talleexacto" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors flex items-center justify-between">
+        <button onclick="switchStep('step-talleexacto')" id="nav-step-talleexacto" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
           <span data-i18n="navStepTalleexacto">TalleExacto (Módulo Ropa)</span>
-          <span class="nav-badge-emp text-[9px] px-1.5 py-0.5 rounded font-mono font-bold" data-emp-nav="talleexacto"></span>
         </button>
 
         <div class="pt-3 px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-emerald-200/70" data-i18n="navSectionSettings">Ajustes & Configuración</div>
@@ -746,29 +740,23 @@
               <span class="btn-smart-back-text">Volver</span>
             </button>
           </div>
-          <div class="flex items-center space-x-2">
-            <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-700 border border-slate-200 font-medium">1. Vendedor IA · Identidad & Tono</span>
-          </div>
         </div>
 
         <!-- Barra de Navegación del Vendedor IA (Sub-tabs) -->
-        <div class="vendedor-nav-bar bg-[#F0F5F2] border border-[#CDE0D5] rounded-xl p-2.5 flex flex-col md:flex-row md:items-center justify-between gap-2.5 shadow-subtle">
+        <div class="vendedor-nav-bar bg-[#F0F5F2] border border-[#CDE0D5] rounded-xl p-2 flex flex-col md:flex-row md:items-center justify-between gap-2 shadow-subtle">
           <div class="flex flex-wrap items-center gap-1.5 text-xs">
-            <span class="text-[10px] font-mono font-bold text-[#1B4332] uppercase tracking-wider px-2 py-1 bg-emerald-100 border border-emerald-300 rounded-md">
-              1. Vendedor IA
-            </span>
             <div class="inline-flex bg-white p-0.5 rounded-lg border border-slate-200 shadow-2xs">
               <button onclick="switchStep('step-simulator')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-simulator">
-                💬 Chat en Vivo
+                Chat en Vivo
               </button>
               <button onclick="switchStep('step-catalog')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-catalog">
-                📦 Catálogo & Precios
+                Catálogo & Precios
               </button>
               <button onclick="switchStep('step-identity')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-semibold bg-[#1B4332] text-white shadow-xs transition" data-vstep="step-identity">
-                ⚙️ Identidad & Reglas
+                Identidad & Reglas
               </button>
               <button onclick="switchStep('step-whatsapp')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-whatsapp">
-                📱 Vincular WhatsApp (QR)
+                Vincular WhatsApp (QR)
               </button>
             </div>
           </div>
@@ -964,29 +952,23 @@
               <span class="btn-smart-back-text">Volver</span>
             </button>
           </div>
-          <div class="flex items-center space-x-2">
-            <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-700 border border-slate-200 font-medium">1. Vendedor IA · Catálogo & Stock</span>
-          </div>
         </div>
 
         <!-- Barra de Navegación del Vendedor IA (Sub-tabs) -->
-        <div class="vendedor-nav-bar bg-[#F0F5F2] border border-[#CDE0D5] rounded-xl p-2.5 flex flex-col md:flex-row md:items-center justify-between gap-2.5 shadow-subtle">
+        <div class="vendedor-nav-bar bg-[#F0F5F2] border border-[#CDE0D5] rounded-xl p-2 flex flex-col md:flex-row md:items-center justify-between gap-2 shadow-subtle">
           <div class="flex flex-wrap items-center gap-1.5 text-xs">
-            <span class="text-[10px] font-mono font-bold text-[#1B4332] uppercase tracking-wider px-2 py-1 bg-emerald-100 border border-emerald-300 rounded-md">
-              1. Vendedor IA
-            </span>
             <div class="inline-flex bg-white p-0.5 rounded-lg border border-slate-200 shadow-2xs">
               <button onclick="switchStep('step-simulator')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-simulator">
-                💬 Chat en Vivo
+                Chat en Vivo
               </button>
               <button onclick="switchStep('step-catalog')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-semibold bg-[#1B4332] text-white shadow-xs transition" data-vstep="step-catalog">
-                📦 Catálogo & Precios
+                Catálogo & Precios
               </button>
               <button onclick="switchStep('step-identity')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-identity">
-                ⚙️ Identidad & Reglas
+                Identidad & Reglas
               </button>
               <button onclick="switchStep('step-whatsapp')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-whatsapp">
-                📱 Vincular WhatsApp (QR)
+                Vincular WhatsApp (QR)
               </button>
             </div>
           </div>
@@ -1077,29 +1059,23 @@
               <span class="btn-smart-back-text">Volver</span>
             </button>
           </div>
-          <div class="flex items-center space-x-2">
-            <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-700 border border-slate-200 font-medium">1. Vendedor IA · Conexión WhatsApp (QR)</span>
-          </div>
         </div>
 
         <!-- Barra de Navegación del Vendedor IA (Sub-tabs) -->
-        <div class="vendedor-nav-bar bg-[#F0F5F2] border border-[#CDE0D5] rounded-xl p-2.5 flex flex-col md:flex-row md:items-center justify-between gap-2.5 shadow-subtle">
+        <div class="vendedor-nav-bar bg-[#F0F5F2] border border-[#CDE0D5] rounded-xl p-2 flex flex-col md:flex-row md:items-center justify-between gap-2 shadow-subtle">
           <div class="flex flex-wrap items-center gap-1.5 text-xs">
-            <span class="text-[10px] font-mono font-bold text-[#1B4332] uppercase tracking-wider px-2 py-1 bg-emerald-100 border border-emerald-300 rounded-md">
-              1. Vendedor IA
-            </span>
             <div class="inline-flex bg-white p-0.5 rounded-lg border border-slate-200 shadow-2xs">
               <button onclick="switchStep('step-simulator')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-simulator">
-                💬 Chat en Vivo
+                Chat en Vivo
               </button>
               <button onclick="switchStep('step-catalog')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-catalog">
-                📦 Catálogo & Precios
+                Catálogo & Precios
               </button>
               <button onclick="switchStep('step-identity')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-identity">
-                ⚙️ Identidad & Reglas
+                Identidad & Reglas
               </button>
               <button onclick="switchStep('step-whatsapp')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-semibold bg-[#1B4332] text-white shadow-xs transition" data-vstep="step-whatsapp">
-                📱 Vincular WhatsApp (QR)
+                Vincular WhatsApp (QR)
               </button>
             </div>
           </div>
@@ -1117,9 +1093,9 @@
               <h2 class="text-sm font-semibold text-slate-900" data-i18n="waStatusTitle">Estado de la Conexión de WhatsApp</h2>
               <p class="text-xs text-slate-600 mt-0.5" data-i18n="waStatusSubtitle">Vincular tu línea para que el agente virtual empiece a recibir y responder mensajes en múltiples idiomas.</p>
             </div>
-            <span id="wa-connection-badge" class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-800 border border-amber-200">
-              <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
-              <span data-i18n="waStatusReady">Listo para enlazar</span>
+            <span id="wa-connection-badge" class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200">
+              <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+              <span>Sin vincular</span>
             </span>
           </div>
 
@@ -2147,9 +2123,6 @@
               <span class="btn-smart-back-text">Volver</span>
             </button>
           </div>
-          <div class="flex items-center space-x-2">
-            <span class="text-xs font-mono px-2.5 py-1 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold">1. Vendedor IA (WhatsApp 24/7)</span>
-          </div>
         </div>
 
         <!-- Banner de Empleado No Contratado -->
@@ -2167,31 +2140,22 @@
         </div>
 
         <!-- Barra de Navegación del Vendedor IA (Sub-tabs) -->
-        <div class="vendedor-nav-bar bg-[#F0F5F2] border border-[#CDE0D5] rounded-xl p-2.5 flex flex-col md:flex-row md:items-center justify-between gap-2.5 shadow-subtle">
+        <div class="vendedor-nav-bar bg-[#F0F5F2] border border-[#CDE0D5] rounded-xl p-2 flex flex-col md:flex-row md:items-center justify-between gap-2 shadow-subtle">
           <div class="flex flex-wrap items-center gap-1.5 text-xs">
-            <span class="text-[10px] font-mono font-bold text-[#1B4332] uppercase tracking-wider px-2 py-1 bg-emerald-100 border border-emerald-300 rounded-md">
-              1. Vendedor IA
-            </span>
             <div class="inline-flex bg-white p-0.5 rounded-lg border border-slate-200 shadow-2xs">
               <button onclick="switchStep('step-simulator')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-semibold bg-[#1B4332] text-white shadow-xs transition" data-vstep="step-simulator">
-                💬 Chat en Vivo
+                Chat en Vivo
               </button>
               <button onclick="switchStep('step-catalog')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-catalog">
-                📦 Catálogo & Precios
+                Catálogo & Precios
               </button>
               <button onclick="switchStep('step-identity')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-identity">
-                ⚙️ Identidad & Reglas
+                Identidad & Reglas
               </button>
               <button onclick="switchStep('step-whatsapp')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-whatsapp">
-                📱 Vincular WhatsApp (QR)
+                Vincular WhatsApp (QR)
               </button>
             </div>
-          </div>
-          <div class="flex items-center space-x-2 shrink-0">
-            <span class="text-[11px] font-mono text-emerald-800 font-medium bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200 flex items-center space-x-1.5">
-              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span>Modo Simulación Activo</span>
-            </span>
           </div>
         </div>
 
@@ -2215,7 +2179,6 @@
                   <i data-lucide="link" class="w-3.5 h-3.5 text-emerald-600"></i>
                   <span>Bloque 1 · Integración & Canales</span>
                 </span>
-                <span id="sim-b1-badge" class="text-[10px] font-mono px-1.5 py-0.5 bg-emerald-50 text-emerald-700 font-semibold rounded border border-emerald-200">1-CLIC QR</span>
               </div>
               <h4 class="text-xs font-bold text-slate-900">Vincular Línea de WhatsApp</h4>
               <p class="text-[11px] text-slate-600 leading-tight mb-2">Canal por donde los clientes te escriben y reciben respuestas.</p>
@@ -2226,7 +2189,7 @@
                     <i data-lucide="smartphone" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
                     <span class="truncate">WhatsApp Business</span>
                   </span>
-                  <span class="text-[10px] font-semibold shrink-0" id="sim-wa-status-text">○ No vinculado</span>
+                  <span class="text-[10px] font-semibold text-rose-700 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded shrink-0" id="sim-wa-status-text">Sin vincular</span>
                 </div>
                 <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
                   <span class="text-[10px] font-semibold text-slate-600 uppercase">Línea activa:</span>
@@ -2240,7 +2203,7 @@
                 <span id="sim-wa-btn-text">Vincular WhatsApp (QR)</span>
               </button>
               <button onclick="testWhatsAppDirectly()" id="sim-wa-btn-test" class="py-1.5 px-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded text-[11px] font-medium transition" title="Abrir en WhatsApp Web">
-                💬 Web
+                WhatsApp Web
               </button>
             </div>
           </div>
@@ -2253,7 +2216,6 @@
                   <i data-lucide="database" class="w-3.5 h-3.5 text-emerald-600"></i>
                   <span>Bloque 2 · Datos de Entrada</span>
                 </span>
-                <span class="text-[10px] font-mono px-1.5 py-0.5 bg-slate-100 text-slate-700 font-semibold rounded border border-slate-200" id="sim-block2-badge">3 PRODUCTOS</span>
               </div>
               <h4 class="text-xs font-bold text-slate-900">Catálogo, Stock & Reglas</h4>
               <p class="text-[11px] text-slate-600 leading-tight mb-2">La IA sólo vende lo que tiene stock y respeta tus precios.</p>
@@ -2288,7 +2250,6 @@
                   <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600"></i>
                   <span>Bloque 3 · Acción de Salida</span>
                 </span>
-                <span class="text-[10px] font-mono px-1.5 py-0.5 bg-emerald-50 text-emerald-700 font-semibold rounded border border-emerald-200">CIERRE & COBRO</span>
               </div>
               <h4 class="text-xs font-bold text-slate-900">¿Cómo cobra y confirma la IA?</h4>
               <p class="text-[11px] text-slate-600 leading-tight mb-2">Cobro automático con tu medio de pago y registro inmediato.</p>
@@ -2403,24 +2364,6 @@
                 <span>"Mido 1.65 y 90 de busto, qué talle soy?" (TalleExacto)</span>
               </button>
             </div>
-          </div>
-        </div>
-
-        <!-- Acciones Operativas del Vendedor IA -->
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-200 mb-8">
-          <button onclick="goBack()" class="w-full sm:w-auto inline-flex items-center justify-center space-x-1.5 px-3.5 py-2 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition shadow-2xs">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-            <span>Volver</span>
-          </button>
-          <div class="flex flex-wrap items-center justify-end gap-2 w-full sm:w-auto">
-            <button onclick="openWhatsAppModal('vendedor')" class="flex-1 sm:flex-none inline-flex items-center justify-center space-x-1.5 px-4 py-2 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg transition shadow-subtle">
-              <i data-lucide="smartphone" class="w-3.5 h-3.5 text-emerald-300"></i>
-              <span>Vincular WhatsApp (QR)</span>
-            </button>
-            <button onclick="switchStep('step-catalog')" class="flex-1 sm:flex-none inline-flex items-center justify-center space-x-1.5 px-4 py-2 text-xs font-semibold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg transition shadow-2xs">
-              <span>Siguiente: Catálogo & Stock</span>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-            </button>
           </div>
         </div>
       </section>
@@ -2577,7 +2520,7 @@
                     <span class="truncate">WhatsApp Business</span>
                   </div>
                   <div class="flex items-center space-x-1.5 shrink-0">
-                    <span class="text-[10px]" id="citas-status-wa">○ No vinculado</span>
+                    <span class="text-[10px] text-rose-700 font-semibold" id="citas-status-wa">● Sin vincular</span>
                     <button onclick="openWhatsAppModal('citas')" class="px-2 py-0.5 text-[10px] font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 rounded shadow-2xs">
                       Vincular
                     </button>
@@ -2590,7 +2533,7 @@
                     <span class="truncate">Google Calendar</span>
                   </div>
                   <div class="flex items-center space-x-1.5 shrink-0">
-                    <span class="text-[10px]" id="citas-status-cal">○ No vinculado</span>
+                    <span class="text-[10px] text-rose-700 font-semibold" id="citas-status-cal">● Sin vincular</span>
                     <button onclick="openGoogleCalendarModal()" class="px-2 py-0.5 text-[10px] font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded shadow-2xs">
                       Conectar
                     </button>
@@ -2619,7 +2562,7 @@
                   <span data-i18n="b2Title">Bloque 2 · Datos de Entrada</span>
                 </span>
                 <button onclick="openCitasConfigModal()" class="text-[10px] font-bold text-emerald-800 hover:text-emerald-950 bg-emerald-100 hover:bg-emerald-200 px-2 py-0.5 rounded border border-emerald-300 transition">
-                  ✏️ EDITAR
+                  EDITAR
                 </button>
               </div>
               <h4 class="text-xs font-bold text-slate-900" data-i18n="citasB2Heading">Servicios, Duración & Profesionales</h4>
@@ -2886,19 +2829,6 @@
                 </tr>
               </tbody>
             </table>
-          </div>
-        </div>
-
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-200 mb-8">
-          <button onclick="goBack()" class="w-full sm:w-auto inline-flex items-center justify-center space-x-1.5 px-3.5 py-2 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition shadow-2xs">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-            <span>Volver</span>
-          </button>
-          <div class="flex flex-wrap items-center justify-end gap-2 w-full sm:w-auto">
-            <button onclick="openWhatsAppModal('citas')" class="flex-1 sm:flex-none inline-flex items-center justify-center space-x-1.5 px-4 py-2 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg transition shadow-subtle">
-              <i data-lucide="smartphone" class="w-3.5 h-3.5 text-emerald-300"></i>
-              <span>Vincular WhatsApp (QR)</span>
-            </button>
           </div>
         </div>
       </section>
@@ -3735,21 +3665,21 @@
     </div>
   </div>
 
-  <!-- WIDGET FLOTANTE INTERACTIVO DE PÁGINA WEB (OCULTO POR DEFECTO PARA NO TAPAR BOTONES) -->
-  <div id="changared-floating-widget" class="hidden fixed bottom-6 right-6 z-40 flex flex-col items-end pointer-events-auto">
+  <!-- WIDGET FLOTANTE INTERACTIVO DE PÁGINA WEB (ASESOR COMERCIAL CHANGARED) -->
+  <div id="changared-floating-widget" class="fixed bottom-6 right-6 z-40 flex flex-col items-end pointer-events-auto">
     <!-- Ventana de Chat Flotante -->
-    <div id="floating-chat-window" class="hidden w-[330px] sm:w-[370px] h-[480px] max-h-[75vh] bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col mb-3 transition-all duration-300 transform scale-95 opacity-0">
+    <div id="floating-chat-window" class="hidden w-[330px] sm:w-[370px] h-[480px] max-h-[75vh] bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col mb-3 transition-all duration-300 transform scale-95 opacity-0">
       <!-- Header del Widget Flotante -->
       <div class="bg-[#1B4332] text-white p-3.5 flex items-center justify-between shadow-xs">
         <div class="flex items-center space-x-2.5">
-          <div class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-base border border-white/20">
-            🤖
+          <div class="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center border border-white/20">
+            <i data-lucide="bot" class="w-4 h-4 text-emerald-300"></i>
           </div>
           <div>
-            <div class="text-xs font-bold leading-tight company-display-name">Mi Empresa</div>
+            <div class="text-xs font-bold leading-tight">Asesor Comercial Changared</div>
             <div class="text-[10px] text-emerald-300 font-medium flex items-center space-x-1">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>En línea 24/7 · Changared Widget</span>
+              <span>En línea 24/7 · Asesoramiento & Ventas</span>
             </div>
           </div>
         </div>
@@ -3763,27 +3693,27 @@
       <!-- Cuerpo de Mensajes del Widget -->
       <div id="floating-chat-messages" class="flex-1 p-3.5 overflow-y-auto space-y-2.5 bg-slate-50 text-xs">
         <div class="flex justify-center">
-          <span class="text-[10px] bg-slate-200/70 text-slate-600 px-2.5 py-0.5 rounded-full font-mono">
-            Widget Web Activo en tu Página
+          <span class="text-[10px] bg-slate-200/70 text-slate-600 px-2.5 py-0.5 rounded font-mono">
+            Asesor Comercial Changared IA
           </span>
         </div>
         <div class="flex items-start space-x-2 max-w-[85%]">
-          <div class="bg-white border border-slate-200 text-slate-800 p-3 rounded-2xl rounded-tl-sm shadow-2xs leading-relaxed text-xs">
-            ¡Hola! 👋 Bienvenido a <strong class="company-display-name">Mi Empresa</strong>. ¿En qué te puedo ayudar hoy?
+          <div class="bg-white border border-slate-200 text-slate-800 p-3 rounded-xl shadow-2xs leading-relaxed text-xs">
+            ¡Hola! Soy el Asesor Comercial IA de <strong>Changared</strong>. Te ayudo a resolver dudas y elegir los empleados virtuales para tu negocio (Ventas por WhatsApp, Turnos en Google Calendar, Cobranzas o Facturación). ¿Qué tipo de negocio tienes o qué proceso te gustaría automatizar?
           </div>
         </div>
       </div>
 
       <!-- Sugerencias Rápidas en el Widget -->
       <div class="px-3 py-1.5 bg-slate-100/70 border-t border-slate-200 flex flex-wrap gap-1 text-[11px]">
-        <button onclick="sendFloatingQuery('Hola! Quiero agendar un turno')" class="px-2 py-1 bg-white hover:bg-slate-50 border border-slate-200 rounded text-slate-700 transition">📅 Agendar Turno</button>
-        <button onclick="sendFloatingQuery('Hola! Qué precios tienen en el catálogo?')" class="px-2 py-1 bg-white hover:bg-slate-50 border border-slate-200 rounded text-slate-700 transition">📦 Ver Precios</button>
-        <button onclick="sendFloatingQuery('Cuáles son los horarios de atención?')" class="px-2 py-1 bg-white hover:bg-slate-50 border border-slate-200 rounded text-slate-700 transition">⏰ Horarios</button>
+        <button onclick="sendFloatingQuery('Quiero vender por WhatsApp 24/7')" class="px-2 py-1 bg-white hover:bg-slate-50 border border-slate-200 rounded text-slate-700 transition">Vender por WhatsApp 24/7</button>
+        <button onclick="sendFloatingQuery('Necesito agendar turnos y cobrar señas')" class="px-2 py-1 bg-white hover:bg-slate-50 border border-slate-200 rounded text-slate-700 transition">Turnos & Señas</button>
+        <button onclick="sendFloatingQuery('Precios y prueba gratis de 14 días')" class="px-2 py-1 bg-white hover:bg-slate-50 border border-slate-200 rounded text-slate-700 transition">Prueba gratis 14 días</button>
       </div>
 
       <!-- Input de Mensaje del Widget -->
       <div class="p-2.5 bg-white border-t border-slate-200 flex items-center space-x-2">
-        <input type="text" id="floating-input" onkeypress="if(event.key==='Enter') sendFloatingMessage()" placeholder="Escribe un mensaje..." class="flex-1 text-xs px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 outline-none">
+        <input type="text" id="floating-input" onkeypress="if(event.key==='Enter') sendFloatingMessage()" placeholder="Pregunta sobre planes, turnos, WhatsApp..." class="flex-1 text-xs px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:border-emerald-600 focus:ring-1 focus:ring-emerald-600 outline-none">
         <button onclick="sendFloatingMessage()" class="px-3 py-2 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded-lg transition shadow-2xs">
           <i data-lucide="send" class="w-3.5 h-3.5"></i>
         </button>
@@ -3792,14 +3722,14 @@
 
     <!-- Botón Lanzador Circular (Launcher Bubble con botón de Ocultar) -->
     <div id="floating-launcher-wrapper" class="flex items-center space-x-1.5">
-      <button onclick="toggleFloatingChat()" id="floating-launcher-btn" class="flex items-center space-x-2 px-3.5 py-2.5 sm:px-4 sm:py-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded-full shadow-2xl transition-all duration-200 group border-2 border-emerald-400/40 hover:scale-105">
+      <button onclick="toggleFloatingChat()" id="floating-launcher-btn" class="flex items-center space-x-2 px-3.5 py-2.5 sm:px-4 sm:py-2.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded-xl shadow-2xl transition-all duration-200 group border border-emerald-400/30 hover:scale-105">
         <div class="relative">
-          <i data-lucide="message-circle" class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-300"></i>
-          <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-emerald-400 border border-[#1B4332]"></span>
+          <i data-lucide="message-square" class="w-4 h-4 sm:w-5 sm:h-5 text-emerald-300"></i>
+          <span class="absolute -top-1 -right-1 w-2 h-2 rounded-full bg-emerald-400 border border-[#1B4332]"></span>
         </div>
-        <span class="text-xs font-bold pr-1 hidden sm:inline" id="floating-launcher-text">Chatear con el Asistente</span>
+        <span class="text-xs font-bold pr-1 hidden sm:inline" id="floating-launcher-text">Asesor Comercial Changared</span>
       </button>
-      <button onclick="dismissFloatingWidget()" class="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-slate-800/80 hover:bg-slate-900 text-white flex items-center justify-center text-xs shadow-md transition" title="Ocultar widget para que no tape">
+      <button onclick="dismissFloatingWidget()" class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-slate-800/80 hover:bg-slate-900 text-white flex items-center justify-center text-xs shadow-md transition" title="Ocultar widget">
         ✕
       </button>
     </div>
@@ -5270,19 +5200,19 @@
           waBadge.innerText = `● Vinculado (${currentCompany.phone})`;
           waBadge.className = "text-[10px] text-emerald-700 font-semibold block truncate";
         } else {
-          waBadge.innerText = `○ No vinculado`;
-          waBadge.className = "text-[10px] text-amber-700 font-semibold block truncate";
+          waBadge.innerText = `● Sin vincular`;
+          waBadge.className = "text-[10px] text-rose-700 font-semibold block truncate";
         }
       }
 
       const calBadge = document.getElementById('citas-status-cal');
       if (calBadge) {
         if (currentCompany.calendarConnected) {
-          calBadge.innerText = `● Sincronizado`;
+          calBadge.innerText = `● Vinculado`;
           calBadge.className = "text-[10px] text-emerald-700 font-semibold block truncate";
         } else {
-          calBadge.innerText = `○ No vinculado`;
-          calBadge.className = "text-[10px] text-amber-700 font-semibold block truncate";
+          calBadge.innerText = `● Sin vincular`;
+          calBadge.className = "text-[10px] text-rose-700 font-semibold block truncate";
         }
       }
 
@@ -5293,12 +5223,12 @@
       if (simWaPhone) simWaPhone.innerText = currentCompany.phone || '+54 9 11 4455-6677';
       if (simWaStatus) {
         if (currentCompany.whatsappConnected) {
-          simWaStatus.innerText = '● Conectado';
-          simWaStatus.className = 'text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200';
+          simWaStatus.innerText = 'Vinculado';
+          simWaStatus.className = 'text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200';
           if (simWaBtnText) simWaBtnText.innerText = 'Gestionar / QR';
         } else {
-          simWaStatus.innerText = '○ No vinculado';
-          simWaStatus.className = 'text-[10px] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200';
+          simWaStatus.innerText = 'Sin vincular';
+          simWaStatus.className = 'text-[10px] font-semibold text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200';
           if (simWaBtnText) simWaBtnText.innerText = 'Vincular WhatsApp (QR)';
         }
       }
@@ -5308,12 +5238,12 @@
       const btnConnectWaText = document.getElementById('btn-connect-wa-text');
       if (waConnBadge) {
         if (currentCompany.whatsappConnected) {
-          waConnBadge.className = "inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-800 border border-emerald-200";
-          waConnBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span><span>● Conectado (${currentCompany.phone})</span>`;
+          waConnBadge.className = "inline-flex items-center space-x-1.5 px-2.5 py-1 rounded text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200";
+          waConnBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span><span>Vinculado (${currentCompany.phone})</span>`;
           if (btnConnectWaText) btnConnectWaText.innerText = `Gestionar WhatsApp (${currentCompany.phone})`;
         } else {
-          waConnBadge.className = "inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-800 border border-amber-200";
-          waConnBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span><span>Listo para enlazar</span>`;
+          waConnBadge.className = "inline-flex items-center space-x-1.5 px-2.5 py-1 rounded text-xs font-semibold bg-rose-50 text-rose-800 border border-rose-200";
+          waConnBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span><span>Sin vincular</span>`;
           if (btnConnectWaText) btnConnectWaText.innerText = `Vincular Número de WhatsApp (QR)`;
         }
       }
@@ -5459,19 +5389,7 @@
           }
         }
 
-        // 3. Sidebar Indicators
-        const sideEl = document.querySelector(`.nav-badge-emp[data-emp-nav="${emp.key}"]`);
-        if (sideEl) {
-          if (isHired) {
-            sideEl.className = "nav-badge-emp text-[9px] px-1.5 py-0.5 rounded font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30";
-            sideEl.innerText = "● Activo";
-          } else {
-            sideEl.className = "nav-badge-emp text-[9px] px-1.5 py-0.5 rounded font-mono font-medium bg-white/10 text-emerald-100/60 border border-white/10";
-            sideEl.innerText = "+ Contratar";
-          }
-        }
-
-        // 4. Step Uncontracted Banner
+        // 3. Step Uncontracted Banner
         const bannerEl = document.getElementById(`uncontracted-banner-${emp.key}`);
         if (bannerEl) {
           if (isHired) {
@@ -5987,18 +5905,20 @@
       container.appendChild(typingEl);
       container.scrollTop = container.scrollHeight;
 
-      const slug = currentCompany.slug || 'mi-empresa';
+      if (!window.floatingChatHistory) window.floatingChatHistory = [];
+      window.floatingChatHistory.push({ role: 'user', content: text });
+
       let reply = "";
 
       try {
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 3500);
-        const res = await fetch(`/api/webhook/${slug}`, {
+        const timeoutId = setTimeout(() => controller.abort(), 6000);
+        const res = await fetch('/api/chat/changared', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             message: text,
-            from: currentCompany.phone || '+5491100000000'
+            history: window.floatingChatHistory.slice(-6)
           }),
           signal: controller.signal
         });
@@ -6006,26 +5926,26 @@
 
         if (res.ok) {
           const json = await res.json();
-          if (json.success && json.agentResponse?.text) {
-            reply = escapeHtml(json.agentResponse.text).replace(/\n/g, '<br>');
+          if (json.success && json.reply) {
+            reply = escapeHtml(json.reply).replace(/\n/g, '<br>');
+            window.floatingChatHistory.push({ role: 'assistant', content: json.reply });
           }
         }
       } catch (e) {
-        console.warn("[Floating Chat] Webhook API fallback:", e);
+        console.warn("[Floating Chat] Sales API fallback:", e);
       }
 
-      // Fallback cognitivo en caso de desconexión
+      // Fallback comercial de Changared si no hay conexión
       if (!reply) {
         const q = text.toLowerCase();
-        if (q.includes('turno') || q.includes('cita') || q.includes('agendar') || q.includes('hora')) {
-          reply = `¡Con gusto te agendo! 📅 En <strong>${currentCompany.name}</strong> tenemos turnos disponibles en tiempo real con Google Calendar.<br><br>¿Para qué día y en qué horario preferís tu cita? (Seña de $${Number(currentCompany.deposit || 5000).toLocaleString('es-AR')} vía Mercado Pago para confirmar).`;
-        } else if (q.includes('precio') || q.includes('cuanto') || q.includes('cuesta') || q.includes('catalogo') || q.includes('menú') || q.includes('menu')) {
-          const svcs = (currentCompany.services || []).map(s => `• <strong>${s.name}:</strong> $${Number(s.price).toLocaleString('es-AR')} (${s.duration})`).join('<br>');
-          reply = `¡Hola! 👋 Te paso nuestra lista oficial de servicios y precios de <strong>${currentCompany.name}</strong>:<br><br>${svcs || 'Servicios personalizados disponibles'}<br><br>¿Te gustaría agendar alguno o hacernos un pedido?`;
-        } else if (q.includes('horario') || q.includes('donde') || q.includes('ubicacion')) {
-          reply = `⏰ Nuestro horario de atención en <strong>${currentCompany.name}</strong> es: <em>${currentCompany.hours}</em>.<br><br>📍 Respondemos consultas 24/7 de forma automática.`;
+        if (q.includes('turno') || q.includes('cita') || q.includes('agenda') || q.includes('calendar') || q.includes('barber') || q.includes('peluquer') || q.includes('clinic')) {
+          reply = `Para negocios con citas o agenda, el empleado ideal es el <strong>Agendador de Citas (Google Calendar)</strong>:<br><br>• Sincroniza tus horarios reales con Google Calendar.<br>• Ofrece turnos libres por WhatsApp.<br>• Cobra una seña automática por Mercado Pago para asegurar la asistencia.<br>• Envía recordatorios previos para evitar cancelaciones.<br><br>Podés probarlo con <strong>14 días gratis</strong> desde el panel.`;
+        } else if (q.includes('precio') || q.includes('cuanto') || q.includes('costo') || q.includes('plan') || q.includes('gratis') || q.includes('tarjeta')) {
+          reply = `En Changared contratas <strong>por empleado</strong>:<br><br>• Tenés <strong>14 días de prueba gratis sin tarjeta de crédito</strong>.<br>• Podés vincular tu número de WhatsApp con QR en 30 segundos.<br>• Planes desde $19 USD/mes por empleado con soporte continuo.<br><br>¿Te gustaría activar tu prueba gratuita hoy mismo?`;
+        } else if (q.includes('whatsapp') || q.includes('vender') || q.includes('venta') || q.includes('stock') || q.includes('catalogo')) {
+          reply = `El <strong>Vendedor IA para WhatsApp 24/7</strong> atiende a tus clientes día y noche:<br><br>• Consulta tu catálogo y stock en tiempo real (nunca vende lo agotado).<br>• Pasa precios oficiales, alias o links de Mercado Pago.<br>• Toma pedidos y responde dudas frecuentes en segundos.<br>• Vinculación oficial por QR en 30 segundos.<br><br>Incluye 14 días gratis. ¿Qué productos o servicios comercializas?`;
         } else {
-          reply = `¡Hola! 👋 Gracias por comunicarte con <strong>${currentCompany.name}</strong>. Tomamos tu consulta en tiempo real. ¿En qué podemos ayudarte hoy?`;
+          reply = `¡Hola! Soy el Asesor Comercial de Changared. Te ayudamos a potenciar tu negocio con Empleados Virtuales IA:<br><br>1. <strong>Vendedor WhatsApp 24/7</strong> (atiende stock, precios y pedidos).<br>2. <strong>Turnos en Google Calendar & Señas</strong> (gestiona citas y cobra seña).<br>3. <strong>Gestor de Cobranzas</strong> (recordatorios automáticos de pago).<br>4. <strong>Asistente Contable</strong> (facturas de Gmail/Drive a Google Sheets).<br><br>Todos con <strong>14 días de prueba gratis</strong>. ¿Qué tarea te gustaría automatizar primero?`;
         }
       }
 

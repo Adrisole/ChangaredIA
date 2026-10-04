@@ -416,7 +416,30 @@ async function runTests() {
     assert.ok(foundApt, 'El turno creado debe encontrarse en la lista del negocio');
   });
 
-  // 21. Integridad y Paridad Hash SHA-256
+  // 21. Asesor Comercial IA de Changared (/api/chat/changared)
+  await test('POST /api/chat/changared - Asesor Comercial IA responde consultas y vende la plataforma', async () => {
+    const res = await fetch(`${BASE_URL}/api/chat/changared`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: 'Hola, tengo una peluquería y quiero agendar turnos con señas y atender WhatsApp'
+      })
+    });
+
+    assert.equal(res.status, 200, 'Status HTTP debe ser 200');
+    const json = await res.json();
+    assert.equal(json.success, true);
+    assert.ok(json.reply && json.reply.length > 20, 'Debe retornar una respuesta comercial válida');
+    assert.ok(
+      json.reply.toLowerCase().includes('turno') ||
+      json.reply.toLowerCase().includes('calendar') ||
+      json.reply.toLowerCase().includes('whatsapp') ||
+      json.reply.toLowerCase().includes('changared'),
+      'Debe asesorar sobre las funciones solicitadas'
+    );
+  });
+
+  // 22. Integridad y Paridad Hash SHA-256
   await test('Integridad SHA-256 - Paridad absoluta entre root y public/', async () => {
     const hDash = getHash('dashboard.html');
     const hIndex = getHash('index.html');
