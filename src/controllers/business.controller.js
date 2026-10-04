@@ -81,16 +81,21 @@ export const updateWhatsAppConfig = (req, res, next) => {
   try {
     const { businessId } = req.params;
     const updated = businessService.updateWhatsAppConfig(businessId, req.body);
+    const isConnected = Boolean(updated.whatsappConnected);
 
     res.status(200).json({
       success: true,
-      message: 'Configuración de WhatsApp actualizada exitosamente.',
+      message: isConnected
+        ? 'Meta WhatsApp Cloud API conectada y lista para producción.'
+        : 'Configuración actualizada en modo de prueba / simulación.',
       data: {
         businessId: updated.id,
         whatsappConnected: updated.whatsappConnected,
+        status: isConnected ? 'CONNECTED' : 'SIMULATED',
         phone: updated.phone,
         whatsappPhoneNumberId: updated.whatsappPhoneNumberId,
         hasAccessToken: Boolean(updated.whatsappAccessToken),
+        tokenConfigured: Boolean(updated.whatsappAccessToken),
         tokenEncrypted: true,
       },
     });

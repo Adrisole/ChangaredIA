@@ -108,11 +108,23 @@ export class BusinessService {
       tokenToSave = trimmed ? encryptionService.encrypt(trimmed) : '';
     }
 
+    const nextPhoneId = configData.whatsappPhoneNumberId !== undefined
+      ? String(configData.whatsappPhoneNumberId).trim()
+      : (business.whatsappPhoneNumberId || '');
+
+    // Validación seria para estado oficial Conectado: requiere Phone Number ID y Access Token
+    const hasCredentials = Boolean(nextPhoneId && tokenToSave);
+    const requestedConnected = configData.whatsappConnected !== undefined
+      ? Boolean(configData.whatsappConnected)
+      : business.whatsappConnected;
+
+    const isConnected = Boolean(requestedConnected && hasCredentials);
+
     const updated = {
       ...business,
       phone: configData.phone !== undefined ? String(configData.phone).trim() : business.phone,
-      whatsappConnected: configData.whatsappConnected !== undefined ? Boolean(configData.whatsappConnected) : business.whatsappConnected,
-      whatsappPhoneNumberId: configData.whatsappPhoneNumberId !== undefined ? String(configData.whatsappPhoneNumberId).trim() : (business.whatsappPhoneNumberId || ''),
+      whatsappConnected: isConnected,
+      whatsappPhoneNumberId: nextPhoneId,
       whatsappAccessToken: tokenToSave,
       whatsappAppSecret: configData.whatsappAppSecret !== undefined ? String(configData.whatsappAppSecret).trim() : (business.whatsappAppSecret || ''),
       whatsappBusinessAccountId: configData.whatsappBusinessAccountId !== undefined ? String(configData.whatsappBusinessAccountId).trim() : (business.whatsappBusinessAccountId || ''),
@@ -124,6 +136,10 @@ export class BusinessService {
 
   getBusinessById(businessId) {
     return businessRepository.findById(businessId);
+  }
+
+  getBusinessByPhoneNumberId(phoneNumberId) {
+    return businessRepository.findByPhoneNumberId(phoneNumberId);
   }
 
   getBusinessesByOwnerId(ownerId) {

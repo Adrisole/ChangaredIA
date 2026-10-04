@@ -19,14 +19,16 @@ export const verifyWebhook = (req, res) => {
   const token = req.query['hub.verify_token'];
   const challenge = req.query['hub.challenge'];
 
-  const business = businessService.getBusinessById(businessId);
-  if (!business) {
-    return res.status(404).send('Negocio no registrado en Changared');
+  if (businessId) {
+    const business = businessService.getBusinessById(businessId);
+    if (!business) {
+      return res.status(404).send('Negocio no registrado en Changared');
+    }
   }
 
   // Verifica contra el token configurado
   if (mode === 'subscribe' && token === config.whatsapp.verifyToken) {
-    console.log(`[Webhook Verification] Webhook validado correctamente para tenant: ${businessId}`);
+    console.log(`[Webhook Verification] Webhook validado correctamente con Meta challenge.`);
     return res.status(200).send(challenge);
   }
 
@@ -34,20 +36,37 @@ export const verifyWebhook = (req, res) => {
 };
 
 /**
- * POST /api/webhook/:businessId
- * Recepción del mensaje del cliente, persistencia en historial, control humano/IA y envío real a WhatsApp.
+ * POST /api/webhook y /api/webhook/:businessId
+ * Recepción del mensaje del cliente, deduplicación, resolución por phone_number_id,
+ * actualización de estados de entrega y control humano/IA.
  */
 export const handleIncomingMessage = async (req, res, next) => {
   try {
     const { businessId } = req.params;
+    let business = null;
 
-    // 1. Validar que el negocio exista en la base multi-tenant
-    const business = businessService.getBusinessById(businessId);
+    // 1. Identificar el comercio:
+    // a) Primero verificar si Meta envía el Phone Number ID en el payload oficial
+    const metaPhoneNumberId = req.body.entry?.[0]?.changes?.[0]?.value?.metadata?.phone_number_id;
+    if (metaPhoneNumberId) {
+      business = businessService.getBusinessByPhoneNumberId(metaPhoneNumberId);
+      if (business) {
+        console.log(`[WhatsApp Webhook] Negocio identificado por Phone Number ID oficial de Meta (${metaPhoneNumberId}): [${business.name}]`);
+      }
+    }
+
+    // b) Fallback o ruta con :businessId
+    if (!business && businessId) {
+      business = businessService.getBusinessById(businessId);
+    }
+
     if (!business) {
       return res.status(404).json({
         success: false,
         error: 'BUSINESS_NOT_FOUND',
-        message: `No se encontró ningún negocio registrado con el ID '${businessId}'.`,
+        message: metaPhoneNumberId
+          ? `No se encontró ningún negocio registrado con el WhatsApp Phone Number ID '${metaPhoneNumberId}'.`
+          : `No se encontró ningún negocio registrado para procesar el webhook.`,
       });
     }
 
@@ -57,7 +76,7 @@ export const handleIncomingMessage = async (req, res, next) => {
 
     if (activeAppSecret) {
       if (!signature) {
-        console.warn(`[WhatsApp Webhook] Rechazado por falta de firma x-hub-signature-256 para tenant: ${businessId}`);
+        console.warn(`[WhatsApp Webhook] Rechazado por falta de firma x-hub-signature-256 para tenant: ${business.id}`);
         return res.status(401).json({
           success: false,
           error: 'MISSING_SIGNATURE',
@@ -67,7 +86,7 @@ export const handleIncomingMessage = async (req, res, next) => {
       const rawPayload = req.rawBody || JSON.stringify(req.body);
       const isValid = whatsappService.validateSignature(rawPayload, signature, activeAppSecret);
       if (!isValid) {
-        console.warn(`[WhatsApp Webhook] Firma HMAC-SHA256 inválida rechazada para tenant: ${businessId}`);
+        console.warn(`[WhatsApp Webhook] Firma HMAC-SHA256 inválida rechazada para tenant: ${business.id}`);
         return res.status(401).json({
           success: false,
           error: 'INVALID_SIGNATURE',
@@ -88,13 +107,18 @@ export const handleIncomingMessage = async (req, res, next) => {
       }
     }
 
-    // 3. Manejo de eventos de estado de entrega de Meta (ej. delivered, read, sent)
-    const isStatusEvent = Boolean(req.body.entry?.[0]?.changes?.[0]?.value?.statuses);
-    if (isStatusEvent) {
+    // 3. Manejo de eventos de estado de entrega de Meta (sent, delivered, read, failed)
+    const statuses = req.body.entry?.[0]?.changes?.[0]?.value?.statuses;
+    if (Array.isArray(statuses) && statuses.length > 0) {
+      for (const st of statuses) {
+        conversationRepository.updateDeliveryStatus(st.id, st.status, st.timestamp);
+      }
+      console.log(`[WhatsApp Webhook] Estados de entrega actualizados (${statuses.length} eventos).`);
       return res.status(200).json({
         success: true,
         event: 'status_update',
-        message: 'Evento de estado procesado correctamente.',
+        count: statuses.length,
+        message: 'Estados de entrega de Meta actualizados exitosamente en el historial.',
       });
     }
 
@@ -106,6 +130,17 @@ export const handleIncomingMessage = async (req, res, next) => {
         success: false,
         error: 'EMPTY_MESSAGE',
         message: 'No se detectó ningún texto en el cuerpo de la petición. Envía { "message": "tu texto" } o el formato oficial de WhatsApp.',
+      });
+    }
+
+    // 5. Deduplicación / Idempotencia: evitar procesar mensajes duplicados de Meta
+    if (metaIncomingId && conversationRepository.hasProcessedMessage(metaIncomingId)) {
+      console.log(`[WhatsApp Webhook] Mensaje duplicado detectado [${metaIncomingId}]. Retornando 200 sin reprocesar.`);
+      return res.status(200).json({
+        success: true,
+        duplicate: true,
+        messageId: metaIncomingId,
+        message: 'Mensaje duplicado ya procesado anteriormente.',
       });
     }
 

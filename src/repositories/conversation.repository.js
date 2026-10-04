@@ -151,7 +151,62 @@ class ConversationRepository {
       conv.unreadCount = 0;
     }
 
+    if (metaMessageId) {
+      if (!this._processedSet) this._processedSet = new Set();
+      this._processedSet.add(String(metaMessageId).trim());
+    }
+
     return this.save(conv);
+  }
+
+  /**
+   * Verifica si un mensaje de Meta (wamid) ya fue procesado previamente para evitar duplicados.
+   */
+  hasProcessedMessage(metaMessageId) {
+    if (!metaMessageId) return false;
+    const cleanId = String(metaMessageId).trim();
+    if (this._processedSet && this._processedSet.has(cleanId)) {
+      return true;
+    }
+
+    const all = this._readAll();
+    for (const conv of all) {
+      if (Array.isArray(conv.messages)) {
+        if (conv.messages.some(m => m.metaMessageId === cleanId)) {
+          if (!this._processedSet) this._processedSet = new Set();
+          this._processedSet.add(cleanId);
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Actualiza el estado de entrega reportado por Meta (sent, delivered, read, failed).
+   */
+  updateDeliveryStatus(metaMessageId, deliveryStatus, timestamp = null) {
+    if (!metaMessageId) return null;
+    const cleanId = String(metaMessageId).trim();
+    const all = this._readAll();
+    let updatedConv = null;
+
+    for (const conv of all) {
+      if (Array.isArray(conv.messages)) {
+        const msg = conv.messages.find(m => m.metaMessageId === cleanId);
+        if (msg) {
+          msg.deliveryStatus = deliveryStatus; // 'sent' | 'delivered' | 'read' | 'failed'
+          msg.statusTimestamp = timestamp ? new Date(Number(timestamp) * 1000).toISOString() : new Date().toISOString();
+          updatedConv = conv;
+          break;
+        }
+      }
+    }
+
+    if (updatedConv) {
+      return this.save(updatedConv);
+    }
+    return null;
   }
 
   setStatus(businessId, customerPhone, status) {

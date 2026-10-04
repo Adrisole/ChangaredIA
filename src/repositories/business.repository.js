@@ -61,6 +61,13 @@ class BusinessRepository {
     return Object.values(all).filter(b => b.ownerId === ownerId);
   }
 
+  findByPhoneNumberId(phoneNumberId) {
+    if (!phoneNumberId) return null;
+    const cleanId = String(phoneNumberId).trim();
+    const all = this._readAll();
+    return Object.values(all).find(b => String(b.whatsappPhoneNumberId || '').trim() === cleanId) || null;
+  }
+
   save(business) {
     const all = this._readAll();
     const key = String(business.id).toLowerCase().trim();

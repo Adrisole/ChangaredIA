@@ -807,6 +807,147 @@ async function runTests() {
     assert.equal(validSigJson.success, true);
   });
 
+  // 32. Deduplicación e Idempotencia de Webhook (Meta Retry Protection)
+  await test('Idempotencia de Webhook - Protección contra reintentos duplicados de Meta', async () => {
+    const testWamid = `wamid_dedup_test_${Date.now()}`;
+    const payload = {
+      id: testWamid,
+      from: '+5491188776655',
+      name: 'Cliente Deduplicado',
+      message: 'Consulta sobre precios y turnos'
+    };
+
+    // 1. Primer envío: debe procesarse con IA
+    const firstRes = await fetch(`${BASE_URL}/api/webhook/${testBusinessId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    assert.equal(firstRes.status, 200);
+    const firstJson = await firstRes.json();
+    assert.equal(firstJson.success, true);
+    assert.ok(firstJson.agentResponse, 'Primer envío debe generar respuesta de IA');
+
+    // 2. Reintento idéntico de Meta con el mismo wamid: debe retornar 200 con duplicate: true sin invocar IA
+    const secondRes = await fetch(`${BASE_URL}/api/webhook/${testBusinessId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    assert.equal(secondRes.status, 200);
+    const secondJson = await secondRes.json();
+    assert.equal(secondJson.success, true);
+    assert.equal(secondJson.duplicate, true, 'Debe detectar duplicado y evitar re-ejecutar');
+    assert.equal(secondJson.messageId, testWamid);
+  });
+
+  // 33. Eventos de Estado de Entrega de Meta (sent -> delivered -> read)
+  await test('Estados de Entrega Meta - Actualización de sent, delivered y read en historial', async () => {
+    const statusWamid = `wamid_status_track_${Date.now()}`;
+
+    // Crear mensaje inicial con dicho ID
+    await fetch(`${BASE_URL}/api/webhook/${testBusinessId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        id: statusWamid,
+        from: '+5491199001122',
+        message: 'Mensaje para rastreo de estado de entrega'
+      })
+    });
+
+    // Simular webhook de Meta con evento delivered
+    const statusPayload = {
+      entry: [{
+        changes: [{
+          value: {
+            statuses: [{
+              id: statusWamid,
+              status: 'delivered',
+              timestamp: Math.floor(Date.now() / 1000).toString(),
+              recipient_id: '5491199001122'
+            }]
+          }
+        }]
+      }]
+    };
+
+    const statusRes = await fetch(`${BASE_URL}/api/webhook/${testBusinessId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(statusPayload)
+    });
+    assert.equal(statusRes.status, 200);
+    const statusJson = await statusRes.json();
+    assert.equal(statusJson.event, 'status_update');
+    assert.equal(statusJson.count, 1);
+
+    // Verificar en el historial de la conversación que el estado se actualizó
+    const convRes = await fetch(`${BASE_URL}/api/conversations/${testBusinessId}/5491199001122`);
+    assert.equal(convRes.status, 200);
+    const convJson = await convRes.json();
+    const foundMsg = convJson.data.messages.find(m => m.metaMessageId === statusWamid);
+    assert.ok(foundMsg, 'El mensaje con statusWamid debe existir en el historial');
+    assert.equal(foundMsg.deliveryStatus, 'delivered', 'El estado del mensaje debe haberse actualizado a delivered');
+  });
+
+  // 34. Webhook Global Meta con Resolución Automática por Phone Number ID
+  await test('Webhook Global Meta - Reconocimiento de tenant por Phone Number ID y Challenge GET', async () => {
+    // 1. GET /api/webhook con challenge de Meta
+    const challengeRes = await fetch(`${BASE_URL}/api/webhook?hub.mode=subscribe&hub.verify_token=changared_secret_verify_token_2026&hub.challenge=META_CHALLENGE_OK_2026`);
+    assert.equal(challengeRes.status, 200);
+    const challengeText = await challengeRes.text();
+    assert.equal(challengeText, 'META_CHALLENGE_OK_2026');
+
+    // 2. Configurar Phone Number ID oficial en un tenant
+    const uniquePhoneId = `meta_pid_${Date.now()}`;
+    await fetch(`${BASE_URL}/api/business/${ownedBusinessId}/whatsapp-config`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${testUserToken}`
+      },
+      body: JSON.stringify({
+        whatsappPhoneNumberId: uniquePhoneId,
+        whatsappAccessToken: 'EAAG_valid_token_test',
+        whatsappAppSecret: '',
+        whatsappConnected: true
+      })
+    });
+
+    // 3. POST /api/webhook a la raíz (sin :businessId en la URL!) en formato oficial de Meta
+    const metaPayload = {
+      entry: [{
+        changes: [{
+          value: {
+            metadata: {
+              phone_number_id: uniquePhoneId,
+              display_phone_number: '5491133445566'
+            },
+            contacts: [{ profile: { name: 'Mariana López' } }],
+            messages: [{
+              from: '5491177665544',
+              id: `wamid_global_${Date.now()}`,
+              type: 'text',
+              text: { body: 'Hola, consulto por atención y turnos' }
+            }]
+          }
+        }]
+      }]
+    };
+
+    const globalRes = await fetch(`${BASE_URL}/api/webhook`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(metaPayload)
+    });
+    assert.equal(globalRes.status, 200);
+    const globalJson = await globalRes.json();
+    assert.equal(globalJson.success, true);
+    assert.equal(globalJson.tenant.businessId, ownedBusinessId, 'Debe resolver automáticamente el tenant mediante phone_number_id');
+    assert.equal(globalJson.customer.name, 'Mariana López');
+  });
+
   console.log('\n================================================================');
   console.log(`📊 RESULTADOS: ${passed} de ${total} pruebas aprobadas (${Math.round((passed / total) * 100)}%)`);
   if (passed === total) {
