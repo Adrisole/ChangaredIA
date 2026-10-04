@@ -26,6 +26,19 @@
         </div>
         <div class="flex gap-3 text-xs text-slate-500"><span>● <b class="text-emerald-600">Disponible</b></span><span>● Ocupado</span></div>
       </div>
+      <div class="grid grid-cols-1 sm:grid-cols-[1fr_1fr_auto] gap-2">
+        <select id="professional" class="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-800">
+          <option>Todos los profesionales</option><option>Lucas · Sillón 1</option><option>Valentina · Gabinete 2</option><option>Dr. Pérez · Consultorio 3</option>
+        </select>
+        <select id="service" class="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-sm font-medium text-slate-800">
+          <option>Consulta / Atención</option><option>Servicio especializado</option><option>Asesoramiento personalizado</option>
+        </select>
+        <button type="button" onclick="pickDay(0)" class="rounded-lg border border-emerald-200 bg-emerald-50 px-3 py-2 text-xs font-bold text-emerald-800 hover:bg-emerald-100">+ Nuevo turno</button>
+      </div>
+      <div class="flex flex-wrap items-center justify-between gap-2">
+        <div class="flex gap-1.5 text-xs"><button class="rounded-full bg-slate-900 px-3 py-1.5 font-bold text-white">Todos</button><button class="rounded-full border border-slate-200 px-3 py-1.5 text-slate-600">Disponibles</button><button class="rounded-full border border-slate-200 px-3 py-1.5 text-slate-600">Ocupados</button></div>
+        <div class="flex gap-1"><button onclick="moveWeek(-7)" class="rounded-lg border border-slate-200 px-2 py-1 text-sm hover:bg-slate-50">←</button><button onclick="moveWeek(7)" class="rounded-lg border border-slate-200 px-2 py-1 text-sm hover:bg-slate-50">→</button></div>
+      </div>
       <div id="days" class="grid grid-cols-2 sm:grid-cols-7 gap-2"></div>
       <div>
         <p id="slot-title" class="text-sm font-semibold mb-2">Seleccioná un día</p>
@@ -55,11 +68,16 @@
       </div>
     </aside>
     </div>
+    <section class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3"><div><h2 class="font-bold">Próximos turnos</h2><p class="mt-0.5 text-xs text-slate-500">Gestioná, reprogramá o cancelá desde este panel.</p></div><button class="text-xs font-bold text-emerald-700">Ver todos →</button></div>
+      <div class="divide-y divide-slate-100 text-sm"><div class="flex flex-wrap items-center justify-between gap-3 py-3"><div><b>María López</b><span class="ml-2 text-xs text-slate-500">Mañana · 16:30</span><p class="mt-0.5 text-xs text-slate-500">Consulta / Atención · Lucas</p></div><div class="flex gap-2"><span class="rounded-full bg-emerald-50 px-2 py-1 text-xs font-bold text-emerald-700">Confirmado</span><button class="text-xs font-semibold text-slate-600">Reprogramar</button></div></div><div class="flex flex-wrap items-center justify-between gap-3 py-3"><div><b>Tomás García</b><span class="ml-2 text-xs text-slate-500">Jueves · 10:30</span><p class="mt-0.5 text-xs text-slate-500">Servicio especializado · Valentina</p></div><div class="flex gap-2"><span class="rounded-full bg-amber-50 px-2 py-1 text-xs font-bold text-amber-700">Pendiente</span><button class="text-xs font-semibold text-slate-600">Reprogramar</button></div></div></div>
+    </section>
   </main>
   <script>
     const slots = ['09:00','10:30','12:00','15:00','16:30','18:00'];
-    const days = []; const date = new Date(); date.setHours(12,0,0,0);
-    while (days.length < 14) { date.setDate(date.getDate()+1); if(date.getDay() !== 0) days.push({ label: new Intl.DateTimeFormat('es-AR',{weekday:'short',day:'numeric',month:'short'}).format(date), busy: days.length % 3 === 1 ? [0,3] : (days.length % 4 === 0 ? [2,5] : [2]) }); }
+    const days = []; let weekOffset = 0;
+    function buildDays() { days.length=0; const date = new Date(); date.setHours(12,0,0,0); date.setDate(date.getDate()+1+weekOffset); while (days.length < 14) { if(date.getDay() !== 0) days.push({ label: new Intl.DateTimeFormat('es-AR',{weekday:'short',day:'numeric',month:'short'}).format(date), busy: days.length % 3 === 1 ? [0,3] : (days.length % 4 === 0 ? [2,5] : [2]) }); date.setDate(date.getDate()+1); } }
+    buildDays();
     let dayIndex = null, selected = null;
     const dayList = document.getElementById('days'), slotList = document.getElementById('slots');
     function render() {
@@ -69,7 +87,8 @@
       slotList.innerHTML = slots.map((slot,i) => days[dayIndex].busy.includes(i) ? `<button disabled class="rounded-lg border border-slate-200 bg-slate-100 py-2.5 text-sm text-slate-400 line-through">${slot}</button>` : `<button onclick="pickSlot('${slot}')" class="rounded-lg border py-2.5 text-sm font-bold ${selected===slot?'border-emerald-700 bg-emerald-700 text-white':'border-emerald-200 bg-emerald-50 text-emerald-800 hover:bg-emerald-100'}">${slot}</button>`).join('');
     }
     function pickDay(index) { dayIndex=index; selected=null; document.getElementById('booking').classList.add('hidden'); document.getElementById('selection').textContent=`${days[index].label}: elegí un horario`; render(); }
-    function pickSlot(slot) { selected=slot; document.getElementById('booking').classList.remove('hidden'); document.getElementById('selection').textContent=`${days[dayIndex].label} · ${slot} hs`; render(); }
+    function pickSlot(slot) { selected=slot; document.getElementById('booking').classList.remove('hidden'); document.getElementById('selection').textContent=`${days[dayIndex].label} · ${slot} hs · ${document.getElementById('service').value}`; render(); }
+    function moveWeek(amount) { weekOffset += amount; dayIndex=null; selected=null; document.getElementById('booking').classList.add('hidden'); buildDays(); document.getElementById('selection').textContent='Elegí fecha y horario'; render(); }
     document.getElementById('booking').addEventListener('submit', event => { event.preventDefault(); days[dayIndex].busy.push(slots.indexOf(selected)); document.getElementById('booking').classList.add('hidden'); const result=document.getElementById('success'); result.textContent=`Turno confirmado para ${document.getElementById('name').value}: ${days[dayIndex].label}, ${selected}. Conectá Google Calendar para crear el evento y avisar al profesional.`; result.classList.remove('hidden'); selected=null; render(); });
     render();
   </script>
