@@ -125,6 +125,9 @@
   <!-- Lucide Icons CDN -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
+  <!-- SheetJS para Importación de Excel y CSV (.xlsx, .xls, .csv) -->
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+
   <style>
     body {
       -webkit-font-smoothing: antialiased;
@@ -205,12 +208,8 @@
           <span data-i18n="navStepAccounting">3. Facturación & Gastos</span>
         </button>
 
-        <button onclick="switchStep('step-multilingual')" id="nav-step-multilingual" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
-          <span data-i18n="navStepMultilingual">4. Asistente Multilingüe (Turismo)</span>
-        </button>
-
         <button onclick="switchStep('step-citas')" id="nav-step-citas" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
-          <span data-i18n="navStepCitas">5. Agendador de Citas (Turnos)</span>
+          <span data-i18n="navStepCitas">4. Agendador de Citas (Turnos)</span>
         </button>
 
         <div class="pt-3 px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-emerald-200/70" data-i18n="navSectionFashion">Especial Moda</div>
@@ -589,55 +588,7 @@
             </div>
           </div>
 
-          <!-- 4. Asistente Multilingüe (Turismo & Hospitalidad) -->
-          <div class="bg-white border border-slate-200 hover:border-[#2D6A4F] rounded-lg p-5 flex flex-col justify-between transition-all">
-            <div class="space-y-4">
-              <div class="flex items-center justify-between pb-2 border-b border-slate-100">
-                <span class="text-[10px] font-mono font-semibold tracking-wider text-slate-600 uppercase" data-i18n="emp4Category">
-                  Turismo & Hotelería
-                </span>
-                <div class="flex items-center space-x-1.5">
-                  <span class="text-[10px] font-mono text-[#2D6A4F] font-bold">Multi-idioma 24/7</span>
-                  <span id="hub-status-multilingue" class="text-[10px] font-mono px-2 py-0.5 rounded font-medium bg-slate-100 text-slate-600 border border-slate-200">○ No Contratado</span>
-                </div>
-              </div>
-              <div>
-                <h3 class="text-base font-serif font-bold text-slate-900" style="font-family: Georgia, serif;" data-i18n="emp4Title">
-                  4. Asistente Multilingüe & Turismo
-                </h3>
-                <div class="mt-3 p-3 bg-slate-50 border border-slate-200 rounded text-xs text-slate-700 space-y-1">
-                  <span class="font-bold text-slate-900 block text-[11px] uppercase tracking-wide text-[#1B4332]" data-i18n="empWhatForTitle">¿Para qué sirve?</span>
-                  <p class="leading-relaxed" data-i18n="emp4WhatForDesc">
-                    Atiende turistas 24/7 en +10 idiomas por WhatsApp y cartelería QR física en mesas o recepción. Cierra reservas directas ahorrando comisiones de plataformas externas, envía cartas en PDF y gestiona pagos con Pix y USD.
-                  </p>
-                </div>
-              </div>
-              <ul class="text-xs text-slate-600 space-y-2 pt-1 font-sans">
-                <li class="flex items-start space-x-2">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp4F1">Cierra reservas directas sin comisiones (0% vs 18% Booking)</span>
-                </li>
-                <li class="flex items-start space-x-2">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp4F2">Fluidez nativa inmediata en portugués, inglés, francés y español</span>
-                </li>
-                <li class="flex items-start space-x-2">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp4F3">Envía carta en PDF, Wi-Fi, check-in y cobros en Pix / USD</span>
-                </li>
-              </ul>
-            </div>
-            <div id="hub-actions-multilingue" class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-2">
-              <button onclick="switchStep('step-multilingual')" class="flex-1 py-2 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition" data-i18n="btnTestTourist">
-                Probar Asistente →
-              </button>
-              <a href="/multilingue" class="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded text-xs font-medium transition" data-i18n="btnFullScreen">
-                Ver Página Completa ↗
-              </a>
-            </div>
-          </div>
-
-          <!-- 5. Agendador de Citas & Turnos (Google Calendar & WhatsApp) -->
+          <!-- 4. Agendador de Citas & Turnos (Google Calendar & WhatsApp) -->
           <div class="bg-white border-2 border-emerald-600/70 hover:border-emerald-700 rounded-lg p-5 flex flex-col justify-between transition-all md:col-span-2 shadow-subtle">
             <div class="space-y-4">
               <div class="flex items-center justify-between pb-2 border-b border-slate-100">
@@ -651,8 +602,8 @@
               </div>
               <div>
                 <div class="flex items-center space-x-2">
-                  <h3 class="text-base font-serif font-bold text-slate-900" style="font-family: Georgia, serif;" data-i18n="emp5Title">
-                    5. Agendador de Citas & Turnos (WhatsApp & Calendar)
+                  <h3 class="text-base font-bold text-slate-900" data-i18n="emp5Title">
+                    4. Agendador de Citas & Turnos (WhatsApp & Calendar)
                   </h3>
                   <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-100 text-amber-900 font-bold uppercase" data-i18n="badgeNew">Nuevo</span>
                 </div>
@@ -988,9 +939,9 @@
               <p class="text-xs text-slate-600 mt-0.5" data-i18n="catalogSubtitle">El agente NUNCA ofrecerá productos sin stock ni cambiará los precios indicados.</p>
             </div>
             <div class="flex items-center space-x-2">
-              <button onclick="openImportModal()" class="inline-flex items-center space-x-1 px-3 py-1.5 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition-colors shadow-subtle">
-                <i data-lucide="file-code" class="w-3.5 h-3.5 text-slate-600"></i>
-                <span data-i18n="btnImportJson">Importar JSON</span>
+              <button onclick="openImportModal()" class="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition-colors shadow-subtle">
+                <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5 text-emerald-700"></i>
+                <span data-i18n="btnImportExcel">Importar Excel / CSV</span>
               </button>
               <button onclick="openAddProductModal()" class="inline-flex items-center space-x-1 px-3 py-1.5 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg transition-colors shadow-subtle">
                 <i data-lucide="plus" class="w-3.5 h-3.5"></i>
@@ -2409,47 +2360,7 @@
       </section>
 
       <!-- ======================================================== -->
-      <!-- 4. ASISTENTE MULTILINGÜE & TURISMO (CONCIERGE 24/7) -->
-      <!-- ======================================================== -->
-      <section id="step-multilingual" class="step-content space-y-4 hidden">
-        <!-- Top Navigation Bar -->
-        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
-          <div class="flex items-center space-x-2">
-            <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 transition shadow-subtle">
-              <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-slate-700"></i>
-              <span class="btn-smart-back-text">Volver</span>
-            </button>
-          </div>
-          <div class="flex items-center space-x-3">
-            <span class="text-xs font-semibold text-slate-800">4. Asistente Multilingüe & Turismo (Concierge 24/7)</span>
-            <a href="/multilingue" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded-lg text-xs font-semibold transition shadow-subtle">
-              Abrir en Pantalla Completa ↗
-            </a>
-          </div>
-        </div>
-
-        <!-- Banner de Empleado No Contratado -->
-        <div id="uncontracted-banner-multilingue" class="hidden p-3.5 bg-amber-50 border border-amber-300 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
-          <div class="flex items-start sm:items-center space-x-2.5">
-            <span class="text-lg">⚠️</span>
-            <div>
-              <span class="text-xs font-bold text-amber-950 block">4. Asistente Multilingüe — Empleado No Contratado</span>
-              <p class="text-[11px] text-amber-800 leading-tight">La atención turística en idiomas no está activa en tu plan actual. Podés contratar este asistente con 14 días gratis.</p>
-            </div>
-          </div>
-          <button onclick="openBusinessConfigModal('multilingue')" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-bold rounded-lg transition whitespace-nowrap shadow-xs flex items-center space-x-1 shrink-0">
-            <span>+ Contratar este Empleado</span>
-          </button>
-        </div>
-
-        <!-- Vista Integrada del Asistente Multilingüe -->
-        <div class="border border-slate-200 rounded-lg overflow-hidden bg-[#F6EFDF] shadow-sm">
-          <iframe id="iframe-multilingual" src="/multilingue" title="Asistente Multilingüe y Turismo" style="width: 100%; min-height: 520px; border: none; display: block; transition: height 0.2s ease;"></iframe>
-        </div>
-      </section>
-
-      <!-- ======================================================== -->
-      <!-- 5. AGENDADOR DE CITAS & TURNOS (WHATSAPP & GOOGLE CALENDAR) -->
+      <!-- 4. AGENDADOR DE CITAS & TURNOS (WHATSAPP & GOOGLE CALENDAR) -->
       <!-- ======================================================== -->
       <section id="step-citas" class="step-content space-y-6 hidden">
         <!-- Top Navigation Banner (Limpio, Sin Botones Duplicados) -->
@@ -2463,7 +2374,7 @@
           <div class="flex items-center space-x-2">
             <span class="text-xs font-mono px-2.5 py-1 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold flex items-center space-x-1.5">
               <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span data-i18n="citasBadge">5. Agendador de Citas (Google Calendar)</span>
+              <span data-i18n="citasBadge">4. Agendador de Citas (Google Calendar)</span>
             </span>
             <button onclick="openBusinessConfigModal()" class="inline-flex items-center space-x-1 px-2.5 py-1 text-xs bg-emerald-50 text-emerald-900 border border-emerald-300 rounded-lg hover:bg-emerald-100 transition shadow-2xs">
               <span>🏢</span>
@@ -2478,7 +2389,7 @@
           <div class="flex items-start sm:items-center space-x-2.5">
             <span class="text-lg">⚠️</span>
             <div>
-              <span class="text-xs font-bold text-amber-950 block">5. Agendador de Citas — Empleado No Contratado</span>
+              <span class="text-xs font-bold text-amber-950 block">4. Agendador de Citas — Empleado No Contratado</span>
               <p class="text-[11px] text-amber-800 leading-tight">La coordinación de turnos con Google Calendar y seña no está activa en tu cuenta. Podés activarla con 14 días gratis.</p>
             </div>
           </div>
@@ -2852,7 +2763,7 @@
             <h4 class="font-bold text-slate-900 uppercase tracking-wider text-[10px]">Módulos Oficiales</h4>
             <ul class="space-y-1.5 text-slate-600">
               <li><a href="/cobranzas" class="hover:text-emerald-700 transition">Gestor de Cobranzas Automático</a></li>
-              <li><a href="/multilingue" class="hover:text-emerald-700 transition">Asistente Multilingüe (Turismo)</a></li>
+              <li><a href="/agenda" class="hover:text-emerald-700 transition">Agendador de Citas & Turnos</a></li>
               <li><a href="/talleexacto" class="hover:text-emerald-700 transition">TalleExacto (Recomendador Moda)</a></li>
               <li><a href="/" class="hover:text-emerald-700 transition">Hub de Empleados Virtuales</a></li>
             </ul>
@@ -2930,6 +2841,52 @@
       <div class="flex justify-end space-x-2 pt-2 border-t border-slate-100">
         <button onclick="closeAddProductModal()" class="px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg" data-i18n="modalCancel">Cancelar</button>
         <button onclick="saveNewProduct()" class="px-4 py-2 text-xs font-medium text-white bg-slate-900 hover:bg-slate-800 rounded-lg shadow-subtle" data-i18n="modalSave">Guardar Producto</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL: IMPORTAR EXCEL / CSV -->
+  <div id="modal-import-products" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-xl max-w-lg w-full p-6 shadow-xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center space-x-2">
+          <i data-lucide="file-spreadsheet" class="w-5 h-5 text-emerald-700"></i>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900">Importar Catálogo (Excel o CSV)</h3>
+            <p class="text-[11px] text-slate-500">Carga tus productos desde una planilla o pega los datos directamente.</p>
+          </div>
+        </div>
+        <button onclick="closeImportModal()" class="text-slate-400 hover:text-slate-700">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <div class="space-y-4 text-xs">
+        <div>
+          <label class="block font-medium text-slate-700 mb-1.5">Archivo Excel (.xlsx / .xls) o CSV (.csv)</label>
+          <div class="border border-dashed border-slate-300 hover:border-emerald-600 rounded-lg p-4 text-center cursor-pointer transition bg-slate-50" onclick="document.getElementById('import-file-input').click()">
+            <input type="file" id="import-file-input" accept=".xlsx,.xls,.csv,.tsv,.txt" class="hidden" onchange="handleCatalogFileUpload(event)">
+            <i data-lucide="upload-cloud" class="w-6 h-6 mx-auto text-slate-500 mb-1"></i>
+            <p class="text-xs font-semibold text-slate-700" id="import-file-name-label">Seleccionar archivo de Excel o CSV</p>
+            <p class="text-[10px] text-slate-500 mt-0.5">Compatible con planillas de Excel (.xlsx, .xls) y archivos .csv</p>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-medium text-slate-700 mb-1">O pegar filas copiadas desde Excel / CSV:</label>
+          <textarea id="import-pasted-text" rows="4" placeholder="Pega aquí las filas copiadas de tu planilla (separadas por tabulación o comas)..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800 font-mono text-[11px]"></textarea>
+          <p class="text-[10px] text-slate-500 mt-1">Columnas reconocidas automáticamente: Producto, Precio, Stock, Categoría, Descripción.</p>
+        </div>
+
+        <div id="import-status-box" class="hidden p-2.5 rounded-lg text-xs"></div>
+      </div>
+
+      <div class="flex items-center justify-between pt-3 border-t border-slate-100">
+        <button onclick="closeImportModal()" class="px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg">Cancelar</button>
+        <button onclick="processCatalogImport()" class="px-4 py-2 text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 rounded-lg shadow-subtle flex items-center space-x-1.5">
+          <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          <span>Importar Productos</span>
+        </button>
       </div>
     </div>
   </div>
@@ -3113,31 +3070,19 @@
               </div>
             </label>
 
-            <!-- 4. Asistente Multilingüe -->
-            <label id="lbl-emp-multilingue" class="emp-select-card flex items-start space-x-2.5 p-2.5 rounded-lg border border-slate-200 bg-white hover:border-emerald-500 cursor-pointer transition select-none">
-              <input type="checkbox" id="chk-emp-multilingue" value="multilingue" class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4" onchange="syncEmployeeCardStyles()">
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center justify-between">
-                  <span class="font-bold text-slate-900 text-xs">4. Asistente Multilingüe</span>
-                  <span class="text-[9px] font-mono px-1.5 py-0.2 bg-emerald-100 text-emerald-800 rounded font-bold">+10 Idiomas</span>
-                </div>
-                <p class="text-[10px] text-slate-500 leading-tight mt-0.5">Atención a turistas en inglés y portugués, cartas y reservas directas.</p>
-              </div>
-            </label>
-
-            <!-- 5. Agendador de Citas -->
+            <!-- 4. Agendador de Citas -->
             <label id="lbl-emp-citas" class="emp-select-card flex items-start space-x-2.5 p-2.5 rounded-lg border border-slate-200 bg-white hover:border-emerald-500 cursor-pointer transition select-none">
               <input type="checkbox" id="chk-emp-citas" value="citas" class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4" onchange="syncEmployeeCardStyles()">
               <div class="flex-1 min-w-0">
                 <div class="flex items-center justify-between">
-                  <span class="font-bold text-slate-900 text-xs">5. Agendador de Citas</span>
+                  <span class="font-bold text-slate-900 text-xs">4. Agendador de Citas</span>
                   <span class="text-[9px] font-mono px-1.5 py-0.2 bg-emerald-100 text-emerald-800 rounded font-bold">Google Calendar</span>
                 </div>
                 <p class="text-[10px] text-slate-500 leading-tight mt-0.5">Turnos libres, reserva y cobro de seña previa sin solapamiento.</p>
               </div>
             </label>
 
-            <!-- 6. TalleExacto (Moda) -->
+            <!-- 5. TalleExacto (Moda) -->
             <label id="lbl-emp-talleexacto" class="emp-select-card flex items-start space-x-2.5 p-2.5 rounded-lg border border-slate-200 bg-white hover:border-amber-500 cursor-pointer transition select-none">
               <input type="checkbox" id="chk-emp-talleexacto" value="talleexacto" class="mt-0.5 rounded text-amber-600 focus:ring-amber-500 w-4 h-4" onchange="syncEmployeeCardStyles()">
               <div class="flex-1 min-w-0">
@@ -3154,6 +3099,15 @@
             <span id="selected-employees-count" class="font-bold text-emerald-800">1 empleado seleccionado</span>
             <span class="text-[10px] text-slate-500">14 días de prueba gratis por cada empleado elegido</span>
           </div>
+        </div>
+
+        <!-- ATENCIÓN MULTILINGÜE (ACTIVADA POR DEFECTO) -->
+        <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between">
+          <div class="pr-2">
+            <label for="cfg-custom-autodetect" class="block font-bold text-slate-900 text-xs cursor-pointer">Atención multilingüe</label>
+            <p class="text-[11px] text-slate-500 leading-tight">Detección automática de idioma: responde fluidamente a clientes y turistas en español, inglés o portugués manteniendo stock y precios exactos.</p>
+          </div>
+          <input type="checkbox" id="cfg-custom-autodetect" checked class="w-4 h-4 accent-emerald-600 rounded cursor-pointer shrink-0">
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -3271,13 +3225,6 @@
             <div>
               <strong class="block text-xs text-slate-900">Gestor Cobranzas</strong>
               <span class="text-[10px] text-slate-500 block">Saldos & Pagos MP</span>
-            </div>
-          </button>
-          <button type="button" onclick="selectWidgetAgent('multilingue')" class="widget-agent-tab p-2.5 rounded-lg border text-left transition flex items-center space-x-2" data-agent="multilingue">
-            <span class="text-lg">🌐</span>
-            <div>
-              <strong class="block text-xs text-slate-900">Multilingüe</strong>
-              <span class="text-[10px] text-slate-500 block">Inglés / Portugués</span>
             </div>
           </button>
           <button type="button" onclick="selectWidgetAgent('talleexacto')" class="widget-agent-tab p-2.5 rounded-lg border text-left transition flex items-center space-x-2" data-agent="talleexacto">
@@ -3800,7 +3747,8 @@
         btnContinueToCatalog: "Continuar a Inventario & Stock",
         catalogTitle: "Catálogo de Productos y Disponibilidad",
         catalogSubtitle: "El agente NUNCA ofrecerá productos sin stock ni cambiará los precios indicados.",
-        btnImportJson: "Importar JSON",
+        btnImportExcel: "Importar Excel / CSV",
+        btnImportJson: "Importar Excel / CSV",
         btnAddProduct: "Agregar Producto",
         metricTotal: "Total Productos",
         metricInStock: "Con Stock Disponible",
@@ -4032,7 +3980,8 @@
         btnContinueToCatalog: "Continue to Inventory & Stock",
         catalogTitle: "Product Catalog & Availability",
         catalogSubtitle: "The agent will NEVER sell out-of-stock items or modify defined catalog prices.",
-        btnImportJson: "Import JSON",
+        btnImportExcel: "Import Excel / CSV",
+        btnImportJson: "Import Excel / CSV",
         btnAddProduct: "Add Product",
         metricTotal: "Total Products",
         metricInStock: "Available in Stock",
@@ -4264,7 +4213,8 @@
         btnContinueToCatalog: "Continuar para Estoque",
         catalogTitle: "Catálogo de Produtos e Disponibilidade",
         catalogSubtitle: "O agente NUNCA venderá produtos esgotados nem alterará os preços cadastrados.",
-        btnImportJson: "Importar JSON",
+        btnImportExcel: "Importar Excel / CSV",
+        btnImportJson: "Importar Excel / CSV",
         btnAddProduct: "Adicionar Produto",
         metricTotal: "Total Produtos",
         metricInStock: "Com Estoque Disponível",
@@ -5315,21 +5265,8 @@
           `
         },
         {
-          key: 'multilingue',
-          name: '4. Asistente Multilingüe',
-          step: 'step-multilingual',
-          renderActiveActions: () => `
-            <button onclick="switchStep('step-multilingual')" class="flex-1 py-2 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition" data-i18n="btnTestTourist">
-              Probar Asistente →
-            </button>
-            <a href="/multilingue" class="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded text-xs font-medium transition" data-i18n="btnFullScreen">
-              Ver Página Completa ↗
-            </a>
-          `
-        },
-        {
           key: 'citas',
-          name: '5. Agendador de Citas',
+          name: '4. Agendador de Citas',
           step: 'step-citas',
           renderActiveActions: () => `
             <button onclick="switchStep('step-citas')" class="flex-1 py-2 px-4 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition shadow-subtle flex items-center justify-center space-x-1.5" data-i18n="btnTestCitas">
@@ -5408,7 +5345,7 @@
     }
 
     function syncEmployeeCardStyles() {
-      const keys = ['vendedor', 'cobranzas', 'accounting', 'multilingue', 'citas', 'talleexacto'];
+      const keys = ['vendedor', 'cobranzas', 'accounting', 'citas', 'talleexacto'];
       let count = 0;
       keys.forEach(k => {
         const chk = document.getElementById(`chk-emp-${k}`);
@@ -5434,8 +5371,8 @@
       if (summaryEl) {
         if (count === 0) {
           summaryEl.innerText = "Debes seleccionar al menos 1 empleado para activar en tu empresa.";
-        } else if (count === 6) {
-          summaryEl.innerText = "Se configurarán y activarán los 6 empleados de Changared IA (14 días gratis sin tarjeta).";
+        } else if (count === 5) {
+          summaryEl.innerText = "Se configurarán y activarán los 5 empleados de Changared IA (14 días gratis sin tarjeta).";
         } else {
           summaryEl.innerText = `Se configurarán y activarán únicamente los ${count} empleados seleccionados (14 días gratis sin tarjeta).`;
         }
@@ -5443,7 +5380,7 @@
     }
 
     function toggleAllEmployees(select) {
-      const keys = ['vendedor', 'cobranzas', 'accounting', 'multilingue', 'citas', 'talleexacto'];
+      const keys = ['vendedor', 'cobranzas', 'accounting', 'citas', 'talleexacto'];
       keys.forEach(k => {
         const chk = document.getElementById(`chk-emp-${k}`);
         if (chk) chk.checked = !!select;
@@ -5468,12 +5405,18 @@
         if (document.getElementById('cfg-custom-payment')) document.getElementById('cfg-custom-payment').value = currentCompany.paymentMethod || 'pagos.miempresa.mp';
         if (document.getElementById('cfg-custom-desc')) document.getElementById('cfg-custom-desc').value = currentCompany.desc || '';
 
+        // Sincronizar opción multilingüe
+        const chkAutoLang = document.getElementById('cfg-custom-autodetect');
+        if (chkAutoLang) {
+          chkAutoLang.checked = currentCompany.autoDetectLanguage !== false;
+        }
+
         // Sincronizar checkboxes de empleados según currentCompany.activeEmployees
         const activeList = Array.isArray(currentCompany.activeEmployees) && currentCompany.activeEmployees.length > 0
           ? currentCompany.activeEmployees
           : ['vendedor'];
 
-        const keys = ['vendedor', 'cobranzas', 'accounting', 'multilingue', 'citas', 'talleexacto'];
+        const keys = ['vendedor', 'cobranzas', 'accounting', 'citas', 'talleexacto'];
         keys.forEach(k => {
           const chk = document.getElementById(`chk-emp-${k}`);
           if (chk) {
@@ -5511,7 +5454,7 @@
 
       // Validar selección de empleados contratados
       const selectedEmployees = [];
-      ['vendedor', 'cobranzas', 'accounting', 'multilingue', 'citas', 'talleexacto'].forEach(emp => {
+      ['vendedor', 'cobranzas', 'accounting', 'citas', 'talleexacto'].forEach(emp => {
         const chk = document.getElementById(`chk-emp-${emp}`);
         if (chk && chk.checked) selectedEmployees.push(emp);
       });
@@ -5528,10 +5471,12 @@
       const deposit = document.getElementById('cfg-custom-deposit') ? document.getElementById('cfg-custom-deposit').value.trim() : currentCompany.deposit;
       const payment = document.getElementById('cfg-custom-payment') ? document.getElementById('cfg-custom-payment').value.trim() : currentCompany.paymentMethod;
       const desc = document.getElementById('cfg-custom-desc') ? document.getElementById('cfg-custom-desc').value.trim() : currentCompany.desc;
+      const autoDetectLang = document.getElementById('cfg-custom-autodetect') ? document.getElementById('cfg-custom-autodetect').checked : true;
 
       currentCompany.name = name;
       currentCompany.slug = slugify(name);
       currentCompany.activeEmployees = selectedEmployees;
+      currentCompany.autoDetectLanguage = autoDetectLang;
       if (rubro) currentCompany.rubro = rubro;
       if (phone) currentCompany.phone = phone;
       if (email) {
@@ -5548,6 +5493,7 @@
         currentBusiness.id = currentCompany.slug;
         currentBusiness.name = currentCompany.name;
         currentBusiness.activeEmployees = selectedEmployees;
+        currentBusiness.autoDetectLanguage = autoDetectLang;
         currentBusiness.description = currentCompany.desc || `${currentCompany.name} - Rubro: ${currentCompany.rubro}. Horario: ${currentCompany.hours}. Tel: ${currentCompany.phone}`;
         currentBusiness.businessRules = [
           `Horario de atención: ${currentCompany.hours}`,
@@ -5575,7 +5521,7 @@
         paymentMethod: currentCompany.paymentMethod || 'pagos.miempresa.mp',
         toneOfVoice: currentCompany.tone || 'amigable, respetuoso y dispuesto a ayudar',
         language: 'Español',
-        autoDetectLanguage: true,
+        autoDetectLanguage: autoDetectLang,
         activeEmployees: selectedEmployees,
         businessRules: [
           `Horario de atención: ${currentCompany.hours}`,
@@ -5628,10 +5574,9 @@
 
     const AGENT_EXPLANATIONS = {
       contable: `<strong>🧾 Portal de Facturación & Comprobantes en tu Web:</strong> Instala un formulario o buzón web en tu sitio para que tus proveedores o tu equipo administrativo suban facturas (PDF, Excel o fotos de tickets) directamente a tu Google Drive y se registren en Google Sheets sin darles acceso a tus cuentas.`,
-      vendedor: `<strong>🛍️ Vendedor IA en tu Web:</strong> Añade un chat flotante inteligente con tu catálogo de productos y stock en tiempo real. Responde dudas técnicas, arma el pedido y cobra mediante Mercado Pago 24/7.`,
+      vendedor: `<strong>🛍️ Vendedor IA en tu Web:</strong> Añade un chat flotante inteligente con tu catálogo de productos, stock en tiempo real y atención multilingüe nativa (español, inglés y portugués). Responde dudas técnicas, arma el pedido y cobra mediante Mercado Pago 24/7.`,
       citas: `<strong>📅 Agendador de Citas en tu Web:</strong> Permite a tus clientes consultar turnos libres sincronizados con Google Calendar, reservar su horario y abonar la seña requerida para confirmarlo.`,
       cobranzas: `<strong>💳 Gestor de Cobranzas en tu Web:</strong> Ofrece a tus clientes un canal confidencial para consultar su saldo de cuenta corriente y regularizar cuotas pendientes con link de pago.`,
-      multilingue: `<strong>🌐 Asistente Multilingüe en tu Web:</strong> Detecta el idioma del visitante (inglés, portugués o español) para asesorar a turistas y clientes internacionales sin fricción idiomática.`,
       talleexacto: `<strong>👗 Asesor TalleExacto en tu Web:</strong> Recomendador inteligente de talles para tiendas de indumentaria y calzado. Reduce devoluciones recomendando el calce exacto según medidas corporales.`
     };
 
@@ -5647,7 +5592,6 @@
         if (secId === 'step-accounting') currentWidgetAgent = 'contable';
         else if (secId === 'step-citas') currentWidgetAgent = 'citas';
         else if (secId === 'step-cobranzas') currentWidgetAgent = 'cobranzas';
-        else if (secId === 'step-multilingue') currentWidgetAgent = 'multilingue';
         else if (secId === 'step-talleexacto') currentWidgetAgent = 'talleexacto';
         else currentWidgetAgent = 'vendedor';
       } else {
@@ -5686,7 +5630,7 @@
       });
       const badge = document.getElementById('widget-active-agent-badge');
       if (badge) {
-        const names = { contable: 'Facturación & Comprobantes', vendedor: 'Vendedor IA', citas: 'Agendador de Citas', cobranzas: 'Gestor de Cobranzas', multilingue: 'Multilingüe', talleexacto: 'TalleExacto' };
+        const names = { contable: 'Facturación & Comprobantes', vendedor: 'Vendedor IA (Multilingüe)', citas: 'Agendador de Citas', cobranzas: 'Gestor de Cobranzas', talleexacto: 'TalleExacto' };
         badge.innerText = `● ${names[currentWidgetAgent] || currentWidgetAgent}`;
       }
       const exp = document.getElementById('widget-agent-explanation-text');
@@ -6896,30 +6840,191 @@
       });
     }
 
-    function openImportModal() {
-      const jsonStr = prompt("Pega aquí el array de productos en formato JSON:", JSON.stringify([
-        { "name": "Faina Tradicional", "price": 2000, "stock": 15, "category": "Entradas" }
-      ], null, 2));
+    let uploadedImportFile = null;
 
-      if (jsonStr) {
-        try {
-          const parsed = JSON.parse(jsonStr);
-          if (Array.isArray(parsed)) {
-            parsed.forEach((p, idx) => {
-              currentBusiness.catalog.push({
-                id: p.id || `PROD-IMP-${idx + 1}`,
-                name: p.name || 'Sin nombre',
-                price: p.price || 0,
-                stock: p.stock || 0,
-                category: p.category || 'General',
-                description: p.description || ''
-              });
-            });
-            renderCatalogTable();
-            showToast("Productos importados con éxito");
+    function openImportModal() {
+      uploadedImportFile = null;
+      const fileInput = document.getElementById('import-file-input');
+      if (fileInput) fileInput.value = '';
+      const nameLbl = document.getElementById('import-file-name-label');
+      if (nameLbl) nameLbl.innerText = 'Seleccionar archivo de Excel o CSV';
+      const pasteEl = document.getElementById('import-pasted-text');
+      if (pasteEl) pasteEl.value = '';
+      const statusBox = document.getElementById('import-status-box');
+      if (statusBox) {
+        statusBox.className = 'hidden';
+        statusBox.innerHTML = '';
+      }
+      const modal = document.getElementById('modal-import-products');
+      if (modal) modal.classList.remove('hidden');
+      if (window.lucide && typeof lucide.createIcons === 'function') {
+        lucide.createIcons();
+      }
+    }
+
+    function closeImportModal() {
+      const modal = document.getElementById('modal-import-products');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    function handleCatalogFileUpload(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      uploadedImportFile = file;
+      const nameLbl = document.getElementById('import-file-name-label');
+      if (nameLbl) {
+        nameLbl.innerText = `Archivo: ${file.name} (${Math.round(file.size / 1024)} KB)`;
+      }
+      const statusBox = document.getElementById('import-status-box');
+      if (statusBox) {
+        statusBox.className = 'p-2.5 rounded-lg text-xs bg-emerald-50 text-emerald-800 border border-emerald-200';
+        statusBox.innerHTML = `Listo para procesar <strong>${escapeHtml(file.name)}</strong>. Haz clic en 'Importar Productos'.`;
+      }
+    }
+
+    function parseCatalogRows(rows) {
+      if (!Array.isArray(rows) || rows.length === 0) return [];
+      const newItems = [];
+      rows.forEach((r, idx) => {
+        const norm = {};
+        Object.keys(r).forEach(k => {
+          norm[k.toLowerCase().trim()] = r[k];
+        });
+
+        const name = norm['nombre'] || norm['producto'] || norm['name'] || norm['articulo'] || norm['artículo'] || norm['title'] || norm['descripcion'] || norm['descripción'] || '';
+        if (!name) return;
+
+        let price = norm['precio'] || norm['price'] || norm['importe'] || norm['valor'] || norm['costo'] || 0;
+        if (typeof price === 'string') {
+          price = parseFloat(price.replace(/[^0-9.,]/g, '').replace(',', '.')) || 0;
+        }
+
+        let stock = norm['stock'] || norm['cantidad'] || norm['cant'] || norm['disponible'] || 10;
+        if (typeof stock === 'string') {
+          stock = parseInt(stock.replace(/[^0-9]/g, ''), 10) || 0;
+        }
+
+        const category = norm['categoria'] || norm['categoría'] || norm['category'] || norm['rubro'] || 'General';
+        const description = norm['descripcion'] || norm['descripción'] || norm['detalle'] || norm['description'] || '';
+
+        newItems.push({
+          id: `PROD-IMP-${Date.now().toString().slice(-4)}-${idx + 1}`,
+          name: String(name).trim(),
+          price: Number(price) || 0,
+          stock: Number(stock) || 0,
+          category: String(category).trim(),
+          description: String(description).trim()
+        });
+      });
+      return newItems;
+    }
+
+    function parseCsvOrTsv(text) {
+      const lines = text.split(/\r?\n/).map(l => l.trim()).filter(l => l.length > 0);
+      if (lines.length === 0) return [];
+
+      const firstLine = lines[0];
+      let delimiter = ',';
+      if (firstLine.includes('\t')) delimiter = '\t';
+      else if (firstLine.includes(';')) delimiter = ';';
+
+      const splitLine = (l) => {
+        if (delimiter === '\t') return l.split('\t').map(c => c.trim().replace(/^["']|["']$/g, ''));
+        const result = [];
+        let cur = '';
+        let inQuotes = false;
+        for (let i = 0; i < l.length; i++) {
+          const char = l[i];
+          if (char === '"' || char === "'") {
+            inQuotes = !inQuotes;
+          } else if (char === delimiter && !inQuotes) {
+            result.push(cur.trim().replace(/^["']|["']$/g, ''));
+            cur = '';
+          } else {
+            cur += char;
           }
-        } catch(e) {
-          alert("El JSON ingresado no es válido.");
+        }
+        result.push(cur.trim().replace(/^["']|["']$/g, ''));
+        return result;
+      };
+
+      const headers = splitLine(lines[0]).map(h => h.toLowerCase());
+      const isHeader = headers.some(h => ['nombre', 'producto', 'name', 'articulo', 'precio', 'price', 'stock', 'categoria'].includes(h));
+
+      const rows = [];
+      const startIdx = isHeader ? 1 : 0;
+      for (let i = startIdx; i < lines.length; i++) {
+        const cols = splitLine(lines[i]);
+        if (cols.length === 0 || cols.every(c => c === '')) continue;
+        if (isHeader) {
+          const obj = {};
+          headers.forEach((h, hIdx) => {
+            obj[h] = cols[hIdx] !== undefined ? cols[hIdx] : '';
+          });
+          rows.push(obj);
+        } else {
+          rows.push({
+            nombre: cols[0] || '',
+            precio: cols[1] || 0,
+            stock: cols[2] !== undefined ? cols[2] : 10,
+            categoria: cols[3] || 'General',
+            descripcion: cols[4] || ''
+          });
+        }
+      }
+      return parseCatalogRows(rows);
+    }
+
+    async function processCatalogImport() {
+      const statusBox = document.getElementById('import-status-box');
+      const pasted = document.getElementById('import-pasted-text') ? document.getElementById('import-pasted-text').value.trim() : '';
+
+      try {
+        let imported = [];
+
+        if (uploadedImportFile) {
+          const fileName = uploadedImportFile.name.toLowerCase();
+          if ((fileName.endsWith('.xlsx') || fileName.endsWith('.xls')) && window.XLSX) {
+            const data = await uploadedImportFile.arrayBuffer();
+            const workbook = XLSX.read(data, { type: 'array' });
+            const firstSheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[firstSheetName];
+            const rawJson = XLSX.utils.sheet_to_json(worksheet);
+            imported = parseCatalogRows(rawJson);
+          } else {
+            const text = await uploadedImportFile.text();
+            imported = parseCsvOrTsv(text);
+          }
+        } else if (pasted) {
+          imported = parseCsvOrTsv(pasted);
+        } else {
+          if (statusBox) {
+            statusBox.className = 'p-2.5 rounded-lg text-xs bg-red-50 text-red-800 border border-red-200';
+            statusBox.innerText = 'Por favor selecciona un archivo de Excel/CSV o pega las filas de tu planilla.';
+          }
+          return;
+        }
+
+        if (imported.length === 0) {
+          if (statusBox) {
+            statusBox.className = 'p-2.5 rounded-lg text-xs bg-red-50 text-red-800 border border-red-200';
+            statusBox.innerText = 'No se detectaron productos válidos. Asegúrate de incluir Producto y Precio.';
+          }
+          return;
+        }
+
+        if (!Array.isArray(currentBusiness.catalog)) {
+          currentBusiness.catalog = [];
+        }
+        imported.forEach(p => currentBusiness.catalog.push(p));
+        renderCatalogTable();
+        closeImportModal();
+        showToast(`✓ ¡${imported.length} productos importados correctamente desde Excel / CSV!`);
+      } catch (err) {
+        console.error('Error importando catálogo:', err);
+        if (statusBox) {
+          statusBox.className = 'p-2.5 rounded-lg text-xs bg-red-50 text-red-800 border border-red-200';
+          statusBox.innerText = `Error al procesar: ${err.message}`;
         }
       }
     }
@@ -7467,6 +7572,10 @@
     updateFitMap();
     calcLoss();
     applyCompanyDataToUI();
+    if (new URLSearchParams(window.location.search).get('configureCalendar') === '1') {
+      switchStep('step-citas');
+      setTimeout(openGoogleCalendarModal, 0);
+    }
   </script>
   <script src="/agenda.js"></script>
 </body>
