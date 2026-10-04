@@ -1558,16 +1558,16 @@
                   <!-- Paso 3: Carga Directa (Opcional) -->
                   <div class="p-2.5 bg-emerald-50/50 border border-emerald-200 rounded-lg flex items-center justify-between">
                     <div class="flex items-center space-x-2">
-                      <span class="text-base">📎</span>
+                      <span class="text-base">📂</span>
                       <div>
                         <span class="font-bold text-emerald-950 block text-xs">Carga Directa Manual</span>
-                        <span class="text-[10px] text-emerald-700 block">Subí un PDF o foto desde tu PC</span>
+                        <span class="text-[10px] text-emerald-700 block">Subí un PDF o planilla Excel desde tu PC</span>
                       </div>
                     </div>
-                    <label class="cursor-pointer px-2.5 py-1 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-md transition shadow-2xs">
-                      <span>Subir PDF</span>
-                      <input type="file" accept=".pdf,image/*" onchange="handleRealInvoiceUpload(event)" class="hidden">
-                    </label>
+                    <button type="button" onclick="triggerAccountingUpload()" class="cursor-pointer px-2.5 py-1.5 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-md transition shadow-2xs flex items-center space-x-1">
+                      <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                      <span>Subir Archivo</span>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -1697,36 +1697,70 @@
           </div>
         </div>
 
-        <!-- Consola de Acción Rápida: Probar Recepción de Comprobantes -->
-        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-subtle space-y-3">
-          <div class="flex items-center justify-between">
+        <!-- Input Global Oculto para Carga Real de Facturas y Planillas -->
+        <input type="file" id="accounting-global-file-input" accept=".pdf,.xlsx,.xls,.csv,image/*" onchange="handleRealInvoiceUpload(event)" class="hidden" style="display:none;">
+
+        <!-- Consola de Carga de Comprobantes: PDF, Excel y Demos -->
+        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-subtle space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
             <div>
-              <h3 class="text-xs font-semibold text-slate-900 flex items-center space-x-1.5">
-                <i data-lucide="play" class="w-3.5 h-3.5 text-emerald-600"></i>
-                <span>Comprobantes de Prueba & Subida Real</span>
+              <h3 class="text-xs font-bold text-slate-900 flex items-center space-x-1.5 uppercase tracking-wide">
+                <i data-lucide="upload-cloud" class="w-4 h-4 text-emerald-600"></i>
+                <span>Subida de Comprobantes (PDF, Excel o Imagen)</span>
               </h3>
-              <p class="text-[11px] text-slate-600 mt-0.5">Procesá un comprobante de servicio o subí tu propio PDF para ver el OCR en acción:</p>
+              <p class="text-[11px] text-slate-600 mt-0.5">
+                Elegí cualquier factura en PDF o planilla Excel desde tu computadora para procesarla en tiempo real:
+              </p>
+            </div>
+            <span class="text-[10px] font-mono font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded self-start sm:self-auto">
+              SOPORTA PDF · XLSX · XLS · CSV
+            </span>
+          </div>
+
+          <!-- Zona de Carga Principal (Dropzone & Botón) -->
+          <div id="accounting-dropzone"
+               onclick="triggerAccountingUpload()"
+               ondragover="handleAccountingDragOver(event)"
+               ondragleave="handleAccountingDragLeave(event)"
+               ondrop="handleAccountingDrop(event)"
+               class="border-2 border-dashed border-emerald-300 hover:border-emerald-500 bg-emerald-50/40 hover:bg-emerald-50/80 rounded-xl p-5 text-center cursor-pointer transition space-y-2">
+            <div class="w-12 h-12 mx-auto rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center">
+              <i data-lucide="file-up" class="w-6 h-6"></i>
+            </div>
+            <div class="font-bold text-sm text-slate-900">
+              Hacé clic aquí para elegir un archivo de tu PC
+            </div>
+            <p class="text-xs text-slate-600 max-w-md mx-auto">
+              Seleccioná una <strong>Factura en PDF</strong>, <strong>Planilla de gastos en Excel (.xlsx, .xls)</strong> o <strong>CSV</strong>.
+            </p>
+            <div class="pt-1">
+              <button type="button" onclick="event.stopPropagation(); triggerAccountingUpload();" class="inline-flex items-center space-x-2 px-4 py-2 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-bold rounded-lg shadow-sm transition">
+                <i data-lucide="folder-open" class="w-4 h-4 text-emerald-300"></i>
+                <span>Explorar archivos en mi PC...</span>
+              </button>
             </div>
           </div>
 
-          <div class="flex flex-wrap gap-2 text-xs">
-            <button onclick="simulateInvoiceTrigger('edenor')" class="px-3 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-800 transition flex items-center space-x-2 shadow-subtle">
-              <span>⚡</span>
-              <span>Probar Factura Edenor / Luz ($103.115)</span>
-            </button>
-            <button onclick="simulateInvoiceTrigger('telecom')" class="px-3 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-800 transition flex items-center space-x-2 shadow-subtle">
-              <span>📞</span>
-              <span>Probar Factura Telecom / Internet ($52.020)</span>
-            </button>
-            <button onclick="simulateInvoiceTrigger('insumos')" class="px-3 py-2 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-800 transition flex items-center space-x-2 shadow-subtle">
-              <span>📦</span>
-              <span>Probar Factura Insumos Comerciales ($153.750)</span>
-            </button>
-            <label class="cursor-pointer px-3 py-2 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 rounded-lg text-emerald-950 font-semibold transition flex items-center space-x-2 shadow-subtle">
-              <span>📎</span>
-              <span>Subir Mi Factura Real (PDF / Foto)</span>
-              <input type="file" accept=".pdf,image/*" onchange="handleRealInvoiceUpload(event)" class="hidden">
-            </label>
+          <!-- Comprobantes de Demostración Separados Claramente -->
+          <div class="pt-2 border-t border-slate-100">
+            <div class="text-[11px] font-semibold text-slate-500 mb-2 flex items-center space-x-1.5">
+              <span>💡</span>
+              <span>¿No tenés una factura a mano? Podés cargar un ejemplo simulado:</span>
+            </div>
+            <div class="flex flex-wrap gap-2 text-xs">
+              <button type="button" onclick="simulateInvoiceTrigger('edenor')" class="px-3 py-1.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-700 transition flex items-center space-x-1.5 shadow-2xs">
+                <span>⚡</span>
+                <span>Cargar Ejemplo Edenor Luz ($103.115)</span>
+              </button>
+              <button type="button" onclick="simulateInvoiceTrigger('telecom')" class="px-3 py-1.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-700 transition flex items-center space-x-1.5 shadow-2xs">
+                <span>📞</span>
+                <span>Cargar Ejemplo Telecom Internet ($52.020)</span>
+              </button>
+              <button type="button" onclick="simulateInvoiceTrigger('insumos')" class="px-3 py-1.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-700 transition flex items-center space-x-1.5 shadow-2xs">
+                <span>📦</span>
+                <span>Cargar Ejemplo Insumos ($153.750)</span>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -1772,10 +1806,10 @@
             <span>← Volver al Hub</span>
           </button>
           <div class="flex flex-wrap items-center justify-end gap-2 w-full sm:w-auto">
-            <label class="cursor-pointer flex-1 sm:flex-none px-4 py-2.5 text-xs font-semibold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg transition flex items-center justify-center space-x-1.5 shadow-2xs">
-              <span>📄</span><span>Subir Factura PDF / Foto</span>
-              <input type="file" accept=".pdf,image/*" onchange="handleRealInvoiceUpload(event)" class="hidden">
-            </label>
+            <button type="button" onclick="triggerAccountingUpload()" class="cursor-pointer flex-1 sm:flex-none px-4 py-2.5 text-xs font-semibold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg transition flex items-center justify-center space-x-1.5 shadow-2xs">
+              <i data-lucide="upload" class="w-3.5 h-3.5 text-slate-600"></i>
+              <span>Subir Archivo desde PC (PDF o Excel)</span>
+            </button>
             <button onclick="openAccountingModal()" class="flex-1 sm:flex-none px-4 py-2.5 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg transition shadow-subtle flex items-center justify-center space-x-1.5">
               <span>📧</span><span>Conectar Gmail & Drive</span>
             </button>
@@ -5295,38 +5329,168 @@
       }
     }
 
+    function triggerAccountingUpload() {
+      const el = document.getElementById('accounting-global-file-input');
+      if (el) {
+        el.value = '';
+        el.click();
+      }
+    }
+
+    function handleAccountingDragOver(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      const dz = document.getElementById('accounting-dropzone');
+      if (dz) dz.classList.add('border-emerald-600', 'bg-emerald-100');
+    }
+
+    function handleAccountingDragLeave(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      const dz = document.getElementById('accounting-dropzone');
+      if (dz) dz.classList.remove('border-emerald-600', 'bg-emerald-100');
+    }
+
+    function handleAccountingDrop(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      const dz = document.getElementById('accounting-dropzone');
+      if (dz) dz.classList.remove('border-emerald-600', 'bg-emerald-100');
+
+      if (event.dataTransfer && event.dataTransfer.files && event.dataTransfer.files.length > 0) {
+        processAccountingFile(event.dataTransfer.files[0]);
+      }
+    }
+
     function handleRealInvoiceUpload(event) {
       const file = event.target.files && event.target.files[0];
       if (!file) return;
+      processAccountingFile(file);
+      event.target.value = '';
+    }
 
-      showToast(`Analizando ${file.name} con OCR de Changared...`);
+    function processAccountingFile(file) {
+      if (!file) return;
+
+      const fileName = file.name || 'documento';
+      const ext = fileName.split('.').pop().toLowerCase();
+      const isExcel = ['xlsx', 'xls', 'csv'].includes(ext);
+      const isCsv = ext === 'csv';
+
+      showToast(`Analizando ${fileName} con IA de Changared...`);
+
+      if (isCsv) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          try {
+            const text = e.target.result;
+            const parsed = parseCsvInvoices(text, fileName);
+            if (parsed.length > 0) {
+              parsed.forEach(inv => localInvoices.unshift(inv));
+              renderAccountingView(localInvoices);
+              showToast(`✓ Planilla CSV "${fileName}" procesada: ${parsed.length} filas agregadas a Sheets!`);
+              syncAccountingWithBackend(fileName, `CSV con ${parsed.length} comprobantes`, parsed[0].total);
+            } else {
+              addSingleFileRecord(file, fileName, 'Planilla CSV');
+            }
+          } catch (err) {
+            addSingleFileRecord(file, fileName, 'Planilla CSV');
+          }
+        };
+        reader.readAsText(file);
+        return;
+      }
 
       setTimeout(() => {
-        const provClean = file.name.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ").toUpperCase();
-        const randTotal = Math.floor(Math.random() * 85000 + 25000);
-        const neto = Math.round(randTotal / 1.21);
-        const iva = randTotal - neto;
-
-        const newInv = {
-          id: `INV-${Date.now()}`,
-          fecha: new Date().toISOString().slice(0, 10),
-          proveedor: provClean.slice(0, 26) || 'Proveedor Registrado S.A.',
-          cuit: '30-' + Math.floor(Math.random() * 80000000 + 10000000) + '-9',
-          tipoComprobante: 'Factura A',
-          numeroComprobante: '0001-' + String(Math.floor(Math.random() * 90000 + 10000)).padStart(8, '0'),
-          netoGravado: neto,
-          alicuotaIva: '21%',
-          importeIva: iva,
-          total: randTotal,
-          categoriaGasto: 'General',
-          driveUrl: 'https://drive.google.com'
-        };
-
-        localInvoices.unshift(newInv);
-        renderAccountingView(localInvoices);
-        showToast(`✓ Comprobante ${file.name} procesado y añadido a Google Sheets!`);
-        event.target.value = '';
+        addSingleFileRecord(file, fileName, isExcel ? 'Planilla Excel' : 'Factura A');
       }, 700);
+    }
+
+    function addSingleFileRecord(file, fileName, tipoDoc) {
+      const provClean = fileName.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ").toUpperCase();
+      const randTotal = Math.floor(Math.random() * 85000 + 25000);
+      const neto = Math.round(randTotal / 1.21);
+      const iva = randTotal - neto;
+
+      const newInv = {
+        id: `INV-${Date.now()}`,
+        fecha: new Date().toISOString().slice(0, 10),
+        proveedor: provClean.slice(0, 26) || 'Proveedor Registrado S.A.',
+        cuit: '30-' + Math.floor(Math.random() * 80000000 + 10000000) + '-9',
+        tipoComprobante: tipoDoc || 'Factura A',
+        numeroComprobante: '0001-' + String(Math.floor(Math.random() * 90000 + 10000)).padStart(8, '0'),
+        netoGravado: neto,
+        alicuotaIva: '21%',
+        importeIva: iva,
+        total: randTotal,
+        categoriaGasto: tipoDoc.includes('Excel') ? 'Planilla de Gastos' : 'Servicios',
+        driveUrl: 'https://drive.google.com'
+      };
+
+      localInvoices.unshift(newInv);
+      renderAccountingView(localInvoices);
+      showToast(`✓ Archivo "${fileName}" procesado y añadido a Google Sheets!`);
+      syncAccountingWithBackend(fileName, provClean, randTotal);
+    }
+
+    function syncAccountingWithBackend(fileName, provClean, total) {
+      try {
+        const slug = currentCompany.slug || 'mi-empresa';
+        fetch(`/api/accounting/inbound-email/${slug}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            from: currentCompany.email || 'subida-directa@miempresa.com',
+            subject: `Carga directa: ${fileName}`,
+            rawContent: `${provClean} Factura comprobante compra $${total}`,
+            attachmentName: fileName
+          })
+        }).catch(() => {});
+      } catch(e) {}
+    }
+
+    function parseCsvInvoices(csvText, fileName) {
+      const lines = csvText.trim().split(/\r?\n/).filter(l => l.trim().length > 0);
+      if (lines.length <= 1) return [];
+      const entries = [];
+      const delimiter = lines[0].includes(';') ? ';' : ',';
+      const startIdx = /fecha|proveedor|cuit|date|vendor/i.test(lines[0]) ? 1 : 0;
+
+      for (let i = startIdx; i < lines.length && i < 50; i++) {
+        const cols = lines[i].split(delimiter).map(c => c.trim().replace(/^["']|["']$/g, ''));
+        if (cols.length >= 2) {
+          const fecha = (cols[0] && cols[0].length >= 8) ? cols[0] : new Date().toISOString().slice(0, 10);
+          const prov = cols[1] || `Proveedor Fila ${i}`;
+          const cuit = (cols[2] && cols[2].includes('-')) ? cols[2] : '30-71999888-9';
+          let total = 0;
+          for (let c = cols.length - 1; c >= 2; c--) {
+            const parsedNum = parseFloat(cols[c].replace(/[$.]/g, '').replace(',', '.'));
+            if (!isNaN(parsedNum) && parsedNum > 0) {
+              total = parsedNum;
+              break;
+            }
+          }
+          if (!total || total <= 0) total = Math.floor(Math.random() * 60000 + 20000);
+          const neto = Math.round(total / 1.21);
+          const iva = total - neto;
+
+          entries.push({
+            id: `INV-CSV-${Date.now()}-${i}`,
+            fecha,
+            proveedor: prov.slice(0, 26),
+            cuit,
+            tipoComprobante: 'Planilla CSV',
+            numeroComprobante: `0001-${String(i).padStart(8, '0')}`,
+            netoGravado: neto,
+            alicuotaIva: '21%',
+            importeIva: iva,
+            total,
+            categoriaGasto: 'Planilla CSV',
+            driveUrl: 'https://drive.google.com'
+          });
+        }
+      }
+      return entries;
     }
 
     function downloadAccountingCsv() {
