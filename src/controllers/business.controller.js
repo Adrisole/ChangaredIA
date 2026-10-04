@@ -76,3 +76,26 @@ export const listBusinesses = (req, res, next) => {
     next(error);
   }
 };
+
+export const updateWhatsAppConfig = (req, res, next) => {
+  try {
+    const { businessId } = req.params;
+    const updated = businessService.updateWhatsAppConfig(businessId, req.body);
+
+    res.status(200).json({
+      success: true,
+      message: 'Configuración de WhatsApp actualizada exitosamente.',
+      data: {
+        businessId: updated.id,
+        whatsappConnected: updated.whatsappConnected,
+        phone: updated.phone,
+        whatsappPhoneNumberId: updated.whatsappPhoneNumberId,
+        hasAccessToken: Boolean(updated.whatsappAccessToken),
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+

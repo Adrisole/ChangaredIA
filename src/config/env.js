@@ -13,6 +13,11 @@ export const config = Object.freeze({
   },
   whatsapp: {
     verifyToken: process.env.WHATSAPP_VERIFY_TOKEN || 'changared_secret_verify_token_2026',
+    accessToken: process.env.WHATSAPP_ACCESS_TOKEN || '',
+    phoneNumberId: process.env.WHATSAPP_PHONE_NUMBER_ID || '',
+    appSecret: process.env.WHATSAPP_APP_SECRET || '',
+    businessAccountId: process.env.WHATSAPP_BUSINESS_ACCOUNT_ID || '',
+    apiVersion: process.env.WHATSAPP_API_VERSION || 'v20.0',
   },
   storage: {
     filePath: path.resolve(process.env.DATA_STORAGE_PATH || './src/data/businesses.json'),

@@ -1,10 +1,12 @@
 import { businessService } from '../services/business.service.js';
 import { agentBrainService } from '../services/agentBrain.service.js';
+import { whatsappService } from '../services/whatsapp.service.js';
+import { conversationRepository } from '../repositories/conversation.repository.js';
 import { config } from '../config/env.js';
 
 /**
  * Controlador de Webhooks de WhatsApp Multi-Tenant.
- * Gestiona verificación GET (Meta) y procesamiento de mensajes POST.
+ * Gestiona verificación GET (Meta) y procesamiento de mensajes POST con Meta Cloud API oficial.
  */
 
 /**
@@ -33,7 +35,7 @@ export const verifyWebhook = (req, res) => {
 
 /**
  * POST /api/webhook/:businessId
- * Recepción del mensaje del cliente y respuesta inteligente generada por el agente.
+ * Recepción del mensaje del cliente, persistencia en historial, control humano/IA y envío real a WhatsApp.
  */
 export const handleIncomingMessage = async (req, res, next) => {
   try {
@@ -49,8 +51,33 @@ export const handleIncomingMessage = async (req, res, next) => {
       });
     }
 
-    // 2. Extraer remitente y texto del mensaje (Soporta formato directo y formato WhatsApp Cloud API de Meta)
-    const { sender, messageText } = extractMessagePayload(req.body);
+    // 2. Validación de firma de Meta x-hub-signature-256 si está presente
+    const signature = req.headers['x-hub-signature-256'];
+    if (signature && config.whatsapp.appSecret) {
+      const rawPayload = JSON.stringify(req.body);
+      const isValid = whatsappService.validateSignature(rawPayload, signature);
+      if (!isValid) {
+        console.warn(`[WhatsApp Webhook] Firma inválida rechazada para tenant: ${businessId}`);
+        return res.status(401).json({
+          success: false,
+          error: 'INVALID_SIGNATURE',
+          message: 'La firma del webhook no coincide con el app secret configurado.',
+        });
+      }
+    }
+
+    // 3. Manejo de eventos de estado de entrega de Meta (ej. delivered, read, sent)
+    const isStatusEvent = Boolean(req.body.entry?.[0]?.changes?.[0]?.value?.statuses);
+    if (isStatusEvent) {
+      return res.status(200).json({
+        success: true,
+        event: 'status_update',
+        message: 'Evento de estado procesado correctamente.',
+      });
+    }
+
+    // 4. Extraer remitente, nombre y texto del mensaje
+    const { sender, customerName, messageText, metaIncomingId } = extractMessagePayload(req.body);
 
     if (!messageText) {
       return res.status(400).json({
@@ -60,26 +87,86 @@ export const handleIncomingMessage = async (req, res, next) => {
       });
     }
 
-    console.log(`[WhatsApp Webhook] Mensaje recibido para [${business.name}] de [${sender}]: "${messageText}"`);
+    console.log(`[WhatsApp Webhook] Mensaje recibido para [${business.name}] de [${sender}] (${customerName || 'Sin nombre'}): "${messageText}"`);
 
-    // 3. Consultar al Cerebro del Agente con el contexto inyectado
+    // 5. Obtener o crear la conversación en la persistencia dual (JSON + MongoDB)
+    const conversation = conversationRepository.getOrCreate(business.id, sender, customerName);
+
+    // 6. Registrar el mensaje entrante del cliente en el historial de la conversación
+    conversationRepository.addMessage({
+      businessId: business.id,
+      customerPhone: sender,
+      customerName,
+      sender: 'customer',
+      text: messageText,
+      metaMessageId: metaIncomingId,
+    });
+
+    // 7. Evaluar si la conversación está en control humano (IA pausada)
+    if (conversation.status === 'human_takeover') {
+      console.log(`[WhatsApp Webhook] Conversación con [${sender}] está en modo 'human_takeover' (Pausada). La IA se silencia.`);
+      return res.status(200).json({
+        success: true,
+        status: 'human_takeover',
+        aiMuted: true,
+        tenant: {
+          businessId: business.id,
+          businessName: business.name,
+        },
+        customer: {
+          from: sender,
+          name: customerName,
+          messageReceived: messageText,
+        },
+        message: 'Mensaje recibido y guardado en la bandeja. La IA está silenciada porque un operador humano tiene el control de la conversación.',
+        agentResponse: null,
+      });
+    }
+
+    // 8. Conversación activa con IA: Generar respuesta inteligente con contexto inyectado
     const aiResult = await agentBrainService.generateReply(business, messageText, sender);
 
-    // 4. Retornar la respuesta generada
+    // 9. Enviar la respuesta directamente al WhatsApp del cliente vía WhatsApp Cloud API de Meta
+    const waDelivery = await whatsappService.sendTextMessage({
+      to: sender,
+      text: aiResult.reply,
+      business,
+    });
+
+    // 10. Registrar la respuesta de la IA en el historial de la conversación
+    conversationRepository.addMessage({
+      businessId: business.id,
+      customerPhone: sender,
+      customerName,
+      sender: 'ai',
+      text: aiResult.reply,
+      metaMessageId: waDelivery.messageId,
+      simulated: waDelivery.simulated,
+    });
+
+    // 11. Retornar la respuesta estructurada
     return res.status(200).json({
       success: true,
+      status: 'ai_active',
       tenant: {
         businessId: business.id,
         businessName: business.name,
       },
       customer: {
         from: sender,
+        name: customerName,
         messageReceived: messageText,
       },
       agentResponse: {
         text: aiResult.reply,
         model: aiResult.model,
         latencyMs: aiResult.executionTimeMs,
+      },
+      whatsappDelivery: {
+        sent: waDelivery.sent,
+        simulated: waDelivery.simulated,
+        messageId: waDelivery.messageId,
+        to: waDelivery.to,
       },
     });
   } catch (error) {
@@ -88,14 +175,16 @@ export const handleIncomingMessage = async (req, res, next) => {
 };
 
 /**
- * Normaliza y extrae el mensaje tanto de llamadas de prueba directas como de webhooks de Meta.
+ * Normaliza y extrae el mensaje tanto de llamadas de prueba directas como de webhooks oficiales de Meta.
  */
 function extractMessagePayload(body) {
-  // Caso 1: Payload directo de prueba JSON: { "from": "+54911...", "message": "Hola" }
+  // Caso 1: Payload directo de prueba JSON: { "from": "+54911...", "message": "Hola", "name": "Juan" }
   if (body.message) {
     return {
       sender: body.from || body.sender || 'Cliente_Web',
+      customerName: body.name || body.customerName || '',
       messageText: String(body.message).trim(),
+      metaIncomingId: body.id || '',
     };
   }
 
@@ -103,14 +192,17 @@ function extractMessagePayload(body) {
   const entry = body.entry?.[0];
   const changes = entry?.changes?.[0];
   const value = changes?.value;
+  const contact = value?.contacts?.[0];
   const messageObj = value?.messages?.[0];
 
   if (messageObj && messageObj.type === 'text') {
     return {
       sender: messageObj.from,
+      customerName: contact?.profile?.name || '',
       messageText: messageObj.text?.body?.trim() || '',
+      metaIncomingId: messageObj.id || '',
     };
   }
 
-  return { sender: 'Desconocido', messageText: '' };
+  return { sender: 'Desconocido', customerName: '', messageText: '', metaIncomingId: '' };
 }

@@ -6,6 +6,7 @@ import accountingRoutes from './accounting.routes.js';
 import authRoutes from './auth.routes.js';
 import appointmentRoutes from './appointment.routes.js';
 import chatRoutes from './chat.routes.js';
+import conversationRoutes from './conversation.routes.js';
 import { businessService } from '../services/business.service.js';
 import { config } from '../config/env.js';
 
@@ -44,6 +45,9 @@ apiRouter.use('/accounting', accountingRoutes);
 
 // Rutas de Agenda y Turnos (/api/appointments/:businessId)
 apiRouter.use('/appointments', appointmentRoutes);
+
+// Rutas de Conversaciones e Inbox en Vivo con Control Humano (/api/conversations/:businessId)
+apiRouter.use('/conversations', conversationRoutes);
 
 // Rutas del Asesor Comercial IA de Changared (/api/chat/changared)
 apiRouter.use('/chat', chatRoutes);

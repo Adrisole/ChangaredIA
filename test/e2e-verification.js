@@ -439,7 +439,130 @@ async function runTests() {
     );
   });
 
-  // 22. Integridad y Paridad Hash SHA-256
+  // 22. WhatsApp Cloud API: Delivery Metadata y Registro de Conversación
+  const customerPhoneTest = '+5491155443322';
+  await test('WhatsApp Cloud API & Delivery - Mensaje entrante genera delivery oficial o simulado', async () => {
+    const res = await fetch(`${BASE_URL}/api/webhook/${testBusinessId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        from: customerPhoneTest,
+        name: 'Carlos Gomez',
+        message: 'Hola! Quiero consultar los horarios de atención.'
+      })
+    });
+
+    assert.equal(res.status, 200, 'Status HTTP debe ser 200');
+    const json = await res.json();
+    assert.equal(json.success, true);
+    assert.ok(json.whatsappDelivery, 'Debe incluir payload de entrega de WhatsApp');
+    assert.ok(json.whatsappDelivery.messageId, 'Debe retornar un messageId');
+    assert.equal(json.customer.name, 'Carlos Gomez');
+  });
+
+  // 23. Bandeja Inbox: Listar y Consultar Historial de Conversaciones
+  await test('GET /api/conversations/:businessId - Listar conversaciones e historial completo', async () => {
+    const res = await fetch(`${BASE_URL}/api/conversations/${testBusinessId}`);
+    assert.equal(res.status, 200, 'Status HTTP debe ser 200');
+    const json = await res.json();
+    assert.equal(json.success, true);
+    assert.ok(Array.isArray(json.data), 'data debe ser un arreglo');
+    assert.ok(json.data.length >= 1, 'Debe haber al menos 1 conversación registrada');
+
+    const cleanPhone = customerPhoneTest.replace(/[^\d]/g, '');
+    const conv = json.data.find(c => c.customerPhone === cleanPhone || c.customerPhone === customerPhoneTest);
+    assert.ok(conv, 'La conversación de Carlos Gomez debe existir en la bandeja');
+    assert.equal(conv.status, 'ai_active', 'Estado inicial debe ser ai_active');
+
+    // Consultar detalle específico
+    const detailRes = await fetch(`${BASE_URL}/api/conversations/${testBusinessId}/${cleanPhone}`);
+    assert.equal(detailRes.status, 200);
+    const detailJson = await detailRes.json();
+    assert.equal(detailJson.success, true);
+    assert.ok(detailJson.data.messages.length >= 2, 'Debe tener mensaje del cliente y respuesta de la IA');
+  });
+
+  // 24. Control Humano: "Pausar IA / Responder yo" y Silenciamiento de IA
+  await test('Control Humano - Pausar IA silencia las respuestas automáticas ante nuevos mensajes', async () => {
+    const cleanPhone = customerPhoneTest.replace(/[^\d]/g, '');
+
+    // Pausar IA para esta conversación
+    const toggleRes = await fetch(`${BASE_URL}/api/conversations/${testBusinessId}/${cleanPhone}/toggle-ai`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status: 'human_takeover' })
+    });
+    assert.equal(toggleRes.status, 200);
+    const toggleJson = await toggleRes.json();
+    assert.equal(toggleJson.success, true);
+    assert.equal(toggleJson.data.status, 'human_takeover');
+
+    // Cliente vuelve a escribir mientras la IA está pausada
+    const incomingRes = await fetch(`${BASE_URL}/api/webhook/${testBusinessId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        from: customerPhoneTest,
+        message: 'Hola? Hay alguien ahí?'
+      })
+    });
+
+    assert.equal(incomingRes.status, 200);
+    const incomingJson = await incomingRes.json();
+    assert.equal(incomingJson.success, true);
+    assert.equal(incomingJson.status, 'human_takeover');
+    assert.equal(incomingJson.aiMuted, true, 'La IA debe estar silenciada en human_takeover');
+    assert.equal(incomingJson.agentResponse, null, 'No debe generar respuesta automática de IA');
+  });
+
+  // 25. Control Humano: Envío de Mensaje de Operador y Reactivación de IA
+  await test('Control Humano - Envío de mensaje manual por operador y reactivación de IA', async () => {
+    const cleanPhone = customerPhoneTest.replace(/[^\d]/g, '');
+
+    // Enviar mensaje de operador
+    const sendRes = await fetch(`${BASE_URL}/api/conversations/${testBusinessId}/${cleanPhone}/send`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ text: 'Hola Carlos, soy el Dr. Ramos. Te respondo personalmente.' })
+    });
+
+    assert.equal(sendRes.status, 200);
+    const sendJson = await sendRes.json();
+    assert.equal(sendJson.success, true);
+    assert.equal(sendJson.data.conversation.status, 'human_takeover');
+
+    // Reactivar IA
+    const reactivateRes = await fetch(`${BASE_URL}/api/conversations/${testBusinessId}/${cleanPhone}/toggle-ai`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status: 'ai_active' })
+    });
+    assert.equal(reactivateRes.status, 200);
+    const reactivateJson = await reactivateRes.json();
+    assert.equal(reactivateJson.data.status, 'ai_active');
+  });
+
+  // 26. Configuración Meta Cloud API por Negocio
+  await test('POST /api/business/:businessId/whatsapp-config - Guardar credenciales oficiales de Meta', async () => {
+    const res = await fetch(`${BASE_URL}/api/business/${testBusinessId}/whatsapp-config`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        phone: '+54 9 11 9988-7766',
+        whatsappPhoneNumberId: '109876543210987',
+        whatsappAccessToken: 'EAAG_test_token_123',
+        whatsappConnected: true
+      })
+    });
+
+    assert.equal(res.status, 200);
+    const json = await res.json();
+    assert.equal(json.success, true);
+    assert.equal(json.data.whatsappConnected, true);
+    assert.equal(json.data.whatsappPhoneNumberId, '109876543210987');
+  });
+
+  // 27. Integridad y Paridad Hash SHA-256
   await test('Integridad SHA-256 - Paridad absoluta entre root y public/', async () => {
     const hDash = getHash('dashboard.html');
     const hIndex = getHash('index.html');

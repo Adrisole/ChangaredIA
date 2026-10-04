@@ -230,7 +230,7 @@
         </button>
 
         <button onclick="switchStep('step-whatsapp')" id="nav-step-whatsapp" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-200/90 hover:text-white hover:bg-white/10 transition-colors" data-i18n="navStepWhatsapp">
-          Conectar WhatsApp (QR)
+          Conexión WhatsApp & Bandeja
         </button>
 
         <button onclick="switchStep('step-billing')" id="nav-step-billing" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-200/90 hover:text-white hover:bg-white/10 transition-colors" data-i18n="navStepBilling">
@@ -706,7 +706,7 @@
                 Identidad & Reglas
               </button>
               <button onclick="switchStep('step-whatsapp')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-whatsapp">
-                Vincular WhatsApp (QR)
+                Conexión WhatsApp & Bandeja
               </button>
             </div>
           </div>
@@ -918,7 +918,7 @@
                 Identidad & Reglas
               </button>
               <button onclick="switchStep('step-whatsapp')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-whatsapp">
-                Vincular WhatsApp (QR)
+                Conexión WhatsApp & Bandeja
               </button>
             </div>
           </div>
@@ -1025,7 +1025,7 @@
                 Identidad & Reglas
               </button>
               <button onclick="switchStep('step-whatsapp')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-semibold bg-[#1B4332] text-white shadow-xs transition" data-vstep="step-whatsapp">
-                Vincular WhatsApp (QR)
+                Conexión WhatsApp & Bandeja
               </button>
             </div>
           </div>
@@ -1037,11 +1037,12 @@
           </div>
         </div>
 
+        <!-- Panel 1: Estado y Conexión Oficial Meta Cloud API -->
         <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-5">
-          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
             <div>
-              <h2 class="text-sm font-semibold text-slate-900" data-i18n="waStatusTitle">Estado de la Conexión de WhatsApp</h2>
-              <p class="text-xs text-slate-600 mt-0.5" data-i18n="waStatusSubtitle">Vincular tu línea para que el agente virtual empiece a recibir y responder mensajes en múltiples idiomas.</p>
+              <h2 class="text-sm font-semibold text-slate-900">Conexión Oficial WhatsApp Business (Meta Cloud API)</h2>
+              <p class="text-xs text-slate-600 mt-0.5">Conecta tu número oficial para enviar y recibir mensajes reales mediante la API oficial de Meta.</p>
             </div>
             <span id="wa-connection-badge" class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200">
               <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
@@ -1049,30 +1050,50 @@
             </span>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
-            <div class="space-y-3">
-              <p class="text-xs text-slate-700 leading-relaxed" data-i18n="waDesc">
-                El empleado virtual de <strong>Changared</strong> atiende en tiempo real los mensajes entrantes sin interferir con tu aplicación personal.
-              </p>
-              <ul class="text-xs text-slate-600 space-y-1.5">
-                <li class="flex items-center space-x-2">
-                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600"></i>
-                  <span data-i18n="waFeature1">Compatible con números de cualquier país (+54, +52, +55, +1, etc.)</span>
-                </li>
-                <li class="flex items-center space-x-2">
-                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600"></i>
-                  <span data-i18n="waFeature2">Respuestas en el idioma del cliente en menos de 2 segundos</span>
-                </li>
-                <li class="flex items-center space-x-2">
-                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600"></i>
-                  <span data-i18n="waFeature3">Derivación a operador humano cuando sea necesario</span>
-                </li>
-              </ul>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Formulario de Configuración Oficial (2 columnas) -->
+            <div class="lg:col-span-2 space-y-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-medium text-slate-700 mb-1">Número de WhatsApp Oficial</label>
+                  <input type="text" id="meta-wa-phone" placeholder="+54 9 11 4455-6677" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs focus:bg-white focus:border-emerald-600 transition">
+                  <span class="text-[10px] text-slate-500">Formato internacional con código de país.</span>
+                </div>
+                <div>
+                  <label class="block text-xs font-medium text-slate-700 mb-1">Phone Number ID (Meta Graph API)</label>
+                  <input type="text" id="meta-wa-phone-id" placeholder="Ej: 109876543210987" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs focus:bg-white focus:border-emerald-600 transition">
+                  <span class="text-[10px] text-slate-500">ID del número provisto en Meta Developer Portal.</span>
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-xs font-medium text-slate-700 mb-1">Access Token Permanente (Meta Cloud API)</label>
+                <input type="password" id="meta-wa-token" placeholder="EAAG... (Token de sistema de Meta)" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs focus:bg-white focus:border-emerald-600 transition">
+                <span class="text-[10px] text-slate-500">Token con permisos whatsapp_business_messaging. Si no lo especificas, usará el token global configurado.</span>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs pt-1">
+                <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
+                  <span class="block text-[10px] uppercase font-mono text-slate-600">Webhook URL (Callback)</span>
+                  <div class="flex items-center space-x-1">
+                    <input type="text" id="webhook-endpoint-input" readonly value="http://localhost:3000/api/webhook/mi-empresa" class="w-full text-[11px] font-mono px-2 py-1 bg-white border border-slate-200 rounded text-slate-800">
+                    <button onclick="copyWebhookUrl()" class="px-2 py-1 text-[11px] bg-slate-100 hover:bg-slate-200 text-slate-700 rounded border border-slate-200">
+                      Copiar
+                    </button>
+                  </div>
+                </div>
+                <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
+                  <span class="block text-[10px] uppercase font-mono text-slate-600">Verify Token</span>
+                  <div class="font-mono text-slate-900 font-semibold text-[11px] bg-white px-2 py-1 border border-slate-200 rounded">
+                    changared_secret_verify_token_2026
+                  </div>
+                </div>
+              </div>
 
               <div class="pt-2 flex flex-wrap items-center gap-2">
-                <button onclick="openWhatsAppModal('vendedor')" id="btn-connect-wa" class="inline-flex items-center space-x-2 px-4 py-2.5 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg shadow-subtle transition">
-                  <i data-lucide="phone-call" class="w-4 h-4"></i>
-                  <span id="btn-connect-wa-text" data-i18n="btnConnectWA">Vincular Número de WhatsApp (QR)</span>
+                <button onclick="saveMetaWhatsAppConfig()" class="inline-flex items-center space-x-2 px-4 py-2.5 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg shadow-subtle transition">
+                  <i data-lucide="check" class="w-4 h-4"></i>
+                  <span>Guardar y Conectar Meta API</span>
                 </button>
                 <button onclick="testWhatsAppDirectly()" class="inline-flex items-center space-x-1.5 px-3 py-2.5 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg shadow-2xs transition">
                   <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-500"></i>
@@ -1081,46 +1102,108 @@
               </div>
             </div>
 
-            <!-- Código QR Interactivo -->
-            <div onclick="openWhatsAppModal('vendedor')" class="cursor-pointer border border-slate-200 bg-slate-50/50 hover:bg-emerald-50/40 border-dashed hover:border-emerald-400 transition rounded-xl p-5 flex flex-col items-center justify-center text-center space-y-3 group">
-              <div class="w-36 h-36 bg-white border border-slate-200 rounded-lg p-2 flex items-center justify-center shadow-subtle relative group-hover:scale-105 transition-transform">
-                <div class="w-full h-full border border-dashed border-slate-300 rounded flex flex-col items-center justify-center text-slate-600">
-                  <i data-lucide="qr-code" class="w-12 h-12 text-slate-700 mb-1 group-hover:text-emerald-600 transition-colors"></i>
-                  <span class="text-[10px] font-mono font-bold text-slate-700 group-hover:text-emerald-700">CLICK PARA ESCANEAR</span>
-                </div>
+            <!-- Simulador QR (Modo Demo) (1 columna) -->
+            <div class="border border-slate-200 bg-slate-50 rounded-xl p-5 flex flex-col justify-between text-center space-y-3">
+              <div>
+                <span class="inline-flex items-center space-x-1 px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-200 text-slate-700 mb-2">
+                  MODO DEMO
+                </span>
+                <h3 class="text-xs font-bold text-slate-900">Simulador de Vinculación</h3>
+                <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">
+                  Permite experimentar la vinculación en modo de prueba local sin credenciales de Meta.
+                </p>
               </div>
-              <p class="text-[11px] text-slate-600 max-w-xs" data-i18n="waScanHint">Abre WhatsApp en tu teléfono &gt; Dispositivos vinculados &gt; Vincular un dispositivo.</p>
+
+              <div onclick="openWhatsAppModal('vendedor')" class="cursor-pointer border border-dashed border-slate-300 bg-white hover:bg-emerald-50/50 hover:border-emerald-400 transition rounded-lg p-3 flex flex-col items-center justify-center">
+                <i data-lucide="qr-code" class="w-10 h-10 text-slate-700 mb-1"></i>
+                <span class="text-[10px] font-mono font-bold text-slate-700">ABRIR SIMULADOR QR</span>
+              </div>
+
+              <button onclick="openWhatsAppModal('vendedor')" class="w-full py-1.5 px-3 text-xs font-medium text-slate-700 bg-white hover:bg-slate-100 border border-slate-300 rounded-lg transition shadow-2xs">
+                Probar Simulador QR (Demo)
+              </button>
             </div>
           </div>
         </div>
 
-        <!-- Webhook Meta Cloud API -->
+        <!-- Panel 2: Bandeja de Chats en Vivo & Control Humano ("Pausar IA / Responder yo") -->
         <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
-          <div class="border-b border-slate-100 pb-3">
-            <h2 class="text-sm font-semibold text-slate-900" data-i18n="metaApiTitle">Integración con Webhook (Meta Cloud API)</h2>
-            <p class="text-xs text-slate-600 mt-0.5" data-i18n="metaApiSubtitle">Si prefieres usar la API oficial de Meta, copia esta URL única de tu negocio.</p>
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+            <div>
+              <h2 class="text-sm font-semibold text-slate-900">Bandeja de Chats en Vivo & Control Humano</h2>
+              <p class="text-xs text-slate-600 mt-0.5">
+                Observa los mensajes que llegan por WhatsApp. Si deseas atender personalmente a un cliente, presiona <strong>"Pausar IA / Responder yo"</strong>.
+              </p>
+            </div>
+            <div class="flex items-center space-x-2">
+              <button onclick="loadWhatsAppConversations()" class="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-lg transition shadow-2xs">
+                <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-slate-600"></i>
+                <span>Actualizar Chats</span>
+              </button>
+            </div>
           </div>
 
-          <div class="space-y-3">
-            <div>
-              <label class="block text-[11px] uppercase font-mono font-semibold text-slate-600 mb-1" data-i18n="lblWebhookUrl">Webhook URL Dinámica (Tenant)</label>
-              <div class="flex items-center space-x-2">
-                <input type="text" id="webhook-endpoint-input" readonly value="http://localhost:3000/api/webhook/mi-empresa" class="w-full text-xs font-mono px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-800">
-                <button onclick="copyWebhookUrl()" class="shrink-0 inline-flex items-center space-x-1 px-3 py-2 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg transition shadow-subtle">
-                  <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-                  <span id="copy-btn-text" data-i18n="btnCopy">Copiar</span>
-                </button>
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-4 h-[480px]">
+            <!-- Lista de Conversaciones (4 cols) -->
+            <div class="md:col-span-4 border border-slate-200 rounded-lg flex flex-col bg-slate-50 overflow-hidden">
+              <div class="p-2.5 border-b border-slate-200 bg-white flex items-center justify-between text-xs font-semibold text-slate-700">
+                <span>Conversaciones (<span id="wa-inbox-count">0</span>)</span>
+                <span class="text-[10px] text-slate-500 font-normal">WhatsApp Oficial</span>
+              </div>
+              <div id="wa-conversations-list" class="flex-1 overflow-y-auto divide-y divide-slate-200 text-xs">
+                <!-- Se llena dinámicamente con JS -->
+                <div class="p-4 text-center text-slate-500 text-xs">
+                  Cargando conversaciones...
+                </div>
               </div>
             </div>
 
-            <div class="grid grid-cols-2 gap-3 text-xs">
-              <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg">
-                <span class="block text-[10px] uppercase font-mono text-slate-600">Verify Token</span>
-                <span class="font-mono text-slate-900 font-semibold">changared_secret_verify_token_2026</span>
+            <!-- Panel de Chat y Control Humano (8 cols) -->
+            <div class="md:col-span-8 border border-slate-200 rounded-lg flex flex-col bg-white overflow-hidden">
+              <!-- Chat Header -->
+              <div class="p-3 border-b border-slate-200 bg-slate-50/70 flex flex-wrap items-center justify-between gap-2">
+                <div class="flex items-center space-x-2">
+                  <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-xs">
+                    <span id="wa-chat-avatar-letter">C</span>
+                  </div>
+                  <div>
+                    <h4 class="text-xs font-bold text-slate-900" id="wa-active-contact-title">Selecciona una conversación</h4>
+                    <span class="text-[10px] text-slate-500 font-mono" id="wa-active-contact-subtitle">Sin cliente seleccionado</span>
+                  </div>
+                </div>
+
+                <div class="flex items-center space-x-2" id="wa-chat-header-actions" style="display: none;">
+                  <span id="wa-active-ai-badge" class="inline-flex items-center space-x-1 px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    <span>IA Activa</span>
+                  </span>
+                  <button id="btn-toggle-conversation-ai" onclick="toggleActiveConversationAi()" class="inline-flex items-center space-x-1.5 px-3 py-1 text-xs font-semibold rounded-lg transition shadow-2xs">
+                    <span id="btn-toggle-conversation-ai-text">Pausar IA / Responder yo</span>
+                  </button>
+                </div>
               </div>
-              <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg">
-                <span class="block text-[10px] uppercase font-mono text-slate-600" data-i18n="lblResponseMode">Modo de Respuesta</span>
-                <span class="font-mono text-slate-900 font-semibold" data-i18n="lblResponseModeVal">Multi-idioma / OpenAI Directo</span>
+
+              <!-- Chat Messages Thread -->
+              <div id="wa-chat-thread" class="flex-1 p-4 overflow-y-auto space-y-3 bg-slate-50/40 text-xs">
+                <div class="h-full flex flex-col items-center justify-center text-center text-slate-500 space-y-2">
+                  <i data-lucide="message-square" class="w-8 h-8 text-slate-400"></i>
+                  <p class="text-xs">Selecciona un chat de la lista izquierda para ver el historial y tomar el control.</p>
+                </div>
+              </div>
+
+              <!-- Operator Reply Box -->
+              <div class="p-3 border-t border-slate-200 bg-white space-y-1.5">
+                <div class="flex items-center space-x-2">
+                  <input type="text" id="wa-operator-input" onkeypress="handleOperatorEnter(event)" placeholder="Escribe tu mensaje como operador humano a WhatsApp..." class="flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:bg-white focus:border-emerald-600 transition" disabled>
+                  <button id="btn-send-operator-msg" onclick="sendOperatorReply()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs rounded-lg transition shadow-subtle flex items-center space-x-1.5 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    <i data-lucide="send" class="w-3.5 h-3.5"></i>
+                    <span>Enviar</span>
+                  </button>
+                </div>
+                <div class="flex items-center justify-between text-[10px] text-slate-500">
+                  <span>Al responder manualmente, la IA se silencia de inmediato para esta conversación.</span>
+                  <span id="wa-reply-status" class="text-emerald-700 font-medium"></span>
+                </div>
               </div>
             </div>
           </div>
@@ -2103,7 +2186,7 @@
                 Identidad & Reglas
               </button>
               <button onclick="switchStep('step-whatsapp')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-whatsapp">
-                Vincular WhatsApp (QR)
+                Conexión WhatsApp & Bandeja
               </button>
             </div>
           </div>
@@ -3370,8 +3453,11 @@
             <i data-lucide="smartphone" class="w-4 h-4 text-emerald-700"></i>
           </div>
           <div>
-            <h3 class="text-sm font-bold text-slate-900">Vincular WhatsApp Business</h3>
-            <p class="text-[11px] text-slate-500">Escanea el código QR con tu celular en 1 clic.</p>
+            <div class="flex items-center space-x-1.5">
+              <h3 class="text-sm font-bold text-slate-900">Simulador de Vinculación</h3>
+              <span class="text-[10px] font-semibold bg-slate-100 text-slate-700 px-1.5 py-0.5 rounded border border-slate-200">MODO DEMO</span>
+            </div>
+            <p class="text-[11px] text-slate-500">Prueba interactiva local. Para WhatsApp real se usa Meta Cloud API oficial.</p>
           </div>
         </div>
         <button onclick="closeWhatsAppModal()" class="text-slate-500 hover:text-slate-700 p-1">
@@ -3446,7 +3532,7 @@
       <div class="flex flex-col sm:flex-row items-center justify-between gap-2 pt-2 border-t border-slate-100">
         <button onclick="toggleWhatsAppConnection()" id="btn-toggle-wa-connect" class="w-full sm:flex-1 py-2 px-3 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg transition shadow-subtle flex items-center justify-center space-x-1.5">
           <i data-lucide="check" class="w-3.5 h-3.5"></i>
-          <span id="wa-toggle-btn-text">📲 Vincular Este Número de WhatsApp</span>
+          <span id="wa-toggle-btn-text">Simular Conexión (Modo Demo)</span>
         </button>
         <button onclick="testWhatsAppDirectly()" class="w-full sm:w-auto py-2 px-3 text-xs font-bold text-emerald-900 bg-emerald-100 hover:bg-emerald-200 border border-emerald-300 rounded-lg transition shadow-2xs flex items-center justify-center space-x-1">
           <span>💬 Abrir WhatsApp</span>
@@ -3819,7 +3905,7 @@
         navSectionSettings: "Ajustes & Configuración",
         navStepCatalog: "Catálogo & Stock",
         navStepIdentity: "Identidad del Negocio",
-        navStepWhatsapp: "Conectar WhatsApp (QR)",
+        navStepWhatsapp: "Conexión WhatsApp & Bandeja",
         navStepBilling: "Planes & Suscripción",
 
         // Botones Comunes & Badges
@@ -4052,7 +4138,7 @@
         navSectionSettings: "Settings & Configuration",
         navStepCatalog: "Catalog & Stock",
         navStepIdentity: "Business Identity",
-        navStepWhatsapp: "Connect WhatsApp (QR)",
+        navStepWhatsapp: "WhatsApp & Live Inbox",
         navStepBilling: "Plans & Subscription",
 
         // Common Buttons & Badges
@@ -4285,7 +4371,7 @@
         navSectionSettings: "Configurações & Ajustes",
         navStepCatalog: "Catálogo & Estoque",
         navStepIdentity: "Identidade do Negócio",
-        navStepWhatsapp: "Conectar WhatsApp (QR)",
+        navStepWhatsapp: "Conexão WhatsApp & Caixa de Entrada",
         navStepBilling: "Planos & Assinatura",
 
         // Botões Comuns & Badges
@@ -4504,7 +4590,7 @@
       'step-simulator': '1. Vendedor IA (Chat)',
       'step-catalog': 'Catálogo & Precios',
       'step-identity': 'Identidad & Reglas',
-      'step-whatsapp': 'Vincular WhatsApp (QR)',
+      'step-whatsapp': 'Conexión WhatsApp & Bandeja',
       'step-cobranzas': '2. Gestor de Cobranzas',
       'step-accounting': 'Facturación & Comprobantes',
       'step-multilingual': '4. Asistente Multilingüe',
@@ -4612,6 +4698,11 @@
 
       // Actualizar sub-tabs del Vendedor IA
       updateVendedorTabs(stepId);
+
+      // Si entramos a la bandeja de WhatsApp, cargar conversaciones en vivo
+      if (stepId === 'step-whatsapp') {
+        setTimeout(() => loadWhatsAppConversations(), 50);
+      }
 
       // Refrescar iconos Lucide
       if (window.lucide && typeof lucide.createIcons === 'function') {
@@ -5191,26 +5282,32 @@
         if (currentCompany.whatsappConnected) {
           simWaStatus.innerText = 'Vinculado';
           simWaStatus.className = 'text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200';
-          if (simWaBtnText) simWaBtnText.innerText = 'Gestionar / QR';
+          if (simWaBtnText) simWaBtnText.innerText = 'Gestionar WhatsApp';
         } else {
           simWaStatus.innerText = 'Sin vincular';
           simWaStatus.className = 'text-[10px] font-semibold text-rose-700 bg-rose-50 px-2 py-0.5 rounded border border-rose-200';
-          if (simWaBtnText) simWaBtnText.innerText = 'Vincular WhatsApp (QR)';
+          if (simWaBtnText) simWaBtnText.innerText = 'Conectar WhatsApp';
         }
       }
 
-      // Step-whatsapp badges
+      // Meta Cloud API inputs & Step-whatsapp badges
+      const metaPhoneInput = document.getElementById('meta-wa-phone');
+      if (metaPhoneInput) metaPhoneInput.value = currentCompany.phone || '';
+
+      const metaPhoneIdInput = document.getElementById('meta-wa-phone-id');
+      if (metaPhoneIdInput) metaPhoneIdInput.value = currentCompany.whatsappPhoneNumberId || '';
+
+      const metaTokenInput = document.getElementById('meta-wa-token');
+      if (metaTokenInput && currentCompany.whatsappAccessToken) metaTokenInput.value = currentCompany.whatsappAccessToken;
+
       const waConnBadge = document.getElementById('wa-connection-badge');
-      const btnConnectWaText = document.getElementById('btn-connect-wa-text');
       if (waConnBadge) {
         if (currentCompany.whatsappConnected) {
           waConnBadge.className = "inline-flex items-center space-x-1.5 px-2.5 py-1 rounded text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200";
-          waConnBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span><span>Vinculado (${currentCompany.phone})</span>`;
-          if (btnConnectWaText) btnConnectWaText.innerText = `Gestionar WhatsApp (${currentCompany.phone})`;
+          waConnBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span><span>Vinculado (${currentCompany.phone || 'Meta API'})</span>`;
         } else {
           waConnBadge.className = "inline-flex items-center space-x-1.5 px-2.5 py-1 rounded text-xs font-semibold bg-rose-50 text-rose-800 border border-rose-200";
           waConnBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span><span>Sin vincular</span>`;
-          if (btnConnectWaText) btnConnectWaText.innerText = `Vincular Número de WhatsApp (QR)`;
         }
       }
 
@@ -6021,6 +6118,298 @@
         setTimeout(() => closeWhatsAppModal(), 600);
       } else {
         showToast("Línea de WhatsApp desvinculada");
+      }
+    }
+
+    // =========================================================
+    // GESTIÓN WHATSAPP OFICIAL (META CLOUD API) & BANDEJA INBOX
+    // =========================================================
+    let activeWhatsAppChat = null;
+    let whatsappConversationsCache = [];
+
+    async function saveMetaWhatsAppConfig() {
+      const phoneInput = document.getElementById('meta-wa-phone');
+      const phoneIdInput = document.getElementById('meta-wa-phone-id');
+      const tokenInput = document.getElementById('meta-wa-token');
+
+      const phone = phoneInput ? phoneInput.value.trim() : '';
+      const whatsappPhoneNumberId = phoneIdInput ? phoneIdInput.value.trim() : '';
+      const whatsappAccessToken = tokenInput ? tokenInput.value.trim() : '';
+
+      if (!phone && !whatsappPhoneNumberId) {
+        showToast("⚠️ Ingresa al menos el número de teléfono o Phone Number ID de Meta.");
+        return;
+      }
+
+      currentCompany.phone = phone || currentCompany.phone;
+      currentCompany.whatsappPhoneNumberId = whatsappPhoneNumberId;
+      if (whatsappAccessToken) {
+        currentCompany.whatsappAccessToken = whatsappAccessToken;
+      }
+      currentCompany.whatsappConnected = true;
+
+      try {
+        localStorage.setItem('changared_company_data', JSON.stringify(currentCompany));
+      } catch(e) {}
+
+      applyCompanyDataToUI();
+
+      try {
+        const headers = { 'Content-Type': 'application/json' };
+        if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
+        const bId = currentCompany.slug || 'mi-empresa';
+        const res = await fetch(`/api/business/${bId}/whatsapp-config`, {
+          method: 'POST',
+          headers,
+          body: JSON.stringify({
+            phone: currentCompany.phone,
+            whatsappPhoneNumberId: currentCompany.whatsappPhoneNumberId,
+            whatsappAccessToken: currentCompany.whatsappAccessToken,
+            whatsappConnected: true,
+          }),
+        });
+        const json = await res.json();
+        if (json.success) {
+          showToast("✓ Configuración de Meta Cloud API guardada exitosamente.");
+        }
+      } catch(err) {
+        console.error("Error al guardar configuración de WhatsApp:", err);
+      }
+
+      loadWhatsAppConversations();
+    }
+
+    async function loadWhatsAppConversations() {
+      const listEl = document.getElementById('wa-conversations-list');
+      const countEl = document.getElementById('wa-inbox-count');
+      const bId = currentCompany.slug || 'mi-empresa';
+
+      try {
+        const res = await fetch(`/api/conversations/${bId}`);
+        const data = await res.json();
+        const convs = (data.success && Array.isArray(data.data)) ? data.data : [];
+        whatsappConversationsCache = convs;
+
+        if (countEl) countEl.innerText = convs.length;
+
+        if (!listEl) return;
+
+        if (convs.length === 0) {
+          listEl.innerHTML = `
+            <div class="p-6 text-center text-slate-500 space-y-2">
+              <i data-lucide="message-square" class="w-6 h-6 mx-auto text-slate-400"></i>
+              <p class="text-xs font-semibold text-slate-700">Sin conversaciones registradas</p>
+              <p class="text-[11px] text-slate-500">Cuando un cliente escriba a tu WhatsApp, su conversación aparecerá aquí en vivo.</p>
+            </div>
+          `;
+          if (window.lucide) lucide.createIcons();
+          return;
+        }
+
+        listEl.innerHTML = convs.map(c => {
+          const isSelected = activeWhatsAppChat === c.customerPhone;
+          const isAi = c.status === 'ai_active';
+          const displayName = c.customerName || c.customerPhone || 'Cliente';
+          const lastMsg = c.lastMessageText || 'Sin mensajes';
+          const time = c.lastMessageAt ? new Date(c.lastMessageAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+          const unread = c.unreadCount > 0 ? `<span class="bg-emerald-600 text-white rounded-full text-[9px] px-1.5 py-0.5 font-bold">${c.unreadCount}</span>` : '';
+
+          return `
+            <div onclick="selectWhatsAppConversation('${c.customerPhone}')" class="p-3 cursor-pointer transition flex items-start space-x-2.5 ${isSelected ? 'bg-white border-l-4 border-emerald-600 shadow-2xs' : 'hover:bg-white/80'}">
+              <div class="w-8 h-8 rounded-full bg-slate-200 text-slate-700 flex items-center justify-center font-bold text-xs shrink-0">
+                ${(displayName[0] || 'C').toUpperCase()}
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <h5 class="text-xs font-semibold text-slate-900 truncate">${displayName}</h5>
+                  <span class="text-[10px] text-slate-500 font-mono">${time}</span>
+                </div>
+                <p class="text-[11px] text-slate-600 truncate mt-0.5">${lastMsg}</p>
+                <div class="flex items-center justify-between mt-1.5">
+                  <span class="inline-flex items-center space-x-1 px-1.5 py-0.5 rounded text-[9px] font-semibold ${isAi ? 'bg-emerald-50 text-emerald-800 border border-emerald-200' : 'bg-amber-50 text-amber-800 border border-amber-200'}">
+                    <span class="w-1 h-1 rounded-full ${isAi ? 'bg-emerald-500' : 'bg-amber-500'}"></span>
+                    <span>${isAi ? 'IA Activa' : 'Humano'}</span>
+                  </span>
+                  ${unread}
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        if (window.lucide) lucide.createIcons();
+
+        if (activeWhatsAppChat) {
+          selectWhatsAppConversation(activeWhatsAppChat);
+        } else if (convs.length > 0) {
+          selectWhatsAppConversation(convs[0].customerPhone);
+        }
+      } catch(err) {
+        console.error("Error al cargar conversaciones:", err);
+      }
+    }
+
+    async function selectWhatsAppConversation(customerPhone) {
+      activeWhatsAppChat = customerPhone;
+      const bId = currentCompany.slug || 'mi-empresa';
+      const threadEl = document.getElementById('wa-chat-thread');
+      const titleEl = document.getElementById('wa-active-contact-title');
+      const subtitleEl = document.getElementById('wa-active-contact-subtitle');
+      const avatarEl = document.getElementById('wa-chat-avatar-letter');
+      const actionsEl = document.getElementById('wa-chat-header-actions');
+      const badgeEl = document.getElementById('wa-active-ai-badge');
+      const btnToggle = document.getElementById('btn-toggle-conversation-ai');
+      const btnToggleText = document.getElementById('btn-toggle-conversation-ai-text');
+      const inputEl = document.getElementById('wa-operator-input');
+      const sendBtn = document.getElementById('btn-send-operator-msg');
+
+      try {
+        const res = await fetch(`/api/conversations/${bId}/${encodeURIComponent(customerPhone)}`);
+        const data = await res.json();
+        if (!data.success || !data.data) return;
+
+        const conv = data.data;
+        const displayName = conv.customerName || conv.customerPhone;
+
+        if (titleEl) titleEl.innerText = displayName;
+        if (subtitleEl) subtitleEl.innerText = `${conv.customerPhone} · Total: ${conv.messages?.length || 0} msgs`;
+        if (avatarEl) avatarEl.innerText = (displayName[0] || 'C').toUpperCase();
+        if (actionsEl) actionsEl.style.display = 'flex';
+
+        const isAi = conv.status === 'ai_active';
+        if (badgeEl) {
+          badgeEl.className = isAi
+            ? "inline-flex items-center space-x-1 px-2 py-0.5 rounded text-[10px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200"
+            : "inline-flex items-center space-x-1 px-2 py-0.5 rounded text-[10px] font-semibold bg-amber-50 text-amber-800 border border-amber-200";
+          badgeEl.innerHTML = `<span class="w-1.5 h-1.5 rounded-full ${isAi ? 'bg-emerald-500' : 'bg-amber-500'}"></span><span>${isAi ? 'IA Activa' : 'Atendido por Vos (IA Pausada)'}</span>`;
+        }
+
+        if (btnToggle) {
+          if (isAi) {
+            btnToggle.className = "inline-flex items-center space-x-1.5 px-3 py-1 text-xs font-semibold rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 transition shadow-2xs";
+            if (btnToggleText) btnToggleText.innerText = "⏸ Pausar IA / Responder yo";
+          } else {
+            btnToggle.className = "inline-flex items-center space-x-1.5 px-3 py-1 text-xs font-semibold rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 transition shadow-2xs";
+            if (btnToggleText) btnToggleText.innerText = "▶ Reactivar IA";
+          }
+        }
+
+        if (inputEl) {
+          inputEl.disabled = false;
+        }
+        if (sendBtn) sendBtn.disabled = false;
+
+        // Render messages
+        if (threadEl) {
+          const msgs = conv.messages || [];
+          if (msgs.length === 0) {
+            threadEl.innerHTML = `<div class="p-4 text-center text-slate-400 text-xs">Sin mensajes en este hilo aún.</div>`;
+          } else {
+            threadEl.innerHTML = msgs.map(m => {
+              const isCust = m.sender === 'customer';
+              const isAiSender = m.sender === 'ai';
+              const isHuman = m.sender === 'human';
+              const time = m.timestamp ? new Date(m.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : '';
+
+              if (isCust) {
+                return `
+                  <div class="flex flex-col items-start space-y-0.5">
+                    <span class="text-[10px] font-medium text-slate-500 ml-1">${displayName}</span>
+                    <div class="bg-white border border-slate-200 text-slate-800 px-3 py-2 rounded-2xl rounded-tl-sm max-w-[80%] shadow-2xs">
+                      <p class="leading-relaxed">${m.text}</p>
+                      <span class="block text-[9px] text-slate-600 text-right mt-1 font-mono">${time}</span>
+                    </div>
+                  </div>
+                `;
+              } else if (isHuman) {
+                return `
+                  <div class="flex flex-col items-end space-y-0.5">
+                    <span class="text-[10px] font-medium text-blue-700 mr-1">Vos (Operador Humano) 👤</span>
+                    <div class="bg-blue-600 text-white px-3 py-2 rounded-2xl rounded-tr-sm max-w-[80%] shadow-2xs">
+                      <p class="leading-relaxed">${m.text}</p>
+                      <span class="block text-[9px] text-blue-200 text-right mt-1 font-mono">${time} · WhatsApp</span>
+                    </div>
+                  </div>
+                `;
+              } else {
+                return `
+                  <div class="flex flex-col items-end space-y-0.5">
+                    <span class="text-[10px] font-medium text-emerald-800 mr-1">Vendedor IA (Automático) 🤖</span>
+                    <div class="bg-emerald-50 border border-emerald-200 text-emerald-950 px-3 py-2 rounded-2xl rounded-tr-sm max-w-[80%] shadow-2xs">
+                      <p class="leading-relaxed">${m.text}</p>
+                      <span class="block text-[9px] text-emerald-700 text-right mt-1 font-mono">${time} · IA</span>
+                    </div>
+                  </div>
+                `;
+              }
+            }).join('');
+
+            threadEl.scrollTop = threadEl.scrollHeight;
+          }
+        }
+      } catch(err) {
+        console.error("Error al seleccionar conversación:", err);
+      }
+    }
+
+    async function toggleActiveConversationAi() {
+      if (!activeWhatsAppChat) return;
+      const bId = currentCompany.slug || 'mi-empresa';
+
+      try {
+        const res = await fetch(`/api/conversations/${bId}/${encodeURIComponent(activeWhatsAppChat)}/toggle-ai`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({}),
+        });
+        const data = await res.json();
+        if (data.success) {
+          showToast(data.message);
+          await selectWhatsAppConversation(activeWhatsAppChat);
+          await loadWhatsAppConversations();
+        }
+      } catch(err) {
+        console.error("Error al pausar/reactivar IA:", err);
+      }
+    }
+
+    async function sendOperatorReply() {
+      if (!activeWhatsAppChat) return;
+      const inputEl = document.getElementById('wa-operator-input');
+      const statusEl = document.getElementById('wa-reply-status');
+      const text = inputEl ? inputEl.value.trim() : '';
+      if (!text) return;
+
+      const bId = currentCompany.slug || 'mi-empresa';
+      if (inputEl) inputEl.value = '';
+      if (statusEl) statusEl.innerText = "Enviando a WhatsApp...";
+
+      try {
+        const res = await fetch(`/api/conversations/${bId}/${encodeURIComponent(activeWhatsAppChat)}/send`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ text }),
+        });
+        const data = await res.json();
+        if (data.success) {
+          if (statusEl) {
+            statusEl.innerText = "✓ Enviado · IA pausada para este chat";
+            setTimeout(() => { if (statusEl) statusEl.innerText = ''; }, 3500);
+          }
+          await selectWhatsAppConversation(activeWhatsAppChat);
+          await loadWhatsAppConversations();
+        } else {
+          showToast(`Error al enviar mensaje: ${data.message || 'Error de red'}`);
+        }
+      } catch(err) {
+        console.error("Error al enviar mensaje del operador:", err);
+        showToast("Error de conexión al enviar mensaje");
+      }
+    }
+
+    function handleOperatorEnter(e) {
+      if (e.key === 'Enter') {
+        sendOperatorReply();
       }
     }
 

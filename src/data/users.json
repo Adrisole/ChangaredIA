@@ -1,1 +1,44 @@
-{}
+{
+  "usr_muu87kgx_e3b1e88c": {
+    "id": "usr_muu87kgx_e3b1e88c",
+    "name": "Carlos Dueño",
+    "email": "founder-1791142855445@testbusiness.com",
+    "salt": "8e5251155c5c419a7787ec2e7aca4937",
+    "passwordHash": "784f02b1059630a4169af53bf26ba529f25efa6ae4a85963a92d6524fbe8e9cf1f8355cb42a32f542cf1056c1e9634f3c76d32708022c319cd1971e4c7cd42fd",
+    "emailVerified": true,
+    "verificationCode": "317295",
+    "businessIds": [
+      "negocio-privado-1791142855617"
+    ],
+    "createdAt": "2026-10-04T19:40:55.521Z",
+    "updatedAt": "2026-10-04T19:40:55.622Z"
+  },
+  "usr_muu8c47c_b534732b": {
+    "id": "usr_muu8c47c_b534732b",
+    "name": "Carlos Dueño",
+    "email": "founder-1791143067590@testbusiness.com",
+    "salt": "305088962d506d44301903d1bc5d6fb6",
+    "passwordHash": "78e857a861c1cb1e10d5034913ccb71a30ef7569690f1f9d7d8d52beb7042e828cfa031a06008ef2e2e1157dc1898a022e1c37b3550613da3c3f8d378cbcb523",
+    "emailVerified": true,
+    "verificationCode": "185495",
+    "businessIds": [
+      "negocio-privado-1791143067901"
+    ],
+    "createdAt": "2026-10-04T19:44:27.720Z",
+    "updatedAt": "2026-10-04T19:44:27.918Z"
+  },
+  "usr_muu8puho_31c9f389": {
+    "id": "usr_muu8puho_31c9f389",
+    "name": "Carlos Dueño",
+    "email": "founder-1791143708202@testbusiness.com",
+    "salt": "9874ab37fcaf6ef2ba3b4341b10faa9d",
+    "passwordHash": "5dcd6bfecc3cba67a20b54d73d0041a85ed853cbb305d8fc19a010ddcd98a7eca1ff01008c43c418d1520a60c5d0a884c772e1a70f059103b038dc35f754704f",
+    "emailVerified": true,
+    "verificationCode": "301078",
+    "businessIds": [
+      "negocio-privado-1791143708553"
+    ],
+    "createdAt": "2026-10-04T19:55:08.316Z",
+    "updatedAt": "2026-10-04T19:55:08.591Z"
+  }
+}
