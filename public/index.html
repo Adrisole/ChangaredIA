@@ -279,7 +279,7 @@
         </div>
 
         <!-- Botón Vincular a Mi Web -->
-        <button onclick="openWebsiteWidgetModal('general')" class="inline-flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-bold text-emerald-950 bg-emerald-100 hover:bg-emerald-200 border border-emerald-300 rounded-lg transition shadow-2xs">
+        <button onclick="openWebsiteWidgetModal('context')" class="inline-flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-bold text-emerald-950 bg-emerald-100 hover:bg-emerald-200 border border-emerald-300 rounded-lg transition shadow-2xs">
           <span>🌐</span>
           <span class="hidden sm:inline">Mi Web</span>
         </button>
@@ -2628,6 +2628,31 @@
           </div>
         </div>
 
+        <!-- AGENDA ELEGIBLE: DISPONIBILIDAD POR DÍA Y HORARIO -->
+        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-subtle space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
+            <div>
+              <h2 class="text-sm font-semibold text-slate-900">Elegí tu turno</h2>
+              <p class="text-[11px] text-slate-600 mt-0.5">Los horarios apagados ya están ocupados o están fuera de atención.</p>
+            </div>
+            <div class="flex items-center gap-3 text-[10px] text-slate-600">
+              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span>Disponible</span>
+              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-300"></span>No disponible</span>
+            </div>
+          </div>
+          <div id="appointment-day-list" class="grid grid-cols-2 sm:grid-cols-4 gap-2" aria-label="Días disponibles"></div>
+          <div>
+            <p id="appointment-slot-title" class="text-xs font-semibold text-slate-800 mb-2">Elegí un día para ver horarios</p>
+            <div id="appointment-slot-list" class="grid grid-cols-3 sm:grid-cols-6 gap-2" aria-live="polite"></div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr_auto] gap-2 pt-2 border-t border-slate-100">
+            <input id="appointment-client-name" type="text" placeholder="Nombre del cliente" class="text-xs px-3 py-2 border border-slate-200 rounded-lg focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500">
+            <input id="appointment-client-phone" type="tel" placeholder="WhatsApp del cliente" class="text-xs px-3 py-2 border border-slate-200 rounded-lg focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500">
+            <button id="appointment-confirm-button" onclick="confirmAgendaAppointment()" disabled class="px-4 py-2 bg-slate-200 text-slate-500 rounded-lg text-xs font-bold cursor-not-allowed">Elegí un horario</button>
+          </div>
+          <div id="appointment-notification-status" class="hidden rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-2 text-[11px] text-emerald-900" role="status"></div>
+        </div>
+
         <!-- CONSOLA DE SIMULACIÓN DE AGENDAMIENTO EN VIVO -->
         <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
           <div class="flex items-center justify-between border-b border-slate-100 pb-3">
@@ -3009,9 +3034,68 @@
         </button>
       </div>
 
-      <!-- Selector de Plataformas -->
+      <!-- Paso 1: Selector del Asistente a Vincular -->
       <div class="space-y-2">
-        <label class="block text-[11px] uppercase font-mono font-bold text-slate-600">Selecciona tu plataforma:</label>
+        <div class="flex items-center justify-between">
+          <label class="block text-[11px] uppercase font-mono font-bold text-slate-700">1. ¿Qué empleado o asistente querés vincular a tu web?</label>
+          <span class="text-[10px] text-emerald-800 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200" id="widget-active-agent-badge">Asistente Activo</span>
+        </div>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+          <button type="button" onclick="selectWidgetAgent('contable')" class="widget-agent-tab p-2.5 rounded-lg border text-left transition flex items-center space-x-2" data-agent="contable">
+            <span class="text-lg">🧾</span>
+            <div>
+              <strong class="block text-xs text-slate-900">Asistente Contable</strong>
+              <span class="text-[10px] text-slate-500 block">Portal Proveedores</span>
+            </div>
+          </button>
+          <button type="button" onclick="selectWidgetAgent('vendedor')" class="widget-agent-tab p-2.5 rounded-lg border text-left transition flex items-center space-x-2" data-agent="vendedor">
+            <span class="text-lg">🛍️</span>
+            <div>
+              <strong class="block text-xs text-slate-900">Vendedor IA</strong>
+              <span class="text-[10px] text-slate-500 block">Catálogo y Carrito</span>
+            </div>
+          </button>
+          <button type="button" onclick="selectWidgetAgent('citas')" class="widget-agent-tab p-2.5 rounded-lg border text-left transition flex items-center space-x-2" data-agent="citas">
+            <span class="text-lg">📅</span>
+            <div>
+              <strong class="block text-xs text-slate-900">Agendador Citas</strong>
+              <span class="text-[10px] text-slate-500 block">Turnos con Calendar</span>
+            </div>
+          </button>
+          <button type="button" onclick="selectWidgetAgent('cobranzas')" class="widget-agent-tab p-2.5 rounded-lg border text-left transition flex items-center space-x-2" data-agent="cobranzas">
+            <span class="text-lg">💳</span>
+            <div>
+              <strong class="block text-xs text-slate-900">Gestor Cobranzas</strong>
+              <span class="text-[10px] text-slate-500 block">Saldos & Pagos MP</span>
+            </div>
+          </button>
+          <button type="button" onclick="selectWidgetAgent('multilingue')" class="widget-agent-tab p-2.5 rounded-lg border text-left transition flex items-center space-x-2" data-agent="multilingue">
+            <span class="text-lg">🌐</span>
+            <div>
+              <strong class="block text-xs text-slate-900">Multilingüe</strong>
+              <span class="text-[10px] text-slate-500 block">Inglés / Portugués</span>
+            </div>
+          </button>
+          <button type="button" onclick="selectWidgetAgent('talleexacto')" class="widget-agent-tab p-2.5 rounded-lg border text-left transition flex items-center space-x-2" data-agent="talleexacto">
+            <span class="text-lg">👗</span>
+            <div>
+              <strong class="block text-xs text-slate-900">TalleExacto</strong>
+              <span class="text-[10px] text-slate-500 block">Probador de Talles</span>
+            </div>
+          </button>
+        </div>
+        <!-- Explicación de la función del asistente en la web del usuario -->
+        <div id="widget-agent-explanation" class="p-2.5 bg-emerald-50/70 border border-emerald-200 rounded-lg text-xs text-emerald-950 flex items-start space-x-2">
+          <span class="text-base leading-none">💡</span>
+          <div id="widget-agent-explanation-text">
+            El asistente seleccionado atenderá a los usuarios en tu sitio web según su especialidad.
+          </div>
+        </div>
+      </div>
+
+      <!-- Paso 2: Selector de Plataformas -->
+      <div class="space-y-2">
+        <label class="block text-[11px] uppercase font-mono font-bold text-slate-600">2. Selecciona tu plataforma:</label>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
           <button onclick="selectWidgetPlatform('tiendanube')" class="widget-plat-tab px-3 py-2 rounded-lg border border-emerald-600 bg-emerald-50 text-emerald-950 text-xs font-bold transition flex items-center justify-center space-x-1.5 shadow-2xs" data-plat="tiendanube">
             <span>🛒</span><span>Tiendanube</span>
@@ -4839,15 +4923,56 @@
     // =========================================================
     // WIDGET EMBEBIBLE PARA PÁGINA WEB & FLOATING WIDGET
     // =========================================================
-    let currentWidgetAgent = 'general';
+    let currentWidgetAgent = 'contable';
     let currentWidgetPlatform = 'tiendanube';
 
+    const AGENT_EXPLANATIONS = {
+      contable: `<strong>🧾 Asistente Contable en tu Web (Portal de Proveedores):</strong> Instala un formulario o buzón web en tu sitio para que tus proveedores o tu equipo administrativo suban facturas (PDF, Excel o fotos de tickets) directamente a tu Google Drive y se registren en Google Sheets sin darles acceso a tus cuentas.`,
+      vendedor: `<strong>🛍️ Vendedor IA en tu Web:</strong> Añade un chat flotante inteligente con tu catálogo de productos y stock en tiempo real. Responde dudas técnicas, arma el pedido y cobra mediante Mercado Pago 24/7.`,
+      citas: `<strong>📅 Agendador de Citas en tu Web:</strong> Permite a tus clientes consultar turnos libres sincronizados con Google Calendar, reservar su horario y abonar la seña requerida para confirmarlo.`,
+      cobranzas: `<strong>💳 Gestor de Cobranzas en tu Web:</strong> Ofrece a tus clientes un canal confidencial para consultar su saldo de cuenta corriente y regularizar cuotas pendientes con link de pago.`,
+      multilingue: `<strong>🌐 Asistente Multilingüe en tu Web:</strong> Detecta el idioma del visitante (inglés, portugués o español) para asesorar a turistas y clientes internacionales sin fricción idiomática.`,
+      talleexacto: `<strong>👗 Asesor TalleExacto en tu Web:</strong> Recomendador inteligente de talles para tiendas de indumentaria y calzado. Reduce devoluciones recomendando el calce exacto según medidas corporales.`
+    };
+
     function openWebsiteWidgetModal(agent) {
-      if (agent) currentWidgetAgent = agent;
-      updateWidgetCodeSnippet();
+      if (!agent || agent === 'context' || agent === 'general') {
+        const activeSection = document.querySelector('.step-content:not(.hidden)');
+        const secId = activeSection ? activeSection.id : 'step-accounting';
+        if (secId === 'step-accounting') currentWidgetAgent = 'contable';
+        else if (secId === 'step-citas') currentWidgetAgent = 'citas';
+        else if (secId === 'step-cobranzas') currentWidgetAgent = 'cobranzas';
+        else if (secId === 'step-multilingue') currentWidgetAgent = 'multilingue';
+        else if (secId === 'step-talleexacto') currentWidgetAgent = 'talleexacto';
+        else currentWidgetAgent = 'vendedor';
+      } else {
+        currentWidgetAgent = agent;
+      }
+      selectWidgetAgent(currentWidgetAgent);
       selectWidgetPlatform(currentWidgetPlatform);
       const modal = document.getElementById('modal-website-widget');
       if (modal) modal.classList.remove('hidden');
+    }
+
+    function selectWidgetAgent(agent) {
+      currentWidgetAgent = agent || 'contable';
+      document.querySelectorAll('.widget-agent-tab').forEach(btn => {
+        if (btn.getAttribute('data-agent') === currentWidgetAgent) {
+          btn.className = "widget-agent-tab p-2.5 rounded-lg border border-emerald-600 bg-emerald-50 text-left transition flex items-center space-x-2 shadow-2xs ring-1 ring-emerald-500";
+        } else {
+          btn.className = "widget-agent-tab p-2.5 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 text-left transition flex items-center space-x-2";
+        }
+      });
+      const badge = document.getElementById('widget-active-agent-badge');
+      if (badge) {
+        const names = { contable: 'Asistente Contable', vendedor: 'Vendedor IA', citas: 'Agendador de Citas', cobranzas: 'Gestor de Cobranzas', multilingue: 'Multilingüe', talleexacto: 'TalleExacto' };
+        badge.innerText = `● ${names[currentWidgetAgent] || currentWidgetAgent}`;
+      }
+      const exp = document.getElementById('widget-agent-explanation-text');
+      if (exp && AGENT_EXPLANATIONS[currentWidgetAgent]) {
+        exp.innerHTML = AGENT_EXPLANATIONS[currentWidgetAgent];
+      }
+      updateWidgetCodeSnippet();
     }
 
     function closeWebsiteWidgetModal() {
@@ -6532,5 +6657,6 @@
     calcLoss();
     applyCompanyDataToUI();
   </script>
+  <script src="/agenda.js"></script>
 </body>
 </html>
