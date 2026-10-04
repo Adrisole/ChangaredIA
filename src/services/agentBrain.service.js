@@ -161,7 +161,8 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
     // 2. Detección de Cobranzas / Deuda / Enlace de pago (Mercado Pago)
     const isDebtQuery = /\b(deuda|cobranza|saldo|pagar|pago|transferencia|alias|link de pago|mora|cuota)\b/i.test(msg);
     if (isDebtQuery) {
-      return `¡Hola! Te contactamos desde el área de administración de ${business.name}. Podés regularizar tu saldo de forma inmediata mediante Mercado Pago o transferencia bancaria directa. ¿Te gustaría que te enviemos el link de pago oficial en este momento?`;
+      const pay = business.paymentMethod || 'pagos.miempresa.mp';
+      return `¡Hola! Te contactamos desde administración de ${business.name}. Podés regularizar o abonar mediante Mercado Pago o transferencia al alias oficial: **${pay}**. ¿Te gustaría que te enviemos el link de pago directo en este momento?`;
     }
 
     // 3. Detección de Facturación / Contabilidad / OCR (Google Drive & Sheets)

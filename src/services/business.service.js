@@ -52,6 +52,7 @@ export class BusinessService {
       hours: payload.hours || '',
       website: payload.website || '',
       deposit: Number(payload.deposit) || 5000,
+      paymentMethod: payload.paymentMethod || 'pagos.miempresa.mp',
       toneOfVoice: toneOfVoice || 'amigable, respetuoso y dispuesto a ayudar',
       language: payload.language || 'Español',
       autoDetectLanguage: payload.autoDetectLanguage !== undefined ? Boolean(payload.autoDetectLanguage) : true,

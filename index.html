@@ -1129,20 +1129,24 @@
                 </li>
               </ul>
 
-              <div class="pt-2">
-                <button onclick="simulateConnectWA()" id="btn-connect-wa" class="inline-flex items-center space-x-2 px-4 py-2.5 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg shadow-subtle transition">
+              <div class="pt-2 flex flex-wrap items-center gap-2">
+                <button onclick="openWhatsAppModal('vendedor')" id="btn-connect-wa" class="inline-flex items-center space-x-2 px-4 py-2.5 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg shadow-subtle transition">
                   <i data-lucide="phone-call" class="w-4 h-4"></i>
-                  <span data-i18n="btnConnectWA">Vincular Número de WhatsApp</span>
+                  <span id="btn-connect-wa-text" data-i18n="btnConnectWA">Vincular Número de WhatsApp (QR)</span>
+                </button>
+                <button onclick="testWhatsAppDirectly()" class="inline-flex items-center space-x-1.5 px-3 py-2.5 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg shadow-2xs transition">
+                  <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-500"></i>
+                  <span>Abrir Chat Directo</span>
                 </button>
               </div>
             </div>
 
-            <!-- Código QR Simulado -->
-            <div class="border border-slate-200 bg-slate-50/50 rounded-xl p-5 flex flex-col items-center justify-center text-center space-y-3">
-              <div class="w-36 h-36 bg-white border border-slate-200 rounded-lg p-2 flex items-center justify-center shadow-subtle relative group">
+            <!-- Código QR Interactivo -->
+            <div onclick="openWhatsAppModal('vendedor')" class="cursor-pointer border border-slate-200 bg-slate-50/50 hover:bg-emerald-50/40 border-dashed hover:border-emerald-400 transition rounded-xl p-5 flex flex-col items-center justify-center text-center space-y-3 group">
+              <div class="w-36 h-36 bg-white border border-slate-200 rounded-lg p-2 flex items-center justify-center shadow-subtle relative group-hover:scale-105 transition-transform">
                 <div class="w-full h-full border border-dashed border-slate-300 rounded flex flex-col items-center justify-center text-slate-600">
-                  <i data-lucide="qr-code" class="w-12 h-12 text-slate-700 mb-1"></i>
-                  <span class="text-[10px] font-mono">SCAN WITH WA</span>
+                  <i data-lucide="qr-code" class="w-12 h-12 text-slate-700 mb-1 group-hover:text-emerald-600 transition-colors"></i>
+                  <span class="text-[10px] font-mono font-bold text-slate-700 group-hover:text-emerald-700">CLICK PARA ESCANEAR</span>
                 </div>
               </div>
               <p class="text-[11px] text-slate-600 max-w-xs" data-i18n="waScanHint">Abre WhatsApp en tu teléfono &gt; Dispositivos vinculados &gt; Vincular un dispositivo.</p>
@@ -2100,95 +2104,114 @@
         <!-- ESTRUCTURA ESTÁNDAR OBLIGATORIA: 3 BLOQUES OPERATIVOS -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
           <!-- BLOQUE 1: INTEGRACIÓN & CANALES (CONEXIÓN EN 1 CLIC) -->
-          <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle">
-            <div class="flex items-center justify-between">
-              <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
-                <i data-lucide="link" class="w-3.5 h-3.5 text-emerald-600"></i>
-                <span>Bloque 1 · Integración & Canales</span>
-              </span>
-              <span class="text-[10px] font-mono px-1.5 py-0.5 bg-emerald-50 text-emerald-700 font-semibold rounded border border-emerald-200">1-CLIC QR</span>
-            </div>
-            <h4 class="text-xs font-bold text-slate-900">Vincular Línea de WhatsApp</h4>
-            <p class="text-[11px] text-slate-600 leading-tight">Canal por donde los clientes te escriben y reciben respuestas.</p>
-            
-            <div class="space-y-1.5 text-xs">
-              <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                <span class="flex items-center space-x-1.5">
-                  <i data-lucide="smartphone" class="w-3.5 h-3.5 text-emerald-600"></i>
-                  <span>WhatsApp Business (QR)</span>
+          <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
+                  <i data-lucide="link" class="w-3.5 h-3.5 text-emerald-600"></i>
+                  <span>Bloque 1 · Integración & Canales</span>
                 </span>
-                <span class="text-[10px] text-emerald-700 font-semibold">● Conectado</span>
+                <span id="sim-b1-badge" class="text-[10px] font-mono px-1.5 py-0.5 bg-emerald-50 text-emerald-700 font-semibold rounded border border-emerald-200">1-CLIC QR</span>
               </div>
-              <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
-                <span class="text-[10px] font-semibold text-slate-600 uppercase">Línea activa:</span>
-                <div class="text-[11px] font-mono text-slate-900 font-semibold">+54 9 11 4455-6677</div>
+              <h4 class="text-xs font-bold text-slate-900">Vincular Línea de WhatsApp</h4>
+              <p class="text-[11px] text-slate-600 leading-tight mb-2">Canal por donde los clientes te escriben y reciben respuestas.</p>
+              
+              <div class="space-y-1.5 text-xs">
+                <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
+                  <span class="flex items-center space-x-1.5 truncate">
+                    <i data-lucide="smartphone" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                    <span class="truncate">WhatsApp Business</span>
+                  </span>
+                  <span class="text-[10px] font-semibold shrink-0" id="sim-wa-status-text">○ No vinculado</span>
+                </div>
+                <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
+                  <span class="text-[10px] font-semibold text-slate-600 uppercase">Línea activa:</span>
+                  <div class="text-[11px] font-mono text-slate-900 font-semibold truncate" id="sim-wa-active-phone">+54 9 11 4455-6677</div>
+                </div>
               </div>
-              <div class="flex gap-1.5 pt-1">
-                <button onclick="switchStep('step-whatsapp')" class="flex-1 py-1.5 px-2 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded text-[11px] font-medium text-slate-700 text-center transition">
-                  Ver QR de Conexión
-                </button>
-              </div>
+            </div>
+            <div class="pt-2 flex flex-wrap gap-1.5" id="sim-wa-actions-container">
+              <button onclick="openWhatsAppModal('vendedor')" class="flex-1 py-1.5 px-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded text-[11px] font-semibold text-center transition flex items-center justify-center space-x-1 shadow-2xs">
+                <i data-lucide="smartphone" class="w-3 h-3"></i>
+                <span id="sim-wa-btn-text">Vincular WhatsApp (QR)</span>
+              </button>
+              <button onclick="testWhatsAppDirectly()" id="sim-wa-btn-test" class="py-1.5 px-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded text-[11px] font-medium transition" title="Abrir en WhatsApp Web">
+                💬 Web
+              </button>
             </div>
           </div>
 
           <!-- BLOQUE 2: BASE DE CONOCIMIENTO / DATOS DE ENTRADA -->
-          <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle">
-            <div class="flex items-center justify-between">
-              <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
-                <i data-lucide="database" class="w-3.5 h-3.5 text-emerald-600"></i>
-                <span>Bloque 2 · Datos de Entrada</span>
-              </span>
-              <span class="text-[10px] font-mono text-slate-600">5 PRODUCTOS</span>
-            </div>
-            <h4 class="text-xs font-bold text-slate-900">Catálogo, Stock & Reglas</h4>
-            <p class="text-[11px] text-slate-600 leading-tight">La IA sólo vende lo que tiene stock y respeta tus precios.</p>
+          <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
+                  <i data-lucide="database" class="w-3.5 h-3.5 text-emerald-600"></i>
+                  <span>Bloque 2 · Datos de Entrada</span>
+                </span>
+                <span class="text-[10px] font-mono px-1.5 py-0.5 bg-slate-100 text-slate-700 font-semibold rounded border border-slate-200" id="sim-block2-badge">3 PRODUCTOS</span>
+              </div>
+              <h4 class="text-xs font-bold text-slate-900">Catálogo, Stock & Reglas</h4>
+              <p class="text-[11px] text-slate-600 leading-tight mb-2">La IA sólo vende lo que tiene stock y respeta tus precios.</p>
 
-            <div class="space-y-1.5 text-xs">
-              <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                <span class="text-slate-600">Carga de Catálogo:</span>
-                <span class="font-semibold text-slate-900">Manual / CSV / Tiendanube</span>
+              <div class="space-y-1.5 text-xs">
+                <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
+                  <span class="text-slate-600">Carga de Catálogo:</span>
+                  <span class="font-semibold text-slate-900">Manual / CSV / Tiendanube</span>
+                </div>
+                <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
+                  <span class="text-slate-600">Stock en Tiempo Real:</span>
+                  <span class="font-semibold text-emerald-800" id="sim-block2-stock">3 en stock · 0 agotados</span>
+                </div>
+                <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
+                  <span class="text-[10px] font-semibold text-slate-600 uppercase">Reglas Activas:</span>
+                  <div class="text-[11px] text-slate-800 truncate" id="sim-block2-rules">Horario: Lunes a Viernes 09:00 a 18:00</div>
+                </div>
               </div>
-              <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                <span class="text-slate-600">Stock en Tiempo Real:</span>
-                <span class="font-semibold text-emerald-800">4 en stock · 1 agotado</span>
-              </div>
-              <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
-                <span class="text-[10px] font-semibold text-slate-600 uppercase">Reglas Activas:</span>
-                <div class="text-[11px] text-slate-800">Horario 19:30 a 00:00 · Delivery 40 min</div>
-              </div>
-              <div class="flex gap-1.5 pt-1">
-                <button onclick="switchStep('step-catalog')" class="flex-1 py-1.5 px-2 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded text-[11px] font-medium text-slate-700 text-center transition">
-                  Editar Catálogo & Precios →
-                </button>
-              </div>
+            </div>
+            <div class="pt-2 flex gap-1.5">
+              <button onclick="switchStep('step-catalog')" class="flex-1 py-1.5 px-2 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded text-[11px] font-medium text-slate-700 text-center transition">
+                Editar Catálogo & Precios →
+              </button>
             </div>
           </div>
 
           <!-- BLOQUE 3: AUTOMATIZACIÓN & ACCIÓN DE SALIDA -->
-          <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle">
-            <div class="flex items-center justify-between">
-              <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
-                <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600"></i>
-                <span>Bloque 3 · Acción de Salida</span>
-              </span>
-              <span class="text-[10px] font-mono text-emerald-700 font-bold">CIERRE DE VENTA</span>
-            </div>
-            <h4 class="text-xs font-bold text-slate-900">¿Cómo toma el pedido la IA?</h4>
-            <p class="text-[11px] text-slate-600 leading-tight">Cobro, comanda a cocina y descuento de stock.</p>
+          <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
+                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600"></i>
+                  <span>Bloque 3 · Acción de Salida</span>
+                </span>
+                <span class="text-[10px] font-mono px-1.5 py-0.5 bg-emerald-50 text-emerald-700 font-semibold rounded border border-emerald-200">CIERRE & COBRO</span>
+              </div>
+              <h4 class="text-xs font-bold text-slate-900">¿Cómo cobra y confirma la IA?</h4>
+              <p class="text-[11px] text-slate-600 leading-tight mb-2">Cobro automático con tu medio de pago y registro inmediato.</p>
 
-            <div class="space-y-1.5 text-xs text-slate-800">
-              <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
-                <strong class="text-slate-900">1. Genera Link de Pago:</strong> Envía link de Mercado Pago o Alias bancario en el chat.
+              <div class="space-y-1.5 text-xs text-slate-800">
+                <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
+                  <div class="flex items-center justify-between mb-0.5">
+                    <strong class="text-slate-900">1. Cobro Automático:</strong>
+                    <button onclick="openBusinessConfigModal()" class="text-[10px] text-emerald-700 font-bold hover:underline">Configurar</button>
+                  </div>
+                  <div class="text-[11px] text-slate-700">Medio activo: <span class="font-mono text-emerald-900 font-bold" id="sim-display-payment-method">pagos.miempresa.mp</span></div>
+                </div>
+                <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
+                  <strong class="text-slate-900">2. Notificación Interna:</strong> Envía el resumen del pedido confirmado al WhatsApp de tu equipo.
+                </div>
+                <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
+                  <strong class="text-slate-900">3. Descuenta Stock en Vivo:</strong> Resta las unidades vendidas para evitar sobreventa.
+                </div>
+                <div class="p-2 bg-emerald-50 border border-emerald-200 rounded leading-tight text-emerald-900">
+                  <strong class="text-emerald-950">4. Confirmación al Cliente:</strong> Envía ticket de compra, número de orden y confirmación inmediata en su idioma.
+                </div>
               </div>
-              <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
-                <strong class="text-slate-900">2. Envía Comanda a Cocina:</strong> Manda el pedido listo al WhatsApp interno de cocina con dirección.
-              </div>
-              <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
-                <strong class="text-slate-900">3. Descuenta Stock:</strong> Resta las unidades vendidas para evitar sobreventa.
-              </div>
-              <div class="p-2 bg-emerald-50 border border-emerald-200 rounded leading-tight text-emerald-900">
-                <strong class="text-emerald-950">4. Confirma al Cliente:</strong> Envía número de orden y demora estimada de entrega.
-              </div>
+            </div>
+            <div class="pt-2 flex gap-1.5">
+              <button onclick="openBusinessConfigModal()" class="flex-1 py-1.5 px-2 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded text-[11px] font-medium text-slate-700 text-center transition">
+                Editar Medio de Cobro (Alias/MP) →
+              </button>
             </div>
           </div>
         </div>
@@ -2876,6 +2899,12 @@
             <label class="block font-medium text-slate-700 mb-1">Seña sugerida para turnos ($)</label>
             <input type="number" id="cfg-custom-deposit" placeholder="5000" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-bold text-xs">
           </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-800 mb-1">Link de Pago / Alias Mercado Pago / CVU (Bloque 3 de Cobranzas y Ventas)</label>
+          <input type="text" id="cfg-custom-payment" placeholder="Ej: pagos.minegocio.mp o ALIAS.MERCADOPAGO o https://mpago.la/..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 text-xs font-mono">
+          <p class="text-[10px] text-slate-500 mt-1">Este link o alias será el que envíe el Gestor de Cobranzas y Vendedor IA a tus clientes para confirmar pedidos o señas.</p>
         </div>
 
         <div>
@@ -4444,6 +4473,7 @@
       hours: "Lunes a Viernes: 09:00 a 18:00",
       currency: "ARS",
       deposit: "5000",
+      paymentMethod: "pagos.miempresa.mp",
       desc: "Atención comercial, servicios profesionales y ventas directas.",
       whatsappConnected: false,
       calendarConnected: false,
@@ -4553,6 +4583,66 @@
         }
       }
 
+      // Bloque 1 Simulator: WhatsApp Status & Phone
+      const simWaStatus = document.getElementById('sim-wa-status-text');
+      const simWaPhone = document.getElementById('sim-wa-active-phone');
+      const simWaBtnText = document.getElementById('sim-wa-btn-text');
+      if (simWaPhone) simWaPhone.innerText = currentCompany.phone || '+54 9 11 4455-6677';
+      if (simWaStatus) {
+        if (currentCompany.whatsappConnected) {
+          simWaStatus.innerText = '● Conectado';
+          simWaStatus.className = 'text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200';
+          if (simWaBtnText) simWaBtnText.innerText = 'Gestionar / QR';
+        } else {
+          simWaStatus.innerText = '○ No vinculado';
+          simWaStatus.className = 'text-[10px] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200';
+          if (simWaBtnText) simWaBtnText.innerText = 'Vincular WhatsApp (QR)';
+        }
+      }
+
+      // Step-whatsapp badges
+      const waConnBadge = document.getElementById('wa-connection-badge');
+      const btnConnectWaText = document.getElementById('btn-connect-wa-text');
+      if (waConnBadge) {
+        if (currentCompany.whatsappConnected) {
+          waConnBadge.className = "inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-800 border border-emerald-200";
+          waConnBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span><span>● Conectado (${currentCompany.phone})</span>`;
+          if (btnConnectWaText) btnConnectWaText.innerText = `Gestionar WhatsApp (${currentCompany.phone})`;
+        } else {
+          waConnBadge.className = "inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-800 border border-amber-200";
+          waConnBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span><span>Listo para enlazar</span>`;
+          if (btnConnectWaText) btnConnectWaText.innerText = `Vincular Número de WhatsApp (QR)`;
+        }
+      }
+
+      // Bloque 2 Simulator: Catálogo, Stock & Reglas Dinámicas
+      const simBlock2Badge = document.getElementById('sim-block2-badge');
+      const simBlock2Stock = document.getElementById('sim-block2-stock');
+      const simBlock2Rules = document.getElementById('sim-block2-rules');
+
+      const catItems = (typeof currentBusiness !== 'undefined' && Array.isArray(currentBusiness.catalog) && currentBusiness.catalog.length > 0)
+        ? currentBusiness.catalog
+        : (currentCompany.services || []);
+      const totalCount = catItems.length;
+      let inStock = 0;
+      let outStock = 0;
+      if (typeof currentBusiness !== 'undefined' && Array.isArray(currentBusiness.catalog) && currentBusiness.catalog.length > 0) {
+        currentBusiness.catalog.forEach(item => {
+          if (item.stock > 0) inStock++;
+          else outStock++;
+        });
+      } else {
+        inStock = totalCount;
+        outStock = 0;
+      }
+      if (simBlock2Badge) simBlock2Badge.innerText = `${totalCount} PRODUCTOS`;
+      if (simBlock2Stock) simBlock2Stock.innerText = `${inStock} en stock · ${outStock} agotados`;
+      if (simBlock2Rules) simBlock2Rules.innerText = `Horario: ${currentCompany.hours || '09:00 a 18:00'} · Rubro: ${currentCompany.rubro || 'Comercio'}`;
+
+      // Bloque 3 Simulator: Método de Pago / Alias
+      const simPaymentDisplay = document.getElementById('sim-display-payment-method');
+      if (simPaymentDisplay) simPaymentDisplay.innerText = currentCompany.paymentMethod || 'pagos.miempresa.mp';
+
       updateWidgetCodeSnippet();
     }
 
@@ -4566,6 +4656,7 @@
         if (document.getElementById('cfg-custom-website')) document.getElementById('cfg-custom-website').value = currentCompany.website || '';
         if (document.getElementById('cfg-custom-hours')) document.getElementById('cfg-custom-hours').value = currentCompany.hours || '';
         if (document.getElementById('cfg-custom-deposit')) document.getElementById('cfg-custom-deposit').value = currentCompany.deposit || '5000';
+        if (document.getElementById('cfg-custom-payment')) document.getElementById('cfg-custom-payment').value = currentCompany.paymentMethod || 'pagos.miempresa.mp';
         if (document.getElementById('cfg-custom-desc')) document.getElementById('cfg-custom-desc').value = currentCompany.desc || '';
         modal.classList.remove('hidden');
       }
@@ -4588,6 +4679,7 @@
       const website = document.getElementById('cfg-custom-website') ? document.getElementById('cfg-custom-website').value.trim() : currentCompany.website;
       const hours = document.getElementById('cfg-custom-hours') ? document.getElementById('cfg-custom-hours').value.trim() : currentCompany.hours;
       const deposit = document.getElementById('cfg-custom-deposit') ? document.getElementById('cfg-custom-deposit').value.trim() : currentCompany.deposit;
+      const payment = document.getElementById('cfg-custom-payment') ? document.getElementById('cfg-custom-payment').value.trim() : currentCompany.paymentMethod;
       const desc = document.getElementById('cfg-custom-desc') ? document.getElementById('cfg-custom-desc').value.trim() : currentCompany.desc;
 
       currentCompany.name = name;
@@ -4601,7 +4693,20 @@
       if (website) currentCompany.website = website;
       if (hours) currentCompany.hours = hours;
       if (deposit) currentCompany.deposit = deposit;
+      if (payment) currentCompany.paymentMethod = payment;
       if (desc) currentCompany.desc = desc;
+
+      if (typeof currentBusiness !== 'undefined') {
+        currentBusiness.id = currentCompany.slug;
+        currentBusiness.name = currentCompany.name;
+        currentBusiness.description = currentCompany.desc || `${currentCompany.name} - Rubro: ${currentCompany.rubro}. Horario: ${currentCompany.hours}. Tel: ${currentCompany.phone}`;
+        currentBusiness.businessRules = [
+          `Horario de atención: ${currentCompany.hours}`,
+          `Teléfono de contacto: ${currentCompany.phone}`,
+          `Rubro: ${currentCompany.rubro}`,
+          `Link de pago / Alias: ${currentCompany.paymentMethod || 'pagos.miempresa.mp'}`
+        ];
+      }
 
       try {
         localStorage.setItem('changared_company_data', JSON.stringify(currentCompany));
@@ -4618,6 +4723,7 @@
         hours: currentCompany.hours,
         website: currentCompany.website,
         deposit: currentCompany.deposit,
+        paymentMethod: currentCompany.paymentMethod || 'pagos.miempresa.mp',
         toneOfVoice: currentCompany.tone || 'amigable, respetuoso y dispuesto a ayudar',
         language: 'Español',
         autoDetectLanguage: true,
@@ -4625,7 +4731,8 @@
           `Horario de atención: ${currentCompany.hours}`,
           `Teléfono de contacto: ${currentCompany.phone}`,
           `Rubro: ${currentCompany.rubro}`,
-          `Seña de reserva: $${currentCompany.deposit}`
+          `Seña de reserva: $${currentCompany.deposit}`,
+          `Método de pago / Alias: ${currentCompany.paymentMethod || 'pagos.miempresa.mp'}`
         ],
         catalog: Array.isArray(currentCompany.services) && currentCompany.services.length > 0
           ? currentCompany.services.map((s, idx) => ({
@@ -5242,29 +5349,14 @@
 
     function updateCatalogStats() {
       const rows = document.querySelectorAll('#catalog-table-body tr');
-      document.getElementById('stat-total-products').innerText = rows.length;
+      const statEl = document.getElementById('stat-total-products');
+      if (statEl) statEl.innerText = rows.length;
+      applyCompanyDataToUI();
     }
 
-    // Simular Conexión WhatsApp
+    // Conexión WhatsApp Interactiva
     function simulateConnectWA() {
-      const btn = document.getElementById('btn-connect-wa');
-      const badge = document.getElementById('wa-connection-badge');
-
-      btn.disabled = true;
-      btn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i><span>Sincronizando con Meta...</span>`;
-      lucide.createIcons();
-
-      setTimeout(() => {
-        btn.disabled = false;
-        btn.className = "inline-flex items-center space-x-2 px-4 py-2.5 text-xs font-semibold text-white bg-slate-900 hover:bg-slate-800 rounded-lg shadow-subtle transition";
-        btn.innerHTML = `<i data-lucide="check" class="w-4 h-4 text-emerald-400"></i><span>Número Vinculado (+54 9 11 4433-2211)</span>`;
-        
-        badge.className = "inline-flex items-center space-x-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-800 border border-emerald-200";
-        badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span><span>Conectado y Atendiendo</span>`;
-        
-        lucide.createIcons();
-        showToast("¡WhatsApp vinculado exitosamente!");
-      }, 1200);
+      openWhatsAppModal('vendedor');
     }
 
     function copyWebhookUrl() {
@@ -5387,8 +5479,9 @@
       }
 
       // Detección de Cobranzas / Deuda / Mora
-      if (q.includes('deuda') || q.includes('cobro') || q.includes('pagar') || q.includes('transferencia') || q.includes('alias') || q.includes('link de pago')) {
-        return `¡Hola! Te contactamos desde administración de ${compName}. Podés cancelar o regularizar tu saldo por Mercado Pago o transferencia bancaria directa. ¿Querés que te enviemos el link de pago oficial en este momento?`;
+      if (q.includes('deuda') || q.includes('cobro') || q.includes('pagar') || q.includes('transferencia') || q.includes('alias') || q.includes('link de pago') || q.includes('metodo de pago')) {
+        const payMethod = currentCompany.paymentMethod || 'pagos.miempresa.mp';
+        return `¡Hola! Te contactamos desde administración de ${compName}. Podés cancelar o regularizar tu saldo por Mercado Pago o transferencia bancaria directa usando nuestro medio oficial: <strong>${payMethod}</strong>. ¿Querés que te enviemos el comprobante o link directo en este momento?`;
       }
 
       // Detección Inglés
