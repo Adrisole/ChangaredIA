@@ -1,5 +1,8 @@
 import fs from 'fs';
 import path from 'path';
+import { isDbConnected } from '../config/database.js';
+import { UserModel } from '../models/user.model.js';
+import { SessionModel } from '../models/session.model.js';
 
 /**
  * Repositorio ligero de Usuarios y Sesiones con persistencia en JSON.
@@ -84,6 +87,17 @@ class UserRepository {
       updatedAt: new Date().toISOString(),
     };
     this._writeUsers(users);
+
+    if (isDbConnected()) {
+      UserModel.findOneAndUpdate(
+        { id: user.id },
+        users[key],
+        { upsert: true, new: true }
+      ).catch(err => {
+        console.error('[UserRepository] Error al sincronizar usuario en MongoDB:', err.message);
+      });
+    }
+
     return users[key];
   }
 
@@ -94,6 +108,16 @@ class UserRepository {
       createdAt: new Date().toISOString(),
     };
     this._writeSessions(sessions);
+
+    if (isDbConnected()) {
+      SessionModel.findOneAndUpdate(
+        { token },
+        { token, userId, createdAt: sessions[token].createdAt },
+        { upsert: true, new: true }
+      ).catch(err => {
+        console.error('[UserRepository] Error al sincronizar sesión en MongoDB:', err.message);
+      });
+    }
   }
 
   findByToken(token) {
@@ -109,6 +133,12 @@ class UserRepository {
     const sessions = this._readSessions();
     delete sessions[token];
     this._writeSessions(sessions);
+
+    if (isDbConnected()) {
+      SessionModel.deleteOne({ token }).catch(err => {
+        console.error('[UserRepository] Error al eliminar sesión en MongoDB:', err.message);
+      });
+    }
   }
 
   findAll() {

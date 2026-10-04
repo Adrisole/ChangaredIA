@@ -1,6 +1,12 @@
 import { createApp } from './app.js';
 import { config } from './config/env.js';
+import { connectDatabase, disconnectDatabase } from './config/database.js';
 import { businessService } from './services/business.service.js';
+
+// Inicializar conexión a base de datos (MongoDB o fallback JSON)
+connectDatabase().catch(err => {
+  console.error('[Database] Error inesperado en inicialización de BD:', err);
+});
 
 const app = createApp();
 
@@ -17,8 +23,9 @@ const server = app.listen(config.port, () => {
 });
 
 // Manejo de apagado seguro (Graceful Shutdown)
-const gracefulShutdown = (signal) => {
+const gracefulShutdown = async (signal) => {
   console.log(`\n[Server] Señal ${signal} recibida. Cerrando conexiones...`);
+  await disconnectDatabase();
   server.close(() => {
     console.log('[Server] Servidor Express cerrado de forma segura.');
     process.exit(0);

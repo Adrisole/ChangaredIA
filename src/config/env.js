@@ -17,4 +17,7 @@ export const config = Object.freeze({
   storage: {
     filePath: path.resolve(process.env.DATA_STORAGE_PATH || './src/data/businesses.json'),
   },
+  mongodb: {
+    uri: process.env.MONGODB_URI || '',
+  },
 });

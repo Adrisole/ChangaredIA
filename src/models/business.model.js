@@ -1,0 +1,45 @@
+import mongoose from 'mongoose';
+
+const businessSchema = new mongoose.Schema({
+  id: { type: String, required: true, unique: true, index: true },
+  name: { type: String, required: true },
+  description: { type: String, default: '' },
+  rubro: { type: String, default: 'General' },
+  phone: { type: String, default: '' },
+  email: { type: String, default: '' },
+  hours: { type: String, default: '' },
+  website: { type: String, default: '' },
+  authorizedDomain: { type: String, default: '' },
+  deposit: { type: Number, default: 5000 },
+  paymentMethod: { type: String, default: 'pagos.miempresa.mp' },
+  toneOfVoice: { type: String, default: 'amigable, respetuoso y dispuesto a ayudar' },
+  language: { type: String, default: 'Español' },
+  autoDetectLanguage: { type: Boolean, default: true },
+  businessRules: [{ type: String }],
+  catalog: [{
+    id: String,
+    name: String,
+    price: Number,
+    stock: Number,
+    category: String,
+    description: String,
+  }],
+  services: [{
+    id: mongoose.Schema.Types.Mixed,
+    name: String,
+    duration: String,
+    price: Number,
+  }],
+  activeEmployees: [{ type: String }],
+  ownerId: { type: String, default: null, index: true },
+  whatsappConnected: { type: Boolean, default: false },
+  calendarConnected: { type: Boolean, default: false },
+  calendarEmail: { type: String, default: '' },
+  driveFolder: { type: String, default: '' },
+  cuit: { type: String, default: '' },
+  taxCondition: { type: String, default: '' },
+  createdAt: { type: String },
+  updatedAt: { type: String },
+}, { timestamps: true });
+
+export const BusinessModel = mongoose.models.Business || mongoose.model('Business', businessSchema);

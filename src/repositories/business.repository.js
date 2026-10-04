@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import { config } from '../config/env.js';
+import { isDbConnected } from '../config/database.js';
+import { BusinessModel } from '../models/business.model.js';
 
 /**
  * Repositorio Multi-Tenant ligero para almacenamiento y consulta de negocios en JSON.
@@ -63,6 +65,18 @@ class BusinessRepository {
     };
 
     this._writeAll(all);
+
+    // Si MongoDB está conectado, sincronizar en la nube
+    if (isDbConnected()) {
+      BusinessModel.findOneAndUpdate(
+        { id: key },
+        all[key],
+        { upsert: true, new: true }
+      ).catch(err => {
+        console.error('[BusinessRepository] Error al sincronizar negocio en MongoDB:', err.message);
+      });
+    }
+
     return all[key];
   }
 }
