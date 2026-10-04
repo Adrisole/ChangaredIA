@@ -10,8 +10,8 @@ connectDatabase().catch(err => {
 
 const app = createApp();
 
-const server = app.listen(config.port, () => {
-  const businesses = businessService.getAllBusinesses();
+const server = app.listen(config.port, async () => {
+  const businesses = await businessService.getAllBusinesses();
   console.log('================================================================');
   console.log(`🤖 Changared: Plataforma Multi-Tenant de Empleados Virtuales`);
   console.log(`🚀 Servidor ejecutándose en: http://localhost:${config.port}`);

@@ -42,9 +42,13 @@ async function runTests() {
     assert.ok(data.tenantsCount >= 2, 'Debe haber al menos 2 tenants cargados');
   });
 
-  // 2. Onboarding Real de Negocio (Multi-Tenant)
+  // 2. Onboarding Real de Negocio (Multi-Tenant y Autenticación Obligatoria)
   const testBusinessId = 'clinica-dental-test';
-  await test('POST /api/business/setup - Onboarding y persistencia en disco de nuevo negocio', async () => {
+  let testUserToken = null;
+  let testVerificationCode = null;
+  const testUserEmail = `founder-${Date.now()}@testbusiness.com`;
+
+  await test('POST /api/business/setup - Protección 401 sin sesión y onboarding de tenant autenticado', async () => {
     const payload = {
       id: testBusinessId,
       name: 'Centro Odontológico Dental Test',
@@ -69,9 +73,38 @@ async function runTests() {
       ]
     };
 
-    const res = await fetch(`${BASE_URL}/api/business/setup`, {
+    // 1. Intentar dar de alta sin autenticación -> Debe ser rechazado con 401
+    const unauthRes = await fetch(`${BASE_URL}/api/business/setup`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    assert.equal(unauthRes.status, 401, 'POST /api/business/setup debe requerir obligatoriamente sesión activa (401)');
+    const unauthJson = await unauthRes.json();
+    assert.equal(unauthJson.error, 'UNAUTHORIZED');
+
+    // 2. Registrar usuario propietario para asociar el negocio legítimamente
+    const regRes = await fetch(`${BASE_URL}/api/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: 'Carlos Dueño',
+        email: testUserEmail,
+        password: 'Password123!'
+      })
+    });
+    assert.equal(regRes.status, 201);
+    const regJson = await regRes.json();
+    testUserToken = regJson.token;
+    testVerificationCode = regJson.verificationCode;
+
+    // 3. Crear negocio con sesión autenticada
+    const res = await fetch(`${BASE_URL}/api/business/setup`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${testUserToken}`
+      },
       body: JSON.stringify(payload)
     });
 
@@ -79,12 +112,14 @@ async function runTests() {
     const json = await res.json();
     assert.equal(json.success, true);
     assert.equal(json.data.business.id, testBusinessId);
+    assert.ok(json.data.business.ownerId, 'El negocio creado debe poseer un ownerId asociado');
 
     // Verificar en el filesystem directamente
     const rawData = fs.readFileSync('./src/data/businesses.json', 'utf-8');
     const parsed = JSON.parse(rawData);
     assert.ok(parsed[testBusinessId], 'El negocio debe estar guardado físicamente en src/data/businesses.json');
     assert.equal(parsed[testBusinessId].name, 'Centro Odontológico Dental Test');
+    assert.ok(parsed[testBusinessId].ownerId, 'El negocio en disco debe incluir su ownerId');
   });
 
   // 3. Consulta de Negocio Creado
@@ -270,17 +305,17 @@ async function runTests() {
   });
 
   // 15. Autenticación y Registro de Usuario (Modo Privado)
-  let testUserToken = null;
-  let testVerificationCode = null;
-  const testUserEmail = `founder-${Date.now()}@testbusiness.com`;
+  let additionalUserToken = null;
+  let additionalVerificationCode = null;
+  const additionalUserEmail = `founder-2-${Date.now()}@testbusiness.com`;
 
   await test('POST /api/auth/register - Registro de usuario nuevo con contraseña cifrada', async () => {
     const res = await fetch(`${BASE_URL}/api/auth/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        name: 'Carlos Dueño',
-        email: testUserEmail,
+        name: 'Carlos Dueño 2',
+        email: additionalUserEmail,
         password: 'Password123!'
       })
     });
@@ -289,21 +324,21 @@ async function runTests() {
     const json = await res.json();
     assert.equal(json.success, true);
     assert.ok(json.token, 'Debe devolver un token de sesión');
-    assert.equal(json.user.email, testUserEmail);
+    assert.equal(json.user.email, additionalUserEmail);
     assert.equal(json.user.emailVerified, false);
-    testUserToken = json.token;
-    testVerificationCode = json.verificationCode;
+    additionalUserToken = json.token;
+    additionalVerificationCode = json.verificationCode;
   });
 
   // 16. Verificación de Código de Correo
   await test('POST /api/auth/verify-email - Confirmación de email con código de 6 dígitos', async () => {
-    assert.ok(testVerificationCode, 'Debe existir código de verificación');
+    assert.ok(additionalVerificationCode, 'Debe existir código de verificación');
     const res = await fetch(`${BASE_URL}/api/auth/verify-email`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        email: testUserEmail,
-        code: testVerificationCode
+        email: additionalUserEmail,
+        code: additionalVerificationCode
       })
     });
 
@@ -319,7 +354,7 @@ async function runTests() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        email: testUserEmail,
+        email: additionalUserEmail,
         password: 'Password123!'
       })
     });
@@ -328,8 +363,8 @@ async function runTests() {
     const json = await res.json();
     assert.equal(json.success, true);
     assert.ok(json.token);
-    assert.equal(json.user.email, testUserEmail);
-    testUserToken = json.token;
+    assert.equal(json.user.email, additionalUserEmail);
+    additionalUserToken = json.token;
   });
 
   // 18. Perfil de Usuario Protegido
@@ -340,12 +375,12 @@ async function runTests() {
 
     // Con token válido: debe dar 200
     const authRes = await fetch(`${BASE_URL}/api/auth/me`, {
-      headers: { 'Authorization': `Bearer ${testUserToken}` }
+      headers: { 'Authorization': `Bearer ${additionalUserToken}` }
     });
     assert.equal(authRes.status, 200);
     const json = await authRes.json();
     assert.equal(json.success, true);
-    assert.equal(json.user.email, testUserEmail);
+    assert.equal(json.user.email, additionalUserEmail);
   });
 
   // 19. Asociación de Negocio a Usuario Autenticado
@@ -462,7 +497,14 @@ async function runTests() {
 
   // 23. Bandeja Inbox: Listar y Consultar Historial de Conversaciones
   await test('GET /api/conversations/:businessId - Listar conversaciones e historial completo', async () => {
-    const res = await fetch(`${BASE_URL}/api/conversations/${testBusinessId}`);
+    // 1. Acceso sin sesión debe ser rechazado con 401
+    const unauthRes = await fetch(`${BASE_URL}/api/conversations/${testBusinessId}`);
+    assert.equal(unauthRes.status, 401, 'Acceso a bandeja sin token debe dar 401');
+
+    // 2. Acceso con dueño legítimo
+    const res = await fetch(`${BASE_URL}/api/conversations/${testBusinessId}`, {
+      headers: { 'Authorization': `Bearer ${testUserToken}` }
+    });
     assert.equal(res.status, 200, 'Status HTTP debe ser 200');
     const json = await res.json();
     assert.equal(json.success, true);
@@ -475,7 +517,9 @@ async function runTests() {
     assert.equal(conv.status, 'ai_active', 'Estado inicial debe ser ai_active');
 
     // Consultar detalle específico
-    const detailRes = await fetch(`${BASE_URL}/api/conversations/${testBusinessId}/${cleanPhone}`);
+    const detailRes = await fetch(`${BASE_URL}/api/conversations/${testBusinessId}/${cleanPhone}`, {
+      headers: { 'Authorization': `Bearer ${testUserToken}` }
+    });
     assert.equal(detailRes.status, 200);
     const detailJson = await detailRes.json();
     assert.equal(detailJson.success, true);
@@ -486,10 +530,13 @@ async function runTests() {
   await test('Control Humano - Pausar IA silencia las respuestas automáticas ante nuevos mensajes', async () => {
     const cleanPhone = customerPhoneTest.replace(/[^\d]/g, '');
 
-    // Pausar IA para esta conversación
+    // Pausar IA para esta conversación con autorización del dueño
     const toggleRes = await fetch(`${BASE_URL}/api/conversations/${testBusinessId}/${cleanPhone}/toggle-ai`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${testUserToken}`
+      },
       body: JSON.stringify({ status: 'human_takeover' })
     });
     assert.equal(toggleRes.status, 200);
@@ -519,10 +566,13 @@ async function runTests() {
   await test('Control Humano - Envío de mensaje manual por operador y reactivación de IA', async () => {
     const cleanPhone = customerPhoneTest.replace(/[^\d]/g, '');
 
-    // Enviar mensaje de operador
+    // Enviar mensaje de operador con autorización
     const sendRes = await fetch(`${BASE_URL}/api/conversations/${testBusinessId}/${cleanPhone}/send`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${testUserToken}`
+      },
       body: JSON.stringify({ text: 'Hola Carlos, soy el Dr. Ramos. Te respondo personalmente.' })
     });
 
@@ -531,10 +581,13 @@ async function runTests() {
     assert.equal(sendJson.success, true);
     assert.equal(sendJson.data.conversation.status, 'human_takeover');
 
-    // Reactivar IA
+    // Reactivar IA con autorización
     const reactivateRes = await fetch(`${BASE_URL}/api/conversations/${testBusinessId}/${cleanPhone}/toggle-ai`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${testUserToken}`
+      },
       body: JSON.stringify({ status: 'ai_active' })
     });
     assert.equal(reactivateRes.status, 200);
@@ -546,7 +599,10 @@ async function runTests() {
   await test('POST /api/business/:businessId/whatsapp-config - Guardar credenciales oficiales de Meta', async () => {
     const res = await fetch(`${BASE_URL}/api/business/${testBusinessId}/whatsapp-config`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${testUserToken}`
+      },
       body: JSON.stringify({
         phone: '+54 9 11 9988-7766',
         whatsappPhoneNumberId: '109876543210987',
@@ -564,7 +620,10 @@ async function runTests() {
     // Restaurar a modo simulado para pruebas idempotentes
     await fetch(`${BASE_URL}/api/business/${testBusinessId}/whatsapp-config`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${testUserToken}`
+      },
       body: JSON.stringify({
         phone: '+54 9 11 9988-7766',
         whatsappPhoneNumberId: '',
@@ -708,10 +767,11 @@ async function runTests() {
     assert.equal(ownerChatRes.status, 200, 'El dueño legítimo debe tener acceso 200 OK a sus chats');
   });
 
-  // 30. Cifrado en Reposo de Tokens Meta (AES-256-GCM) y Prevención de Fugas de Información
-  await test('Cifrado de Tokens - Credenciales en disco cifradas con AES-256-GCM y enmascaradas en API', async () => {
-    // 1. Guardar credenciales de Meta con el token del dueño
+  // 30. Cifrado en Reposo de Tokens y Secrets de Meta (AES-256-GCM) y Prevención de Fugas de Información
+  await test('Cifrado de Tokens y Secrets - Credenciales en disco cifradas con AES-256-GCM y enmascaradas en API', async () => {
+    // 1. Guardar credenciales de Meta (Access Token y App Secret) con el token del dueño
     const rawMetaToken = 'EAAG_super_secret_meta_cloud_token_xyz_987654';
+    const rawMetaSecret = 'meta_secret_key_prod_vault_998877';
     const configRes = await fetch(`${BASE_URL}/api/business/${ownedBusinessId}/whatsapp-config`, {
       method: 'POST',
       headers: {
@@ -722,28 +782,35 @@ async function runTests() {
         phone: '+54 9 11 3344-5566',
         whatsappPhoneNumberId: '123456789012345',
         whatsappAccessToken: rawMetaToken,
+        whatsappAppSecret: rawMetaSecret,
         whatsappConnected: true
       })
     });
     assert.equal(configRes.status, 200);
     const configJson = await configRes.json();
     assert.equal(configJson.data.hasAccessToken, true);
+    assert.equal(configJson.data.hasAppSecret, true);
     assert.equal(configJson.data.tokenEncrypted, true);
 
-    // 2. Leer directamente el archivo businesses.json del disco y comprobar que NO contiene el token en texto plano
+    // 2. Leer directamente el archivo businesses.json del disco y comprobar que NO contienen las credenciales en texto plano
     const rawDisk = fs.readFileSync('./src/data/businesses.json', 'utf-8');
     assert.ok(!rawDisk.includes(rawMetaToken), 'El token plano NUNCA debe estar en texto legible en el disco');
+    assert.ok(!rawDisk.includes(rawMetaSecret), 'El App Secret plano NUNCA debe estar en texto legible en el disco');
     const parsedDisk = JSON.parse(rawDisk);
     const storedBiz = parsedDisk[ownedBusinessId];
     assert.ok(storedBiz.whatsappAccessToken.startsWith('enc:v1:'), 'El token debe estar cifrado con formato enc:v1:');
     assert.equal(storedBiz.whatsappAccessToken.split(':').length, 5, 'Debe contener prefijo enc, version v1, IV, AuthTag y Ciphertext');
+    assert.ok(storedBiz.whatsappAppSecret.startsWith('enc:v1:'), 'El App Secret debe estar cifrado con formato enc:v1:');
+    assert.equal(storedBiz.whatsappAppSecret.split(':').length, 5, 'App Secret cifrado debe contener IV, AuthTag y Ciphertext');
 
-    // 3. Comprobar que en GET /api/business/:businessId el token secreto no se expone a clientes
+    // 3. Comprobar que en GET /api/business/:businessId las credenciales no se exponen a clientes
     const getBizRes = await fetch(`${BASE_URL}/api/business/${ownedBusinessId}`);
     assert.equal(getBizRes.status, 200);
     const getBizJson = await getBizRes.json();
     assert.equal(getBizJson.data.whatsappAccessToken, undefined, 'El token secreto debe estar eliminado de la respuesta JSON');
+    assert.equal(getBizJson.data.whatsappAppSecret, undefined, 'El App Secret debe estar eliminado de la respuesta JSON');
     assert.equal(getBizJson.data.hasAccessToken, true);
+    assert.equal(getBizJson.data.hasAppSecret, true);
     assert.ok(getBizJson.data.whatsappAccessTokenMasked.includes('••••••••'));
   });
 
@@ -883,7 +950,9 @@ async function runTests() {
     assert.equal(statusJson.count, 1);
 
     // Verificar en el historial de la conversación que el estado se actualizó
-    const convRes = await fetch(`${BASE_URL}/api/conversations/${testBusinessId}/5491199001122`);
+    const convRes = await fetch(`${BASE_URL}/api/conversations/${testBusinessId}/5491199001122`, {
+      headers: { 'Authorization': `Bearer ${testUserToken}` }
+    });
     assert.equal(convRes.status, 200);
     const convJson = await convRes.json();
     const foundMsg = convJson.data.messages.find(m => m.metaMessageId === statusWamid);
@@ -946,6 +1015,38 @@ async function runTests() {
     assert.equal(globalJson.success, true);
     assert.equal(globalJson.tenant.businessId, ownedBusinessId, 'Debe resolver automáticamente el tenant mediante phone_number_id');
     assert.equal(globalJson.customer.name, 'Mariana López');
+  });
+
+  // 35. Seguridad y Producción: Validación Estricta de ENCRYPTION_KEY en NODE_ENV=production
+  await test('Seguridad en Producción - Fallo fatal al arrancar si falta ENCRYPTION_KEY en producción', async () => {
+    const { EncryptionService } = await import('../src/services/encryption.service.js');
+    const oldEnv = process.env.NODE_ENV;
+    const oldKey = process.env.ENCRYPTION_KEY;
+
+    try {
+      process.env.NODE_ENV = 'production';
+      delete process.env.ENCRYPTION_KEY;
+
+      assert.throws(
+        () => new EncryptionService(),
+        /FATAL: En entorno de producción \(NODE_ENV=production\), la variable ENCRYPTION_KEY es estrictamente obligatoria/,
+        'Debe lanzar error fatal de arranque si no hay ENCRYPTION_KEY en producción'
+      );
+
+      process.env.ENCRYPTION_KEY = 'clave_corta_insegura_123';
+      assert.throws(
+        () => new EncryptionService(),
+        /FATAL: En entorno de producción \(NODE_ENV=production\), la variable ENCRYPTION_KEY es estrictamente obligatoria y debe contar con un mínimo de 32 caracteres/,
+        'Debe rechazar claves de menos de 32 caracteres en producción'
+      );
+    } finally {
+      process.env.NODE_ENV = oldEnv;
+      if (oldKey !== undefined) {
+        process.env.ENCRYPTION_KEY = oldKey;
+      } else {
+        delete process.env.ENCRYPTION_KEY;
+      }
+    }
   });
 
   console.log('\n================================================================');

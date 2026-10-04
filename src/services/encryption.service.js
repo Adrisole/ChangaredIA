@@ -10,13 +10,22 @@ export class EncryptionService {
     this.algorithm = 'aes-256-gcm';
     this.prefix = 'enc:v1:';
 
-    // Clave de bóveda maestra para cifrado de credenciales
-    const masterSecret =
-      process.env.ENCRYPTION_KEY ||
-      process.env.JWT_SECRET ||
-      'changared_master_vault_key_2026_super_secure';
+    const isProduction = process.env.NODE_ENV === 'production';
+    const masterSecret = process.env.ENCRYPTION_KEY;
 
-    this.key = crypto.createHash('sha256').update(masterSecret).digest();
+    if (isProduction && (!masterSecret || masterSecret.trim().length < 32)) {
+      throw new Error(
+        'FATAL: En entorno de producción (NODE_ENV=production), la variable ENCRYPTION_KEY es estrictamente obligatoria y debe contar con un mínimo de 32 caracteres (256 bits). El servidor no puede iniciar con una clave insegura por defecto.'
+      );
+    }
+
+    // Clave de bóveda maestra para cifrado de credenciales (en dev/test usa clave local si no está en .env)
+    const effectiveSecret =
+      masterSecret ||
+      process.env.JWT_SECRET ||
+      'changared_dev_fallback_key_2026_test_only!';
+
+    this.key = crypto.createHash('sha256').update(effectiveSecret).digest();
   }
 
   /**

@@ -1,12 +1,251 @@
 [
   {
+    "id": "negocio-privado-1791155643241_5491177665544",
+    "businessId": "negocio-privado-1791155643241",
+    "customerPhone": "5491177665544",
+    "customerName": "Mariana López",
+    "status": "ai_active",
+    "lastMessageText": "¡Hola! Te estás comunicando con el asistente de Tienda Privada Autorizada. ¿En qué podemos ayudarte hoy?",
+    "lastMessageAt": "2026-10-04T23:14:04.999Z",
+    "unreadCount": 0,
+    "messages": [
+      {
+        "id": "msg_1791155644660_cbsn",
+        "sender": "customer",
+        "text": "Hola, consulto por atención y turnos",
+        "timestamp": "2026-10-04T23:14:04.660Z",
+        "metaMessageId": "wamid_global_1791155644649",
+        "simulated": false,
+        "status": "received",
+        "deliveryStatus": "sent"
+      },
+      {
+        "id": "msg_1791155644999_2kq2",
+        "sender": "ai",
+        "text": "¡Hola! Te estás comunicando con el asistente de Tienda Privada Autorizada. ¿En qué podemos ayudarte hoy?",
+        "timestamp": "2026-10-04T23:14:04.999Z",
+        "metaMessageId": "meta_err_1791155644991",
+        "simulated": false,
+        "status": "sent",
+        "deliveryStatus": "sent"
+      }
+    ],
+    "createdAt": "2026-10-04T23:14:04.656Z",
+    "updatedAt": "2026-10-04T23:14:04.999Z"
+  },
+  {
+    "id": "negocio-privado-1791155643241_5491155667788",
+    "businessId": "negocio-privado-1791155643241",
+    "customerPhone": "5491155667788",
+    "customerName": "+5491155667788",
+    "status": "ai_active",
+    "lastMessageText": "¡Hola! 📅 Con gusto te agendamos en Tienda Privada Autorizada. Tenemos disponibilidad en tiempo real sincronizada con Google Calendar. ¿Para qué día y en qué horario preferís tu cita? (Se confirma automáticamente con una seña mediante Mercado Pago).",
+    "lastMessageAt": "2026-10-04T23:14:04.554Z",
+    "unreadCount": 0,
+    "messages": [
+      {
+        "id": "msg_1791155643623_m9vc",
+        "sender": "customer",
+        "text": "Hola, consulta de seguridad con firma criptográfica Meta",
+        "timestamp": "2026-10-04T23:14:03.623Z",
+        "metaMessageId": "",
+        "simulated": false,
+        "status": "received",
+        "deliveryStatus": "sent"
+      },
+      {
+        "id": "msg_1791155644554_t3vu",
+        "sender": "ai",
+        "text": "¡Hola! 📅 Con gusto te agendamos en Tienda Privada Autorizada. Tenemos disponibilidad en tiempo real sincronizada con Google Calendar. ¿Para qué día y en qué horario preferís tu cita? (Se confirma automáticamente con una seña mediante Mercado Pago).",
+        "timestamp": "2026-10-04T23:14:04.554Z",
+        "metaMessageId": "meta_err_1791155644550",
+        "simulated": false,
+        "status": "sent",
+        "deliveryStatus": "sent"
+      }
+    ],
+    "createdAt": "2026-10-04T23:14:03.618Z",
+    "updatedAt": "2026-10-04T23:14:04.554Z"
+  },
+  {
+    "id": "negocio-privado-1791154225857_5491177665544",
+    "businessId": "negocio-privado-1791154225857",
+    "customerPhone": "5491177665544",
+    "customerName": "Mariana López",
+    "status": "ai_active",
+    "lastMessageText": "¡Hola! Te estás comunicando con el asistente de Tienda Privada Autorizada. ¿En qué podemos ayudarte hoy?",
+    "lastMessageAt": "2026-10-04T22:50:27.352Z",
+    "unreadCount": 0,
+    "messages": [
+      {
+        "id": "msg_1791154227024_jcxt",
+        "sender": "customer",
+        "text": "Hola, consulto por atención y turnos",
+        "timestamp": "2026-10-04T22:50:27.024Z",
+        "metaMessageId": "wamid_global_1791154227013",
+        "simulated": false,
+        "status": "received"
+      },
+      {
+        "id": "msg_1791154227352_7pre",
+        "sender": "ai",
+        "text": "¡Hola! Te estás comunicando con el asistente de Tienda Privada Autorizada. ¿En qué podemos ayudarte hoy?",
+        "timestamp": "2026-10-04T22:50:27.352Z",
+        "metaMessageId": "meta_err_1791154227349",
+        "simulated": false,
+        "status": "sent"
+      }
+    ],
+    "createdAt": "2026-10-04T22:50:27.019Z",
+    "updatedAt": "2026-10-04T22:50:27.354Z"
+  },
+  {
+    "id": "clinica-dental-test_5491199001122",
+    "businessId": "clinica-dental-test",
+    "customerPhone": "5491199001122",
+    "customerName": "+5491199001122",
+    "status": "ai_active",
+    "lastMessageText": "¡Hola! Te estás comunicando con el asistente de Centro Odontológico Dental Test. ¿En qué podemos ayudarte hoy?",
+    "lastMessageAt": "2026-10-04T23:14:04.607Z",
+    "unreadCount": 0,
+    "messages": [
+      {
+        "id": "msg_1791154226978_j43x",
+        "sender": "customer",
+        "text": "Mensaje para rastreo de estado de entrega",
+        "timestamp": "2026-10-04T22:50:26.978Z",
+        "metaMessageId": "wamid_status_track_1791154226968",
+        "simulated": false,
+        "status": "received",
+        "deliveryStatus": "delivered",
+        "statusTimestamp": "2026-10-04T22:50:26.000Z"
+      },
+      {
+        "id": "msg_1791154226982_9bve",
+        "sender": "ai",
+        "text": "¡Hola! Te estás comunicando con el asistente de Centro Odontológico Dental Test. ¿En qué podemos ayudarte hoy?",
+        "timestamp": "2026-10-04T22:50:26.982Z",
+        "metaMessageId": "sim_1791154226980_vfqpq",
+        "simulated": true,
+        "status": "sent"
+      },
+      {
+        "id": "msg_1791155644600_74nw",
+        "sender": "customer",
+        "text": "Mensaje para rastreo de estado de entrega",
+        "timestamp": "2026-10-04T23:14:04.600Z",
+        "metaMessageId": "wamid_status_track_1791155644592",
+        "simulated": false,
+        "status": "received",
+        "deliveryStatus": "delivered",
+        "statusTimestamp": "2026-10-04T23:14:04.000Z"
+      },
+      {
+        "id": "msg_1791155644607_5o2j",
+        "sender": "ai",
+        "text": "¡Hola! Te estás comunicando con el asistente de Centro Odontológico Dental Test. ¿En qué podemos ayudarte hoy?",
+        "timestamp": "2026-10-04T23:14:04.607Z",
+        "metaMessageId": "sim_1791155644605_n2e6e",
+        "simulated": true,
+        "status": "sent",
+        "deliveryStatus": "sent"
+      }
+    ],
+    "createdAt": "2026-10-04T22:50:26.973Z",
+    "updatedAt": "2026-10-04T23:14:04.632Z"
+  },
+  {
+    "id": "clinica-dental-test_5491188776655",
+    "businessId": "clinica-dental-test",
+    "customerPhone": "5491188776655",
+    "customerName": "Cliente Deduplicado",
+    "status": "ai_active",
+    "lastMessageText": "¡Hola! 📅 Con gusto te agendamos en Centro Odontológico Dental Test. Tenemos disponibilidad en tiempo real sincronizada con Google Calendar. ¿Para qué día y en qué horario preferís tu cita? (Se confirma automáticamente con una seña mediante Mercado Pago).",
+    "lastMessageAt": "2026-10-04T23:14:04.583Z",
+    "unreadCount": 0,
+    "messages": [
+      {
+        "id": "msg_1791154226954_xvac",
+        "sender": "customer",
+        "text": "Consulta sobre precios y turnos",
+        "timestamp": "2026-10-04T22:50:26.954Z",
+        "metaMessageId": "wamid_dedup_test_1791154226944",
+        "simulated": false,
+        "status": "received"
+      },
+      {
+        "id": "msg_1791154226958_ftct",
+        "sender": "ai",
+        "text": "¡Hola! 📅 Con gusto te agendamos en Centro Odontológico Dental Test. Tenemos disponibilidad en tiempo real sincronizada con Google Calendar. ¿Para qué día y en qué horario preferís tu cita? (Se confirma automáticamente con una seña mediante Mercado Pago).",
+        "timestamp": "2026-10-04T22:50:26.958Z",
+        "metaMessageId": "sim_1791154226957_71qa3",
+        "simulated": true,
+        "status": "sent"
+      },
+      {
+        "id": "msg_1791155644575_3h5j",
+        "sender": "customer",
+        "text": "Consulta sobre precios y turnos",
+        "timestamp": "2026-10-04T23:14:04.575Z",
+        "metaMessageId": "wamid_dedup_test_1791155644561",
+        "simulated": false,
+        "status": "received",
+        "deliveryStatus": "sent"
+      },
+      {
+        "id": "msg_1791155644583_e9v1",
+        "sender": "ai",
+        "text": "¡Hola! 📅 Con gusto te agendamos en Centro Odontológico Dental Test. Tenemos disponibilidad en tiempo real sincronizada con Google Calendar. ¿Para qué día y en qué horario preferís tu cita? (Se confirma automáticamente con una seña mediante Mercado Pago).",
+        "timestamp": "2026-10-04T23:14:04.583Z",
+        "metaMessageId": "sim_1791155644580_6wbsy",
+        "simulated": true,
+        "status": "sent",
+        "deliveryStatus": "sent"
+      }
+    ],
+    "createdAt": "2026-10-04T22:50:26.950Z",
+    "updatedAt": "2026-10-04T23:14:04.583Z"
+  },
+  {
+    "id": "negocio-privado-1791154225857_5491155667788",
+    "businessId": "negocio-privado-1791154225857",
+    "customerPhone": "5491155667788",
+    "customerName": "+5491155667788",
+    "status": "ai_active",
+    "lastMessageText": "¡Hola! 📅 Con gusto te agendamos en Tienda Privada Autorizada. Tenemos disponibilidad en tiempo real sincronizada con Google Calendar. ¿Para qué día y en qué horario preferís tu cita? (Se confirma automáticamente con una seña mediante Mercado Pago).",
+    "lastMessageAt": "2026-10-04T22:50:26.940Z",
+    "unreadCount": 0,
+    "messages": [
+      {
+        "id": "msg_1791154226135_va4x",
+        "sender": "customer",
+        "text": "Hola, consulta de seguridad con firma criptográfica Meta",
+        "timestamp": "2026-10-04T22:50:26.135Z",
+        "metaMessageId": "",
+        "simulated": false,
+        "status": "received"
+      },
+      {
+        "id": "msg_1791154226940_v2up",
+        "sender": "ai",
+        "text": "¡Hola! 📅 Con gusto te agendamos en Tienda Privada Autorizada. Tenemos disponibilidad en tiempo real sincronizada con Google Calendar. ¿Para qué día y en qué horario preferís tu cita? (Se confirma automáticamente con una seña mediante Mercado Pago).",
+        "timestamp": "2026-10-04T22:50:26.940Z",
+        "metaMessageId": "meta_err_1791154226938",
+        "simulated": false,
+        "status": "sent"
+      }
+    ],
+    "createdAt": "2026-10-04T22:50:26.132Z",
+    "updatedAt": "2026-10-04T22:50:26.941Z"
+  },
+  {
     "id": "clinica-dental-test_5491155443322",
     "businessId": "clinica-dental-test",
     "customerPhone": "5491155443322",
     "customerName": "Carlos Gomez",
     "status": "ai_active",
     "lastMessageText": "Hola Carlos, soy el Dr. Ramos. Te respondo personalmente.",
-    "lastMessageAt": "2026-10-04T20:00:13.491Z",
+    "lastMessageAt": "2026-10-04T23:14:03.351Z",
     "unreadCount": 0,
     "messages": [
       {
@@ -170,10 +409,86 @@
         "metaMessageId": "sim_1791144013483_o349d",
         "simulated": true,
         "status": "sent"
+      },
+      {
+        "id": "msg_1791154225892_77qk",
+        "sender": "customer",
+        "text": "Hola! Quiero consultar los horarios de atención.",
+        "timestamp": "2026-10-04T22:50:25.892Z",
+        "metaMessageId": "",
+        "simulated": false,
+        "status": "received"
+      },
+      {
+        "id": "msg_1791154225898_9fd3",
+        "sender": "ai",
+        "text": "¡Hola! Te cuento sobre nuestro servicio en Centro Odontológico Dental Test: Consultorio dental privado especializado en ortodoncia, implantes y estética. Horario de atención: 09:00 a 19:00 hs.. ¡Cualquier duda acá estamos!",
+        "timestamp": "2026-10-04T22:50:25.898Z",
+        "metaMessageId": "sim_1791154225896_iex0l",
+        "simulated": true,
+        "status": "sent"
+      },
+      {
+        "id": "msg_1791154225932_mhz3",
+        "sender": "customer",
+        "text": "Hola? Hay alguien ahí?",
+        "timestamp": "2026-10-04T22:50:25.932Z",
+        "metaMessageId": "",
+        "simulated": false,
+        "status": "received"
+      },
+      {
+        "id": "msg_1791154225944_yz1p",
+        "sender": "human",
+        "text": "Hola Carlos, soy el Dr. Ramos. Te respondo personalmente.",
+        "timestamp": "2026-10-04T22:50:25.944Z",
+        "metaMessageId": "sim_1791154225939_ch8e5",
+        "simulated": true,
+        "status": "sent"
+      },
+      {
+        "id": "msg_1791155643279_1fjr",
+        "sender": "customer",
+        "text": "Hola! Quiero consultar los horarios de atención.",
+        "timestamp": "2026-10-04T23:14:03.279Z",
+        "metaMessageId": "",
+        "simulated": false,
+        "status": "received",
+        "deliveryStatus": "sent"
+      },
+      {
+        "id": "msg_1791155643285_fbg4",
+        "sender": "ai",
+        "text": "¡Hola! Te cuento sobre nuestro servicio en Centro Odontológico Dental Test: Consultorio dental privado especializado en ortodoncia, implantes y estética. Horario de atención: 09:00 a 19:00 hs.. ¡Cualquier duda acá estamos!",
+        "timestamp": "2026-10-04T23:14:03.285Z",
+        "metaMessageId": "sim_1791155643282_93hbs",
+        "simulated": true,
+        "status": "sent",
+        "deliveryStatus": "sent"
+      },
+      {
+        "id": "msg_1791155643333_0gg5",
+        "sender": "customer",
+        "text": "Hola? Hay alguien ahí?",
+        "timestamp": "2026-10-04T23:14:03.333Z",
+        "metaMessageId": "",
+        "simulated": false,
+        "status": "received",
+        "deliveryStatus": "sent"
+      },
+      {
+        "id": "msg_1791155643351_0crv",
+        "sender": "human",
+        "text": "Hola Carlos, soy el Dr. Ramos. Te respondo personalmente.",
+        "timestamp": "2026-10-04T23:14:03.351Z",
+        "metaMessageId": "sim_1791155643343_8gbki",
+        "simulated": true,
+        "status": "sent",
+        "deliveryStatus": "sent"
       }
     ],
     "createdAt": "2026-10-04T19:55:08.674Z",
-    "updatedAt": "2026-10-04T20:00:13.502Z"
+    "updatedAt": "2026-10-04T23:14:03.362Z"
   },
   {
     "id": "clinica-dental-test_551199887766",
@@ -182,7 +497,7 @@
     "customerName": "+551199887766",
     "status": "ai_active",
     "lastMessageText": "¡Hola! 📅 Con gusto te agendamos en Centro Odontológico Dental Test. Tenemos disponibilidad en tiempo real sincronizada con Google Calendar. ¿Para qué día y en qué horario preferís tu cita? (Se confirma automáticamente con una seña mediante Mercado Pago).",
-    "lastMessageAt": "2026-10-04T20:00:13.023Z",
+    "lastMessageAt": "2026-10-04T23:14:03.014Z",
     "unreadCount": 0,
     "messages": [
       {
@@ -274,10 +589,48 @@
         "metaMessageId": "sim_1791144013020_jvvse",
         "simulated": true,
         "status": "sent"
+      },
+      {
+        "id": "msg_1791154225650_xbs7",
+        "sender": "customer",
+        "text": "Olá, gostaria de agendar um horário para uma consulta",
+        "timestamp": "2026-10-04T22:50:25.650Z",
+        "metaMessageId": "",
+        "simulated": false,
+        "status": "received"
+      },
+      {
+        "id": "msg_1791154225654_ytc7",
+        "sender": "ai",
+        "text": "¡Hola! 📅 Con gusto te agendamos en Centro Odontológico Dental Test. Tenemos disponibilidad en tiempo real sincronizada con Google Calendar. ¿Para qué día y en qué horario preferís tu cita? (Se confirma automáticamente con una seña mediante Mercado Pago).",
+        "timestamp": "2026-10-04T22:50:25.654Z",
+        "metaMessageId": "sim_1791154225653_ksptx",
+        "simulated": true,
+        "status": "sent"
+      },
+      {
+        "id": "msg_1791155643008_5qes",
+        "sender": "customer",
+        "text": "Olá, gostaria de agendar um horário para uma consulta",
+        "timestamp": "2026-10-04T23:14:03.008Z",
+        "metaMessageId": "",
+        "simulated": false,
+        "status": "received",
+        "deliveryStatus": "sent"
+      },
+      {
+        "id": "msg_1791155643014_2fog",
+        "sender": "ai",
+        "text": "¡Hola! 📅 Con gusto te agendamos en Centro Odontológico Dental Test. Tenemos disponibilidad en tiempo real sincronizada con Google Calendar. ¿Para qué día y en qué horario preferís tu cita? (Se confirma automáticamente con una seña mediante Mercado Pago).",
+        "timestamp": "2026-10-04T23:14:03.014Z",
+        "metaMessageId": "sim_1791155643012_q75kz",
+        "simulated": true,
+        "status": "sent",
+        "deliveryStatus": "sent"
       }
     ],
     "createdAt": "2026-10-04T19:44:27.493Z",
-    "updatedAt": "2026-10-04T20:00:13.026Z"
+    "updatedAt": "2026-10-04T23:14:03.014Z"
   },
   {
     "id": "clinica-dental-test_13055551234",
@@ -286,7 +639,7 @@
     "customerName": "+13055551234",
     "status": "ai_active",
     "lastMessageText": "Hello! 📅 We would be glad to schedule your appointment at Centro Odontológico Dental Test. We sync directly with Google Calendar. Which date and time work best for you?",
-    "lastMessageAt": "2026-10-04T20:00:12.996Z",
+    "lastMessageAt": "2026-10-04T23:14:02.995Z",
     "unreadCount": 0,
     "messages": [
       {
@@ -378,10 +731,48 @@
         "metaMessageId": "sim_1791144012993_56bly",
         "simulated": true,
         "status": "sent"
+      },
+      {
+        "id": "msg_1791154225634_v9fe",
+        "sender": "customer",
+        "text": "Hello, I want to book an appointment for dental cleaning next Friday",
+        "timestamp": "2026-10-04T22:50:25.634Z",
+        "metaMessageId": "",
+        "simulated": false,
+        "status": "received"
+      },
+      {
+        "id": "msg_1791154225639_pevm",
+        "sender": "ai",
+        "text": "Hello! 📅 We would be glad to schedule your appointment at Centro Odontológico Dental Test. We sync directly with Google Calendar. Which date and time work best for you?",
+        "timestamp": "2026-10-04T22:50:25.639Z",
+        "metaMessageId": "sim_1791154225637_jedyt",
+        "simulated": true,
+        "status": "sent"
+      },
+      {
+        "id": "msg_1791155642991_4p6i",
+        "sender": "customer",
+        "text": "Hello, I want to book an appointment for dental cleaning next Friday",
+        "timestamp": "2026-10-04T23:14:02.991Z",
+        "metaMessageId": "",
+        "simulated": false,
+        "status": "received",
+        "deliveryStatus": "sent"
+      },
+      {
+        "id": "msg_1791155642995_c6ib",
+        "sender": "ai",
+        "text": "Hello! 📅 We would be glad to schedule your appointment at Centro Odontológico Dental Test. We sync directly with Google Calendar. Which date and time work best for you?",
+        "timestamp": "2026-10-04T23:14:02.995Z",
+        "metaMessageId": "sim_1791155642993_l29f5",
+        "simulated": true,
+        "status": "sent",
+        "deliveryStatus": "sent"
       }
     ],
     "createdAt": "2026-10-04T19:44:27.466Z",
-    "updatedAt": "2026-10-04T20:00:12.999Z"
+    "updatedAt": "2026-10-04T23:14:02.995Z"
   },
   {
     "id": "clinica-dental-test_5491177889900",
@@ -390,7 +781,7 @@
     "customerName": "+5491177889900",
     "status": "ai_active",
     "lastMessageText": "¡Hola! Te contactamos desde administración de Centro Odontológico Dental Test. Podés regularizar o abonar mediante Mercado Pago o transferencia al alias oficial: **pagos.miempresa.mp**. ¿Te gustaría que te enviemos el link de pago directo en este momento?",
-    "lastMessageAt": "2026-10-04T20:00:12.973Z",
+    "lastMessageAt": "2026-10-04T23:14:02.976Z",
     "unreadCount": 0,
     "messages": [
       {
@@ -482,10 +873,48 @@
         "metaMessageId": "sim_1791144012971_x1aej",
         "simulated": true,
         "status": "sent"
+      },
+      {
+        "id": "msg_1791154225616_rrjy",
+        "sender": "customer",
+        "text": "Hola, tengo una cuota o saldo pendiente de pagar, me mandan el link de pago o alias?",
+        "timestamp": "2026-10-04T22:50:25.616Z",
+        "metaMessageId": "",
+        "simulated": false,
+        "status": "received"
+      },
+      {
+        "id": "msg_1791154225621_jmr3",
+        "sender": "ai",
+        "text": "¡Hola! Te contactamos desde administración de Centro Odontológico Dental Test. Podés regularizar o abonar mediante Mercado Pago o transferencia al alias oficial: **pagos.miempresa.mp**. ¿Te gustaría que te enviemos el link de pago directo en este momento?",
+        "timestamp": "2026-10-04T22:50:25.621Z",
+        "metaMessageId": "sim_1791154225619_qr9vt",
+        "simulated": true,
+        "status": "sent"
+      },
+      {
+        "id": "msg_1791155642972_jmq3",
+        "sender": "customer",
+        "text": "Hola, tengo una cuota o saldo pendiente de pagar, me mandan el link de pago o alias?",
+        "timestamp": "2026-10-04T23:14:02.972Z",
+        "metaMessageId": "",
+        "simulated": false,
+        "status": "received",
+        "deliveryStatus": "sent"
+      },
+      {
+        "id": "msg_1791155642976_e10w",
+        "sender": "ai",
+        "text": "¡Hola! Te contactamos desde administración de Centro Odontológico Dental Test. Podés regularizar o abonar mediante Mercado Pago o transferencia al alias oficial: **pagos.miempresa.mp**. ¿Te gustaría que te enviemos el link de pago directo en este momento?",
+        "timestamp": "2026-10-04T23:14:02.976Z",
+        "metaMessageId": "sim_1791155642975_q6vpw",
+        "simulated": true,
+        "status": "sent",
+        "deliveryStatus": "sent"
       }
     ],
     "createdAt": "2026-10-04T19:44:27.440Z",
-    "updatedAt": "2026-10-04T20:00:12.975Z"
+    "updatedAt": "2026-10-04T23:14:02.976Z"
   },
   {
     "id": "clinica-dental-test_5491144556677",
@@ -494,7 +923,7 @@
     "customerName": "+5491144556677",
     "status": "ai_active",
     "lastMessageText": "¡Hola! 📅 Con gusto te agendamos en Centro Odontológico Dental Test. Tenemos disponibilidad en tiempo real sincronizada con Google Calendar. ¿Para qué día y en qué horario preferís tu cita? (Se confirma automáticamente con una seña mediante Mercado Pago).",
-    "lastMessageAt": "2026-10-04T20:00:12.949Z",
+    "lastMessageAt": "2026-10-04T23:14:02.957Z",
     "unreadCount": 0,
     "messages": [
       {
@@ -586,10 +1015,48 @@
         "metaMessageId": "sim_1791144012946_fvhtm",
         "simulated": true,
         "status": "sent"
+      },
+      {
+        "id": "msg_1791154225599_ed65",
+        "sender": "customer",
+        "text": "Hola! Quiero agendar un turno para consulta esta semana",
+        "timestamp": "2026-10-04T22:50:25.599Z",
+        "metaMessageId": "",
+        "simulated": false,
+        "status": "received"
+      },
+      {
+        "id": "msg_1791154225604_pppj",
+        "sender": "ai",
+        "text": "¡Hola! 📅 Con gusto te agendamos en Centro Odontológico Dental Test. Tenemos disponibilidad en tiempo real sincronizada con Google Calendar. ¿Para qué día y en qué horario preferís tu cita? (Se confirma automáticamente con una seña mediante Mercado Pago).",
+        "timestamp": "2026-10-04T22:50:25.604Z",
+        "metaMessageId": "sim_1791154225602_nouy0",
+        "simulated": true,
+        "status": "sent"
+      },
+      {
+        "id": "msg_1791155642952_c2oc",
+        "sender": "customer",
+        "text": "Hola! Quiero agendar un turno para consulta esta semana",
+        "timestamp": "2026-10-04T23:14:02.952Z",
+        "metaMessageId": "",
+        "simulated": false,
+        "status": "received",
+        "deliveryStatus": "sent"
+      },
+      {
+        "id": "msg_1791155642957_ewuy",
+        "sender": "ai",
+        "text": "¡Hola! 📅 Con gusto te agendamos en Centro Odontológico Dental Test. Tenemos disponibilidad en tiempo real sincronizada con Google Calendar. ¿Para qué día y en qué horario preferís tu cita? (Se confirma automáticamente con una seña mediante Mercado Pago).",
+        "timestamp": "2026-10-04T23:14:02.957Z",
+        "metaMessageId": "sim_1791155642955_d4vug",
+        "simulated": true,
+        "status": "sent",
+        "deliveryStatus": "sent"
       }
     ],
     "createdAt": "2026-10-04T19:44:27.413Z",
-    "updatedAt": "2026-10-04T20:00:12.952Z"
+    "updatedAt": "2026-10-04T23:14:02.957Z"
   },
   {
     "id": "clinica-dental-test_5491122334455",
@@ -598,7 +1065,7 @@
     "customerName": "+5491122334455",
     "status": "ai_active",
     "lastMessageText": "¡Hola! Mil disculpas, pero en este momento Blanqueamiento Láser se encuentra agotado o sin disponibilidad de turno. ¿Te gustaría consultar alguna de nuestras otras opciones disponibles en Centro Odontológico Dental Test?",
-    "lastMessageAt": "2026-10-04T20:00:12.920Z",
+    "lastMessageAt": "2026-10-04T23:14:02.939Z",
     "unreadCount": 0,
     "messages": [
       {
@@ -780,9 +1247,85 @@
         "metaMessageId": "sim_1791144012918_huthv",
         "simulated": true,
         "status": "sent"
+      },
+      {
+        "id": "msg_1791154225565_oxmk",
+        "sender": "customer",
+        "text": "Hola, qué servicios tienen y cuánto sale la limpieza dental?",
+        "timestamp": "2026-10-04T22:50:25.565Z",
+        "metaMessageId": "",
+        "simulated": false,
+        "status": "received"
+      },
+      {
+        "id": "msg_1791154225570_u1ll",
+        "sender": "ai",
+        "text": "¡Hola! Con gusto te paso lo que tenemos disponible en Centro Odontológico Dental Test:\n\n• Limpieza Dental y Profilaxis: $15000 (20 disponibles)\n• Consulta Diagnóstico General: $8000 (30 disponibles)\n\n¿Te gustaría encargar alguno o hacer tu reserva? 😊",
+        "timestamp": "2026-10-04T22:50:25.570Z",
+        "metaMessageId": "sim_1791154225568_0rhxa",
+        "simulated": true,
+        "status": "sent"
+      },
+      {
+        "id": "msg_1791154225583_c0ss",
+        "sender": "customer",
+        "text": "Hola, tienen disponibilidad para blanqueamiento láser?",
+        "timestamp": "2026-10-04T22:50:25.583Z",
+        "metaMessageId": "",
+        "simulated": false,
+        "status": "received"
+      },
+      {
+        "id": "msg_1791154225587_6c4l",
+        "sender": "ai",
+        "text": "¡Hola! Mil disculpas, pero en este momento Blanqueamiento Láser se encuentra agotado o sin disponibilidad de turno. ¿Te gustaría consultar alguna de nuestras otras opciones disponibles en Centro Odontológico Dental Test?",
+        "timestamp": "2026-10-04T22:50:25.587Z",
+        "metaMessageId": "sim_1791154225585_xw3hj",
+        "simulated": true,
+        "status": "sent"
+      },
+      {
+        "id": "msg_1791155642911_gpaw",
+        "sender": "customer",
+        "text": "Hola, qué servicios tienen y cuánto sale la limpieza dental?",
+        "timestamp": "2026-10-04T23:14:02.911Z",
+        "metaMessageId": "",
+        "simulated": false,
+        "status": "received",
+        "deliveryStatus": "sent"
+      },
+      {
+        "id": "msg_1791155642921_zlql",
+        "sender": "ai",
+        "text": "¡Hola! Con gusto te paso lo que tenemos disponible en Centro Odontológico Dental Test:\n\n• Limpieza Dental y Profilaxis: $15000 (20 disponibles)\n• Consulta Diagnóstico General: $8000 (30 disponibles)\n\n¿Te gustaría encargar alguno o hacer tu reserva? 😊",
+        "timestamp": "2026-10-04T23:14:02.921Z",
+        "metaMessageId": "sim_1791155642919_a5qzz",
+        "simulated": true,
+        "status": "sent",
+        "deliveryStatus": "sent"
+      },
+      {
+        "id": "msg_1791155642933_xrug",
+        "sender": "customer",
+        "text": "Hola, tienen disponibilidad para blanqueamiento láser?",
+        "timestamp": "2026-10-04T23:14:02.933Z",
+        "metaMessageId": "",
+        "simulated": false,
+        "status": "received",
+        "deliveryStatus": "sent"
+      },
+      {
+        "id": "msg_1791155642939_3aes",
+        "sender": "ai",
+        "text": "¡Hola! Mil disculpas, pero en este momento Blanqueamiento Láser se encuentra agotado o sin disponibilidad de turno. ¿Te gustaría consultar alguna de nuestras otras opciones disponibles en Centro Odontológico Dental Test?",
+        "timestamp": "2026-10-04T23:14:02.939Z",
+        "metaMessageId": "sim_1791155642937_eivds",
+        "simulated": true,
+        "status": "sent",
+        "deliveryStatus": "sent"
       }
     ],
     "createdAt": "2026-10-04T19:44:27.339Z",
-    "updatedAt": "2026-10-04T20:00:12.923Z"
+    "updatedAt": "2026-10-04T23:14:02.939Z"
   }
 ]

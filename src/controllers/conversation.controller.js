@@ -6,10 +6,10 @@ import { whatsappService } from '../services/whatsapp.service.js';
  * Controlador de Gestión de Conversaciones y Bandeja Inbox con Control Humano.
  */
 
-export const listConversations = (req, res, next) => {
+export const listConversations = async (req, res, next) => {
   try {
     const { businessId } = req.params;
-    const conversations = conversationRepository.findByBusinessId(businessId);
+    const conversations = await conversationRepository.findByBusinessId(businessId);
 
     res.status(200).json({
       success: true,
@@ -21,10 +21,10 @@ export const listConversations = (req, res, next) => {
   }
 };
 
-export const getConversation = (req, res, next) => {
+export const getConversation = async (req, res, next) => {
   try {
     const { businessId, customerPhone } = req.params;
-    const conversation = conversationRepository.findByCustomer(businessId, customerPhone);
+    const conversation = await conversationRepository.findByCustomer(businessId, customerPhone);
 
     if (!conversation) {
       return res.status(404).json({
@@ -35,7 +35,7 @@ export const getConversation = (req, res, next) => {
     }
 
     // Marcar como leídos los mensajes si los abre el operador
-    conversationRepository.markAsRead(businessId, customerPhone);
+    await conversationRepository.markAsRead(businessId, customerPhone);
 
     res.status(200).json({
       success: true,
@@ -46,12 +46,12 @@ export const getConversation = (req, res, next) => {
   }
 };
 
-export const toggleAiStatus = (req, res, next) => {
+export const toggleAiStatus = async (req, res, next) => {
   try {
     const { businessId, customerPhone } = req.params;
     const { status } = req.body;
 
-    const current = conversationRepository.findByCustomer(businessId, customerPhone);
+    const current = await conversationRepository.findByCustomer(businessId, customerPhone);
     let nextStatus = status;
 
     if (!nextStatus) {
@@ -66,7 +66,7 @@ export const toggleAiStatus = (req, res, next) => {
       });
     }
 
-    const updated = conversationRepository.setStatus(businessId, customerPhone, nextStatus);
+    const updated = await conversationRepository.setStatus(businessId, customerPhone, nextStatus);
 
     res.status(200).json({
       success: true,
@@ -93,7 +93,7 @@ export const sendHumanMessage = async (req, res, next) => {
       });
     }
 
-    const business = businessService.getBusinessById(businessId);
+    const business = await businessService.getBusinessById(businessId);
     if (!business) {
       return res.status(404).json({
         success: false,
@@ -110,10 +110,10 @@ export const sendHumanMessage = async (req, res, next) => {
     });
 
     // 2. Al responder un operador humano, silenciar automáticamente la IA para este chat
-    conversationRepository.setStatus(businessId, customerPhone, 'human_takeover');
+    await conversationRepository.setStatus(businessId, customerPhone, 'human_takeover');
 
     // 3. Registrar el mensaje humano en el historial
-    const updated = conversationRepository.addMessage({
+    const updated = await conversationRepository.addMessage({
       businessId,
       customerPhone,
       sender: 'human',

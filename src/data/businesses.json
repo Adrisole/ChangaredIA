@@ -137,16 +137,17 @@
     "activeEmployees": [
       "vendedor"
     ],
-    "ownerId": null,
+    "ownerId": "usr_muuftn95_5611a72f",
     "createdAt": "2026-10-04T19:40:55.336Z",
-    "updatedAt": "2026-10-04T20:00:13.518Z",
+    "updatedAt": "2026-10-04T23:14:03.383Z",
     "whatsappConnected": false,
     "whatsappPhoneNumberId": "",
     "whatsappAccessToken": "",
     "whatsappBusinessAccountId": "",
     "calendarConnected": false,
     "calendarEmail": "",
-    "driveFolder": ""
+    "driveFolder": "",
+    "whatsappAppSecret": ""
   },
   "negocio-privado-1791142855617": {
     "id": "negocio-privado-1791142855617",
@@ -326,5 +327,69 @@
     "driveFolder": "",
     "createdAt": "2026-10-04T20:00:13.377Z",
     "updatedAt": "2026-10-04T20:00:13.379Z"
+  },
+  "negocio-privado-1791154225857": {
+    "id": "negocio-privado-1791154225857",
+    "name": "Tienda Privada Autorizada",
+    "description": "Negocio con dominio oficial y dueño verificado.",
+    "rubro": "General",
+    "phone": "+54 9 11 3344-5566",
+    "email": "founder-1791154225700@testbusiness.com",
+    "hours": "",
+    "website": "",
+    "deposit": 5000,
+    "paymentMethod": "pagos.miempresa.mp",
+    "toneOfVoice": "amigable, respetuoso y dispuesto a ayudar",
+    "language": "Español",
+    "autoDetectLanguage": true,
+    "businessRules": [],
+    "catalog": [],
+    "services": [],
+    "activeEmployees": [
+      "vendedor"
+    ],
+    "ownerId": "usr_muuez9t4_e052748e",
+    "whatsappConnected": true,
+    "whatsappPhoneNumberId": "meta_pid_1791154227005",
+    "whatsappAccessToken": "enc:v1:7ba133dbc936f1df3e890f79:f3b120d1ba11f2fea14c0ff3bf2eecd0:bed3386d9cb2f7e4d8b17bd2a0168c87062472e244",
+    "whatsappAppSecret": "",
+    "whatsappBusinessAccountId": "",
+    "calendarConnected": false,
+    "calendarEmail": "",
+    "driveFolder": "",
+    "createdAt": "2026-10-04T22:50:25.861Z",
+    "updatedAt": "2026-10-04T22:50:27.011Z"
+  },
+  "negocio-privado-1791155643241": {
+    "id": "negocio-privado-1791155643241",
+    "name": "Tienda Privada Autorizada",
+    "description": "Negocio con dominio oficial y dueño verificado.",
+    "rubro": "General",
+    "phone": "+54 9 11 3344-5566",
+    "email": "founder-1791155642519@testbusiness.com",
+    "hours": "",
+    "website": "",
+    "deposit": 5000,
+    "paymentMethod": "pagos.miempresa.mp",
+    "toneOfVoice": "amigable, respetuoso y dispuesto a ayudar",
+    "language": "Español",
+    "autoDetectLanguage": true,
+    "businessRules": [],
+    "catalog": [],
+    "services": [],
+    "activeEmployees": [
+      "vendedor"
+    ],
+    "ownerId": "usr_muuftn95_5611a72f",
+    "whatsappConnected": true,
+    "whatsappPhoneNumberId": "meta_pid_1791155644640",
+    "whatsappAccessToken": "enc:v1:e9f0dc203f5f2c46a5fcb7c4:f9efb216f279520c219e7ef677fb575c:e142501429b50c837387f8c5dc6f628b0276543c12",
+    "whatsappAppSecret": "",
+    "whatsappBusinessAccountId": "",
+    "calendarConnected": false,
+    "calendarEmail": "",
+    "driveFolder": "",
+    "createdAt": "2026-10-04T23:14:03.246Z",
+    "updatedAt": "2026-10-04T23:14:04.646Z"
   }
 }

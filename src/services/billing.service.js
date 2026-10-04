@@ -35,8 +35,8 @@ export class BillingService {
   /**
    * Activa o actualiza la suscripción de un negocio tras confirmación de pago.
    */
-  activateSubscription({ businessId, planId, provider, currency, externalSubscriptionId }) {
-    const business = businessService.getBusinessById(businessId);
+  async activateSubscription({ businessId, planId, provider, currency, externalSubscriptionId }) {
+    const business = await businessService.getBusinessById(businessId);
     if (!business) {
       throw new Error(`Negocio '${businessId}' no encontrado para activar suscripción.`);
     }
@@ -64,7 +64,7 @@ export class BillingService {
       billing: updatedBilling,
     };
 
-    businessRepository.save(updatedBusiness);
+    await businessRepository.save(updatedBusiness);
     console.log(`[BillingService] Suscripción activada para [${business.name}]: Plan ${planConfig.name} (${currency} vía ${provider})`);
     return updatedBilling;
   }
@@ -72,8 +72,8 @@ export class BillingService {
   /**
    * Registra el consumo de un mensaje de WhatsApp y valida la cuota mensual.
    */
-  trackUsage(businessId) {
-    const business = businessService.getBusinessById(businessId);
+  async trackUsage(businessId) {
+    const business = await businessService.getBusinessById(businessId);
     if (!business) return false;
 
     if (!business.billing) {
@@ -87,12 +87,12 @@ export class BillingService {
     }
 
     business.billing.quota.conversationsUsed = (business.billing.quota.conversationsUsed || 0) + 1;
-    businessRepository.save(business);
+    await businessRepository.save(business);
     return true;
   }
 
-  getBillingStatus(businessId) {
-    const business = businessService.getBusinessById(businessId);
+  async getBillingStatus(businessId) {
+    const business = await businessService.getBusinessById(businessId);
     if (!business) return null;
     return business.billing || null;
   }

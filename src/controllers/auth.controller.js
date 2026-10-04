@@ -1,8 +1,8 @@
 import { authService } from '../services/auth.service.js';
 
-export const register = (req, res, next) => {
+export const register = async (req, res, next) => {
   try {
-    const result = authService.register(req.body);
+    const result = await authService.register(req.body);
     res.status(201).json({
       success: true,
       ...result,
@@ -12,18 +12,18 @@ export const register = (req, res, next) => {
   }
 };
 
-export const verifyEmail = (req, res, next) => {
+export const verifyEmail = async (req, res, next) => {
   try {
-    const result = authService.verifyEmail(req.body);
+    const result = await authService.verifyEmail(req.body);
     res.status(200).json(result);
   } catch (err) {
     next(err);
   }
 };
 
-export const login = (req, res, next) => {
+export const login = async (req, res, next) => {
   try {
-    const result = authService.login(req.body);
+    const result = await authService.login(req.body);
     res.status(200).json({
       success: true,
       ...result,
@@ -33,7 +33,7 @@ export const login = (req, res, next) => {
   }
 };
 
-export const me = (req, res, next) => {
+export const me = async (req, res, next) => {
   try {
     if (!req.user) {
       return res.status(401).json({
@@ -43,7 +43,7 @@ export const me = (req, res, next) => {
       });
     }
 
-    const businesses = authService.getBusinessesForUser(req.user.id);
+    const businesses = await authService.getBusinessesForUser(req.user.id);
 
     res.status(200).json({
       success: true,
@@ -55,9 +55,9 @@ export const me = (req, res, next) => {
   }
 };
 
-export const logout = (req, res, next) => {
+export const logout = async (req, res, next) => {
   try {
-    const result = authService.logout(req.token);
+    const result = await authService.logout(req.token);
     res.status(200).json(result);
   } catch (err) {
     next(err);

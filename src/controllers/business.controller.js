@@ -3,10 +3,18 @@ import { businessService } from '../services/business.service.js';
 /**
  * Controlador de Onboarding y Administración de Negocios Multi-Tenant.
  */
-export const setupBusiness = (req, res, next) => {
+export const setupBusiness = async (req, res, next) => {
   try {
     const userId = req.user ? req.user.id : null;
-    const newBusiness = businessService.setupBusiness(req.body, userId);
+    if (!userId) {
+      return res.status(401).json({
+        success: false,
+        error: 'UNAUTHORIZED',
+        message: 'Debes iniciar sesión o registrar tu cuenta antes de crear un nuevo negocio.',
+      });
+    }
+
+    const newBusiness = await businessService.setupBusiness(req.body, userId);
 
     const baseUrl = `${req.protocol}://${req.get('host')}`;
     const webhookUrl = `${baseUrl}/api/webhook/${newBusiness.id}`;
@@ -28,10 +36,10 @@ export const setupBusiness = (req, res, next) => {
   }
 };
 
-export const listMyBusinesses = (req, res, next) => {
+export const listMyBusinesses = async (req, res, next) => {
   try {
     const userId = req.user.id;
-    const myBusinesses = businessService.getBusinessesByOwnerId(userId);
+    const myBusinesses = await businessService.getBusinessesByOwnerId(userId);
     res.status(200).json({
       success: true,
       count: myBusinesses.length,
@@ -42,10 +50,10 @@ export const listMyBusinesses = (req, res, next) => {
   }
 };
 
-export const getBusiness = (req, res, next) => {
+export const getBusiness = async (req, res, next) => {
   try {
     const { businessId } = req.params;
-    const business = businessService.getBusinessById(businessId);
+    const business = await businessService.getBusinessById(businessId);
 
     if (!business) {
       return res.status(404).json({
@@ -64,9 +72,9 @@ export const getBusiness = (req, res, next) => {
   }
 };
 
-export const listBusinesses = (req, res, next) => {
+export const listBusinesses = async (req, res, next) => {
   try {
-    const businesses = businessService.getAllBusinesses();
+    const businesses = await businessService.getAllBusinesses();
     res.status(200).json({
       success: true,
       count: businesses.length,
@@ -77,10 +85,10 @@ export const listBusinesses = (req, res, next) => {
   }
 };
 
-export const updateWhatsAppConfig = (req, res, next) => {
+export const updateWhatsAppConfig = async (req, res, next) => {
   try {
     const { businessId } = req.params;
-    const updated = businessService.updateWhatsAppConfig(businessId, req.body);
+    const updated = await businessService.updateWhatsAppConfig(businessId, req.body);
     const isConnected = Boolean(updated.whatsappConnected);
 
     res.status(200).json({
@@ -95,6 +103,7 @@ export const updateWhatsAppConfig = (req, res, next) => {
         phone: updated.phone,
         whatsappPhoneNumberId: updated.whatsappPhoneNumberId,
         hasAccessToken: Boolean(updated.whatsappAccessToken),
+        hasAppSecret: Boolean(updated.whatsappAppSecret),
         tokenConfigured: Boolean(updated.whatsappAccessToken),
         tokenEncrypted: true,
       },

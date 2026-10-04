@@ -13,8 +13,8 @@ import { config } from '../config/env.js';
 const apiRouter = Router();
 
 // Endpoint de diagnóstico rápido de Changared
-apiRouter.get('/status', (req, res) => {
-  const businesses = businessService.getAllBusinesses();
+apiRouter.get('/status', async (req, res) => {
+  const businesses = await businessService.getAllBusinesses();
   res.status(200).json({
     status: 'ONLINE',
     platform: 'Changared - Empleados Virtuales Multi-Tenant',

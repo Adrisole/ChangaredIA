@@ -3,10 +3,16 @@ import path from 'path';
 import { isDbConnected } from '../config/database.js';
 import { ConversationModel } from '../models/conversation.model.js';
 
+/**
+ * Repositorio de Conversaciones y Mensajes con persistencia híbrida:
+ * - MongoDB como FUENTE PRINCIPAL DE VERDAD cuando isDbConnected() es true.
+ * - JSON en disco (src/data/conversations.json) como RÉPLICA LOCAL Y FALLBACK para desarrollo local y offline.
+ */
 class ConversationRepository {
   constructor() {
     this.filePath = path.resolve('./src/data/conversations.json');
     this._ensureFileExists();
+    this._processedSet = new Set();
   }
 
   _ensureFileExists() {
@@ -19,24 +25,36 @@ class ConversationRepository {
     }
   }
 
-  _readAll() {
+  _readAllLocal() {
     try {
       this._ensureFileExists();
       const raw = fs.readFileSync(this.filePath, 'utf-8');
       return JSON.parse(raw || '[]');
     } catch (err) {
-      console.error('[ConversationRepository] Error al leer conversaciones JSON:', err.message);
+      console.error('[ConversationRepository] Error al leer conversaciones JSON locales:', err.message);
       return [];
     }
   }
 
-  _writeAll(data) {
+  _writeAllLocal(data) {
     try {
       this._ensureFileExists();
       fs.writeFileSync(this.filePath, JSON.stringify(data, null, 2), 'utf-8');
     } catch (err) {
-      console.error('[ConversationRepository] Error al escribir conversaciones JSON:', err.message);
+      console.error('[ConversationRepository] Error al escribir conversaciones JSON locales:', err.message);
     }
+  }
+
+  _syncLocalRecord(record) {
+    if (!record || !record.id) return;
+    const all = this._readAllLocal();
+    const existingIndex = all.findIndex(c => c.id === record.id);
+    if (existingIndex >= 0) {
+      all[existingIndex] = record;
+    } else {
+      all.unshift(record);
+    }
+    this._writeAllLocal(all);
   }
 
   _normalizePhone(phone) {
@@ -49,31 +67,75 @@ class ConversationRepository {
     return `${bId}_${phone}`;
   }
 
-  findByBusinessId(businessId) {
-    const all = this._readAll();
-    const normalizedBId = String(businessId).toLowerCase().trim();
+  /**
+   * Lista las conversaciones de un negocio ordenadas por actividad reciente.
+   */
+  async findByBusinessId(businessId) {
+    const normalizedBId = String(businessId || '').toLowerCase().trim();
+
+    // 1. FUENTE PRINCIPAL: MongoDB
+    if (isDbConnected()) {
+      try {
+        const docs = await ConversationModel.find({ businessId: normalizedBId })
+          .sort({ lastMessageAt: -1 })
+          .lean();
+        if (docs && docs.length > 0) {
+          return docs;
+        }
+      } catch (err) {
+        console.error('[ConversationRepository] Error al consultar conversaciones en MongoDB:', err.message);
+      }
+    }
+
+    // 2. RÉPLICA / FALLBACK: JSON local
+    const all = this._readAllLocal();
     return all
       .filter(c => String(c.businessId).toLowerCase().trim() === normalizedBId)
       .sort((a, b) => new Date(b.lastMessageAt || 0) - new Date(a.lastMessageAt || 0));
   }
 
-  findById(id) {
-    const all = this._readAll();
+  /**
+   * Busca una conversación por su ID único.
+   */
+  async findById(id) {
+    if (!id) return null;
+
+    // 1. FUENTE PRINCIPAL: MongoDB
+    if (isDbConnected()) {
+      try {
+        const doc = await ConversationModel.findOne({ id }).lean();
+        if (doc) {
+          this._syncLocalRecord(doc);
+          return doc;
+        }
+      } catch (err) {
+        console.error('[ConversationRepository] Error al buscar conversación en MongoDB:', err.message);
+      }
+    }
+
+    // 2. RÉPLICA / FALLBACK: JSON local
+    const all = this._readAllLocal();
     return all.find(c => c.id === id) || null;
   }
 
-  findByCustomer(businessId, customerPhone) {
+  /**
+   * Busca conversación por negocio y teléfono de cliente.
+   */
+  async findByCustomer(businessId, customerPhone) {
     const id = this._buildId(businessId, customerPhone);
-    return this.findById(id);
+    return await this.findById(id);
   }
 
-  getOrCreate(businessId, customerPhone, customerName = '') {
+  /**
+   * Obtiene o inicializa una conversación para el cliente.
+   */
+  async getOrCreate(businessId, customerPhone, customerName = '') {
     const id = this._buildId(businessId, customerPhone);
-    const existing = this.findById(id);
+    const existing = await this.findById(id);
     if (existing) {
       if (customerName && (!existing.customerName || existing.customerName === existing.customerPhone)) {
         existing.customerName = customerName;
-        this.save(existing);
+        return await this.save(existing);
       }
       return existing;
     }
@@ -92,43 +154,46 @@ class ConversationRepository {
       updatedAt: new Date().toISOString(),
     };
 
-    return this.save(newConv);
+    return await this.save(newConv);
   }
 
-  save(conversation) {
-    const all = this._readAll();
-    const existingIndex = all.findIndex(c => c.id === conversation.id);
-
+  /**
+   * Guarda o actualiza una conversación.
+   * Escribe PRIMERO en MongoDB si está conectado, y sincroniza en JSON local.
+   */
+  async save(conversation) {
     const record = {
       ...conversation,
       updatedAt: new Date().toISOString(),
+      createdAt: conversation.createdAt || new Date().toISOString(),
     };
 
-    if (existingIndex >= 0) {
-      all[existingIndex] = record;
-    } else {
-      record.createdAt = record.createdAt || new Date().toISOString();
-      all.unshift(record);
-    }
-
-    this._writeAll(all);
-
-    // Sincronizar en MongoDB si está activo
+    // 1. FUENTE PRINCIPAL: MongoDB
     if (isDbConnected()) {
-      ConversationModel.findOneAndUpdate(
-        { id: record.id },
-        record,
-        { upsert: true, new: true }
-      ).catch(err => {
-        console.error('[ConversationRepository] Error al sincronizar conversación en MongoDB:', err.message);
-      });
+      try {
+        const savedDoc = await ConversationModel.findOneAndUpdate(
+          { id: record.id },
+          record,
+          { upsert: true, new: true, setDefaultsOnInsert: true }
+        ).lean();
+
+        this._syncLocalRecord(savedDoc || record);
+        return savedDoc || record;
+      } catch (err) {
+        console.error('[ConversationRepository] Error al guardar conversación en MongoDB:', err.message);
+      }
     }
 
+    // 2. RÉPLICA / FALLBACK: JSON local
+    this._syncLocalRecord(record);
     return record;
   }
 
-  addMessage({ businessId, customerPhone, customerName = '', sender, text, metaMessageId = '', simulated = false }) {
-    const conv = this.getOrCreate(businessId, customerPhone, customerName);
+  /**
+   * Agrega un nuevo mensaje entrante o saliente.
+   */
+  async addMessage({ businessId, customerPhone, customerName = '', sender, text, metaMessageId = '', simulated = false }) {
+    const conv = await this.getOrCreate(businessId, customerPhone, customerName);
 
     const messageObj = {
       id: `msg_${Date.now()}_${Math.random().toString(36).substring(2, 6)}`,
@@ -138,6 +203,7 @@ class ConversationRepository {
       metaMessageId: metaMessageId || '',
       simulated: Boolean(simulated),
       status: sender === 'customer' ? 'received' : 'sent',
+      deliveryStatus: 'sent',
     };
 
     conv.messages = conv.messages || [];
@@ -156,20 +222,34 @@ class ConversationRepository {
       this._processedSet.add(String(metaMessageId).trim());
     }
 
-    return this.save(conv);
+    return await this.save(conv);
   }
 
   /**
    * Verifica si un mensaje de Meta (wamid) ya fue procesado previamente para evitar duplicados.
    */
-  hasProcessedMessage(metaMessageId) {
+  async hasProcessedMessage(metaMessageId) {
     if (!metaMessageId) return false;
     const cleanId = String(metaMessageId).trim();
     if (this._processedSet && this._processedSet.has(cleanId)) {
       return true;
     }
 
-    const all = this._readAll();
+    // Consultar MongoDB si está activo
+    if (isDbConnected()) {
+      try {
+        const found = await ConversationModel.findOne({ 'messages.metaMessageId': cleanId }).lean();
+        if (found) {
+          this._processedSet.add(cleanId);
+          return true;
+        }
+      } catch (err) {
+        console.error('[ConversationRepository] Error al verificar duplicado en MongoDB:', err.message);
+      }
+    }
+
+    // Fallback a JSON local
+    const all = this._readAllLocal();
     for (const conv of all) {
       if (Array.isArray(conv.messages)) {
         if (conv.messages.some(m => m.metaMessageId === cleanId)) {
@@ -185,18 +265,41 @@ class ConversationRepository {
   /**
    * Actualiza el estado de entrega reportado por Meta (sent, delivered, read, failed).
    */
-  updateDeliveryStatus(metaMessageId, deliveryStatus, timestamp = null) {
+  async updateDeliveryStatus(metaMessageId, deliveryStatus, timestamp = null) {
     if (!metaMessageId) return null;
     const cleanId = String(metaMessageId).trim();
-    const all = this._readAll();
+    const isoTimestamp = timestamp ? new Date(Number(timestamp) * 1000).toISOString() : new Date().toISOString();
+
+    // 1. FUENTE PRINCIPAL: MongoDB
+    if (isDbConnected()) {
+      try {
+        const conv = await ConversationModel.findOne({ 'messages.metaMessageId': cleanId });
+        if (conv) {
+          const msg = conv.messages.find(m => m.metaMessageId === cleanId);
+          if (msg) {
+            msg.deliveryStatus = deliveryStatus;
+            msg.statusTimestamp = isoTimestamp;
+            await conv.save();
+            const leanConv = conv.toObject();
+            this._syncLocalRecord(leanConv);
+            return leanConv;
+          }
+        }
+      } catch (err) {
+        console.error('[ConversationRepository] Error al actualizar deliveryStatus en MongoDB:', err.message);
+      }
+    }
+
+    // 2. RÉPLICA / FALLBACK: JSON local
+    const all = this._readAllLocal();
     let updatedConv = null;
 
     for (const conv of all) {
       if (Array.isArray(conv.messages)) {
         const msg = conv.messages.find(m => m.metaMessageId === cleanId);
         if (msg) {
-          msg.deliveryStatus = deliveryStatus; // 'sent' | 'delivered' | 'read' | 'failed'
-          msg.statusTimestamp = timestamp ? new Date(Number(timestamp) * 1000).toISOString() : new Date().toISOString();
+          msg.deliveryStatus = deliveryStatus;
+          msg.statusTimestamp = isoTimestamp;
           updatedConv = conv;
           break;
         }
@@ -204,22 +307,22 @@ class ConversationRepository {
     }
 
     if (updatedConv) {
-      return this.save(updatedConv);
+      return await this.save(updatedConv);
     }
     return null;
   }
 
-  setStatus(businessId, customerPhone, status) {
-    const conv = this.getOrCreate(businessId, customerPhone);
+  async setStatus(businessId, customerPhone, status) {
+    const conv = await this.getOrCreate(businessId, customerPhone);
     conv.status = status; // 'ai_active' | 'human_takeover'
-    return this.save(conv);
+    return await this.save(conv);
   }
 
-  markAsRead(businessId, customerPhone) {
-    const conv = this.findByCustomer(businessId, customerPhone);
+  async markAsRead(businessId, customerPhone) {
+    const conv = await this.findByCustomer(businessId, customerPhone);
     if (!conv) return null;
     conv.unreadCount = 0;
-    return this.save(conv);
+    return await this.save(conv);
   }
 }
 

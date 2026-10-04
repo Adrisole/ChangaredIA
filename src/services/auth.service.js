@@ -22,7 +22,7 @@ export class AuthService {
   /**
    * Registra un nuevo usuario en la plataforma.
    */
-  register({ name, email, password }) {
+  async register({ name, email, password }) {
     if (!name || typeof name !== 'string' || name.trim().length < 2) {
       throw new Error("El campo 'name' (Nombre) es obligatorio y debe tener al menos 2 caracteres.");
     }
@@ -34,7 +34,7 @@ export class AuthService {
     }
 
     const normalizedEmail = email.toLowerCase().trim();
-    const existing = userRepository.findByEmail(normalizedEmail);
+    const existing = await userRepository.findByEmail(normalizedEmail);
     if (existing) {
       throw new Error(`Ya existe una cuenta registrada con el correo '${normalizedEmail}'.`);
     }
@@ -56,11 +56,11 @@ export class AuthService {
       createdAt: new Date().toISOString(),
     };
 
-    userRepository.save(newUser);
+    await userRepository.save(newUser);
 
     // Generar token de sesión inmediato
     const token = crypto.randomBytes(32).toString('hex');
-    userRepository.saveSession(token, userId);
+    await userRepository.saveSession(token, userId);
 
     return {
       user: this._sanitize(newUser),
@@ -73,12 +73,12 @@ export class AuthService {
   /**
    * Verifica el correo electrónico mediante código de 6 dígitos.
    */
-  verifyEmail({ email, code }) {
+  async verifyEmail({ email, code }) {
     if (!email || !code) {
       throw new Error("Email y código de verificación son requeridos.");
     }
 
-    const user = userRepository.findByEmail(email.toLowerCase().trim());
+    const user = await userRepository.findByEmail(email.toLowerCase().trim());
     if (!user) {
       throw new Error("Usuario no encontrado.");
     }
@@ -92,7 +92,7 @@ export class AuthService {
     }
 
     user.emailVerified = true;
-    userRepository.save(user);
+    await userRepository.save(user);
 
     return {
       success: true,
@@ -104,13 +104,13 @@ export class AuthService {
   /**
    * Inicia sesión con email y contraseña.
    */
-  login({ email, password }) {
+  async login({ email, password }) {
     if (!email || !password) {
       throw new Error("Debes ingresar email y contraseña.");
     }
 
     const normalizedEmail = email.toLowerCase().trim();
-    const user = userRepository.findByEmail(normalizedEmail);
+    const user = await userRepository.findByEmail(normalizedEmail);
     if (!user) {
       throw new Error("Credenciales inválidas. Verifica tu correo y contraseña.");
     }
@@ -121,7 +121,7 @@ export class AuthService {
     }
 
     const token = crypto.randomBytes(32).toString('hex');
-    userRepository.saveSession(token, user.id);
+    await userRepository.saveSession(token, user.id);
 
     return {
       user: this._sanitize(user),
@@ -133,18 +133,18 @@ export class AuthService {
   /**
    * Obtiene el usuario autenticado a partir del token.
    */
-  getUserByToken(token) {
+  async getUserByToken(token) {
     if (!token) return null;
-    const user = userRepository.findByToken(token);
+    const user = await userRepository.findByToken(token);
     return this._sanitize(user);
   }
 
   /**
    * Cierra sesión eliminando el token.
    */
-  logout(token) {
+  async logout(token) {
     if (token) {
-      userRepository.removeSession(token);
+      await userRepository.removeSession(token);
     }
     return { success: true, message: "Sesión cerrada correctamente." };
   }
@@ -152,16 +152,16 @@ export class AuthService {
   /**
    * Asocia un negocio al usuario autenticado.
    */
-  linkBusiness(userId, businessId) {
+  async linkBusiness(userId, businessId) {
     if (!userId || !businessId) return;
-    const user = userRepository.findById(userId);
+    const user = await userRepository.findById(userId);
     if (user) {
       if (!Array.isArray(user.businessIds)) {
         user.businessIds = [];
       }
       if (!user.businessIds.includes(businessId)) {
         user.businessIds.push(businessId);
-        userRepository.save(user);
+        await userRepository.save(user);
       }
     }
   }
@@ -169,14 +169,17 @@ export class AuthService {
   /**
    * Retorna todos los negocios asociados a un usuario.
    */
-  getBusinessesForUser(userId) {
+  async getBusinessesForUser(userId) {
     if (!userId) return [];
-    const user = userRepository.findById(userId);
+    const user = await userRepository.findById(userId);
     if (!user || !Array.isArray(user.businessIds)) return [];
     
-    return user.businessIds
-      .map(bId => businessRepository.findById(bId))
-      .filter(Boolean);
+    const results = [];
+    for (const bId of user.businessIds) {
+      const b = await businessRepository.findById(bId);
+      if (b) results.push(b);
+    }
+    return results;
   }
 }
 

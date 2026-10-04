@@ -5,7 +5,9 @@ import { UserModel } from '../models/user.model.js';
 import { SessionModel } from '../models/session.model.js';
 
 /**
- * Repositorio ligero de Usuarios y Sesiones con persistencia en JSON.
+ * Repositorio de Usuarios y Sesiones con persistencia híbrida:
+ * - MongoDB como FUENTE PRINCIPAL DE VERDAD cuando isDbConnected() es true.
+ * - JSON en disco (src/data/users.json y sessions.json) como RÉPLICA LOCAL Y FALLBACK para desarrollo local y offline.
  */
 class UserRepository {
   constructor() {
@@ -27,28 +29,35 @@ class UserRepository {
     }
   }
 
-  _readUsers() {
+  _readUsersLocal() {
     try {
       this._ensureFilesExist();
       const raw = fs.readFileSync(this.filePath, 'utf-8');
       return JSON.parse(raw || '{}');
     } catch (err) {
-      console.error('[UserRepository] Error al leer usuarios:', err.message);
+      console.error('[UserRepository] Error al leer usuarios locales:', err.message);
       return {};
     }
   }
 
-  _writeUsers(data) {
+  _writeUsersLocal(data) {
     try {
       this._ensureFilesExist();
       fs.writeFileSync(this.filePath, JSON.stringify(data, null, 2), 'utf-8');
     } catch (err) {
-      console.error('[UserRepository] Error al escribir usuarios:', err.message);
+      console.error('[UserRepository] Error al escribir usuarios locales:', err.message);
       throw new Error('No se pudo guardar la información del usuario.');
     }
   }
 
-  _readSessions() {
+  _syncLocalUser(user) {
+    if (!user || !user.id) return;
+    const users = this._readUsersLocal();
+    users[user.id] = user;
+    this._writeUsersLocal(users);
+  }
+
+  _readSessionsLocal() {
     try {
       this._ensureFilesExist();
       const raw = fs.readFileSync(this.sessionsFilePath, 'utf-8');
@@ -58,91 +67,164 @@ class UserRepository {
     }
   }
 
-  _writeSessions(data) {
+  _writeSessionsLocal(data) {
     try {
       this._ensureFilesExist();
       fs.writeFileSync(this.sessionsFilePath, JSON.stringify(data, null, 2), 'utf-8');
     } catch (err) {
-      console.error('[UserRepository] Error al escribir sesiones:', err.message);
+      console.error('[UserRepository] Error al escribir sesiones locales:', err.message);
     }
   }
 
-  findById(id) {
-    const users = this._readUsers();
+  async findById(id) {
+    if (!id) return null;
+
+    // 1. FUENTE PRINCIPAL: MongoDB
+    if (isDbConnected()) {
+      try {
+        const doc = await UserModel.findOne({ id }).lean();
+        if (doc) {
+          this._syncLocalUser(doc);
+          return doc;
+        }
+      } catch (err) {
+        console.error('[UserRepository] Error al consultar usuario en MongoDB:', err.message);
+      }
+    }
+
+    // 2. RÉPLICA / FALLBACK: JSON local
+    const users = this._readUsersLocal();
     return users[id] || null;
   }
 
-  findByEmail(email) {
+  async findByEmail(email) {
     if (!email) return null;
     const normalized = String(email).toLowerCase().trim();
-    const users = this._readUsers();
+
+    // 1. FUENTE PRINCIPAL: MongoDB
+    if (isDbConnected()) {
+      try {
+        const doc = await UserModel.findOne({ email: normalized }).lean();
+        if (doc) {
+          this._syncLocalUser(doc);
+          return doc;
+        }
+      } catch (err) {
+        console.error('[UserRepository] Error al consultar usuario por email en MongoDB:', err.message);
+      }
+    }
+
+    // 2. RÉPLICA / FALLBACK: JSON local
+    const users = this._readUsersLocal();
     return Object.values(users).find(u => u.email.toLowerCase() === normalized) || null;
   }
 
-  save(user) {
-    const users = this._readUsers();
+  async save(user) {
     const key = user.id;
-    users[key] = {
+    const record = {
       ...user,
       updatedAt: new Date().toISOString(),
     };
-    this._writeUsers(users);
 
+    // 1. FUENTE PRINCIPAL: MongoDB
     if (isDbConnected()) {
-      UserModel.findOneAndUpdate(
-        { id: user.id },
-        users[key],
-        { upsert: true, new: true }
-      ).catch(err => {
-        console.error('[UserRepository] Error al sincronizar usuario en MongoDB:', err.message);
-      });
+      try {
+        const savedDoc = await UserModel.findOneAndUpdate(
+          { id: user.id },
+          record,
+          { upsert: true, new: true, setDefaultsOnInsert: true }
+        ).lean();
+
+        this._syncLocalUser(savedDoc || record);
+        return savedDoc || record;
+      } catch (err) {
+        console.error('[UserRepository] Error al guardar usuario en MongoDB:', err.message);
+      }
     }
 
-    return users[key];
+    // 2. RÉPLICA / FALLBACK: JSON local
+    const users = this._readUsersLocal();
+    users[key] = record;
+    this._writeUsersLocal(users);
+    return record;
   }
 
-  saveSession(token, userId) {
-    const sessions = this._readSessions();
-    sessions[token] = {
+  async saveSession(token, userId) {
+    const sessionRecord = {
+      token,
       userId,
       createdAt: new Date().toISOString(),
     };
-    this._writeSessions(sessions);
 
+    // 1. FUENTE PRINCIPAL: MongoDB
     if (isDbConnected()) {
-      SessionModel.findOneAndUpdate(
-        { token },
-        { token, userId, createdAt: sessions[token].createdAt },
-        { upsert: true, new: true }
-      ).catch(err => {
+      try {
+        await SessionModel.findOneAndUpdate(
+          { token },
+          sessionRecord,
+          { upsert: true, new: true }
+        ).lean();
+      } catch (err) {
         console.error('[UserRepository] Error al sincronizar sesión en MongoDB:', err.message);
-      });
+      }
     }
+
+    // 2. RÉPLICA / FALLBACK: JSON local
+    const sessions = this._readSessionsLocal();
+    sessions[token] = sessionRecord;
+    this._writeSessionsLocal(sessions);
   }
 
-  findByToken(token) {
+  async findByToken(token) {
     if (!token) return null;
-    const sessions = this._readSessions();
+
+    // 1. FUENTE PRINCIPAL: MongoDB
+    if (isDbConnected()) {
+      try {
+        const sessionDoc = await SessionModel.findOne({ token }).lean();
+        if (sessionDoc && sessionDoc.userId) {
+          return await this.findById(sessionDoc.userId);
+        }
+      } catch (err) {
+        console.error('[UserRepository] Error al buscar sesión en MongoDB:', err.message);
+      }
+    }
+
+    // 2. RÉPLICA / FALLBACK: JSON local
+    const sessions = this._readSessionsLocal();
     const session = sessions[token];
     if (!session) return null;
-    return this.findById(session.userId);
+    return await this.findById(session.userId);
   }
 
-  removeSession(token) {
+  async removeSession(token) {
     if (!token) return;
-    const sessions = this._readSessions();
-    delete sessions[token];
-    this._writeSessions(sessions);
 
+    // 1. FUENTE PRINCIPAL: MongoDB
     if (isDbConnected()) {
-      SessionModel.deleteOne({ token }).catch(err => {
+      try {
+        await SessionModel.deleteOne({ token });
+      } catch (err) {
         console.error('[UserRepository] Error al eliminar sesión en MongoDB:', err.message);
-      });
+      }
     }
+
+    // 2. RÉPLICA / FALLBACK: JSON local
+    const sessions = this._readSessionsLocal();
+    delete sessions[token];
+    this._writeSessionsLocal(sessions);
   }
 
-  findAll() {
-    return Object.values(this._readUsers());
+  async findAll() {
+    if (isDbConnected()) {
+      try {
+        const docs = await UserModel.find().lean();
+        if (docs && docs.length > 0) return docs;
+      } catch (err) {
+        console.error('[UserRepository] Error al listar usuarios en MongoDB:', err.message);
+      }
+    }
+    return Object.values(this._readUsersLocal());
   }
 }
 

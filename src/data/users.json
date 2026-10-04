@@ -82,5 +82,70 @@
     ],
     "createdAt": "2026-10-04T20:00:13.224Z",
     "updatedAt": "2026-10-04T20:00:13.384Z"
+  },
+  "usr_muuez9t4_e052748e": {
+    "id": "usr_muuez9t4_e052748e",
+    "name": "Carlos Dueño",
+    "email": "founder-1791154225700@testbusiness.com",
+    "salt": "9af44a8345bc589a5eda2cec4ffb7d1c",
+    "passwordHash": "54daa230bee35dc2f3c435e55a4cf21187bd418a467b08f7676675c1478fcb3f9316d65d13c45ca8c30a69470fdf07ede232bae3b5bc51acbb7446ff64c9dc89",
+    "emailVerified": true,
+    "verificationCode": "396957",
+    "businessIds": [
+      "negocio-privado-1791154225857"
+    ],
+    "createdAt": "2026-10-04T22:50:25.768Z",
+    "updatedAt": "2026-10-04T22:50:25.866Z"
+  },
+  "usr_muueza1o_e1fbf0d7": {
+    "id": "usr_muueza1o_e1fbf0d7",
+    "name": "Otro Usuario",
+    "email": "otro-usuario-1791154226004@example.com",
+    "salt": "0b9de35b6ef5ae9747015d5723989320",
+    "passwordHash": "c91a9282500784e94cb1b3092137d148dcb7c18729ec2abcfc6363d91e08052b4872831ae4ea77f262483b4a3c89914ce96c6cd082928971a99dbc0f885f4769",
+    "emailVerified": false,
+    "verificationCode": "898595",
+    "businessIds": [],
+    "createdAt": "2026-10-04T22:50:26.077Z",
+    "updatedAt": "2026-10-04T22:50:26.078Z"
+  },
+  "usr_muuftn95_5611a72f": {
+    "id": "usr_muuftn95_5611a72f",
+    "name": "Carlos Dueño",
+    "email": "founder-1791155642519@testbusiness.com",
+    "salt": "5cec96fdf32abad469a4eb3ac8a38d1a",
+    "passwordHash": "e9f316634362ceb02c8ab4a62a67684848dbad4b5c2d64e9c309eaddc5cc7084c2ebcf97edd81e55d57f782f9e26a3b2f6a7d891e1cfad1612342ea77a9190df",
+    "emailVerified": false,
+    "verificationCode": "554102",
+    "businessIds": [
+      "clinica-dental-test",
+      "negocio-privado-1791155643241"
+    ],
+    "createdAt": "2026-10-04T23:14:02.873Z",
+    "updatedAt": "2026-10-04T23:14:03.248Z"
+  },
+  "usr_muuftngm_91153bb0": {
+    "id": "usr_muuftngm_91153bb0",
+    "name": "Carlos Dueño 2",
+    "email": "founder-2-1791155643068@testbusiness.com",
+    "salt": "0bdb8fa67858fb7c2a28433cc8e5b495",
+    "passwordHash": "5987a86dbcfd9175d03821c2092295892e98ca824c01934b042de87cbbd56290b262ccdc99a1358aa9178a9f691017f1c85a1c3fca9ad994286c5112e8c5b1a1",
+    "emailVerified": true,
+    "verificationCode": "814728",
+    "businessIds": [],
+    "createdAt": "2026-10-04T23:14:03.143Z",
+    "updatedAt": "2026-10-04T23:14:03.151Z"
+  },
+  "usr_muuftnrp_0260f6d0": {
+    "id": "usr_muuftnrp_0260f6d0",
+    "name": "Otro Usuario",
+    "email": "otro-usuario-1791155643425@example.com",
+    "salt": "1b49b878f5fad8097059716fd68c1f1b",
+    "passwordHash": "fe940409f38e2bcc21e6888c0beefeb51ce2d5acea3a7ec2c236c3dc0ce20ce503f548a369500176d71764e233701bc6d6a5cbf8a84fa8f007acd56bd3688aff",
+    "emailVerified": false,
+    "verificationCode": "461061",
+    "businessIds": [],
+    "createdAt": "2026-10-04T23:14:03.542Z",
+    "updatedAt": "2026-10-04T23:14:03.542Z"
   }
 }

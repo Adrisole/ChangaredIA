@@ -8,6 +8,7 @@ const messageSchema = new mongoose.Schema({
   metaMessageId: { type: String, default: '' },
   simulated: { type: Boolean, default: false },
   status: { type: String, default: 'sent' },
+  deliveryStatus: { type: String, default: 'sent' },
 }, { _id: false });
 
 const conversationSchema = new mongoose.Schema({

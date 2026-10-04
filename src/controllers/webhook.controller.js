@@ -2,6 +2,7 @@ import { businessService } from '../services/business.service.js';
 import { agentBrainService } from '../services/agentBrain.service.js';
 import { whatsappService } from '../services/whatsapp.service.js';
 import { conversationRepository } from '../repositories/conversation.repository.js';
+import { encryptionService } from '../services/encryption.service.js';
 import { config } from '../config/env.js';
 
 /**
@@ -49,7 +50,7 @@ export const handleIncomingMessage = async (req, res, next) => {
     // a) Primero verificar si Meta envía el Phone Number ID en el payload oficial
     const metaPhoneNumberId = req.body.entry?.[0]?.changes?.[0]?.value?.metadata?.phone_number_id;
     if (metaPhoneNumberId) {
-      business = businessService.getBusinessByPhoneNumberId(metaPhoneNumberId);
+      business = await businessService.getBusinessByPhoneNumberId(metaPhoneNumberId);
       if (business) {
         console.log(`[WhatsApp Webhook] Negocio identificado por Phone Number ID oficial de Meta (${metaPhoneNumberId}): [${business.name}]`);
       }
@@ -57,7 +58,7 @@ export const handleIncomingMessage = async (req, res, next) => {
 
     // b) Fallback o ruta con :businessId
     if (!business && businessId) {
-      business = businessService.getBusinessById(businessId);
+      business = await businessService.getBusinessById(businessId);
     }
 
     if (!business) {
@@ -72,7 +73,10 @@ export const handleIncomingMessage = async (req, res, next) => {
 
     // 2. Validación criptográfica de firma oficial de Meta x-hub-signature-256 (HMAC-SHA256)
     const signature = req.headers['x-hub-signature-256'];
-    const activeAppSecret = business.whatsappAppSecret || config.whatsapp.appSecret;
+    const storedAppSecret = business.whatsappAppSecret;
+    const activeAppSecret = storedAppSecret
+      ? (encryptionService.isEncrypted(storedAppSecret) ? encryptionService.decrypt(storedAppSecret) : storedAppSecret)
+      : config.whatsapp.appSecret;
 
     if (activeAppSecret) {
       if (!signature) {
@@ -111,7 +115,7 @@ export const handleIncomingMessage = async (req, res, next) => {
     const statuses = req.body.entry?.[0]?.changes?.[0]?.value?.statuses;
     if (Array.isArray(statuses) && statuses.length > 0) {
       for (const st of statuses) {
-        conversationRepository.updateDeliveryStatus(st.id, st.status, st.timestamp);
+        await conversationRepository.updateDeliveryStatus(st.id, st.status, st.timestamp);
       }
       console.log(`[WhatsApp Webhook] Estados de entrega actualizados (${statuses.length} eventos).`);
       return res.status(200).json({
@@ -134,7 +138,7 @@ export const handleIncomingMessage = async (req, res, next) => {
     }
 
     // 5. Deduplicación / Idempotencia: evitar procesar mensajes duplicados de Meta
-    if (metaIncomingId && conversationRepository.hasProcessedMessage(metaIncomingId)) {
+    if (metaIncomingId && (await conversationRepository.hasProcessedMessage(metaIncomingId))) {
       console.log(`[WhatsApp Webhook] Mensaje duplicado detectado [${metaIncomingId}]. Retornando 200 sin reprocesar.`);
       return res.status(200).json({
         success: true,
@@ -147,10 +151,10 @@ export const handleIncomingMessage = async (req, res, next) => {
     console.log(`[WhatsApp Webhook] Mensaje recibido para [${business.name}] de [${sender}] (${customerName || 'Sin nombre'}): "${messageText}"`);
 
     // 5. Obtener o crear la conversación en la persistencia dual (JSON + MongoDB)
-    const conversation = conversationRepository.getOrCreate(business.id, sender, customerName);
+    const conversation = await conversationRepository.getOrCreate(business.id, sender, customerName);
 
     // 6. Registrar el mensaje entrante del cliente en el historial de la conversación
-    conversationRepository.addMessage({
+    await conversationRepository.addMessage({
       businessId: business.id,
       customerPhone: sender,
       customerName,
@@ -191,7 +195,7 @@ export const handleIncomingMessage = async (req, res, next) => {
     });
 
     // 10. Registrar la respuesta de la IA en el historial de la conversación
-    conversationRepository.addMessage({
+    await conversationRepository.addMessage({
       businessId: business.id,
       customerPhone: sender,
       customerName,

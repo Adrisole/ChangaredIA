@@ -35,6 +35,7 @@ const businessSchema = new mongoose.Schema({
   whatsappConnected: { type: Boolean, default: false },
   whatsappPhoneNumberId: { type: String, default: '' },
   whatsappAccessToken: { type: String, default: '' },
+  whatsappAppSecret: { type: String, default: '' },
   whatsappBusinessAccountId: { type: String, default: '' },
   calendarConnected: { type: Boolean, default: false },
   calendarEmail: { type: String, default: '' },

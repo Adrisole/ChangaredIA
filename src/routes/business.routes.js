@@ -10,8 +10,8 @@ import { authenticate, requireAuth, requireBusinessOwner } from '../middlewares/
 
 const router = Router();
 
-// Onboarding de nuevo negocio (asocia al usuario si está autenticado)
-router.post('/setup', authenticate, setupBusiness);
+// Onboarding de nuevo negocio (requiere autenticación obligatoria y asocia al usuario)
+router.post('/setup', authenticate, requireAuth, setupBusiness);
 
 // Consultar los negocios privados del usuario autenticado
 router.get('/my', authenticate, requireAuth, listMyBusinesses);

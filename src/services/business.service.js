@@ -8,8 +8,9 @@ import { encryptionService } from './encryption.service.js';
 export class BusinessService {
   /**
    * Registra o actualiza la configuración de un negocio en la plataforma.
+   * Requiere obligatoriamente un usuario propietario registrado (ownerId).
    */
-  setupBusiness(payload, userId = null) {
+  async setupBusiness(payload, userId = null) {
     const { id, name, description, toneOfVoice, businessRules, catalog } = payload;
 
     if (!name || typeof name !== 'string') {
@@ -18,6 +19,11 @@ export class BusinessService {
 
     if (!description || typeof description !== 'string') {
       throw new Error("El campo 'description' es obligatorio para contextualizar al agente virtual.");
+    }
+
+    const ownerId = userId || payload.userId || payload.ownerId || null;
+    if (!ownerId) {
+      throw new Error("Todo negocio debe estar vinculado a una cuenta propietaria registrada (ownerId obligatorio).");
     }
 
     // Normalizar o generar slug identificador único
@@ -44,15 +50,23 @@ export class BusinessService {
       ? businessRules.split('\n').filter(Boolean)
       : [];
 
-    const existing = businessRepository.findById(businessId);
+    const existing = await businessRepository.findById(businessId);
 
-    // Cifrar el token de Meta si se proporciona en texto plano
+    // Cifrar el token de Meta y el App Secret si se proporcionan en texto plano
     const rawToken = payload.whatsappAccessToken !== undefined
       ? String(payload.whatsappAccessToken).trim()
       : (existing?.whatsappAccessToken || '');
 
     const encryptedToken = rawToken
       ? (encryptionService.isEncrypted(rawToken) ? rawToken : encryptionService.encrypt(rawToken))
+      : '';
+
+    const rawAppSecret = payload.whatsappAppSecret !== undefined
+      ? String(payload.whatsappAppSecret).trim()
+      : (existing?.whatsappAppSecret || '');
+
+    const encryptedAppSecret = rawAppSecret
+      ? (encryptionService.isEncrypted(rawAppSecret) ? rawAppSecret : encryptionService.encrypt(rawAppSecret))
       : '';
 
     const businessData = {
@@ -74,11 +88,11 @@ export class BusinessService {
       catalog: normalizedCatalog.length > 0 ? normalizedCatalog : (existing?.catalog || []),
       services: Array.isArray(payload.services) && payload.services.length > 0 ? payload.services : (existing?.services || []),
       activeEmployees: Array.isArray(payload.activeEmployees) && payload.activeEmployees.length > 0 ? payload.activeEmployees : (existing?.activeEmployees || ['vendedor']),
-      ownerId: userId || payload.userId || payload.ownerId || existing?.ownerId || null,
+      ownerId: ownerId || existing?.ownerId,
       whatsappConnected: payload.whatsappConnected !== undefined ? Boolean(payload.whatsappConnected) : (existing?.whatsappConnected ?? false),
       whatsappPhoneNumberId: payload.whatsappPhoneNumberId !== undefined ? payload.whatsappPhoneNumberId : (existing?.whatsappPhoneNumberId || ''),
       whatsappAccessToken: encryptedToken,
-      whatsappAppSecret: payload.whatsappAppSecret !== undefined ? String(payload.whatsappAppSecret).trim() : (existing?.whatsappAppSecret || ''),
+      whatsappAppSecret: encryptedAppSecret,
       whatsappBusinessAccountId: payload.whatsappBusinessAccountId !== undefined ? payload.whatsappBusinessAccountId : (existing?.whatsappBusinessAccountId || ''),
       calendarConnected: payload.calendarConnected !== undefined ? Boolean(payload.calendarConnected) : (existing?.calendarConnected ?? false),
       calendarEmail: payload.calendarEmail !== undefined ? payload.calendarEmail : (existing?.calendarEmail || ''),
@@ -86,18 +100,18 @@ export class BusinessService {
       createdAt: existing?.createdAt || new Date().toISOString(),
     };
 
-    const saved = businessRepository.save(businessData);
+    const saved = await businessRepository.save(businessData);
 
     // Si hay un usuario propietario, vincularlo
     if (saved.ownerId) {
-      authService.linkBusiness(saved.ownerId, saved.id);
+      await authService.linkBusiness(saved.ownerId, saved.id);
     }
 
     return saved;
   }
 
-  updateWhatsAppConfig(businessId, configData) {
-    const business = businessRepository.findById(businessId);
+  async updateWhatsAppConfig(businessId, configData) {
+    const business = await businessRepository.findById(businessId);
     if (!business) {
       throw new Error(`El negocio '${businessId}' no existe.`);
     }
@@ -106,6 +120,14 @@ export class BusinessService {
     if (configData.whatsappAccessToken !== undefined) {
       const trimmed = String(configData.whatsappAccessToken).trim();
       tokenToSave = trimmed ? encryptionService.encrypt(trimmed) : '';
+    }
+
+    let appSecretToSave = business.whatsappAppSecret || '';
+    if (configData.whatsappAppSecret !== undefined) {
+      const trimmedSecret = String(configData.whatsappAppSecret).trim();
+      appSecretToSave = trimmedSecret
+        ? (encryptionService.isEncrypted(trimmedSecret) ? trimmedSecret : encryptionService.encrypt(trimmedSecret))
+        : '';
     }
 
     const nextPhoneId = configData.whatsappPhoneNumberId !== undefined
@@ -126,34 +148,34 @@ export class BusinessService {
       whatsappConnected: isConnected,
       whatsappPhoneNumberId: nextPhoneId,
       whatsappAccessToken: tokenToSave,
-      whatsappAppSecret: configData.whatsappAppSecret !== undefined ? String(configData.whatsappAppSecret).trim() : (business.whatsappAppSecret || ''),
+      whatsappAppSecret: appSecretToSave,
       whatsappBusinessAccountId: configData.whatsappBusinessAccountId !== undefined ? String(configData.whatsappBusinessAccountId).trim() : (business.whatsappBusinessAccountId || ''),
       updatedAt: new Date().toISOString(),
     };
 
-    return businessRepository.save(updated);
+    return await businessRepository.save(updated);
   }
 
-  getBusinessById(businessId) {
-    return businessRepository.findById(businessId);
+  async getBusinessById(businessId) {
+    return await businessRepository.findById(businessId);
   }
 
-  getBusinessByPhoneNumberId(phoneNumberId) {
-    return businessRepository.findByPhoneNumberId(phoneNumberId);
+  async getBusinessByPhoneNumberId(phoneNumberId) {
+    return await businessRepository.findByPhoneNumberId(phoneNumberId);
   }
 
-  getBusinessesByOwnerId(ownerId) {
+  async getBusinessesByOwnerId(ownerId) {
     if (!ownerId) return [];
-    return businessRepository.findAll().filter(b => b.ownerId === ownerId);
+    return await businessRepository.findByOwnerId(ownerId);
   }
 
-  getAllBusinesses() {
-    return businessRepository.findAll();
+  async getAllBusinesses() {
+    return await businessRepository.findAll();
   }
 
   /**
    * Sanitiza un negocio para respuestas públicas o inspección en la UI,
-   * omitiendo el token cifrado de WhatsApp y exponiendo únicamente flags seguros y máscara.
+   * omitiendo el token cifrado de WhatsApp y App Secret y exponiendo únicamente flags seguros y máscara.
    */
   sanitizeBusiness(business) {
     if (!business) return null;
