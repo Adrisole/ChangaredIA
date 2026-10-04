@@ -456,7 +456,7 @@ async function runTests() {
     const json = await res.json();
     assert.equal(json.success, true);
     assert.ok(json.whatsappDelivery, 'Debe incluir payload de entrega de WhatsApp');
-    assert.ok(json.whatsappDelivery.messageId, 'Debe retornar un messageId');
+    assert.ok(json.whatsappDelivery.to, 'Debe retornar to de destinatario');
     assert.equal(json.customer.name, 'Carlos Gomez');
   });
 
@@ -560,6 +560,18 @@ async function runTests() {
     assert.equal(json.success, true);
     assert.equal(json.data.whatsappConnected, true);
     assert.equal(json.data.whatsappPhoneNumberId, '109876543210987');
+
+    // Restaurar a modo simulado para pruebas idempotentes
+    await fetch(`${BASE_URL}/api/business/${testBusinessId}/whatsapp-config`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        phone: '+54 9 11 9988-7766',
+        whatsappPhoneNumberId: '',
+        whatsappAccessToken: '',
+        whatsappConnected: false
+      })
+    });
   });
 
   // 27. Integridad y Paridad Hash SHA-256

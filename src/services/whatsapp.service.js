@@ -60,6 +60,8 @@ export class WhatsAppService {
           return {
             success: false,
             simulated: false,
+            sent: false,
+            messageId: `meta_err_${Date.now()}`,
             error: data.error || { message: `HTTP ${response.status}: Error de Meta Graph API` },
             statusCode: response.status,
             to: cleanTo,
@@ -85,6 +87,8 @@ export class WhatsAppService {
         return {
           success: false,
           simulated: false,
+          sent: false,
+          messageId: `err_${Date.now()}`,
           error: { message: err.message },
           to: cleanTo,
           text,
