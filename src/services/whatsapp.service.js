@@ -1,5 +1,6 @@
 import crypto from 'crypto';
 import { config } from '../config/env.js';
+import { encryptionService } from './encryption.service.js';
 
 /**
  * Servicio de Integración con WhatsApp Business Platform (Meta Cloud API).
@@ -26,7 +27,9 @@ export class WhatsAppService {
 
     // Determinar credenciales: primero a nivel tenant (negocio), fallback a variables de entorno globales
     const activePhoneNumberId = business?.whatsappPhoneNumberId || phoneNumberId || config.whatsapp.phoneNumberId;
-    const activeAccessToken = business?.whatsappAccessToken || accessToken || config.whatsapp.accessToken;
+    const storedToken = business?.whatsappAccessToken || accessToken || config.whatsapp.accessToken;
+    // Descifrar el token en memoria si está almacenado cifrado
+    const activeAccessToken = encryptionService.decrypt(storedToken);
 
     // Si tenemos credenciales oficiales de Meta, enviar llamada real
     if (activePhoneNumberId && activeAccessToken) {
@@ -125,11 +128,16 @@ export class WhatsAppService {
       return false;
     }
 
-    const signature = signatureHeader.substring(7);
+    const signature = signatureHeader.substring(7).trim();
     const expected = crypto.createHmac('sha256', secret).update(rawBody).digest('hex');
 
     try {
-      return crypto.timingSafeEqual(Buffer.from(signature, 'utf8'), Buffer.from(expected, 'utf8'));
+      const sigBuf = Buffer.from(signature, 'utf8');
+      const expBuf = Buffer.from(expected, 'utf8');
+      if (sigBuf.length !== expBuf.length) {
+        return false;
+      }
+      return crypto.timingSafeEqual(sigBuf, expBuf);
     } catch {
       return false;
     }

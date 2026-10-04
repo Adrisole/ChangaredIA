@@ -15,7 +15,7 @@ export const setupBusiness = (req, res, next) => {
       success: true,
       message: `¡Empleado virtual creado exitosamente para '${newBusiness.name}'!`,
       data: {
-        business: newBusiness,
+        business: businessService.sanitizeBusiness(newBusiness),
         integration: {
           businessId: newBusiness.id,
           whatsappWebhookUrl: webhookUrl,
@@ -35,7 +35,7 @@ export const listMyBusinesses = (req, res, next) => {
     res.status(200).json({
       success: true,
       count: myBusinesses.length,
-      data: myBusinesses,
+      data: myBusinesses.map(b => businessService.sanitizeBusiness(b)),
     });
   } catch (error) {
     next(error);
@@ -57,7 +57,7 @@ export const getBusiness = (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      data: business,
+      data: businessService.sanitizeBusiness(business),
     });
   } catch (error) {
     next(error);
@@ -70,7 +70,7 @@ export const listBusinesses = (req, res, next) => {
     res.status(200).json({
       success: true,
       count: businesses.length,
-      data: businesses,
+      data: businesses.map(b => businessService.sanitizeBusiness(b)),
     });
   } catch (error) {
     next(error);
@@ -91,11 +91,10 @@ export const updateWhatsAppConfig = (req, res, next) => {
         phone: updated.phone,
         whatsappPhoneNumberId: updated.whatsappPhoneNumberId,
         hasAccessToken: Boolean(updated.whatsappAccessToken),
+        tokenEncrypted: true,
       },
     });
   } catch (error) {
     next(error);
   }
 };
-
-

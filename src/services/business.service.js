@@ -1,5 +1,6 @@
 import { businessRepository } from '../repositories/business.repository.js';
 import { authService } from './auth.service.js';
+import { encryptionService } from './encryption.service.js';
 
 /**
  * Servicio de Negocios y Onboarding Multi-Tenant.
@@ -45,6 +46,15 @@ export class BusinessService {
 
     const existing = businessRepository.findById(businessId);
 
+    // Cifrar el token de Meta si se proporciona en texto plano
+    const rawToken = payload.whatsappAccessToken !== undefined
+      ? String(payload.whatsappAccessToken).trim()
+      : (existing?.whatsappAccessToken || '');
+
+    const encryptedToken = rawToken
+      ? (encryptionService.isEncrypted(rawToken) ? rawToken : encryptionService.encrypt(rawToken))
+      : '';
+
     const businessData = {
       ...(existing || {}),
       id: businessId,
@@ -67,7 +77,8 @@ export class BusinessService {
       ownerId: userId || payload.userId || payload.ownerId || existing?.ownerId || null,
       whatsappConnected: payload.whatsappConnected !== undefined ? Boolean(payload.whatsappConnected) : (existing?.whatsappConnected ?? false),
       whatsappPhoneNumberId: payload.whatsappPhoneNumberId !== undefined ? payload.whatsappPhoneNumberId : (existing?.whatsappPhoneNumberId || ''),
-      whatsappAccessToken: payload.whatsappAccessToken !== undefined ? payload.whatsappAccessToken : (existing?.whatsappAccessToken || ''),
+      whatsappAccessToken: encryptedToken,
+      whatsappAppSecret: payload.whatsappAppSecret !== undefined ? String(payload.whatsappAppSecret).trim() : (existing?.whatsappAppSecret || ''),
       whatsappBusinessAccountId: payload.whatsappBusinessAccountId !== undefined ? payload.whatsappBusinessAccountId : (existing?.whatsappBusinessAccountId || ''),
       calendarConnected: payload.calendarConnected !== undefined ? Boolean(payload.calendarConnected) : (existing?.calendarConnected ?? false),
       calendarEmail: payload.calendarEmail !== undefined ? payload.calendarEmail : (existing?.calendarEmail || ''),
@@ -91,12 +102,19 @@ export class BusinessService {
       throw new Error(`El negocio '${businessId}' no existe.`);
     }
 
+    let tokenToSave = business.whatsappAccessToken || '';
+    if (configData.whatsappAccessToken !== undefined) {
+      const trimmed = String(configData.whatsappAccessToken).trim();
+      tokenToSave = trimmed ? encryptionService.encrypt(trimmed) : '';
+    }
+
     const updated = {
       ...business,
       phone: configData.phone !== undefined ? String(configData.phone).trim() : business.phone,
       whatsappConnected: configData.whatsappConnected !== undefined ? Boolean(configData.whatsappConnected) : business.whatsappConnected,
       whatsappPhoneNumberId: configData.whatsappPhoneNumberId !== undefined ? String(configData.whatsappPhoneNumberId).trim() : (business.whatsappPhoneNumberId || ''),
-      whatsappAccessToken: configData.whatsappAccessToken !== undefined ? String(configData.whatsappAccessToken).trim() : (business.whatsappAccessToken || ''),
+      whatsappAccessToken: tokenToSave,
+      whatsappAppSecret: configData.whatsappAppSecret !== undefined ? String(configData.whatsappAppSecret).trim() : (business.whatsappAppSecret || ''),
       whatsappBusinessAccountId: configData.whatsappBusinessAccountId !== undefined ? String(configData.whatsappBusinessAccountId).trim() : (business.whatsappBusinessAccountId || ''),
       updatedAt: new Date().toISOString(),
     };
@@ -115,6 +133,24 @@ export class BusinessService {
 
   getAllBusinesses() {
     return businessRepository.findAll();
+  }
+
+  /**
+   * Sanitiza un negocio para respuestas públicas o inspección en la UI,
+   * omitiendo el token cifrado de WhatsApp y exponiendo únicamente flags seguros y máscara.
+   */
+  sanitizeBusiness(business) {
+    if (!business) return null;
+    const clean = { ...business };
+    clean.hasAccessToken = Boolean(clean.whatsappAccessToken);
+    clean.hasAppSecret = Boolean(clean.whatsappAppSecret);
+    clean.tokenEncrypted = encryptionService.isEncrypted(clean.whatsappAccessToken);
+    clean.whatsappAccessTokenMasked = clean.whatsappAccessToken
+      ? encryptionService.maskToken(clean.whatsappAccessToken)
+      : '';
+    delete clean.whatsappAccessToken;
+    delete clean.whatsappAppSecret;
+    return clean;
   }
 
   _slugify(text) {

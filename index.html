@@ -6565,7 +6565,9 @@
       const bId = currentCompany.slug || 'mi-empresa';
 
       try {
-        const res = await fetch(`/api/conversations/${bId}`);
+        const headers = {};
+        if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
+        const res = await fetch(`/api/conversations/${bId}`, { headers });
         const data = await res.json();
         const convs = (data.success && Array.isArray(data.data)) ? data.data : [];
         whatsappConversationsCache = convs;
@@ -6644,7 +6646,9 @@
       const sendBtn = document.getElementById('btn-send-operator-msg');
 
       try {
-        const res = await fetch(`/api/conversations/${bId}/${encodeURIComponent(customerPhone)}`);
+        const headers = {};
+        if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
+        const res = await fetch(`/api/conversations/${bId}/${encodeURIComponent(customerPhone)}`, { headers });
         const data = await res.json();
         if (!data.success || !data.data) return;
 
@@ -6737,9 +6741,11 @@
       const bId = currentCompany.slug || 'mi-empresa';
 
       try {
+        const headers = { 'Content-Type': 'application/json' };
+        if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
         const res = await fetch(`/api/conversations/${bId}/${encodeURIComponent(activeWhatsAppChat)}/toggle-ai`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers,
           body: JSON.stringify({}),
         });
         const data = await res.json();
@@ -6765,9 +6771,11 @@
       if (statusEl) statusEl.innerText = "Enviando a WhatsApp...";
 
       try {
+        const headers = { 'Content-Type': 'application/json' };
+        if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
         const res = await fetch(`/api/conversations/${bId}/${encodeURIComponent(activeWhatsAppChat)}/send`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers,
           body: JSON.stringify({ text }),
         });
         const data = await res.json();

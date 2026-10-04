@@ -51,17 +51,39 @@ export const handleIncomingMessage = async (req, res, next) => {
       });
     }
 
-    // 2. Validación de firma de Meta x-hub-signature-256 si está presente
+    // 2. Validación criptográfica de firma oficial de Meta x-hub-signature-256 (HMAC-SHA256)
     const signature = req.headers['x-hub-signature-256'];
-    if (signature && config.whatsapp.appSecret) {
-      const rawPayload = JSON.stringify(req.body);
-      const isValid = whatsappService.validateSignature(rawPayload, signature);
+    const activeAppSecret = business.whatsappAppSecret || config.whatsapp.appSecret;
+
+    if (activeAppSecret) {
+      if (!signature) {
+        console.warn(`[WhatsApp Webhook] Rechazado por falta de firma x-hub-signature-256 para tenant: ${businessId}`);
+        return res.status(401).json({
+          success: false,
+          error: 'MISSING_SIGNATURE',
+          message: 'Se requiere firma criptográfica x-hub-signature-256 oficial de Meta.',
+        });
+      }
+      const rawPayload = req.rawBody || JSON.stringify(req.body);
+      const isValid = whatsappService.validateSignature(rawPayload, signature, activeAppSecret);
       if (!isValid) {
-        console.warn(`[WhatsApp Webhook] Firma inválida rechazada para tenant: ${businessId}`);
+        console.warn(`[WhatsApp Webhook] Firma HMAC-SHA256 inválida rechazada para tenant: ${businessId}`);
         return res.status(401).json({
           success: false,
           error: 'INVALID_SIGNATURE',
-          message: 'La firma del webhook no coincide con el app secret configurado.',
+          message: 'La firma del webhook no coincide con el App Secret configurado en Meta.',
+        });
+      }
+    } else if (signature) {
+      // Si el cliente envía una firma explícita para verificar integridad:
+      const rawPayload = req.rawBody || JSON.stringify(req.body);
+      const fallbackSecret = config.whatsapp.appSecret || 'changared_default_app_secret';
+      const isValid = whatsappService.validateSignature(rawPayload, signature, fallbackSecret);
+      if (!isValid) {
+        return res.status(401).json({
+          success: false,
+          error: 'INVALID_SIGNATURE',
+          message: 'La firma criptográfica proporcionada es inválida.',
         });
       }
     }

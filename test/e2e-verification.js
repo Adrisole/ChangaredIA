@@ -668,6 +668,145 @@ async function runTests() {
     assert.equal(jsonClearDemo.success, true);
   });
 
+  // 29. Seguridad y Control de Propiedad (Multi-Tenant Authorization en Chats y Configuración)
+  await test('Seguridad y Propiedad - Protección 401/403 en Chats y Configuración de Negocio', async () => {
+    // 1. Acceder a conversaciones de ownedBusinessId sin token debe retornar 401
+    const unauthChatRes = await fetch(`${BASE_URL}/api/conversations/${ownedBusinessId}`);
+    assert.equal(unauthChatRes.status, 401, 'Debe requerir autenticación para acceder a chats de negocio privado');
+
+    // 2. Crear un segundo usuario (intruso / otro tenant)
+    const otherEmail = `otro-usuario-${Date.now()}@example.com`;
+    const regRes = await fetch(`${BASE_URL}/api/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: otherEmail, password: 'Password123!', name: 'Otro Usuario' })
+    });
+    const regJson = await regRes.json();
+    const otherToken = regJson.token;
+
+    // 3. El segundo usuario intenta acceder a los chats del primer negocio -> debe dar 403 FORBIDDEN
+    const forbiddenChatRes = await fetch(`${BASE_URL}/api/conversations/${ownedBusinessId}`, {
+      headers: { 'Authorization': `Bearer ${otherToken}` }
+    });
+    assert.equal(forbiddenChatRes.status, 403, 'Usuario ajeno debe recibir 403 Forbidden al consultar chats');
+
+    // 4. El segundo usuario intenta cambiar la configuración de WhatsApp del primer negocio -> debe dar 403
+    const forbiddenConfigRes = await fetch(`${BASE_URL}/api/business/${ownedBusinessId}/whatsapp-config`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${otherToken}`
+      },
+      body: JSON.stringify({ phone: '+5491100000000', whatsappPhoneNumberId: '999999999' })
+    });
+    assert.equal(forbiddenConfigRes.status, 403, 'Usuario ajeno no debe poder modificar configuración de WhatsApp');
+
+    // 5. El dueño legítimo accede a sus conversaciones -> 200 OK
+    const ownerChatRes = await fetch(`${BASE_URL}/api/conversations/${ownedBusinessId}`, {
+      headers: { 'Authorization': `Bearer ${testUserToken}` }
+    });
+    assert.equal(ownerChatRes.status, 200, 'El dueño legítimo debe tener acceso 200 OK a sus chats');
+  });
+
+  // 30. Cifrado en Reposo de Tokens Meta (AES-256-GCM) y Prevención de Fugas de Información
+  await test('Cifrado de Tokens - Credenciales en disco cifradas con AES-256-GCM y enmascaradas en API', async () => {
+    // 1. Guardar credenciales de Meta con el token del dueño
+    const rawMetaToken = 'EAAG_super_secret_meta_cloud_token_xyz_987654';
+    const configRes = await fetch(`${BASE_URL}/api/business/${ownedBusinessId}/whatsapp-config`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${testUserToken}`
+      },
+      body: JSON.stringify({
+        phone: '+54 9 11 3344-5566',
+        whatsappPhoneNumberId: '123456789012345',
+        whatsappAccessToken: rawMetaToken,
+        whatsappConnected: true
+      })
+    });
+    assert.equal(configRes.status, 200);
+    const configJson = await configRes.json();
+    assert.equal(configJson.data.hasAccessToken, true);
+    assert.equal(configJson.data.tokenEncrypted, true);
+
+    // 2. Leer directamente el archivo businesses.json del disco y comprobar que NO contiene el token en texto plano
+    const rawDisk = fs.readFileSync('./src/data/businesses.json', 'utf-8');
+    assert.ok(!rawDisk.includes(rawMetaToken), 'El token plano NUNCA debe estar en texto legible en el disco');
+    const parsedDisk = JSON.parse(rawDisk);
+    const storedBiz = parsedDisk[ownedBusinessId];
+    assert.ok(storedBiz.whatsappAccessToken.startsWith('enc:v1:'), 'El token debe estar cifrado con formato enc:v1:');
+    assert.equal(storedBiz.whatsappAccessToken.split(':').length, 5, 'Debe contener prefijo enc, version v1, IV, AuthTag y Ciphertext');
+
+    // 3. Comprobar que en GET /api/business/:businessId el token secreto no se expone a clientes
+    const getBizRes = await fetch(`${BASE_URL}/api/business/${ownedBusinessId}`);
+    assert.equal(getBizRes.status, 200);
+    const getBizJson = await getBizRes.json();
+    assert.equal(getBizJson.data.whatsappAccessToken, undefined, 'El token secreto debe estar eliminado de la respuesta JSON');
+    assert.equal(getBizJson.data.hasAccessToken, true);
+    assert.ok(getBizJson.data.whatsappAccessTokenMasked.includes('••••••••'));
+  });
+
+  // 31. Validación Criptográfica de Firma Webhook de Meta (x-hub-signature-256 HMAC-SHA256)
+  await test('Firma Real de Webhook - Validación HMAC-SHA256 contra Meta App Secret con rawBody', async () => {
+    const testSecret = 'meta_app_secret_changared_test_hash_2026';
+
+    // 1. Configurar whatsappAppSecret en el negocio con el token del dueño
+    const setSecretRes = await fetch(`${BASE_URL}/api/business/${ownedBusinessId}/whatsapp-config`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${testUserToken}`
+      },
+      body: JSON.stringify({
+        whatsappAppSecret: testSecret
+      })
+    });
+    assert.equal(setSecretRes.status, 200);
+
+    const msgPayload = JSON.stringify({
+      from: '+5491155667788',
+      message: 'Hola, consulta de seguridad con firma criptográfica Meta'
+    });
+
+    // 2. Envío sin firma a negocio con App Secret configurado -> Debe rechazar con 401
+    const noSigRes = await fetch(`${BASE_URL}/api/webhook/${ownedBusinessId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: msgPayload
+    });
+    assert.equal(noSigRes.status, 401, 'Petición sin firma debe ser rechazada cuando hay App Secret');
+    const noSigJson = await noSigRes.json();
+    assert.equal(noSigJson.error, 'MISSING_SIGNATURE');
+
+    // 3. Envío con firma falsa/adulterada -> Debe rechazar con 401
+    const badSigRes = await fetch(`${BASE_URL}/api/webhook/${ownedBusinessId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-hub-signature-256': 'sha256=0000000000000000000000000000000000000000000000000000000000000000'
+      },
+      body: msgPayload
+    });
+    assert.equal(badSigRes.status, 401, 'Firma falsa debe ser rechazada');
+    const badSigJson = await badSigRes.json();
+    assert.equal(badSigJson.error, 'INVALID_SIGNATURE');
+
+    // 4. Envío con firma HMAC-SHA256 auténtica calculada sobre el body exacto
+    const validHmac = crypto.createHmac('sha256', testSecret).update(msgPayload).digest('hex');
+    const validSigRes = await fetch(`${BASE_URL}/api/webhook/${ownedBusinessId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-hub-signature-256': `sha256=${validHmac}`
+      },
+      body: msgPayload
+    });
+    assert.equal(validSigRes.status, 200, 'Firma oficial válida debe ser admitida y procesada');
+    const validSigJson = await validSigRes.json();
+    assert.equal(validSigJson.success, true);
+  });
+
   console.log('\n================================================================');
   console.log(`📊 RESULTADOS: ${passed} de ${total} pruebas aprobadas (${Math.round((passed / total) * 100)}%)`);
   if (passed === total) {
