@@ -39,12 +39,12 @@ export const createApp = () => {
 
   // Rutas SEO (Google & Motores de Búsqueda)
   app.get('/robots.txt', (req, res) => {
-    res.type('text/plain');
+    res.set('Content-Type', 'text/plain; charset=utf-8');
     res.sendFile(path.resolve('./public/robots.txt'));
   });
 
   app.get('/sitemap.xml', (req, res) => {
-    res.type('application/xml');
+    res.set('Content-Type', 'application/xml; charset=utf-8');
     res.sendFile(path.resolve('./public/sitemap.xml'));
   });
 
