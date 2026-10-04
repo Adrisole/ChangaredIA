@@ -3,6 +3,7 @@ import businessRoutes from './business.routes.js';
 import webhookRoutes from './webhook.routes.js';
 import billingRoutes from './billing.routes.js';
 import accountingRoutes from './accounting.routes.js';
+import authRoutes from './auth.routes.js';
 import { businessService } from '../services/business.service.js';
 import { config } from '../config/env.js';
 
@@ -23,6 +24,9 @@ apiRouter.get('/status', (req, res) => {
     timestamp: new Date().toISOString(),
   });
 });
+
+// Rutas de autenticación y sesiones de usuario (/api/auth)
+apiRouter.use('/auth', authRoutes);
 
 // Rutas de onboarding y gestión de negocios
 apiRouter.use('/business', businessRoutes);

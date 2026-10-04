@@ -1,4 +1,5 @@
 import { businessRepository } from '../repositories/business.repository.js';
+import { authService } from './auth.service.js';
 
 /**
  * Servicio de Negocios y Onboarding Multi-Tenant.
@@ -7,7 +8,7 @@ export class BusinessService {
   /**
    * Registra o actualiza la configuración de un negocio en la plataforma.
    */
-  setupBusiness(payload) {
+  setupBusiness(payload, userId = null) {
     const { id, name, description, toneOfVoice, businessRules, catalog } = payload;
 
     if (!name || typeof name !== 'string') {
@@ -60,15 +61,27 @@ export class BusinessService {
       catalog: normalizedCatalog,
       services: Array.isArray(payload.services) ? payload.services : [],
       activeEmployees: Array.isArray(payload.activeEmployees) && payload.activeEmployees.length > 0 ? payload.activeEmployees : ['vendedor'],
+      ownerId: userId || payload.userId || payload.ownerId || null,
       createdAt: new Date().toISOString(),
     };
 
     const saved = businessRepository.save(businessData);
+
+    // Si hay un usuario propietario, vincularlo
+    if (saved.ownerId) {
+      authService.linkBusiness(saved.ownerId, saved.id);
+    }
+
     return saved;
   }
 
   getBusinessById(businessId) {
     return businessRepository.findById(businessId);
+  }
+
+  getBusinessesByOwnerId(ownerId) {
+    if (!ownerId) return [];
+    return businessRepository.findAll().filter(b => b.ownerId === ownerId);
   }
 
   getAllBusinesses() {

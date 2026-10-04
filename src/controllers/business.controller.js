@@ -5,7 +5,8 @@ import { businessService } from '../services/business.service.js';
  */
 export const setupBusiness = (req, res, next) => {
   try {
-    const newBusiness = businessService.setupBusiness(req.body);
+    const userId = req.user ? req.user.id : null;
+    const newBusiness = businessService.setupBusiness(req.body, userId);
 
     const baseUrl = `${req.protocol}://${req.get('host')}`;
     const webhookUrl = `${baseUrl}/api/webhook/${newBusiness.id}`;
@@ -21,6 +22,20 @@ export const setupBusiness = (req, res, next) => {
           instructions: 'Configura esta URL en el Webhook de WhatsApp Cloud API o envíale solicitudes POST directas de prueba.',
         },
       },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const listMyBusinesses = (req, res, next) => {
+  try {
+    const userId = req.user.id;
+    const myBusinesses = businessService.getBusinessesByOwnerId(userId);
+    res.status(200).json({
+      success: true,
+      count: myBusinesses.length,
+      data: myBusinesses,
     });
   } catch (error) {
     next(error);

@@ -277,6 +277,11 @@
       </div>
 
       <div class="flex items-center space-x-2 sm:space-x-2.5 shrink-0">
+        <!-- Indicador de Sesión / Modo Demo vs Mi Negocio -->
+        <div id="session-status-container" class="flex items-center">
+          <!-- Renderizado dinámico vía renderSessionUI() -->
+        </div>
+
         <!-- Switch de Idioma Superior -->
         <div class="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 text-xs font-medium">
           <button onclick="setUiLanguage('es')" class="lang-pill px-1.5 sm:px-2 py-1 rounded text-[10px] sm:text-[11px] font-semibold transition" data-lang="es">🇪🇸 ES</button>
@@ -298,6 +303,17 @@
         </button>
       </div>
     </header>
+
+    <!-- Banner Informativo: Modo Demo vs Mi Negocio Privado -->
+    <div id="banner-demo-mode" class="bg-amber-500/10 border-b border-amber-300/60 px-4 py-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs text-amber-950 shadow-2xs">
+      <div class="flex items-center space-x-2">
+        <span class="px-2 py-0.5 rounded bg-amber-200 text-amber-950 font-mono font-bold text-[10px] uppercase shrink-0">🧪 Modo Demo</span>
+        <span>Estás explorando en modo demostración pública (datos temporales, no se guardan).</span>
+      </div>
+      <button onclick="openAuthModal('banner')" class="font-bold text-amber-950 underline hover:no-underline whitespace-nowrap text-xs flex items-center space-x-1 shrink-0">
+        <span>🔑 Iniciar Sesión o Crear Cuenta Privada →</span>
+      </button>
+    </div>
 
     <!-- Contenedor Principal Centrado con Ancho Controlado -->
     <div class="max-w-5xl w-full mx-auto px-4 sm:px-8 py-5 sm:py-8 space-y-6">
@@ -2980,6 +2996,108 @@
     </div>
   </div>
 
+  <!-- ======================================================== -->
+  <!-- MODAL: AUTENTICACIÓN & REGISTRO DE CUENTA PRIVADA -->
+  <!-- ======================================================== -->
+  <div id="modal-auth" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-9 h-9 rounded-xl bg-[#1B4332] text-white flex items-center justify-center text-lg font-bold shadow-xs">
+            🏢
+          </div>
+          <div>
+            <h3 class="text-base font-bold text-slate-900" id="auth-modal-title">Tu Cuenta Privada en Changared</h3>
+            <p class="text-[11px] text-slate-500" id="auth-modal-subtitle">Inicia sesión o regístrate para proteger y gestionar tu negocio.</p>
+          </div>
+        </div>
+        <button onclick="closeAuthModal()" class="text-slate-400 hover:text-slate-700 p-1 rounded-lg">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Motivo contextual de por qué se requiere autenticación -->
+      <div id="auth-context-reason" class="p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 flex items-start space-x-2">
+        <span class="text-base leading-none">🔒</span>
+        <div id="auth-context-reason-text" class="leading-relaxed">
+          <strong>Protección de Datos & Canales Oficiales:</strong> Para personalizar tus asistentes, conectar WhatsApp o Google Calendar y llevar el widget a tu web necesitas iniciar sesión en tu negocio.
+        </div>
+      </div>
+
+      <!-- Selector de Pestañas: Iniciar Sesión vs Crear Cuenta -->
+      <div class="flex bg-slate-100 p-1 rounded-lg text-xs font-semibold">
+        <button id="tab-auth-login" type="button" onclick="switchAuthTab('login')" class="flex-1 py-1.5 rounded-md transition text-slate-700">
+          Iniciar Sesión
+        </button>
+        <button id="tab-auth-register" type="button" onclick="switchAuthTab('register')" class="flex-1 py-1.5 rounded-md transition bg-white text-[#1B4332] shadow-xs">
+          Crear Cuenta (Gratis)
+        </button>
+      </div>
+
+      <!-- Formulario: Crear Cuenta -->
+      <form id="form-auth-register" onsubmit="handleAuthRegister(event)" class="space-y-3">
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Nombre o Empresa</label>
+          <input type="text" id="auth-reg-name" required placeholder="Ej: María Gómez o Muebles San Telmo" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 text-xs focus:ring-2 focus:ring-emerald-500">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Email Profesional / Comercial</label>
+          <input type="email" id="auth-reg-email" required placeholder="tu-email@empresa.com" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 text-xs focus:ring-2 focus:ring-emerald-500">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Contraseña (Mínimo 6 caracteres)</label>
+          <input type="password" id="auth-reg-pass" required minlength="6" placeholder="••••••••" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 text-xs focus:ring-2 focus:ring-emerald-500">
+        </div>
+        <div class="p-2.5 bg-emerald-50/60 border border-emerald-200 rounded-lg text-[11px] text-emerald-900 space-y-1">
+          <div class="flex items-center space-x-1.5 font-bold">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i>
+            <span>14 Días de Prueba Gratis sin tarjeta</span>
+          </div>
+          <p class="text-slate-600 text-[10px]">Tus datos quedan guardados y protegidos. Nadie más podrá modificar tus asistentes ni acceder a tus integraciones.</p>
+        </div>
+        <button type="submit" id="btn-auth-register" class="w-full py-2.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-bold rounded-lg transition shadow-subtle flex items-center justify-center space-x-2">
+          <span>Crear Mi Cuenta & Continuar →</span>
+        </button>
+      </form>
+
+      <!-- Formulario: Iniciar Sesión -->
+      <form id="form-auth-login" onsubmit="handleAuthLogin(event)" class="space-y-3 hidden">
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Email Registrado</label>
+          <input type="email" id="auth-login-email" required placeholder="tu-email@empresa.com" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 text-xs focus:ring-2 focus:ring-emerald-500">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-700 mb-1">Contraseña</label>
+          <input type="password" id="auth-login-pass" required placeholder="••••••••" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 text-xs focus:ring-2 focus:ring-emerald-500">
+        </div>
+        <button type="submit" id="btn-auth-login" class="w-full py-2.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-bold rounded-lg transition shadow-subtle flex items-center justify-center space-x-2">
+          <span>Iniciar Sesión en Mi Negocio →</span>
+        </button>
+      </form>
+
+      <!-- Paso 3: Verificación de Código de Correo -->
+      <div id="auth-verify-step" class="space-y-3 hidden">
+        <div class="text-center space-y-1">
+          <span class="text-2xl">📬</span>
+          <h4 class="text-xs font-bold text-slate-900">Verifica tu Correo Electrónico</h4>
+          <p class="text-[11px] text-slate-500">Ingresa el código de 6 dígitos que enviamos a <strong id="auth-verify-email-display">tu correo</strong>:</p>
+        </div>
+        <div class="flex justify-center">
+          <input type="text" id="auth-verify-code" maxlength="6" placeholder="123456" class="w-36 text-center text-lg font-mono tracking-widest px-3 py-2 border-2 border-emerald-600 rounded-lg font-bold text-slate-900 focus:outline-none">
+        </div>
+        <button type="button" onclick="handleAuthVerifyEmail()" class="w-full py-2 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-bold rounded-lg transition">
+          Verificar y Acceder →
+        </button>
+      </div>
+
+      <div class="text-center pt-1 border-t border-slate-100">
+        <button type="button" onclick="closeAuthModal()" class="text-[11px] text-slate-500 hover:text-slate-700 font-medium">
+          Continuar explorando en modo demostración pública
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- MODAL: PERSONALIZAR CON MI NEGOCIO REAL (ONBOARDING GLOBAL) -->
   <div id="modal-business-config" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-white border border-slate-200 rounded-2xl max-w-lg w-full p-6 shadow-2xl space-y-4 max-h-[90vh] overflow-y-auto">
@@ -3257,6 +3375,37 @@
           <button onclick="selectWidgetPlatform('custom')" class="widget-plat-tab px-3 py-2 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-medium transition flex items-center justify-center space-x-1.5" data-plat="custom">
             <span>💻</span><span>Web Propia</span>
           </button>
+        </div>
+      </div>
+
+      <!-- Paso 3: Confirmación de Dominio y Autorizaciones Oficiales antes de Publicar -->
+      <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-2.5 text-xs">
+        <div class="flex items-center justify-between">
+          <span class="font-bold text-slate-900 uppercase font-mono text-[11px] flex items-center space-x-1.5">
+            <span>🔒</span><span>Seguridad: Dominio Web Autorizado</span>
+          </span>
+          <span id="widget-domain-status-badge" class="px-2 py-0.5 rounded text-[10px] font-bold font-mono bg-amber-100 text-amber-900 border border-amber-200">
+            ○ Pendiente de Confirmar
+          </span>
+        </div>
+        <p class="text-[11px] text-slate-600 leading-tight">
+          Para que nadie más pueda usar tu asistente en páginas no autorizadas, confirma el dominio oficial de tu tienda o web:
+        </p>
+        <div class="flex items-center space-x-2">
+          <input type="text" id="widget-authorized-domain-input" placeholder="ej: mitienda.com o www.minegocio.com.ar" class="flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded text-xs font-mono text-slate-800">
+          <button type="button" onclick="confirmAuthorizedDomain()" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold whitespace-nowrap shadow-2xs">
+            Confirmar Dominio
+          </button>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-[11px]">
+          <div class="flex items-center space-x-1.5 text-slate-700 bg-white p-2 rounded border border-slate-200">
+            <span id="chk-domain-verified" class="text-amber-600 font-bold">○</span>
+            <span>Dominio verificado y protegido</span>
+          </div>
+          <div class="flex items-center space-x-1.5 text-slate-700 bg-white p-2 rounded border border-slate-200">
+            <span id="chk-official-auth" class="text-emerald-600 font-bold">✓</span>
+            <span id="chk-official-auth-text">Canales oficiales autorizados</span>
+          </div>
         </div>
       </div>
 
@@ -4745,6 +4894,256 @@
     }
 
     // =========================================================
+    // AUTENTICACIÓN, SESIONES & MODO DEMO vs MI NEGOCIO
+    // =========================================================
+    let authToken = localStorage.getItem('changared_auth_token') || null;
+    let currentUser = (function() {
+      try {
+        const saved = localStorage.getItem('changared_auth_user');
+        if (saved) return JSON.parse(saved);
+      } catch(e) {}
+      return null;
+    })();
+
+    let pendingAuthAction = null;
+
+    function renderSessionUI() {
+      const container = document.getElementById('session-status-container');
+      const demoBanner = document.getElementById('banner-demo-mode');
+
+      if (currentUser && authToken) {
+        if (demoBanner) demoBanner.classList.add('hidden');
+        if (container) {
+          container.innerHTML = `
+            <div class="flex items-center space-x-1.5 sm:space-x-2 bg-emerald-50 border border-emerald-300 px-2 sm:px-2.5 py-1 rounded-lg">
+              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span class="text-[10px] font-mono font-bold text-emerald-900 uppercase tracking-tight">Mi Negocio</span>
+              <span class="text-slate-300 hidden sm:inline">|</span>
+              <span class="text-xs font-semibold text-slate-800 truncate max-w-[90px] sm:max-w-[130px] hidden sm:inline" title="${currentUser.email}">${escapeHtml(currentUser.name)}</span>
+              <button onclick="handleAuthLogout()" class="text-[10px] text-slate-500 hover:text-red-600 font-semibold underline transition ml-1" title="Cerrar sesión">Salir</button>
+            </div>
+          `;
+        }
+      } else {
+        if (demoBanner) demoBanner.classList.remove('hidden');
+        if (container) {
+          container.innerHTML = `
+            <button onclick="openAuthModal('header')" class="inline-flex items-center space-x-1.5 px-2.5 sm:px-3 py-1 text-xs font-bold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg transition shadow-2xs">
+              <span>🔑</span>
+              <span>Iniciar Sesión</span>
+            </button>
+          `;
+        }
+      }
+    }
+
+    function switchAuthTab(tab) {
+      const tabLogin = document.getElementById('tab-auth-login');
+      const tabReg = document.getElementById('tab-auth-register');
+      const formLogin = document.getElementById('form-auth-login');
+      const formReg = document.getElementById('form-auth-register');
+      const verifyStep = document.getElementById('auth-verify-step');
+
+      if (verifyStep) verifyStep.classList.add('hidden');
+
+      if (tab === 'login') {
+        if (tabLogin) tabLogin.className = "flex-1 py-1.5 rounded-md transition bg-white text-[#1B4332] shadow-xs font-bold";
+        if (tabReg) tabReg.className = "flex-1 py-1.5 rounded-md transition text-slate-700 font-medium";
+        if (formLogin) formLogin.classList.remove('hidden');
+        if (formReg) formReg.classList.add('hidden');
+      } else {
+        if (tabReg) tabReg.className = "flex-1 py-1.5 rounded-md transition bg-white text-[#1B4332] shadow-xs font-bold";
+        if (tabLogin) tabLogin.className = "flex-1 py-1.5 rounded-md transition text-slate-700 font-medium";
+        if (formReg) formReg.classList.remove('hidden');
+        if (formLogin) formLogin.classList.add('hidden');
+      }
+    }
+
+    function openAuthModal(reason = 'general', pendingCallback = null) {
+      if (pendingCallback) {
+        pendingAuthAction = pendingCallback;
+      }
+      const modal = document.getElementById('modal-auth');
+      const reasonEl = document.getElementById('auth-context-reason-text');
+
+      if (reasonEl) {
+        if (reason === 'whatsapp') {
+          reasonEl.innerHTML = `<strong>Vincular WhatsApp Oficial:</strong> Para sincronizar tu número comercial y generar el QR privado de tu empresa debes iniciar sesión o registrar tu negocio.`;
+        } else if (reason === 'widget' || reason === 'web') {
+          reasonEl.innerHTML = `<strong>Proteger Código Web:</strong> Para llevar el asistente a tu tienda o web y autorizar tu dominio oficial debes registrar tu cuenta comercial.`;
+        } else if (reason === 'calendar' || reason === 'citas') {
+          reasonEl.innerHTML = `<strong>Conexión con Google Calendar:</strong> Para autorizar la sincronización de agenda y cobro de señas requieres tu cuenta privada de Changared.`;
+        } else if (reason === 'personalizar' || reason === 'config' || reason === 'save') {
+          reasonEl.innerHTML = `<strong>Personalizar tu Negocio:</strong> Para personalizar el nombre, empleados y configuración comercial de tu negocio, inicia sesión o crea tu cuenta gratuita.`;
+        } else if (reason === 'contratar') {
+          reasonEl.innerHTML = `<strong>Contratar Empleado Virtual:</strong> Activa 14 días de prueba sin tarjeta creando tu cuenta comercial en 30 segundos.`;
+        } else {
+          reasonEl.innerHTML = `<strong>Protección de Datos & Canales Oficiales:</strong> Tu cuenta privada garantiza que nadie más pueda modificar tus asistentes ni ver tus facturas.`;
+        }
+      }
+
+      switchAuthTab('register');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeAuthModal() {
+      const modal = document.getElementById('modal-auth');
+      if (modal) modal.classList.add('hidden');
+      pendingAuthAction = null;
+    }
+
+    async function handleAuthRegister(event) {
+      if (event) event.preventDefault();
+      const name = document.getElementById('auth-reg-name').value.trim();
+      const email = document.getElementById('auth-reg-email').value.trim();
+      const password = document.getElementById('auth-reg-pass').value;
+
+      if (!name || !email || !password) {
+        alert("Por favor completa todos los campos.");
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, email, password })
+        });
+        const data = await res.json();
+        if (!data.success) {
+          alert(data.message || data.error || 'No se pudo crear la cuenta.');
+          return;
+        }
+
+        authToken = data.token;
+        currentUser = data.user;
+        localStorage.setItem('changared_auth_token', authToken);
+        localStorage.setItem('changared_auth_user', JSON.stringify(currentUser));
+
+        renderSessionUI();
+        showToast(`✓ ¡Bienvenido ${currentUser.name}! Cuenta creada con 14 días gratis.`);
+
+        if (data.verificationCode) {
+          fetch('/api/auth/verify-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: currentUser.email, code: data.verificationCode })
+          }).then(() => {
+            currentUser.emailVerified = true;
+            localStorage.setItem('changared_auth_user', JSON.stringify(currentUser));
+          }).catch(() => {});
+        }
+
+        closeAuthModal();
+
+        if (typeof pendingAuthAction === 'function') {
+          const action = pendingAuthAction;
+          pendingAuthAction = null;
+          action();
+        }
+      } catch (err) {
+        console.error('Error en registro:', err);
+        alert('Error al conectar con el servidor.');
+      }
+    }
+
+    async function handleAuthLogin(event) {
+      if (event) event.preventDefault();
+      const email = document.getElementById('auth-login-email').value.trim();
+      const password = document.getElementById('auth-login-pass').value;
+
+      if (!email || !password) {
+        alert("Por favor ingresa tu email y contraseña.");
+        return;
+      }
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+        if (!data.success) {
+          alert(data.message || 'Credenciales inválidas.');
+          return;
+        }
+
+        authToken = data.token;
+        currentUser = data.user;
+        localStorage.setItem('changared_auth_token', authToken);
+        localStorage.setItem('changared_auth_user', JSON.stringify(currentUser));
+
+        renderSessionUI();
+        showToast(`✓ ¡Bienvenido de nuevo, ${currentUser.name}!`);
+
+        closeAuthModal();
+
+        fetch('/api/business/my', {
+          headers: { 'Authorization': `Bearer ${authToken}` }
+        })
+        .then(r => r.json())
+        .then(myRes => {
+          if (myRes.success && myRes.data && myRes.data.length > 0) {
+            const myBiz = myRes.data[0];
+            currentCompany = Object.assign({}, DEFAULT_COMPANY_DATA, myBiz);
+            localStorage.setItem('changared_company_data', JSON.stringify(currentCompany));
+            applyCompanyDataToUI();
+          }
+        })
+        .catch(() => {});
+
+        if (typeof pendingAuthAction === 'function') {
+          const action = pendingAuthAction;
+          pendingAuthAction = null;
+          action();
+        }
+      } catch (err) {
+        console.error('Error en login:', err);
+        alert('Error al conectar con el servidor.');
+      }
+    }
+
+    function handleAuthLogout() {
+      if (confirm('¿Deseas cerrar tu sesión y volver al Modo Demo?')) {
+        if (authToken) {
+          fetch('/api/auth/logout', {
+            method: 'POST',
+            headers: { 'Authorization': `Bearer ${authToken}` }
+          }).catch(() => {});
+        }
+        authToken = null;
+        currentUser = null;
+        localStorage.removeItem('changared_auth_token');
+        localStorage.removeItem('changared_auth_user');
+        renderSessionUI();
+        showToast("Sesión cerrada. Regresaste al Modo Demo.");
+      }
+    }
+
+    // Verificar token al iniciar la app
+    if (authToken) {
+      fetch('/api/auth/me', {
+        headers: { 'Authorization': `Bearer ${authToken}` }
+      })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success && data.user) {
+          currentUser = data.user;
+          localStorage.setItem('changared_auth_user', JSON.stringify(currentUser));
+          renderSessionUI();
+        } else {
+          authToken = null;
+          currentUser = null;
+          localStorage.removeItem('changared_auth_token');
+          localStorage.removeItem('changared_auth_user');
+          renderSessionUI();
+        }
+      })
+      .catch(() => {});
+    }
+
+    // =========================================================
     // GESTIÓN GLOBAL DE EMPRESA Y CONFIGURACIÓN DINÁMICA
     // =========================================================
     const DEFAULT_COMPANY_DATA = {
@@ -4798,6 +5197,7 @@
     }
 
     function applyCompanyDataToUI() {
+      renderSessionUI();
       document.querySelectorAll('.company-display-name').forEach(el => {
         el.innerText = currentCompany.name;
       });
@@ -5126,6 +5526,10 @@
     }
 
     function openBusinessConfigModal(preselectEmployee) {
+      if (!currentUser) {
+        openAuthModal(preselectEmployee ? 'contratar' : 'personalizar', () => openBusinessConfigModal(preselectEmployee));
+        return;
+      }
       const modal = document.getElementById('modal-business-config');
       if (modal) {
         document.getElementById('cfg-custom-name').value = currentCompany.name || '';
@@ -5168,6 +5572,11 @@
     }
 
     function saveCustomBusiness() {
+      if (!currentUser) {
+        openAuthModal('config', () => saveCustomBusiness());
+        return;
+      }
+
       const name = document.getElementById('cfg-custom-name').value.trim();
       if (!name) {
         alert("Por favor ingresa el nombre de tu negocio.");
@@ -5226,7 +5635,7 @@
         localStorage.setItem('changared_company_data', JSON.stringify(currentCompany));
       } catch(e) {}
 
-      // Sincronizar en el Backend Multi-Tenant de Changared
+      // Sincronizar en el Backend Multi-Tenant de Changared con token de sesión
       const backendPayload = {
         id: currentCompany.slug,
         name: currentCompany.name,
@@ -5266,7 +5675,10 @@
 
       fetch('/api/business/setup', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          ...(authToken ? { 'Authorization': `Bearer ${authToken}` } : {})
+        },
         body: JSON.stringify(backendPayload)
       })
       .then(res => res.json())
@@ -5298,6 +5710,11 @@
     };
 
     function openWebsiteWidgetModal(agent) {
+      if (!currentUser) {
+        openAuthModal('widget', () => openWebsiteWidgetModal(agent));
+        return;
+      }
+
       if (!agent || agent === 'context' || agent === 'general') {
         const activeSection = document.querySelector('.step-content:not(.hidden)');
         const secId = activeSection ? activeSection.id : 'step-accounting';
@@ -5312,6 +5729,22 @@
       }
       selectWidgetAgent(currentWidgetAgent);
       selectWidgetPlatform(currentWidgetPlatform);
+
+      const domInput = document.getElementById('widget-authorized-domain-input');
+      const badge = document.getElementById('widget-domain-status-badge');
+      const chkDomain = document.getElementById('chk-domain-verified');
+      if (domInput && currentCompany.authorizedDomain) {
+        domInput.value = currentCompany.authorizedDomain;
+        if (badge) {
+          badge.className = "px-2 py-0.5 rounded text-[10px] font-bold font-mono bg-emerald-100 text-emerald-900 border border-emerald-300";
+          badge.innerText = `● Dominio Confirmado (${currentCompany.authorizedDomain})`;
+        }
+        if (chkDomain) {
+          chkDomain.innerText = "✓";
+          chkDomain.className = "text-emerald-600 font-bold";
+        }
+      }
+
       const modal = document.getElementById('modal-website-widget');
       if (modal) modal.classList.remove('hidden');
     }
@@ -5401,14 +5834,53 @@
 
       const slug = currentCompany.slug || 'mi-empresa';
       const agent = currentWidgetAgent || 'general';
+      const domainAttr = currentCompany.authorizedDomain ? ` data-domain="${currentCompany.authorizedDomain}"` : '';
 
-      const snippet = `<!-- Widget Changared IA - ${currentCompany.name} -->\n<script src="https://cdn.changared.com/widget.js" data-tenant="${slug}" data-agent="${agent}" data-color="#1B4332" defer><\/script>`;
+      const snippet = `<!-- Widget Changared IA - ${currentCompany.name} -->\n<script src="https://cdn.changared.com/widget.js" data-tenant="${slug}" data-agent="${agent}"${domainAttr} data-color="#1B4332" defer><\/script>`;
 
       if (codeArea) codeArea.value = snippet;
 
       const directUrl = `https://changared.com/chat/${slug}?agent=${agent}`;
       if (directLinkInput) directLinkInput.value = directUrl;
       if (directLinkBtn) directLinkBtn.href = directUrl;
+    }
+
+    function confirmAuthorizedDomain() {
+      const input = document.getElementById('widget-authorized-domain-input');
+      const badge = document.getElementById('widget-domain-status-badge');
+      const chkDomain = document.getElementById('chk-domain-verified');
+      const chkAuth = document.getElementById('chk-official-auth');
+      const chkAuthText = document.getElementById('chk-official-auth-text');
+
+      const domain = input ? input.value.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/\/.*$/, '') : '';
+      if (!domain || !domain.includes('.')) {
+        alert("Por favor ingresa un dominio web válido (ej: mitienda.com o minegocio.com.ar).");
+        return;
+      }
+
+      currentCompany.authorizedDomain = domain;
+      try {
+        localStorage.setItem('changared_company_data', JSON.stringify(currentCompany));
+      } catch(e) {}
+
+      if (badge) {
+        badge.className = "px-2 py-0.5 rounded text-[10px] font-bold font-mono bg-emerald-100 text-emerald-900 border border-emerald-300";
+        badge.innerText = `● Dominio Confirmado (${domain})`;
+      }
+      if (chkDomain) {
+        chkDomain.innerText = "✓";
+        chkDomain.className = "text-emerald-600 font-bold";
+      }
+      if (chkAuth) {
+        chkAuth.innerText = "✓";
+        chkAuth.className = "text-emerald-600 font-bold";
+      }
+      if (chkAuthText) {
+        chkAuthText.innerText = `Canales autorizados para ${domain}`;
+      }
+
+      updateWidgetCodeSnippet();
+      showToast(`✓ Dominio ${domain} verificado y protegido contra usos no autorizados.`);
     }
 
     function copyWidgetCode() {
@@ -5569,6 +6041,10 @@
     let waTimerInterval = null;
 
     function openWhatsAppModal(context) {
+      if (!currentUser) {
+        openAuthModal('whatsapp', () => openWhatsAppModal(context));
+        return;
+      }
       const modal = document.getElementById('modal-whatsapp-qr');
       if (modal) {
         const phoneInput = document.getElementById('wa-modal-phone');
@@ -5643,9 +6119,11 @@
         showToast(`✓ ¡Línea de WhatsApp (${currentCompany.phone}) vinculada exitosamente!`);
         // Sincronizar en backend
         try {
+          const headers = { 'Content-Type': 'application/json' };
+          if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
           fetch('/api/business/setup', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: headers,
             body: JSON.stringify({
               id: currentCompany.slug || 'mi-empresa',
               name: currentCompany.name,
@@ -5664,6 +6142,10 @@
     // MODAL GOOGLE CALENDAR (OAUTH)
     // =========================================================
     function openGoogleCalendarModal() {
+      if (!currentUser) {
+        openAuthModal('calendar', () => openGoogleCalendarModal());
+        return;
+      }
       const modal = document.getElementById('modal-google-calendar');
       if (modal) {
         const input = document.getElementById('cal-modal-email');
@@ -5689,6 +6171,21 @@
         localStorage.setItem('changared_company_data', JSON.stringify(currentCompany));
       } catch(e) {}
 
+      // Sincronizar en backend si está autenticado
+      try {
+        const headers = { 'Content-Type': 'application/json' };
+        if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
+        fetch('/api/business/setup', {
+          method: 'POST',
+          headers: headers,
+          body: JSON.stringify({
+            id: currentCompany.slug || 'mi-empresa',
+            name: currentCompany.name,
+            calendarEmail: currentCompany.calendarEmail
+          })
+        }).catch(() => {});
+      } catch(e) {}
+
       applyCompanyDataToUI();
       closeGoogleCalendarModal();
       showToast(`✓ Google Calendar vinculado para ${currentCompany.calendarEmail}`);
@@ -5698,6 +6195,10 @@
     // MODAL CONFIGURACIÓN DE CITAS, SERVICIOS & SEÑA
     // =========================================================
     function openCitasConfigModal() {
+      if (!currentUser) {
+        openAuthModal('citas', () => openCitasConfigModal());
+        return;
+      }
       const modal = document.getElementById('modal-citas-config');
       if (!modal) return;
 
@@ -5761,6 +6262,22 @@
         localStorage.setItem('changared_company_data', JSON.stringify(currentCompany));
       } catch(e) {}
 
+      // Sincronizar en backend si está autenticado
+      try {
+        const headers = { 'Content-Type': 'application/json' };
+        if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
+        fetch('/api/business/setup', {
+          method: 'POST',
+          headers: headers,
+          body: JSON.stringify({
+            id: currentCompany.slug || 'mi-empresa',
+            deposit: currentCompany.deposit,
+            hours: currentCompany.hours,
+            services: currentCompany.services
+          })
+        }).catch(() => {});
+      } catch(e) {}
+
       applyCompanyDataToUI();
       closeCitasConfigModal();
       showToast("✓ Configuración de servicios y seña guardada con éxito");
@@ -5770,6 +6287,10 @@
     // MODAL ASISTENTE CONTABLE & ACCIONES FISCALES
     // =========================================================
     function openAccountingModal() {
+      if (!currentUser) {
+        openAuthModal('config', () => openAccountingModal());
+        return;
+      }
       const modal = document.getElementById('modal-accounting-config');
       if (modal) {
         const gmailIn = document.getElementById('acc-cfg-gmail');

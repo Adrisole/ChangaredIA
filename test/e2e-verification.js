@@ -269,7 +269,119 @@ async function runTests() {
     }
   });
 
-  // 15. Integridad y Paridad Hash SHA-256
+  // 15. Autenticación y Registro de Usuario (Modo Privado)
+  let testUserToken = null;
+  let testVerificationCode = null;
+  const testUserEmail = `founder-${Date.now()}@testbusiness.com`;
+
+  await test('POST /api/auth/register - Registro de usuario nuevo con contraseña cifrada', async () => {
+    const res = await fetch(`${BASE_URL}/api/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name: 'Carlos Dueño',
+        email: testUserEmail,
+        password: 'Password123!'
+      })
+    });
+
+    assert.equal(res.status, 201, 'Status HTTP debe ser 201');
+    const json = await res.json();
+    assert.equal(json.success, true);
+    assert.ok(json.token, 'Debe devolver un token de sesión');
+    assert.equal(json.user.email, testUserEmail);
+    assert.equal(json.user.emailVerified, false);
+    testUserToken = json.token;
+    testVerificationCode = json.verificationCode;
+  });
+
+  // 16. Verificación de Código de Correo
+  await test('POST /api/auth/verify-email - Confirmación de email con código de 6 dígitos', async () => {
+    assert.ok(testVerificationCode, 'Debe existir código de verificación');
+    const res = await fetch(`${BASE_URL}/api/auth/verify-email`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: testUserEmail,
+        code: testVerificationCode
+      })
+    });
+
+    assert.equal(res.status, 200);
+    const json = await res.json();
+    assert.equal(json.success, true);
+    assert.equal(json.user.emailVerified, true);
+  });
+
+  // 17. Inicio de Sesión
+  await test('POST /api/auth/login - Autenticación con credenciales correctas', async () => {
+    const res = await fetch(`${BASE_URL}/api/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: testUserEmail,
+        password: 'Password123!'
+      })
+    });
+
+    assert.equal(res.status, 200);
+    const json = await res.json();
+    assert.equal(json.success, true);
+    assert.ok(json.token);
+    assert.equal(json.user.email, testUserEmail);
+    testUserToken = json.token;
+  });
+
+  // 18. Perfil de Usuario Protegido
+  await test('GET /api/auth/me - Verificación de token Bearer y protección 401', async () => {
+    // Sin token: debe dar 401
+    const unauthRes = await fetch(`${BASE_URL}/api/auth/me`);
+    assert.equal(unauthRes.status, 401);
+
+    // Con token válido: debe dar 200
+    const authRes = await fetch(`${BASE_URL}/api/auth/me`, {
+      headers: { 'Authorization': `Bearer ${testUserToken}` }
+    });
+    assert.equal(authRes.status, 200);
+    const json = await authRes.json();
+    assert.equal(json.success, true);
+    assert.equal(json.user.email, testUserEmail);
+  });
+
+  // 19. Asociación de Negocio a Usuario Autenticado
+  const ownedBusinessId = `negocio-privado-${Date.now()}`;
+  await test('POST /api/business/setup & GET /api/business/my - Aislamiento multi-tenant por usuario', async () => {
+    // Crear negocio pasando el token de sesión
+    const setupRes = await fetch(`${BASE_URL}/api/business/setup`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${testUserToken}`
+      },
+      body: JSON.stringify({
+        id: ownedBusinessId,
+        name: 'Tienda Privada Autorizada',
+        description: 'Negocio con dominio oficial y dueño verificado.',
+        phone: '+54 9 11 3344-5566',
+        email: testUserEmail,
+        authorizedDomain: 'https://tiendaprivada.com'
+      })
+    });
+    assert.equal(setupRes.status, 201);
+
+    // Consultar negocios privados del usuario autenticado
+    const myRes = await fetch(`${BASE_URL}/api/business/my`, {
+      headers: { 'Authorization': `Bearer ${testUserToken}` }
+    });
+    assert.equal(myRes.status, 200);
+    const myJson = await myRes.json();
+    assert.equal(myJson.success, true);
+    assert.ok(Array.isArray(myJson.data));
+    const found = myJson.data.some(b => b.id === ownedBusinessId);
+    assert.ok(found, 'El negocio creado debe figurar en la lista privada del usuario');
+  });
+
+  // 20. Integridad y Paridad Hash SHA-256
   await test('Integridad SHA-256 - Paridad absoluta entre root y public/', async () => {
     const hDash = getHash('dashboard.html');
     const hIndex = getHash('index.html');
