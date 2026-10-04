@@ -32,6 +32,10 @@ export const createApp = () => {
     res.sendFile(path.resolve('./public/cobranzas.html'));
   });
 
+  app.get('/agenda', (req, res) => {
+    res.sendFile(path.resolve('./public/agenda.html'));
+  });
+
   // Ruta dedicada para Asistente Multilingüe y Turismo
   app.get('/multilingue', (req, res) => {
     res.sendFile(path.resolve('./public/multilingue.html'));

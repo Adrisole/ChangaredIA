@@ -591,6 +591,83 @@ async function runTests() {
     assert.equal(hMulti, hPubMulti, 'multilingue.html debe ser idéntico a public/multilingue.html');
   });
 
+  // 28. Asistente Contable: Validación Fiscal AFIP, Bandeja de Revisión, Aprobación y Borrado Real
+  await test('Asistente Contable - Validación CUIT Módulo 11, Carga Manual, Aprobación y Borrado', async () => {
+    // 1. Validación de CUIT oficial
+    const resValValid = await fetch(`${BASE_URL}/api/accounting/validate-cuit`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ cuit: '30-70804470-5' })
+    });
+    assert.equal(resValValid.status, 200);
+    const jsonValValid = await resValValid.json();
+    assert.equal(jsonValValid.valid, true, 'CUIT válido debe ser aceptado por Módulo 11');
+
+    const resValInvalid = await fetch(`${BASE_URL}/api/accounting/validate-cuit`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ cuit: '11111111111' })
+    });
+    const jsonValInvalid = await resValInvalid.json();
+    assert.equal(jsonValInvalid.valid, false, 'CUIT inválido debe ser rechazado');
+
+    // 2. Carga Manual
+    const resCreate = await fetch(`${BASE_URL}/api/accounting/invoices/${testBusinessId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        provider: 'Distribuidora Mayorista Test SA',
+        cuit: '30-70804470-5',
+        invoiceNumber: 'A-0001-00009999',
+        invoiceType: 'Factura A',
+        date: '2026-10-04',
+        neto: 10000,
+        alicuota: 21,
+        iva: 2100,
+        percepciones: 0,
+        total: 12100,
+        category: 'Insumos'
+      })
+    });
+    assert.equal(resCreate.status, 201);
+    const jsonCreate = await resCreate.json();
+    assert.equal(jsonCreate.success, true);
+    assert.equal(jsonCreate.record.status, 'pending');
+    assert.equal(jsonCreate.fiscalValidation.isValidCuit, true);
+    const createdId = jsonCreate.record.id;
+
+    // 3. Revisión y Aprobación
+    const resApprove = await fetch(`${BASE_URL}/api/accounting/invoices/${testBusinessId}/${createdId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        status: 'approved',
+        notes: 'Aprobado formalmente para liquidación de IVA compras'
+      })
+    });
+    assert.equal(resApprove.status, 200);
+    const jsonApprove = await resApprove.json();
+    assert.equal(jsonApprove.success, true);
+    assert.equal(jsonApprove.record.status, 'approved');
+    assert.ok(jsonApprove.record.auditTrail.length >= 2, 'Debe registrar traza de auditoría');
+
+    // 4. Borrado individual
+    const resDel = await fetch(`${BASE_URL}/api/accounting/invoices/${testBusinessId}/${createdId}`, {
+      method: 'DELETE'
+    });
+    assert.equal(resDel.status, 200);
+    const jsonDel = await resDel.json();
+    assert.equal(jsonDel.success, true);
+
+    // 5. Vaciado de comprobantes demo
+    const resClearDemo = await fetch(`${BASE_URL}/api/accounting/invoices/${testBusinessId}?onlyDemo=true`, {
+      method: 'DELETE'
+    });
+    assert.equal(resClearDemo.status, 200);
+    const jsonClearDemo = await resClearDemo.json();
+    assert.equal(jsonClearDemo.success, true);
+  });
+
   console.log('\n================================================================');
   console.log(`📊 RESULTADOS: ${passed} de ${total} pruebas aprobadas (${Math.round((passed / total) * 100)}%)`);
   if (passed === total) {

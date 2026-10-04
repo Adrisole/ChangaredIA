@@ -1537,13 +1537,14 @@
           </button>
         </div>
 
-        <!-- Banner Explicativo -->
-        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
+        <!-- Banner Explicativo Serio & Honestidad Comercial -->
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5 shadow-2xs">
           <div class="flex items-center space-x-2">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-[#1B4332]">Facturación & Comprobantes</h3>
+            <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-mono font-bold rounded uppercase tracking-wider border border-emerald-200">Centralización & Libro IVA</span>
+            <h3 class="text-xs font-bold text-slate-900">Preparación de Comprobantes de Compras para tu Contador</h3>
           </div>
-          <p class="text-xs text-slate-700 leading-relaxed">
-            Lee automáticamente las facturas y comprobantes fiscales que llegan a tu casilla de email o por WhatsApp, extrae CUIT, neto e IVA discriminado con IA, guarda el PDF en tu Google Drive y completa el Google Sheets de tu contador en tiempo real.
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Dejá de buscar PDFs sueltos y copiar importes a mano. Centralizá tus facturas de compras (PDF, Excel, CSV y fotos), extraé y valida los datos fiscales con control de CUIT y duplicados, revisá los importes en la bandeja obligatoria y entregale a tu estudio contable un <strong>Libro IVA Compras</strong> verificado y listo para liquidar.
           </p>
         </div>
 
@@ -1553,39 +1554,41 @@
             <div>
               <div class="flex items-center space-x-2">
                 <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                <h2 class="text-sm font-semibold text-slate-900">Facturación & Comprobantes (Lector OCR & Google Sheets)</h2>
+                <h2 class="text-sm font-semibold text-slate-900">Preparación de Comprobantes & Libro IVA Compras</h2>
               </div>
               <p class="text-xs text-slate-600 mt-0.5">
-                Procesa facturas automáticamente cuando llegan a tu email, extrae datos fiscales con IA y las sincroniza en Google Drive y Google Sheets sin ocupar espacio en tu servidor.
+                Centraliza, valida y exporta el Libro IVA de compras en formato Excel (.xlsx) y CSV compatible con AFIP y sistemas contables (Bejerman, Tango, Holistor).
               </p>
             </div>
-            <a href="https://docs.google.com/spreadsheets" target="_blank" class="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-lg transition shadow-subtle">
-              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-              <span>Abrir en Google Sheets</span>
-            </a>
+            <div class="flex items-center space-x-2">
+              <button onclick="downloadAccountingExcel()" class="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-bold text-white bg-emerald-700 hover:bg-emerald-800 rounded-lg transition shadow-2xs">
+                <i data-lucide="sheet" class="w-3.5 h-3.5"></i>
+                <span>Descargar Libro IVA (.xlsx)</span>
+              </button>
+            </div>
           </div>
 
           <!-- ESTRUCTURA ESTÁNDAR: 3 BLOQUES OPERATIVOS CONTABLES -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <!-- BLOQUE 1: CANALES DE ENTRADA (EMAIL & GOOGLE DRIVE) -->
+            <!-- BLOQUE 1: CENTRALIZACIÓN Y ENTRADA DE COMPROBANTES -->
             <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-3 shadow-subtle flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between mb-2">
                   <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
                     <i data-lucide="inbox" class="w-3.5 h-3.5 text-emerald-600"></i>
-                    <span>Bloque 1 · Canales de Entrada</span>
+                    <span>Bloque 1 · Centralización</span>
                   </span>
-                  <span class="text-[10px] font-mono px-2 py-0.5 bg-emerald-50 text-emerald-700 font-bold rounded border border-emerald-200">AUTOMÁTICO</span>
+                  <span class="text-[10px] font-mono px-2 py-0.5 bg-slate-100 text-slate-700 font-bold rounded border border-slate-200">CARGA DIRECTA</span>
                 </div>
-                <h4 class="text-xs font-bold text-slate-900">Conectar Email & Google Drive</h4>
-                <p class="text-[11px] text-slate-600 leading-tight mb-3">Los 2 canales oficiales donde recibes y respaldas tus comprobantes.</p>
+                <h4 class="text-xs font-bold text-slate-900">Entrada de Comprobantes</h4>
+                <p class="text-[11px] text-slate-600 leading-tight mb-3">Reuní todos los comprobantes físicos y digitales de tu negocio en un solo lugar.</p>
                 
                 <div class="space-y-2 text-xs">
                   <!-- Paso 1: Email de Recepción de Facturas -->
                   <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-lg space-y-1.5">
                     <div class="flex items-center justify-between">
                       <span class="text-[11px] font-semibold text-slate-800 flex items-center space-x-1">
-                        <span>📧</span><span>1. Email de Recepción:</span>
+                        <span>📧</span><span>Casilla para Proveedores:</span>
                       </span>
                       <button onclick="copyAccountingEmail()" class="text-[10px] font-bold text-emerald-700 hover:text-emerald-900 bg-white border border-slate-200 px-2 py-0.5 rounded shadow-2xs">
                         Copiar
@@ -1593,66 +1596,50 @@
                     </div>
                     <input type="text" id="acc-email-input" readonly value="facturas@miempresa.com" class="w-full text-xs font-mono bg-white border border-slate-200 rounded px-2.5 py-1.5 text-slate-800">
                     <p class="text-[10px] text-slate-500 leading-relaxed">
-                      Dale esta casilla a tus proveedores o configura una regla en tu Gmail para reenviar facturas automáticamente. La IA procesa cada correo entrante.
+                      Entregale este correo a tus proveedores o configura un reenvío en tu casilla de compras para centralizar adjuntos.
                     </p>
                   </div>
 
-                  <!-- Paso 2: Carpeta de Respaldo en Google Drive -->
-                  <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-lg space-y-1.5">
+                  <!-- Paso 2: Carga Directa Manual y Planillas -->
+                  <div class="p-2.5 bg-emerald-50/50 border border-emerald-200 rounded-lg space-y-2">
                     <div class="flex items-center justify-between">
-                      <span class="text-[11px] font-semibold text-slate-800 flex items-center space-x-1">
-                        <i data-lucide="hard-drive" class="w-3.5 h-3.5 text-emerald-600"></i>
-                        <span>2. Carpeta en Google Drive:</span>
+                      <span class="font-bold text-emerald-950 text-xs flex items-center space-x-1">
+                        <span>📂</span><span>Subida desde tu PC:</span>
                       </span>
-                      <button onclick="openAccountingModal()" class="text-[10px] font-bold text-emerald-700 hover:text-emerald-900 bg-white border border-slate-200 px-2 py-0.5 rounded shadow-2xs">
-                        Cambiar
+                      <span class="text-[10px] font-mono text-emerald-700">PDF · EXCEL · CSV</span>
+                    </div>
+                    <div class="flex items-center gap-1.5">
+                      <button type="button" onclick="triggerAccountingUpload()" class="flex-1 cursor-pointer px-2 py-1.5 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-md transition shadow-2xs flex items-center justify-center space-x-1">
+                        <i data-lucide="upload" class="w-3.5 h-3.5"></i>
+                        <span>Subir Archivo</span>
+                      </button>
+                      <button type="button" onclick="openManualInvoiceModal()" class="px-2 py-1.5 text-xs font-semibold text-emerald-900 bg-white border border-emerald-300 hover:bg-emerald-50 rounded-md transition shadow-2xs">
+                        + Manual
                       </button>
                     </div>
-                    <div class="text-[11px] font-mono bg-white border border-slate-200 rounded px-2.5 py-1.5 text-slate-800 flex items-center justify-between">
-                      <span id="acc-display-drive-b1">📁 /Facturas_2026/</span>
-                      <span class="text-[10px] font-bold text-emerald-700">● Conectado</span>
-                    </div>
-                    <p class="text-[10px] text-slate-500 leading-relaxed">
-                      Cada factura recibida se renombra y se guarda como PDF en tu Google Drive propio sin ocupar espacio en tu servidor.
-                    </p>
-                  </div>
-
-                  <!-- Paso 3: Carga Directa (Opcional) -->
-                  <div class="p-2.5 bg-emerald-50/50 border border-emerald-200 rounded-lg flex items-center justify-between">
-                    <div class="flex items-center space-x-2">
-                      <span class="text-base">📂</span>
-                      <div>
-                        <span class="font-bold text-emerald-950 block text-xs">Carga Directa Manual</span>
-                        <span class="text-[10px] text-emerald-700 block">Subí un PDF o planilla Excel desde tu PC</span>
-                      </div>
-                    </div>
-                    <button type="button" onclick="triggerAccountingUpload()" class="cursor-pointer px-2.5 py-1.5 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-md transition shadow-2xs flex items-center space-x-1">
-                      <i data-lucide="upload" class="w-3.5 h-3.5"></i>
-                      <span>Subir Archivo</span>
-                    </button>
                   </div>
                 </div>
               </div>
               <button onclick="openAccountingModal()" class="w-full py-2 px-3 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg text-xs font-semibold text-slate-800 transition flex items-center justify-center space-x-1.5 shadow-2xs mt-2">
                 <i data-lucide="settings" class="w-3.5 h-3.5 text-slate-600"></i>
-                <span>Configurar Email & Carpeta de Drive →</span>
+                <span>Ajustar Casilla de Recepción →</span>
               </button>
             </div>
 
-            <!-- BLOQUE 2: DATOS FISCALES & CLASIFICACIÓN DE GASTOS -->
+            <!-- BLOQUE 2: DATOS FISCALES & CONTROL DE DUPLICADOS -->
             <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-3 shadow-subtle flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between mb-2">
                   <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
                     <i data-lucide="file-check" class="w-3.5 h-3.5 text-emerald-600"></i>
-                    <span>Bloque 2 · Datos Fiscales</span>
+                    <span>Bloque 2 · Control Fiscal</span>
                   </span>
                   <button onclick="openAccountingModal()" class="text-[10px] font-bold text-emerald-800 hover:text-emerald-950 bg-emerald-100 hover:bg-emerald-200 px-2 py-0.5 rounded border border-emerald-300 transition">
                     ✏️ EDITAR CUIT
                   </button>
                 </div>
-                <h4 class="text-xs font-bold text-slate-900">Identificación Fiscal & Gastos</h4>
-                <p class="text-[11px] text-slate-600 leading-tight mb-3">Datos tributarios para conciliar las compras de tu negocio.</p>
+                <h4 class="text-xs font-bold text-slate-900">Validación Impositiva & Duplicados</h4>
+                <p class="text-[11px] text-slate-600 leading-tight mb-3">Parámetros tributarios de tu negocio y control de consistencia.</p>
 
                 <div class="space-y-1.5 text-xs">
                   <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
@@ -1668,67 +1655,57 @@
                     <span class="font-medium text-emerald-800" id="acc-display-condicion">Responsable Inscripto</span>
                   </div>
                   <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
-                    <span class="text-[10px] font-semibold text-slate-600 uppercase">Planilla Destino en Vivo:</span>
-                    <div class="text-[11px] font-mono text-emerald-900 font-semibold flex items-center space-x-1">
-                      <i data-lucide="sheet" class="w-3.5 h-3.5 text-emerald-700 shrink-0"></i>
-                      <span>Google Sheets: Libro_IVA_Compras_2026</span>
+                    <span class="text-[10px] font-semibold text-slate-600 uppercase">Control de Duplicados:</span>
+                    <div class="text-[11px] text-slate-700 flex items-center space-x-1">
+                      <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                      <span>Bloqueo automático por CUIT + Punto de Venta + N° Factura.</span>
                     </div>
                   </div>
-                  <div class="p-2 bg-slate-50 border border-slate-200 rounded text-[11px] text-slate-700">
-                    <span class="text-[10px] font-semibold text-slate-600 uppercase block mb-0.5">Categorías de Gasto:</span>
-                    <span>Servicios, Mercadería, Insumos, Alquiler, Impuestos</span>
-                  </div>
                   <div class="p-2 bg-emerald-50 border border-emerald-200 rounded text-[10px] text-emerald-900 flex items-center space-x-1.5">
-                    <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-700 shrink-0"></i>
-                    <span>Solo procesa Facturas A, B, C y Tickets fiscales válidos.</span>
+                    <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-700 shrink-0"></i>
+                    <span>Algoritmo Módulo 11 oficial para CUITs emisores.</span>
                   </div>
                 </div>
               </div>
               <button onclick="openAccountingModal()" class="w-full py-2 px-3 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg text-xs font-semibold text-slate-800 transition flex items-center justify-center space-x-1.5 shadow-2xs mt-2">
                 <i data-lucide="settings-2" class="w-3.5 h-3.5 text-slate-600"></i>
-                <span>Configurar CUIT, Razón Social & Condición Fiscal →</span>
+                <span>Configurar CUIT & Razón Social →</span>
               </button>
             </div>
 
-            <!-- BLOQUE 3: FLUJO AUTOMATIZADO CON IA & SALIDA -->
+            <!-- BLOQUE 3: BANDEJA DE REVISIÓN Y ENTREGA AL CONTADOR -->
             <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle flex flex-col justify-between">
               <div>
                 <div class="flex items-center justify-between mb-2">
                   <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
-                    <i data-lucide="cpu" class="w-3.5 h-3.5 text-emerald-600"></i>
-                    <span>Bloque 3 · Acción de Salida</span>
+                    <i data-lucide="check-square" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>Bloque 3 · Revisión & Salida</span>
                   </span>
-                  <span class="text-[10px] font-mono text-emerald-700 font-bold px-1.5 py-0.5 bg-emerald-50 border border-emerald-200 rounded">REPORTE CONTADOR</span>
+                  <span class="text-[10px] font-mono text-emerald-700 font-bold px-1.5 py-0.5 bg-emerald-50 border border-emerald-200 rounded">LIBRO IVA</span>
                 </div>
-                <h4 class="text-xs font-bold text-slate-900">¿Qué hace la IA con cada factura?</h4>
-                <p class="text-[11px] text-slate-600 leading-tight mb-2">Flujo paso a paso desde el PDF hasta el reporte del contador:</p>
+                <h4 class="text-xs font-bold text-slate-900">Bandeja Obligatoria "Revisar y Aprobar"</h4>
+                <p class="text-[11px] text-slate-600 leading-tight mb-2">Flujo transparente: nada va al contador sin tu aprobación:</p>
 
                 <div class="space-y-1.5 text-xs text-slate-800">
                   <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
-                    <strong class="text-slate-900">1. Filtro & Validación:</strong> Lee únicamente comprobantes fiscales válidos (Facturas A, B, C y Tickets). Descarta spam o correos sin comprobante.
+                    <strong class="text-slate-900">1. Carga & Detección:</strong> Lee CUIT, Razón Social, Comprobante, Neto e IVA desde PDFs o planillas Excel con SheetJS.
                   </div>
-                  <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
-                    <strong class="text-slate-900">2. Extracción Fiscal OCR:</strong> Extrae CUIT, Razón Social, Nro de Comprobante, Neto Gravado, IVA (21%, 10.5%) y Total con IA.
+                  <div class="p-2 bg-amber-50/70 border border-amber-200 rounded leading-tight text-amber-950">
+                    <strong class="text-amber-900">2. Revisión Humana:</strong> Cada comprobante entra como <span class="font-bold">⚠️ Pendiente</span> para verificar montos y deducciones.
                   </div>
-                  <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
-                    <strong class="text-slate-900">3. Guarda en Drive:</strong> Renombra y archiva en tu carpeta (<code class="text-[10px]">Telecom_FacturaA_00045891.pdf</code>) sin ocupar espacio en tu servidor.
-                  </div>
-                  <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
-                    <strong class="text-slate-900">4. Asiento en Google Sheets:</strong> Agrega la fila en vivo con todas las columnas contables listas para liquidar.
-                  </div>
-                  <div class="p-2 bg-emerald-50 border border-emerald-200 rounded leading-tight text-emerald-900">
-                    <strong class="text-emerald-950">5. Entrega al Contador:</strong> El día 1 de cada mes se consolida el reporte mensual listo para liquidar IVA y Ganancias.
+                  <div class="p-2 bg-emerald-50 border border-emerald-200 rounded leading-tight text-emerald-950">
+                    <strong class="text-emerald-900">3. Aprobación & Entrega:</strong> Con un clic aprobás y descargás el Libro IVA Compras en Excel (.xlsx) o CSV listo para tu estudio contable.
                   </div>
                 </div>
               </div>
               <div class="pt-2 flex flex-wrap gap-1.5">
-                <a href="https://docs.google.com/spreadsheets" target="_blank" class="flex-1 py-1.5 px-2 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded text-[11px] font-medium text-slate-700 text-center transition flex items-center justify-center space-x-1">
-                  <i data-lucide="external-link" class="w-3 h-3"></i>
-                  <span>Ver Sheets</span>
-                </a>
-                <button onclick="downloadAccountingCsv()" class="flex-1 py-1.5 px-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded text-[11px] font-semibold text-center transition flex items-center justify-center space-x-1 shadow-2xs">
+                <button onclick="downloadAccountingExcel()" class="flex-1 py-1.5 px-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded text-[11px] font-semibold text-center transition flex items-center justify-center space-x-1 shadow-2xs">
+                  <i data-lucide="sheet" class="w-3 h-3"></i>
+                  <span>Libro IVA (.xlsx)</span>
+                </button>
+                <button onclick="downloadAccountingCsv()" class="flex-1 py-1.5 px-2 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded text-[11px] font-medium text-slate-700 text-center transition flex items-center justify-center space-x-1">
                   <i data-lucide="download" class="w-3 h-3"></i>
-                  <span>Descargar Excel</span>
+                  <span>Exportar CSV</span>
                 </button>
               </div>
             </div>
@@ -1739,22 +1716,22 @@
         <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
           <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
             <span class="block text-[11px] font-medium text-slate-600">Facturas Procesadas</span>
-            <span class="text-xl font-bold text-slate-900" id="acc-stat-count">3 facturas</span>
-            <span class="text-[10px] text-emerald-600 font-medium block mt-0.5">100% digitalizadas</span>
+            <span class="text-xl font-bold text-slate-900" id="acc-stat-count">0 facturas</span>
+            <span class="text-[10px] text-emerald-600 font-medium block mt-0.5" id="acc-stat-approved-pct">0 aprobadas</span>
           </div>
           <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
             <span class="block text-[11px] font-medium text-slate-600">Total Compras del Mes</span>
-            <span class="text-xl font-bold text-slate-900" id="acc-stat-total">$308.885</span>
+            <span class="text-xl font-bold text-slate-900" id="acc-stat-total">$0</span>
             <span class="text-[10px] text-slate-600 block mt-0.5">Suma total con impuestos</span>
           </div>
           <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
             <span class="block text-[11px] font-medium text-slate-600">Crédito Fiscal IVA</span>
-            <span class="text-xl font-bold text-emerald-700" id="acc-stat-iva">$56.265</span>
+            <span class="text-xl font-bold text-emerald-700" id="acc-stat-iva">$0</span>
             <span class="text-[10px] text-slate-600 block mt-0.5">A deducir en declaración</span>
           </div>
           <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
             <span class="block text-[11px] font-medium text-slate-600">Neto Gravado Total</span>
-            <span class="text-xl font-bold text-slate-900" id="acc-stat-neto">$245.500</span>
+            <span class="text-xl font-bold text-slate-900" id="acc-stat-neto">$0</span>
             <span class="text-[10px] text-slate-600 block mt-0.5">Base imponible calculada</span>
           </div>
         </div>
@@ -1768,18 +1745,24 @@
             <div>
               <h3 class="text-xs font-bold text-slate-900 flex items-center space-x-1.5 uppercase tracking-wide">
                 <i data-lucide="upload-cloud" class="w-4 h-4 text-emerald-600"></i>
-                <span>Subida de Comprobantes (PDF, Excel o Imagen)</span>
+                <span>Carga de Facturas & Planillas (Procesamiento Real)</span>
               </h3>
               <p class="text-[11px] text-slate-600 mt-0.5">
-                Elegí cualquier factura en PDF o planilla Excel desde tu computadora para procesarla en tiempo real:
+                Subí cualquier factura en PDF, planilla Excel (.xlsx, .xls) o CSV desde tu computadora:
               </p>
             </div>
-            <span class="text-[10px] font-mono font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded self-start sm:self-auto">
-              SOPORTA PDF · XLSX · XLS · CSV
-            </span>
+            <div class="flex items-center space-x-2">
+              <button type="button" onclick="openManualInvoiceModal()" class="px-3 py-1 bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 rounded-lg text-xs font-semibold transition shadow-2xs flex items-center space-x-1">
+                <i data-lucide="plus" class="w-3.5 h-3.5 text-emerald-600"></i>
+                <span>Carga Manual</span>
+              </button>
+              <span class="text-[10px] font-mono font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
+                PDF · XLSX · XLS · CSV
+              </span>
+            </div>
           </div>
 
-          <!-- Zona de Carga Principal (Dropzone & Botón) -->
+          <!-- Zona de Carga Principal (Dropzone) -->
           <div id="accounting-dropzone"
                onclick="triggerAccountingUpload()"
                ondragover="handleAccountingDragOver(event)"
@@ -1795,7 +1778,7 @@
             <p class="text-xs text-slate-600 max-w-md mx-auto">
               Seleccioná una <strong>Factura en PDF</strong>, <strong>Planilla de gastos en Excel (.xlsx, .xls)</strong> o <strong>CSV</strong>.
             </p>
-            <div class="pt-1">
+            <div class="pt-1 flex items-center justify-center gap-2">
               <button type="button" onclick="event.stopPropagation(); triggerAccountingUpload();" class="inline-flex items-center space-x-2 px-4 py-2 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-bold rounded-lg shadow-sm transition">
                 <i data-lucide="folder-open" class="w-4 h-4 text-emerald-300"></i>
                 <span>Explorar archivos en mi PC...</span>
@@ -1803,55 +1786,68 @@
             </div>
           </div>
 
-          <!-- Comprobantes de Demostración Separados Claramente -->
-          <div class="pt-2 border-t border-slate-100">
-            <div class="text-[11px] font-semibold text-slate-500 mb-2 flex items-center space-x-1.5">
+          <!-- Opciones de Demostración & Limpieza de Datos -->
+          <div class="pt-2 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div class="flex items-center space-x-1.5 text-[11px] text-slate-500">
               <span>💡</span>
-              <span>¿No tenés una factura a mano? Podés cargar un ejemplo simulado:</span>
+              <span class="font-semibold">Comprobantes de prueba:</span>
+              <button type="button" onclick="simulateInvoiceTrigger('edenor')" class="px-2 py-0.5 bg-slate-100 hover:bg-slate-200 rounded text-slate-700 text-[10px] font-medium border border-slate-200 transition">
+                + Edenor ($103.115)
+              </button>
+              <button type="button" onclick="simulateInvoiceTrigger('telecom')" class="px-2 py-0.5 bg-slate-100 hover:bg-slate-200 rounded text-slate-700 text-[10px] font-medium border border-slate-200 transition">
+                + Telecom ($52.020)
+              </button>
             </div>
-            <div class="flex flex-wrap gap-2 text-xs">
-              <button type="button" onclick="simulateInvoiceTrigger('edenor')" class="px-3 py-1.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-700 transition flex items-center space-x-1.5 shadow-2xs">
-                <span>⚡</span>
-                <span>Cargar Ejemplo Edenor Luz ($103.115)</span>
+            <div class="flex items-center space-x-2">
+              <button type="button" onclick="clearAccountingInvoices(true)" class="px-2.5 py-1 text-[11px] font-semibold text-amber-900 bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded-lg transition" title="Elimina las facturas de prueba para empezar de cero">
+                🗑️ Borrar datos demo
               </button>
-              <button type="button" onclick="simulateInvoiceTrigger('telecom')" class="px-3 py-1.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-700 transition flex items-center space-x-1.5 shadow-2xs">
-                <span>📞</span>
-                <span>Cargar Ejemplo Telecom Internet ($52.020)</span>
-              </button>
-              <button type="button" onclick="simulateInvoiceTrigger('insumos')" class="px-3 py-1.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-lg text-slate-700 transition flex items-center space-x-1.5 shadow-2xs">
-                <span>📦</span>
-                <span>Cargar Ejemplo Insumos ($153.750)</span>
+              <button type="button" onclick="clearAccountingInvoices(false)" class="px-2.5 py-1 text-[11px] font-semibold text-red-700 hover:text-red-900 bg-white hover:bg-red-50 border border-slate-200 hover:border-red-200 rounded-lg transition" title="Vacía toda la tabla">
+                Vaciar lista
               </button>
             </div>
           </div>
         </div>
 
-        <!-- Tabla en Vivo de Google Sheets (Libro IVA Compras) -->
+        <!-- Tabla del Libro IVA Compras & Bandeja de Revisión -->
         <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-subtle space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
             <div>
-              <h3 class="text-xs font-semibold text-slate-900">Libro IVA Compras Sincronizado (Google Sheets)</h3>
-              <p class="text-[11px] text-slate-600 mt-0.5">Filas generadas en tiempo real a partir de los comprobantes procesados.</p>
+              <div class="flex items-center space-x-2">
+                <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wide">Libro IVA Compras & Bandeja de Revisión</h3>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-100 text-slate-700 border border-slate-200">F. 2002 AFIP / Excel</span>
+              </div>
+              <p class="text-[11px] text-slate-600 mt-0.5">Revisá cada comprobante antes de entregar el informe mensual a tu estudio contable.</p>
             </div>
-            <button onclick="loadAccountingInvoices()" class="text-xs text-slate-600 hover:text-slate-900 flex items-center space-x-1 transition">
-              <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
-              <span>Refrescar</span>
-            </button>
+
+            <!-- Filtros por Estado -->
+            <div class="flex items-center space-x-1.5 bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs">
+              <button onclick="filterAccountingTable('all')" id="btn-filter-all" class="filter-pill-acc px-2.5 py-1 text-[11px] font-bold rounded-md bg-[#1B4332] text-white transition shadow-2xs">
+                Todos (<span id="acc-cnt-all">0</span>)
+              </button>
+              <button onclick="filterAccountingTable('pending')" id="btn-filter-pending" class="filter-pill-acc px-2.5 py-1 text-[11px] font-medium rounded-md text-amber-950 hover:bg-white transition">
+                ⚠️ Por Revisar (<span id="acc-cnt-pending">0</span>)
+              </button>
+              <button onclick="filterAccountingTable('approved')" id="btn-filter-approved" class="filter-pill-acc px-2.5 py-1 text-[11px] font-medium rounded-md text-emerald-950 hover:bg-white transition">
+                ✅ Aprobados (<span id="acc-cnt-approved">0</span>)
+              </button>
+            </div>
           </div>
 
           <div class="border border-slate-200 rounded-lg overflow-x-auto">
             <table class="w-full text-left text-xs whitespace-nowrap">
               <thead class="bg-slate-50 border-b border-slate-200 text-slate-600 uppercase font-mono text-[10px]">
                 <tr>
+                  <th class="px-3 py-2.5 font-semibold">Estado</th>
                   <th class="px-3 py-2.5 font-semibold">Fecha</th>
-                  <th class="px-3 py-2.5 font-semibold">Proveedor</th>
-                  <th class="px-3 py-2.5 font-semibold">CUIT</th>
+                  <th class="px-3 py-2.5 font-semibold">Proveedor / Razón Social</th>
+                  <th class="px-3 py-2.5 font-semibold">CUIT Emisor</th>
                   <th class="px-3 py-2.5 font-semibold">Comprobante</th>
                   <th class="px-3 py-2.5 font-semibold">Neto Gravado</th>
                   <th class="px-3 py-2.5 font-semibold">IVA</th>
                   <th class="px-3 py-2.5 font-semibold">Total</th>
                   <th class="px-3 py-2.5 font-semibold">Categoría</th>
-                  <th class="px-3 py-2.5 font-semibold text-right">Drive Backup</th>
+                  <th class="px-3 py-2.5 font-semibold text-right">Acciones</th>
                 </tr>
               </thead>
               <tbody id="accounting-table-body" class="divide-y divide-slate-100 text-slate-800 font-mono text-[11px]">
@@ -3742,6 +3738,283 @@
           Guardar Configuración
         </button>
       </div>
+    </div>
+  </div>
+
+  <!-- MODAL: REVISIÓN Y APROBACIÓN DE COMPROBANTE FISCAL (LIBRO IVA) -->
+  <div id="modal-review-invoice" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-2xl max-w-xl w-full p-5 sm:p-6 shadow-2xl space-y-4 max-h-[92vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm">
+            🧾
+          </div>
+          <div>
+            <div class="flex items-center space-x-2">
+              <h3 class="text-sm font-bold text-slate-900">Revisión de Comprobante Fiscal</h3>
+              <span id="rev-status-badge" class="px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider bg-amber-100 text-amber-900 border border-amber-200">Pendiente de Revisión</span>
+            </div>
+            <p class="text-[11px] text-slate-500" id="rev-invoice-id">ID: INV-...</p>
+          </div>
+        </div>
+        <button onclick="closeReviewModal()" class="text-slate-400 hover:text-slate-700 p-1.5 rounded-lg hover:bg-slate-100 transition" aria-label="Cerrar">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Alerta de Duplicado si existe -->
+      <div id="rev-duplicate-alert" class="hidden p-3 bg-red-50 border border-red-200 rounded-xl text-xs text-red-900 flex items-start space-x-2">
+        <i data-lucide="alert-triangle" class="w-4 h-4 text-red-600 shrink-0 mt-0.5"></i>
+        <div>
+          <span class="font-bold">Alerta de Comprobante Duplicado</span>
+          <p class="text-[11px] text-red-800 mt-0.5" id="rev-duplicate-text"></p>
+        </div>
+      </div>
+
+      <!-- Alerta de Descuadre Aritmético si existe -->
+      <div id="rev-balance-alert" class="hidden p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs text-amber-900 flex items-start space-x-2">
+        <i data-lucide="alert-circle" class="w-4 h-4 text-amber-600 shrink-0 mt-0.5"></i>
+        <div>
+          <span class="font-bold">Descuadre Aritmético Detectado</span>
+          <p class="text-[11px] text-amber-800 mt-0.5" id="rev-balance-text"></p>
+        </div>
+      </div>
+
+      <!-- Formulario de Campos Contables -->
+      <form id="form-review-invoice" onsubmit="event.preventDefault(); saveReviewedInvoice(false);" class="space-y-3.5 text-xs">
+        <input type="hidden" id="rev-input-id">
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Fecha de Emisión *</label>
+            <input type="date" id="rev-input-fecha" required class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-mono focus:bg-white focus:border-emerald-600 transition">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Razón Social / Proveedor *</label>
+            <input type="text" id="rev-input-proveedor" required placeholder="Nombre del emisor" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 focus:bg-white focus:border-emerald-600 transition">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <label class="font-semibold text-slate-700">CUIT Emisor *</label>
+              <span id="rev-cuit-status" class="text-[10px] font-bold text-slate-500"></span>
+            </div>
+            <input type="text" id="rev-input-cuit" oninput="onReviewCuitChange(this.value)" required placeholder="30-12345678-9" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-mono focus:bg-white focus:border-emerald-600 transition">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Tipo de Comprobante *</label>
+            <select id="rev-input-tipo" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-medium focus:bg-white focus:border-emerald-600 transition">
+              <option value="Factura A">Factura A (Discrimina IVA)</option>
+              <option value="Factura B">Factura B (Consumidor Final / Monotributo)</option>
+              <option value="Factura C">Factura C (Emisor Monotributista)</option>
+              <option value="Factura M">Factura M (Régimen de Retención)</option>
+              <option value="Ticket Fiscal">Ticket Fiscal</option>
+              <option value="Nota de Crédito A">Nota de Crédito A</option>
+              <option value="Nota de Débito A">Nota de Débito A</option>
+              <option value="Recibo">Recibo Oficial</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <div class="col-span-1">
+            <label class="block font-semibold text-slate-700 mb-1">Punto Vta y Número *</label>
+            <input type="text" id="rev-input-numero" required placeholder="0004-00124890" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-mono focus:bg-white focus:border-emerald-600 transition">
+          </div>
+          <div class="col-span-1">
+            <label class="block font-semibold text-slate-700 mb-1">Categoría de Gasto</label>
+            <select id="rev-input-categoria" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 focus:bg-white focus:border-emerald-600 transition">
+              <option value="Servicios">Servicios Generales</option>
+              <option value="Mercadería">Mercadería / Reventa</option>
+              <option value="Insumos">Insumos y Materia Prima</option>
+              <option value="Luz/Gas/Tel">Servicios Públicos (Luz/Gas/Tel)</option>
+              <option value="Alquiler">Alquileres Comerciales</option>
+              <option value="Software">Software y Suscripciones</option>
+              <option value="Logística">Fletes y Logística</option>
+              <option value="Mantenimiento">Mantenimiento y Reparación</option>
+              <option value="Honorarios">Honorarios Profesionales</option>
+              <option value="Otros">Otros Gastos</option>
+            </select>
+          </div>
+          <div class="col-span-2 sm:col-span-1">
+            <label class="block font-semibold text-slate-700 mb-1">Nro de CAE (Opcional)</label>
+            <input type="text" id="rev-input-cae" maxlength="14" placeholder="14 dígitos AFIP" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-mono focus:bg-white focus:border-emerald-600 transition">
+          </div>
+        </div>
+
+        <!-- Importes Monetarios -->
+        <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-2.5">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-slate-600 block">Cuadre Impositivo (Pesos ARS)</span>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+            <div>
+              <label class="block text-[11px] font-medium text-slate-600 mb-0.5">Neto Gravado ($)</label>
+              <input type="number" step="0.01" id="rev-input-neto" oninput="calcReviewTotals('neto')" required class="w-full px-2.5 py-1.5 bg-white border border-slate-300 rounded-lg text-slate-900 font-mono font-medium focus:border-emerald-600 transition">
+            </div>
+            <div>
+              <label class="block text-[11px] font-medium text-slate-600 mb-0.5">Alícuota IVA</label>
+              <select id="rev-input-alicuota" onchange="calcReviewTotals('alicuota')" class="w-full px-2 py-1.5 bg-white border border-slate-300 rounded-lg text-slate-900 font-medium focus:border-emerald-600 transition">
+                <option value="21%">21% (Estándar)</option>
+                <option value="10.5%">10.5% (Bienes reducidos)</option>
+                <option value="27%">27% (Servicios públicos)</option>
+                <option value="0%">0% / Exento</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] font-medium text-slate-600 mb-0.5">Importe IVA ($)</label>
+              <input type="number" step="0.01" id="rev-input-iva" oninput="calcReviewTotals('iva')" required class="w-full px-2.5 py-1.5 bg-white border border-slate-300 rounded-lg text-emerald-800 font-mono font-bold focus:border-emerald-600 transition">
+            </div>
+            <div>
+              <label class="block text-[11px] font-medium text-slate-600 mb-0.5">Percepciones ($)</label>
+              <input type="number" step="0.01" id="rev-input-percepciones" oninput="calcReviewTotals('percepciones')" value="0" class="w-full px-2.5 py-1.5 bg-white border border-slate-300 rounded-lg text-slate-900 font-mono focus:border-emerald-600 transition">
+            </div>
+          </div>
+          <div class="pt-2 border-t border-slate-200 flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-800">Total Comprobante Facturado:</span>
+            <div class="flex items-center space-x-1.5">
+              <span class="text-xs font-mono font-bold text-slate-500">$</span>
+              <input type="number" step="0.01" id="rev-input-total" oninput="calcReviewTotals('total')" required class="w-32 px-2.5 py-1.5 bg-white border-2 border-emerald-500 rounded-lg text-slate-900 font-mono text-sm font-bold text-right focus:border-emerald-600 transition">
+            </div>
+          </div>
+        </div>
+
+        <!-- Historial de Auditoría -->
+        <div class="pt-2 border-t border-slate-100">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-500 block mb-1">Historial & Auditoría de Cambios</span>
+          <div id="rev-audit-container" class="max-h-24 overflow-y-auto space-y-1 text-[10px] text-slate-600 bg-slate-50 p-2 rounded-lg border border-slate-200 font-mono">
+            <!-- Cargado dinámicamente -->
+          </div>
+        </div>
+
+        <!-- Botones de Acción -->
+        <div class="flex flex-col-reverse sm:flex-row items-center justify-between gap-2 pt-3 border-t border-slate-200">
+          <button type="button" onclick="deleteReviewedInvoice()" class="w-full sm:w-auto px-3 py-2 text-xs font-medium text-red-600 hover:text-red-800 hover:bg-red-50 rounded-lg transition flex items-center justify-center space-x-1">
+            <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+            <span>Eliminar Comprobante</span>
+          </button>
+          <div class="flex items-center space-x-2 w-full sm:w-auto justify-end">
+            <button type="button" onclick="closeReviewModal()" class="flex-1 sm:flex-none px-3.5 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition">
+              Cancelar
+            </button>
+            <button type="button" onclick="saveReviewedInvoice(false)" class="flex-1 sm:flex-none px-4 py-2 text-xs font-semibold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg transition">
+              Guardar Cambios
+            </button>
+            <button type="button" onclick="saveReviewedInvoice(true)" class="flex-1 sm:flex-none px-4 py-2 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg shadow-subtle flex items-center justify-center space-x-1.5">
+              <i data-lucide="check-check" class="w-3.5 h-3.5 text-emerald-300"></i>
+              <span>Aprobar para el Contador</span>
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: CARGA MANUAL DE COMPROBANTE AL LIBRO IVA -->
+  <div id="modal-manual-invoice" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4 hidden">
+    <div class="bg-white border border-slate-200 rounded-2xl max-w-lg w-full p-5 sm:p-6 shadow-2xl space-y-4 max-h-[92vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center space-x-2.5">
+          <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm">
+            ➕
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-slate-900">Cargar Comprobante al Libro IVA</h3>
+            <p class="text-[11px] text-slate-500">Registrá una factura física o recibida fuera del sistema para tu contador.</p>
+          </div>
+        </div>
+        <button onclick="closeManualInvoiceModal()" class="text-slate-400 hover:text-slate-700 p-1.5 rounded-lg hover:bg-slate-100 transition" aria-label="Cerrar">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <form id="form-manual-invoice" onsubmit="event.preventDefault(); submitManualInvoice();" class="space-y-3.5 text-xs">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Fecha de Emisión *</label>
+            <input type="date" id="man-input-fecha" required class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-mono focus:bg-white focus:border-emerald-600 transition">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Razón Social / Proveedor *</label>
+            <input type="text" id="man-input-proveedor" required placeholder="Ej: Distribuidora Mayorista S.R.L." class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 focus:bg-white focus:border-emerald-600 transition">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <label class="font-semibold text-slate-700">CUIT Emisor *</label>
+              <span id="man-cuit-status" class="text-[10px] font-bold text-slate-500"></span>
+            </div>
+            <input type="text" id="man-input-cuit" oninput="onManualCuitChange(this.value)" required placeholder="30-71234567-8" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-mono focus:bg-white focus:border-emerald-600 transition">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Tipo de Comprobante *</label>
+            <select id="man-input-tipo" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-medium focus:bg-white focus:border-emerald-600 transition">
+              <option value="Factura A">Factura A (Discrimina IVA)</option>
+              <option value="Factura B">Factura B (Consumidor Final)</option>
+              <option value="Factura C">Factura C (Monotributo)</option>
+              <option value="Factura M">Factura M (Retención)</option>
+              <option value="Ticket Fiscal">Ticket Fiscal</option>
+              <option value="Nota de Crédito A">Nota de Crédito A</option>
+              <option value="Recibo">Recibo Oficial</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Punto Vta y Número *</label>
+            <input type="text" id="man-input-numero" required placeholder="0001-00045890" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-mono focus:bg-white focus:border-emerald-600 transition">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Categoría de Gasto</label>
+            <select id="man-input-categoria" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 focus:bg-white focus:border-emerald-600 transition">
+              <option value="Servicios">Servicios Generales</option>
+              <option value="Mercadería">Mercadería / Reventa</option>
+              <option value="Insumos">Insumos y Materia Prima</option>
+              <option value="Luz/Gas/Tel">Servicios Públicos (Luz/Gas/Tel)</option>
+              <option value="Alquiler">Alquileres Comerciales</option>
+              <option value="Software">Software y Suscripciones</option>
+              <option value="Otros">Otros Gastos</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-2.5">
+          <div class="grid grid-cols-3 gap-2">
+            <div>
+              <label class="block text-[11px] font-medium text-slate-600 mb-0.5">Neto Gravado ($)</label>
+              <input type="number" step="0.01" id="man-input-neto" oninput="calcManualTotals('neto')" required placeholder="0.00" class="w-full px-2.5 py-1.5 bg-white border border-slate-300 rounded-lg text-slate-900 font-mono font-medium focus:border-emerald-600 transition">
+            </div>
+            <div>
+              <label class="block text-[11px] font-medium text-slate-600 mb-0.5">Alícuota IVA</label>
+              <select id="man-input-alicuota" onchange="calcManualTotals('alicuota')" class="w-full px-2 py-1.5 bg-white border border-slate-300 rounded-lg text-slate-900 font-medium focus:border-emerald-600 transition">
+                <option value="21%">21%</option>
+                <option value="10.5%">10.5%</option>
+                <option value="27%">27%</option>
+                <option value="0%">0%</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-[11px] font-medium text-slate-600 mb-0.5">Importe IVA ($)</label>
+              <input type="number" step="0.01" id="man-input-iva" oninput="calcManualTotals('iva')" required placeholder="0.00" class="w-full px-2.5 py-1.5 bg-white border border-slate-300 rounded-lg text-emerald-800 font-mono font-bold focus:border-emerald-600 transition">
+            </div>
+          </div>
+          <div class="pt-2 border-t border-slate-200 flex items-center justify-between">
+            <span class="text-xs font-bold text-slate-800">Total Facturado ($):</span>
+            <input type="number" step="0.01" id="man-input-total" oninput="calcManualTotals('total')" required placeholder="0.00" class="w-32 px-2.5 py-1.5 bg-white border-2 border-emerald-500 rounded-lg text-slate-900 font-mono text-sm font-bold text-right focus:border-emerald-600 transition">
+          </div>
+        </div>
+
+        <div class="flex items-center justify-end space-x-2 pt-2 border-t border-slate-100">
+          <button type="button" onclick="closeManualInvoiceModal()" class="px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition">Cancelar</button>
+          <button type="submit" class="px-4 py-2 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg shadow-subtle flex items-center space-x-1.5">
+            <i data-lucide="plus" class="w-3.5 h-3.5 text-emerald-300"></i>
+            <span>Agregar al Libro IVA</span>
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 
@@ -6764,11 +7037,85 @@
 
       const fileName = file.name || 'documento';
       const ext = fileName.split('.').pop().toLowerCase();
-      const isExcel = ['xlsx', 'xls', 'csv'].includes(ext);
+      const isExcel = ['xlsx', 'xls'].includes(ext);
       const isCsv = ext === 'csv';
 
-      showToast(`Analizando ${fileName} con IA de Changared...`);
+      showToast(`Procesando archivo "${fileName}"...`);
 
+      // 1. Si es Excel (.xlsx, .xls): Leer filas reales con SheetJS
+      if (isExcel) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          try {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: 'array' });
+            const firstSheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[firstSheetName];
+            const rows = XLSX.utils.sheet_to_json(worksheet, { defval: '' });
+
+            if (rows && rows.length > 0) {
+              let importedCount = 0;
+              rows.forEach((r, idx) => {
+                const getVal = (patterns) => {
+                  for (const key of Object.keys(r)) {
+                    if (patterns.some(p => new RegExp(p, 'i').test(key))) return r[key];
+                  }
+                  return '';
+                };
+
+                const prov = String(getVal(['proveedor', 'razon', 'vendor', 'emisor', 'empresa'])).trim() || `Proveedor Fila ${idx + 1}`;
+                const cuit = String(getVal(['cuit', 'tax', 'rut', 'identificacion'])).trim();
+                const fecha = String(getVal(['fecha', 'date', 'fec'])).slice(0, 10) || new Date().toISOString().slice(0, 10);
+                const tipo = String(getVal(['tipo', 'comprobante', 'doc'])).trim() || 'Factura A';
+                const num = String(getVal(['numero', 'nro', 'factura', 'comp'])).trim() || `0001-${String(idx + 1).padStart(8, '0')}`;
+                
+                let rawTotal = getVal(['total', 'importe', 'monto']);
+                const total = parseFloat(String(rawTotal).replace(/[$.]/g, '').replace(',', '.')) || 0;
+                let rawNeto = getVal(['neto', 'subtotal']);
+                const neto = parseFloat(String(rawNeto).replace(/[$.]/g, '').replace(',', '.')) || (total > 0 ? Math.round(total / 1.21 * 100) / 100 : 0);
+                let rawIva = getVal(['iva', 'impuesto']);
+                const iva = parseFloat(String(rawIva).replace(/[$.]/g, '').replace(',', '.')) || (total > neto ? Math.round((total - neto) * 100) / 100 : 0);
+                const cat = String(getVal(['categoria', 'rubro', 'gasto', 'concepto'])).trim() || 'Planilla Excel';
+
+                if (total > 0 || prov) {
+                  const inv = {
+                    id: `INV-XLS-${Date.now()}-${idx}`,
+                    fecha,
+                    proveedor: prov.slice(0, 40),
+                    cuit,
+                    tipoComprobante: tipo,
+                    numeroComprobante: num,
+                    netoGravado: neto,
+                    alicuotaIva: '21%',
+                    importeIva: iva,
+                    percepcionesOtrosImpuestos: 0,
+                    total: total > 0 ? total : neto + iva,
+                    categoriaGasto: cat,
+                    status: 'pending',
+                    isDemo: false,
+                    fileName: fileName,
+                    source: 'EXCEL_IMPORT'
+                  };
+                  localInvoices.unshift(inv);
+                  importedCount++;
+                  syncInvoiceWithBackend(inv);
+                }
+              });
+
+              renderAccountingView(localInvoices);
+              showToast(`✓ Se importaron ${importedCount} comprobantes reales desde "${fileName}". Quedan en bandeja para tu revisión.`);
+              return;
+            }
+          } catch(err) {
+            console.error("Error leyendo Excel con SheetJS:", err);
+          }
+          openManualInvoiceModal(fileName);
+        };
+        reader.readAsArrayBuffer(file);
+        return;
+      }
+
+      // 2. Si es CSV: parsear delimitadores
       if (isCsv) {
         const reader = new FileReader();
         reader.onload = function(e) {
@@ -6776,65 +7123,35 @@
             const text = e.target.result;
             const parsed = parseCsvInvoices(text, fileName);
             if (parsed.length > 0) {
-              parsed.forEach(inv => localInvoices.unshift(inv));
+              parsed.forEach(inv => {
+                localInvoices.unshift(inv);
+                syncInvoiceWithBackend(inv);
+              });
               renderAccountingView(localInvoices);
-              showToast(`✓ Planilla CSV "${fileName}" procesada: ${parsed.length} filas agregadas a Sheets!`);
-              syncAccountingWithBackend(fileName, `CSV con ${parsed.length} comprobantes`, parsed[0].total);
-            } else {
-              addSingleFileRecord(file, fileName, 'Planilla CSV');
+              showToast(`✓ Planilla CSV "${fileName}" procesada: ${parsed.length} comprobantes agregados para revisión.`);
+              return;
             }
           } catch (err) {
-            addSingleFileRecord(file, fileName, 'Planilla CSV');
+            console.error("Error en CSV:", err);
           }
+          openManualInvoiceModal(fileName);
         };
         reader.readAsText(file);
         return;
       }
 
-      setTimeout(() => {
-        addSingleFileRecord(file, fileName, isExcel ? 'Planilla Excel' : 'Factura A');
-      }, 700);
+      // 3. Si es PDF o imagen: Abrir modal de carga manual / revisión con el nombre del archivo pre-cargado
+      openManualInvoiceModal(fileName);
+      showToast(`Archivo "${fileName}" listo. Por favor completá o confirmá los importes fiscales.`);
     }
 
-    function addSingleFileRecord(file, fileName, tipoDoc) {
-      const provClean = fileName.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ").toUpperCase();
-      const randTotal = Math.floor(Math.random() * 85000 + 25000);
-      const neto = Math.round(randTotal / 1.21);
-      const iva = randTotal - neto;
-
-      const newInv = {
-        id: `INV-${Date.now()}`,
-        fecha: new Date().toISOString().slice(0, 10),
-        proveedor: provClean.slice(0, 26) || 'Proveedor Registrado S.A.',
-        cuit: '30-' + Math.floor(Math.random() * 80000000 + 10000000) + '-9',
-        tipoComprobante: tipoDoc || 'Factura A',
-        numeroComprobante: '0001-' + String(Math.floor(Math.random() * 90000 + 10000)).padStart(8, '0'),
-        netoGravado: neto,
-        alicuotaIva: '21%',
-        importeIva: iva,
-        total: randTotal,
-        categoriaGasto: tipoDoc.includes('Excel') ? 'Planilla de Gastos' : 'Servicios',
-        driveUrl: 'https://drive.google.com'
-      };
-
-      localInvoices.unshift(newInv);
-      renderAccountingView(localInvoices);
-      showToast(`✓ Archivo "${fileName}" procesado y añadido a Google Sheets!`);
-      syncAccountingWithBackend(fileName, provClean, randTotal);
-    }
-
-    function syncAccountingWithBackend(fileName, provClean, total) {
+    function syncInvoiceWithBackend(invoice) {
       try {
         const slug = currentCompany.slug || 'mi-empresa';
-        fetch(`/api/accounting/inbound-email/${slug}`, {
+        fetch(`/api/accounting/invoices/${slug}`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            from: currentCompany.email || 'subida-directa@miempresa.com',
-            subject: `Carga directa: ${fileName}`,
-            rawContent: `${provClean} Factura comprobante compra $${total}`,
-            attachmentName: fileName
-          })
+          body: JSON.stringify(invoice)
         }).catch(() => {});
       } catch(e) {}
     }
@@ -6846,12 +7163,12 @@
       const delimiter = lines[0].includes(';') ? ';' : ',';
       const startIdx = /fecha|proveedor|cuit|date|vendor/i.test(lines[0]) ? 1 : 0;
 
-      for (let i = startIdx; i < lines.length && i < 50; i++) {
+      for (let i = startIdx; i < lines.length && i < 100; i++) {
         const cols = lines[i].split(delimiter).map(c => c.trim().replace(/^["']|["']$/g, ''));
         if (cols.length >= 2) {
           const fecha = (cols[0] && cols[0].length >= 8) ? cols[0] : new Date().toISOString().slice(0, 10);
           const prov = cols[1] || `Proveedor Fila ${i}`;
-          const cuit = (cols[2] && cols[2].includes('-')) ? cols[2] : '30-71999888-9';
+          const cuit = cols[2] || '';
           let total = 0;
           for (let c = cols.length - 1; c >= 2; c--) {
             const parsedNum = parseFloat(cols[c].replace(/[$.]/g, '').replace(',', '.'));
@@ -6860,53 +7177,30 @@
               break;
             }
           }
-          if (!total || total <= 0) total = Math.floor(Math.random() * 60000 + 20000);
-          const neto = Math.round(total / 1.21);
-          const iva = total - neto;
+          const neto = total > 0 ? Math.round(total / 1.21 * 100) / 100 : 0;
+          const iva = total > neto ? Math.round((total - neto) * 100) / 100 : 0;
 
           entries.push({
             id: `INV-CSV-${Date.now()}-${i}`,
             fecha,
-            proveedor: prov.slice(0, 26),
+            proveedor: prov.slice(0, 40),
             cuit,
-            tipoComprobante: 'Planilla CSV',
+            tipoComprobante: 'Factura A',
             numeroComprobante: `0001-${String(i).padStart(8, '0')}`,
             netoGravado: neto,
             alicuotaIva: '21%',
             importeIva: iva,
+            percepcionesOtrosImpuestos: 0,
             total,
             categoriaGasto: 'Planilla CSV',
-            driveUrl: 'https://drive.google.com'
+            status: 'pending',
+            isDemo: false,
+            fileName: fileName,
+            source: 'CSV_IMPORT'
           });
         }
       }
       return entries;
-    }
-
-    function downloadAccountingCsv() {
-      const invoices = (typeof localInvoices !== 'undefined' && localInvoices.length > 0)
-        ? localInvoices
-        : [
-            { fecha: '2026-10-01', proveedor: 'Telecom Argentina S.A.', cuit: '30-63945373-8', tipoComprobante: 'Factura A', numeroComprobante: '0012-00045891', netoGravado: 42000, importeIva: 8820, total: 52020, categoriaGasto: 'Servicios' },
-            { fecha: '2026-10-02', proveedor: 'Edenor S.A.', cuit: '30-65511620-2', tipoComprobante: 'Factura A', numeroComprobante: '0005-00192841', netoGravado: 85219, importeIva: 17896, total: 103115, categoriaGasto: 'Servicios' },
-            { fecha: '2026-10-03', proveedor: 'Distribuidora Central S.R.L.', cuit: '30-71122334-5', tipoComprobante: 'Factura A', numeroComprobante: '0002-00034112', netoGravado: 118281, importeIva: 25469, total: 153750, categoriaGasto: 'Mercadería' }
-          ];
-
-      const header = "Fecha,Proveedor,CUIT,Tipo Comprobante,Numero,Neto Gravado,IVA,Total,Categoria\n";
-      const rows = invoices.map(inv => 
-        `"${inv.fecha}","${inv.proveedor}","${inv.cuit}","${inv.tipoComprobante}","${inv.numeroComprobante}",${inv.netoGravado},${inv.importeIva},${inv.total},"${inv.categoriaGasto}"`
-      ).join("\n");
-
-      const blob = new Blob([header + rows], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `Libro_IVA_Compras_${currentCompany.slug || 'mi-empresa'}_2026.csv`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      showToast("✓ Archivo CSV para el contador descargado con éxito");
     }
 
     function activarPruebaGratis() {
@@ -7593,53 +7887,11 @@
     }
 
     // =========================================================
-    // LÓGICA DEL ASISTENTE CONTABLE (FACTURAS -> DRIVE -> SHEETS)
+    // LÓGICA DEL ASISTENTE CONTABLE: BANDEJA DE REVISIÓN & LIBRO IVA
     // =========================================================
 
-    let localInvoices = [
-      {
-        id: 'INV-01',
-        fecha: '2026-10-01',
-        proveedor: 'Telecom Argentina S.A.',
-        cuit: '30-63945373-8',
-        tipoComprobante: 'Factura A',
-        numeroComprobante: '0012-00045891',
-        netoGravado: 42000,
-        alicuotaIva: '21%',
-        importeIva: 8820,
-        total: 52020,
-        categoriaGasto: 'Servicios',
-        driveUrl: 'https://drive.google.com'
-      },
-      {
-        id: 'INV-02',
-        fecha: '2026-10-02',
-        proveedor: 'Edenor S.A.',
-        cuit: '30-65511620-2',
-        tipoComprobante: 'Factura A',
-        numeroComprobante: '0004-00124890',
-        netoGravado: 78500,
-        alicuotaIva: '27%',
-        importeIva: 21195,
-        total: 103115,
-        categoriaGasto: 'Luz/Gas',
-        driveUrl: 'https://drive.google.com'
-      },
-      {
-        id: 'INV-03',
-        fecha: '2026-10-03',
-        proveedor: 'Distribuidora Lácteos del Centro S.R.L.',
-        cuit: '30-71239845-6',
-        tipoComprobante: 'Factura A',
-        numeroComprobante: '0001-00003412',
-        netoGravado: 125000,
-        alicuotaIva: '21%',
-        importeIva: 26250,
-        total: 153750,
-        categoriaGasto: 'Mercadería',
-        driveUrl: 'https://drive.google.com'
-      }
-    ];
+    let localInvoices = [];
+    let currentAccountingFilter = 'all'; // 'all' | 'pending' | 'approved'
 
     function copyAccountingEmail() {
       const emailInput = document.getElementById('acc-email-input');
@@ -7649,50 +7901,209 @@
       }
     }
 
-    function renderAccountingView(invoices, stats) {
-      if (!stats) {
-        const totalCompras = invoices.reduce((s, i) => s + (Number(i.total) || 0), 0);
-        const totalNeto = invoices.reduce((s, i) => s + (Number(i.netoGravado) || 0), 0);
-        const totalIva = invoices.reduce((s, i) => s + (Number(i.importeIva) || 0), 0);
-        stats = { count: invoices.length, totalCompras, totalNeto, totalIva };
+    function checkCuitClient(cuitStr) {
+      if (!cuitStr) return { valid: false, text: '' };
+      const clean = String(cuitStr).replace(/[^0-9]/g, '');
+      if (clean.length !== 11) return { valid: false, text: `${clean.length}/11 dígitos` };
+      const factors = [5, 4, 3, 2, 7, 6, 5, 4, 3, 2];
+      let sum = 0;
+      for (let i = 0; i < 10; i++) sum += parseInt(clean[i], 10) * factors[i];
+      const mod = sum % 11;
+      let check = 11 - mod;
+      if (mod === 0) check = 0;
+      if (mod === 1) check = 9;
+      const ok = parseInt(clean[10], 10) === check;
+      return { valid: ok, text: ok ? '✓ CUIT Válido AFIP' : '✗ Dígito Verificador Inválido' };
+    }
+
+    function onReviewCuitChange(val) {
+      const el = document.getElementById('rev-cuit-status');
+      if (!el) return;
+      const res = checkCuitClient(val);
+      el.innerText = res.text;
+      el.className = `text-[10px] font-bold ${res.valid ? 'text-emerald-700' : 'text-red-600'}`;
+    }
+
+    function onManualCuitChange(val) {
+      const el = document.getElementById('man-cuit-status');
+      if (!el) return;
+      const res = checkCuitClient(val);
+      el.innerText = res.text;
+      el.className = `text-[10px] font-bold ${res.valid ? 'text-emerald-700' : 'text-red-600'}`;
+    }
+
+    function calcReviewTotals(changedField) {
+      const netoEl = document.getElementById('rev-input-neto');
+      const alicEl = document.getElementById('rev-input-alicuota');
+      const ivaEl = document.getElementById('rev-input-iva');
+      const percEl = document.getElementById('rev-input-percepciones');
+      const totalEl = document.getElementById('rev-input-total');
+      const alertEl = document.getElementById('rev-balance-alert');
+      const alertTxt = document.getElementById('rev-balance-text');
+
+      if (!netoEl || !totalEl) return;
+
+      const n = parseFloat(netoEl.value) || 0;
+      const p = parseFloat(percEl ? percEl.value : 0) || 0;
+      const alicPct = parseFloat(alicEl ? alicEl.value : '21') || 0;
+
+      if (changedField === 'neto' || changedField === 'alicuota') {
+        const calculatedIva = Math.round((n * (alicPct / 100)) * 100) / 100;
+        if (ivaEl) ivaEl.value = calculatedIva;
+        const calculatedTotal = Math.round((n + calculatedIva + p) * 100) / 100;
+        totalEl.value = calculatedTotal;
+      } else if (changedField === 'iva' || changedField === 'percepciones') {
+        const i = parseFloat(ivaEl ? ivaEl.value : 0) || 0;
+        totalEl.value = Math.round((n + i + p) * 100) / 100;
       }
 
+      // Comprobar descuadre
+      const i = parseFloat(ivaEl ? ivaEl.value : 0) || 0;
+      const tot = parseFloat(totalEl.value) || 0;
+      const expected = Math.round((n + i + p) * 100) / 100;
+      const diff = Math.abs(expected - tot);
+
+      if (diff > 1.0 && alertEl && alertTxt) {
+        alertEl.classList.remove('hidden');
+        alertTxt.innerText = `La suma aritmética (Neto $${n} + IVA $${i} + Perc $${p} = $${expected}) no coincide con el total ingresado ($${tot}).`;
+      } else if (alertEl) {
+        alertEl.classList.add('hidden');
+      }
+    }
+
+    function calcManualTotals(changedField) {
+      const netoEl = document.getElementById('man-input-neto');
+      const alicEl = document.getElementById('man-input-alicuota');
+      const ivaEl = document.getElementById('man-input-iva');
+      const totalEl = document.getElementById('man-input-total');
+
+      if (!netoEl || !totalEl) return;
+      const n = parseFloat(netoEl.value) || 0;
+      const alicPct = parseFloat(alicEl ? alicEl.value : '21') || 0;
+
+      if (changedField === 'neto' || changedField === 'alicuota') {
+        const i = Math.round((n * (alicPct / 100)) * 100) / 100;
+        if (ivaEl) ivaEl.value = i;
+        totalEl.value = Math.round((n + i) * 100) / 100;
+      } else if (changedField === 'iva') {
+        const i = parseFloat(ivaEl ? ivaEl.value : 0) || 0;
+        totalEl.value = Math.round((n + i) * 100) / 100;
+      }
+    }
+
+    function filterAccountingTable(status) {
+      currentAccountingFilter = status;
+      document.querySelectorAll('.filter-pill-acc').forEach(btn => {
+        btn.classList.remove('bg-[#1B4332]', 'text-white', 'shadow-2xs');
+        btn.classList.add('text-slate-700');
+      });
+      const activeBtn = document.getElementById(`btn-filter-${status}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-slate-700');
+        activeBtn.classList.add('bg-[#1B4332]', 'text-white', 'shadow-2xs');
+      }
+      renderAccountingView(localInvoices);
+    }
+
+    function renderAccountingView(invoices, stats) {
+      if (!Array.isArray(invoices)) invoices = [];
+
+      const pendingCount = invoices.filter(i => i.status !== 'approved').length;
+      const approvedCount = invoices.filter(i => i.status === 'approved').length;
+      const totalCompras = invoices.reduce((s, i) => s + (Number(i.total) || 0), 0);
+      const totalNeto = invoices.reduce((s, i) => s + (Number(i.netoGravado) || 0), 0);
+      const totalIva = invoices.reduce((s, i) => s + (Number(i.importeIva) || 0), 0);
+
       const countEl = document.getElementById('acc-stat-count');
+      const approvedEl = document.getElementById('acc-stat-approved-pct');
       const totalEl = document.getElementById('acc-stat-total');
       const ivaEl = document.getElementById('acc-stat-iva');
       const netoEl = document.getElementById('acc-stat-neto');
 
-      if (countEl) countEl.innerText = `${stats.count} facturas`;
-      if (totalEl) totalEl.innerText = `$${Number(stats.totalCompras || 0).toLocaleString('es-AR')}`;
-      if (ivaEl) ivaEl.innerText = `$${Number(stats.totalIva || 0).toLocaleString('es-AR')}`;
-      if (netoEl) netoEl.innerText = `$${Number(stats.totalNeto || 0).toLocaleString('es-AR')}`;
+      if (countEl) countEl.innerText = `${invoices.length} facturas`;
+      if (approvedEl) approvedEl.innerText = `${approvedCount} aprobadas (${pendingCount} por revisar)`;
+      if (totalEl) totalEl.innerText = `$${totalCompras.toLocaleString('es-AR')}`;
+      if (ivaEl) ivaEl.innerText = `$${totalIva.toLocaleString('es-AR')}`;
+      if (netoEl) netoEl.innerText = `$${totalNeto.toLocaleString('es-AR')}`;
+
+      const cntAll = document.getElementById('acc-cnt-all');
+      const cntPend = document.getElementById('acc-cnt-pending');
+      const cntAppr = document.getElementById('acc-cnt-approved');
+      if (cntAll) cntAll.innerText = invoices.length;
+      if (cntPend) cntPend.innerText = pendingCount;
+      if (cntAppr) cntAppr.innerText = approvedCount;
 
       const tbody = document.getElementById('accounting-table-body');
-      if (tbody && Array.isArray(invoices)) {
-        tbody.innerHTML = '';
-        invoices.forEach(inv => {
-          const tr = document.createElement('tr');
-          tr.className = "hover:bg-slate-50/70 transition-colors";
-          tr.innerHTML = `
-            <td class="px-3 py-2.5 font-mono text-slate-600">${escapeHtml(inv.fecha || '-')}</td>
-            <td class="px-3 py-2.5 font-medium text-slate-900">${escapeHtml(inv.proveedor || '-')}</td>
-            <td class="px-3 py-2.5 text-slate-600 font-mono">${escapeHtml(inv.cuit || '-')}</td>
-            <td class="px-3 py-2.5 text-slate-700">${escapeHtml(inv.tipoComprobante || '')} ${escapeHtml(inv.numeroComprobante || '')}</td>
-            <td class="px-3 py-2.5 text-slate-700 font-medium">$${Number(inv.netoGravado || 0).toLocaleString('es-AR')}</td>
-            <td class="px-3 py-2.5 text-emerald-700 font-medium">$${Number(inv.importeIva || 0).toLocaleString('es-AR')} <span class="text-[10px] text-slate-600">(${inv.alicuotaIva || '21%'})</span></td>
-            <td class="px-3 py-2.5 text-slate-900 font-bold">$${Number(inv.total || 0).toLocaleString('es-AR')}</td>
-            <td class="px-3 py-2.5"><span class="px-2 py-0.5 rounded text-[10px] bg-slate-100 text-slate-700 border border-slate-200">${escapeHtml(inv.categoriaGasto || 'General')}</span></td>
-            <td class="px-3 py-2.5 text-right">
-              <a href="${inv.driveUrl || '#'}" target="_blank" class="inline-flex items-center space-x-1 text-blue-600 hover:text-blue-800 text-[11px] font-mono">
-                <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
-                <span>Drive PDF</span>
-              </a>
-            </td>
-          `;
-          tbody.appendChild(tr);
-        });
-        lucide.createIcons();
+      if (!tbody) return;
+
+      tbody.innerHTML = '';
+
+      let filtered = invoices;
+      if (currentAccountingFilter === 'pending') {
+        filtered = invoices.filter(i => i.status !== 'approved');
+      } else if (currentAccountingFilter === 'approved') {
+        filtered = invoices.filter(i => i.status === 'approved');
       }
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="10" class="px-4 py-8 text-center text-slate-500">
+              <div class="max-w-xs mx-auto space-y-2">
+                <i data-lucide="inbox" class="w-8 h-8 mx-auto text-slate-400"></i>
+                <p class="text-xs font-semibold text-slate-700">No hay comprobantes ${currentAccountingFilter === 'pending' ? 'pendientes de revisión' : currentAccountingFilter === 'approved' ? 'aprobados' : 'cargados'}.</p>
+                <p class="text-[11px] text-slate-500">Podés subir una factura en PDF, importar una planilla Excel o cargarla manualmente.</p>
+              </div>
+            </td>
+          </tr>
+        `;
+        if (window.lucide && lucide.createIcons) lucide.createIcons();
+        return;
+      }
+
+      filtered.forEach(inv => {
+        const isApproved = inv.status === 'approved';
+        const tr = document.createElement('tr');
+        tr.className = `hover:bg-slate-50/70 transition-colors ${inv.duplicateWarning ? 'bg-amber-50/40' : ''}`;
+        tr.innerHTML = `
+          <td class="px-3 py-2.5">
+            ${isApproved
+              ? `<span class="inline-flex items-center space-x-1 px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">
+                  <span>✅ Aprobado</span>
+                </span>`
+              : `<span class="inline-flex items-center space-x-1 px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-900 border border-amber-200">
+                  <span>⚠️ Por revisar</span>
+                </span>`
+            }
+          </td>
+          <td class="px-3 py-2.5 font-mono text-slate-600">${escapeHtml(inv.fecha || '-')}</td>
+          <td class="px-3 py-2.5 font-medium text-slate-900">${escapeHtml(inv.proveedor || '-')}</td>
+          <td class="px-3 py-2.5 text-slate-600 font-mono">${escapeHtml(inv.cuit || '-')}</td>
+          <td class="px-3 py-2.5 text-slate-700 font-medium">${escapeHtml(inv.tipoComprobante || '')} ${escapeHtml(inv.numeroComprobante || '')}</td>
+          <td class="px-3 py-2.5 text-slate-700 font-medium">$${Number(inv.netoGravado || 0).toLocaleString('es-AR')}</td>
+          <td class="px-3 py-2.5 text-emerald-700 font-medium">$${Number(inv.importeIva || 0).toLocaleString('es-AR')} <span class="text-[10px] text-slate-500">(${inv.alicuotaIva || '21%'})</span></td>
+          <td class="px-3 py-2.5 text-slate-900 font-bold">$${Number(inv.total || 0).toLocaleString('es-AR')}</td>
+          <td class="px-3 py-2.5"><span class="px-2 py-0.5 rounded text-[10px] bg-slate-100 text-slate-700 border border-slate-200">${escapeHtml(inv.categoriaGasto || 'General')}</span></td>
+          <td class="px-3 py-2.5 text-right whitespace-nowrap">
+            <div class="inline-flex items-center space-x-1">
+              <button onclick="openReviewModal('${inv.id}')" class="px-2 py-1 bg-white hover:bg-slate-100 border border-slate-300 rounded text-[10px] font-semibold text-slate-700 transition shadow-2xs" title="Revisar y editar">
+                ✏️ Revisar
+              </button>
+              ${!isApproved ? `
+                <button onclick="quickApproveInvoice('${inv.id}')" class="px-2 py-1 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-300 rounded text-[10px] font-bold transition shadow-2xs" title="Aprobar para el contador">
+                  ✅ Aprobar
+                </button>
+              ` : ''}
+              <button onclick="deleteInvoicePrompt('${inv.id}')" class="p-1 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded transition" title="Eliminar comprobante">
+                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      if (window.lucide && lucide.createIcons) lucide.createIcons();
     }
 
     async function loadAccountingInvoices() {
@@ -7702,25 +8113,20 @@
         if (res.ok) {
           const json = await res.json();
           if (json.success && Array.isArray(json.invoices)) {
-            if (json.invoices.length > 0) {
-              localInvoices = json.invoices;
-              renderAccountingView(json.invoices, json.stats);
-              return;
-            } else if (slug !== 'mi-empresa') {
-              renderAccountingView([], { count: 0, totalCompras: 0, totalNeto: 0, totalIva: 0 });
-              return;
-            }
+            localInvoices = json.invoices;
+            renderAccountingView(localInvoices, json.stats);
+            return;
           }
         }
       } catch (err) {
-        console.warn("Backend API offline o estático, usando almacenamiento de demostración:", err);
+        console.warn("Backend API offline, usando almacenamiento local:", err);
       }
       renderAccountingView(localInvoices);
     }
 
     async function simulateInvoiceTrigger(providerType) {
       const slug = currentCompany.slug || 'mi-empresa';
-      showToast("Recepcionando email y leyendo factura con IA...");
+      showToast("Ingresando comprobante de prueba...");
       try {
         const res = await fetch(`/api/accounting/simulate-email/${slug}`, {
           method: 'POST',
@@ -7730,21 +8136,20 @@
         if (res.ok) {
           const json = await res.json();
           if (json.success && json.record) {
-            showToast(`¡Factura de ${json.record.proveedor} procesada y agregada al Excel!`);
+            showToast(`✓ Ejemplo de ${json.record.proveedor} agregado a la bandeja de revisión.`);
             await loadAccountingInvoices();
             return;
           }
         }
       } catch (err) {
-        console.warn("Simulación vía API falló, ejecutando simulación local:", err);
+        console.warn("Fallo API simulación, creando localmente:", err);
       }
 
-      // Fallback local instantáneo
       const hoy = new Date().toISOString().split('T')[0];
       let nuevo = null;
       if (providerType === 'edenor') {
         nuevo = {
-          id: `INV-${Date.now()}`,
+          id: `INV-DEMO-${Date.now()}`,
           fecha: hoy,
           proveedor: 'Edenor S.A.',
           cuit: '30-65511620-2',
@@ -7754,12 +8159,13 @@
           alicuotaIva: '27%',
           importeIva: 21195,
           total: 103115,
-          categoriaGasto: 'Luz/Gas',
-          driveUrl: 'https://drive.google.com'
+          categoriaGasto: 'Luz/Gas/Tel',
+          status: 'pending',
+          isDemo: true
         };
-      } else if (providerType === 'telecom') {
+      } else {
         nuevo = {
-          id: `INV-${Date.now()}`,
+          id: `INV-DEMO-${Date.now()}`,
           fecha: hoy,
           proveedor: 'Telecom Argentina S.A.',
           cuit: '30-63945373-8',
@@ -7770,28 +8176,307 @@
           importeIva: 8820,
           total: 52020,
           categoriaGasto: 'Servicios',
-          driveUrl: 'https://drive.google.com'
-        };
-      } else {
-        nuevo = {
-          id: `INV-${Date.now()}`,
-          fecha: hoy,
-          proveedor: 'Distribuidora Lácteos del Centro S.R.L.',
-          cuit: '30-71239845-6',
-          tipoComprobante: 'Factura A',
-          numeroComprobante: `0001-${Math.floor(Math.random() * 900000 + 100000)}`,
-          netoGravado: 125000,
-          alicuotaIva: '21%',
-          importeIva: 26250,
-          total: 153750,
-          categoriaGasto: 'Mercadería',
-          driveUrl: 'https://drive.google.com'
+          status: 'pending',
+          isDemo: true
         };
       }
 
       localInvoices.unshift(nuevo);
       renderAccountingView(localInvoices);
-      showToast(`¡Factura de ${nuevo.proveedor} procesada con IA y agregada al Excel!`);
+      showToast(`✓ Factura de prueba de ${nuevo.proveedor} cargada.`);
+    }
+
+    function openReviewModal(invoiceId) {
+      const inv = localInvoices.find(i => i.id === invoiceId);
+      if (!inv) return;
+
+      document.getElementById('rev-input-id').value = inv.id;
+      document.getElementById('rev-invoice-id').innerText = `ID: ${inv.id}`;
+
+      const badge = document.getElementById('rev-status-badge');
+      if (badge) {
+        badge.innerText = inv.status === 'approved' ? 'Aprobado para el Contador' : 'Pendiente de Revisión';
+        badge.className = `px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${inv.status === 'approved' ? 'bg-emerald-100 text-emerald-800 border border-emerald-200' : 'bg-amber-100 text-amber-900 border border-amber-200'}`;
+      }
+
+      document.getElementById('rev-input-fecha').value = inv.fecha || new Date().toISOString().slice(0, 10);
+      document.getElementById('rev-input-proveedor').value = inv.proveedor || '';
+      document.getElementById('rev-input-cuit').value = inv.cuit || '';
+      document.getElementById('rev-input-tipo').value = inv.tipoComprobante || 'Factura A';
+      document.getElementById('rev-input-numero').value = inv.numeroComprobante || '';
+      document.getElementById('rev-input-categoria').value = inv.categoriaGasto || 'Servicios';
+      document.getElementById('rev-input-cae').value = inv.cae || '';
+      document.getElementById('rev-input-neto').value = Number(inv.netoGravado || 0);
+      document.getElementById('rev-input-alicuota').value = inv.alicuotaIva || '21%';
+      document.getElementById('rev-input-iva').value = Number(inv.importeIva || 0);
+      document.getElementById('rev-input-percepciones').value = Number(inv.percepcionesOtrosImpuestos || 0);
+      document.getElementById('rev-input-total').value = Number(inv.total || 0);
+
+      onReviewCuitChange(inv.cuit || '');
+
+      // Alerta de duplicado
+      const dupAlert = document.getElementById('rev-duplicate-alert');
+      const dupText = document.getElementById('rev-duplicate-text');
+      if (inv.duplicateWarning && dupAlert && dupText) {
+        dupAlert.classList.remove('hidden');
+        dupText.innerText = inv.duplicateWarning;
+      } else if (dupAlert) {
+        dupAlert.classList.add('hidden');
+      }
+
+      // Alerta de descuadre
+      calcReviewTotals('');
+
+      // Historial
+      const auditBox = document.getElementById('rev-audit-container');
+      if (auditBox) {
+        auditBox.innerHTML = '';
+        const trail = Array.isArray(inv.auditTrail) && inv.auditTrail.length > 0
+          ? inv.auditTrail
+          : [{ timestamp: inv.processedAt || new Date().toISOString(), action: 'CREATED', details: 'Comprobante ingresado al sistema' }];
+
+        trail.forEach(t => {
+          const item = document.createElement('div');
+          item.className = "flex items-start justify-between border-b border-slate-200/60 pb-1";
+          item.innerHTML = `<span><strong>[${t.action}]</strong> ${escapeHtml(t.details || '')}</span><span class="text-slate-500">${new Date(t.timestamp).toLocaleDateString('es-AR')}</span>`;
+          auditBox.appendChild(item);
+        });
+      }
+
+      const modal = document.getElementById('modal-review-invoice');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeReviewModal() {
+      const modal = document.getElementById('modal-review-invoice');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    async function saveReviewedInvoice(approve = false) {
+      const id = document.getElementById('rev-input-id').value;
+      const inv = localInvoices.find(i => i.id === id);
+      if (!inv) return;
+
+      const updates = {
+        fecha: document.getElementById('rev-input-fecha').value,
+        proveedor: document.getElementById('rev-input-proveedor').value.trim(),
+        cuit: document.getElementById('rev-input-cuit').value.trim(),
+        tipoComprobante: document.getElementById('rev-input-tipo').value,
+        numeroComprobante: document.getElementById('rev-input-numero').value.trim(),
+        categoriaGasto: document.getElementById('rev-input-categoria').value,
+        cae: document.getElementById('rev-input-cae').value.trim(),
+        netoGravado: parseFloat(document.getElementById('rev-input-neto').value) || 0,
+        alicuotaIva: document.getElementById('rev-input-alicuota').value,
+        importeIva: parseFloat(document.getElementById('rev-input-iva').value) || 0,
+        percepcionesOtrosImpuestos: parseFloat(document.getElementById('rev-input-percepciones').value) || 0,
+        total: parseFloat(document.getElementById('rev-input-total').value) || 0,
+        status: approve ? 'approved' : inv.status,
+        auditReason: approve ? 'Comprobante revisado y aprobado por el usuario para el Libro IVA' : 'Modificación de datos fiscales'
+      };
+
+      Object.assign(inv, updates);
+
+      const slug = currentCompany.slug || 'mi-empresa';
+      try {
+        await fetch(`/api/accounting/invoices/${slug}/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(updates)
+        });
+      } catch(e) {}
+
+      renderAccountingView(localInvoices);
+      closeReviewModal();
+      showToast(approve ? "✓ Comprobante aprobado para el contador." : "✓ Cambios fiscales guardados.");
+    }
+
+    async function quickApproveInvoice(id) {
+      const inv = localInvoices.find(i => i.id === id);
+      if (!inv) return;
+      inv.status = 'approved';
+
+      const slug = currentCompany.slug || 'mi-empresa';
+      try {
+        await fetch(`/api/accounting/invoices/${slug}/${id}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ status: 'approved' })
+        });
+      } catch(e) {}
+
+      renderAccountingView(localInvoices);
+      showToast(`✓ Comprobante de ${inv.proveedor} aprobado para el Libro IVA.`);
+    }
+
+    function deleteReviewedInvoice() {
+      const id = document.getElementById('rev-input-id').value;
+      if (id) {
+        deleteInvoicePrompt(id);
+        closeReviewModal();
+      }
+    }
+
+    async function deleteInvoicePrompt(id) {
+      if (!confirm("¿Eliminar este comprobante del Libro IVA?")) return;
+      const slug = currentCompany.slug || 'mi-empresa';
+      try {
+        await fetch(`/api/accounting/invoices/${slug}/${id}`, { method: 'DELETE' });
+      } catch(e) {}
+      localInvoices = localInvoices.filter(i => i.id !== id);
+      renderAccountingView(localInvoices);
+      showToast("Comprobante eliminado del Libro IVA.");
+    }
+
+    async function clearAccountingInvoices(onlyDemo = false) {
+      const msg = onlyDemo
+        ? "¿Eliminar todos los comprobantes de prueba para dejar el panel limpio y empezar de cero?"
+        : "¿Eliminar TODOS los comprobantes cargados en la tabla?";
+      if (!confirm(msg)) return;
+
+      const slug = currentCompany.slug || 'mi-empresa';
+      try {
+        await fetch(`/api/accounting/invoices/${slug}?onlyDemo=${onlyDemo}`, { method: 'DELETE' });
+      } catch(e) {}
+
+      if (onlyDemo) {
+        localInvoices = localInvoices.filter(i => !i.isDemo);
+      } else {
+        localInvoices = [];
+      }
+      renderAccountingView(localInvoices);
+      showToast(onlyDemo ? "✓ Comprobantes de prueba eliminados. Panel limpio." : "✓ Lista de comprobantes vaciada.");
+    }
+
+    function openManualInvoiceModal(prefillFileName = '') {
+      const form = document.getElementById('form-manual-invoice');
+      if (form) form.reset();
+
+      const fDate = document.getElementById('man-input-fecha');
+      if (fDate) fDate.value = new Date().toISOString().slice(0, 10);
+
+      const fProv = document.getElementById('man-input-proveedor');
+      if (fProv && prefillFileName) {
+        fProv.value = prefillFileName.replace(/\.[^/.]+$/, "").replace(/[-_]/g, " ").toUpperCase().slice(0, 35);
+      }
+
+      onManualCuitChange('');
+
+      const modal = document.getElementById('modal-manual-invoice');
+      if (modal) modal.classList.remove('hidden');
+    }
+
+    function closeManualInvoiceModal() {
+      const modal = document.getElementById('modal-manual-invoice');
+      if (modal) modal.classList.add('hidden');
+    }
+
+    async function submitManualInvoice() {
+      const fecha = document.getElementById('man-input-fecha').value;
+      const proveedor = document.getElementById('man-input-proveedor').value.trim();
+      const cuit = document.getElementById('man-input-cuit').value.trim();
+      const tipoComprobante = document.getElementById('man-input-tipo').value;
+      const numeroComprobante = document.getElementById('man-input-numero').value.trim();
+      const categoriaGasto = document.getElementById('man-input-categoria').value;
+      const neto = parseFloat(document.getElementById('man-input-neto').value) || 0;
+      const alicuota = document.getElementById('man-input-alicuota').value;
+      const iva = parseFloat(document.getElementById('man-input-iva').value) || 0;
+      const total = parseFloat(document.getElementById('man-input-total').value) || (neto + iva);
+
+      const inv = {
+        id: `INV-MAN-${Date.now()}`,
+        fecha,
+        proveedor,
+        cuit,
+        tipoComprobante,
+        numeroComprobante,
+        netoGravado: neto,
+        alicuotaIva: alicuota,
+        importeIva: iva,
+        percepcionesOtrosImpuestos: 0,
+        total,
+        categoriaGasto,
+        status: 'pending',
+        isDemo: false,
+        source: 'MANUAL_ENTRY'
+      };
+
+      localInvoices.unshift(inv);
+      syncInvoiceWithBackend(inv);
+      renderAccountingView(localInvoices);
+      closeManualInvoiceModal();
+      showToast(`✓ Comprobante de ${proveedor} agregado. Podés revisarlo y aprobarlo en la tabla.`);
+    }
+
+    function downloadAccountingExcel() {
+      if (!localInvoices || localInvoices.length === 0) {
+        showToast("No hay comprobantes para exportar.");
+        return;
+      }
+      const headers = [
+        ["LIBRO IVA COMPRAS - " + (currentCompany.name || "Mi Empresa").toUpperCase()],
+        ["CUIT: " + (currentCompany.cuit || "30-71234567-8") + " | Condición: " + (currentCompany.taxCondition || "Responsable Inscripto")],
+        ["Generado el: " + new Date().toLocaleDateString('es-AR')],
+        [],
+        ["Fecha", "Proveedor / Razón Social", "CUIT Emisor", "Tipo Comprobante", "Punto Vta y Nro", "Neto Gravado", "Alícuota IVA", "Importe IVA", "Percepciones / Otros", "Total Facturado", "Categoría", "Estado", "CAE"]
+      ];
+
+      const rows = localInvoices.map(i => [
+        i.fecha || '',
+        i.proveedor || '',
+        i.cuit || '',
+        i.tipoComprobante || '',
+        i.numeroComprobante || '',
+        Number(i.netoGravado || 0),
+        i.alicuotaIva || '21%',
+        Number(i.importeIva || 0),
+        Number(i.percepcionesOtrosImpuestos || 0),
+        Number(i.total || 0),
+        i.categoriaGasto || '',
+        i.status === 'approved' ? 'APROBADO' : 'PENDIENTE',
+        i.cae || ''
+      ]);
+
+      const ws = XLSX.utils.aoa_to_sheet([...headers, ...rows]);
+      const wb = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, "Libro_IVA_Compras");
+      XLSX.writeFile(wb, `Libro_IVA_Compras_${(currentCompany.slug || 'mi-empresa')}_${new Date().toISOString().slice(0, 10)}.xlsx`);
+      showToast("✓ Archivo Excel del Libro IVA Compras descargado para el estudio contable.");
+    }
+
+    function downloadAccountingCsv() {
+      if (!localInvoices || localInvoices.length === 0) {
+        showToast("No hay comprobantes para exportar.");
+        return;
+      }
+      let csv = "Fecha;Proveedor;CUIT;TipoComprobante;NumeroComprobante;NetoGravado;AlicuotaIVA;ImporteIVA;Percepciones;Total;Categoria;Estado;CAE\r\n";
+      localInvoices.forEach(i => {
+        const row = [
+          i.fecha || '',
+          `"${(i.proveedor || '').replace(/"/g, '""')}"`,
+          i.cuit || '',
+          i.tipoComprobante || '',
+          i.numeroComprobante || '',
+          Number(i.netoGravado || 0).toFixed(2),
+          i.alicuotaIva || '21%',
+          Number(i.importeIva || 0).toFixed(2),
+          Number(i.percepcionesOtrosImpuestos || 0).toFixed(2),
+          Number(i.total || 0).toFixed(2),
+          `"${(i.categoriaGasto || '').replace(/"/g, '""')}"`,
+          i.status === 'approved' ? 'APROBADO' : 'PENDIENTE',
+          i.cae || ''
+        ];
+        csv += row.join(';') + "\r\n";
+      });
+      const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `Libro_IVA_Compras_${(currentCompany.slug || 'mi-empresa')}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast("✓ Archivo CSV descargado listo para sistemas contables.");
     }
 
     // =========================================================
