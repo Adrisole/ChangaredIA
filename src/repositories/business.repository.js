@@ -55,6 +55,12 @@ class BusinessRepository {
     return Object.values(all);
   }
 
+  findByOwnerId(ownerId) {
+    if (!ownerId) return [];
+    const all = this._readAll();
+    return Object.values(all).filter(b => b.ownerId === ownerId);
+  }
+
   save(business) {
     const all = this._readAll();
     const key = String(business.id).toLowerCase().trim();

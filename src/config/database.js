@@ -22,6 +22,10 @@ export async function connectDatabase() {
     });
     isConnected = true;
     console.log('✅ [Database] Conexión establecida exitosamente con MongoDB.');
+    // Migrar automáticamente colecciones locales JSON a MongoDB
+    import('../services/migration.service.js')
+      .then(m => m.migrateJsonToMongo())
+      .catch(err => console.error('[Database] Error en migración automática:', err.message));
     return true;
   } catch (error) {
     console.error('❌ [Database] Error al conectar a MongoDB:', error.message);

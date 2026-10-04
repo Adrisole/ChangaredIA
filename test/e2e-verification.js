@@ -381,7 +381,42 @@ async function runTests() {
     assert.ok(found, 'El negocio creado debe figurar en la lista privada del usuario');
   });
 
-  // 20. Integridad y Paridad Hash SHA-256
+  // 20. Agenda y Gestión de Citas/Turnos (Appointments)
+  await test('GET & POST /api/appointments/:businessId - Creación y consulta de turnos con profesional y seña', async () => {
+    // 1. Crear nuevo turno
+    const createRes = await fetch(`${BASE_URL}/api/appointments/${ownedBusinessId}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        clientName: 'Martina Soler',
+        clientPhone: '+54 9 11 4455-8899',
+        clientEmail: 'martina@example.com',
+        service: 'Tratamiento Capilar & Brushing',
+        professional: 'Estilista 1 (Clara)',
+        date: '2026-10-12',
+        time: 'Jueves 16:00 hs',
+        depositAmount: 5000
+      })
+    });
+
+    assert.equal(createRes.status, 201, 'Status HTTP debe ser 201');
+    const createdJson = await createRes.json();
+    assert.equal(createdJson.success, true);
+    assert.equal(createdJson.data.clientName, 'Martina Soler');
+    assert.equal(createdJson.data.depositPaid, true);
+    assert.equal(createdJson.data.status, 'CONFIRMADO');
+
+    // 2. Consultar turnos del negocio
+    const listRes = await fetch(`${BASE_URL}/api/appointments/${ownedBusinessId}`);
+    assert.equal(listRes.status, 200);
+    const listJson = await listRes.json();
+    assert.equal(listJson.success, true);
+    assert.ok(Array.isArray(listJson.data));
+    const foundApt = listJson.data.find(a => a.clientName === 'Martina Soler');
+    assert.ok(foundApt, 'El turno creado debe encontrarse en la lista del negocio');
+  });
+
+  // 21. Integridad y Paridad Hash SHA-256
   await test('Integridad SHA-256 - Paridad absoluta entre root y public/', async () => {
     const hDash = getHash('dashboard.html');
     const hIndex = getHash('index.html');

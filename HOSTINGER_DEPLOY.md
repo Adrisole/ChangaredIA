@@ -50,7 +50,9 @@ Hostinger incluye el gestor de aplicaciones Node.js directamente en el panel de 
      OPENAI_MODEL=gpt-4o-mini
      WHATSAPP_VERIFY_TOKEN=changared_secret_verify_token_2026
      DATA_STORAGE_PATH=./src/data/businesses.json
+     MONGODB_URI=mongodb+srv://<usuario>:<password>@cluster0.xxxxx.mongodb.net/changared?retryWrites=true&w=majority
      ```
+   - *Nota:* Al configurar `MONGODB_URI`, Changared migrará y sincronizará automáticamente todos los negocios, usuarios, sesiones y turnos existentes desde los archivos JSON hacia MongoDB.
 3. Vuelve a la pantalla de Node.js y haz clic en **Reiniciar aplicación (Restart Application)**.
 4. ¡Listo! Al ingresar a tu dominio, verás el panel de Changared activo.
 
