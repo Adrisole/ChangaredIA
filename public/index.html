@@ -193,30 +193,36 @@
 
         <div class="pt-3 px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-emerald-200/70" data-i18n="navSectionEmployees">Empleados Virtuales</div>
 
-        <button onclick="switchStep('step-simulator')" id="nav-step-simulator" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors" data-i18n="navStepSimulator">
-          1. Vendedor IA (WhatsApp 24/7)
+        <button onclick="switchStep('step-simulator')" id="nav-step-simulator" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors flex items-center justify-between">
+          <span data-i18n="navStepSimulator">1. Vendedor IA (WhatsApp 24/7)</span>
+          <span class="nav-badge-emp text-[9px] px-1.5 py-0.5 rounded font-mono font-bold" data-emp-nav="vendedor"></span>
         </button>
 
-        <button onclick="switchStep('step-cobranzas')" id="nav-step-cobranzas" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors" data-i18n="navStepCobranzas">
-          2. Gestor de Cobranzas
+        <button onclick="switchStep('step-cobranzas')" id="nav-step-cobranzas" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors flex items-center justify-between">
+          <span data-i18n="navStepCobranzas">2. Gestor de Cobranzas</span>
+          <span class="nav-badge-emp text-[9px] px-1.5 py-0.5 rounded font-mono font-bold" data-emp-nav="cobranzas"></span>
         </button>
 
-        <button onclick="switchStep('step-accounting')" id="nav-step-accounting" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors" data-i18n="navStepAccounting">
-          3. Facturación & Gastos
+        <button onclick="switchStep('step-accounting')" id="nav-step-accounting" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors flex items-center justify-between">
+          <span data-i18n="navStepAccounting">3. Facturación & Gastos</span>
+          <span class="nav-badge-emp text-[9px] px-1.5 py-0.5 rounded font-mono font-bold" data-emp-nav="accounting"></span>
         </button>
 
-        <button onclick="switchStep('step-multilingual')" id="nav-step-multilingual" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors" data-i18n="navStepMultilingual">
-          4. Asistente Multilingüe (Turismo)
+        <button onclick="switchStep('step-multilingual')" id="nav-step-multilingual" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors flex items-center justify-between">
+          <span data-i18n="navStepMultilingual">4. Asistente Multilingüe (Turismo)</span>
+          <span class="nav-badge-emp text-[9px] px-1.5 py-0.5 rounded font-mono font-bold" data-emp-nav="multilingue"></span>
         </button>
 
-        <button onclick="switchStep('step-citas')" id="nav-step-citas" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors" data-i18n="navStepCitas">
-          5. Agendador de Citas (Turnos)
+        <button onclick="switchStep('step-citas')" id="nav-step-citas" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors flex items-center justify-between">
+          <span data-i18n="navStepCitas">5. Agendador de Citas (Turnos)</span>
+          <span class="nav-badge-emp text-[9px] px-1.5 py-0.5 rounded font-mono font-bold" data-emp-nav="citas"></span>
         </button>
 
         <div class="pt-3 px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-emerald-200/70" data-i18n="navSectionFashion">Especial Moda</div>
 
-        <button onclick="switchStep('step-talleexacto')" id="nav-step-talleexacto" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors" data-i18n="navStepTalleexacto">
-          TalleExacto (Módulo Ropa)
+        <button onclick="switchStep('step-talleexacto')" id="nav-step-talleexacto" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors flex items-center justify-between">
+          <span data-i18n="navStepTalleexacto">TalleExacto (Módulo Ropa)</span>
+          <span class="nav-badge-emp text-[9px] px-1.5 py-0.5 rounded font-mono font-bold" data-emp-nav="talleexacto"></span>
         </button>
 
         <div class="pt-3 px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-emerald-200/70" data-i18n="navSectionSettings">Ajustes & Configuración</div>
@@ -439,7 +445,10 @@
                 <span class="text-[10px] font-mono font-semibold tracking-wider text-slate-600 uppercase" data-i18n="emp1Category">
                   Atención & Ventas
                 </span>
-                <span class="text-[10px] font-mono text-[#2D6A4F] font-bold">24/7</span>
+                <div class="flex items-center space-x-1.5">
+                  <span class="text-[10px] font-mono text-[#2D6A4F] font-bold">24/7</span>
+                  <span id="hub-status-vendedor" class="text-[10px] font-mono px-2 py-0.5 rounded font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">● Contratado</span>
+                </div>
               </div>
               <div>
                 <h3 class="text-base font-serif font-bold text-slate-900" style="font-family: Georgia, serif;" data-i18n="emp1Title">
@@ -467,7 +476,7 @@
                 </li>
               </ul>
             </div>
-            <div class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-2">
+            <div id="hub-actions-vendedor" class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-2">
               <button onclick="switchStep('step-simulator')" class="flex-1 py-2 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition" data-i18n="btnTestChat">
                 Probar Chat en Vivo →
               </button>
@@ -484,7 +493,10 @@
                 <span class="text-[10px] font-mono font-semibold tracking-wider text-slate-600 uppercase" data-i18n="emp2Category">
                   Cobranzas Recurrentes
                 </span>
-                <span class="text-[10px] font-mono text-[#2D6A4F] font-bold">Mercado Pago</span>
+                <div class="flex items-center space-x-1.5">
+                  <span class="text-[10px] font-mono text-[#2D6A4F] font-bold">Mercado Pago</span>
+                  <span id="hub-status-cobranzas" class="text-[10px] font-mono px-2 py-0.5 rounded font-medium bg-slate-100 text-slate-600 border border-slate-200">○ No Contratado</span>
+                </div>
               </div>
               <div>
                 <h3 class="text-base font-serif font-bold text-slate-900" style="font-family: Georgia, serif;" data-i18n="emp2Title">
@@ -512,7 +524,7 @@
                 </li>
               </ul>
             </div>
-            <div class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-2">
+            <div id="hub-actions-cobranzas" class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-2">
               <button onclick="switchStep('step-cobranzas')" class="flex-1 py-2 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition" data-i18n="btnOpenCobranzas">
                 Abrir Gestor →
               </button>
@@ -522,14 +534,17 @@
             </div>
           </div>
 
-          <!-- 3. Asistente Contable -->
+          <!-- 3. Facturación & Gastos -->
           <div class="bg-white border border-slate-200 hover:border-[#2D6A4F] rounded-lg p-5 flex flex-col justify-between transition-all">
             <div class="space-y-4">
               <div class="flex items-center justify-between pb-2 border-b border-slate-100">
                 <span class="text-[10px] font-mono font-semibold tracking-wider text-slate-600 uppercase" data-i18n="emp3Category">
                   Contabilidad & AFIP
                 </span>
-                <span class="text-[10px] font-mono text-[#2D6A4F] font-bold">Email & Drive</span>
+                <div class="flex items-center space-x-1.5">
+                  <span class="text-[10px] font-mono text-[#2D6A4F] font-bold">Email & Drive</span>
+                  <span id="hub-status-accounting" class="text-[10px] font-mono px-2 py-0.5 rounded font-medium bg-slate-100 text-slate-600 border border-slate-200">○ No Contratado</span>
+                </div>
               </div>
               <div>
                 <h3 class="text-base font-serif font-bold text-slate-900" style="font-family: Georgia, serif;" data-i18n="emp3Title">
@@ -557,7 +572,7 @@
                 </li>
               </ul>
             </div>
-            <div class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-2">
+            <div id="hub-actions-accounting" class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-2">
               <button onclick="switchStep('step-accounting')" class="flex-1 py-2 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition" data-i18n="btnOpenAccounting">
                 Ver Excel en Vivo →
               </button>
@@ -571,7 +586,10 @@
                 <span class="text-[10px] font-mono font-semibold tracking-wider text-slate-600 uppercase" data-i18n="emp4Category">
                   Turismo & Hotelería
                 </span>
-                <span class="text-[10px] font-mono text-[#2D6A4F] font-bold">Multi-idioma 24/7</span>
+                <div class="flex items-center space-x-1.5">
+                  <span class="text-[10px] font-mono text-[#2D6A4F] font-bold">Multi-idioma 24/7</span>
+                  <span id="hub-status-multilingue" class="text-[10px] font-mono px-2 py-0.5 rounded font-medium bg-slate-100 text-slate-600 border border-slate-200">○ No Contratado</span>
+                </div>
               </div>
               <div>
                 <h3 class="text-base font-serif font-bold text-slate-900" style="font-family: Georgia, serif;" data-i18n="emp4Title">
@@ -599,7 +617,7 @@
                 </li>
               </ul>
             </div>
-            <div class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-2">
+            <div id="hub-actions-multilingue" class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-2">
               <button onclick="switchStep('step-multilingual')" class="flex-1 py-2 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition" data-i18n="btnTestTourist">
                 Probar Asistente →
               </button>
@@ -616,7 +634,10 @@
                 <span class="text-[10px] font-mono font-semibold tracking-wider text-emerald-800 uppercase" data-i18n="emp5Category">
                   Servicios, Consultorios & Estética
                 </span>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 font-bold border border-emerald-200" data-i18n="emp5Badge">Google Calendar + WhatsApp</span>
+                <div class="flex items-center space-x-1.5">
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 font-bold border border-emerald-200" data-i18n="emp5Badge">Google Calendar + WhatsApp</span>
+                  <span id="hub-status-citas" class="text-[10px] font-mono px-2 py-0.5 rounded font-medium bg-slate-100 text-slate-600 border border-slate-200">○ No Contratado</span>
+                </div>
               </div>
               <div>
                 <div class="flex items-center space-x-2">
@@ -647,7 +668,7 @@
                 </div>
               </div>
             </div>
-            <div class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-3">
+            <div id="hub-actions-citas" class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-3">
               <button onclick="switchStep('step-citas')" class="flex-1 py-2 px-4 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition shadow-subtle flex items-center justify-center space-x-1.5" data-i18n="btnTestCitas">
                 <i data-lucide="calendar" class="w-3.5 h-3.5 text-emerald-300"></i>
                 <span>Probar Agendador de Citas en Vivo →</span>
@@ -662,6 +683,7 @@
           <div class="space-y-1 max-w-2xl">
             <div class="flex items-center space-x-2">
               <span class="text-[10px] font-mono uppercase tracking-wider font-bold text-[#8A5A1E]">Módulo Especializado Moda</span>
+              <span id="hub-status-talleexacto" class="text-[10px] font-mono px-2 py-0.5 rounded font-medium bg-slate-100 text-slate-600 border border-slate-200">○ No Contratado</span>
               <span class="text-slate-300">•</span>
               <span class="text-xs text-slate-600 font-medium">Tiendanube, Shopify, WooCommerce o WhatsApp</span>
             </div>
@@ -672,7 +694,7 @@
               Resuelve las dudas de medidas de tus clientas con un probador virtual interactivo y recomendaciones automáticas por WhatsApp. Reduce hasta un 30% las costosas devoluciones por talle equivocado.
             </p>
           </div>
-          <div class="flex items-center gap-2 shrink-0">
+          <div id="hub-actions-talleexacto" class="flex items-center gap-2 shrink-0">
             <button onclick="switchStep('step-talleexacto')" class="py-2 px-3.5 bg-[#8A5A1E] hover:bg-[#6E4817] text-white rounded text-xs font-semibold transition">
               Probar Módulo →
             </button>
@@ -1441,6 +1463,20 @@
           </div>
         </div>
 
+        <!-- Banner de Empleado No Contratado -->
+        <div id="uncontracted-banner-accounting" class="hidden p-3.5 bg-amber-50 border border-amber-300 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
+          <div class="flex items-start sm:items-center space-x-2.5">
+            <span class="text-lg">⚠️</span>
+            <div>
+              <span class="text-xs font-bold text-amber-950 block">3. Facturación & Gastos — Empleado No Contratado</span>
+              <p class="text-[11px] text-amber-800 leading-tight">Este asistente contable no está activo actualmente para tu empresa. Podés contratarlo y probarlo gratis 14 días.</p>
+            </div>
+          </div>
+          <button onclick="openBusinessConfigModal('accounting')" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-bold rounded-lg transition whitespace-nowrap shadow-xs flex items-center space-x-1 shrink-0">
+            <span>+ Contratar este Empleado</span>
+          </button>
+        </div>
+
         <!-- Banner Explicativo -->
         <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
           <div class="flex items-center space-x-2">
@@ -1803,6 +1839,20 @@
           </div>
         </div>
 
+        <!-- Banner de Empleado No Contratado -->
+        <div id="uncontracted-banner-talleexacto" class="hidden p-3.5 bg-amber-50 border border-amber-300 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
+          <div class="flex items-start sm:items-center space-x-2.5">
+            <span class="text-lg">⚠️</span>
+            <div>
+              <span class="text-xs font-bold text-amber-950 block">TalleExacto (Moda) — Empleado No Contratado</span>
+              <p class="text-[11px] text-amber-800 leading-tight">Este módulo de recomendación de talles no está activo en tu cuenta. Podés contratarlo para reducir devoluciones con 14 días gratis.</p>
+            </div>
+          </div>
+          <button onclick="openBusinessConfigModal('talleexacto')" class="px-3 py-1.5 bg-[#8A5A1E] hover:bg-[#6E4817] text-white text-xs font-bold rounded-lg transition whitespace-nowrap shadow-xs flex items-center space-x-1 shrink-0">
+            <span>+ Contratar este Empleado</span>
+          </button>
+        </div>
+
         <!-- Banner Explicativo: ¿Para qué sirve este empleado? -->
         <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
           <div class="flex items-center space-x-2">
@@ -2086,6 +2136,20 @@
           </div>
         </div>
 
+        <!-- Banner de Empleado No Contratado -->
+        <div id="uncontracted-banner-vendedor" class="hidden p-3.5 bg-amber-50 border border-amber-300 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
+          <div class="flex items-start sm:items-center space-x-2.5">
+            <span class="text-lg">⚠️</span>
+            <div>
+              <span class="text-xs font-bold text-amber-950 block">1. Vendedor IA — Empleado No Contratado</span>
+              <p class="text-[11px] text-amber-800 leading-tight">Este empleado virtual no está activo actualmente para tu empresa. Podés contratarlo para atender WhatsApp 24/7 con 14 días gratis.</p>
+            </div>
+          </div>
+          <button onclick="openBusinessConfigModal('vendedor')" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-bold rounded-lg transition whitespace-nowrap shadow-xs flex items-center space-x-1 shrink-0">
+            <span>+ Contratar este Empleado</span>
+          </button>
+        </div>
+
         <!-- Barra de Navegación del Vendedor IA (Sub-tabs) -->
         <div class="vendedor-nav-bar bg-[#F0F5F2] border border-[#CDE0D5] rounded-xl p-2.5 flex flex-col md:flex-row md:items-center justify-between gap-2.5 shadow-subtle">
           <div class="flex flex-wrap items-center gap-1.5 text-xs">
@@ -2365,6 +2429,20 @@
           </div>
         </div>
 
+        <!-- Banner de Empleado No Contratado -->
+        <div id="uncontracted-banner-cobranzas" class="hidden p-3.5 bg-amber-50 border border-amber-300 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
+          <div class="flex items-start sm:items-center space-x-2.5">
+            <span class="text-lg">⚠️</span>
+            <div>
+              <span class="text-xs font-bold text-amber-950 block">2. Gestor de Cobranzas — Empleado No Contratado</span>
+              <p class="text-[11px] text-amber-800 leading-tight">Este gestor de cobros automáticos no está activo en tu cuenta. Podés activarlo con 14 días gratis sin tarjeta.</p>
+            </div>
+          </div>
+          <button onclick="openBusinessConfigModal('cobranzas')" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-bold rounded-lg transition whitespace-nowrap shadow-xs flex items-center space-x-1 shrink-0">
+            <span>+ Contratar este Empleado</span>
+          </button>
+        </div>
+
         <!-- Vista Integrada del Gestor de Cobranzas -->
         <div class="border border-slate-200 rounded-lg overflow-hidden bg-[#F6EFDF] shadow-sm">
           <iframe id="iframe-cobranzas" src="/cobranzas" title="Gestor de Cobranzas" style="width: 100%; min-height: 520px; border: none; display: block; transition: height 0.2s ease;"></iframe>
@@ -2389,6 +2467,20 @@
               Abrir en Pantalla Completa ↗
             </a>
           </div>
+        </div>
+
+        <!-- Banner de Empleado No Contratado -->
+        <div id="uncontracted-banner-multilingue" class="hidden p-3.5 bg-amber-50 border border-amber-300 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
+          <div class="flex items-start sm:items-center space-x-2.5">
+            <span class="text-lg">⚠️</span>
+            <div>
+              <span class="text-xs font-bold text-amber-950 block">4. Asistente Multilingüe — Empleado No Contratado</span>
+              <p class="text-[11px] text-amber-800 leading-tight">La atención turística en idiomas no está activa en tu plan actual. Podés contratar este asistente con 14 días gratis.</p>
+            </div>
+          </div>
+          <button onclick="openBusinessConfigModal('multilingue')" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-bold rounded-lg transition whitespace-nowrap shadow-xs flex items-center space-x-1 shrink-0">
+            <span>+ Contratar este Empleado</span>
+          </button>
         </div>
 
         <!-- Vista Integrada del Asistente Multilingüe -->
@@ -2420,6 +2512,20 @@
               <span class="text-[10px] text-emerald-700 font-semibold">✏️ Cambiar</span>
             </button>
           </div>
+        </div>
+
+        <!-- Banner de Empleado No Contratado -->
+        <div id="uncontracted-banner-citas" class="hidden p-3.5 bg-amber-50 border border-amber-300 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
+          <div class="flex items-start sm:items-center space-x-2.5">
+            <span class="text-lg">⚠️</span>
+            <div>
+              <span class="text-xs font-bold text-amber-950 block">5. Agendador de Citas — Empleado No Contratado</span>
+              <p class="text-[11px] text-amber-800 leading-tight">La coordinación de turnos con Google Calendar y seña no está activa en tu cuenta. Podés activarla con 14 días gratis.</p>
+            </div>
+          </div>
+          <button onclick="openBusinessConfigModal('citas')" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-bold rounded-lg transition whitespace-nowrap shadow-xs flex items-center space-x-1 shrink-0">
+            <span>+ Contratar este Empleado</span>
+          </button>
         </div>
 
         <!-- Banner Explicativo: ¿Para qué sirve este empleado? -->
@@ -2898,6 +3004,102 @@
           <input type="text" id="cfg-custom-name" placeholder="Ej: Barbería Don Lucas / Clínica Dental San Martín / Cabañas del Valle" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-semibold focus:bg-white focus:ring-1 focus:ring-emerald-600 outline-none">
         </div>
 
+        <!-- SELECCIÓN DE EMPLEADO(S) A CONTRATAR / ACTIVAR -->
+        <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl space-y-2.5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1.5">
+            <div>
+              <label class="block font-bold text-slate-900 text-xs flex items-center space-x-1.5">
+                <span>👥</span>
+                <span>¿Qué Empleado(s) deseas Contratar / Activar?</span>
+              </label>
+              <p class="text-[11px] text-slate-500">Contratas por empleado. Elige solo los que necesitas para tu comercio:</p>
+            </div>
+            <div class="space-x-1.5 shrink-0 self-start sm:self-auto">
+              <button type="button" onclick="toggleAllEmployees(true)" class="text-[10px] text-emerald-800 hover:text-emerald-950 font-bold bg-emerald-100 hover:bg-emerald-200 px-2 py-0.5 rounded border border-emerald-300 transition shadow-2xs">Elegir Todos</button>
+              <button type="button" onclick="toggleAllEmployees(false)" class="text-[10px] text-slate-600 hover:text-slate-900 bg-white hover:bg-slate-100 px-2 py-0.5 rounded border border-slate-200 transition shadow-2xs">Limpiar</button>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2" id="employee-selection-grid">
+            <!-- 1. Vendedor IA -->
+            <label id="lbl-emp-vendedor" class="emp-select-card flex items-start space-x-2.5 p-2.5 rounded-lg border border-slate-200 bg-white hover:border-emerald-500 cursor-pointer transition select-none">
+              <input type="checkbox" id="chk-emp-vendedor" value="vendedor" class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4" onchange="syncEmployeeCardStyles()">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold text-slate-900 text-xs">1. Vendedor IA</span>
+                  <span class="text-[9px] font-mono px-1.5 py-0.2 bg-emerald-100 text-emerald-800 rounded font-bold">WhatsApp 24/7</span>
+                </div>
+                <p class="text-[10px] text-slate-500 leading-tight mt-0.5">Catálogo, precios, stock en tiempo real y pedidos automáticos.</p>
+              </div>
+            </label>
+
+            <!-- 2. Gestor de Cobranzas -->
+            <label id="lbl-emp-cobranzas" class="emp-select-card flex items-start space-x-2.5 p-2.5 rounded-lg border border-slate-200 bg-white hover:border-emerald-500 cursor-pointer transition select-none">
+              <input type="checkbox" id="chk-emp-cobranzas" value="cobranzas" class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4" onchange="syncEmployeeCardStyles()">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold text-slate-900 text-xs">2. Gestor de Cobranzas</span>
+                  <span class="text-[9px] font-mono px-1.5 py-0.2 bg-emerald-100 text-emerald-800 rounded font-bold">Mercado Pago</span>
+                </div>
+                <p class="text-[10px] text-slate-500 leading-tight mt-0.5">Recordatorios en 3 avisos, links de pago y recibos de cobro.</p>
+              </div>
+            </label>
+
+            <!-- 3. Facturación & Gastos -->
+            <label id="lbl-emp-accounting" class="emp-select-card flex items-start space-x-2.5 p-2.5 rounded-lg border border-slate-200 bg-white hover:border-emerald-500 cursor-pointer transition select-none">
+              <input type="checkbox" id="chk-emp-accounting" value="accounting" class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4" onchange="syncEmployeeCardStyles()">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold text-slate-900 text-xs">3. Facturación & Gastos</span>
+                  <span class="text-[9px] font-mono px-1.5 py-0.2 bg-emerald-100 text-emerald-800 rounded font-bold">Drive & Sheets</span>
+                </div>
+                <p class="text-[10px] text-slate-500 leading-tight mt-0.5">Lectura OCR de facturas, archivo en Drive y Excel del contador.</p>
+              </div>
+            </label>
+
+            <!-- 4. Asistente Multilingüe -->
+            <label id="lbl-emp-multilingue" class="emp-select-card flex items-start space-x-2.5 p-2.5 rounded-lg border border-slate-200 bg-white hover:border-emerald-500 cursor-pointer transition select-none">
+              <input type="checkbox" id="chk-emp-multilingue" value="multilingue" class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4" onchange="syncEmployeeCardStyles()">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold text-slate-900 text-xs">4. Asistente Multilingüe</span>
+                  <span class="text-[9px] font-mono px-1.5 py-0.2 bg-emerald-100 text-emerald-800 rounded font-bold">+10 Idiomas</span>
+                </div>
+                <p class="text-[10px] text-slate-500 leading-tight mt-0.5">Atención a turistas en inglés y portugués, cartas y reservas directas.</p>
+              </div>
+            </label>
+
+            <!-- 5. Agendador de Citas -->
+            <label id="lbl-emp-citas" class="emp-select-card flex items-start space-x-2.5 p-2.5 rounded-lg border border-slate-200 bg-white hover:border-emerald-500 cursor-pointer transition select-none">
+              <input type="checkbox" id="chk-emp-citas" value="citas" class="mt-0.5 rounded text-emerald-600 focus:ring-emerald-500 w-4 h-4" onchange="syncEmployeeCardStyles()">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold text-slate-900 text-xs">5. Agendador de Citas</span>
+                  <span class="text-[9px] font-mono px-1.5 py-0.2 bg-emerald-100 text-emerald-800 rounded font-bold">Google Calendar</span>
+                </div>
+                <p class="text-[10px] text-slate-500 leading-tight mt-0.5">Turnos libres, reserva y cobro de seña previa sin solapamiento.</p>
+              </div>
+            </label>
+
+            <!-- 6. TalleExacto (Moda) -->
+            <label id="lbl-emp-talleexacto" class="emp-select-card flex items-start space-x-2.5 p-2.5 rounded-lg border border-slate-200 bg-white hover:border-amber-500 cursor-pointer transition select-none">
+              <input type="checkbox" id="chk-emp-talleexacto" value="talleexacto" class="mt-0.5 rounded text-amber-600 focus:ring-amber-500 w-4 h-4" onchange="syncEmployeeCardStyles()">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between">
+                  <span class="font-bold text-slate-900 text-xs">TalleExacto (Moda)</span>
+                  <span class="text-[9px] font-mono px-1.5 py-0.2 bg-amber-100 text-amber-800 rounded font-bold">Especial Ropa</span>
+                </div>
+                <p class="text-[10px] text-slate-500 leading-tight mt-0.5">Probador interactivo de medidas para reducir devoluciones de ropa.</p>
+              </div>
+            </label>
+          </div>
+
+          <div class="flex items-center justify-between pt-1 text-[11px] text-slate-600">
+            <span id="selected-employees-count" class="font-bold text-emerald-800">1 empleado seleccionado</span>
+            <span class="text-[10px] text-slate-500">14 días de prueba gratis por cada empleado elegido</span>
+          </div>
+        </div>
+
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label class="block font-medium text-slate-700 mb-1">Rubro Principal</label>
@@ -2952,7 +3154,7 @@
 
       <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-[11px] text-emerald-900 flex items-center space-x-2">
         <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-        <span>Prueba Gratuita Activa: Se actualizarán todos los empleados virtuales a los datos de tu empresa con 14 días gratis sin compromiso.</span>
+        <span id="cfg-summary-selected-employees">Se configurarán y activarán únicamente los empleados que elegiste arriba (14 días gratis sin tarjeta).</span>
       </div>
 
       <div class="flex justify-end space-x-2 pt-2 border-t border-slate-100">
@@ -4563,6 +4765,7 @@
       cuit: "30-71234567-8",
       taxCondition: "Responsable Inscripto",
       driveFolder: "/Facturas_2026/",
+      activeEmployees: ['vendedor'],
       services: [
         { id: 1, name: "Consulta / Atención Estándar", duration: "45 min", price: 8500 },
         { id: 2, name: "Servicio Especializado", duration: "60 min", price: 14000 },
@@ -4573,7 +4776,14 @@
     let currentCompany = (function() {
       try {
         const saved = localStorage.getItem('changared_company_data');
-        if (saved) return Object.assign({}, DEFAULT_COMPANY_DATA, JSON.parse(saved));
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          const merged = Object.assign({}, DEFAULT_COMPANY_DATA, parsed);
+          if (!Array.isArray(merged.activeEmployees) || merged.activeEmployees.length === 0) {
+            merged.activeEmployees = ['vendedor'];
+          }
+          return merged;
+        }
       } catch(e) {}
       return Object.assign({}, DEFAULT_COMPANY_DATA);
     })();
@@ -4728,10 +4938,194 @@
       const simPaymentDisplay = document.getElementById('sim-display-payment-method');
       if (simPaymentDisplay) simPaymentDisplay.innerText = currentCompany.paymentMethod || 'pagos.miempresa.mp';
 
+      // Sincronizar estado de empleados contratados / activos en Hub, Sidebar y Vistas
+      const EMPLOYEES_CONFIG = [
+        {
+          key: 'vendedor',
+          name: '1. Vendedor IA',
+          step: 'step-simulator',
+          renderActiveActions: () => `
+            <button onclick="switchStep('step-simulator')" class="flex-1 py-2 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition" data-i18n="btnTestChat">
+              Probar Chat en Vivo →
+            </button>
+            <button onclick="switchStep('step-catalog')" class="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded text-xs font-medium transition" data-i18n="btnCatalog">
+              Catálogo
+            </button>
+          `
+        },
+        {
+          key: 'cobranzas',
+          name: '2. Gestor de Cobranzas',
+          step: 'step-cobranzas',
+          renderActiveActions: () => `
+            <button onclick="switchStep('step-cobranzas')" class="flex-1 py-2 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition" data-i18n="btnOpenCobranzas">
+              Abrir Gestor →
+            </button>
+            <a href="/cobranzas" class="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded text-xs font-medium transition" data-i18n="btnFullScreen">
+              Ver Página Completa ↗
+            </a>
+          `
+        },
+        {
+          key: 'accounting',
+          name: '3. Facturación & Gastos',
+          step: 'step-accounting',
+          renderActiveActions: () => `
+            <button onclick="switchStep('step-accounting')" class="flex-1 py-2 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition" data-i18n="btnOpenAccounting">
+              Ver Excel en Vivo →
+            </button>
+          `
+        },
+        {
+          key: 'multilingue',
+          name: '4. Asistente Multilingüe',
+          step: 'step-multilingual',
+          renderActiveActions: () => `
+            <button onclick="switchStep('step-multilingual')" class="flex-1 py-2 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition" data-i18n="btnTestTourist">
+              Probar Asistente →
+            </button>
+            <a href="/multilingue" class="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded text-xs font-medium transition" data-i18n="btnFullScreen">
+              Ver Página Completa ↗
+            </a>
+          `
+        },
+        {
+          key: 'citas',
+          name: '5. Agendador de Citas',
+          step: 'step-citas',
+          renderActiveActions: () => `
+            <button onclick="switchStep('step-citas')" class="flex-1 py-2 px-4 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition shadow-subtle flex items-center justify-center space-x-1.5" data-i18n="btnTestCitas">
+              <i data-lucide="calendar" class="w-3.5 h-3.5 text-emerald-300"></i>
+              <span>Probar Agendador de Citas en Vivo →</span>
+            </button>
+          `
+        },
+        {
+          key: 'talleexacto',
+          name: 'TalleExacto (Moda)',
+          step: 'step-talleexacto',
+          renderActiveActions: () => `
+            <button onclick="switchStep('step-talleexacto')" class="py-2 px-3.5 bg-[#8A5A1E] hover:bg-[#6E4817] text-white rounded text-xs font-semibold transition">
+              Probar Módulo →
+            </button>
+            <a href="/talleexacto" class="py-2 px-3 bg-white hover:bg-slate-100 text-slate-800 border border-[#E6DCC3] rounded text-xs font-medium transition">
+              Ver Módulo Completo ↗
+            </a>
+          `
+        }
+      ];
+
+      const activeList = Array.isArray(currentCompany.activeEmployees) && currentCompany.activeEmployees.length > 0
+        ? currentCompany.activeEmployees
+        : ['vendedor'];
+
+      EMPLOYEES_CONFIG.forEach(emp => {
+        const isHired = activeList.includes(emp.key);
+
+        // 1. Hub Status Badge
+        const statusEl = document.getElementById(`hub-status-${emp.key}`);
+        if (statusEl) {
+          if (isHired) {
+            statusEl.className = "text-[10px] font-mono px-2 py-0.5 rounded font-bold bg-emerald-100 text-emerald-800 border border-emerald-300";
+            statusEl.innerText = "● Contratado";
+          } else {
+            statusEl.className = "text-[10px] font-mono px-2 py-0.5 rounded font-medium bg-slate-100 text-slate-500 border border-slate-200";
+            statusEl.innerText = "○ No Contratado";
+          }
+        }
+
+        // 2. Hub Action Container
+        const actionsEl = document.getElementById(`hub-actions-${emp.key}`);
+        if (actionsEl) {
+          if (isHired) {
+            actionsEl.innerHTML = emp.renderActiveActions();
+          } else {
+            actionsEl.innerHTML = `
+              <button onclick="openBusinessConfigModal('${emp.key}')" class="flex-1 py-2 px-3 bg-amber-500 hover:bg-amber-600 text-slate-950 rounded text-xs font-bold transition flex items-center justify-center space-x-1.5 shadow-2xs">
+                <span>+ Contratar este Empleado</span>
+              </button>
+              <button onclick="switchStep('${emp.step}')" class="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded text-xs font-medium transition">
+                Explorar demo
+              </button>
+            `;
+          }
+        }
+
+        // 3. Sidebar Indicators
+        const sideEl = document.querySelector(`.nav-badge-emp[data-emp-nav="${emp.key}"]`);
+        if (sideEl) {
+          if (isHired) {
+            sideEl.className = "nav-badge-emp text-[9px] px-1.5 py-0.5 rounded font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30";
+            sideEl.innerText = "● Activo";
+          } else {
+            sideEl.className = "nav-badge-emp text-[9px] px-1.5 py-0.5 rounded font-mono font-medium bg-white/10 text-emerald-100/60 border border-white/10";
+            sideEl.innerText = "+ Contratar";
+          }
+        }
+
+        // 4. Step Uncontracted Banner
+        const bannerEl = document.getElementById(`uncontracted-banner-${emp.key}`);
+        if (bannerEl) {
+          if (isHired) {
+            bannerEl.classList.add('hidden');
+          } else {
+            bannerEl.classList.remove('hidden');
+          }
+        }
+      });
+
+      if (window.lucide && typeof lucide.createIcons === 'function') {
+        lucide.createIcons();
+      }
+
       updateWidgetCodeSnippet();
     }
 
-    function openBusinessConfigModal() {
+    function syncEmployeeCardStyles() {
+      const keys = ['vendedor', 'cobranzas', 'accounting', 'multilingue', 'citas', 'talleexacto'];
+      let count = 0;
+      keys.forEach(k => {
+        const chk = document.getElementById(`chk-emp-${k}`);
+        const card = document.getElementById(`lbl-emp-${k}`);
+        if (chk && card) {
+          if (chk.checked) {
+            count++;
+            card.classList.add('border-emerald-600', 'bg-emerald-50/50', 'border-2');
+            card.classList.remove('border-slate-200', 'bg-white', 'border');
+          } else {
+            card.classList.remove('border-emerald-600', 'bg-emerald-50/50', 'border-2');
+            card.classList.add('border-slate-200', 'bg-white', 'border');
+          }
+        }
+      });
+
+      const countEl = document.getElementById('selected-employees-count');
+      if (countEl) {
+        countEl.innerText = count === 1 ? '1 empleado seleccionado' : `${count} empleados seleccionados`;
+      }
+
+      const summaryEl = document.getElementById('cfg-summary-selected-employees');
+      if (summaryEl) {
+        if (count === 0) {
+          summaryEl.innerText = "Debes seleccionar al menos 1 empleado para activar en tu empresa.";
+        } else if (count === 6) {
+          summaryEl.innerText = "Se configurarán y activarán los 6 empleados de Changared IA (14 días gratis sin tarjeta).";
+        } else {
+          summaryEl.innerText = `Se configurarán y activarán únicamente los ${count} empleados seleccionados (14 días gratis sin tarjeta).`;
+        }
+      }
+    }
+
+    function toggleAllEmployees(select) {
+      const keys = ['vendedor', 'cobranzas', 'accounting', 'multilingue', 'citas', 'talleexacto'];
+      keys.forEach(k => {
+        const chk = document.getElementById(`chk-emp-${k}`);
+        if (chk) chk.checked = !!select;
+      });
+      syncEmployeeCardStyles();
+    }
+
+    function openBusinessConfigModal(preselectEmployee) {
       const modal = document.getElementById('modal-business-config');
       if (modal) {
         document.getElementById('cfg-custom-name').value = currentCompany.name || '';
@@ -4743,6 +5137,27 @@
         if (document.getElementById('cfg-custom-deposit')) document.getElementById('cfg-custom-deposit').value = currentCompany.deposit || '5000';
         if (document.getElementById('cfg-custom-payment')) document.getElementById('cfg-custom-payment').value = currentCompany.paymentMethod || 'pagos.miempresa.mp';
         if (document.getElementById('cfg-custom-desc')) document.getElementById('cfg-custom-desc').value = currentCompany.desc || '';
+
+        // Sincronizar checkboxes de empleados según currentCompany.activeEmployees
+        const activeList = Array.isArray(currentCompany.activeEmployees) && currentCompany.activeEmployees.length > 0
+          ? currentCompany.activeEmployees
+          : ['vendedor'];
+
+        const keys = ['vendedor', 'cobranzas', 'accounting', 'multilingue', 'citas', 'talleexacto'];
+        keys.forEach(k => {
+          const chk = document.getElementById(`chk-emp-${k}`);
+          if (chk) {
+            chk.checked = activeList.includes(k);
+          }
+        });
+
+        // Si se abrió pidiendo contratar un empleado específico, marcarlo explícitamente
+        if (preselectEmployee && keys.includes(preselectEmployee)) {
+          const chkTarget = document.getElementById(`chk-emp-${preselectEmployee}`);
+          if (chkTarget) chkTarget.checked = true;
+        }
+
+        syncEmployeeCardStyles();
         modal.classList.remove('hidden');
       }
     }
@@ -4758,6 +5173,18 @@
         alert("Por favor ingresa el nombre de tu negocio.");
         return;
       }
+
+      // Validar selección de empleados contratados
+      const selectedEmployees = [];
+      ['vendedor', 'cobranzas', 'accounting', 'multilingue', 'citas', 'talleexacto'].forEach(emp => {
+        const chk = document.getElementById(`chk-emp-${emp}`);
+        if (chk && chk.checked) selectedEmployees.push(emp);
+      });
+      if (selectedEmployees.length === 0) {
+        alert("Por favor selecciona al menos un empleado virtual para tu empresa.");
+        return;
+      }
+
       const rubro = document.getElementById('cfg-custom-rubro') ? document.getElementById('cfg-custom-rubro').value : currentCompany.rubro;
       const phone = document.getElementById('cfg-custom-phone') ? document.getElementById('cfg-custom-phone').value.trim() : currentCompany.phone;
       const email = document.getElementById('cfg-custom-email') ? document.getElementById('cfg-custom-email').value.trim() : currentCompany.email;
@@ -4769,6 +5196,7 @@
 
       currentCompany.name = name;
       currentCompany.slug = slugify(name);
+      currentCompany.activeEmployees = selectedEmployees;
       if (rubro) currentCompany.rubro = rubro;
       if (phone) currentCompany.phone = phone;
       if (email) {
@@ -4784,6 +5212,7 @@
       if (typeof currentBusiness !== 'undefined') {
         currentBusiness.id = currentCompany.slug;
         currentBusiness.name = currentCompany.name;
+        currentBusiness.activeEmployees = selectedEmployees;
         currentBusiness.description = currentCompany.desc || `${currentCompany.name} - Rubro: ${currentCompany.rubro}. Horario: ${currentCompany.hours}. Tel: ${currentCompany.phone}`;
         currentBusiness.businessRules = [
           `Horario de atención: ${currentCompany.hours}`,
@@ -4812,6 +5241,7 @@
         toneOfVoice: currentCompany.tone || 'amigable, respetuoso y dispuesto a ayudar',
         language: 'Español',
         autoDetectLanguage: true,
+        activeEmployees: selectedEmployees,
         businessRules: [
           `Horario de atención: ${currentCompany.hours}`,
           `Teléfono de contacto: ${currentCompany.phone}`,
@@ -4849,7 +5279,7 @@
 
       applyCompanyDataToUI();
       closeBusinessConfigModal();
-      showToast(`✓ ¡Entorno configurado y sincronizado para: ${name}! Todos los empleados se adaptaron a tu empresa.`);
+      showToast(`✓ ¡Entorno configurado para ${name}! Empleados contratados activos: ${selectedEmployees.length}.`);
     }
 
     // =========================================================

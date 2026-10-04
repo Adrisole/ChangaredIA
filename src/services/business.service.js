@@ -59,6 +59,7 @@ export class BusinessService {
       businessRules: normalizedRules,
       catalog: normalizedCatalog,
       services: Array.isArray(payload.services) ? payload.services : [],
+      activeEmployees: Array.isArray(payload.activeEmployees) && payload.activeEmployees.length > 0 ? payload.activeEmployees : ['vendedor'],
       createdAt: new Date().toISOString(),
     };
 
