@@ -5461,7 +5461,9 @@
         .then(myRes => {
           if (myRes.success && myRes.data && myRes.data.length > 0) {
             const myBiz = myRes.data[0];
-            currentCompany = Object.assign({}, DEFAULT_COMPANY_DATA, myBiz);
+            currentCompany = Object.assign({}, DEFAULT_COMPANY_DATA, myBiz, { slug: myBiz.id });
+            currentBusiness.catalog = Array.isArray(myBiz.catalog) ? myBiz.catalog : [];
+            renderCatalogTable();
             localStorage.setItem('changared_company_data', JSON.stringify(currentCompany));
             applyCompanyDataToUI();
           }
@@ -5505,6 +5507,13 @@
       .then(data => {
         if (data.success && data.user) {
           currentUser = data.user;
+          const businesses = Array.isArray(data.businesses) ? data.businesses : [];
+          const business = businesses[0];
+          currentBusiness.catalog = business && Array.isArray(business.catalog) ? business.catalog : [];
+          if (business) {
+            currentCompany = Object.assign({}, DEFAULT_COMPANY_DATA, business, { slug: business.id });
+          }
+          renderCatalogTable();
           localStorage.setItem('changared_auth_user', JSON.stringify(currentUser));
           renderSessionUI();
         } else {
@@ -5704,21 +5713,14 @@
       const simBlock2Stock = document.getElementById('sim-block2-stock');
       const simBlock2Rules = document.getElementById('sim-block2-rules');
 
-      const catItems = (typeof currentBusiness !== 'undefined' && Array.isArray(currentBusiness.catalog) && currentBusiness.catalog.length > 0)
-        ? currentBusiness.catalog
-        : (currentCompany.services || []);
+      const catItems = Array.isArray(currentBusiness.catalog) ? currentBusiness.catalog : [];
       const totalCount = catItems.length;
-      let inStock = 0;
-      let outStock = 0;
-      if (typeof currentBusiness !== 'undefined' && Array.isArray(currentBusiness.catalog) && currentBusiness.catalog.length > 0) {
-        currentBusiness.catalog.forEach(item => {
-          if (item.stock > 0) inStock++;
-          else outStock++;
-        });
-      } else {
-        inStock = totalCount;
-        outStock = 0;
-      }
+      const inStock = catItems.filter(item => Number(item.stock) > 0).length;
+      const outStock = totalCount - inStock;
+      [['stat-total-products', totalCount], ['stat-in-stock', inStock], ['stat-out-of-stock', outStock]].forEach(([id, value]) => {
+        const el = document.getElementById(id);
+        if (el) el.innerText = value;
+      });
       if (simBlock2Badge) simBlock2Badge.innerText = `${totalCount} PRODUCTOS`;
       if (simBlock2Stock) simBlock2Stock.innerText = `${inStock} en stock · ${outStock} agotados`;
       if (simBlock2Rules) simBlock2Rules.innerText = `Horario: ${currentCompany.hours || '09:00 a 18:00'} · Rubro: ${currentCompany.rubro || 'Comercio'}`;
@@ -7235,10 +7237,34 @@
       openBusinessConfigModal();
     }
 
-    function deleteProductRow(btn) {
+    async function deleteProductRow(btn) {
       const row = btn.closest('tr');
-      row.remove();
-      updateCatalogStats();
+      const index = Array.from(row.parentElement.children).indexOf(row);
+      const nextCatalog = currentBusiness.catalog.filter((_, i) => i !== index);
+      if (currentUser) {
+        btn.disabled = true;
+        try {
+          const res = await fetch('/api/business/setup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${authToken}` },
+            body: JSON.stringify({
+              id: currentCompany.id || currentCompany.slug,
+              name: currentCompany.name,
+              description: currentCompany.description || currentCompany.desc || currentBusiness.description,
+              catalog: nextCatalog
+            })
+          });
+          const data = await res.json();
+          if (!res.ok || !data.success) throw new Error(data.message || 'No se pudo guardar el catálogo');
+        } catch (error) {
+          btn.disabled = false;
+          showToast('No se eliminó el producto: ' + error.message);
+          return;
+        }
+      }
+      currentBusiness.catalog = nextCatalog;
+      currentCompany.catalog = nextCatalog;
+      renderCatalogTable();
       showToast("Producto eliminado");
     }
 
