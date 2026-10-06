@@ -177,7 +177,7 @@
       max-width: 90px !important;
     }
   </style>
-</head>
+<style>#main-header{background:#1B4332;border-color:#2D6A4F;height:auto;min-height:64px;gap:12px;padding-top:10px;padding-bottom:10px;flex-wrap:wrap}#main-header #btn-toggle-sidebar,#main-header #icon-toggle-sidebar{color:white}#main-header #btn-toggle-sidebar:hover{background:#2D6A4F}#main-header>div:last-child{flex-wrap:wrap;row-gap:8px;max-width:100%}</style></head>
 <body class="h-full flex text-slate-900 selection:bg-brand-100 selection:text-brand-900 overflow-x-hidden">
 
   <!-- Backdrop oscuro para móvil cuando el menú está abierto -->
@@ -291,12 +291,13 @@
     <!-- Topbar con Breadcrumb Dinámico y Acciones Globales -->
     <header id="main-header" class="h-16 px-3 sm:px-6 md:px-8 border-b border-slate-200 bg-white/90 backdrop-blur sticky top-0 z-20 flex items-center justify-between">
       <div class="flex items-center space-x-2 sm:space-x-3 min-w-0">
+        <img src="/images/changared-logo.jpeg" alt="Changared" class="w-10 h-10 rounded-lg object-cover shrink-0">
         <!-- Botón Toggle Menú (Móvil y Escritorio) -->
         <button id="btn-toggle-sidebar" onclick="toggleSidebar()" class="p-2 -ml-1 text-slate-700 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition shrink-0 flex items-center justify-center cursor-pointer" aria-label="Alternar menú lateral" title="Ocultar menú lateral">
           <i id="icon-toggle-sidebar" data-lucide="panel-left-close" class="w-5 h-5 text-slate-700"></i>
         </button>
 
-        <div class="flex items-center space-x-1.5 text-xs text-slate-600 truncate" id="breadcrumb-container">
+        <div class="flex items-center space-x-1.5 text-xs text-slate-600 truncate" id="breadcrumb-container" style="display:none">
           <button onclick="switchStep('step-hub')" class="hover:text-slate-900 font-medium transition cursor-pointer hidden sm:inline">Changared</button>
           <span class="hidden sm:inline">/</span>
           <div id="breadcrumb-dynamic" class="flex items-center space-x-1.5 truncate">
@@ -743,6 +744,7 @@
               <button onclick="switchStep('step-whatsapp')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-whatsapp">
                 Conexión WhatsApp & Bandeja
               </button>
+<button onclick="switchStep('step-payments')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-payments">Cobros</button>
             </div>
           </div>
           <div class="flex items-center space-x-2 shrink-0">
@@ -923,7 +925,8 @@
             <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
           </button>
         </div>
-      </section>
+      
+</section>
 
       <!-- ======================================================== -->
       <!-- PASO 2: INVENTARIO Y STOCK -->
@@ -955,6 +958,7 @@
               <button onclick="switchStep('step-whatsapp')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-whatsapp">
                 Conexión WhatsApp & Bandeja
               </button>
+<button onclick="switchStep('step-payments')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-payments">Cobros</button>
             </div>
           </div>
           <div class="flex items-center space-x-2 shrink-0">
@@ -1030,7 +1034,39 @@
             <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
           </button>
         </div>
-      </section>
+      <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
+                  <i data-lucide="database" class="w-3.5 h-3.5 text-emerald-600"></i>
+                  <span>Bloque 2 · Datos de Entrada</span>
+                </span>
+              </div>
+              <h4 class="text-xs font-bold text-slate-900">Catálogo, Stock & Reglas</h4>
+              <p class="text-[11px] text-slate-600 leading-tight mb-2">La IA sólo vende lo que tiene stock y respeta tus precios.</p>
+
+              <div class="space-y-1.5 text-xs">
+                <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
+                  <span class="text-slate-600">Carga de Catálogo:</span>
+                  <span class="font-semibold text-slate-900">Manual / CSV / Tiendanube</span>
+                </div>
+                <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
+                  <span class="text-slate-600">Stock en Tiempo Real:</span>
+                  <span class="font-semibold text-emerald-800" id="sim-block2-stock">3 en stock · 0 agotados</span>
+                </div>
+                <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
+                  <span class="text-[10px] font-semibold text-slate-600 uppercase">Reglas Activas:</span>
+                  <div class="text-[11px] text-slate-800 truncate" id="sim-block2-rules">Horario: Lunes a Viernes 09:00 a 18:00</div>
+                </div>
+              </div>
+            </div>
+            <div class="pt-2 flex gap-1.5">
+              <button onclick="switchStep('step-catalog')" class="flex-1 py-1.5 px-2 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded text-[11px] font-medium text-slate-700 text-center transition">
+                Editar Catálogo & Precios →
+              </button>
+            </div>
+          </div>
+</section>
 
       <!-- ======================================================== -->
       <!-- PASO 3: CONEXIÓN DE WHATSAPP -->
@@ -1062,6 +1098,7 @@
               <button onclick="switchStep('step-whatsapp')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-semibold bg-[#1B4332] text-white shadow-xs transition" data-vstep="step-whatsapp">
                 Conexión WhatsApp & Bandeja
               </button>
+<button onclick="switchStep('step-payments')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-payments">Cobros</button>
             </div>
           </div>
           <div class="flex items-center space-x-2 shrink-0">
@@ -1254,7 +1291,42 @@
             <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
           </button>
         </div>
-      </section>
+      <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
+                  <i data-lucide="link" class="w-3.5 h-3.5 text-emerald-600"></i>
+                  <span>Bloque 1 · Integración & Canales</span>
+                </span>
+              </div>
+              <h4 class="text-xs font-bold text-slate-900">Vincular Línea de WhatsApp</h4>
+              <p class="text-[11px] text-slate-600 leading-tight mb-2">Canal por donde los clientes te escriben y reciben respuestas.</p>
+              
+              <div class="space-y-1.5 text-xs">
+                <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
+                  <span class="flex items-center space-x-1.5 truncate">
+                    <i data-lucide="smartphone" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
+                    <span class="truncate">WhatsApp Business</span>
+                  </span>
+                  <span class="text-[10px] font-semibold text-rose-700 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded shrink-0" id="sim-wa-status-text">Sin vincular</span>
+                </div>
+                <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
+                  <span class="text-[10px] font-semibold text-slate-600 uppercase">Número guardado:</span>
+                  <div class="text-[11px] font-mono text-slate-900 font-semibold truncate" id="sim-wa-active-phone">+54 9 11 4455-6677</div>
+                </div>
+              </div>
+            </div>
+            <div class="pt-2 flex flex-wrap gap-1.5" id="sim-wa-actions-container">
+              <button onclick="openWhatsAppModal('vendedor')" class="flex-1 py-1.5 px-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded text-[11px] font-semibold text-center transition flex items-center justify-center space-x-1 shadow-2xs">
+                <i data-lucide="smartphone" class="w-3 h-3"></i>
+                <span id="sim-wa-btn-text">Configurar WhatsApp</span>
+              </button>
+              <button onclick="testWhatsAppDirectly()" id="sim-wa-btn-test" class="py-1.5 px-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded text-[11px] font-medium transition" title="Abrir en WhatsApp Web">
+                WhatsApp Web
+              </button>
+            </div>
+          </div>
+</section>
 
       <!-- ======================================================== -->
       <!-- PASO 4: PLANES, COBRO Y FACTURACIÓN (MERCADO PAGO + LEMON SQUEEZY) -->
@@ -2178,7 +2250,8 @@
       <!-- ======================================================== -->
       <!-- PASO 6: SIMULADOR INTERACTIVO CON PRUEBAS MULTILINGÜES -->
       <!-- ======================================================== -->
-      <section id="step-simulator" class="step-content space-y-6 hidden">
+      <section id="step-payments" class="step-content space-y-6 hidden"><div class="flex flex-wrap gap-2"><button onclick="switchStep('step-simulator')" class="px-3 py-2 text-xs rounded bg-emerald-700 text-white">Volver al chat</button><button onclick="switchStep('step-catalog')" class="px-3 py-2 text-xs">Catálogo</button><button onclick="switchStep('step-identity')" class="px-3 py-2 text-xs">Reglas</button><button onclick="switchStep('step-whatsapp')" class="px-3 py-2 text-xs">WhatsApp</button></div><div class="bg-white border border-slate-200 rounded-xl p-4"><h3 class="font-semibold text-sm">Cobros</h3><p class="text-xs text-slate-600 mt-2">Configurá el medio de pago que tu vendedor informa a los clientes. Guardar un alias no confirma automáticamente los pagos.</p><button onclick="openBusinessConfigModal()" class="mt-3 px-3 py-2 rounded-lg bg-emerald-700 text-white text-xs">Configurar cobros</button><span id="sim-display-payment-method" class="ml-3 text-xs text-slate-600"></span></div></section>
+<section id="step-simulator" class="step-content space-y-6 hidden">
         <!-- Top Navigation Banner -->
         <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
           <div class="flex items-center space-x-2">
@@ -2219,6 +2292,7 @@
               <button onclick="switchStep('step-whatsapp')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-whatsapp">
                 Conexión WhatsApp & Bandeja
               </button>
+<button onclick="switchStep('step-payments')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-payments">Cobros</button>
             </div>
           </div>
         </div>
@@ -2233,117 +2307,7 @@
           </p>
         </div>
 
-        <!-- ESTRUCTURA ESTÁNDAR OBLIGATORIA: 3 BLOQUES OPERATIVOS -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <!-- BLOQUE 1: INTEGRACIÓN & CANALES (CONEXIÓN EN 1 CLIC) -->
-          <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
-                  <i data-lucide="link" class="w-3.5 h-3.5 text-emerald-600"></i>
-                  <span>Bloque 1 · Integración & Canales</span>
-                </span>
-              </div>
-              <h4 class="text-xs font-bold text-slate-900">Vincular Línea de WhatsApp</h4>
-              <p class="text-[11px] text-slate-600 leading-tight mb-2">Canal por donde los clientes te escriben y reciben respuestas.</p>
-              
-              <div class="space-y-1.5 text-xs">
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                  <span class="flex items-center space-x-1.5 truncate">
-                    <i data-lucide="smartphone" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span class="truncate">WhatsApp Business</span>
-                  </span>
-                  <span class="text-[10px] font-semibold text-rose-700 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded shrink-0" id="sim-wa-status-text">Sin vincular</span>
-                </div>
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
-                  <span class="text-[10px] font-semibold text-slate-600 uppercase">Línea activa:</span>
-                  <div class="text-[11px] font-mono text-slate-900 font-semibold truncate" id="sim-wa-active-phone">+54 9 11 4455-6677</div>
-                </div>
-              </div>
-            </div>
-            <div class="pt-2 flex flex-wrap gap-1.5" id="sim-wa-actions-container">
-              <button onclick="openWhatsAppModal('vendedor')" class="flex-1 py-1.5 px-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded text-[11px] font-semibold text-center transition flex items-center justify-center space-x-1 shadow-2xs">
-                <i data-lucide="smartphone" class="w-3 h-3"></i>
-                <span id="sim-wa-btn-text">Vincular WhatsApp (QR)</span>
-              </button>
-              <button onclick="testWhatsAppDirectly()" id="sim-wa-btn-test" class="py-1.5 px-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded text-[11px] font-medium transition" title="Abrir en WhatsApp Web">
-                WhatsApp Web
-              </button>
-            </div>
-          </div>
-
-          <!-- BLOQUE 2: BASE DE CONOCIMIENTO / DATOS DE ENTRADA -->
-          <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
-                  <i data-lucide="database" class="w-3.5 h-3.5 text-emerald-600"></i>
-                  <span>Bloque 2 · Datos de Entrada</span>
-                </span>
-              </div>
-              <h4 class="text-xs font-bold text-slate-900">Catálogo, Stock & Reglas</h4>
-              <p class="text-[11px] text-slate-600 leading-tight mb-2">La IA sólo vende lo que tiene stock y respeta tus precios.</p>
-
-              <div class="space-y-1.5 text-xs">
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                  <span class="text-slate-600">Carga de Catálogo:</span>
-                  <span class="font-semibold text-slate-900">Manual / CSV / Tiendanube</span>
-                </div>
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                  <span class="text-slate-600">Stock en Tiempo Real:</span>
-                  <span class="font-semibold text-emerald-800" id="sim-block2-stock">3 en stock · 0 agotados</span>
-                </div>
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
-                  <span class="text-[10px] font-semibold text-slate-600 uppercase">Reglas Activas:</span>
-                  <div class="text-[11px] text-slate-800 truncate" id="sim-block2-rules">Horario: Lunes a Viernes 09:00 a 18:00</div>
-                </div>
-              </div>
-            </div>
-            <div class="pt-2 flex gap-1.5">
-              <button onclick="switchStep('step-catalog')" class="flex-1 py-1.5 px-2 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded text-[11px] font-medium text-slate-700 text-center transition">
-                Editar Catálogo & Precios →
-              </button>
-            </div>
-          </div>
-
-          <!-- BLOQUE 3: AUTOMATIZACIÓN & ACCIÓN DE SALIDA -->
-          <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
-                  <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600"></i>
-                  <span>Bloque 3 · Acción de Salida</span>
-                </span>
-              </div>
-              <h4 class="text-xs font-bold text-slate-900">¿Cómo cobra y confirma la IA?</h4>
-              <p class="text-[11px] text-slate-600 leading-tight mb-2">Cobro automático con tu medio de pago y registro inmediato.</p>
-
-              <div class="space-y-1.5 text-xs text-slate-800">
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
-                  <div class="flex items-center justify-between mb-0.5">
-                    <strong class="text-slate-900">1. Cobro Automático:</strong>
-                    <button onclick="openBusinessConfigModal()" class="text-[10px] text-emerald-700 font-bold hover:underline">Configurar</button>
-                  </div>
-                  <div class="text-[11px] text-slate-700">Medio activo: <span class="font-mono text-emerald-900 font-bold" id="sim-display-payment-method">pagos.miempresa.mp</span></div>
-                </div>
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
-                  <strong class="text-slate-900">2. Notificación Interna:</strong> Envía el resumen del pedido confirmado al WhatsApp de tu equipo.
-                </div>
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
-                  <strong class="text-slate-900">3. Descuenta Stock en Vivo:</strong> Resta las unidades vendidas para evitar sobreventa.
-                </div>
-                <div class="p-2 bg-emerald-50 border border-emerald-200 rounded leading-tight text-emerald-900">
-                  <strong class="text-emerald-950">4. Confirmación al Cliente:</strong> Envía ticket de compra, número de orden y confirmación inmediata en su idioma.
-                </div>
-              </div>
-            </div>
-            <div class="pt-2 flex gap-1.5">
-              <button onclick="openBusinessConfigModal()" class="flex-1 py-1.5 px-2 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded text-[11px] font-medium text-slate-700 text-center transition">
-                Editar Medio de Cobro (Alias/MP) →
-              </button>
-            </div>
-          </div>
-        </div>
+        <div class="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600"><span>Chat de prueba · No envía mensajes a clientes por WhatsApp.</span><button onclick="switchStep('step-whatsapp')" class="text-emerald-800 font-semibold">Configurar WhatsApp →</button></div>
 
         <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
           <div class="flex items-center justify-between border-b border-slate-100 pb-3">
@@ -4909,7 +4873,7 @@
       'step-billing': 'Planes & Facturación'
     };
 
-    const VENDEDOR_STEPS = ['step-simulator', 'step-catalog', 'step-identity', 'step-whatsapp'];
+    const VENDEDOR_STEPS = ['step-simulator', 'step-catalog', 'step-identity', 'step-whatsapp', 'step-payments'];
 
     // =========================================================
     // CONTROL DEL MENÚ LATERAL RESPONSIVE Y COLAPSABLE
