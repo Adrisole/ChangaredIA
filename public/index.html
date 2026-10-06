@@ -2348,7 +2348,7 @@
         <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
           <div class="flex items-center justify-between border-b border-slate-100 pb-3">
             <div>
-              <h2 class="text-sm font-semibold text-slate-900" data-i18n="simTitle">Consola de Simulación Multi-Idioma</h2>
+              <h2 class="text-sm font-semibold text-slate-900" data-i18n="simTitle">Chat de prueba del vendedor</h2>
               <p class="text-xs text-slate-600 mt-0.5" data-i18n="simSubtitle">Prueba cómo responde tu empleado en Español, Inglés o Portugués respetando las reglas de stock.</p>
             </div>
             <button onclick="clearChatSimulator()" class="text-xs text-slate-600 hover:text-slate-800 transition flex items-center space-x-1">
@@ -4184,7 +4184,7 @@
         lblResponseModeVal: "Multi-idioma / OpenAI Directo",
         btnBackToCatalog: "Volver a Catálogo",
         btnTestInSimulator: "Probar en el Simulador",
-        simTitle: "Consola de Simulación Multi-Idioma",
+        simTitle: "Chat de prueba del vendedor",
         simSubtitle: "Prueba cómo responde tu empleado en Español, Inglés o Portugués respetando las reglas de stock.",
         btnResetChat: "Reiniciar chat",
         simOnline: "Empleado Virtual en línea (Multi-idioma)",
@@ -7382,35 +7382,33 @@
       container.appendChild(typingEl);
       container.scrollTop = container.scrollHeight;
 
-      const slug = currentCompany.slug || 'mi-empresa';
+      const slug = currentCompany.slug;
       let reply = "";
 
       try {
+        if (!currentUser || !authToken) throw new Error('Iniciá sesión para probar tu vendedor.');
+        if (!slug) throw new Error('Guardá primero los datos de tu negocio para probar el vendedor.');
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 3500);
-        const res = await fetch(`/api/webhook/${slug}`, {
+        const timeoutId = setTimeout(() => controller.abort(), 30000);
+        const res = await fetch(`/api/business/${encodeURIComponent(slug)}/test-message`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + authToken },
           body: JSON.stringify({
-            message: text,
-            from: currentCompany.phone || '+5491100000000'
+            message: text
           }),
           signal: controller.signal
         });
         clearTimeout(timeoutId);
 
-        if (res.ok) {
-          const json = await res.json();
-          if (json.success && json.agentResponse?.text) {
-            reply = json.agentResponse.text;
-          }
-        }
+        const json = await res.json();
+        if (!res.ok || !json.success || !json.reply) throw new Error(json.message || 'No se pudo obtener la respuesta de la IA.');
+        reply = json.reply;
       } catch (e) {
-        console.warn("[Simulator] Webhook API fallback:", e);
+        reply = e.name === 'AbortError' ? 'La IA tardó demasiado. Intentá nuevamente.' : e.message;
       }
 
       if (!reply) {
-        reply = generateMultilingualReply(text);
+        reply = 'No se pudo obtener una respuesta. Intentá nuevamente.';
       }
 
       const existingTyping = document.getElementById(typingId);
