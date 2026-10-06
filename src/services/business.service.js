@@ -85,7 +85,7 @@ export class BusinessService {
       language: payload.language || existing?.language || 'Español',
       autoDetectLanguage: payload.autoDetectLanguage !== undefined ? Boolean(payload.autoDetectLanguage) : (existing?.autoDetectLanguage ?? true),
       businessRules: normalizedRules.length > 0 ? normalizedRules : (existing?.businessRules || []),
-      catalog: normalizedCatalog.length > 0 ? normalizedCatalog : (existing?.catalog || []),
+      catalog: Array.isArray(catalog) ? normalizedCatalog : (existing?.catalog || []),
       services: Array.isArray(payload.services) && payload.services.length > 0 ? payload.services : (existing?.services || []),
       activeEmployees: Array.isArray(payload.activeEmployees) && payload.activeEmployees.length > 0 ? payload.activeEmployees : (existing?.activeEmployees || ['vendedor']),
       ownerId: ownerId || existing?.ownerId,
