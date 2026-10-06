@@ -4887,6 +4887,8 @@
       ]
     };
 
+    const DEMO_BUSINESS_DATA = JSON.parse(JSON.stringify(currentBusiness));
+
     // ========================================================
     // SISTEMA INTELIGENTE DE HISTORIAL Y NAVEGACIÓN
     // ========================================================
@@ -5392,6 +5394,7 @@
 
         authToken = data.token;
         currentUser = data.user;
+        resetAccountState();
         localStorage.setItem('changared_auth_token', authToken);
         localStorage.setItem('changared_auth_user', JSON.stringify(currentUser));
 
@@ -5446,6 +5449,7 @@
 
         authToken = data.token;
         currentUser = data.user;
+        resetAccountState();
         localStorage.setItem('changared_auth_token', authToken);
         localStorage.setItem('changared_auth_user', JSON.stringify(currentUser));
 
@@ -5454,18 +5458,16 @@
 
         closeAuthModal();
 
-        fetch('/api/business/my', {
+        const loginToken = authToken;
+        await fetch('/api/business/my', {
           headers: { 'Authorization': `Bearer ${authToken}` }
         })
         .then(r => r.json())
         .then(myRes => {
+          if (authToken !== loginToken) return;
           if (myRes.success && myRes.data && myRes.data.length > 0) {
             const myBiz = myRes.data[0];
-            currentCompany = Object.assign({}, DEFAULT_COMPANY_DATA, myBiz, { slug: myBiz.id });
-            currentBusiness.catalog = Array.isArray(myBiz.catalog) ? myBiz.catalog : [];
-            renderCatalogTable();
-            localStorage.setItem('changared_company_data', JSON.stringify(currentCompany));
-            applyCompanyDataToUI();
+            resetAccountState(myBiz);
           }
         })
         .catch(() => {});
@@ -5491,6 +5493,7 @@
         }
         authToken = null;
         currentUser = null;
+        resetAccountState();
         localStorage.removeItem('changared_auth_token');
         localStorage.removeItem('changared_auth_user');
         renderSessionUI();
@@ -5499,26 +5502,23 @@
     }
 
     // Verificar token al iniciar la app
+    const initialSessionToken = authToken;
     if (authToken) {
       fetch('/api/auth/me', {
         headers: { 'Authorization': `Bearer ${authToken}` }
       })
       .then(res => res.json())
       .then(data => {
+        if (authToken !== initialSessionToken) return;
         if (data.success && data.user) {
           currentUser = data.user;
-          const businesses = Array.isArray(data.businesses) ? data.businesses : [];
-          const business = businesses[0];
-          currentBusiness.catalog = business && Array.isArray(business.catalog) ? business.catalog : [];
-          if (business) {
-            currentCompany = Object.assign({}, DEFAULT_COMPANY_DATA, business, { slug: business.id });
-          }
-          renderCatalogTable();
+          resetAccountState(Array.isArray(data.businesses) ? data.businesses[0] : null);
           localStorage.setItem('changared_auth_user', JSON.stringify(currentUser));
           renderSessionUI();
         } else {
           authToken = null;
           currentUser = null;
+          resetAccountState();
           localStorage.removeItem('changared_auth_token');
           localStorage.removeItem('changared_auth_user');
           renderSessionUI();
@@ -5556,20 +5556,28 @@
       ]
     };
 
-    let currentCompany = (function() {
-      try {
-        const saved = localStorage.getItem('changared_company_data');
-        if (saved) {
-          const parsed = JSON.parse(saved);
-          const merged = Object.assign({}, DEFAULT_COMPANY_DATA, parsed);
-          if (!Array.isArray(merged.activeEmployees) || merged.activeEmployees.length === 0) {
-            merged.activeEmployees = ['vendedor'];
-          }
-          return merged;
-        }
-      } catch(e) {}
-      return Object.assign({}, DEFAULT_COMPANY_DATA);
-    })();
+    function emptyCompany() {
+      return { name: 'Mi Empresa', slug: '', rubro: '', phone: '', email: '', website: '', hours: '', currency: 'ARS', deposit: 0, paymentMethod: '', desc: '', whatsappConnected: false, calendarConnected: false, calendarEmail: '', cuit: '', taxCondition: '', driveFolder: '', activeEmployees: [], services: [], catalog: [] };
+    }
+    let currentCompany = currentUser ? emptyCompany() : JSON.parse(JSON.stringify(DEFAULT_COMPANY_DATA));
+    if (currentUser) currentBusiness = { ...emptyCompany(), id: '', description: '', businessRules: [], catalog: [] };
+
+    function resetAccountState(business = null) {
+      localStorage.removeItem('changared_company_data');
+      const base = currentUser ? emptyCompany() : JSON.parse(JSON.stringify(DEFAULT_COMPANY_DATA));
+      currentCompany = business ? { ...base, ...business, slug: business.id } : base;
+      currentBusiness = business
+        ? { ...business, catalog: Array.isArray(business.catalog) ? business.catalog : [] }
+        : currentUser ? { ...emptyCompany(), id: '', description: '', businessRules: [], catalog: [] } : JSON.parse(JSON.stringify(DEMO_BUSINESS_DATA));
+      localInvoices = [];
+      whatsappConversationsCache = [];
+      activeWhatsAppChat = null;
+      renderAccountingView([]);
+      const inbox = document.getElementById('simulator-messages');
+      if (inbox) inbox.innerHTML = '';
+      renderCatalogTable();
+      applyCompanyDataToUI();
+    }
 
     function slugify(text) {
       return text.toString().toLowerCase()
@@ -5791,7 +5799,7 @@
         }
       ];
 
-      const activeList = Array.isArray(currentCompany.activeEmployees) && currentCompany.activeEmployees.length > 0
+      const activeList = Array.isArray(currentCompany.activeEmployees)
         ? currentCompany.activeEmployees
         : ['vendedor'];
 
@@ -5913,7 +5921,7 @@
         }
 
         // Sincronizar checkboxes de empleados según currentCompany.activeEmployees
-        const activeList = Array.isArray(currentCompany.activeEmployees) && currentCompany.activeEmployees.length > 0
+        const activeList = Array.isArray(currentCompany.activeEmployees)
           ? currentCompany.activeEmployees
           : ['vendedor'];
 
@@ -8160,11 +8168,14 @@
     }
 
     async function loadAccountingInvoices() {
+      if (!currentUser || !currentCompany.slug) { renderAccountingView([]); return; }
+      const requestUser = currentUser.id;
       const slug = currentCompany.slug || 'mi-empresa';
       try {
         const res = await fetch(`/api/accounting/invoices/${slug}`);
         if (res.ok) {
           const json = await res.json();
+          if (!currentUser || currentUser.id !== requestUser || currentCompany.slug !== slug) return;
           if (json.success && Array.isArray(json.invoices)) {
             localInvoices = json.invoices;
             renderAccountingView(localInvoices, json.stats);
