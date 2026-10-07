@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { agentBrainService } from '../services/agentBrain.service.js';
 import { sellerOrdersService } from '../services/sellerOrders.service.js';
+import { businessService } from '../services/business.service.js';
 import {
   setupBusiness,
   getBusiness,
@@ -17,6 +18,17 @@ router.post('/setup', authenticate, requireAuth, setupBusiness);
 
 // Consultar los negocios privados del usuario autenticado
 router.get('/my', authenticate, requireAuth, listMyBusinesses);
+
+router.put('/:businessId/catalog', authenticate, requireBusinessOwner, async (req, res, next) => {
+  try {
+    const catalog = req.body.catalog;
+    if (!Array.isArray(catalog) || catalog.some(p => !p || typeof p.name !== 'string' || !p.name.trim() || !Number.isFinite(p.price) || p.price < 0 || !Number.isInteger(p.stock) || p.stock < 0)) {
+      return res.status(400).json({ success: false, message: 'El catálogo necesita nombre, precio válido y stock entero no negativo.' });
+    }
+    const business = await businessService.setupBusiness({ id: req.business.id, name: req.business.name, description: req.business.description || 'Negocio', catalog }, req.user.id);
+    res.json({ success: true, data: { business: businessService.sanitizeBusiness(business) } });
+  } catch (error) { next(error); }
+});
 
 router.get('/:businessId/orders', authenticate, requireBusinessOwner, (req, res) => {
   res.json({ success: true, orders: req.business.orders || [], paymentMethod: req.business.paymentMethod || '', notificationPhone: req.business.notificationPhone || '' });
