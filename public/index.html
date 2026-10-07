@@ -974,7 +974,7 @@
           
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
             <div>
-              <h2 class="text-sm font-semibold text-slate-900" data-i18n="catalogTitle">Catálogo de Productos y Disponibilidad</h2>
+              <h2 id="catalog-editor-heading" class="text-sm font-semibold text-slate-900 scroll-mt-24" data-i18n="catalogTitle">Catálogo de Productos y Disponibilidad</h2>
               <p class="text-xs text-slate-600 mt-0.5" data-i18n="catalogSubtitle">El agente NUNCA ofrecerá productos sin stock ni cambiará los precios indicados.</p>
             </div>
             <div class="flex items-center space-x-2">
@@ -1062,7 +1062,7 @@
               </div>
             </div>
             <div class="pt-2 flex gap-1.5">
-              <button onclick="switchStep('step-catalog')" class="flex-1 py-1.5 px-2 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded text-[11px] font-medium text-slate-700 text-center transition">
+              <button onclick="openCatalogEditor()" class="flex-1 py-1.5 px-2 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded text-[11px] font-medium text-slate-700 text-center transition">
                 Editar Catálogo & Precios →
               </button>
             </div>
@@ -5260,6 +5260,14 @@
     }
 
     // Modal de Productos
+    function openCatalogEditor() {
+      if (currentStepId !== 'step-catalog') switchStep('step-catalog');
+      requestAnimationFrame(() => {
+        document.getElementById('catalog-editor-heading').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (!currentBusiness.catalog.length) openAddProductModal();
+      });
+    }
+
     function openAddProductModal() {
       document.getElementById('modal-add-product').classList.remove('hidden');
     }
