@@ -6,7 +6,7 @@ const fields={};for(const [id,value] of Object.entries({'modal-prod-name':'Prueb
 const context=vm.createContext({structuredClone,crypto:require('node:crypto'),document:{getElementById:id=>fields[id]},showToast:()=>{},closeAddProductModal:()=>{},renderCatalogTable:()=>renders++,applyCompanyDataToUI:()=>{},currentUser:{id:'owner'},authToken:'token',currentCompany:{id:stored.id,slug:stored.id,name:stored.name},currentBusiness:structuredClone(stored),fetch:async(url,opts)=>{
  const payload=JSON.parse(opts.body);if(fail)return {ok:false,json:async()=>({success:false,message:'DB unavailable'})};
  if(url.endsWith('/catalog')){assert.equal(opts.method,'PUT');assert.equal(url,'/api/business/original-shop/catalog');}
- stored={...stored,...payload};return {ok:true,json:async()=>({success:true,data:{business:structuredClone(stored)}})};
+ stored=payload.additions ? {...stored,catalog:[...stored.catalog,...payload.additions]} : {...stored,...payload};return {ok:true,json:async()=>({success:true,data:{business:structuredClone(stored)}})};
 }});
 vm.runInContext(block('    async function persistBusinessData(', '    // ========================================================='),context);
 vm.runInContext(block('    async function saveAllChanges(', '    function showToast('),context);
@@ -18,7 +18,7 @@ vm.runInContext(block('    function updateBusinessSlugPreview(', '    function a
  fail=false;await context.saveAllChanges();assert.equal(stored.id,'original-shop');assert.equal(stored.name,'Nombre Nuevo');assert.equal(stored.catalog.length,1);
  context.updateBusinessSlugPreview();assert.equal(fields['input-business-id'].value,'original-shop');
  context.currentCompany={id:'',slug:''};context.updateBusinessSlugPreview();assert.equal(fields['input-business-id'].value,'nombre-nuevo');
- assert.match(html,/await persistBusinessData\(\{ catalog: \[\.\.\.\(currentBusiness.catalog \|\| \[\]\), \.\.\.imported\] \}, true\)/);
+ assert.match(html,/await persistBusinessData\(\{ additions: imported \}, true\)/);
  const custom=block('    async function saveCustomBusiness(', '    // =========================================================');assert.doesNotMatch(custom,/catalog:/);assert.match(custom,/await persistBusinessData\(backendPayload\)/);
  console.log('PASS: product persisted, reload retains catalog, failure retains form without fake success, rename preserves business and products, draft slug updates, import awaits persistence.');
 })().catch(e=>{console.error(e);process.exitCode=1;});

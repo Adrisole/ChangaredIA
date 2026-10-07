@@ -5269,6 +5269,7 @@
     }
 
     function openAddProductModal() {
+      if (!currentUser) { openAuthModal('catalog', openAddProductModal); return; }
       document.getElementById('modal-add-product').classList.remove('hidden');
     }
     function closeAddProductModal() {
@@ -5308,8 +5309,8 @@
       if (!name || rawPrice === '' || !Number.isFinite(price) || price < 0 || !Number.isInteger(stock) || stock < 0) { showToast('Revisá nombre, precio y stock del producto.'); return; }
       catalogSaveInProgress = true;
       try {
-        const nextCatalog = [...currentBusiness.catalog, { id: 'PROD-' + crypto.randomUUID(), name, price, stock, category, description }];
-        await persistBusinessData({ catalog: nextCatalog }, true);
+        const additions = [{ id: 'PROD-' + crypto.randomUUID(), name, price, stock, category, description }];
+        await persistBusinessData({ additions }, true);
         closeAddProductModal();
         showToast('Producto ' + name + ' guardado en tu negocio.');
         ['modal-prod-name', 'modal-prod-price', 'modal-prod-stock', 'modal-prod-desc'].forEach(id => document.getElementById(id).value = '');
@@ -5512,12 +5513,13 @@
         .then(r => r.json())
         .then(myRes => {
           if (authToken !== loginToken) return;
+          if (!myRes.success) throw new Error(myRes.message || 'No se pudo cargar tu negocio.');
           if (myRes.success && myRes.data && myRes.data.length > 0) {
             const myBiz = myRes.data[0];
             resetAccountState(myBiz);
           }
         })
-        .catch(() => {});
+        .catch(error => showToast('No se cargaron tus datos: ' + error.message));
 
         if (typeof pendingAuthAction === 'function') {
           const action = pendingAuthAction;
@@ -5554,7 +5556,11 @@
       fetch('/api/auth/me', {
         headers: { 'Authorization': `Bearer ${authToken}` }
       })
-      .then(res => res.json())
+      .then(async res => {
+        const data = await res.json();
+        if (res.status >= 500) throw new Error(data.message || 'La base de datos no está disponible.');
+        return data;
+      })
       .then(data => {
         if (authToken !== initialSessionToken) return;
         if (data.success && data.user) {
@@ -5571,7 +5577,7 @@
           renderSessionUI();
         }
       })
-      .catch(() => {});
+      .catch(error => showToast('No se cargaron tus datos. Conservamos tu sesión: ' + error.message));
     }
 
     // =========================================================
@@ -7739,6 +7745,7 @@
     let uploadedImportFile = null;
 
     function openImportModal() {
+      if (!currentUser) { openAuthModal('catalog', openImportModal); return; }
       uploadedImportFile = null;
       const fileInput = document.getElementById('import-file-input');
       if (fileInput) fileInput.value = '';
@@ -7909,7 +7916,7 @@
           return;
         }
 
-        await persistBusinessData({ catalog: [...(currentBusiness.catalog || []), ...imported] }, true);
+        await persistBusinessData({ additions: imported }, true);
         closeImportModal();
         showToast(`✓ ¡${imported.length} productos importados correctamente desde Excel / CSV!`);
       } catch (err) {

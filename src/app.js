@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import path from 'path';
 import apiRouter from './routes/index.js';
+import { config } from './config/env.js';
+import { isDbConnected } from './config/database.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 
 export const createApp = () => {
@@ -57,7 +59,12 @@ export const createApp = () => {
   });
 
   // Montar rutas de la API bajo /api
-  app.use('/api', apiRouter);
+  app.use('/api', (req, res, next) => {
+    if (config.mongodb.uri && !isDbConnected() && !['/status', '/health'].includes(req.path)) {
+      return res.status(503).json({ success: false, message: 'La base de datos está desconectada o iniciando. Tus datos no se cargarán ni guardarán en una copia local. Intentá nuevamente cuando se restablezca la conexión.' });
+    }
+    next();
+  }, apiRouter);
 
   // Manejo de URLs históricas y 404 (SEO Recovery 301)
   app.use('*', (req, res) => {
