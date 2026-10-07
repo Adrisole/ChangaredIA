@@ -765,14 +765,15 @@
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label class="block text-xs font-medium text-slate-700 mb-1.5" data-i18n="fieldBusinessName">Nombre del Negocio</label>
-              <input type="text" id="input-business-name" value="Mi Empresa" class="w-full text-xs px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:border-slate-400 focus:ring-1 focus:ring-slate-400 transition">
+              <input type="text" id="input-business-name" value="Mi Empresa" oninput="updateBusinessSlugPreview()" class="w-full text-xs px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:border-slate-400 focus:ring-1 focus:ring-slate-400 transition">
             </div>
             <div>
               <label class="block text-xs font-medium text-slate-700 mb-1.5" data-i18n="fieldSlug">ID / Slug Identificador (Inmutable)</label>
               <div class="relative">
-                <input type="text" id="input-business-id" value="mi-empresa" readonly class="w-full text-xs font-mono px-3 py-2 bg-slate-100 border border-slate-200 rounded-lg text-slate-600 cursor-not-allowed">
+                <input type="text" id="input-business-id" value="" readonly class="w-full text-xs font-mono px-3 py-2 bg-slate-100 border border-slate-200 rounded-lg text-slate-600 cursor-not-allowed">
                 <span class="absolute right-3 top-2 text-[10px] uppercase font-mono text-slate-600">Multi-tenant ID</span>
               </div>
+              <p class="text-[11px] text-slate-600 mt-1.5">Se genera con el nombre al crear el negocio. Una vez guardado se conserva para mantener tu catálogo y conexiones.</p>
             </div>
           </div>
 
@@ -5266,36 +5267,46 @@
       document.getElementById('modal-add-product').classList.add('hidden');
     }
 
-    function saveNewProduct() {
-      const name = document.getElementById('modal-prod-name').value;
-      const price = document.getElementById('modal-prod-price').value;
-      const stock = document.getElementById('modal-prod-stock').value || 0;
-      const cat = document.getElementById('modal-prod-cat').value || 'General';
-      const desc = document.getElementById('modal-prod-desc').value || '';
-
-      if (!name || !price) {
-        alert("Por favor indica al menos el nombre y precio del producto.");
-        return;
-      }
-
-      const newId = `PROD-${Math.floor(Math.random() * 900 + 100)}`;
-      currentBusiness.catalog.push({
-        id: newId,
-        name,
-        price: Number(price),
-        stock: Number(stock),
-        category: cat,
-        description: desc
+    async function persistBusinessData(payload, catalogOnly = false) {
+      if (!currentUser || !authToken) throw new Error('Iniciá sesión para guardar los cambios.');
+      const token = authToken;
+      const businessId = currentCompany.id || currentCompany.slug;
+      if (catalogOnly && !businessId) throw new Error('Guardá primero Mi Empresa antes de cargar productos.');
+      const response = await fetch(catalogOnly ? '/api/business/' + encodeURIComponent(businessId) + '/catalog' : '/api/business/setup', {
+        method: catalogOnly ? 'PUT' : 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token },
+        body: JSON.stringify(payload)
       });
-
+      const data = await response.json();
+      if (!response.ok || !data.success) throw new Error(data.message || 'No se pudieron guardar los cambios.');
+      if (token !== authToken || (catalogOnly && businessId !== (currentCompany.id || currentCompany.slug))) throw new Error('La sesión o el negocio cambiaron. Volvé a cargar tus datos.');
+      const business = data.data.business;
+      currentCompany = { ...currentCompany, ...business, slug: business.id, desc: business.description };
+      currentBusiness = { ...currentBusiness, ...business, catalog: Array.isArray(business.catalog) ? business.catalog : [] };
       renderCatalogTable();
-      closeAddProductModal();
-      showToast(`Producto ${name} agregado`);
+      applyCompanyDataToUI();
+      return business;
+    }
 
-      document.getElementById('modal-prod-name').value = '';
-      document.getElementById('modal-prod-price').value = '';
-      document.getElementById('modal-prod-stock').value = '';
-      document.getElementById('modal-prod-desc').value = '';
+    let catalogSaveInProgress = false;
+    async function saveNewProduct() {
+      if (catalogSaveInProgress) return;
+      const name = document.getElementById('modal-prod-name').value.trim();
+      const rawPrice = document.getElementById('modal-prod-price').value;
+      const price = Number(rawPrice);
+      const stock = Number(document.getElementById('modal-prod-stock').value || 0);
+      const category = document.getElementById('modal-prod-cat').value || 'General';
+      const description = document.getElementById('modal-prod-desc').value || '';
+      if (!name || rawPrice === '' || !Number.isFinite(price) || price < 0 || !Number.isInteger(stock) || stock < 0) { showToast('Revisá nombre, precio y stock del producto.'); return; }
+      catalogSaveInProgress = true;
+      try {
+        const nextCatalog = [...currentBusiness.catalog, { id: 'PROD-' + crypto.randomUUID(), name, price, stock, category, description }];
+        await persistBusinessData({ catalog: nextCatalog }, true);
+        closeAddProductModal();
+        showToast('Producto ' + name + ' guardado en tu negocio.');
+        ['modal-prod-name', 'modal-prod-price', 'modal-prod-stock', 'modal-prod-desc'].forEach(id => document.getElementById(id).value = '');
+      } catch (error) { showToast('No se guardó el producto: ' + error.message); }
+      finally { catalogSaveInProgress = false; }
     }
 
     // =========================================================
@@ -5605,6 +5616,12 @@
       if (inbox) inbox.innerHTML = '';
       renderCatalogTable();
       applyCompanyDataToUI();
+    }
+
+    function updateBusinessSlugPreview() {
+      const name = document.getElementById('input-business-name');
+      const slug = document.getElementById('input-business-id');
+      if (name && slug) slug.value = currentCompany.id || currentCompany.slug || slugify(name.value);
     }
 
     function slugify(text) {
@@ -5977,7 +5994,7 @@
       if (modal) modal.classList.add('hidden');
     }
 
-    function saveCustomBusiness() {
+    async function saveCustomBusiness() {
       if (!currentUser) {
         openAuthModal('config', () => saveCustomBusiness());
         return;
@@ -6010,8 +6027,11 @@
       const desc = document.getElementById('cfg-custom-desc') ? document.getElementById('cfg-custom-desc').value.trim() : currentCompany.desc;
       const autoDetectLang = document.getElementById('cfg-custom-autodetect') ? document.getElementById('cfg-custom-autodetect').checked : true;
 
+      const previousCompany = structuredClone(currentCompany);
+      const previousBusiness = structuredClone(currentBusiness);
+      const businessSaveToken = authToken;
       currentCompany.name = name;
-      currentCompany.slug = slugify(name);
+      currentCompany.slug = currentCompany.id || currentCompany.slug || slugify(name);
       currentCompany.activeEmployees = selectedEmployees;
       currentCompany.autoDetectLanguage = autoDetectLang;
       if (rubro) currentCompany.rubro = rubro;
@@ -6067,37 +6087,19 @@
           `Seña de reserva: $${currentCompany.deposit}`,
           `Método de pago / Alias: ${currentCompany.paymentMethod || 'pagos.miempresa.mp'}`
         ],
-        catalog: Array.isArray(currentCompany.services) && currentCompany.services.length > 0
-          ? currentCompany.services.map((s, idx) => ({
-              id: `SRV-${idx + 1}`,
-              name: s.name,
-              price: s.price,
-              stock: 10,
-              description: `Duración: ${s.duration}`,
-              category: currentCompany.rubro || 'Servicios'
-            }))
-          : [
-              { id: 'SRV-1', name: 'Atención General', price: 10000, stock: 10, description: 'Servicio estándar', category: 'General' }
-            ],
         services: currentCompany.services || []
       };
 
-      fetch('/api/business/setup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          ...(authToken ? { 'Authorization': `Bearer ${authToken}` } : {})
-        },
-        body: JSON.stringify(backendPayload)
-      })
-      .then(res => res.json())
-      .then(data => {
-        console.log('[Changared API] Negocio sincronizado en backend:', data);
-      })
-      .catch(err => {
-        console.warn('[Changared API] Backend local/offline:', err);
-      });
-
+      try {
+        await persistBusinessData(backendPayload);
+      } catch (error) {
+        if (authToken === businessSaveToken) {
+          currentCompany = previousCompany;
+          currentBusiness = previousBusiness;
+        }
+        showToast('No se guardó Mi Empresa: ' + error.message);
+        return;
+      }
       applyCompanyDataToUI();
       closeBusinessConfigModal();
       showToast(`✓ ¡Entorno configurado para ${name}! Empleados contratados activos: ${selectedEmployees.length}.`);
@@ -7699,21 +7701,16 @@
       showToast("¡Nueva cita para " + client.name + " agendada y sincronizada con Google Calendar!");
     }
 
-    function saveAllChanges() {
-      const name = document.getElementById('input-business-name').value;
-      const desc = document.getElementById('input-business-desc').value;
-      const lang = document.getElementById('select-business-lang').value;
-      const autoDetect = document.getElementById('check-auto-detect').checked;
-      
-      currentBusiness.name = name;
-      currentBusiness.description = desc;
-      currentBusiness.language = lang;
-      currentBusiness.autoDetectLanguage = autoDetect;
-      
-      document.getElementById('sidebar-business-name').innerText = name;
-      document.getElementById('sim-chat-title').innerText = name;
-
-      showToast("Configuración guardada (Idioma: " + lang + " | Auto-Detect: " + (autoDetect ? "ON" : "OFF") + ")");
+    async function saveAllChanges() {
+      const name = document.getElementById('input-business-name').value.trim();
+      const description = document.getElementById('input-business-desc').value.trim();
+      const language = document.getElementById('select-business-lang').value;
+      const autoDetectLanguage = document.getElementById('check-auto-detect').checked;
+      if (!name) { showToast('Ingresá el nombre de tu negocio.'); return; }
+      try {
+        await persistBusinessData({ id: currentCompany.id || currentCompany.slug || slugify(name), name, description: description || name, language, autoDetectLanguage, toneOfVoice: currentBusiness.toneOfVoice, businessRules: currentBusiness.businessRules });
+        showToast('Nombre, idioma y reglas guardados. El identificador de tu negocio se conserva.');
+      } catch (error) { showToast('No se guardó la configuración: ' + error.message); }
     }
 
     function showToast(msg) {
@@ -7904,11 +7901,7 @@
           return;
         }
 
-        if (!Array.isArray(currentBusiness.catalog)) {
-          currentBusiness.catalog = [];
-        }
-        imported.forEach(p => currentBusiness.catalog.push(p));
-        renderCatalogTable();
+        await persistBusinessData({ catalog: [...(currentBusiness.catalog || []), ...imported] }, true);
         closeImportModal();
         showToast(`✓ ¡${imported.length} productos importados correctamente desde Excel / CSV!`);
       } catch (err) {
