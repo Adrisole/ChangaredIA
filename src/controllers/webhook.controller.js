@@ -185,7 +185,7 @@ export const handleIncomingMessage = async (req, res, next) => {
     }
 
     // 8. Conversación activa con IA: Generar respuesta inteligente con contexto inyectado
-    const aiResult = await agentBrainService.generateReply(business, messageText, sender);
+    const aiResult = await agentBrainService.generateReply(business, messageText, sender, { takeOrders: Boolean(activeAppSecret && signature && metaIncomingId && metaPhoneNumberId), sourceId: metaIncomingId, history: (conversation.messages || []).slice(-12) });
 
     // 9. Enviar la respuesta directamente al WhatsApp del cliente vía WhatsApp Cloud API de Meta
     const waDelivery = await whatsappService.sendTextMessage({

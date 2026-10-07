@@ -51,6 +51,7 @@ export class BusinessService {
       : [];
 
     const existing = await businessRepository.findById(businessId);
+    if (existing && existing.ownerId !== ownerId) throw new Error('No podés modificar un negocio de otra cuenta.');
 
     // Cifrar el token de Meta y el App Secret si se proporcionan en texto plano
     const rawToken = payload.whatsappAccessToken !== undefined
@@ -80,7 +81,8 @@ export class BusinessService {
       hours: payload.hours !== undefined ? payload.hours : (existing?.hours || ''),
       website: payload.website !== undefined ? payload.website : (existing?.website || ''),
       deposit: Number(payload.deposit) || existing?.deposit || 5000,
-      paymentMethod: payload.paymentMethod || existing?.paymentMethod || 'pagos.miempresa.mp',
+      paymentMethod: payload.paymentMethod !== undefined ? String(payload.paymentMethod).trim() : (existing?.paymentMethod || ''),
+      notificationPhone: payload.notificationPhone !== undefined ? String(payload.notificationPhone).trim() : (existing?.notificationPhone || ''),
       toneOfVoice: toneOfVoice || existing?.toneOfVoice || 'amigable, respetuoso y dispuesto a ayudar',
       language: payload.language || existing?.language || 'Español',
       autoDetectLanguage: payload.autoDetectLanguage !== undefined ? Boolean(payload.autoDetectLanguage) : (existing?.autoDetectLanguage ?? true),
@@ -180,6 +182,8 @@ export class BusinessService {
   sanitizeBusiness(business) {
     if (!business) return null;
     const clean = { ...business };
+    delete clean.orders;
+    delete clean.notificationPhone;
     clean.hasAccessToken = Boolean(clean.whatsappAccessToken);
     clean.hasAppSecret = Boolean(clean.whatsappAppSecret);
     clean.tokenEncrypted = encryptionService.isEncrypted(clean.whatsappAccessToken);
