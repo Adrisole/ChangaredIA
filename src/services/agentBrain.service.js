@@ -1,4 +1,5 @@
 import { config } from '../config/env.js';
+import { sellerOrdersService } from './sellerOrders.service.js';
 
 /**
  * Cerebro del Empleado Virtual con IA para WhatsApp.
@@ -12,7 +13,7 @@ export class AgentBrainService {
    * @param {string} customerId - Número de teléfono o identificador del cliente
    * @returns {Promise<Object>} Respuesta generada y metadatos
    */
-  async generateReply(business, customerMessage, customerId = 'Cliente') {
+  async generateReply(business, customerMessage, customerId = 'Cliente', options = {}) {
     const startTime = Date.now();
 
     // 1. Si no hay API key configurada, activamos simulación inteligente para pruebas
@@ -33,7 +34,7 @@ export class AgentBrainService {
       const systemPrompt = this._buildDynamicSystemPrompt(business);
       
       // 3. Llamada a la API de OpenAI
-      const reply = await this._callOpenAI(systemPrompt, customerMessage);
+      const reply = await this._callOpenAI(systemPrompt, customerMessage, business, customerId, options);
 
       return {
         reply,
@@ -102,6 +103,12 @@ ${rulesFormatted}
 
 CATÁLOGO Y STOCK DISPONIBLE EN TIEMPO REAL:
 ${catalogFormatted}
+
+MEDIO DE PAGO DEL NEGOCIO:
+${business.paymentMethod || 'Sin configurar. Pedí al cliente que consulte al dueño; no inventes un alias.'}
+Un alias sirve para transferir: no es un enlace de pago ni verifica una transferencia.
+No confirmes pagos, descuentos de stock, avisos enviados ni números de pedido sin una acción real.
+Para tomar un pedido pedí productos y cantidades explícitos. Si están claros y el cliente quiere comprar, utilizá registrar_pedido cuando esté disponible. El pedido queda pendiente hasta que el dueño verifique el pago. Si falta información, pedila.
 ==============================
 
 DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
@@ -117,7 +124,7 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
   /**
    * Ejecuta la consulta a OpenAI mediante fetch nativo
    */
-  async _callOpenAI(systemPrompt, userMessage) {
+  async _callOpenAI(systemPrompt, userMessage, business, customerId, options = {}) {
     const url = 'https://api.openai.com/v1/chat/completions';
     const response = await fetch(url, {
       method: 'POST',
@@ -129,10 +136,12 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
         model: config.openai.model,
         messages: [
           { role: 'system', content: systemPrompt },
+          ...(Array.isArray(options.history) ? options.history.filter(m => typeof m.text === 'string').map(m => ({ role: m.sender === 'customer' ? 'user' : 'assistant', content: m.text })) : []),
           { role: 'user', content: userMessage },
         ],
         temperature: 0.3, // Temperatura baja para respuestas coherentes con stock y precios
         max_tokens: 350,
+        ...(options.takeOrders ? { tools: [{ type: 'function', function: { name: 'registrar_pedido', description: 'Registrar un pedido con productos y cantidades explícitos. No confirma el pago.', parameters: { type: 'object', properties: { items: { type: 'array', items: { type: 'object', properties: { productId: { type: 'string' }, quantity: { type: 'integer', minimum: 1 } }, required: ['productId', 'quantity'], additionalProperties: false } } }, required: ['items'], additionalProperties: false } } }] } : {}),
       }),
     });
 
@@ -142,6 +151,19 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
     }
 
     const data = await response.json();
+    const calls = data.choices?.[0]?.message?.tool_calls;
+    if (options.takeOrders && calls?.length) {
+      const call = calls.find(c => c.function?.name === 'registrar_pedido');
+      if (call) {
+        try {
+          const args = JSON.parse(call.function.arguments);
+          const order = await sellerOrdersService.create(business.id, customerId, args.items, options.sourceId);
+          return `Pedido #${order.id} registrado: ${order.items.map(i => `${i.quantity} × ${i.name}`).join(', ')}. Total: $${order.total}. ${business.paymentMethod ? `Podés pagar usando: ${business.paymentMethod}.` : 'Consultá al dueño por el medio de pago.'} Queda pendiente de verificar el pago. Te confirmaremos cuando se acredite.`;
+        } catch (error) {
+          return `No pude registrar el pedido: ${error.message}`;
+        }
+      }
+    }
     return data.choices?.[0]?.message?.content?.trim() || 'Disculpa, ¿podrías repetir tu consulta?';
   }
 

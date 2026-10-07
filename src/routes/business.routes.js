@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { agentBrainService } from '../services/agentBrain.service.js';
+import { sellerOrdersService } from '../services/sellerOrders.service.js';
 import {
   setupBusiness,
   getBusiness,
@@ -16,6 +17,26 @@ router.post('/setup', authenticate, requireAuth, setupBusiness);
 
 // Consultar los negocios privados del usuario autenticado
 router.get('/my', authenticate, requireAuth, listMyBusinesses);
+
+router.get('/:businessId/orders', authenticate, requireBusinessOwner, (req, res) => {
+  res.json({ success: true, orders: req.business.orders || [], paymentMethod: req.business.paymentMethod || '', notificationPhone: req.business.notificationPhone || '' });
+});
+
+router.post('/:businessId/seller-settings', authenticate, requireBusinessOwner, async (req, res, next) => {
+  try {
+    const { businessService } = await import('../services/business.service.js');
+    await businessService.setupBusiness({ id: req.business.id, name: req.business.name, description: req.business.description || 'Negocio', paymentMethod: req.body.paymentMethod, notificationPhone: req.body.notificationPhone }, req.user.id);
+    res.json({ success: true });
+  } catch (error) { next(error); }
+});
+
+router.post('/:businessId/orders/:orderId/confirm', authenticate, requireBusinessOwner, async (req, res, next) => {
+  try {
+    if (req.body.paymentVerified !== true) return res.status(400).json({ success: false, message: 'Verificá la acreditación del pago antes de confirmar.' });
+    const order = await sellerOrdersService.confirm(req.params.businessId, req.params.orderId);
+    res.json({ success: true, order });
+  } catch (error) { res.status(409).json({ success: false, message: error.message }); }
+});
 
 // Prueba privada: usa el negocio del propietario sin enviar mensajes por WhatsApp.
 router.post('/:businessId/test-message', authenticate, requireBusinessOwner, async (req, res, next) => {
