@@ -1,7 +1,9 @@
 import { Router } from 'express';
+import crypto from 'node:crypto';
 import { agentBrainService } from '../services/agentBrain.service.js';
 import { sellerOrdersService } from '../services/sellerOrders.service.js';
 import { businessService } from '../services/business.service.js';
+import { businessRepository } from '../repositories/business.repository.js';
 import {
   setupBusiness,
   getBusiness,
@@ -21,11 +23,12 @@ router.get('/my', authenticate, requireAuth, listMyBusinesses);
 
 router.put('/:businessId/catalog', authenticate, requireBusinessOwner, async (req, res, next) => {
   try {
-    const catalog = req.body.catalog;
+    const catalog = req.body.additions;
     if (!Array.isArray(catalog) || catalog.some(p => !p || typeof p.name !== 'string' || !p.name.trim() || !Number.isFinite(p.price) || p.price < 0 || !Number.isInteger(p.stock) || p.stock < 0)) {
       return res.status(400).json({ success: false, message: 'El catálogo necesita nombre, precio válido y stock entero no negativo.' });
     }
-    const business = await businessService.setupBusiness({ id: req.business.id, name: req.business.name, description: req.business.description || 'Negocio', catalog }, req.user.id);
+    const products = catalog.map(p => ({ id: p.id || crypto.randomUUID(), name: p.name.trim(), price: p.price, stock: p.stock, description: String(p.description || ''), category: String(p.category || 'General') }));
+    const business = await businessRepository.appendCatalog(req.business.id, products);
     res.json({ success: true, data: { business: businessService.sanitizeBusiness(business) } });
   } catch (error) { next(error); }
 });

@@ -26,8 +26,8 @@ export async function migrateJsonToMongo() {
       for (const [id, data] of Object.entries(businesses)) {
         await BusinessModel.findOneAndUpdate(
           { id: String(id).toLowerCase().trim() },
-          { ...data, id: String(id).toLowerCase().trim() },
-          { upsert: true, new: true }
+          { $setOnInsert: { ...data, id: String(id).toLowerCase().trim() } },
+          { upsert: true, returnDocument: 'after', timestamps: false }
         );
         businessCount++;
       }
@@ -41,8 +41,8 @@ export async function migrateJsonToMongo() {
       for (const [id, data] of Object.entries(users)) {
         await UserModel.findOneAndUpdate(
           { id },
-          data,
-          { upsert: true, new: true }
+          { $setOnInsert: data },
+          { upsert: true, returnDocument: 'after', timestamps: false }
         );
         userCount++;
       }
@@ -56,8 +56,8 @@ export async function migrateJsonToMongo() {
       for (const [token, data] of Object.entries(sessions)) {
         await SessionModel.findOneAndUpdate(
           { token },
-          { token, ...data },
-          { upsert: true, new: true }
+          { $setOnInsert: { ...data, token } },
+          { upsert: true, returnDocument: 'after', timestamps: false }
         );
         sessionCount++;
       }
@@ -72,8 +72,8 @@ export async function migrateJsonToMongo() {
         for (const apt of appointments) {
           await AppointmentModel.findOneAndUpdate(
             { id: apt.id },
-            apt,
-            { upsert: true, new: true }
+            { $setOnInsert: apt },
+            { upsert: true, returnDocument: 'after', timestamps: false }
           );
           appointmentCount++;
         }

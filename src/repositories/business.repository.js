@@ -173,6 +173,7 @@ class BusinessRepository {
         return savedDoc || record;
       } catch (err) {
         console.error('[BusinessRepository] Error al guardar negocio en MongoDB:', err.message);
+        throw new Error('MongoDB no pudo guardar el negocio. Los cambios no fueron confirmados.');
       }
     }
 
@@ -181,6 +182,30 @@ class BusinessRepository {
     all[key] = record;
     this._writeAllLocal(all);
     return record;
+  }
+
+  async appendCatalog(businessId, products) {
+    const key = String(businessId).toLowerCase().trim();
+    const ids = products.map(p => p.id);
+    if (new Set(ids).size !== ids.length) throw new Error('La importación contiene identificadores repetidos.');
+    if (isDbConnected()) {
+      const saved = await BusinessModel.findOneAndUpdate(
+        { id: key, 'catalog.id': { $nin: ids } },
+        { $push: { catalog: { $each: products } } },
+        { returnDocument: 'after' }
+      ).lean();
+      if (!saved) throw new Error('Algún producto ya existe o el negocio cambió. Recargá antes de importar.');
+      this._syncLocalRecord(saved);
+      return saved;
+    }
+    const all = this._readAllLocal();
+    const business = all[key];
+    if (!business) throw new Error('Negocio inexistente.');
+    if ((business.catalog || []).some(p => ids.includes(p.id))) throw new Error('Algún producto ya existe.');
+    const saved = { ...business, catalog: [...(business.catalog || []), ...products], updatedAt: new Date().toISOString() };
+    all[key] = saved;
+    this._writeAllLocal(all);
+    return saved;
   }
 }
 
