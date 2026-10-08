@@ -2261,14 +2261,14 @@
 <button onclick="switchStep('step-simulator')" class="px-3 py-2 text-xs rounded bg-emerald-700 text-white">Volver al chat</button>
 <div class="bg-white border border-slate-200 rounded-xl p-5 space-y-4">
 <h2 class="text-lg font-semibold">Cobros y pedidos</h2>
-<p class="text-sm text-slate-600">Tu vendedor consulta stock, toma el pedido y pasa tu alias o enlace. Cuando verificás el pago, confirmás la compra: se descuenta stock y se intenta enviar el aviso al cliente y a tu equipo por WhatsApp.</p>
+<p class="text-sm text-slate-600">Tu vendedor consulta stock, toma el pedido completo y pasa tu alias o enlace. El stock se descuenta únicamente cuando verificás el pago. Desde acá seguís cada pedido hasta la entrega.</p>
 <label class="block text-sm">Alias o enlace de Mercado Pago / transferencia<input id="seller-payment-method" class="block w-full p-3 border rounded-lg mt-2" placeholder="Tu alias o enlace de pago"></label>
 <label class="block text-sm">WhatsApp para avisarte pedidos y compras<input id="seller-notification-phone" class="block w-full p-3 border rounded-lg mt-2" placeholder="+54 9 …" type="tel"></label>
 <button onclick="saveSellerSettings()" class="px-4 py-2 bg-emerald-700 text-white rounded-lg text-sm">Guardar configuración</button>
 <span id="sim-display-payment-method" class="text-xs text-slate-600"></span>
-<p class="text-xs text-slate-600">Con alias, el pago se verifica manualmente. Los avisos requieren WhatsApp conectado con la API oficial. El chat de prueba no crea pedidos reales.</p>
+<p class="text-xs text-slate-600">Con alias, el pago se verifica manualmente. El stock no se reserva mientras el pedido está pendiente. Los avisos requieren WhatsApp conectado con la API oficial; el chat de prueba no crea pedidos reales.</p>
 </div>
-<div class="bg-white border border-slate-200 rounded-xl p-5"><div class="flex justify-between gap-3"><h3 class="font-semibold">Pedidos recibidos</h3><button onclick="loadSellerOrders()" class="text-sm text-emerald-700">Actualizar</button></div><div id="seller-orders-list" class="space-y-3 mt-4" aria-live="polite">Abrí esta sección para cargar tus pedidos.</div></div>
+<div class="bg-white border border-slate-200 rounded-xl p-5"><div class="flex justify-between gap-3"><div><h3 class="font-semibold">Pedidos recibidos</h3><p id="seller-orders-summary" class="text-xs text-slate-500 mt-1"></p></div><button onclick="loadSellerOrders()" class="text-sm text-emerald-700">Actualizar</button></div><div id="seller-orders-list" class="space-y-3 mt-4" aria-live="polite">Abrí esta sección para cargar tus pedidos.</div></div>
 </section>
 <section id="step-simulator" class="step-content space-y-6 hidden">
         <!-- Top Navigation Banner -->
@@ -5071,11 +5071,11 @@
     }
 
 
-    async function sellerRequest(path, body) {
+    async function sellerRequest(path, body, method = body ? 'POST' : 'GET') {
       if (!authToken || !currentCompany.slug) throw new Error('Iniciá sesión y guardá tu negocio primero.');
       const token = authToken;
       const slug = currentCompany.slug;
-      const response = await fetch('/api/business/' + encodeURIComponent(slug) + '/' + path, { method: body ? 'POST' : 'GET', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token }, ...(body ? { body: JSON.stringify(body) } : {}) });
+      const response = await fetch('/api/business/' + encodeURIComponent(slug) + '/' + path, { method, headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + token }, ...(body ? { body: JSON.stringify(body) } : {}) });
       const data = await response.json();
       if (authToken !== token || currentCompany.slug !== slug) throw new Error('La sesión cambió.');
       if (!response.ok || !data.success) throw new Error(data.message || 'No se pudo completar la acción.');
@@ -5083,20 +5083,37 @@
     }
     async function loadSellerOrders() {
       const list = document.getElementById('seller-orders-list');
+      const summary = document.getElementById('seller-orders-summary');
       list.textContent = 'Cargando pedidos…';
       try {
         const data = await sellerRequest('orders');
         document.getElementById('seller-payment-method').value = data.paymentMethod;
         document.getElementById('seller-notification-phone').value = data.notificationPhone;
         list.replaceChildren();
-        if (!data.orders.length) { list.textContent = 'Todavía no hay pedidos. Los pedidos de WhatsApp aparecerán acá.'; return; }
+        const pending = data.orders.filter(order => ['pending_information', 'pending_payment'].includes(order.status)).length;
+        const active = data.orders.filter(order => ['confirmed', 'preparing', 'ready_for_pickup', 'shipped'].includes(order.status)).length;
+        summary.textContent = pending + ' por resolver · ' + active + ' en preparación o entrega';
+        if (!data.orders.length) { summary.textContent = ''; list.textContent = 'Todavía no hay pedidos. Los pedidos reales de WhatsApp aparecerán acá.'; return; }
         for (const order of [...data.orders].reverse()) {
           const row = document.createElement('div'); row.className = 'border rounded-lg p-3 space-y-2 text-sm';
-          const text = document.createElement('p'); text.textContent = '#' + order.id + ' · ' + order.customerPhone + ' · ' + order.items.map(i => i.quantity + ' × ' + i.name).join(', ') + ' · $' + order.total + ' · ' + (order.status === 'confirmed' ? 'Compra confirmada' : 'Pendiente de pago'); row.append(text);
+          const statusLabel = { pending_information: 'Faltan datos', pending_payment: 'Pendiente de pago', confirmed: 'En preparación', preparing: 'En preparación', ready_for_pickup: 'Listo para retirar', shipped: 'Enviado', delivered: 'Entregado', cancelled: 'Cancelado' }[order.status] || order.status;
+          const text = document.createElement('p'); text.className = 'font-medium'; text.textContent = '#' + order.id.slice(0, 8) + ' · ' + (order.customerName || order.customerPhone) + ' · ' + statusLabel; row.append(text);
+          const products = document.createElement('p'); products.className = 'text-slate-700'; products.textContent = order.items.map(i => i.quantity + ' × ' + i.name).join(', ') + ' · Total $' + order.total; row.append(products);
+          const detail = document.createElement('p'); detail.className = 'text-xs text-slate-600';
+          detail.textContent = (order.fulfillmentMethod === 'delivery' ? 'Entrega: ' + (order.deliveryAddress || 'dirección pendiente') + (order.deliveryCost ? ' · envío $' + order.deliveryCost : '') : order.fulfillmentMethod === 'pickup' ? 'Retira en el negocio' : 'Falta definir retiro o entrega') + ' · WhatsApp: ' + order.customerPhone;
+          row.append(detail);
+          if (order.missingDetails?.length) { const missing = document.createElement('p'); missing.className = 'text-xs text-amber-700'; missing.textContent = 'Falta: ' + order.missingDetails.join(', ') + '.'; row.append(missing); }
           const deliveryText = document.createElement('p'); deliveryText.className = 'text-xs text-slate-600';
           const deliveryLabel = value => value === 'sent' ? 'Enviado a WhatsApp' : value === 'failed' ? 'No enviado: revisar conexión' : 'Sin envío confirmado';
-          deliveryText.textContent = 'Aviso al dueño: ' + deliveryLabel(order.notifications?.owner) + (order.status === 'confirmed' ? ' · Aviso al cliente: ' + deliveryLabel(order.notifications?.customer) : ''); row.append(deliveryText);
-          if (order.status !== 'confirmed') { const button = document.createElement('button'); button.className = 'px-3 py-2 rounded bg-emerald-700 text-white text-xs'; button.textContent = 'Verifiqué el pago: confirmar compra'; button.onclick = () => confirmSellerOrder(order.id, button); row.append(button); }
+          deliveryText.textContent = 'Aviso al dueño: ' + deliveryLabel(order.notifications?.owner) + (order.notifications?.customer ? ' · Aviso al cliente: ' + deliveryLabel(order.notifications.customer) : ''); row.append(deliveryText);
+          const actions = document.createElement('div'); actions.className = 'flex flex-wrap gap-2';
+          const addAction = (label, handler, secondary = false) => { const button = document.createElement('button'); button.className = 'px-3 py-2 rounded text-xs ' + (secondary ? 'border border-slate-300 text-slate-700' : 'bg-emerald-700 text-white'); button.textContent = label; button.onclick = () => handler(button); actions.append(button); };
+          if (order.status === 'pending_information') addAction('Completar datos', () => completeSellerOrder(order), true);
+          if (order.status === 'pending_payment') addAction('Verifiqué el pago', () => confirmSellerOrder(order.id));
+          if (['confirmed', 'preparing'].includes(order.status)) { addAction('Listo para retirar', () => setSellerOrderStatus(order.id, 'ready_for_pickup')); addAction('Despachado', () => setSellerOrderStatus(order.id, 'shipped'), true); }
+          if (['ready_for_pickup', 'shipped'].includes(order.status)) addAction('Marcar entregado', () => setSellerOrderStatus(order.id, 'delivered'));
+          if (['pending_information', 'pending_payment'].includes(order.status)) addAction('Cancelar', () => setSellerOrderStatus(order.id, 'cancelled'), true);
+          if (actions.childElementCount) row.append(actions);
           list.append(row);
         }
       } catch (error) { list.textContent = error.message; }
@@ -5111,14 +5128,27 @@
         showToast('Alias y avisos guardados.');
       } catch (error) { showToast(error.message); }
     }
-    async function confirmSellerOrder(id, button) {
+    async function confirmSellerOrder(id) {
       if (!window.confirm('¿Verificaste que el pago se acreditó? Se descontará stock y se intentarán enviar los avisos.')) return;
-      button.disabled = true;
       try {
         const data = await sellerRequest('orders/' + encodeURIComponent(id) + '/confirm', { paymentVerified: true });
-        showToast(data.order.notifications?.customer === 'sent' ? 'Compra confirmada y aviso enviado.' : 'Compra confirmada. Revisá la conexión de WhatsApp: el aviso al cliente no está confirmado.');
+        showToast(data.order.notifications?.customer === 'sent' ? 'Pago confirmado y aviso enviado.' : 'Pago confirmado. Revisá la conexión de WhatsApp: el aviso al cliente no está confirmado.');
         await loadSellerOrders();
-      } catch (error) { showToast(error.message); button.disabled = false; }
+      } catch (error) { showToast(error.message); }
+    }
+    async function setSellerOrderStatus(id, status) {
+      const labels = { ready_for_pickup: 'marcarlo listo para retirar', shipped: 'marcarlo como despachado', delivered: 'marcarlo como entregado', cancelled: 'cancelar este pedido' };
+      if (!window.confirm('¿Querés ' + (labels[status] || 'actualizar este pedido') + '?')) return;
+      try { await sellerRequest('orders/' + encodeURIComponent(id) + '/status', { status }); showToast('Estado actualizado.'); await loadSellerOrders(); } catch (error) { showToast(error.message); }
+    }
+    async function completeSellerOrder(order) {
+      const customerName = window.prompt('Nombre del cliente:', order.customerName || ''); if (customerName === null) return;
+      const methodInput = window.prompt('Escribí retiro o entrega:', order.fulfillmentMethod === 'delivery' ? 'entrega' : 'retiro'); if (methodInput === null) return;
+      const fulfillmentMethod = methodInput.trim().toLowerCase().startsWith('entreg') ? 'delivery' : methodInput.trim().toLowerCase().startsWith('retir') ? 'pickup' : '';
+      if (!fulfillmentMethod) { showToast('Indicá retiro o entrega.'); return; }
+      let deliveryAddress = order.deliveryAddress || ''; let deliveryCost = order.deliveryCost || 0;
+      if (fulfillmentMethod === 'delivery') { deliveryAddress = window.prompt('Dirección de entrega:', deliveryAddress); if (deliveryAddress === null) return; deliveryCost = Number(window.prompt('Costo de envío (0 si no corresponde):', String(deliveryCost))); }
+      try { await sellerRequest('orders/' + encodeURIComponent(order.id), { customerName, fulfillmentMethod, deliveryAddress, deliveryCost, customerNote: order.customerNote || '' }, 'PATCH'); showToast('Datos del pedido actualizados.'); await loadSellerOrders(); } catch (error) { showToast(error.message); }
     }
 
     function goBack() {

@@ -54,6 +54,22 @@ router.post('/:businessId/orders/:orderId/confirm', authenticate, requireBusines
   } catch (error) { res.status(409).json({ success: false, message: error.message }); }
 });
 
+// El dueño puede completar datos faltantes antes de pedir o verificar el pago.
+router.patch('/:businessId/orders/:orderId', authenticate, requireBusinessOwner, async (req, res) => {
+  try {
+    const order = await sellerOrdersService.updateDetails(req.params.businessId, req.params.orderId, req.body || {});
+    res.json({ success: true, order });
+  } catch (error) { res.status(409).json({ success: false, message: error.message }); }
+});
+
+// Operación posterior al pago: preparar, despachar, entregar o cancelar.
+router.post('/:businessId/orders/:orderId/status', authenticate, requireBusinessOwner, async (req, res) => {
+  try {
+    const order = await sellerOrdersService.updateStatus(req.params.businessId, req.params.orderId, req.body?.status);
+    res.json({ success: true, order });
+  } catch (error) { res.status(409).json({ success: false, message: error.message }); }
+});
+
 // Prueba privada: usa el negocio del propietario sin enviar mensajes por WhatsApp.
 router.post('/:businessId/test-message', authenticate, requireBusinessOwner, async (req, res, next) => {
   try {

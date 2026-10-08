@@ -109,7 +109,7 @@ MEDIO DE PAGO DEL NEGOCIO:
 ${business.paymentMethod || 'Sin configurar. Pedí al cliente que consulte al dueño; no inventes un alias.'}
 Un alias sirve para transferir: no es un enlace de pago ni verifica una transferencia.
 No confirmes pagos, descuentos de stock, avisos enviados ni números de pedido sin una acción real.
-Para tomar un pedido pedí productos y cantidades explícitos. Si están claros y el cliente quiere comprar, utilizá registrar_pedido cuando esté disponible. El pedido queda pendiente hasta que el dueño verifique el pago. Si falta información, pedila.
+Para tomar un pedido pedí productos y cantidades explícitos, el nombre del cliente y si retira o necesita entrega. Si necesita entrega, pedí dirección y costo de envío si el negocio lo informó. Si están claros y el cliente quiere comprar, utilizá registrar_pedido cuando esté disponible. El pedido queda pendiente hasta que el dueño verifique el pago; el stock no queda reservado antes de ese momento. Si falta información, pedila y no registres un pedido incompleto.
 ==============================
 
 DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
@@ -142,7 +142,7 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
         ],
         temperature: 0.3, // Temperatura baja para respuestas coherentes con stock y precios
         max_tokens: 350,
-        ...(options.takeOrders ? { tools: [{ type: 'function', function: { name: 'registrar_pedido', description: 'Registrar un pedido con productos y cantidades explícitos. No confirma el pago.', parameters: { type: 'object', properties: { items: { type: 'array', items: { type: 'object', properties: { productId: { type: 'string' }, quantity: { type: 'integer', minimum: 1 } }, required: ['productId', 'quantity'], additionalProperties: false } } }, required: ['items'], additionalProperties: false } } }] } : {}),
+        ...(options.takeOrders ? { tools: [{ type: 'function', function: { name: 'registrar_pedido', description: 'Registrar un pedido completo. No confirma el pago ni reserva stock.', parameters: { type: 'object', properties: { items: { type: 'array', items: { type: 'object', properties: { productId: { type: 'string' }, quantity: { type: 'integer', minimum: 1 } }, required: ['productId', 'quantity'], additionalProperties: false } }, customerName: { type: 'string' }, fulfillmentMethod: { type: 'string', enum: ['pickup', 'delivery'] }, deliveryAddress: { type: 'string' }, deliveryCost: { type: 'number', minimum: 0 }, customerNote: { type: 'string' } }, required: ['items', 'customerName', 'fulfillmentMethod'], additionalProperties: false } } }] } : {}),
       }),
     });
 
@@ -158,8 +158,9 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
       if (call) {
         try {
           const args = JSON.parse(call.function.arguments);
-          const order = await sellerOrdersService.create(business.id, customerId, args.items, options.sourceId);
-          return `Pedido #${order.id} registrado: ${order.items.map(i => `${i.quantity} × ${i.name}`).join(', ')}. Total: $${order.total}. ${business.paymentMethod ? `Podés pagar usando: ${business.paymentMethod}.` : 'Consultá al dueño por el medio de pago.'} Queda pendiente de verificar el pago. Te confirmaremos cuando se acredite.`;
+          const order = await sellerOrdersService.create(business.id, customerId, args.items, options.sourceId, args);
+          const delivery = order.fulfillmentMethod === 'delivery' ? ` Envío a: ${order.deliveryAddress}.` : ' Retiro en el negocio.';
+          return `Pedido #${order.id} registrado: ${order.items.map(i => `${i.quantity} × ${i.name}`).join(', ')}. Total: $${order.total}.${delivery} ${business.paymentMethod ? `Podés pagar usando: ${business.paymentMethod}.` : 'Consultá al dueño por el medio de pago.'} Queda pendiente de verificar el pago; el stock se confirma cuando se acredite.`;
         } catch (error) {
           return `No pude registrar el pedido: ${error.message}`;
         }
