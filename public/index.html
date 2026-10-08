@@ -56,8 +56,8 @@
         "url": "https://changared.com/",
         "offers": {
           "@type": "AggregateOffer",
-          "priceCurrency": "ARS",
-          "lowPrice": "39000",
+          "priceCurrency": "USD",
+          "lowPrice": "17",
           "offerCount": "3"
         },
         "description": "Empleados virtuales con IA para centralizar consultas, turnos y tareas comerciales y administrativas."
@@ -377,7 +377,7 @@
                 <span class="text-[10px] font-mono uppercase font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded">Comercio Activo</span>
                 <span class="text-[10px] text-emerald-600 font-semibold flex items-center space-x-1">
                   <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                  <span>14 días de prueba gratis</span>
+                  <span>Configuración pendiente</span>
                 </span>
               </div>
               <h3 class="text-base font-bold text-slate-900 mt-0.5 company-display-name">Mi Empresa</h3>
@@ -399,7 +399,7 @@
           </div>
         </div>
 
-        <!-- BANNER DE PRUEBA GRATUITA 14 DÍAS (CERO RIESGO / SIN TARJETA) -->
+        <!-- Banner de configuración inicial -->
         <div class="p-5 bg-gradient-to-r from-[#1B4332] to-[#2D6A4F] text-white rounded-xl shadow-md flex flex-col md:flex-row items-center justify-between gap-5 border border-emerald-700/60">
           <div class="space-y-1.5 text-center md:text-left">
             <div class="inline-flex items-center space-x-2">
@@ -409,15 +409,15 @@
               <span class="text-xs text-emerald-200" data-i18n="trialNoCard">· Sin tarjeta de crédito requerida</span>
             </div>
             <h2 class="text-lg font-serif font-bold text-white" data-i18n="trialTitle">
-              Probá a los 5 Empleados Virtuales Gratis por 14 Días
+              Configurá los empleados que necesita tu negocio
             </h2>
             <p class="text-xs text-emerald-100/90 max-w-2xl leading-relaxed" data-i18n="trialDesc">
-              Conectá tu propio WhatsApp y cargá los datos de tu comercio. Si en 14 días no aumentás tus ventas o no te ahorra horas de trabajo real, no pagás ni un solo peso.
+              Cargá los datos de tu comercio, elegí los empleados y conectá las integraciones oficiales cuando quieras atender clientes reales.
             </p>
           </div>
           <div class="flex items-center gap-3 shrink-0">
             <button onclick="openBusinessConfigModal()" class="px-4 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold text-xs rounded-lg shadow-sm transition whitespace-nowrap" data-i18n="btnConfigBusiness">
-              Configurar Mi Negocio Gratis →
+              Configurar mi negocio →
             </button>
             <button onclick="switchStep('step-billing')" class="px-3 py-2.5 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold rounded-lg transition whitespace-nowrap border border-white/20" data-i18n="btnViewPlans">
               Ver Planes
@@ -705,7 +705,7 @@
           <div class="space-y-1">
             <span class="text-emerald-300 font-mono text-[10px] font-bold uppercase tracking-wider">Contratación Flexible</span>
             <h4 class="text-base font-serif font-bold" style="font-family: Georgia, serif;">Arma tu esquema personalizado de empleados</h4>
-            <p class="text-xs text-emerald-100/80">Planes desde $39.000 ARS / mes por empleado o abono unificado con descuento. Sin contratos de permanencia.</p>
+            <p class="text-xs text-emerald-100/80">Desde USD 17 por empleado virtual al mes. Elegí sólo los empleados que necesitás.</p>
           </div>
           <button onclick="switchStep('step-billing')" class="px-4 py-2 bg-white hover:bg-emerald-50 text-[#1B4332] font-semibold text-xs rounded transition shrink-0">
             Ver Planes & Facturación →
@@ -1427,24 +1427,24 @@
           <!-- Datos de pago generados (Wise / Payoneer) -->
           <div id="transfer-instructions" class="hidden p-4 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-slate-800 space-y-1.5"></div>
 
-          <!-- DESTACADO: PRUEBA GRATUITA 14 DÍAS SIN TARJETA -->
+          <!-- Propuesta comercial simple y verificable -->
           <div class="p-6 bg-gradient-to-r from-[#1B4332] via-[#245741] to-[#2D6A4F] text-white rounded-xl shadow-md border border-emerald-700/60 flex flex-col md:flex-row items-center justify-between gap-6">
             <div class="space-y-1.5">
               <div class="inline-flex items-center space-x-2">
                 <span class="px-2.5 py-0.5 rounded bg-emerald-400 text-slate-950 font-mono text-[10px] font-bold uppercase tracking-wider">
-                  Acceso Total Gratis
+                  Precio por empleado
                 </span>
-                <span class="text-xs text-emerald-200">· Sin ingresar tarjeta de crédito</span>
+                <span class="text-xs text-emerald-200">· Configuración privada por negocio</span>
               </div>
               <h3 class="text-base sm:text-lg font-serif font-bold text-white">
-                Comenzá con 14 Días de Prueba Gratuita (Los 4 Empleados Incluidos)
+                Empleados virtuales desde USD 17 por mes
               </h3>
               <p class="text-xs text-emerald-100/90 max-w-xl leading-relaxed">
-                Conectá tu WhatsApp hoy mismo y poné a prueba al Vendedor, al Cobrador, a Facturación & Gastos y al Concierge Multilingüe con tus propios datos. Si no te genera más plata ni te ahorra tiempo real, no pagás nada.
+                Elegí qué tarea querés resolver primero: ventas, cobros, agenda o comprobantes. Las integraciones se activan con las credenciales oficiales de tu negocio.
               </p>
             </div>
-            <button onclick="activarPruebaGratis()" class="px-5 py-3 bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold text-xs rounded-lg shadow-sm transition whitespace-nowrap shrink-0">
-              Comenzar Prueba Gratis (14 Días) →
+            <button onclick="openBusinessConfigModal()" class="px-5 py-3 bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold text-xs rounded-lg shadow-sm transition whitespace-nowrap shrink-0">
+              Configurar mi negocio →
             </button>
           </div>
 
@@ -1455,35 +1455,35 @@
             <div class="border border-slate-200 rounded-xl p-5 flex flex-col justify-between hover:border-slate-300 transition-all bg-white">
               <div>
                 <div class="flex justify-between items-start mb-2">
-                  <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700">Plan Mostrador</h3>
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-600">1 Asistente</span>
+                  <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700">Un empleado</h3>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-600">1 empleado virtual</span>
                 </div>
                 <div class="mb-4">
-                  <span class="text-2xl font-black text-slate-900 plan-price-mostrador">$39.000</span>
+                  <span class="text-2xl font-black text-slate-900 plan-price-mostrador">USD 17</span>
                   <span class="text-xs text-slate-600 plan-period">ARS / mes</span>
                 </div>
-                <p class="text-xs text-slate-600 mb-4 leading-relaxed">Ideal para comercios que solo necesitan responder WhatsApp y consultar stock en horario extendido.</p>
+                <p class="text-xs text-slate-600 mb-4 leading-relaxed">Para empezar con la tarea que más tiempo te consume.</p>
                 <ul class="text-xs text-slate-700 space-y-2 mb-6">
                   <li class="flex items-center space-x-2">
                     <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>1 Empleado Virtual de WhatsApp</span>
+                    <span>Elegí 1 empleado virtual</span>
                   </li>
                   <li class="flex items-center space-x-2">
                     <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Catálogo sincronizado 24/7</span>
+                    <span>Configuración guiada de tu negocio</span>
                   </li>
                   <li class="flex items-center space-x-2">
                     <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Detección multi-idioma nativa</span>
+                    <span>Panel para controlar la operación</span>
                   </li>
                   <li class="flex items-center space-x-2">
                     <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Hasta 600 chats/mes</span>
+                    <span>Hasta 600 conversaciones/mes</span>
                   </li>
                 </ul>
               </div>
               <button onclick="triggerCheckout('plan-mostrador')" class="w-full py-2.5 px-3 text-xs font-semibold rounded-lg border border-slate-300 text-slate-800 hover:bg-slate-50 transition">
-                Contratar Mostrador
+                Elegir 1 empleado
               </button>
             </div>
 
@@ -1494,39 +1494,39 @@
               </span>
               <div>
                 <div class="flex justify-between items-start mb-2">
-                  <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-800">Plan Operativo</h3>
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">2 Asistentes</span>
+                  <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-800">Dos empleados</h3>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">2 empleados virtuales</span>
                 </div>
                 <div class="mb-4">
-                  <span class="text-2xl font-black text-slate-900 plan-price-combo">$89.000</span>
+                  <span class="text-2xl font-black text-slate-900 plan-price-combo">USD 34</span>
                   <span class="text-xs text-slate-600 plan-period">ARS / mes</span>
                 </div>
-                <p class="text-xs text-slate-600 mb-4 leading-relaxed">Atiende clientes en WhatsApp y rescata compras rechazadas con el Radar Operativo.</p>
+                <p class="text-xs text-slate-600 mb-4 leading-relaxed">Combiná, por ejemplo, ventas y cobranzas para no dejar tareas críticas sueltas.</p>
                 <ul class="text-xs text-slate-800 space-y-2 mb-6">
                   <li class="flex items-center space-x-2 font-medium">
                     <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Empleado Virtual WhatsApp</span>
+                    <span>Elegí 2 empleados virtuales</span>
                   </li>
                   <li class="flex items-center space-x-2 font-medium">
                     <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Radar Operativo 24/7 con IA</span>
+                    <span>Panel de pedidos y seguimiento</span>
                   </li>
                   <li class="flex items-center space-x-2">
                     <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Rescate de pagos caídos</span>
+                    <span>Integraciones por credenciales oficiales</span>
                   </li>
                   <li class="flex items-center space-x-2">
                     <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Alertas de stock crítico a proveedores</span>
+                    <span>Soporte de configuración</span>
                   </li>
                   <li class="flex items-center space-x-2">
                     <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Hasta 2.000 chats/mes</span>
+                    <span>Hasta 2.000 conversaciones/mes</span>
                   </li>
                 </ul>
               </div>
               <button onclick="triggerCheckout('combo-operativo')" class="w-full py-2.5 px-3 text-xs font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white shadow-subtle transition">
-                Plan Actual (Activo)
+                Elegir 2 empleados
               </button>
             </div>
 
@@ -1534,35 +1534,35 @@
             <div class="border border-slate-200 rounded-xl p-5 flex flex-col justify-between hover:border-slate-300 transition-all bg-white">
               <div>
                 <div class="flex justify-between items-start mb-2">
-                  <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700">Full Empresa</h3>
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-600">4 Asistentes</span>
+                  <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700">Cuatro empleados</h3>
+                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-600">4 empleados virtuales</span>
                 </div>
                 <div class="mb-4">
-                  <span class="text-2xl font-black text-slate-900 plan-price-empresa">$169.000</span>
+                  <span class="text-2xl font-black text-slate-900 plan-price-empresa">USD 68</span>
                   <span class="text-xs text-slate-600 plan-period">ARS / mes</span>
                 </div>
-                <p class="text-xs text-slate-600 mb-4 leading-relaxed">Para empresas con alto volumen y múltiples sucursales que buscan automatización integral.</p>
+                <p class="text-xs text-slate-600 mb-4 leading-relaxed">Para coordinar ventas, cobranzas, agenda y comprobantes desde un mismo panel.</p>
                 <ul class="text-xs text-slate-700 space-y-2 mb-6">
                   <li class="flex items-center space-x-2">
                     <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Suite Completa (4 Asistentes)</span>
+                    <span>Elegí hasta 4 empleados virtuales</span>
                   </li>
                   <li class="flex items-center space-x-2">
                     <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Conciliador financiero & comisiones</span>
+                    <span>Ventas, cobranzas, agenda y comprobantes</span>
                   </li>
                   <li class="flex items-center space-x-2">
                     <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Chats ilimitados (hasta 10.000)</span>
+                    <span>Hasta 10.000 conversaciones/mes</span>
                   </li>
                   <li class="flex items-center space-x-2">
                     <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Soporte prioritario 24/7</span>
+                    <span>Soporte de configuración</span>
                   </li>
                 </ul>
               </div>
               <button onclick="triggerCheckout('full-empresa')" class="w-full py-2.5 px-3 text-xs font-semibold rounded-lg border border-slate-300 text-slate-800 hover:bg-slate-50 transition">
-                Contratar Full Empresa
+                Elegir 4 empleados
               </button>
             </div>
           </div>
@@ -1980,7 +1980,7 @@
             <span class="text-lg">⚠️</span>
             <div>
               <span class="text-xs font-bold text-amber-950 block">TalleExacto (Moda) — Empleado No Contratado</span>
-              <p class="text-[11px] text-amber-800 leading-tight">Este módulo de recomendación de talles no está activo en tu cuenta. Podés contratarlo para reducir devoluciones con 14 días gratis.</p>
+              <p class="text-[11px] text-amber-800 leading-tight">Este módulo de recomendación de talles no está activo en tu cuenta. Configuralo con las medidas reales de tus productos antes de ofrecerlo.</p>
             </div>
           </div>
           <button onclick="openBusinessConfigModal('talleexacto')" class="px-3 py-1.5 bg-[#8A5A1E] hover:bg-[#6E4817] text-white text-xs font-bold rounded-lg transition whitespace-nowrap shadow-xs flex items-center space-x-1 shrink-0">
@@ -2287,7 +2287,7 @@
             <span class="text-lg">⚠️</span>
             <div>
               <span class="text-xs font-bold text-amber-950 block">1. Vendedor IA — Empleado No Contratado</span>
-              <p class="text-[11px] text-amber-800 leading-tight">Este empleado virtual no está activo actualmente para tu empresa. Podés contratarlo para atender WhatsApp 24/7 con 14 días gratis.</p>
+              <p class="text-[11px] text-amber-800 leading-tight">Este empleado virtual no está activo actualmente para tu empresa. Configurá Meta Cloud API antes de atender conversaciones reales.</p>
             </div>
           </div>
           <button onclick="openBusinessConfigModal('vendedor')" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-bold rounded-lg transition whitespace-nowrap shadow-xs flex items-center space-x-1 shrink-0">
@@ -2442,7 +2442,7 @@
             <span class="text-lg">⚠️</span>
             <div>
               <span class="text-xs font-bold text-amber-950 block">2. Gestor de Cobranzas — Empleado No Contratado</span>
-              <p class="text-[11px] text-amber-800 leading-tight">Este gestor de cobros automáticos no está activo en tu cuenta. Podés activarlo con 14 días gratis sin tarjeta.</p>
+              <p class="text-[11px] text-amber-800 leading-tight">Este gestor de cobros no está activo en tu cuenta. Configurá tus deudas e integraciones antes de enviar avisos reales.</p>
             </div>
           </div>
           <button onclick="openBusinessConfigModal('cobranzas')" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-bold rounded-lg transition whitespace-nowrap shadow-xs flex items-center space-x-1 shrink-0">
@@ -2499,7 +2499,7 @@
             <span class="text-lg">⚠️</span>
             <div>
               <span class="text-xs font-bold text-amber-950 block">4. Agendador de Citas — Empleado No Contratado</span>
-              <p class="text-[11px] text-amber-800 leading-tight">La coordinación de turnos con Google Calendar y seña no está activa en tu cuenta. Podés activarla con 14 días gratis.</p>
+              <p class="text-[11px] text-amber-800 leading-tight">La coordinación con Google Calendar no está activa. Podés registrar solicitudes mientras completás OAuth.</p>
             </div>
           </div>
           <button onclick="openBusinessConfigModal('citas')" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-bold rounded-lg transition whitespace-nowrap shadow-xs flex items-center space-x-1 shrink-0">
@@ -2595,7 +2595,7 @@
                 </div>
                 <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
                   <span class="text-slate-600">Disponibilidad de Agenda:</span>
-                  <span class="font-semibold text-emerald-800">Turnos en Tiempo Real</span>
+                  <span class="font-semibold text-amber-800">Disponibilidad a conectar</span>
                 </div>
                 <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
                   <span class="text-[10px] font-semibold text-slate-600 uppercase" data-i18n="citasDepositRule">Política de Seña Previa:</span>
@@ -2603,7 +2603,7 @@
                 </div>
                 <div class="p-2 bg-amber-50 border border-amber-200 rounded text-[10px] text-amber-900 flex items-center space-x-1.5">
                   <i data-lucide="shield-check" class="w-3.5 h-3.5 text-amber-600 shrink-0"></i>
-                  <span data-i18n="citasAntiNoShow">Si no abonan la seña en 15 min, el turno se libera</span>
+                  <span data-i18n="citasAntiNoShow">La seña se confirma manualmente hasta integrar Mercado Pago</span>
                 </div>
               </div>
             </div>
@@ -2616,23 +2616,23 @@
                 <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600"></i>
                 <span data-i18n="b3Title">Bloque 3 · Acción de Salida</span>
               </span>
-              <span class="text-[10px] font-mono text-emerald-700 font-bold">AGENDA CONFIRMADA</span>
+              <span class="text-[10px] font-mono text-amber-700 font-bold">INTEGRACIÓN PENDIENTE</span>
             </div>
             <h4 class="text-xs font-bold text-slate-900" data-i18n="citasB3Heading">¿Qué hace la IA tras agendar?</h4>
-            <p class="text-[11px] text-slate-600 leading-tight" data-i18n="citasB3Sub">Bloqueo en Google Calendar, cobro y recordatorio.</p>
+            <p class="text-[11px] text-slate-600 leading-tight" data-i18n="citasB3Sub">Solicitud, confirmación y próximos pasos de integración.</p>
 
             <div class="space-y-1.5 text-xs text-slate-800">
               <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
                 <strong class="text-slate-900">1. Solicitud de turno:</strong> Registrá los datos del cliente y confirmá la disponibilidad antes de considerar la cita agendada.
               </div>
               <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
-                <strong class="text-slate-900">2. Link de Seña MP:</strong> Envía el link de pago de Mercado Pago por WhatsApp para validar el turno.
+                <strong class="text-slate-900">2. Seña o pago:</strong> Indicá el medio de pago y verificá manualmente la acreditación. El link automático requiere integrar Mercado Pago.
               </div>
               <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
-                <strong class="text-slate-900">3. Recordatorio 24h & 2h:</strong> Envía alerta automática a WhatsApp con botones [Confirmar] o [Reprogramar].
+                <strong class="text-slate-900">3. Recordatorios:</strong> Se habilitan al conectar Google Calendar y WhatsApp Cloud API.
               </div>
               <div class="p-2 bg-emerald-50 border border-emerald-200 rounded leading-tight text-emerald-900">
-                <strong class="text-emerald-950">4. Auto-Reprogramación:</strong> Si el cliente avisa que no puede ir, libera el turno y ofrece las próximas fechas.
+                <strong class="text-emerald-950">4. Seguimiento:</strong> El negocio confirma, cancela o completa cada solicitud desde el panel.
               </div>
             </div>
           </div>
@@ -2640,7 +2640,7 @@
         </div>
 
         <div class="flex justify-center pt-1">
-          <a href="/agenda.html" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition shadow-subtle">
+          <a href="/agenda.html" onclick="openAgendaInNewTab(); return false;" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition shadow-subtle">
             <i data-lucide="calendar-days" class="w-4 h-4"></i>
             Abrir agenda de turnos
             <i data-lucide="external-link" class="w-3.5 h-3.5 text-emerald-200"></i>
@@ -3055,7 +3055,7 @@
         <div class="p-2.5 bg-emerald-50/60 border border-emerald-200 rounded-lg text-[11px] text-emerald-900 space-y-1">
           <div class="flex items-center space-x-1.5 font-bold">
             <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600"></i>
-            <span>14 Días de Prueba Gratis sin tarjeta</span>
+            <span>Configuración privada por negocio</span>
           </div>
           <p class="text-slate-600 text-[10px]">Tus datos quedan guardados y protegidos. Nadie más podrá modificar tus asistentes ni acceder a tus integraciones.</p>
         </div>
@@ -3112,7 +3112,7 @@
           </div>
           <div>
             <h3 class="text-sm font-bold text-slate-900">Configurar con los Datos de Tu Propio Negocio</h3>
-            <p class="text-[11px] text-slate-500">Personaliza la plataforma para tu comercio en 1 clic (14 días gratis sin tarjeta).</p>
+            <p class="text-[11px] text-slate-500">Personalizá la plataforma para tu comercio y elegí los empleados que necesitás.</p>
           </div>
         </div>
         <button onclick="closeBusinessConfigModal()" class="text-slate-500 hover:text-slate-700 p-1">
@@ -3206,7 +3206,7 @@
 
           <div class="flex items-center justify-between pt-1 text-[11px] text-slate-600">
             <span id="selected-employees-count" class="font-bold text-emerald-800">1 empleado seleccionado</span>
-            <span class="text-[10px] text-slate-500">14 días de prueba gratis por cada empleado elegido</span>
+            <span class="text-[10px] text-slate-500">El precio se calcula según los empleados que elijas.</span>
           </div>
         </div>
 
@@ -3273,7 +3273,7 @@
 
       <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-[11px] text-emerald-900 flex items-center space-x-2">
         <i data-lucide="shield-check" class="w-4 h-4 text-emerald-600 shrink-0"></i>
-        <span id="cfg-summary-selected-employees">Se configurarán y activarán únicamente los empleados que elegiste arriba (14 días gratis sin tarjeta).</span>
+        <span id="cfg-summary-selected-employees">Se configurarán únicamente los empleados que elegiste arriba.</span>
       </div>
 
       <div class="flex justify-end space-x-2 pt-2 border-t border-slate-100">
@@ -3523,7 +3523,7 @@
             </div>
           </div>
           <div class="text-center">
-            <span class="text-[10px] text-slate-500 font-mono">El código QR se actualiza en <strong id="wa-qr-timer">35s</strong></span>
+            <span class="text-[10px] text-slate-500 font-mono">Vista ilustrativa: conectá Meta Cloud API para operar de forma real.</span>
           </div>
         </div>
 
@@ -4036,7 +4036,7 @@
       <div class="px-3 py-1.5 bg-slate-100/70 border-t border-slate-200 flex flex-wrap gap-1 text-[11px]">
         <button onclick="sendFloatingQuery('Quiero vender por WhatsApp 24/7')" class="px-2 py-1 bg-white hover:bg-slate-50 border border-slate-200 rounded text-slate-700 transition">Vender por WhatsApp 24/7</button>
         <button onclick="sendFloatingQuery('Necesito agendar turnos y cobrar señas')" class="px-2 py-1 bg-white hover:bg-slate-50 border border-slate-200 rounded text-slate-700 transition">Turnos & Señas</button>
-        <button onclick="sendFloatingQuery('Precios y prueba gratis de 14 días')" class="px-2 py-1 bg-white hover:bg-slate-50 border border-slate-200 rounded text-slate-700 transition">Prueba gratis 14 días</button>
+        <button onclick="sendFloatingQuery('Precios por empleado')" class="px-2 py-1 bg-white hover:bg-slate-50 border border-slate-200 rounded text-slate-700 transition">Precios por empleado</button>
       </div>
 
       <!-- Input de Mensaje del Widget -->
@@ -4198,15 +4198,15 @@
         badgeNew: "Nuevo",
         empWhatForTitle: "¿Para qué sirve?",
 
-        // Hub Principal & Banner 14 Días Gratis
+        // Hub principal y configuración inicial
         hubBadge: "EMPLEADOS VIRTUALES CON IA",
         hubTitle: "Empleados virtuales con IA para tu negocio",
         hubSubtitle: "Configurá asistentes para centralizar consultas, organizar turnos y automatizar tareas comerciales y administrativas con el control de tu equipo.",
         trialGuarantee: "Prueba sin riesgo",
         trialNoCard: "· Sin tarjeta de crédito requerida",
-        trialTitle: "Probá a los 5 Empleados Virtuales Gratis por 14 Días",
-        trialDesc: "Conectá tu WhatsApp en 1 clic y mirá cómo atienden pedidos, recuperan pagos y agendan turnos desde hoy. Sin contratos, cancelás cuando quieras.",
-        btnConfigBusiness: "Comenzar Prueba Gratis (14 Días)",
+        trialTitle: "Configurá los empleados que necesita tu negocio",
+        trialDesc: "Elegí ventas, cobranzas, agenda o comprobantes. Las integraciones se activan con las credenciales oficiales de tu negocio.",
+        btnConfigBusiness: "Configurar mi negocio",
         btnViewPlans: "Ver Planes y Precios",
 
         // Tablero de Retorno (ROI)
@@ -4437,9 +4437,9 @@
         hubSubtitle: "Configure assistants to centralize inquiries, organize appointments, and automate commercial and administrative tasks while keeping your team in control.",
         trialGuarantee: "Risk-free trial",
         trialNoCard: "· No credit card required",
-        trialTitle: "Try All 5 Virtual Employees Free for 14 Days",
-        trialDesc: "Link your WhatsApp in 1 click and watch them take orders, recover debts, and book appointments today. No contracts, cancel anytime.",
-        btnConfigBusiness: "Start Free Trial (14 Days)",
+        trialTitle: "Configure the virtual employees your business needs",
+        trialDesc: "Choose sales, collections, scheduling, or receipts. Integrations activate with your business's official credentials.",
+        btnConfigBusiness: "Configure my business",
         btnViewPlans: "View Plans & Pricing",
 
         // ROI Board
@@ -4664,15 +4664,15 @@
         badgeNew: "Novo",
         empWhatForTitle: "Para que serve?",
 
-        // Hub Principal & Banner 14 Dias Grátis
+        // Hub principal e configuração inicial
         hubBadge: "FUNCIONÁRIOS VIRTUAIS COM IA",
         hubTitle: "Funcionários virtuais com IA para o seu negócio",
         hubSubtitle: "Configure assistentes para centralizar consultas, organizar horários e automatizar tarefas comerciais e administrativas com sua equipe no controle.",
         trialGuarantee: "Teste sem risco",
         trialNoCard: "· Sem cartão de crédito",
-        trialTitle: "Experimente os 5 Funcionários Virtuais Grátis por 14 Dias",
-        trialDesc: "Conecte seu WhatsApp em 1 clique e veja-os receber pedidos, cobrar dívidas e agendar horários hoje mesmo. Sem contratos, cancele quando quiser.",
-        btnConfigBusiness: "Começar Teste Grátis (14 Dias)",
+        trialTitle: "Configure os funcionários virtuais que sua empresa precisa",
+        trialDesc: "Escolha vendas, cobranças, agenda ou comprovantes. As integrações são ativadas com as credenciais oficiais da sua empresa.",
+        btnConfigBusiness: "Configurar minha empresa",
         btnViewPlans: "Ver Planos e Preços",
 
         // Tabuleiro de Retorno (ROI)
@@ -5151,6 +5151,12 @@
       try { await sellerRequest('orders/' + encodeURIComponent(order.id), { customerName, fulfillmentMethod, deliveryAddress, deliveryCost, customerNote: order.customerNote || '' }, 'PATCH'); showToast('Datos del pedido actualizados.'); await loadSellerOrders(); } catch (error) { showToast(error.message); }
     }
 
+    function openAgendaInNewTab() {
+      const businessId = currentCompany?.slug || currentCompany?.id || '';
+      const suffix = businessId ? '?business=' + encodeURIComponent(businessId) : '';
+      window.open('/agenda.html' + suffix, '_blank', 'noopener');
+    }
+
     function goBack() {
       if (navigationHistory.length > 0) {
         const previousStep = navigationHistory.pop();
@@ -5429,7 +5435,7 @@
         } else if (reason === 'personalizar' || reason === 'config' || reason === 'save') {
           reasonEl.innerHTML = `<strong>Personalizar tu Negocio:</strong> Para personalizar el nombre, empleados y configuración comercial de tu negocio, inicia sesión o crea tu cuenta gratuita.`;
         } else if (reason === 'contratar') {
-          reasonEl.innerHTML = `<strong>Contratar Empleado Virtual:</strong> Activa 14 días de prueba sin tarjeta creando tu cuenta comercial en 30 segundos.`;
+          reasonEl.innerHTML = `<strong>Configurar Empleado Virtual:</strong> Creá tu cuenta comercial para cargar los datos de tu negocio y activar integraciones oficiales.`;
         } else {
           reasonEl.innerHTML = `<strong>Protección de Datos & Canales Oficiales:</strong> Tu cuenta privada garantiza que nadie más pueda modificar tus asistentes ni ver tus facturas.`;
         }
@@ -5475,7 +5481,7 @@
         localStorage.setItem('changared_auth_user', JSON.stringify(currentUser));
 
         renderSessionUI();
-        showToast(`✓ ¡Bienvenido ${currentUser.name}! Cuenta creada con 14 días gratis.`);
+        showToast(`✓ ¡Bienvenido ${currentUser.name}! Tu cuenta está lista para configurar.`);
 
         if (data.verificationCode) {
           fetch('/api/auth/verify-email', {
@@ -5968,9 +5974,9 @@
         if (count === 0) {
           summaryEl.innerText = "Debes seleccionar al menos 1 empleado para activar en tu empresa.";
         } else if (count === 5) {
-          summaryEl.innerText = "Se configurarán y activarán los 5 empleados de Changared IA (14 días gratis sin tarjeta).";
+          summaryEl.innerText = "Se configurarán los empleados de Changared que selecciones.";
         } else {
-          summaryEl.innerText = `Se configurarán y activarán únicamente los ${count} empleados seleccionados (14 días gratis sin tarjeta).`;
+          summaryEl.innerText = `Se configurarán únicamente los ${count} empleados seleccionados.`;
         }
       }
     }
@@ -6464,11 +6470,11 @@
       if (!reply) {
         const q = text.toLowerCase();
         if (q.includes('turno') || q.includes('cita') || q.includes('agenda') || q.includes('calendar') || q.includes('barber') || q.includes('peluquer') || q.includes('clinic')) {
-          reply = `Para negocios con citas o agenda, el empleado ideal es el <strong>Agendador de Citas (Google Calendar)</strong>:<br><br>• Sincroniza tus horarios reales con Google Calendar.<br>• Ofrece turnos libres por WhatsApp.<br>• Cobra una seña automática por Mercado Pago para asegurar la asistencia.<br>• Envía recordatorios previos para evitar cancelaciones.<br><br>Podés probarlo con <strong>14 días gratis</strong> desde el panel.`;
+          reply = `Para negocios con citas o agenda, el empleado ideal es el <strong>Agendador de Citas</strong>:<br><br>• Registra la solicitud con servicio, fecha y horario.<br>• Deja el turno pendiente hasta que el negocio lo confirme.<br>• La disponibilidad real, los eventos y los recordatorios se habilitan al conectar Google Calendar y WhatsApp con tus credenciales oficiales.<br><br>Podés configurarlo desde tu panel.`;
         } else if (q.includes('precio') || q.includes('cuanto') || q.includes('costo') || q.includes('plan') || q.includes('gratis') || q.includes('tarjeta')) {
-          reply = `En Changared contratas <strong>por empleado</strong>:<br><br>• Tenés <strong>14 días de prueba gratis sin tarjeta de crédito</strong>.<br>• Podés vincular tu número de WhatsApp con QR en 30 segundos.<br>• Planes desde $19 USD/mes por empleado con soporte continuo.<br><br>¿Te gustaría activar tu prueba gratuita hoy mismo?`;
+          reply = `En Changared contratás <strong>por empleado</strong>:<br><br>• El precio de referencia es <strong>USD 17 por empleado virtual al mes</strong>.<br>• Elegís uno, dos o hasta cuatro empleados según tu operación.<br>• WhatsApp y Calendar se activan únicamente con las credenciales oficiales de tu negocio.<br><br>¿Qué tarea te gustaría resolver primero?`;
         } else if (q.includes('whatsapp') || q.includes('vender') || q.includes('venta') || q.includes('stock') || q.includes('catalogo')) {
-          reply = `El <strong>Vendedor IA para WhatsApp 24/7</strong> atiende a tus clientes día y noche:<br><br>• Consulta tu catálogo y stock en tiempo real (nunca vende lo agotado).<br>• Pasa precios oficiales, alias o links de Mercado Pago.<br>• Toma pedidos y responde dudas frecuentes en segundos.<br>• Vinculación oficial por QR en 30 segundos.<br><br>Incluye 14 días gratis. ¿Qué productos o servicios comercializas?`;
+          reply = `El <strong>Vendedor IA para WhatsApp</strong> ordena la atención comercial:<br><br>• Consulta el catálogo y stock que cargaste.<br>• Comparte precios y el medio de pago configurado, sin confirmar transferencias.<br>• Registra pedidos para que vos verifiques el pago y avances la entrega.<br>• Para atender clientes reales necesitás conectar WhatsApp Cloud API.<br><br>¿Qué productos o servicios comercializás?`;
         } else {
           reply = `¡Hola! Soy el Asesor Comercial de Changared. Te ayudamos a potenciar tu negocio con empleados virtuales:<br><br>1. <strong>Vendedor por WhatsApp</strong> (atiende stock, precios y pedidos).<br>2. <strong>Agendador de citas</strong> (muestra disponibilidad y toma reservas).<br>3. <strong>Gestor de cobranzas</strong> (recordatorios de pago).<br>4. <strong>Asesor contable</strong> (comprobantes ordenados para tu contador).<br><br>¿Qué tarea te gustaría ordenar primero?`;
         }
@@ -7298,7 +7304,7 @@
     }
 
     function activarPruebaGratis() {
-      showToast("¡Prueba Gratuita de 14 Días Activada! 0 pesos hoy, sin tarjeta.");
+      showToast("Abrimos la configuración de tu negocio. Elegí los empleados que querés activar.");
       openBusinessConfigModal();
     }
 
@@ -7946,9 +7952,9 @@
     let currentMpCountry = 'AR';
     let billingCatalog = null; // respuesta de GET /api/billing/plans
     const PLAN_FALLBACK = {
-      'plan-mostrador': { ars: 39000, usd: 29 },
-      'combo-operativo': { ars: 89000, usd: 69 },
-      'full-empresa': { ars: 169000, usd: 129 },
+      'plan-mostrador': { ars: 25000, usd: 17 },
+      'combo-operativo': { ars: 50000, usd: 34 },
+      'full-empresa': { ars: 100000, usd: 68 },
     };
     const MP_CURRENCY = { AR: 'ARS', BR: 'BRL', MX: 'MXN', CL: 'CLP', CO: 'COP', PE: 'PEN', UY: 'UYU' };
     const API_BASE = location.protocol.startsWith('http') ? location.origin : 'http://localhost:3000';

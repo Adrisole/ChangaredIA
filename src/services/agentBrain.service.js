@@ -272,7 +272,7 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
 
   /**
    * Genera la respuesta del Asesor Comercial IA de Changared.
-   * Asesora y vende los empleados virtuales de la plataforma, planes y prueba gratis de 14 días.
+   * Asesora y vende los empleados virtuales de la plataforma sin prometer integraciones no configuradas.
    * @param {string} userMessage - Consulta del visitante o comerciante
    * @param {Array} history - Historial opcional de mensajes previos [{role, content}]
    * @returns {Promise<Object>}
@@ -283,21 +283,21 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
 Eres el Asesor Comercial Oficial de "Changared" (plataforma SaaS de Empleados Virtuales con IA para comercios, profesionales y pymes).
 
 TU MISIÓN:
-Asesorar con calidez, profesionalismo y visión comercial a dueños de negocios, comerciantes y profesionales. Tu objetivo es entender qué tipo de comercio o servicio tienen, recomendarles el empleado virtual ideal para automatizar su negocio y guiarlos para que comiencen su prueba gratuita de 14 días (sin tarjeta requerida).
+Asesorar con calidez, profesionalismo y visión comercial a dueños de negocios, comerciantes y profesionales. Tu objetivo es entender qué tipo de comercio o servicio tienen, recomendarles el empleado virtual ideal y guiarlos para configurar una demostración privada.
 
 CATÁLOGO DE EMPLEADOS VIRTUALES DE CHANGARED:
-1. Vendedor IA (WhatsApp 24/7): Atiende clientes día y noche por WhatsApp, consulta el catálogo y stock en tiempo real, responde preguntas frecuentes, toma pedidos o coordina pagos automáticos por alias/Mercado Pago, e incluye atención multilingüe nativa (español, inglés y portugués) para atender turistas sin costo extra.
-2. Gestor de Cobranzas Automático: Detecta facturas impagas o vencidas, envía recordatorios amistosos por WhatsApp con link de pago directo y concilia cobros.
+1. Vendedor IA (WhatsApp): Atiende consultas, consulta catálogo y stock, toma pedidos y deja el pago para verificación manual del dueño. Puede responder en español, inglés o portugués.
+2. Gestor de Cobranzas: Ordena deudas y prepara recordatorios. El envío real requiere conectar WhatsApp Cloud API y el cobro requiere su integración de pago.
 3. Asesor Contable: organiza comprobantes de compras, alerta datos repetidos y permite exportar un resumen en Excel o CSV para que lo revise el contador.
 4. Agendador de Citas: toma solicitudes de turno con servicio, fecha y horario. La sincronización con Google Calendar y los recordatorios se habilitan sólo después de completar su integración.
-5. TalleExacto (Módulo Ropa & Calzado): Asesora sobre medidas y talles en tiendas de moda reduciendo devoluciones hasta un 85%.
+5. TalleExacto (Módulo Ropa & Calzado): orienta sobre medidas y talles en tiendas de moda.
 
 REGLAS COMERCIALES Y DE VENTA:
 - Se contrata por empleado: el cliente no paga por cosas que no usa, elige solo el o los empleados que necesita.
-- Prueba gratuita: Todos los empleados incluyen 14 días de prueba gratis sin tarjeta de crédito.
+- Precio de referencia: USD 17 por empleado virtual al mes. Los paquetes escalan por cantidad de empleados.
 - Integraciones: WhatsApp y Google Calendar requieren configurar sus credenciales oficiales antes de atender clientes reales.
-- Tono: Consultivo, resolutivo, claro y enfocado en el crecimiento y ahorro de tiempo del comerciante.
-- Respuestas concisas, dinámicas y profesionales. Invita al usuario a activar su prueba gratis desde el panel.
+- No prometas códigos QR, pagos automáticos, recordatorios, resultados porcentuales, plazos de activación ni pruebas gratuitas si no están configurados.
+- Tono: Consultivo, resolutivo, claro y enfocado en el crecimiento y ahorro de tiempo del comerciante. Invita a configurar el negocio desde el panel.
 `.trim();
 
     if (config.openai.apiKey) {
@@ -356,16 +356,16 @@ REGLAS COMERCIALES Y DE VENTA:
       return `Para servicios con citas como el tuyo, el Agendador toma solicitudes con servicio, fecha y horario para que no se pierdan consultas.\n\n• Ordena los datos del cliente y su preferencia.\n• Deja la cita pendiente hasta que el negocio la confirme.\n• La disponibilidad en Google Calendar, señas y recordatorios se habilitan al completar sus integraciones oficiales.\n\n¿Querés que te ayude a definir el flujo de confirmación para tu negocio?`;
     }
     if (msg.includes('whatsapp') || msg.includes('vender') || msg.includes('venta') || msg.includes('precio') || msg.includes('catalogo') || msg.includes('stock') || msg.includes('tienda') || msg.includes('local')) {
-      return `¡El Vendedor IA para WhatsApp 24/7 es exactamente lo que necesitás!\n\n• Atiende y responde a tus clientes día y noche en segundos.\n• Lee tu catálogo y respeta el stock disponible en tiempo real (nunca vende lo agotado).\n• Pasa precios oficiales, medios de pago (Alias o Mercado Pago) y toma pedidos.\n• Se vincula a tu número escaneando un código QR oficial en 30 segundos.\n\nTenés 14 días gratis para probarlo con tus clientes reales. ¿Qué productos vendés principalmente?`;
+      return `El Vendedor IA puede servirte para ordenar las consultas que llegan por WhatsApp:\n\n• Consulta tu catálogo y el stock que cargaste.\n• Comparte precios y tu medio de pago configurado, sin confirmar transferencias.\n• Registra pedidos completos para que vos verifiques el pago y avances la entrega.\n• Responde en español, inglés o portugués.\n\nPara atender conversaciones reales necesitás conectar WhatsApp Cloud API. ¿Qué productos vendés principalmente?`;
     }
     if (msg.includes('cobranza') || msg.includes('deuda') || msg.includes('moros') || msg.includes('pagar') || msg.includes('vencid')) {
-      return `Para evitar perseguir pagos, te recomendamos el Gestor de Cobranzas Automático:\n\n• Monitorea facturas vencidas o por vencer.\n• Envía recordatorios de pago amables pero firmes por WhatsApp con link directo de pago.\n• Reduce la mora hasta un 65% sin desgastar la relación con tus clientes.\n\n¿Tenés facturas mensuales recurrentes o cuentas corrientes comerciales?`;
+      return `Para ordenar cobros pendientes, el Gestor de Cobranzas reúne las deudas y te ayuda a preparar recordatorios claros. El envío por WhatsApp y los links de pago se habilitan cuando conectás las integraciones oficiales.\n\n¿Tenés facturas mensuales recurrentes o cuentas corrientes comerciales?`;
     }
     if (msg.includes('factura') || msg.includes('contab') || msg.includes('gasto') || msg.includes('afip') || msg.includes('arca') || msg.includes('drive') || msg.includes('sheet') || msg.includes('excel')) {
       return `Para ordenar tu administración diaria, el Asesor Contable te ayuda a reunir comprobantes y entregarlos prolijos:\n\n• Importá una planilla o registrá un comprobante manualmente.\n• Revisá CUIT, proveedor, fecha, IVA, totales y posibles duplicados.\n• Exportá un Excel o CSV para que lo revise tu contador.\n\nNo reemplaza a un profesional ni presenta declaraciones ante ARCA.`;
     }
     if (msg.includes('precio') || msg.includes('cuanto') || msg.includes('costo') || msg.includes('plan') || msg.includes('gratis') || msg.includes('tarjeta')) {
-      return `En Changared contratas por empleado, para que no pagues por funciones que no usas:\n\n• Tenés 14 días de prueba gratis sin tarjeta de crédito para probar el empleado que elijas con tu negocio real.\n• Podés vincular tu WhatsApp por QR o conectar tu Google Calendar en 30 segundos.\n• Luego de la prueba, los planes inician desde $19 USD/mes por empleado con soporte y actualizaciones continuas.\n\n¿Querés que activemos tu prueba gratis para tu comercio hoy mismo?`;
+      return `En Changared contratás por empleado, para no pagar funciones que no usás:\n\n• El precio de referencia es USD 17 por empleado virtual al mes.\n• Podés elegir uno, dos o hasta cuatro empleados según tu operación.\n• WhatsApp y Google Calendar se conectan con credenciales oficiales de tu negocio antes de operar con clientes reales.\n\n¿Querés configurar una demostración privada para tu comercio?`;
     }
     return `¡Hola! Soy el Asesor Comercial de Changared. Te ayudo a potenciar tu negocio con empleados virtuales:\n\n1. Vendedor IA WhatsApp 24/7 (atiende consultas, stock y pedidos).\n2. Agendador de Citas (turnos y disponibilidad).\n3. Gestor de Cobranzas (recordatorios de pago).\n4. Asesor Contable (comprobantes ordenados para tu contador).\n\n¿Qué tarea te gustaría automatizar primero?`;
   }

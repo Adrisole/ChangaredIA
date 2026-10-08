@@ -2,6 +2,12 @@ import { appointmentRepository } from '../repositories/appointment.repository.js
 import { businessService } from '../services/business.service.js';
 import crypto from 'crypto';
 
+function isValidIsoDate(value) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(value))) return false;
+  const parsed = new Date(`${value}T12:00:00.000Z`);
+  return !Number.isNaN(parsed.getTime()) && parsed.toISOString().slice(0, 10) === value;
+}
+
 export class AppointmentController {
   getByBusiness(req, res) {
     try {
@@ -25,12 +31,21 @@ export class AppointmentController {
       const { businessId } = req.params;
       const { clientName, clientPhone, clientEmail, service, professional, date, time, depositAmount } = req.body;
 
-      if (!clientName || !clientPhone || !service) {
+      if (typeof clientName !== 'string' || !clientName.trim() || clientName.trim().length > 100 ||
+          typeof clientPhone !== 'string' || !clientPhone.trim() || clientPhone.trim().length > 30 ||
+          typeof service !== 'string' || !service.trim() || service.trim().length > 120) {
         return res.status(400).json({
           success: false,
           error: 'VALIDATION_ERROR',
           message: 'clientName, clientPhone y service son requeridos.',
         });
+      }
+
+      if (date && !isValidIsoDate(String(date))) {
+        return res.status(400).json({ success: false, error: 'VALIDATION_ERROR', message: 'La fecha del turno no es válida.' });
+      }
+      if (time && !/^\d{2}:\d{2}(?:\s*hs)?$/.test(String(time))) {
+        return res.status(400).json({ success: false, error: 'VALIDATION_ERROR', message: 'El horario del turno no es válido.' });
       }
 
       const business = await businessService.getBusinessById(businessId);
@@ -48,9 +63,9 @@ export class AppointmentController {
         businessId: String(businessId).toLowerCase().trim(),
         clientName: clientName.trim(),
         clientPhone: clientPhone.trim(),
-        clientEmail: clientEmail ? clientEmail.trim() : '',
+        clientEmail: typeof clientEmail === 'string' ? clientEmail.trim().slice(0, 150) : '',
         service: service.trim(),
-        professional: professional || 'General',
+        professional: typeof professional === 'string' && professional.trim() ? professional.trim().slice(0, 120) : 'General',
         date: date || new Date().toISOString().split('T')[0],
         time: time || '12:00 hs',
         status: 'PENDIENTE_CONFIRMACION',
