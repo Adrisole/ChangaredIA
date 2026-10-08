@@ -183,7 +183,7 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
     // 2. Detección de Cobranzas / Deuda / Enlace de pago (Mercado Pago)
     const isDebtQuery = /\b(deuda|cobranza|saldo|pagar|pago|transferencia|alias|link de pago|mora|cuota)\b/i.test(msg);
     if (isDebtQuery) {
-      const pay = business.paymentMethod || 'pagos.miempresa.mp';
+      const pay = business.paymentMethod || 'No configurado';
       return `¡Hola! Te contactamos desde administración de ${business.name}. Podés regularizar o abonar mediante Mercado Pago o transferencia al alias oficial: **${pay}**. ¿Te gustaría que te enviemos el link de pago directo en este momento?`;
     }
 
@@ -275,26 +275,15 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
    */
   async generateChangaredSalesReply(userMessage, history = []) {
     const startTime = Date.now();
-    const systemPrompt = `
-Eres el Asesor Comercial Oficial de "Changared" (plataforma SaaS de Empleados Virtuales con IA para comercios, profesionales y pymes).
-
-TU MISIÓN:
-Asesorar con calidez, profesionalismo y visión comercial a dueños de negocios, comerciantes y profesionales. Tu objetivo es entender qué tipo de comercio o servicio tienen, recomendarles el empleado virtual ideal para automatizar su negocio y guiarlos para que comiencen su prueba gratuita de 14 días (sin tarjeta requerida).
-
-CATÁLOGO DE EMPLEADOS VIRTUALES DE CHANGARED:
-1. Vendedor IA (WhatsApp 24/7): Atiende clientes día y noche por WhatsApp, consulta el catálogo y stock en tiempo real, responde preguntas frecuentes, toma pedidos o coordina pagos automáticos por alias/Mercado Pago, e incluye atención multilingüe nativa (español, inglés y portugués) para atender turistas sin costo extra.
-2. Gestor de Cobranzas Automático: Detecta facturas impagas o vencidas, envía recordatorios amistosos por WhatsApp con link de pago directo y concilia cobros.
-3. Facturación & Asistente Contable: Extrae facturas de compra y comprobantes desde correos de Gmail o carpetas de Google Drive mediante OCR inteligente y los registra organizados en Google Sheets para el contador y AFIP/ARCA.
-4. Agendador de Citas (Turnos con Google Calendar): Sincroniza la agenda de turnos en tiempo real, muestra disponibilidad a los clientes, cobra una seña obligatoria por Mercado Pago para garantizar la asistencia y envía recordatorios automáticos por WhatsApp.
-5. TalleExacto (Módulo Ropa & Calzado): Asesora sobre medidas y talles en tiendas de moda reduciendo devoluciones hasta un 85%.
-
-REGLAS COMERCIALES Y DE VENTA:
-- Se contrata por empleado: el cliente no paga por cosas que no usa, elige solo el o los empleados que necesita.
-- Prueba gratuita: Todos los empleados incluyen 14 días de prueba gratis sin tarjeta de crédito.
-- Integración en 30 segundos: WhatsApp se vincula escaneando un código QR oficial; Google Calendar se conecta con 1 clic.
-- Tono: Consultivo, resolutivo, claro y enfocado en el crecimiento y ahorro de tiempo del comerciante.
-- Respuestas concisas, dinámicas y profesionales. Invita al usuario a activar su prueba gratis desde el panel.
-`.trim();
+    const systemPrompt = `Sos el asesor de Changared. Respondé breve y claramente.
+El panel permite configurar empresa, catálogo y reglas y probar respuestas del vendedor.
+Las respuestas automáticas por WhatsApp requieren configurar Meta Cloud API y comprobar envío y recepción.
+WhatsApp Web abre conversaciones manuales; no activa la IA. No hay vinculación por QR implementada.
+Los pedidos tienen pago manual mediante el alias configurado. No hay verificación automática de Mercado Pago.
+La publicación del chat web, Calendar, Gmail, Drive, Sheets, radar y contratación online están pendientes.
+No inventes precios, descuentos, contadores, porcentajes de mejora, tiempos de instalación ni resultados.
+La prueba de 14 días es la duración comercial prevista; no afirmes que activaste una suscripción o que el servicio está conectado.
+Orientá al usuario a configurar y probar el vendedor en su panel.`.trim();
 
     if (config.openai.apiKey) {
       try {
@@ -347,24 +336,9 @@ REGLAS COMERCIALES Y DE VENTA:
   }
 
   _generateChangaredSalesMock(userMessage) {
-    const msg = (userMessage || '').toLowerCase();
-    if (msg.includes('turno') || msg.includes('cita') || msg.includes('agenda') || msg.includes('calendar') || msg.includes('peluquer') || msg.includes('barber') || msg.includes('clínic') || msg.includes('clinic') || msg.includes('consultorio')) {
-      return `Para servicios con citas como el tuyo, el empleado ideal es el Agendador de Citas (Turnos en Google Calendar):\n\n• Sincroniza tus horarios reales con Google Calendar.\n• Ofrece turnos libres al cliente por WhatsApp.\n• Cobra una seña automática por Mercado Pago para evitar cancelaciones.\n• Envía recordatorios previos para asegurar asistencia.\n\nPodés activarlo con 14 días de prueba gratis desde el panel. ¿Te gustaría que te ayude a configurarlo?`;
-    }
-    if (msg.includes('whatsapp') || msg.includes('vender') || msg.includes('venta') || msg.includes('precio') || msg.includes('catalogo') || msg.includes('stock') || msg.includes('tienda') || msg.includes('local')) {
-      return `¡El Vendedor IA para WhatsApp 24/7 es exactamente lo que necesitás!\n\n• Atiende y responde a tus clientes día y noche en segundos.\n• Lee tu catálogo y respeta el stock disponible en tiempo real (nunca vende lo agotado).\n• Pasa precios oficiales, medios de pago (Alias o Mercado Pago) y toma pedidos.\n• Se vincula a tu número escaneando un código QR oficial en 30 segundos.\n\nTenés 14 días gratis para probarlo con tus clientes reales. ¿Qué productos vendés principalmente?`;
-    }
-    if (msg.includes('cobranza') || msg.includes('deuda') || msg.includes('moros') || msg.includes('pagar') || msg.includes('vencid')) {
-      return `Para evitar perseguir pagos, te recomendamos el Gestor de Cobranzas Automático:\n\n• Monitorea facturas vencidas o por vencer.\n• Envía recordatorios de pago amables pero firmes por WhatsApp con link directo de pago.\n• Reduce la mora hasta un 65% sin desgastar la relación con tus clientes.\n\n¿Tenés facturas mensuales recurrentes o cuentas corrientes comerciales?`;
-    }
-    if (msg.includes('factura') || msg.includes('contab') || msg.includes('gasto') || msg.includes('afip') || msg.includes('arca') || msg.includes('drive') || msg.includes('sheet') || msg.includes('excel')) {
-      return `Para tu administración diaria, el Asistente Contable y Facturación te ahorra horas de trabajo:\n\n• Lee facturas y tickets desde tu Gmail o Google Drive mediante OCR inteligente.\n• Extrae CUIT, proveedor, fecha, IVA y montos netos.\n• Registra todo automáticamente en un Google Sheet listo para tu contador.\n\nPodés probarlo gratis por 14 días activándolo desde el panel.`;
-    }
-    if (msg.includes('precio') || msg.includes('cuanto') || msg.includes('costo') || msg.includes('plan') || msg.includes('gratis') || msg.includes('tarjeta')) {
-      return `En Changared contratas por empleado, para que no pagues por funciones que no usas:\n\n• Tenés 14 días de prueba gratis sin tarjeta de crédito para probar el empleado que elijas con tu negocio real.\n• Podés vincular tu WhatsApp por QR o conectar tu Google Calendar en 30 segundos.\n• Luego de la prueba, los planes inician desde $19 USD/mes por empleado con soporte y actualizaciones continuas.\n\n¿Querés que activemos tu prueba gratis para tu comercio hoy mismo?`;
-    }
-    return `¡Hola! Soy el Asesor Comercial de Changared. Te ayudo a potenciar tu negocio con Empleados Virtuales con IA:\n\n1. Vendedor IA WhatsApp 24/7 (atiende consultas, stock y pedidos).\n2. Agendador de Citas (turnos con Google Calendar y seña Mercado Pago).\n3. Gestor de Cobranzas (recordatorios automáticos de pago).\n4. Asistente Contable (facturas de Gmail/Drive a Google Sheets).\n\nTodos cuentan con 14 días de prueba gratis. ¿Qué tipo de negocio tenés y qué tarea te gustaría automatizar primero?`;
+    return 'El asesor no está disponible en este momento. Podés configurar tu empresa y catálogo y probar el vendedor desde el panel. La conexión automática de WhatsApp requiere configurar Meta.';
   }
+
 }
 
 export const agentBrainService = new AgentBrainService();

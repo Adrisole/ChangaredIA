@@ -6,7 +6,7 @@
 
   <!-- SEO Primario 100/100 -->
   <title>Changared — Empleados Virtuales con IA para WhatsApp y Cobranzas</title>
-  <meta name="description" content="Automatiza la atención por WhatsApp, cobranzas recurrentes con Mercado Pago y facturación contable de tu negocio con empleados virtuales con inteligencia artificial. Opera 24/7.">
+  <meta name="description" content="Configurá y probá tu vendedor con el catálogo de tu negocio.">
   <meta name="keywords" content="empleados virtuales, bot whatsapp ventas, gestor cobranzas mercado pago, cobranzas automatizadas whatsapp, asistente contable facturas excel, ia para negocios, changared b2b">
   <meta name="author" content="Changared">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -22,7 +22,7 @@
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://changared.com/">
   <meta property="og:title" content="Changared — Empleados Virtuales con IA para WhatsApp y Cobranzas">
-  <meta property="og:description" content="Automatiza la atención por WhatsApp, cobranzas con Mercado Pago y gestión contable con IA. Opera 24/7 sin descanso.">
+  <meta property="og:description" content="Configurá y probá tu vendedor con el catálogo de tu negocio.">
   <meta property="og:image" content="https://changared.com/og-image.png">
   <meta property="og:locale" content="es_AR">
   <meta property="og:site_name" content="Changared">
@@ -34,59 +34,7 @@
   <meta name="twitter:image" content="https://changared.com/og-image.png">
 
   <!-- Schema.org Datos Estructurados JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Organization",
-        "@id": "https://changared.com/#organization",
-        "name": "Changared",
-        "url": "https://changared.com/",
-        "logo": "https://changared.com/logo.png",
-        "description": "Plataforma de empleados virtuales autónomos con inteligencia artificial para comercios y empresas.",
-        "sameAs": []
-      },
-      {
-        "@type": "SoftwareApplication",
-        "@id": "https://changared.com/#software",
-        "name": "Changared",
-        "applicationCategory": "BusinessApplication",
-        "operatingSystem": "All",
-        "url": "https://changared.com/",
-        "offers": {
-          "@type": "AggregateOffer",
-          "priceCurrency": "ARS",
-          "lowPrice": "39000",
-          "offerCount": "3"
-        },
-        "description": "Automatización integral de WhatsApp, cobranzas con Mercado Pago y procesamiento contable de facturas."
-      },
-      {
-        "@type": "FAQPage",
-        "@id": "https://changared.com/#faq",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "¿Qué es un empleado virtual de Changared?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Es un asistente autónomo con IA que atiende clientes en WhatsApp día y noche, responde con precios y stock de tu catálogo, cobra deudas con Mercado Pago o extrae facturas contables automáticamente."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "¿Cómo funciona el Gestor de Cobranzas?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Se conecta a tu cuenta de Mercado Pago y envía recordatorios amables y escalonados en 3 pasos (Día 0, Día +3 y Día +7) por WhatsApp con el link de pago directo."
-            }
-          }
-        ]
-      }
-    ]
-  }
-  </script>
+
 
   <!-- Tipografía Inter Oficial -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -220,35 +168,26 @@
       <!-- Navegación del Dashboard (Solo Texto Limpio, Sin Dibujitos) -->
       <nav class="p-3 space-y-1 bg-[#1B4332] flex-1 overflow-y-auto">
         <div class="px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-emerald-200/70" data-i18n="navSectionMain">Principal</div>
-        
+
         <button onclick="switchStep('step-hub')" id="nav-step-hub" class="nav-item w-full text-left px-3 py-2 text-xs font-semibold rounded-lg text-white bg-white/15 transition-colors" data-i18n="navStepHub">
-          ¿Qué empleado buscas?
+          Inicio
         </button>
 
         <div class="pt-3 px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-emerald-200/70" data-i18n="navSectionEmployees">Empleados Virtuales</div>
 
         <button onclick="switchStep('step-simulator')" id="nav-step-simulator" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
-          <span data-i18n="navStepSimulator">1. Vendedor IA (WhatsApp 24/7)</span>
+          <span data-i18n="navStepSimulator">Vendedor IA</span>
         </button>
 
-        <a href="/cobranzas" id="nav-step-cobranzas" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors flex items-center justify-between">
-          <span data-i18n="navStepCobranzas">2. Gestor de Cobranzas</span>
-          <i data-lucide="external-link" class="w-3.5 h-3.5 text-emerald-300 opacity-80"></i>
-        </a>
 
-        <button onclick="switchStep('step-accounting')" id="nav-step-accounting" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
-          <span data-i18n="navStepAccounting">3. Facturación & Gastos</span>
-        </button>
 
-        <button onclick="switchStep('step-citas')" id="nav-step-citas" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
-          <span data-i18n="navStepCitas">4. Agendador de Citas (Turnos)</span>
-        </button>
 
-        <div class="pt-3 px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-emerald-200/70" data-i18n="navSectionFashion">Especial Moda</div>
 
-        <button onclick="switchStep('step-talleexacto')" id="nav-step-talleexacto" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
-          <span data-i18n="navStepTalleexacto">TalleExacto (Módulo Ropa)</span>
-        </button>
+
+
+
+
+
 
         <div class="pt-3 px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-emerald-200/70" data-i18n="navSectionSettings">Ajustes & Configuración</div>
 
@@ -264,9 +203,7 @@
           Conexión WhatsApp & Bandeja
         </button>
 
-        <button onclick="switchStep('step-billing')" id="nav-step-billing" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-200/90 hover:text-white hover:bg-white/10 transition-colors" data-i18n="navStepBilling">
-          Planes & Suscripción
-        </button>
+
 
         <div class="pt-4 mt-3 px-3 border-t border-white/10 text-[11px] text-emerald-200/70 flex items-center justify-between">
           <span class="flex items-center space-x-1.5">
@@ -301,7 +238,7 @@
           <button onclick="switchStep('step-hub')" class="hover:text-slate-900 font-medium transition cursor-pointer hidden sm:inline">Changared</button>
           <span class="hidden sm:inline">/</span>
           <div id="breadcrumb-dynamic" class="flex items-center space-x-1.5 truncate">
-            <span class="text-slate-900 font-semibold truncate">¿Qué empleado buscas?</span>
+            <span class="text-slate-900 font-semibold truncate">Inicio</span>
           </div>
         </div>
       </div>
@@ -351,368 +288,17 @@
       <!-- ======================================================== -->
       <!-- PANTALLA PRINCIPAL: EMPLEADOS VIRTUALES B2B -->
       <!-- ======================================================== -->
-      <section id="step-hub" class="step-content space-y-8">
-        
-        <!-- Header Limpio y Sobrio -->
-        <div class="space-y-2 pb-4 border-b border-slate-200">
-          <div class="text-[11px] font-mono uppercase tracking-wider font-semibold text-[#2D6A4F]" data-i18n="hubBadge">
-            Personal Autónomo para Empresas y Comercios
-          </div>
-          <h1 class="text-2xl sm:text-3xl font-serif font-bold tracking-tight text-slate-900" style="font-family: Georgia, serif;" data-i18n="hubTitle">
-            ¿Qué empleado virtual estás necesitando?
-          </h1>
-          <p class="text-xs sm:text-sm text-slate-600 max-w-3xl leading-relaxed" data-i18n="hubSubtitle">
-            Asistentes autónomos para automatizar la atención comercial, las cobranzas recurrentes y la administración contable de tu negocio. Operan de forma continua, sin ausencias y con integración directa a tus herramientas de trabajo.
-          </p>
-        </div>
-
-        <!-- TARJETA DESTACADA: NEGOCIO ACTIVO & VINCULACIÓN WEB -->
-        <div class="p-4 sm:p-5 bg-white border-2 border-emerald-600/30 rounded-xl shadow-subtle flex flex-col md:flex-row items-start md:items-center justify-between gap-4 bg-gradient-to-r from-emerald-50/40 via-white to-white">
-          <div class="flex items-start space-x-3.5">
-            <div class="w-10 h-10 rounded-xl bg-[#1B4332] text-white flex items-center justify-center text-lg font-bold shrink-0 shadow-xs">
-              🏢
-            </div>
-            <div>
-              <div class="flex items-center space-x-2">
-                <span class="text-[10px] font-mono uppercase font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded">Comercio Activo</span>
-                <span class="text-[10px] text-emerald-600 font-semibold flex items-center space-x-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                  <span>14 días de prueba gratis</span>
-                </span>
-              </div>
-              <h3 class="text-base font-bold text-slate-900 mt-0.5 company-display-name">Mi Empresa</h3>
-              <p class="text-xs text-slate-600 mt-0.5">
-                Rubro: <span id="hub-company-rubro" class="font-medium text-slate-800">Comercio & Servicios</span> · 
-                WhatsApp: <span id="hub-company-phone" class="font-mono text-slate-800">+54 9 11 4455-6677</span>
-              </p>
-            </div>
-          </div>
-          <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
-            <button onclick="openWebsiteWidgetModal('general')" class="flex-1 md:flex-none px-3.5 py-2.5 bg-emerald-100 hover:bg-emerald-200 text-emerald-950 font-bold text-xs rounded-lg transition shadow-2xs flex items-center justify-center space-x-1.5">
-              <span>🌐</span>
-              <span>Vincular a Mi Página Web</span>
-            </button>
-            <button onclick="openBusinessConfigModal()" class="flex-1 md:flex-none px-4 py-2.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white font-bold text-xs rounded-lg transition shadow-subtle flex items-center justify-center space-x-1.5">
-              <i data-lucide="edit-3" class="w-3.5 h-3.5 text-emerald-300"></i>
-              <span>Cargar Datos de Mi Empresa →</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- BANNER DE PRUEBA GRATUITA 14 DÍAS (CERO RIESGO / SIN TARJETA) -->
-        <div class="p-5 bg-gradient-to-r from-[#1B4332] to-[#2D6A4F] text-white rounded-xl shadow-md flex flex-col md:flex-row items-center justify-between gap-5 border border-emerald-700/60">
-          <div class="space-y-1.5 text-center md:text-left">
-            <div class="inline-flex items-center space-x-2">
-              <span class="px-2 py-0.5 rounded bg-emerald-400 text-slate-950 font-mono text-[10px] font-bold uppercase tracking-wider" data-i18n="trialGuarantee">
-                Garantía 100% Sin Riesgo
-              </span>
-              <span class="text-xs text-emerald-200" data-i18n="trialNoCard">· Sin tarjeta de crédito requerida</span>
-            </div>
-            <h2 class="text-lg font-serif font-bold text-white" data-i18n="trialTitle">
-              Probá a los 5 Empleados Virtuales Gratis por 14 Días
-            </h2>
-            <p class="text-xs text-emerald-100/90 max-w-2xl leading-relaxed" data-i18n="trialDesc">
-              Conectá tu propio WhatsApp y cargá los datos de tu comercio. Si en 14 días no aumentás tus ventas o no te ahorra horas de trabajo real, no pagás ni un solo peso.
-            </p>
-          </div>
-          <div class="flex items-center gap-3 shrink-0">
-            <button onclick="openBusinessConfigModal()" class="px-4 py-2.5 bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold text-xs rounded-lg shadow-sm transition whitespace-nowrap" data-i18n="btnConfigBusiness">
-              Configurar Mi Negocio Gratis →
-            </button>
-            <button onclick="switchStep('step-billing')" class="px-3 py-2.5 bg-white/10 hover:bg-white/20 text-white text-xs font-semibold rounded-lg transition whitespace-nowrap border border-white/20" data-i18n="btnViewPlans">
-              Ver Planes
-            </button>
-          </div>
-        </div>
-
-        <!-- TABLERO EJECUTIVO DE RETORNO (ROI REAL EN EL COMERCIO) -->
-        <div class="space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="text-[11px] font-mono uppercase tracking-wider font-bold text-slate-600" data-i18n="roiTitle">
-              Impacto Económico Estimado para tu Negocio
-            </span>
-            <span class="text-[11px] text-emerald-700 font-semibold font-mono" data-i18n="roiBadge">El software se paga solo</span>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
-              <div class="flex items-center justify-between text-slate-500 text-xs mb-1">
-                <span class="font-bold uppercase tracking-wider text-[10px] text-slate-600" data-i18n="roiSalesTitle">Ventas Cerradas con IA</span>
-                <span class="text-emerald-700 font-bold text-[10px] px-1.5 py-0.5 rounded bg-emerald-50 border border-emerald-200" data-i18n="roiSalesBadge">Fuera de hora</span>
-              </div>
-              <div class="text-2xl font-serif font-bold text-slate-900">$420.000</div>
-              <div class="text-[11px] text-slate-600 mt-1" data-i18n="roiSalesDesc">28 pedidos tomados de noche, feriados y domingos</div>
-            </div>
-
-            <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
-              <div class="flex items-center justify-between text-slate-500 text-xs mb-1">
-                <span class="font-bold uppercase tracking-wider text-[10px] text-slate-600" data-i18n="roiDebtTitle">Deudas Recuperadas</span>
-                <span class="text-emerald-700 font-bold text-[10px] px-1.5 py-0.5 rounded bg-emerald-50 border border-emerald-200" data-i18n="roiDebtBadge">Mercado Pago</span>
-              </div>
-              <div class="text-2xl font-serif font-bold text-emerald-800">$185.000</div>
-              <div class="text-[11px] text-slate-600 mt-1" data-i18n="roiDebtDesc">Cobros recuperados en 3 avisos sin fricción ni llamadas</div>
-            </div>
-
-            <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
-              <div class="flex items-center justify-between text-slate-500 text-xs mb-1">
-                <span class="font-bold uppercase tracking-wider text-[10px] text-slate-600" data-i18n="roiHoursTitle">Horas Ahorradas al Equipo</span>
-                <span class="text-blue-700 font-bold text-[10px] px-1.5 py-0.5 rounded bg-blue-50 border border-blue-200" data-i18n="roiHoursBadge">Equipo libre</span>
-              </div>
-              <div class="text-2xl font-serif font-bold text-slate-900">38 Horas</div>
-              <div class="text-[11px] text-slate-600 mt-1" data-i18n="roiHoursDesc">Ahorro en responder precios, facturas y comprobantes</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- BANNER DE TRANQUILIDAD: MATA-MIEDOS & RED DE SEGURIDAD HUMANA -->
-        <div class="p-4 bg-[#FAF7EE] border border-[#E6DCC3] rounded-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div class="space-y-1">
-            <div class="flex items-center space-x-2">
-              <span class="text-[#1B4332] font-bold text-xs uppercase tracking-wider" data-i18n="safetyTitle">🛡️ Tu Tranquilidad Comercial Primero:</span>
-              <span class="text-[11px] text-slate-600 font-mono" data-i18n="safetyControl">Control Humano 100%</span>
-            </div>
-            <p class="text-xs text-slate-700 leading-relaxed" data-i18n="safetyDesc">
-              <strong>✓ Tu mismo número de siempre:</strong> Funciona sobre tu WhatsApp actual sin comprar otro chip (igual que WhatsApp Web). Podés seguir chateando vos desde tu celular cuando quieras.<br>
-              <strong>✓ Red de seguridad anti-errores:</strong> Si un cliente escribe <em>"humano"</em>, hace una queja o pide hablar con alguien, la IA se silencia de inmediato y hace sonar una alerta en tu teléfono.
-            </p>
-          </div>
-          <button onclick="openBusinessConfigModal()" class="px-3.5 py-2 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-semibold rounded-lg transition shrink-0 whitespace-nowrap shadow-sm" data-i18n="btnPersonalizeBusiness">
-            ⚙️ Personalizar Mi Negocio
-          </button>
-        </div>
-
-        <!-- Los 5 Empleados Virtuales Universales -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-
-          <!-- 1. Vendedor IA -->
-          <div class="bg-white border border-slate-200 hover:border-[#2D6A4F] rounded-lg p-5 flex flex-col justify-between transition-all">
-            <div class="space-y-4">
-              <div class="flex items-center justify-between pb-2 border-b border-slate-100">
-                <span class="text-[10px] font-mono font-semibold tracking-wider text-slate-600 uppercase" data-i18n="emp1Category">
-                  Atención & Ventas
-                </span>
-                <div class="flex items-center space-x-1.5">
-                  <span class="text-[10px] font-mono text-[#2D6A4F] font-bold">24/7</span>
-                  <span id="hub-status-vendedor" class="text-[10px] font-mono px-2 py-0.5 rounded font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">● Contratado</span>
-                </div>
-              </div>
-              <div>
-                <h3 class="text-base font-serif font-bold text-slate-900" style="font-family: Georgia, serif;" data-i18n="emp1Title">
-                  1. Vendedor IA (WhatsApp)
-                </h3>
-                <div class="mt-3 p-3 bg-slate-50 border border-slate-200 rounded text-xs text-slate-700 space-y-1">
-                  <span class="font-bold text-slate-900 block text-[11px] uppercase tracking-wide text-[#1B4332]" data-i18n="empWhatForTitle">¿Para qué sirve?</span>
-                  <p class="leading-relaxed" data-i18n="emp1WhatForDesc">
-                    Atiende a tus clientes en WhatsApp día y noche. Consulta precios y stock en tiempo real, informa horarios y toma pedidos en cualquier idioma sin intervención manual.
-                  </p>
-                </div>
-              </div>
-              <ul class="text-xs text-slate-600 space-y-2 pt-1 font-sans">
-                <li class="flex items-start space-x-2">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp1F1">No pierde ventas fuera de horario comercial</span>
-                </li>
-                <li class="flex items-start space-x-2">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp1F2">Nunca ofrece productos sin stock disponible</span>
-                </li>
-                <li class="flex items-start space-x-2">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp1F3">Respuestas automáticas en menos de 2 segundos</span>
-                </li>
-              </ul>
-            </div>
-            <div id="hub-actions-vendedor" class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-2">
-              <button onclick="switchStep('step-simulator')" class="flex-1 py-2 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition" data-i18n="btnTestChat">
-                Probar Chat en Vivo →
-              </button>
-              <button onclick="switchStep('step-catalog')" class="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded text-xs font-medium transition" data-i18n="btnCatalog">
-                Catálogo
-              </button>
-            </div>
-          </div>
-
-          <!-- 2. Gestor de Cobranzas -->
-          <div class="bg-white border border-slate-200 hover:border-[#2D6A4F] rounded-lg p-5 flex flex-col justify-between transition-all">
-            <div class="space-y-4">
-              <div class="flex items-center justify-between pb-2 border-b border-slate-100">
-                <span class="text-[10px] font-mono font-semibold tracking-wider text-slate-600 uppercase" data-i18n="emp2Category">
-                  Cobranzas Recurrentes
-                </span>
-                <div class="flex items-center space-x-1.5">
-                  <span class="text-[10px] font-mono text-[#2D6A4F] font-bold">Mercado Pago</span>
-                  <span id="hub-status-cobranzas" class="text-[10px] font-mono px-2 py-0.5 rounded font-medium bg-slate-100 text-slate-600 border border-slate-200">○ No Contratado</span>
-                </div>
-              </div>
-              <div>
-                <h3 class="text-base font-serif font-bold text-slate-900" style="font-family: Georgia, serif;" data-i18n="emp2Title">
-                  2. Gestor de Cobranzas
-                </h3>
-                <div class="mt-3 p-3 bg-slate-50 border border-slate-200 rounded text-xs text-slate-700 space-y-1">
-                  <span class="font-bold text-slate-900 block text-[11px] uppercase tracking-wide text-[#1B4332]" data-i18n="empWhatForTitle">¿Para qué sirve?</span>
-                  <p class="leading-relaxed" data-i18n="emp2WhatForDesc">
-                    Envía recordatorios de pago automáticos en 3 pasos por WhatsApp con link directo a tu cuenta de Mercado Pago. Emite recibos oficiales y silencia deudores en gestión.
-                  </p>
-                </div>
-              </div>
-              <ul class="text-xs text-slate-600 space-y-2 pt-1 font-sans">
-                <li class="flex items-start space-x-2">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp2F1">Secuencia automática: Día 0, Día +3 y Día +7</span>
-                </li>
-                <li class="flex items-start space-x-2">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp2F2">Cobro directo a tu propia cuenta de Mercado Pago</span>
-                </li>
-                <li class="flex items-start space-x-2">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp2F3">Alerta de deudores silenciados y emisión de recibos</span>
-                </li>
-              </ul>
-            </div>
-            <div id="hub-actions-cobranzas" class="pt-5 mt-4 border-t border-slate-100 flex items-center">
-              <a href="/cobranzas" class="w-full py-2.5 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded-lg text-xs font-semibold transition text-center flex items-center justify-center space-x-1.5 shadow-subtle" data-i18n="btnOpenCobranzas">
-                <span>Abrir Gestor de Cobranzas</span>
-                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- 3. Facturación & Gastos -->
-          <div class="bg-white border border-slate-200 hover:border-[#2D6A4F] rounded-lg p-5 flex flex-col justify-between transition-all">
-            <div class="space-y-4">
-              <div class="flex items-center justify-between pb-2 border-b border-slate-100">
-                <span class="text-[10px] font-mono font-semibold tracking-wider text-slate-600 uppercase" data-i18n="emp3Category">
-                  Contabilidad & AFIP
-                </span>
-                <div class="flex items-center space-x-1.5">
-                  <span class="text-[10px] font-mono text-[#2D6A4F] font-bold">Email & Drive</span>
-                  <span id="hub-status-accounting" class="text-[10px] font-mono px-2 py-0.5 rounded font-medium bg-slate-100 text-slate-600 border border-slate-200">○ No Contratado</span>
-                </div>
-              </div>
-              <div>
-                <h3 class="text-base font-serif font-bold text-slate-900" style="font-family: Georgia, serif;" data-i18n="emp3Title">
-                  3. Facturación & Gastos
-                </h3>
-                <div class="mt-3 p-3 bg-slate-50 border border-slate-200 rounded text-xs text-slate-700 space-y-1">
-                  <span class="font-bold text-slate-900 block text-[11px] uppercase tracking-wide text-[#1B4332]" data-i18n="empWhatForTitle">¿Para qué sirve?</span>
-                  <p class="leading-relaxed" data-i18n="emp3WhatForDesc">
-                    Lee las facturas en PDF que llegan a tu email, extrae CUIT, neto e IVA discriminado con IA, organiza los archivos en tu Google Drive y llena el Excel de tu contador automáticamente.
-                  </p>
-                </div>
-              </div>
-              <ul class="text-xs text-slate-600 space-y-2 pt-1 font-sans">
-                <li class="flex items-start space-x-2">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp3F1">Sin carga manual: proveedores envían la factura al email</span>
-                </li>
-                <li class="flex items-start space-x-2">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp3F2">Calcula crédito fiscal IVA y gastos por proveedor</span>
-                </li>
-                <li class="flex items-start space-x-2">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp3F3">Tu contador recibe el Libro IVA en Google Sheets</span>
-                </li>
-              </ul>
-            </div>
-            <div id="hub-actions-accounting" class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-2">
-              <button onclick="switchStep('step-accounting')" class="flex-1 py-2 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition" data-i18n="btnOpenAccounting">
-                Ver Excel en Vivo →
-              </button>
-            </div>
-          </div>
-
-          <!-- 4. Agendador de Citas & Turnos (Google Calendar & WhatsApp) -->
-          <div class="bg-white border-2 border-emerald-600/70 hover:border-emerald-700 rounded-lg p-5 flex flex-col justify-between transition-all md:col-span-2 shadow-subtle">
-            <div class="space-y-4">
-              <div class="flex items-center justify-between pb-2 border-b border-slate-100">
-                <span class="text-[10px] font-mono font-semibold tracking-wider text-emerald-800 uppercase" data-i18n="emp5Category">
-                  Servicios, Consultorios & Estética
-                </span>
-                <div class="flex items-center space-x-1.5">
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 font-bold border border-emerald-200" data-i18n="emp5Badge">Google Calendar + WhatsApp</span>
-                  <span id="hub-status-citas" class="text-[10px] font-mono px-2 py-0.5 rounded font-medium bg-slate-100 text-slate-600 border border-slate-200">○ No Contratado</span>
-                </div>
-              </div>
-              <div>
-                <div class="flex items-center space-x-2">
-                  <h3 class="text-base font-bold text-slate-900" data-i18n="emp5Title">
-                    4. Agendador de Citas & Turnos (WhatsApp & Calendar)
-                  </h3>
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-100 text-amber-900 font-bold uppercase" data-i18n="badgeNew">Nuevo</span>
-                </div>
-                <div class="mt-3 p-3 bg-emerald-50/50 border border-emerald-200/70 rounded text-xs text-slate-700 space-y-1">
-                  <span class="font-bold text-slate-900 block text-[11px] uppercase tracking-wide text-[#1B4332]" data-i18n="empWhatForTitle">¿Para qué sirve?</span>
-                  <p class="leading-relaxed" data-i18n="emp5WhatForDesc">
-                    Coordina y reserva turnos de tu negocio en tiempo real consultando tu Google Calendar o Cal.com. Muestra huecos libres, cobra seña previa con Mercado Pago para erradicar el ausentismo y envía recordatorios automáticos 24h y 2h antes por WhatsApp.
-                  </p>
-                </div>
-              </div>
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
-                <div class="flex items-start space-x-2 text-xs text-slate-600">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp5F1">Reduce el 85% del ausentismo con seña previa por MP</span>
-                </div>
-                <div class="flex items-start space-x-2 text-xs text-slate-600">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp5F2">Sincronización en vivo con Google Calendar sin solapamiento</span>
-                </div>
-                <div class="flex items-start space-x-2 text-xs text-slate-600">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp5F3">Reprogramación y cancelaciones automáticas 24/7</span>
-                </div>
-              </div>
-            </div>
-            <div id="hub-actions-citas" class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-3">
-              <button onclick="switchStep('step-citas')" class="flex-1 py-2 px-4 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition shadow-subtle flex items-center justify-center space-x-1.5" data-i18n="btnTestCitas">
-                <i data-lucide="calendar" class="w-3.5 h-3.5 text-emerald-300"></i>
-                <span>Probar Agendador de Citas en Vivo →</span>
-              </button>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Módulo Especializado: TalleExacto -->
-        <div class="p-5 bg-[#FAF7EE] border border-[#E6DCC3] rounded-lg flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div class="space-y-1 max-w-2xl">
-            <div class="flex items-center space-x-2">
-              <span class="text-[10px] font-mono uppercase tracking-wider font-bold text-[#8A5A1E]">Módulo Especializado Moda</span>
-              <span id="hub-status-talleexacto" class="text-[10px] font-mono px-2 py-0.5 rounded font-medium bg-slate-100 text-slate-600 border border-slate-200">○ No Contratado</span>
-              <span class="text-slate-300">•</span>
-              <span class="text-xs text-slate-600 font-medium">Tiendanube, Shopify, WooCommerce o WhatsApp</span>
-            </div>
-            <h4 class="text-base font-serif font-bold text-slate-900" style="font-family: Georgia, serif;">
-              TalleExacto — Probador Virtual & Recomendador de Medidas
-            </h4>
-            <p class="text-xs text-slate-700 leading-relaxed">
-              Resuelve las dudas de medidas de tus clientas con un probador virtual interactivo y recomendaciones automáticas por WhatsApp. Reduce hasta un 30% las costosas devoluciones por talle equivocado.
-            </p>
-          </div>
-          <div id="hub-actions-talleexacto" class="flex items-center gap-2 shrink-0">
-            <button onclick="switchStep('step-talleexacto')" class="py-2 px-3.5 bg-[#8A5A1E] hover:bg-[#6E4817] text-white rounded text-xs font-semibold transition">
-              Probar Módulo →
-            </button>
-            <a href="/talleexacto" class="py-2 px-3 bg-white hover:bg-slate-100 text-slate-800 border border-[#E6DCC3] rounded text-xs font-medium transition">
-              Ver Módulo Completo ↗
-            </a>
-          </div>
-        </div>
-
-        <!-- Banner de Planes & Precios (Combo) -->
-        <div class="p-5 bg-[#1B4332] text-white rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div class="space-y-1">
-            <span class="text-emerald-300 font-mono text-[10px] font-bold uppercase tracking-wider">Contratación Flexible</span>
-            <h4 class="text-base font-serif font-bold" style="font-family: Georgia, serif;">Arma tu esquema personalizado de empleados</h4>
-            <p class="text-xs text-emerald-100/80">Planes desde $39.000 ARS / mes por empleado o abono unificado con descuento. Sin contratos de permanencia.</p>
-          </div>
-          <button onclick="switchStep('step-billing')" class="px-4 py-2 bg-white hover:bg-emerald-50 text-[#1B4332] font-semibold text-xs rounded transition shrink-0">
-            Ver Planes & Facturación →
-          </button>
-        </div>
-
-      </section>
+      <section id="step-hub" class="step-content space-y-5">
+  <h1 class="text-xl font-semibold text-slate-900">Tu vendedor</h1>
+  <p class="text-sm text-slate-600">Guardá tu empresa y catálogo. Probá las respuestas antes de conectar WhatsApp.</p>
+  <div class="grid gap-3 sm:grid-cols-2">
+    <button onclick="openBusinessConfigModal()" class="p-4 rounded-lg border bg-white text-left"><strong>Mi empresa</strong><span class="block text-sm text-slate-600">Nombre, descripción y datos de contacto.</span></button>
+    <button onclick="switchStep('step-catalog')" class="p-4 rounded-lg border bg-white text-left"><strong>Catálogo y precios</strong><span class="block text-sm text-slate-600">Productos, servicios y disponibilidad.</span></button>
+    <button onclick="switchStep('step-simulator')" class="p-4 rounded-lg border bg-white text-left"><strong>Probar vendedor</strong><span class="block text-sm text-slate-600">Conversación privada de prueba.</span></button>
+    <button onclick="switchStep('step-whatsapp')" class="p-4 rounded-lg border bg-white text-left"><strong>Configurar WhatsApp</strong><span class="block text-sm text-slate-600">Conexión oficial de Meta.</span></button>
+    <button onclick="switchStep('step-payments')" class="p-4 rounded-lg border bg-white text-left"><strong>Cobros y pedidos</strong><span class="block text-sm text-slate-600">Alias, pedidos y confirmación manual del pago.</span></button>
+  </div>
+</section>
 
       <!-- ======================================================== -->
       <!-- PASO 1: IDENTIDAD Y TONO DE VOZ (CON MULTI-IDIOMA) -->
@@ -885,62 +471,7 @@
             </button>
           </div>
 
-          <div id="rules-list-container" class="space-y-2">
-            <div class="flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-800">
-              <div class="flex items-center space-x-2">
-                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                <span>Horario de atención: Lunes a Viernes de 09:00 a 18:00 hs.</span>
-              </div>
-              <button onclick="this.parentElement.remove()" class="text-slate-500 hover:text-red-500 transition">
-                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-              </button>
-            </div>
-            <div class="flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-800">
-              <div class="flex items-center space-x-2">
-                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                <span>Envíos a todo el país coordinados en 24 a 48 hs hábiles.</span>
-              </div>
-              <button onclick="this.parentElement.remove()" class="text-slate-500 hover:text-red-500 transition">
-                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-              </button>
-            </div>
-            <div class="flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-800">
-              <div class="flex items-center space-x-2">
-                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                <span>Aceptamos transferencias y Mercado Pago (alias: pagos.miempresa.mp).</span>
-              </div>
-              <button onclick="this.parentElement.remove()" class="text-slate-500 hover:text-red-500 transition">
-                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-slate-100">
-          <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 rounded-lg transition-colors shadow-2xs">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-            <span class="btn-smart-back-text">Volver</span>
-          </button>
-          <button onclick="switchStep('step-catalog')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-semibold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg transition-colors shadow-2xs">
-            <span data-i18n="btnContinueToCatalog">Siguiente: Catálogo & Stock</span>
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </button>
-        </div>
-      
-</section>
-
-      <!-- ======================================================== -->
-      <!-- PASO 2: INVENTARIO Y STOCK -->
-      <!-- ======================================================== -->
-      <section id="step-catalog" class="step-content space-y-6 hidden">
-        <!-- Top Back Navigation -->
-        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
-          <div class="flex items-center space-x-2">
-            <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 transition shadow-subtle">
-              <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-slate-700"></i>
-              <span class="btn-smart-back-text">Volver</span>
-            </button>
-          </div>
+          <div id="rules-list-container" class="space-y-2"></div>
         </div>
 
         <!-- Barra de Navegación del Vendedor IA (Sub-tabs) -->
@@ -971,7 +502,7 @@
         </div>
 
         <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
-          
+
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
             <div>
               <h2 id="catalog-editor-heading" class="text-sm font-semibold text-slate-900 scroll-mt-24" data-i18n="catalogTitle">Catálogo de Productos y Disponibilidad</h2>
@@ -993,15 +524,15 @@
           <div class="grid grid-cols-3 gap-3">
             <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg">
               <span class="block text-[11px] font-medium text-slate-600" data-i18n="metricTotal">Total Productos</span>
-              <span class="text-base font-semibold text-slate-900" id="stat-total-products">5</span>
+              <span class="text-base font-semibold text-slate-900" id="stat-total-products">—</span>
             </div>
             <div class="p-3 bg-emerald-50/50 border border-emerald-200 rounded-lg">
               <span class="block text-[11px] font-medium text-emerald-800" data-i18n="metricInStock">Con Stock Disponible</span>
-              <span class="text-base font-semibold text-emerald-900" id="stat-in-stock">4</span>
+              <span class="text-base font-semibold text-emerald-900" id="stat-in-stock">—</span>
             </div>
             <div class="p-3 bg-red-50/50 border border-red-200 rounded-lg">
               <span class="block text-[11px] font-medium text-red-800" data-i18n="metricOutOfStock">Agotados (Stock 0)</span>
-              <span class="text-base font-semibold text-red-900" id="stat-out-of-stock">1</span>
+              <span class="text-base font-semibold text-red-900" id="stat-out-of-stock">—</span>
             </div>
           </div>
 
@@ -1018,9 +549,7 @@
                   <th class="px-4 py-3 font-semibold text-right" data-i18n="thAction">Acción</th>
                 </tr>
               </thead>
-              <tbody id="catalog-table-body" class="divide-y divide-slate-100 text-slate-800">
-                <!-- Generado dinámicamente -->
-              </tbody>
+              <tbody id="catalog-table-body" class="divide-y divide-slate-100 text-slate-800"></tbody>
             </table>
           </div>
         </div>
@@ -1130,7 +659,7 @@
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label class="block text-xs font-medium text-slate-700 mb-1">Número de WhatsApp Oficial</label>
-                  <input type="text" id="meta-wa-phone" placeholder="+54 9 11 4455-6677" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs focus:bg-white focus:border-emerald-600 transition">
+                  <input type="text" id="meta-wa-phone" placeholder="Tu número con código de país" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs focus:bg-white focus:border-emerald-600 transition">
                   <span class="text-[10px] text-slate-500">Formato internacional con código de país.</span>
                 </div>
                 <div>
@@ -1150,7 +679,7 @@
                 <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
                   <span class="block text-[10px] uppercase font-mono text-slate-600">Webhook URL (Callback)</span>
                   <div class="flex items-center space-x-1">
-                    <input type="text" id="webhook-endpoint-input" readonly value="http://localhost:3000/api/webhook/mi-empresa" class="w-full text-[11px] font-mono px-2 py-1 bg-white border border-slate-200 rounded text-slate-800">
+                    <input type="text" id="webhook-endpoint-input" readonly value="/api/webhook/mi-empresa" class="w-full text-[11px] font-mono px-2 py-1 bg-white border border-slate-200 rounded text-slate-800">
                     <button onclick="copyWebhookUrl()" class="px-2 py-1 text-[11px] bg-slate-100 hover:bg-slate-200 text-slate-700 rounded border border-slate-200">
                       Copiar
                     </button>
@@ -1288,10 +817,7 @@
             <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
             <span class="btn-smart-back-text">Volver</span>
           </button>
-          <button onclick="switchStep('step-billing')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-semibold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg transition-colors shadow-2xs">
-            <span>Siguiente: Planes & Suscripción</span>
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </button>
+
         </div>
       <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle flex flex-col justify-between">
             <div>
@@ -1303,7 +829,7 @@
               </div>
               <h4 class="text-xs font-bold text-slate-900">Vincular Línea de WhatsApp</h4>
               <p class="text-[11px] text-slate-600 leading-tight mb-2">Canal por donde los clientes te escriben y reciben respuestas.</p>
-              
+
               <div class="space-y-1.5 text-xs">
                 <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
                   <span class="flex items-center space-x-1.5 truncate">
@@ -1314,7 +840,7 @@
                 </div>
                 <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
                   <span class="text-[10px] font-semibold text-slate-600 uppercase">Número guardado:</span>
-                  <div class="text-[11px] font-mono text-slate-900 font-semibold truncate" id="sim-wa-active-phone">+54 9 11 4455-6677</div>
+                  <div class="text-[11px] font-mono text-slate-900 font-semibold truncate" id="sim-wa-active-phone">Sin configurar</div>
                 </div>
               </div>
             </div>
@@ -1333,921 +859,17 @@
       <!-- ======================================================== -->
       <!-- PASO 4: PLANES, COBRO Y FACTURACIÓN (MERCADO PAGO + LEMON SQUEEZY) -->
       <!-- ======================================================== -->
-      <section id="step-billing" class="step-content space-y-6 hidden">
-        <!-- Top Back Navigation -->
-        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
-          <div class="flex items-center space-x-2">
-            <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 transition shadow-subtle">
-              <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-slate-700"></i>
-              <span class="btn-smart-back-text">Volver</span>
-            </button>
-          </div>
-          <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-700 border border-slate-200 font-medium">Planes & Suscripción</span>
-        </div>
-
-        <!-- Card: Estado de Suscripción Actual & Consumo de Cuota -->
-        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-            <div>
-              <h2 class="text-sm font-semibold text-slate-900">Suscripción Activa y Consumo Mensual</h2>
-              <p class="text-xs text-slate-600 mt-0.5">Control en tiempo real de tu cuota de conversaciones y estado de débito automático.</p>
-            </div>
-            <span class="inline-flex items-center space-x-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span>Plan Operativo (Combo ⭐) — Activo</span>
-            </span>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <!-- Métrica 1 -->
-            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
-              <div class="flex justify-between text-xs">
-                <span class="font-medium text-slate-600">Cuota de Chats Usada</span>
-                <span class="font-semibold text-slate-900">142 / 2.000 (7%)</span>
-              </div>
-              <div class="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
-                <div class="bg-emerald-500 h-2 rounded-full" style="width: 7%"></div>
-              </div>
-              <p class="text-[11px] text-slate-600">1.858 conversaciones restantes este ciclo.</p>
-            </div>
-
-            <!-- Métrica 2 -->
-            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
-              <span class="text-xs font-medium text-slate-600 block">Próxima Renovación</span>
-              <span class="text-base font-semibold text-slate-900">03 de Noviembre, 2026</span>
-              <span class="text-[11px] text-emerald-700 block font-medium">Débito automático mensual activo</span>
-            </div>
-
-            <!-- Métrica 3 -->
-            <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-1">
-              <span class="text-xs font-medium text-slate-600 block">Asistentes Habilitados</span>
-              <span class="text-base font-semibold text-slate-900">2 de 4 en tu Plan</span>
-              <span class="text-[11px] text-slate-600 block">WhatsApp Employee + Radar Operativo</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Selector de Moneda y Pasarela -->
-        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-5">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
-            <div>
-              <h2 class="text-sm font-semibold text-slate-900">Elige tu Plan de Empleados Virtuales</h2>
-              <p class="text-xs text-slate-600 mt-0.5">Sin contratos forzados. Puedes cambiar o cancelar cuando quieras.</p>
-            </div>
-
-            <!-- Toggle Moneda ARS vs USD -->
-            <div class="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-medium">
-              <button onclick="setBillingCurrency('ARS')" id="btn-curr-ars" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-900 shadow-subtle border border-slate-200 transition">
-                🇦🇷 Pesos (Mercado Pago)
-              </button>
-              <button onclick="setBillingCurrency('USD')" id="btn-curr-usd" class="px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 transition">
-                🌎 Dólares USD (Internacional)
-              </button>
-            </div>
-          </div>
-
-          <!-- DESTACADO: PRUEBA GRATUITA 14 DÍAS SIN TARJETA -->
-          <div class="p-6 bg-gradient-to-r from-[#1B4332] via-[#245741] to-[#2D6A4F] text-white rounded-xl shadow-md border border-emerald-700/60 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="space-y-1.5">
-              <div class="inline-flex items-center space-x-2">
-                <span class="px-2.5 py-0.5 rounded bg-emerald-400 text-slate-950 font-mono text-[10px] font-bold uppercase tracking-wider">
-                  Acceso Total Gratis
-                </span>
-                <span class="text-xs text-emerald-200">· Sin ingresar tarjeta de crédito</span>
-              </div>
-              <h3 class="text-base sm:text-lg font-serif font-bold text-white">
-                Comenzá con 14 Días de Prueba Gratuita (Los 4 Empleados Incluidos)
-              </h3>
-              <p class="text-xs text-emerald-100/90 max-w-xl leading-relaxed">
-                Conectá tu WhatsApp hoy mismo y poné a prueba al Vendedor, al Cobrador, a Facturación & Gastos y al Concierge Multilingüe con tus propios datos. Si no te genera más plata ni te ahorra tiempo real, no pagás nada.
-              </p>
-            </div>
-            <button onclick="activarPruebaGratis()" class="px-5 py-3 bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold text-xs rounded-lg shadow-sm transition whitespace-nowrap shrink-0">
-              Comenzar Prueba Gratis (14 Días) →
-            </button>
-          </div>
-
-          <!-- Parrilla de Planes (Good - Better - Best) -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-
-            <!-- Plan 1: Mostrador -->
-            <div class="border border-slate-200 rounded-xl p-5 flex flex-col justify-between hover:border-slate-300 transition-all bg-white">
-              <div>
-                <div class="flex justify-between items-start mb-2">
-                  <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700">Plan Mostrador</h3>
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-600">1 Asistente</span>
-                </div>
-                <div class="mb-4">
-                  <span class="text-2xl font-black text-slate-900 plan-price-mostrador">$39.000</span>
-                  <span class="text-xs text-slate-600 plan-period">ARS / mes</span>
-                </div>
-                <p class="text-xs text-slate-600 mb-4 leading-relaxed">Ideal para comercios que solo necesitan responder WhatsApp y consultar stock en horario extendido.</p>
-                <ul class="text-xs text-slate-700 space-y-2 mb-6">
-                  <li class="flex items-center space-x-2">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>1 Empleado Virtual de WhatsApp</span>
-                  </li>
-                  <li class="flex items-center space-x-2">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Catálogo sincronizado 24/7</span>
-                  </li>
-                  <li class="flex items-center space-x-2">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Detección multi-idioma nativa</span>
-                  </li>
-                  <li class="flex items-center space-x-2">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Hasta 600 chats/mes</span>
-                  </li>
-                </ul>
-              </div>
-              <button onclick="triggerCheckout('plan-mostrador')" class="w-full py-2.5 px-3 text-xs font-semibold rounded-lg border border-slate-300 text-slate-800 hover:bg-slate-50 transition">
-                Contratar Mostrador
-              </button>
-            </div>
-
-            <!-- Plan 2: Combo Operativo (Destacado) -->
-            <div class="border-2 border-emerald-600 rounded-xl p-5 flex flex-col justify-between shadow-card bg-emerald-50/20 relative">
-              <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-emerald-600 text-white text-[10px] uppercase font-bold tracking-wider px-2.5 py-0.5 rounded-full shadow-sm">
-                ⭐ Más Elegido (Combo)
-              </span>
-              <div>
-                <div class="flex justify-between items-start mb-2">
-                  <h3 class="text-xs font-bold uppercase tracking-wider text-emerald-800">Plan Operativo</h3>
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">2 Asistentes</span>
-                </div>
-                <div class="mb-4">
-                  <span class="text-2xl font-black text-slate-900 plan-price-combo">$89.000</span>
-                  <span class="text-xs text-slate-600 plan-period">ARS / mes</span>
-                </div>
-                <p class="text-xs text-slate-600 mb-4 leading-relaxed">Atiende clientes en WhatsApp y rescata compras rechazadas con el Radar Operativo.</p>
-                <ul class="text-xs text-slate-800 space-y-2 mb-6">
-                  <li class="flex items-center space-x-2 font-medium">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Empleado Virtual WhatsApp</span>
-                  </li>
-                  <li class="flex items-center space-x-2 font-medium">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Radar Operativo 24/7 con IA</span>
-                  </li>
-                  <li class="flex items-center space-x-2">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Rescate de pagos caídos</span>
-                  </li>
-                  <li class="flex items-center space-x-2">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Alertas de stock crítico a proveedores</span>
-                  </li>
-                  <li class="flex items-center space-x-2">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Hasta 2.000 chats/mes</span>
-                  </li>
-                </ul>
-              </div>
-              <button onclick="triggerCheckout('combo-operativo')" class="w-full py-2.5 px-3 text-xs font-semibold rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white shadow-subtle transition">
-                Plan Actual (Activo)
-              </button>
-            </div>
-
-            <!-- Plan 3: Full Empresa -->
-            <div class="border border-slate-200 rounded-xl p-5 flex flex-col justify-between hover:border-slate-300 transition-all bg-white">
-              <div>
-                <div class="flex justify-between items-start mb-2">
-                  <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700">Full Empresa</h3>
-                  <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-600">4 Asistentes</span>
-                </div>
-                <div class="mb-4">
-                  <span class="text-2xl font-black text-slate-900 plan-price-empresa">$169.000</span>
-                  <span class="text-xs text-slate-600 plan-period">ARS / mes</span>
-                </div>
-                <p class="text-xs text-slate-600 mb-4 leading-relaxed">Para empresas con alto volumen y múltiples sucursales que buscan automatización integral.</p>
-                <ul class="text-xs text-slate-700 space-y-2 mb-6">
-                  <li class="flex items-center space-x-2">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Suite Completa (4 Asistentes)</span>
-                  </li>
-                  <li class="flex items-center space-x-2">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Conciliador financiero & comisiones</span>
-                  </li>
-                  <li class="flex items-center space-x-2">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Chats ilimitados (hasta 10.000)</span>
-                  </li>
-                  <li class="flex items-center space-x-2">
-                    <i data-lucide="check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span>Soporte prioritario 24/7</span>
-                  </li>
-                </ul>
-              </div>
-              <button onclick="triggerCheckout('full-empresa')" class="w-full py-2.5 px-3 text-xs font-semibold rounded-lg border border-slate-300 text-slate-800 hover:bg-slate-50 transition">
-                Contratar Full Empresa
-              </button>
-            </div>
-          </div>
-
-          <!-- Banner Informativo de Pasarelas -->
-          <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between text-xs text-slate-700">
-            <div class="flex items-center space-x-3">
-              <i data-lucide="shield-check" class="w-5 h-5 text-emerald-600 shrink-0"></i>
-              <div>
-                <span class="font-semibold text-slate-900" id="billing-provider-title">Procesamiento Seguro con Mercado Pago</span>
-                <p class="text-[11px] text-slate-600 mt-0.5" id="billing-provider-desc">
-                  Suscripción mensual recurrente con tarjeta o saldo de cuenta. Cancela en cualquier momento con 1 click.
-                </p>
-              </div>
-            </div>
-            <span class="font-mono text-[11px] text-slate-600 bg-white px-2.5 py-1 rounded border border-slate-200">
-              SSL 256-BIT ENCRYPTED
-            </span>
-          </div>
-        </div>
-
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-slate-100">
-          <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 rounded-lg transition-colors shadow-2xs">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-            <span class="btn-smart-back-text">Volver</span>
-          </button>
-          <button onclick="switchStep('step-accounting')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-semibold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg transition-colors shadow-2xs">
-            <span>Siguiente: Facturación & Gastos</span>
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </button>
-        </div>
-      </section>
+      <section id="step-billing" class="step-content space-y-4 hidden"><h2 class="text-lg font-semibold">Función pendiente de implementación</h2><p class="text-sm text-slate-600">Este módulo todavía no está habilitado para operar con tus datos.</p><button onclick="switchStep('step-simulator')" class="px-4 py-2 rounded bg-[#1B4332] text-white">Volver al vendedor</button></section>
 
       <!-- ======================================================== -->
       <!-- PASO 5: ASISTENTE CONTABLE (EMAIL -> DRIVE -> SHEETS) -->
       <!-- ======================================================== -->
-      <section id="step-accounting" class="step-content space-y-6 pb-28 hidden">
-        <!-- Top Navigation Banner (Limpio) -->
-        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
-          <div class="flex items-center space-x-2">
-            <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 transition shadow-subtle">
-              <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-slate-700"></i>
-              <span class="btn-smart-back-text">Volver</span>
-            </button>
-          </div>
-          <div class="flex items-center space-x-2">
-            <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-700 border border-slate-200 font-medium">Facturación & Comprobantes</span>
-            <button onclick="openBusinessConfigModal()" class="inline-flex items-center space-x-1 px-2.5 py-1 text-xs bg-emerald-50 text-emerald-900 border border-emerald-300 rounded-lg hover:bg-emerald-100 transition shadow-2xs">
-              <span>🏢</span>
-              <span class="company-display-name font-semibold truncate max-w-[120px] sm:max-w-none">Mi Empresa</span>
-              <span class="text-[10px] text-emerald-700 font-semibold">✏️ Cambiar</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Banner de Empleado No Contratado -->
-        <div id="uncontracted-banner-accounting" class="hidden p-3.5 bg-amber-50 border border-amber-300 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
-          <div class="flex items-start sm:items-center space-x-2.5">
-            <span class="text-lg">⚠️</span>
-            <div>
-              <span class="text-xs font-bold text-amber-950 block">3. Facturación & Gastos — Empleado No Contratado</span>
-              <p class="text-[11px] text-amber-800 leading-tight">Este asistente contable no está activo actualmente para tu empresa. Podés contratarlo y probarlo gratis 14 días.</p>
-            </div>
-          </div>
-          <button onclick="openBusinessConfigModal('accounting')" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-bold rounded-lg transition whitespace-nowrap shadow-xs flex items-center space-x-1 shrink-0">
-            <span>+ Contratar este Empleado</span>
-          </button>
-        </div>
-
-        <!-- Banner Explicativo Serio & Honestidad Comercial -->
-        <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5 shadow-2xs">
-          <div class="flex items-center space-x-2">
-            <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-mono font-bold rounded uppercase tracking-wider border border-emerald-200">Centralización & Libro IVA</span>
-            <h3 class="text-xs font-bold text-slate-900">Preparación de Comprobantes de Compras para tu Contador</h3>
-          </div>
-          <p class="text-xs text-slate-600 leading-relaxed">
-            Dejá de buscar PDFs sueltos y copiar importes a mano. Centralizá tus facturas de compras (PDF, Excel, CSV y fotos), extraé y valida los datos fiscales con control de CUIT y duplicados, revisá los importes en la bandeja obligatoria y entregale a tu estudio contable un <strong>Libro IVA Compras</strong> verificado y listo para liquidar.
-          </p>
-        </div>
-
-        <!-- Header del Asistente -->
-        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
-            <div>
-              <div class="flex items-center space-x-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                <h2 class="text-sm font-semibold text-slate-900">Preparación de Comprobantes & Libro IVA Compras</h2>
-              </div>
-              <p class="text-xs text-slate-600 mt-0.5">
-                Centraliza, valida y exporta el Libro IVA de compras en formato Excel (.xlsx) y CSV compatible con AFIP y sistemas contables (Bejerman, Tango, Holistor).
-              </p>
-            </div>
-            <div class="flex items-center space-x-2">
-              <button onclick="downloadAccountingExcel()" class="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-bold text-white bg-emerald-700 hover:bg-emerald-800 rounded-lg transition shadow-2xs">
-                <i data-lucide="sheet" class="w-3.5 h-3.5"></i>
-                <span>Descargar Libro IVA (.xlsx)</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- ESTRUCTURA ESTÁNDAR: 3 BLOQUES OPERATIVOS CONTABLES -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <!-- BLOQUE 1: CENTRALIZACIÓN Y ENTRADA DE COMPROBANTES -->
-            <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-3 shadow-subtle flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
-                    <i data-lucide="inbox" class="w-3.5 h-3.5 text-emerald-600"></i>
-                    <span>Bloque 1 · Centralización</span>
-                  </span>
-                  <span class="text-[10px] font-mono px-2 py-0.5 bg-slate-100 text-slate-700 font-bold rounded border border-slate-200">CARGA DIRECTA</span>
-                </div>
-                <h4 class="text-xs font-bold text-slate-900">Entrada de Comprobantes</h4>
-                <p class="text-[11px] text-slate-600 leading-tight mb-3">Reuní todos los comprobantes físicos y digitales de tu negocio en un solo lugar.</p>
-                
-                <div class="space-y-2 text-xs">
-                  <!-- Paso 1: Email de Recepción de Facturas -->
-                  <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-lg space-y-1.5">
-                    <div class="flex items-center justify-between">
-                      <span class="text-[11px] font-semibold text-slate-800 flex items-center space-x-1">
-                        <span>📧</span><span>Casilla para Proveedores:</span>
-                      </span>
-                      <button onclick="copyAccountingEmail()" class="text-[10px] font-bold text-emerald-700 hover:text-emerald-900 bg-white border border-slate-200 px-2 py-0.5 rounded shadow-2xs">
-                        Copiar
-                      </button>
-                    </div>
-                    <input type="text" id="acc-email-input" readonly value="facturas@miempresa.com" class="w-full text-xs font-mono bg-white border border-slate-200 rounded px-2.5 py-1.5 text-slate-800">
-                    <p class="text-[10px] text-slate-500 leading-relaxed">
-                      Entregale este correo a tus proveedores o configura un reenvío en tu casilla de compras para centralizar adjuntos.
-                    </p>
-                  </div>
-
-                  <!-- Paso 2: Carga Directa Manual y Planillas -->
-                  <div class="p-2.5 bg-emerald-50/50 border border-emerald-200 rounded-lg space-y-2">
-                    <div class="flex items-center justify-between">
-                      <span class="font-bold text-emerald-950 text-xs flex items-center space-x-1">
-                        <span>📂</span><span>Subida desde tu PC:</span>
-                      </span>
-                      <span class="text-[10px] font-mono text-emerald-700">PDF · EXCEL · CSV</span>
-                    </div>
-                    <div class="flex items-center gap-1.5">
-                      <button type="button" onclick="triggerAccountingUpload()" class="flex-1 cursor-pointer px-2 py-1.5 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-md transition shadow-2xs flex items-center justify-center space-x-1">
-                        <i data-lucide="upload" class="w-3.5 h-3.5"></i>
-                        <span>Subir Archivo</span>
-                      </button>
-                      <button type="button" onclick="openManualInvoiceModal()" class="px-2 py-1.5 text-xs font-semibold text-emerald-900 bg-white border border-emerald-300 hover:bg-emerald-50 rounded-md transition shadow-2xs">
-                        + Manual
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <button onclick="openAccountingModal()" class="w-full py-2 px-3 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg text-xs font-semibold text-slate-800 transition flex items-center justify-center space-x-1.5 shadow-2xs mt-2">
-                <i data-lucide="settings" class="w-3.5 h-3.5 text-slate-600"></i>
-                <span>Ajustar Casilla de Recepción →</span>
-              </button>
-            </div>
-
-            <!-- BLOQUE 2: DATOS FISCALES & CONTROL DE DUPLICADOS -->
-            <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-3 shadow-subtle flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
-                    <i data-lucide="file-check" class="w-3.5 h-3.5 text-emerald-600"></i>
-                    <span>Bloque 2 · Control Fiscal</span>
-                  </span>
-                  <button onclick="openAccountingModal()" class="text-[10px] font-bold text-emerald-800 hover:text-emerald-950 bg-emerald-100 hover:bg-emerald-200 px-2 py-0.5 rounded border border-emerald-300 transition">
-                    ✏️ EDITAR CUIT
-                  </button>
-                </div>
-                <h4 class="text-xs font-bold text-slate-900">Validación Impositiva & Duplicados</h4>
-                <p class="text-[11px] text-slate-600 leading-tight mb-3">Parámetros tributarios de tu negocio y control de consistencia.</p>
-
-                <div class="space-y-1.5 text-xs">
-                  <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                    <span class="text-slate-600">Razón Social:</span>
-                    <span class="font-semibold text-slate-900 company-display-name">Mi Empresa</span>
-                  </div>
-                  <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                    <span class="text-slate-600">CUIT Empresa:</span>
-                    <span class="font-mono font-semibold text-slate-900" id="acc-display-cuit">30-71234567-8</span>
-                  </div>
-                  <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                    <span class="text-slate-600">Condición Fiscal:</span>
-                    <span class="font-medium text-emerald-800" id="acc-display-condicion">Responsable Inscripto</span>
-                  </div>
-                  <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
-                    <span class="text-[10px] font-semibold text-slate-600 uppercase">Control de Duplicados:</span>
-                    <div class="text-[11px] text-slate-700 flex items-center space-x-1">
-                      <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                      <span>Bloqueo automático por CUIT + Punto de Venta + N° Factura.</span>
-                    </div>
-                  </div>
-                  <div class="p-2 bg-emerald-50 border border-emerald-200 rounded text-[10px] text-emerald-900 flex items-center space-x-1.5">
-                    <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-700 shrink-0"></i>
-                    <span>Algoritmo Módulo 11 oficial para CUITs emisores.</span>
-                  </div>
-                </div>
-              </div>
-              <button onclick="openAccountingModal()" class="w-full py-2 px-3 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg text-xs font-semibold text-slate-800 transition flex items-center justify-center space-x-1.5 shadow-2xs mt-2">
-                <i data-lucide="settings-2" class="w-3.5 h-3.5 text-slate-600"></i>
-                <span>Configurar CUIT & Razón Social →</span>
-              </button>
-            </div>
-
-            <!-- BLOQUE 3: BANDEJA DE REVISIÓN Y ENTREGA AL CONTADOR -->
-            <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between mb-2">
-                  <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
-                    <i data-lucide="check-square" class="w-3.5 h-3.5 text-emerald-600"></i>
-                    <span>Bloque 3 · Revisión & Salida</span>
-                  </span>
-                  <span class="text-[10px] font-mono text-emerald-700 font-bold px-1.5 py-0.5 bg-emerald-50 border border-emerald-200 rounded">LIBRO IVA</span>
-                </div>
-                <h4 class="text-xs font-bold text-slate-900">Bandeja Obligatoria "Revisar y Aprobar"</h4>
-                <p class="text-[11px] text-slate-600 leading-tight mb-2">Flujo transparente: nada va al contador sin tu aprobación:</p>
-
-                <div class="space-y-1.5 text-xs text-slate-800">
-                  <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
-                    <strong class="text-slate-900">1. Carga & Detección:</strong> Lee CUIT, Razón Social, Comprobante, Neto e IVA desde PDFs o planillas Excel con SheetJS.
-                  </div>
-                  <div class="p-2 bg-amber-50/70 border border-amber-200 rounded leading-tight text-amber-950">
-                    <strong class="text-amber-900">2. Revisión Humana:</strong> Cada comprobante entra como <span class="font-bold">⚠️ Pendiente</span> para verificar montos y deducciones.
-                  </div>
-                  <div class="p-2 bg-emerald-50 border border-emerald-200 rounded leading-tight text-emerald-950">
-                    <strong class="text-emerald-900">3. Aprobación & Entrega:</strong> Con un clic aprobás y descargás el Libro IVA Compras en Excel (.xlsx) o CSV listo para tu estudio contable.
-                  </div>
-                </div>
-              </div>
-              <div class="pt-2 flex flex-wrap gap-1.5">
-                <button onclick="downloadAccountingExcel()" class="flex-1 py-1.5 px-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded text-[11px] font-semibold text-center transition flex items-center justify-center space-x-1 shadow-2xs">
-                  <i data-lucide="sheet" class="w-3 h-3"></i>
-                  <span>Libro IVA (.xlsx)</span>
-                </button>
-                <button onclick="downloadAccountingCsv()" class="flex-1 py-1.5 px-2 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded text-[11px] font-medium text-slate-700 text-center transition flex items-center justify-center space-x-1">
-                  <i data-lucide="download" class="w-3 h-3"></i>
-                  <span>Exportar CSV</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Métricas Contables del Mes -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
-          <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
-            <span class="block text-[11px] font-medium text-slate-600">Facturas Procesadas</span>
-            <span class="text-xl font-bold text-slate-900" id="acc-stat-count">0 facturas</span>
-            <span class="text-[10px] text-emerald-600 font-medium block mt-0.5" id="acc-stat-approved-pct">0 aprobadas</span>
-          </div>
-          <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
-            <span class="block text-[11px] font-medium text-slate-600">Total Compras del Mes</span>
-            <span class="text-xl font-bold text-slate-900" id="acc-stat-total">$0</span>
-            <span class="text-[10px] text-slate-600 block mt-0.5">Suma total con impuestos</span>
-          </div>
-          <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
-            <span class="block text-[11px] font-medium text-slate-600">Crédito Fiscal IVA</span>
-            <span class="text-xl font-bold text-emerald-700" id="acc-stat-iva">$0</span>
-            <span class="text-[10px] text-slate-600 block mt-0.5">A deducir en declaración</span>
-          </div>
-          <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
-            <span class="block text-[11px] font-medium text-slate-600">Neto Gravado Total</span>
-            <span class="text-xl font-bold text-slate-900" id="acc-stat-neto">$0</span>
-            <span class="text-[10px] text-slate-600 block mt-0.5">Base imponible calculada</span>
-          </div>
-        </div>
-
-        <!-- Input Global Oculto para Carga Real de Facturas y Planillas -->
-        <input type="file" id="accounting-global-file-input" accept=".pdf,.xlsx,.xls,.csv,image/*" onchange="handleRealInvoiceUpload(event)" class="hidden" style="display:none;">
-
-        <!-- Consola de Carga de Comprobantes: PDF, Excel y Demos -->
-        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-subtle space-y-4">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
-            <div>
-              <h3 class="text-xs font-bold text-slate-900 flex items-center space-x-1.5 uppercase tracking-wide">
-                <i data-lucide="upload-cloud" class="w-4 h-4 text-emerald-600"></i>
-                <span>Carga de Facturas & Planillas (Procesamiento Real)</span>
-              </h3>
-              <p class="text-[11px] text-slate-600 mt-0.5">
-                Subí cualquier factura en PDF, planilla Excel (.xlsx, .xls) o CSV desde tu computadora:
-              </p>
-            </div>
-            <div class="flex items-center space-x-2">
-              <button type="button" onclick="openManualInvoiceModal()" class="px-3 py-1 bg-white hover:bg-slate-50 text-slate-800 border border-slate-300 rounded-lg text-xs font-semibold transition shadow-2xs flex items-center space-x-1">
-                <i data-lucide="plus" class="w-3.5 h-3.5 text-emerald-600"></i>
-                <span>Carga Manual</span>
-              </button>
-              <span class="text-[10px] font-mono font-semibold text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded">
-                PDF · XLSX · XLS · CSV
-              </span>
-            </div>
-          </div>
-
-          <!-- Zona de Carga Principal (Dropzone) -->
-          <div id="accounting-dropzone"
-               onclick="triggerAccountingUpload()"
-               ondragover="handleAccountingDragOver(event)"
-               ondragleave="handleAccountingDragLeave(event)"
-               ondrop="handleAccountingDrop(event)"
-               class="border-2 border-dashed border-emerald-300 hover:border-emerald-500 bg-emerald-50/40 hover:bg-emerald-50/80 rounded-xl p-5 text-center cursor-pointer transition space-y-2">
-            <div class="w-12 h-12 mx-auto rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center">
-              <i data-lucide="file-up" class="w-6 h-6"></i>
-            </div>
-            <div class="font-bold text-sm text-slate-900">
-              Hacé clic aquí para elegir un archivo de tu PC
-            </div>
-            <p class="text-xs text-slate-600 max-w-md mx-auto">
-              Seleccioná una <strong>Factura en PDF</strong>, <strong>Planilla de gastos en Excel (.xlsx, .xls)</strong> o <strong>CSV</strong>.
-            </p>
-            <div class="pt-1 flex items-center justify-center gap-2">
-              <button type="button" onclick="event.stopPropagation(); triggerAccountingUpload();" class="inline-flex items-center space-x-2 px-4 py-2 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-bold rounded-lg shadow-sm transition">
-                <i data-lucide="folder-open" class="w-4 h-4 text-emerald-300"></i>
-                <span>Explorar archivos en mi PC...</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Opciones de Demostración & Limpieza de Datos -->
-          <div class="pt-2 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <div class="flex items-center space-x-1.5 text-[11px] text-slate-500">
-              <span>💡</span>
-              <span class="font-semibold">Comprobantes de prueba:</span>
-              <button type="button" onclick="simulateInvoiceTrigger('edenor')" class="px-2 py-0.5 bg-slate-100 hover:bg-slate-200 rounded text-slate-700 text-[10px] font-medium border border-slate-200 transition">
-                + Edenor ($103.115)
-              </button>
-              <button type="button" onclick="simulateInvoiceTrigger('telecom')" class="px-2 py-0.5 bg-slate-100 hover:bg-slate-200 rounded text-slate-700 text-[10px] font-medium border border-slate-200 transition">
-                + Telecom ($52.020)
-              </button>
-            </div>
-            <div class="flex items-center space-x-2">
-              <button type="button" onclick="clearAccountingInvoices(true)" class="px-2.5 py-1 text-[11px] font-semibold text-amber-900 bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded-lg transition" title="Elimina las facturas de prueba para empezar de cero">
-                🗑️ Borrar datos demo
-              </button>
-              <button type="button" onclick="clearAccountingInvoices(false)" class="px-2.5 py-1 text-[11px] font-semibold text-red-700 hover:text-red-900 bg-white hover:bg-red-50 border border-slate-200 hover:border-red-200 rounded-lg transition" title="Vacía toda la tabla">
-                Vaciar lista
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tabla del Libro IVA Compras & Bandeja de Revisión -->
-        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-subtle space-y-4">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
-            <div>
-              <div class="flex items-center space-x-2">
-                <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wide">Libro IVA Compras & Bandeja de Revisión</h3>
-                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-100 text-slate-700 border border-slate-200">F. 2002 AFIP / Excel</span>
-              </div>
-              <p class="text-[11px] text-slate-600 mt-0.5">Revisá cada comprobante antes de entregar el informe mensual a tu estudio contable.</p>
-            </div>
-
-            <!-- Filtros por Estado -->
-            <div class="flex items-center space-x-1.5 bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs">
-              <button onclick="filterAccountingTable('all')" id="btn-filter-all" class="filter-pill-acc px-2.5 py-1 text-[11px] font-bold rounded-md bg-[#1B4332] text-white transition shadow-2xs">
-                Todos (<span id="acc-cnt-all">0</span>)
-              </button>
-              <button onclick="filterAccountingTable('pending')" id="btn-filter-pending" class="filter-pill-acc px-2.5 py-1 text-[11px] font-medium rounded-md text-amber-950 hover:bg-white transition">
-                ⚠️ Por Revisar (<span id="acc-cnt-pending">0</span>)
-              </button>
-              <button onclick="filterAccountingTable('approved')" id="btn-filter-approved" class="filter-pill-acc px-2.5 py-1 text-[11px] font-medium rounded-md text-emerald-950 hover:bg-white transition">
-                ✅ Aprobados (<span id="acc-cnt-approved">0</span>)
-              </button>
-            </div>
-          </div>
-
-          <div class="border border-slate-200 rounded-lg overflow-x-auto">
-            <table class="w-full text-left text-xs whitespace-nowrap">
-              <thead class="bg-slate-50 border-b border-slate-200 text-slate-600 uppercase font-mono text-[10px]">
-                <tr>
-                  <th class="px-3 py-2.5 font-semibold">Estado</th>
-                  <th class="px-3 py-2.5 font-semibold">Fecha</th>
-                  <th class="px-3 py-2.5 font-semibold">Proveedor / Razón Social</th>
-                  <th class="px-3 py-2.5 font-semibold">CUIT Emisor</th>
-                  <th class="px-3 py-2.5 font-semibold">Comprobante</th>
-                  <th class="px-3 py-2.5 font-semibold">Neto Gravado</th>
-                  <th class="px-3 py-2.5 font-semibold">IVA</th>
-                  <th class="px-3 py-2.5 font-semibold">Total</th>
-                  <th class="px-3 py-2.5 font-semibold">Categoría</th>
-                  <th class="px-3 py-2.5 font-semibold text-right">Acciones</th>
-                </tr>
-              </thead>
-              <tbody id="accounting-table-body" class="divide-y divide-slate-100 text-slate-800 font-mono text-[11px]">
-                <!-- Cargado dinámicamente -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Barra Inferior de Acciones (Con espacio amplio para no ser tapada por nada) -->
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-6 border-t border-slate-200 relative z-30 mb-8">
-          <button onclick="goBack()" class="w-full sm:w-auto inline-flex items-center justify-center space-x-1.5 px-3.5 py-2.5 text-xs font-semibold text-slate-700 hover:text-slate-900 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition shadow-2xs">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-            <span>Volver</span>
-          </button>
-          <div class="flex flex-wrap items-center justify-end gap-2 w-full sm:w-auto">
-            <button type="button" onclick="triggerAccountingUpload()" class="cursor-pointer flex-1 sm:flex-none px-4 py-2.5 text-xs font-semibold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg transition flex items-center justify-center space-x-1.5 shadow-2xs">
-              <i data-lucide="upload" class="w-3.5 h-3.5 text-slate-600"></i>
-              <span>Subir Archivo (PDF o Excel)</span>
-            </button>
-            <button onclick="openAccountingModal()" class="flex-1 sm:flex-none px-4 py-2.5 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg transition shadow-subtle flex items-center justify-center space-x-1.5">
-              <span>📧</span><span>Conectar Gmail & Drive</span>
-            </button>
-          </div>
-        </div>
-      </section>
+      <section id="step-accounting" class="step-content space-y-4 hidden"><h2 class="text-lg font-semibold">Función pendiente de implementación</h2><p class="text-sm text-slate-600">Este módulo todavía no está habilitado para operar con tus datos.</p><button onclick="switchStep('step-simulator')" class="px-4 py-2 rounded bg-[#1B4332] text-white">Volver al vendedor</button></section>
 
       <!-- ======================================================== -->
       <!-- PASO 6: ASESOR DE TALLES & PROBADOR INTELIGENTE (TALLEEXACTO) -->
       <!-- ======================================================== -->
-      <section id="step-talleexacto" class="step-content space-y-6 hidden">
-        <!-- Top Navigation Banner -->
-        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
-          <div class="flex items-center space-x-2">
-            <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 transition shadow-subtle">
-              <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-slate-700"></i>
-              <span class="btn-smart-back-text">Volver</span>
-            </button>
-          </div>
-          <div class="flex items-center space-x-2">
-            <span class="text-xs font-mono px-2.5 py-1 rounded bg-[#FAF7EE] text-[#8A5A1E] border border-[#E6DCC3] font-medium">Módulo Especial Moda: TalleExacto</span>
-            <a href="/talleexacto" class="px-2.5 py-1 bg-[#8A5A1E] hover:bg-[#6E4817] text-white rounded-lg text-xs font-semibold transition shadow-subtle">
-              Ver Módulo Oficial ↗
-            </a>
-          </div>
-        </div>
-
-        <!-- Banner de Empleado No Contratado -->
-        <div id="uncontracted-banner-talleexacto" class="hidden p-3.5 bg-amber-50 border border-amber-300 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
-          <div class="flex items-start sm:items-center space-x-2.5">
-            <span class="text-lg">⚠️</span>
-            <div>
-              <span class="text-xs font-bold text-amber-950 block">TalleExacto (Moda) — Empleado No Contratado</span>
-              <p class="text-[11px] text-amber-800 leading-tight">Este módulo de recomendación de talles no está activo en tu cuenta. Podés contratarlo para reducir devoluciones con 14 días gratis.</p>
-            </div>
-          </div>
-          <button onclick="openBusinessConfigModal('talleexacto')" class="px-3 py-1.5 bg-[#8A5A1E] hover:bg-[#6E4817] text-white text-xs font-bold rounded-lg transition whitespace-nowrap shadow-xs flex items-center space-x-1 shrink-0">
-            <span>+ Contratar este Empleado</span>
-          </button>
-        </div>
-
-        <!-- Banner Explicativo: ¿Para qué sirve este empleado? -->
-        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
-          <div class="flex items-center space-x-2">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-[#8A5A1E]">¿Para qué sirve este módulo?</h3>
-          </div>
-          <p class="text-xs text-slate-700 leading-relaxed">
-            Ayuda a tus clientas de indumentaria a elegir su talle exacto (XS al XXL) calculando busto, cintura y cadera con un probador interactivo 2D y en WhatsApp, reduciendo hasta un 30% las costosas devoluciones por prendas que no entran ni quedan cómodas.
-          </p>
-        </div>
-
-        <!-- Header del Módulo Moda -->
-        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-4">
-            <div>
-              <div class="flex items-center space-x-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
-                <h2 class="text-sm font-semibold text-slate-900">Probador Inteligente de Talles & Moda (TalleExacto)</h2>
-                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200 font-semibold">ECOMMERCE MODA</span>
-              </div>
-              <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-                El 40% de las ventas de ropa online se cancelan o devuelven por dudas de talle. TalleExacto analiza las medidas del cliente y recomienda el talle ideal tanto en tu tienda web como automáticamente en tu WhatsApp.
-              </p>
-            </div>
-            <div class="flex items-center space-x-2 shrink-0">
-              <a href="/talleexacto" class="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium text-amber-900 bg-amber-50 hover:bg-amber-100 border border-amber-200 rounded-lg transition shadow-subtle">
-                <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-                <span>Ver Módulo Completo</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Pilares de Integración con Changared -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-            <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5">
-              <span class="text-[11px] font-semibold text-slate-700 uppercase tracking-wider flex items-center space-x-1.5">
-                <i data-lucide="scan" class="w-3.5 h-3.5 text-amber-600"></i>
-                <span>1. Motor FitMap 2D</span>
-              </span>
-              <p class="text-[11px] text-slate-600 leading-tight">Compara busto, cintura y cadera contra la moldería de la prenda y detecta ajuste exacto o prendas holgadas.</p>
-            </div>
-
-            <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5">
-              <span class="text-[11px] font-semibold text-slate-700 uppercase tracking-wider flex items-center space-x-1.5">
-                <i data-lucide="message-square" class="w-3.5 h-3.5 text-emerald-600"></i>
-                <span>2. Asesor en WhatsApp</span>
-              </span>
-              <p class="text-[11px] text-slate-600 leading-tight">Si una clienta pregunta por chat *"mido 1.65 y 90 de busto, qué talle soy?"*, el bot calcula y responde en segundos.</p>
-            </div>
-
-            <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5">
-              <span class="text-[11px] font-semibold text-slate-700 uppercase tracking-wider flex items-center space-x-1.5">
-                <i data-lucide="code" class="w-3.5 h-3.5 text-blue-600"></i>
-                <span>3. Widget E-Commerce</span>
-              </span>
-              <p class="text-[11px] text-slate-600 leading-tight">2 líneas de código para Tiendanube, Shopify y WooCommerce. Pago único o incluido en tu plan Changared.</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Consola Interactiva del FitMap (Estilo TalleExacto) -->
-        <div class="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-card text-white">
-          <div class="px-5 py-3 border-b border-slate-800 bg-slate-950/70 flex items-center justify-between">
-            <div class="flex items-center space-x-2">
-              <span class="text-amber-400 font-mono text-xs font-semibold uppercase tracking-widest">TalleExacto FitMap</span>
-              <span class="text-slate-600 text-xs">/</span>
-              <span class="text-slate-300 text-xs font-mono">Vestido Midi · Colección 2026</span>
-            </div>
-            <span class="text-[10px] font-mono text-amber-400 bg-amber-950/60 border border-amber-800/80 px-2 py-0.5 rounded">MODO SIMULADOR VIVO</span>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-0">
-            <!-- Columna Izquierda: Sliders de Medidas -->
-            <div class="md:col-span-4 p-5 bg-slate-900 border-b md:border-b-0 md:border-r border-slate-800 space-y-4">
-              <div class="text-[10px] uppercase font-mono tracking-widest text-slate-400">Tus Medidas del Comprador</div>
-              
-              <div class="space-y-1">
-                <div class="flex justify-between text-xs font-mono">
-                  <span class="text-slate-400">Altura</span>
-                  <span class="text-amber-400 font-semibold" id="fit-v-height">165 cm</span>
-                </div>
-                <input type="range" min="148" max="192" value="165" id="fit-s-height" oninput="updateFitMap()" class="w-full accent-amber-500 cursor-pointer h-1.5 bg-slate-800 rounded">
-              </div>
-
-              <div class="space-y-1">
-                <div class="flex justify-between text-xs font-mono">
-                  <span class="text-slate-400">Busto</span>
-                  <span class="text-amber-400 font-semibold" id="fit-v-bust">88 cm</span>
-                </div>
-                <input type="range" min="76" max="116" value="88" id="fit-s-bust" oninput="updateFitMap()" class="w-full accent-amber-500 cursor-pointer h-1.5 bg-slate-800 rounded">
-              </div>
-
-              <div class="space-y-1">
-                <div class="flex justify-between text-xs font-mono">
-                  <span class="text-slate-400">Cintura</span>
-                  <span class="text-amber-400 font-semibold" id="fit-v-waist">70 cm</span>
-                </div>
-                <input type="range" min="58" max="104" value="70" id="fit-s-waist" oninput="updateFitMap()" class="w-full accent-amber-500 cursor-pointer h-1.5 bg-slate-800 rounded">
-              </div>
-
-              <div class="space-y-1">
-                <div class="flex justify-between text-xs font-mono">
-                  <span class="text-slate-400">Caderas</span>
-                  <span class="text-amber-400 font-semibold" id="fit-v-hips">96 cm</span>
-                </div>
-                <input type="range" min="82" max="124" value="96" id="fit-s-hips" oninput="updateFitMap()" class="w-full accent-amber-500 cursor-pointer h-1.5 bg-slate-800 rounded">
-              </div>
-
-              <div class="pt-2 grid grid-cols-2 gap-2 text-xs font-mono">
-                <div class="p-2.5 bg-slate-950/60 border border-slate-800 rounded">
-                  <span class="block text-[10px] text-slate-500 uppercase">Silueta</span>
-                  <span class="font-semibold text-slate-200 text-[11px]" id="fit-body-type">Reloj de Arena</span>
-                </div>
-                <div class="p-2.5 bg-slate-950/60 border border-slate-800 rounded">
-                  <span class="block text-[10px] text-slate-500 uppercase">C/C Ratio</span>
-                  <span class="font-semibold text-amber-400 text-[11px]" id="fit-cc-ratio">0.73</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Columna Central: Maniquí Biomecánico SVG -->
-            <div class="md:col-span-5 p-5 bg-slate-950/40 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-slate-800">
-              <div id="fit-badge-ui" class="inline-flex items-center space-x-2 px-3 py-1 rounded border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 font-mono text-xs uppercase mb-3">
-                <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                <span id="fit-label-ui">Talle Ideal</span>
-                <span class="text-slate-600">·</span>
-                <span id="fit-size-ui" class="font-bold">M</span>
-              </div>
-
-              <div class="w-full max-w-[260px]">
-                <svg viewBox="0 0 160 172" class="w-full h-48 mx-auto">
-                  <defs>
-                    <linearGradient id="bodyGradChangared" x1="0" y1="0" x2="1" y2="1">
-                      <stop offset="0%" stop-color="#2A2F48"/>
-                      <stop offset="100%" stop-color="#1E2235"/>
-                    </linearGradient>
-                    <linearGradient id="bodyGradHlChangared" x1="0" y1="0" x2="1" y2="0">
-                      <stop offset="0%" stop-color="#323857" stop-opacity=".5"/>
-                      <stop offset="50%" stop-color="#3E4568" stop-opacity=".15"/>
-                      <stop offset="100%" stop-color="#323857" stop-opacity=".5"/>
-                    </linearGradient>
-                  </defs>
-                  <path id="fit-body-path" fill="url(#bodyGradChangared)" stroke="#3E4568" stroke-width=".8"/>
-                  <path id="fit-body-path-hl" fill="url(#bodyGradHlChangared)" stroke="none" opacity=".6"/>
-                  <g id="fit-bar-bust"></g>
-                  <g id="fit-bar-waist"></g>
-                  <g id="fit-bar-hips"></g>
-                  <rect x="75" y="132" width="10" height="22" fill="#252B42" stroke="#3E4568" stroke-width=".6"/>
-                  <rect x="58" y="152" width="44" height="7" rx="2" fill="#252B42" stroke="#3E4568" stroke-width=".6"/>
-                  <text x="4" y="58" fill="#64748B" font-size="7" font-family="monospace">BUSTO</text>
-                  <text x="4" y="88" fill="#64748B" font-size="7" font-family="monospace">CINTURA</text>
-                  <text x="4" y="116" fill="#64748B" font-size="7" font-family="monospace">CADERA</text>
-                </svg>
-              </div>
-
-              <div id="fit-breakdown" class="w-full max-w-[230px] space-y-1.5 mt-2 font-mono text-[10px]">
-                <!-- Cargado dinámicamente -->
-              </div>
-            </div>
-
-            <!-- Columna Derecha: Resultado & Prueba en WhatsApp -->
-            <div class="md:col-span-3 p-5 bg-slate-900 space-y-4 flex flex-col justify-between">
-              <div class="space-y-3">
-                <div class="p-3 bg-slate-950/70 border border-slate-800 rounded-lg text-center">
-                  <span class="text-[10px] text-slate-400 font-mono uppercase tracking-wider block">Talle Recomendado</span>
-                  <span class="text-4xl font-mono font-black text-amber-400 block mt-1" id="fit-result-size">M</span>
-                  <span class="text-[11px] text-emerald-400 font-mono mt-0.5 block">Precisión 98.4%</span>
-                </div>
-
-                <div class="space-y-1">
-                  <span class="text-[10px] text-slate-400 font-mono uppercase tracking-wider block">Talles Disponibles</span>
-                  <div class="flex gap-1.5 font-mono text-xs" id="fit-size-pills">
-                    <!-- Generado dinámicamente -->
-                  </div>
-                </div>
-
-                <button onclick="triggerStylistAdvice()" id="btn-fit-ai" class="w-full py-2 px-3 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/40 text-amber-300 font-mono text-[11px] rounded transition flex items-center justify-center space-x-1.5">
-                  <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i>
-                  <span>✦ Consejo de Estilista IA</span>
-                </button>
-
-                <div id="fit-ai-result" class="p-2.5 bg-slate-950/80 border border-amber-500/30 rounded text-[11px] text-slate-300 italic hidden">
-                  <!-- Texto generado -->
-                </div>
-              </div>
-
-              <div class="pt-2 border-t border-slate-800">
-                <button onclick="testSizeInWhatsApp()" class="w-full py-2 px-3 bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-xs rounded-lg transition flex items-center justify-center space-x-1.5 shadow-sm">
-                  <i data-lucide="message-circle" class="w-3.5 h-3.5"></i>
-                  <span>Probar en WhatsApp Bot</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Calculadora de Pérdidas de E-Commerce (Logística Inversa) -->
-        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-subtle space-y-4">
-          <div class="border-b border-slate-100 pb-3">
-            <h3 class="text-xs font-semibold text-slate-900 flex items-center space-x-1.5">
-              <i data-lucide="calculator" class="w-3.5 h-3.5 text-amber-600"></i>
-              <span>Calculadora de Pérdida por Devoluciones de Ropa</span>
-            </h3>
-            <p class="text-[11px] text-slate-600 mt-0.5">Calcula cuánto dinero pierde tu tienda al mes en logística inversa y prendas rechazadas:</p>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-4 gap-3 text-xs">
-            <div>
-              <label class="block text-slate-600 text-[11px] font-medium mb-1">Ventas mensuales (prendas)</label>
-              <input type="number" id="calc-ventas" value="100" oninput="calcLoss()" class="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded font-mono text-xs">
-            </div>
-            <div>
-              <label class="block text-slate-600 text-[11px] font-medium mb-1">Tasa de devolución por talle (%)</label>
-              <input type="number" id="calc-tasa" value="18" oninput="calcLoss()" class="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded font-mono text-xs">
-            </div>
-            <div>
-              <label class="block text-slate-600 text-[11px] font-medium mb-1">Ticket promedio ($ o USD)</label>
-              <input type="number" id="calc-ticket" value="35" oninput="calcLoss()" class="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded font-mono text-xs">
-            </div>
-            <div>
-              <label class="block text-slate-600 text-[11px] font-medium mb-1">Costo logístico devolución ($ o USD)</label>
-              <input type="number" id="calc-costo" value="8" oninput="calcLoss()" class="w-full px-2.5 py-1.5 bg-slate-50 border border-slate-200 rounded font-mono text-xs">
-            </div>
-          </div>
-
-          <div class="p-4 bg-amber-50/60 border border-amber-200 rounded-lg flex flex-col sm:flex-row items-center justify-between gap-3">
-            <div>
-              <span class="text-xs font-semibold text-amber-900 block">Pérdida mensual evitada con TalleExacto:</span>
-              <span class="text-[11px] text-amber-800" id="calc-breakdown">—</span>
-            </div>
-            <div class="text-right">
-              <span class="text-2xl font-black text-amber-900 font-mono" id="calc-result">USD 333</span>
-              <span class="block text-[10px] text-amber-700 font-medium">Ahorro neto directo</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Snippet de Integración Web -->
-        <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-subtle space-y-3">
-          <div class="flex items-center justify-between">
-            <div>
-              <h3 class="text-xs font-semibold text-slate-900">Snippet de Integración para tu Tienda Online</h3>
-              <p class="text-[11px] text-slate-600 mt-0.5">Copia y pega estas 2 líneas en tu plantilla de Tiendanube, Shopify o WooCommerce:</p>
-            </div>
-            <button onclick="copyTalleExactoSnippet()" class="px-3 py-1.5 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded text-xs text-slate-800 transition font-mono flex items-center space-x-1.5">
-              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-              <span id="btn-copy-snippet-text">Copiar Snippet</span>
-            </button>
-          </div>
-          <div class="p-3 bg-slate-900 rounded-lg font-mono text-xs text-amber-300 overflow-x-auto leading-relaxed border border-slate-800">
-            &lt;script src="https://talleexacto.atomica.click/widget.js"&gt;&lt;/script&gt;<br>
-            &lt;div id="talleexacto" data-store="tu-tienda"&gt;&lt;/div&gt;
-          </div>
-        </div>
-
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-slate-100">
-          <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 rounded-lg transition-colors shadow-2xs">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-            <span class="btn-smart-back-text">Volver</span>
-          </button>
-          <button onclick="switchStep('step-simulator')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-semibold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg transition-colors shadow-2xs">
-            <span>Siguiente: Chat en Vivo</span>
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </button>
-        </div>
-      </section>
+      <section id="step-talleexacto" class="step-content space-y-4 hidden"><h2 class="text-lg font-semibold">Función pendiente de implementación</h2><p class="text-sm text-slate-600">Este módulo todavía no está habilitado para operar con tus datos.</p><button onclick="switchStep('step-simulator')" class="px-4 py-2 rounded bg-[#1B4332] text-white">Volver al vendedor</button></section>
 
       <!-- ======================================================== -->
       <!-- PASO 6: SIMULADOR INTERACTIVO CON PRUEBAS MULTILINGÜES -->
@@ -2413,440 +1035,12 @@
       <!-- ======================================================== -->
       <!-- 2. GESTOR DE COBRANZAS (WHATSAPP & MERCADO PAGO) -->
       <!-- ======================================================== -->
-      <section id="step-cobranzas" class="step-content space-y-4 hidden">
-        <!-- Top Navigation Bar -->
-        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
-          <div class="flex items-center space-x-2">
-            <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 transition shadow-subtle">
-              <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-slate-700"></i>
-              <span class="btn-smart-back-text">Volver</span>
-            </button>
-          </div>
-          <div class="flex items-center space-x-3">
-            <span class="text-xs font-semibold text-slate-800">2. Gestor de Cobranzas (WhatsApp & Mercado Pago)</span>
-            <a href="/cobranzas" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded-lg text-xs font-semibold transition shadow-subtle flex items-center space-x-1">
-              <span>Abrir Gestor de Cobranzas</span>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-            </a>
-          </div>
-        </div>
-
-        <!-- Banner de Empleado No Contratado -->
-        <div id="uncontracted-banner-cobranzas" class="hidden p-3.5 bg-amber-50 border border-amber-300 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
-          <div class="flex items-start sm:items-center space-x-2.5">
-            <span class="text-lg">⚠️</span>
-            <div>
-              <span class="text-xs font-bold text-amber-950 block">2. Gestor de Cobranzas — Empleado No Contratado</span>
-              <p class="text-[11px] text-amber-800 leading-tight">Este gestor de cobros automáticos no está activo en tu cuenta. Podés activarlo con 14 días gratis sin tarjeta.</p>
-            </div>
-          </div>
-          <button onclick="openBusinessConfigModal('cobranzas')" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-bold rounded-lg transition whitespace-nowrap shadow-xs flex items-center space-x-1 shrink-0">
-            <span>+ Contratar este Empleado</span>
-          </button>
-        </div>
-
-        <!-- Acceso Directo al Gestor de Cobranzas -->
-        <div class="p-8 bg-white border border-slate-200 rounded-xl space-y-4 shadow-subtle text-center">
-          <div class="w-14 h-14 mx-auto rounded-full bg-emerald-50 text-emerald-800 flex items-center justify-center text-2xl font-bold border border-emerald-200">
-            💳
-          </div>
-          <div class="max-w-md mx-auto space-y-1">
-            <h3 class="text-sm font-bold text-slate-900">Gestor de Cobranzas Automático</h3>
-            <p class="text-xs text-slate-600">Automatiza la gestión de deudas y cobranzas recurrentes por WhatsApp con link directo de Mercado Pago y emisión de recibos oficiales.</p>
-          </div>
-          <div class="pt-2">
-            <a href="/cobranzas" class="inline-flex items-center space-x-2 px-5 py-2.5 rounded-lg bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-bold transition shadow-subtle">
-              <span>Abrir Gestor de Cobranzas</span>
-              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
-            </a>
-          </div>
-        </div>
-      </section>
+      <section id="step-cobranzas" class="step-content space-y-4 hidden"><h2 class="text-lg font-semibold">Función pendiente de implementación</h2><p class="text-sm text-slate-600">Este módulo todavía no está habilitado para operar con tus datos.</p><button onclick="switchStep('step-simulator')" class="px-4 py-2 rounded bg-[#1B4332] text-white">Volver al vendedor</button></section>
 
       <!-- ======================================================== -->
       <!-- 4. AGENDADOR DE CITAS & TURNOS (WHATSAPP & GOOGLE CALENDAR) -->
       <!-- ======================================================== -->
-      <section id="step-citas" class="step-content space-y-6 hidden">
-        <!-- Top Navigation Banner (Limpio, Sin Botones Duplicados) -->
-        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
-          <div class="flex items-center space-x-2">
-            <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 transition shadow-subtle">
-              <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-slate-700"></i>
-              <span class="btn-smart-back-text">Volver</span>
-            </button>
-          </div>
-          <div class="flex items-center space-x-2">
-            <span class="text-xs font-mono px-2.5 py-1 rounded bg-emerald-50 text-emerald-800 border border-emerald-200 font-semibold flex items-center space-x-1.5">
-              <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-              <span data-i18n="citasBadge">4. Agendador de Citas (Google Calendar)</span>
-            </span>
-            <button onclick="openBusinessConfigModal()" class="inline-flex items-center space-x-1 px-2.5 py-1 text-xs bg-emerald-50 text-emerald-900 border border-emerald-300 rounded-lg hover:bg-emerald-100 transition shadow-2xs">
-              <span>🏢</span>
-              <span class="company-display-name font-semibold truncate max-w-[120px] sm:max-w-none">Mi Empresa</span>
-              <span class="text-[10px] text-emerald-700 font-semibold">✏️ Cambiar</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Banner de Empleado No Contratado -->
-        <div id="uncontracted-banner-citas" class="hidden p-3.5 bg-amber-50 border border-amber-300 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
-          <div class="flex items-start sm:items-center space-x-2.5">
-            <span class="text-lg">⚠️</span>
-            <div>
-              <span class="text-xs font-bold text-amber-950 block">4. Agendador de Citas — Empleado No Contratado</span>
-              <p class="text-[11px] text-amber-800 leading-tight">La coordinación de turnos con Google Calendar y seña no está activa en tu cuenta. Podés activarla con 14 días gratis.</p>
-            </div>
-          </div>
-          <button onclick="openBusinessConfigModal('citas')" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-bold rounded-lg transition whitespace-nowrap shadow-xs flex items-center space-x-1 shrink-0">
-            <span>+ Contratar este Empleado</span>
-          </button>
-        </div>
-
-        <!-- Banner Explicativo: ¿Para qué sirve este empleado? -->
-        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
-          <div class="flex items-center space-x-2">
-            <h3 class="text-xs font-bold uppercase tracking-wider text-[#1B4332]" data-i18n="citasWhatForTitle">¿Para qué sirve este empleado?</h3>
-          </div>
-          <p class="text-xs text-slate-700 leading-relaxed" data-i18n="citasWhatForDesc">
-            Agenda citas de tu negocio en tiempo real consultando tu Google Calendar o Cal.com. Muestra huecos libres por WhatsApp, cobra señas con Mercado Pago para erradicar el ausentismo de clientes y envía recordatorios 24h y 2h antes para que nadie falte.
-          </p>
-        </div>
-
-        <!-- ESTRUCTURA ESTÁNDAR OBLIGATORIA: 3 BLOQUES OPERATIVOS -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-          
-          <!-- BLOQUE 1: INTEGRACIÓN & CANALES (CONEXIÓN EN 1 CLIC) -->
-          <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
-                  <i data-lucide="link" class="w-3.5 h-3.5 text-emerald-600"></i>
-                  <span data-i18n="b1Title">Bloque 1 · Integración & Canales</span>
-                </span>
-                <span class="text-[10px] font-mono px-1.5 py-0.5 bg-emerald-50 text-emerald-700 font-semibold rounded border border-emerald-200">SINCRONIZACIÓN</span>
-              </div>
-              <h4 class="text-xs font-bold text-slate-900" data-i18n="citasB1Heading">WhatsApp + Google Calendar</h4>
-              <p class="text-[11px] text-slate-600 leading-tight mb-2.5" data-i18n="citasB1Sub">Canal de atención y agenda sincronizada bidireccional.</p>
-              
-              <div class="space-y-1.5 text-xs">
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                  <div class="flex items-center space-x-1.5 truncate">
-                    <i data-lucide="smartphone" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                    <span class="truncate">WhatsApp Business</span>
-                  </div>
-                  <div class="flex items-center space-x-1.5 shrink-0">
-                    <span class="text-[10px] text-rose-700 font-semibold" id="citas-status-wa">● Sin vincular</span>
-                    <button onclick="openWhatsAppModal('citas')" class="px-2 py-0.5 text-[10px] font-semibold text-slate-700 bg-white hover:bg-slate-100 border border-slate-200 rounded shadow-2xs">
-                      Vincular
-                    </button>
-                  </div>
-                </div>
-
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                  <div class="flex items-center space-x-1.5 truncate">
-                    <i data-lucide="calendar" class="w-3.5 h-3.5 text-blue-600 shrink-0"></i>
-                    <span class="truncate">Google Calendar</span>
-                  </div>
-                  <div class="flex items-center space-x-1.5 shrink-0">
-                    <span class="text-[10px] text-rose-700 font-semibold" id="citas-status-cal">● Sin vincular</span>
-                    <button onclick="openGoogleCalendarModal()" class="px-2 py-0.5 text-[10px] font-semibold text-blue-700 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded shadow-2xs">
-                      Conectar
-                    </button>
-                  </div>
-                </div>
-
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
-                  <span class="text-[10px] font-semibold text-slate-600 uppercase" data-i18n="citasCalendarAccount">Cuenta Sincronizada:</span>
-                  <div class="text-[11px] font-mono text-slate-900 font-semibold truncate" id="citas-account-email">contacto@miempresa.com</div>
-                </div>
-
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded text-[11px] text-slate-700">
-                  <span class="text-[10px] font-semibold text-slate-600 uppercase block mb-0.5" data-i18n="citasHours">Horarios de Atención:</span>
-                  <span id="citas-display-hours">Lunes a Viernes: 09:00 a 18:00</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- BLOQUE 2: BASE DE CONOCIMIENTO / DATOS DE ENTRADA -->
-          <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
-                  <i data-lucide="database" class="w-3.5 h-3.5 text-emerald-600"></i>
-                  <span data-i18n="b2Title">Bloque 2 · Datos de Entrada</span>
-                </span>
-                <button onclick="openCitasConfigModal()" class="text-[10px] font-bold text-emerald-800 hover:text-emerald-950 bg-emerald-100 hover:bg-emerald-200 px-2 py-0.5 rounded border border-emerald-300 transition">
-                  EDITAR
-                </button>
-              </div>
-              <h4 class="text-xs font-bold text-slate-900" data-i18n="citasB2Heading">Servicios, Duración & Profesionales</h4>
-              <p class="text-[11px] text-slate-600 leading-tight mb-2.5" data-i18n="citasB2Sub">Reglas de duración y política de confirmación.</p>
-
-              <div class="space-y-1.5 text-xs">
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                  <span class="text-slate-600">Servicios Activos:</span>
-                  <span class="font-semibold text-slate-900" id="citas-display-services-count">3 prestaciones</span>
-                </div>
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                  <span class="text-slate-600">Disponibilidad de Agenda:</span>
-                  <span class="font-semibold text-emerald-800">Turnos en Tiempo Real</span>
-                </div>
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
-                  <span class="text-[10px] font-semibold text-slate-600 uppercase" data-i18n="citasDepositRule">Política de Seña Previa:</span>
-                  <div class="text-[11px] text-slate-800 font-medium" id="citas-display-deposit-text">Seña $5.000 con Mercado Pago para reservar</div>
-                </div>
-                <div class="p-2 bg-amber-50 border border-amber-200 rounded text-[10px] text-amber-900 flex items-center space-x-1.5">
-                  <i data-lucide="shield-check" class="w-3.5 h-3.5 text-amber-600 shrink-0"></i>
-                  <span data-i18n="citasAntiNoShow">Si no abonan la seña en 15 min, el turno se libera</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- BLOQUE 3: AUTOMATIZACIÓN & ACCIÓN DE SALIDA -->
-          <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle">
-            <div class="flex items-center justify-between">
-              <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
-                <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-600"></i>
-                <span data-i18n="b3Title">Bloque 3 · Acción de Salida</span>
-              </span>
-              <span class="text-[10px] font-mono text-emerald-700 font-bold">AGENDA CONFIRMADA</span>
-            </div>
-            <h4 class="text-xs font-bold text-slate-900" data-i18n="citasB3Heading">¿Qué hace la IA tras agendar?</h4>
-            <p class="text-[11px] text-slate-600 leading-tight" data-i18n="citasB3Sub">Bloqueo en Google Calendar, cobro y recordatorio.</p>
-
-            <div class="space-y-1.5 text-xs text-slate-800">
-              <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
-                <strong class="text-slate-900">1. Bloqueo en Calendar:</strong> Crea el evento en tiempo real en tu Google Calendar con datos del cliente.
-              </div>
-              <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
-                <strong class="text-slate-900">2. Link de Seña MP:</strong> Envía el link de pago de Mercado Pago por WhatsApp para validar el turno.
-              </div>
-              <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
-                <strong class="text-slate-900">3. Recordatorio 24h & 2h:</strong> Envía alerta automática a WhatsApp con botones [Confirmar] o [Reprogramar].
-              </div>
-              <div class="p-2 bg-emerald-50 border border-emerald-200 rounded leading-tight text-emerald-900">
-                <strong class="text-emerald-950">4. Auto-Reprogramación:</strong> Si el cliente avisa que no puede ir, libera el turno y ofrece las próximas fechas.
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="flex justify-center pt-1">
-          <a href="/agenda.html" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold transition shadow-subtle">
-            <i data-lucide="calendar-days" class="w-4 h-4"></i>
-            Abrir agenda de turnos
-            <i data-lucide="external-link" class="w-3.5 h-3.5 text-emerald-200"></i>
-          </a>
-        </div>
-
-        <!-- La operación de la agenda se abre en una pestaña independiente. -->
-        <div class="hidden grid grid-cols-2 md:grid-cols-4 gap-3">
-          <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
-            <span class="block text-[11px] font-medium text-slate-600" data-i18n="citasStatBooked">Citas Agendadas (Mes)</span>
-            <span class="text-xl font-bold text-slate-900" id="stat-citas-count">142 turnos</span>
-            <span class="text-[10px] text-emerald-600 font-medium block mt-0.5">100% por WhatsApp</span>
-          </div>
-          <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
-            <span class="block text-[11px] font-medium text-slate-600" data-i18n="citasStatShowup">Tasa de Asistencia</span>
-            <span class="text-xl font-bold text-emerald-700" id="stat-citas-showup">94.2%</span>
-            <span class="text-[10px] text-slate-600 block mt-0.5">vs 68% sin seña previa</span>
-          </div>
-          <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
-            <span class="block text-[11px] font-medium text-slate-600" data-i18n="citasStatDeposits">Señas Cobradas con MP</span>
-            <span class="text-xl font-bold text-slate-900" id="stat-citas-deposits">$710.000</span>
-            <span class="text-[10px] text-slate-600 block mt-0.5">Dinero asegurado</span>
-          </div>
-          <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
-            <span class="block text-[11px] font-medium text-slate-600" data-i18n="citasStatHours">Horas de Teléfono Ahorradas</span>
-            <span class="text-xl font-bold text-blue-700" id="stat-citas-hours">32 Horas</span>
-            <span class="text-[10px] text-slate-600 block mt-0.5">Recepción libre</span>
-          </div>
-        </div>
-
-        <!-- AGENDA ELEGIBLE: DISPONIBILIDAD POR DÍA Y HORARIO -->
-        <div class="hidden bg-white border border-slate-200 rounded-xl p-5 shadow-subtle space-y-4">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
-            <div>
-              <h2 class="text-sm font-semibold text-slate-900">Elegí tu turno</h2>
-              <p class="text-[11px] text-slate-600 mt-0.5">Los horarios apagados ya están ocupados o están fuera de atención.</p>
-            </div>
-            <div class="flex items-center gap-3 text-[10px] text-slate-600">
-              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span>Disponible</span>
-              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-300"></span>No disponible</span>
-            </div>
-          </div>
-          <div id="appointment-day-list" class="grid grid-cols-2 sm:grid-cols-4 gap-2" aria-label="Días disponibles"></div>
-          <div>
-            <p id="appointment-slot-title" class="text-xs font-semibold text-slate-800 mb-2">Elegí un día para ver horarios</p>
-            <div id="appointment-slot-list" class="grid grid-cols-3 sm:grid-cols-6 gap-2" aria-live="polite"></div>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr_auto] gap-2 pt-2 border-t border-slate-100">
-            <input id="appointment-client-name" type="text" placeholder="Nombre del cliente" class="text-xs px-3 py-2 border border-slate-200 rounded-lg focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500">
-            <input id="appointment-client-phone" type="tel" placeholder="WhatsApp del cliente" class="text-xs px-3 py-2 border border-slate-200 rounded-lg focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500">
-            <button id="appointment-confirm-button" onclick="confirmAgendaAppointment()" disabled class="px-4 py-2 bg-slate-200 text-slate-500 rounded-lg text-xs font-bold cursor-not-allowed">Elegí un horario</button>
-          </div>
-          <div id="appointment-notification-status" class="hidden rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-2 text-[11px] text-emerald-900" role="status"></div>
-        </div>
-
-        <!-- CONSOLA DE SIMULACIÓN DE AGENDAMIENTO EN VIVO -->
-        <div class="hidden bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-            <div>
-              <h2 class="text-sm font-semibold text-slate-900" data-i18n="citasSimTitle">Simulador de Agendamiento en Vivo (WhatsApp)</h2>
-              <p class="text-xs text-slate-600 mt-0.5" data-i18n="citasSimSub">Prueba cómo la IA consulta los huecos libres en Google Calendar y toma el turno paso a paso.</p>
-            </div>
-            <button onclick="resetCitasChat()" class="text-xs text-slate-600 hover:text-slate-800 transition flex items-center space-x-1">
-              <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
-              <span data-i18n="btnResetChat">Reiniciar chat</span>
-            </button>
-          </div>
-
-          <!-- Ventana de Chat Estilo WhatsApp Moderno -->
-          <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50 flex flex-col h-[400px]">
-            <!-- Header de Chat -->
-            <div class="bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between">
-              <div class="flex items-center space-x-3">
-                <div class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">
-                  📅
-                </div>
-                <div>
-                  <h3 class="text-xs font-semibold text-slate-900" id="citas-chat-title">Agendador de Citas IA</h3>
-                  <p class="text-[10px] text-emerald-600 font-medium flex items-center space-x-1">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                    <span data-i18n="citasOnline">Sincronizado con Google Calendar en tiempo real</span>
-                  </p>
-                </div>
-              </div>
-              <div class="flex items-center space-x-2 text-[10px] font-mono text-slate-600">
-                <span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">Google Calendar Sync ON</span>
-              </div>
-            </div>
-
-            <!-- Cuerpo de Mensajes -->
-            <div id="citas-messages" class="flex-1 p-4 overflow-y-auto space-y-3">
-              <div class="flex justify-center">
-                <span class="text-[10px] bg-slate-200/60 text-slate-600 px-2.5 py-1 rounded-full font-medium" data-i18n="citasSimWelcome">
-                  Chat de prueba inicializado • Pide un turno para cualquier servicio
-                </span>
-              </div>
-
-              <!-- Mensaje Inicial del Bot -->
-              <div class="flex items-start space-x-2 max-w-[80%]">
-                <div class="bg-white border border-slate-200 text-slate-800 text-xs p-3 rounded-2xl rounded-tl-sm shadow-subtle leading-relaxed">
-                  ¡Hola! 📅 Soy el asistente de citas y turnos de <strong class="company-display-name">Mi Empresa</strong>. ¿Qué servicio te gustaría agendar y para qué día preferís tu turno?
-                </div>
-              </div>
-            </div>
-
-            <!-- Barra de Entrada de Mensaje -->
-            <div class="p-3 bg-white border-t border-slate-200 flex items-center space-x-2">
-              <input type="text" id="citas-input-text" onkeypress="handleCitasEnter(event)" placeholder="Ej: Hola, quiero un turno para mañana a la tarde..." data-i18n-placeholder="placeholderCitas" class="flex-1 text-xs px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:border-slate-400">
-              <button onclick="sendCitasMessage()" class="px-3.5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition shadow-subtle flex items-center justify-center">
-                <i data-lucide="send" class="w-3.5 h-3.5"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Sugerencias Rápidas de Prueba -->
-          <div class="space-y-1.5">
-            <span class="text-slate-600 text-[11px] font-medium block" data-i18n="citasQuickQueries">Pruebas rápidas de agendamiento:</span>
-            <div class="flex flex-wrap gap-2 text-xs">
-              <button onclick="setCitasQuery('Hola! Tenés turno para mañana a la tarde para corte y barba?')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[11px] transition flex items-center space-x-1 border border-slate-200">
-                <span>💈</span>
-                <span>"Turno mañana a la tarde para corte y barba"</span>
-              </button>
-              <button onclick="setCitasQuery('Hola, necesito una consulta médica para el viernes por la mañana')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[11px] transition flex items-center space-x-1 border border-slate-200">
-                <span>🩺</span>
-                <span>"Consulta médica para el viernes por la mañana"</span>
-              </button>
-              <button onclick="setCitasQuery('Quiero agendar turno de estética para el sábado a las 11 hs')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[11px] transition flex items-center space-x-1 border border-slate-200">
-                <span>💆</span>
-                <span>"Turno de estética sábado 11:00 hs"</span>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- TABLA DE TURNOS SINCRONIZADOS EN GOOGLE CALENDAR -->
-        <div class="hidden bg-white border border-slate-200 rounded-xl p-5 shadow-subtle space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-            <div>
-              <h3 class="text-xs font-semibold text-slate-900" data-i18n="citasCalendarTableTitle">Citas Agendadas Sincronizadas (Google Calendar)</h3>
-              <p class="text-[11px] text-slate-600 mt-0.5" data-i18n="citasCalendarTableSub">Eventos creados automáticamente desde WhatsApp con seña verificada en Mercado Pago.</p>
-            </div>
-            <button onclick="addSimulatedAppointment()" class="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-lg transition shadow-subtle">
-              <i data-lucide="plus" class="w-3.5 h-3.5"></i>
-              <span data-i18n="btnAddCita">+ Simular Nueva Cita</span>
-            </button>
-          </div>
-
-          <div class="border border-slate-200 rounded-lg overflow-x-auto">
-            <table class="w-full text-left text-xs whitespace-nowrap">
-              <thead class="bg-slate-50 border-b border-slate-200 text-slate-600 uppercase font-mono text-[10px]">
-                <tr>
-                  <th class="px-3 py-2.5 font-semibold">Fecha & Hora</th>
-                  <th class="px-3 py-2.5 font-semibold">Cliente</th>
-                  <th class="px-3 py-2.5 font-semibold">WhatsApp</th>
-                  <th class="px-3 py-2.5 font-semibold">Servicio</th>
-                  <th class="px-3 py-2.5 font-semibold">Profesional</th>
-                  <th class="px-3 py-2.5 font-semibold">Estado de Seña</th>
-                  <th class="px-3 py-2.5 font-semibold text-right">Calendar</th>
-                </tr>
-              </thead>
-              <tbody id="citas-table-body" class="divide-y divide-slate-100 text-slate-800 font-mono text-[11px]">
-                <tr>
-                  <td class="px-3 py-2.5 font-semibold text-slate-900">Mañana 16:30 hs</td>
-                  <td class="px-3 py-2.5 font-sans font-medium text-slate-900">Matías Romero</td>
-                  <td class="px-3 py-2.5 text-slate-600">+54 9 11 5566-7788</td>
-                  <td class="px-3 py-2.5 font-sans">Corte & Barba Clásico</td>
-                  <td class="px-3 py-2.5 text-slate-600">Sillón 1 (Lucas)</td>
-                  <td class="px-3 py-2.5">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
-                      ✓ Seña $5.000 Pagada
-                    </span>
-                  </td>
-                  <td class="px-3 py-2.5 text-right font-sans">
-                    <span class="text-[10px] text-blue-600 font-semibold cursor-pointer hover:underline">Google Calendar ↗</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="px-3 py-2.5 font-semibold text-slate-900">Viernes 11:00 hs</td>
-                  <td class="px-3 py-2.5 font-sans font-medium text-slate-900">Dra. Lucía Menéndez</td>
-                  <td class="px-3 py-2.5 text-slate-600">+54 9 11 4433-2211</td>
-                  <td class="px-3 py-2.5 font-sans">Limpieza Facial Profunda</td>
-                  <td class="px-3 py-2.5 text-slate-600">Gabinete 2 (Valentina)</td>
-                  <td class="px-3 py-2.5">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
-                      ✓ Seña $5.000 Pagada
-                    </span>
-                  </td>
-                  <td class="px-3 py-2.5 text-right font-sans">
-                    <span class="text-[10px] text-blue-600 font-semibold cursor-pointer hover:underline">Google Calendar ↗</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="px-3 py-2.5 font-semibold text-slate-900">Sábado 18:00 hs</td>
-                  <td class="px-3 py-2.5 font-sans font-medium text-slate-900">Federico Gómez</td>
-                  <td class="px-3 py-2.5 text-slate-600">+54 9 11 9988-1122</td>
-                  <td class="px-3 py-2.5 font-sans">Consulta Nutricional</td>
-                  <td class="px-3 py-2.5 text-slate-600">Consultorio 3 (Dr. Pérez)</td>
-                  <td class="px-3 py-2.5">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200 animate-pulse">
-                      ⏳ Esperando Seña (11 min)
-                    </span>
-                  </td>
-                  <td class="px-3 py-2.5 text-right font-sans">
-                    <span class="text-[10px] text-blue-600 font-semibold cursor-pointer hover:underline">Google Calendar ↗</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </section>
+      <section id="step-citas" class="step-content space-y-4 hidden"><h2 class="text-lg font-semibold">Función pendiente de implementación</h2><p class="text-sm text-slate-600">Este módulo todavía no está habilitado para operar con tus datos.</p><button onclick="switchStep('step-simulator')" class="px-4 py-2 rounded bg-[#1B4332] text-white">Volver al vendedor</button></section>
 
       <!-- ======================================================== -->
       <!-- PIE DE PÁGINA INSTITUCIONAL & ENLACES INTERNOS (SEO GOOGLE) -->
@@ -3231,7 +1425,7 @@
           </div>
           <div>
             <label class="block font-medium text-slate-700 mb-1">Seña sugerida para turnos ($)</label>
-            <input type="number" id="cfg-custom-deposit" placeholder="5000" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-bold text-xs">
+            <input type="number" id="cfg-custom-deposit" placeholder="Importe, si corresponde" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-bold text-xs">
           </div>
         </div>
 
@@ -3310,7 +1504,7 @@
       <div class="space-y-3 text-xs">
         <div>
           <label class="block font-medium text-slate-700 mb-1">Tu Número de WhatsApp Comercial</label>
-          <input type="text" id="wa-modal-phone" value="+54 9 11 4455-6677" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs">
+          <input type="text" id="wa-modal-phone" value="" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs">
           <p class="text-[10px] text-slate-500 mt-1">Funciona con tu número comercial o línea de atención al cliente.</p>
         </div>
 
@@ -3366,7 +1560,7 @@
           <span class="font-bold text-slate-800 block">¿Usas WhatsApp Cloud API o Bot Multi-agente?</span>
           <span>Webhook para eventos entrantes:</span>
           <div class="font-mono text-emerald-800 bg-white p-1 rounded border border-slate-200 truncate" id="wa-modal-webhook-text">
-            http://localhost:3000/api/webhook/mi-empresa
+            /api/webhook/mi-empresa
           </div>
         </div>
       </div>
@@ -3460,7 +1654,7 @@
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block font-medium text-slate-700 mb-1">Monto de Seña Previa ($)</label>
-            <input type="number" id="citas-cfg-deposit" value="5000" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-bold">
+            <input type="number" id="citas-cfg-deposit" value="" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-bold">
             <span class="text-[10px] text-slate-500">Cobro obligatorio vía Mercado Pago</span>
           </div>
           <div>
@@ -3530,7 +1724,7 @@
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block font-medium text-slate-700 mb-1">CUIT Empresa</label>
-            <input type="text" id="acc-cfg-cuit" value="30-71234567-8" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs">
+            <input type="text" id="acc-cfg-cuit" value="" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs">
           </div>
           <div>
             <label class="block font-medium text-slate-700 mb-1">Condición Fiscal</label>
@@ -3843,7 +2037,7 @@
             <div class="text-xs font-bold leading-tight">Asesor Comercial Changared</div>
             <div class="text-[10px] text-emerald-300 font-medium flex items-center space-x-1">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>En línea 24/7 · Asesoramiento & Ventas</span>
+              <span>Asesor de Changared</span>
             </div>
           </div>
         </div>
@@ -4012,9 +2206,9 @@
 
         // Navegación Sidebar
         navSectionMain: "Principal",
-        navStepHub: "¿Qué empleado buscas?",
+        navStepHub: "Inicio",
         navSectionEmployees: "Empleados Virtuales",
-        navStepSimulator: "1. Vendedor IA (WhatsApp 24/7)",
+        navStepSimulator: "Vendedor IA",
         navStepCobranzas: "2. Gestor de Cobranzas",
         navStepAccounting: "3. Facturación & Gastos",
         navStepMultilingual: "4. Asistente Multilingüe (Turismo)",
@@ -4060,7 +2254,7 @@
 
         // Banner de Tranquilidad y Seguridad
         safetyTitle: "🛡️ Tu Tranquilidad Comercial Primero:",
-        safetyControl: "Control Humano 100%",
+        safetyControl: "Control humano",
         safetyDesc: "<strong>✓ Tu mismo número de siempre:</strong> Funciona sobre tu WhatsApp actual sin comprar otro chip (igual que WhatsApp Web). Podés seguir chateando vos desde tu celular cuando quieras.<br><strong>✓ Red de seguridad anti-errores:</strong> Si un cliente escribe <em>\"humano\"</em>, hace una queja o pide hablar con alguien, la IA se silencia de inmediato y hace sonar una alerta en tu teléfono.",
         btnPersonalizeBusiness: "⚙️ Personalizar Mi Negocio",
 
@@ -4093,7 +2287,7 @@
         emp4Category: "Turismo & Hotelería",
         emp4Title: "4. Asistente Multilingüe & Turismo",
         emp4WhatForDesc: "Atiende turistas 24/7 en +10 idiomas por WhatsApp y cartelería QR física en mesas o recepción. Cierra reservas directas ahorrando comisiones de plataformas externas, envía cartas en PDF y gestiona pagos con Pix y USD.",
-        emp4F1: "Cierra reservas directas sin comisiones (0% vs 18% Booking)",
+        emp4F1: "Función pendiente de implementación",
         emp4F2: "Fluidez nativa inmediata en portugués, inglés, francés y español",
         emp4F3: "Envía carta en PDF, Wi-Fi, check-in y cobros en Pix / USD",
         btnTestTourist: "Probar Asistente →",
@@ -4102,7 +2296,7 @@
         emp5Badge: "Google Calendar + WhatsApp",
         emp5Title: "5. Agendador de Citas & Turnos (WhatsApp & Calendar)",
         emp5WhatForDesc: "Coordina y reserva turnos de tu negocio en tiempo real consultando tu Google Calendar o Cal.com. Muestra huecos libres, cobra seña previa con Mercado Pago para erradicar el ausentismo y envía recordatorios automáticos 24h y 2h antes por WhatsApp.",
-        emp5F1: "Reduce el 85% del ausentismo con seña previa por MP",
+        emp5F1: "Función pendiente de implementación",
         emp5F2: "Sincronización en vivo con Google Calendar sin solapamiento",
         emp5F3: "Reprogramación y cancelaciones automáticas 24/7",
         btnTestCitas: "Probar Agendador de Citas en Vivo →",
@@ -4245,9 +2439,9 @@
 
         // Sidebar Navigation
         navSectionMain: "Main",
-        navStepHub: "Which employee do you need?",
+        navStepHub: "Inicio",
         navSectionEmployees: "Virtual Employees",
-        navStepSimulator: "1. AI Sales Rep (WhatsApp 24/7)",
+        navStepSimulator: "AI Sales Rep",
         navStepCobranzas: "2. Debt Collection Manager",
         navStepAccounting: "3. Invoicing & Expenses",
         navStepMultilingual: "4. Multilingual Assistant (Tourism)",
@@ -4293,7 +2487,7 @@
 
         // Safety Banner
         safetyTitle: "🛡️ Your Commercial Peace of Mind First:",
-        safetyControl: "100% Human Control",
+        safetyControl: "Human control",
         safetyDesc: "<strong>✓ Your same existing phone number:</strong> Works directly on your current WhatsApp without buying a new SIM (just like WhatsApp Web). You can keep chatting from your phone whenever you want.<br><strong>✓ Anti-error safety net:</strong> If a customer types <em>\"human\"</em>, complains, or asks to speak with someone, the AI mutes itself immediately and triggers an alert on your phone.",
         btnPersonalizeBusiness: "⚙️ Customize My Business",
 
@@ -4326,7 +2520,7 @@
         emp4Category: "Tourism & Hospitality",
         emp4Title: "4. Multilingual & Tourism Assistant",
         emp4WhatForDesc: "Assists foreign tourists 24/7 in 10+ languages via WhatsApp and tabletop QR codes. Closes direct bookings saving OTA commissions, sends digital menus, and takes Pix & USD payments.",
-        emp4F1: "Closes direct reservations commission-free (0% vs 18% OTA)",
+        emp4F1: "Función pendiente de implementación",
         emp4F2: "Native fluency in Portuguese, English, French, and Spanish",
         emp4F3: "Sends PDF menu, Wi-Fi credentials, check-in guide, and Pix/USD",
         btnTestTourist: "Test Assistant →",
@@ -4335,7 +2529,7 @@
         emp5Badge: "Google Calendar + WhatsApp",
         emp5Title: "5. Appointment Scheduler (WhatsApp & Calendar)",
         emp5WhatForDesc: "Schedules appointments in real-time by checking your Google Calendar or Cal.com. Shares open slots, collects deposits via Mercado Pago to eliminate no-shows, and sends automatic 24h & 2h WhatsApp reminders.",
-        emp5F1: "Reduces 85% of no-shows with advance MP deposits",
+        emp5F1: "Función pendiente de implementación",
         emp5F2: "Live Google Calendar synchronization without double-booking",
         emp5F3: "24/7 automated rescheduling and cancellations",
         btnTestCitas: "Test Live Appointment Scheduler →",
@@ -4478,9 +2672,9 @@
 
         // Navegação Sidebar
         navSectionMain: "Principal",
-        navStepHub: "Qual funcionário você procura?",
+        navStepHub: "Inicio",
         navSectionEmployees: "Funcionários Virtuais",
-        navStepSimulator: "1. Vendedor IA (WhatsApp 24/7)",
+        navStepSimulator: "Vendedor IA",
         navStepCobranzas: "2. Gestor de Cobranças",
         navStepAccounting: "3. Faturamento & Despesas",
         navStepMultilingual: "4. Assistente Multilíngue (Turismo)",
@@ -4526,7 +2720,7 @@
 
         // Banner de Tranquilidade e Segurança
         safetyTitle: "🛡️ Sua Tranquilidade Comercial Primeiro:",
-        safetyControl: "Controle Humano 100%",
+        safetyControl: "Controle humano",
         safetyDesc: "<strong>✓ Seu mesmo número de sempre:</strong> Funciona no seu WhatsApp atual sem comprar outro chip (como o WhatsApp Web). Você pode continuar conversando pelo celular quando quiser.<br><strong>✓ Rede de segurança contra erros:</strong> Se o cliente digitar <em>\"humano\"</em>, fizer uma reclamação ou pedir um atendente, a IA silencia imediatamente e notifica você no celular.",
         btnPersonalizeBusiness: "⚙️ Personalizar Meu Negócio",
 
@@ -4559,7 +2753,7 @@
         emp4Category: "Turismo & Hotelaria",
         emp4Title: "4. Assistente Multilíngue & Turismo",
         emp4WhatForDesc: "Atende turistas 24/7 em mais de 10 idiomas pelo WhatsApp e QR codes em mesas ou balcão. Fecha reservas diretas sem comissões de terceiros, envia cardápios em PDF e aceita Pix e USD.",
-        emp4F1: "Fecha reservas diretas sem comissões (0% vs 18% plataformas)",
+        emp4F1: "Función pendiente de implementación",
         emp4F2: "Fluência nativa em português, inglês, francês e espanhol",
         emp4F3: "Envia cardápio em PDF, senha do Wi-Fi, check-in e pagamentos via Pix / USD",
         btnTestTourist: "Testar Assistente →",
@@ -4568,7 +2762,7 @@
         emp5Badge: "Google Calendar + WhatsApp",
         emp5Title: "5. Agendador de Consultas e Horários (WhatsApp & Calendar)",
         emp5WhatForDesc: "Coordena e agenda horários em tempo real consultando seu Google Calendar ou Cal.com. Mostra horários livres, cobra sinal via Mercado Pago para zerar faltas e envia lembretes 24h e 2h antes pelo WhatsApp.",
-        emp5F1: "Reduz 85% das faltas com sinal prévio via Mercado Pago",
+        emp5F1: "Función pendiente de implementación",
         emp5F2: "Sincronização em tempo real com Google Calendar sem conflitos",
         emp5F3: "Reagendamento e cancelamento automáticos 24/7",
         btnTestCitas: "Testar Agendador de Consultas ao Vivo →",
@@ -4678,24 +2872,8 @@
 
     // Estado reactivo local
     let currentBusiness = {
-      id: "mi-empresa",
-      name: "Mi Empresa",
-      description: "Empresa dedicada a la comercialización y servicios profesionales. Horario: Lunes a Viernes de 09:00 a 18:00 hs. Envíos y atención personalizada a todo el país.",
-      language: "Español",
-      autoDetectLanguage: true,
-      toneOfVoice: "amigable, profesional y orientado a resolver consultas con rapidez",
-      businessRules: [
-        "Horario de atención: Lunes a Viernes de 09:00 a 18:00.",
-        "Envíos coordinados en 24 a 48 hs hábiles.",
-        "Aceptamos transferencias y Mercado Pago (alias: pagos.miempresa.mp)."
-      ],
-      catalog: [
-        { id: "SRV-01", name: "Consulta y Asesoramiento General", price: 8500, stock: 25, description: "Sesión de diagnóstico y plan de trabajo inicial.", category: "Servicios" },
-        { id: "SRV-02", name: "Servicio Profesional Integral", price: 18500, stock: 12, description: "Implementación completa y seguimiento técnico.", category: "Servicios" },
-        { id: "PRD-01", name: "Pack Insumos Comerciales Premium", price: 12500, stock: 20, description: "Kit con entrega inmediata y garantía oficial.", category: "Productos" },
-        { id: "PRD-02", name: "Membresía Mensual de Soporte", price: 25000, stock: 40, description: "Acceso prioritario y soporte 24/7.", category: "Suscripciones" },
-        { id: "PRD-03", name: "Pack Especial Limitado", price: 9500, stock: 0, description: "Edición especial agotada temporalmente.", category: "Promociones" }
-      ]
+      id: 'mi-empresa', name: 'Mi Empresa', description: '', language: 'Español',
+      autoDetectLanguage: true, toneOfVoice: 'amigable y claro', businessRules: [], catalog: []
     };
 
     const DEMO_BUSINESS_DATA = JSON.parse(JSON.stringify(currentBusiness));
@@ -4837,6 +3015,7 @@
 
     function switchStep(stepId, pushHistory = true) {
       if (!stepId) return;
+      if (['step-billing','step-accounting','step-talleexacto','step-citas','step-cobranzas','step-multilingual'].includes(stepId)) { showToast('Este módulo todavía no está habilitado.'); return; }
       if (stepId === 'step-cobranzas') {
         window.location.href = '/cobranzas';
         return;
@@ -5235,7 +3414,7 @@
         } else if (reason === 'personalizar' || reason === 'config' || reason === 'save') {
           reasonEl.innerHTML = `<strong>Personalizar tu Negocio:</strong> Para personalizar el nombre, empleados y configuración comercial de tu negocio, inicia sesión o crea tu cuenta gratuita.`;
         } else if (reason === 'contratar') {
-          reasonEl.innerHTML = `<strong>Contratar Empleado Virtual:</strong> Activa 14 días de prueba sin tarjeta creando tu cuenta comercial en 30 segundos.`;
+          reasonEl.innerHTML = `<strong>Contratar Empleado Virtual:</strong> Activa 14 días de prueba sin tarjeta creando tu cuenta comercial.`;
         } else {
           reasonEl.innerHTML = `<strong>Protección de Datos & Canales Oficiales:</strong> Tu cuenta privada garantiza que nadie más pueda modificar tus asistentes ni ver tus facturas.`;
         }
@@ -5418,29 +3597,10 @@
     // GESTIÓN GLOBAL DE EMPRESA Y CONFIGURACIÓN DINÁMICA
     // =========================================================
     const DEFAULT_COMPANY_DATA = {
-      name: "Mi Empresa",
-      slug: "mi-empresa",
-      rubro: "Comercio & Servicios",
-      phone: "+54 9 11 4455-6677",
-      email: "contacto@miempresa.com",
-      website: "https://miempresa.com",
-      hours: "Lunes a Viernes: 09:00 a 18:00",
-      currency: "ARS",
-      deposit: "5000",
-      paymentMethod: "pagos.miempresa.mp",
-      desc: "Atención comercial, servicios profesionales y ventas directas.",
-      whatsappConnected: false,
-      calendarConnected: false,
-      calendarEmail: "contacto@miempresa.com",
-      cuit: "30-71234567-8",
-      taxCondition: "Responsable Inscripto",
-      driveFolder: "/Facturas_2026/",
-      activeEmployees: ['vendedor'],
-      services: [
-        { id: 1, name: "Consulta / Atención Estándar", duration: "45 min", price: 8500 },
-        { id: 2, name: "Servicio Especializado", duration: "60 min", price: 14000 },
-        { id: 3, name: "Asesoramiento Personalizado", duration: "30 min", price: 12000 }
-      ]
+      name: 'Mi Empresa', slug: '', rubro: '', phone: '', email: '', website: '', hours: '',
+      currency: 'ARS', deposit: 0, paymentMethod: '', desc: '', whatsappConnected: false,
+      calendarConnected: false, calendarEmail: '', cuit: '', taxCondition: '', driveFolder: '',
+      activeEmployees: ['vendedor'], services: [], catalog: []
     };
 
     function emptyCompany() {
@@ -5515,7 +3675,7 @@
       if (accEmailInput) accEmailInput.value = `facturas+${currentCompany.slug}@changared.com`;
 
       const accCuit = document.getElementById('acc-display-cuit');
-      if (accCuit) accCuit.innerText = currentCompany.cuit || '30-71234567-8';
+      if (accCuit) accCuit.innerText = currentCompany.cuit || '';
 
       const accDrive = document.getElementById('acc-display-drive');
       if (accDrive) accDrive.innerText = `📁 ${currentCompany.driveFolder || '/Facturas_2026/'}`;
@@ -5527,7 +3687,7 @@
       if (accCond) accCond.innerText = currentCompany.taxCondition || 'Responsable Inscripto';
 
       const webhookInput = document.getElementById('webhook-endpoint-input');
-      if (webhookInput) webhookInput.value = `http://localhost:3000/api/webhook/${currentCompany.slug}`;
+      if (webhookInput) webhookInput.value = `${location.origin}/api/webhook/${currentCompany.slug}`;
 
       const citasEmail = document.getElementById('citas-account-email');
       if (citasEmail) citasEmail.innerText = currentCompany.calendarEmail || currentCompany.email;
@@ -5536,7 +3696,7 @@
       if (citasHours) citasHours.innerText = currentCompany.hours;
 
       const depositEl = document.getElementById('citas-display-deposit-text');
-      if (depositEl) depositEl.innerText = `Seña $${Number(currentCompany.deposit || 5000).toLocaleString('es-AR')} con Mercado Pago para reservar`;
+      if (depositEl) depositEl.innerText = `Seña $${Number(currentCompany.deposit || 0).toLocaleString('es-AR')} con Mercado Pago para reservar`;
 
       const servicesCountEl = document.getElementById('citas-display-services-count');
       if (servicesCountEl) servicesCountEl.innerText = `${currentCompany.services.length} prestaciones`;
@@ -5567,7 +3727,7 @@
       const simWaStatus = document.getElementById('sim-wa-status-text');
       const simWaPhone = document.getElementById('sim-wa-active-phone');
       const simWaBtnText = document.getElementById('sim-wa-btn-text');
-      if (simWaPhone) simWaPhone.innerText = currentCompany.phone || '+54 9 11 4455-6677';
+      if (simWaPhone) simWaPhone.innerText = currentCompany.phone || '';
       if (simWaStatus) {
         if (currentCompany.whatsappConnected) {
           simWaStatus.innerText = 'Vinculado';
@@ -5661,9 +3821,7 @@
           name: '3. Facturación & Gastos',
           step: 'step-accounting',
           renderActiveActions: () => `
-            <button onclick="switchStep('step-accounting')" class="flex-1 py-2 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition" data-i18n="btnOpenAccounting">
-              Ver Excel en Vivo →
-            </button>
+
           `
         },
         {
@@ -5671,10 +3829,7 @@
           name: '4. Agendador de Citas',
           step: 'step-citas',
           renderActiveActions: () => `
-            <button onclick="switchStep('step-citas')" class="flex-1 py-2 px-4 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition shadow-subtle flex items-center justify-center space-x-1.5" data-i18n="btnTestCitas">
-              <i data-lucide="calendar" class="w-3.5 h-3.5 text-emerald-300"></i>
-              <span>Probar Agendador de Citas en Vivo →</span>
-            </button>
+
           `
         },
         {
@@ -5682,9 +3837,7 @@
           name: 'TalleExacto (Moda)',
           step: 'step-talleexacto',
           renderActiveActions: () => `
-            <button onclick="switchStep('step-talleexacto')" class="py-2 px-3.5 bg-[#8A5A1E] hover:bg-[#6E4817] text-white rounded text-xs font-semibold transition">
-              Probar Módulo →
-            </button>
+
             <a href="/talleexacto" class="py-2 px-3 bg-white hover:bg-slate-100 text-slate-800 border border-[#E6DCC3] rounded text-xs font-medium transition">
               Ver Módulo Completo ↗
             </a>
@@ -5803,8 +3956,8 @@
         if (document.getElementById('cfg-custom-email')) document.getElementById('cfg-custom-email').value = currentCompany.email || '';
         if (document.getElementById('cfg-custom-website')) document.getElementById('cfg-custom-website').value = currentCompany.website || '';
         if (document.getElementById('cfg-custom-hours')) document.getElementById('cfg-custom-hours').value = currentCompany.hours || '';
-        if (document.getElementById('cfg-custom-deposit')) document.getElementById('cfg-custom-deposit').value = currentCompany.deposit || '5000';
-        if (document.getElementById('cfg-custom-payment')) document.getElementById('cfg-custom-payment').value = currentCompany.paymentMethod || 'pagos.miempresa.mp';
+        if (document.getElementById('cfg-custom-deposit')) document.getElementById('cfg-custom-deposit').value = currentCompany.deposit ?? '';
+        if (document.getElementById('cfg-custom-payment')) document.getElementById('cfg-custom-payment').value = currentCompany.paymentMethod || '';
         if (document.getElementById('cfg-custom-desc')) document.getElementById('cfg-custom-desc').value = currentCompany.desc || '';
 
         // Sincronizar opción multilingüe
@@ -5904,7 +4057,7 @@
           `Horario de atención: ${currentCompany.hours}`,
           `Teléfono de contacto: ${currentCompany.phone}`,
           `Rubro: ${currentCompany.rubro}`,
-          `Link de pago / Alias: ${currentCompany.paymentMethod || 'pagos.miempresa.mp'}`
+          `Link de pago / Alias: ${currentCompany.paymentMethod || ''}`
         ];
       }
 
@@ -5923,7 +4076,7 @@
         hours: currentCompany.hours,
         website: currentCompany.website,
         deposit: currentCompany.deposit,
-        paymentMethod: currentCompany.paymentMethod || 'pagos.miempresa.mp',
+        paymentMethod: currentCompany.paymentMethod || '',
         toneOfVoice: currentCompany.tone || 'amigable, respetuoso y dispuesto a ayudar',
         language: 'Español',
         autoDetectLanguage: autoDetectLang,
@@ -5933,7 +4086,7 @@
           `Teléfono de contacto: ${currentCompany.phone}`,
           `Rubro: ${currentCompany.rubro}`,
           `Seña de reserva: $${currentCompany.deposit}`,
-          `Método de pago / Alias: ${currentCompany.paymentMethod || 'pagos.miempresa.mp'}`
+          `Método de pago / Alias: ${currentCompany.paymentMethod || ''}`
         ],
         services: currentCompany.services || []
       };
@@ -6186,15 +4339,7 @@
       // Fallback comercial de Changared si no hay conexión
       if (!reply) {
         const q = text.toLowerCase();
-        if (q.includes('turno') || q.includes('cita') || q.includes('agenda') || q.includes('calendar') || q.includes('barber') || q.includes('peluquer') || q.includes('clinic')) {
-          reply = `Para negocios con citas o agenda, el empleado ideal es el <strong>Agendador de Citas (Google Calendar)</strong>:<br><br>• Sincroniza tus horarios reales con Google Calendar.<br>• Ofrece turnos libres por WhatsApp.<br>• Cobra una seña automática por Mercado Pago para asegurar la asistencia.<br>• Envía recordatorios previos para evitar cancelaciones.<br><br>Podés probarlo con <strong>14 días gratis</strong> desde el panel.`;
-        } else if (q.includes('precio') || q.includes('cuanto') || q.includes('costo') || q.includes('plan') || q.includes('gratis') || q.includes('tarjeta')) {
-          reply = `En Changared contratas <strong>por empleado</strong>:<br><br>• Tenés <strong>14 días de prueba gratis sin tarjeta de crédito</strong>.<br>• Podés vincular tu número de WhatsApp con QR en 30 segundos.<br>• Planes desde $19 USD/mes por empleado con soporte continuo.<br><br>¿Te gustaría activar tu prueba gratuita hoy mismo?`;
-        } else if (q.includes('whatsapp') || q.includes('vender') || q.includes('venta') || q.includes('stock') || q.includes('catalogo')) {
-          reply = `El <strong>Vendedor IA para WhatsApp 24/7</strong> atiende a tus clientes día y noche:<br><br>• Consulta tu catálogo y stock en tiempo real (nunca vende lo agotado).<br>• Pasa precios oficiales, alias o links de Mercado Pago.<br>• Toma pedidos y responde dudas frecuentes en segundos.<br>• Vinculación oficial por QR en 30 segundos.<br><br>Incluye 14 días gratis. ¿Qué productos o servicios comercializas?`;
-        } else {
-          reply = `¡Hola! Soy el Asesor Comercial de Changared. Te ayudamos a potenciar tu negocio con Empleados Virtuales IA:<br><br>1. <strong>Vendedor WhatsApp 24/7</strong> (atiende stock, precios y pedidos).<br>2. <strong>Turnos en Google Calendar & Señas</strong> (gestiona citas y cobra seña).<br>3. <strong>Gestor de Cobranzas</strong> (recordatorios automáticos de pago).<br>4. <strong>Asistente Contable</strong> (facturas de Gmail/Drive a Google Sheets).<br><br>Todos con <strong>14 días de prueba gratis</strong>. ¿Qué tarea te gustaría automatizar primero?`;
-        }
+        reply = 'No pudimos consultar al asesor. Intentá nuevamente más tarde.';
       }
 
       const existingTyping = document.getElementById(typingId);
@@ -6217,30 +4362,8 @@
     let waTimerInterval = null;
 
     function openWhatsAppModal(context) {
-      if (!currentUser) {
-        openAuthModal('whatsapp', () => openWhatsAppModal(context));
-        return;
-      }
-      const modal = document.getElementById('modal-whatsapp-qr');
-      if (modal) {
-        const phoneInput = document.getElementById('wa-modal-phone');
-        if (phoneInput) phoneInput.value = currentCompany.phone || '+54 9 11 4455-6677';
-
-        const webhookEl = document.getElementById('wa-modal-webhook-text');
-        if (webhookEl) webhookEl.innerText = `http://localhost:3000/api/webhook/${currentCompany.slug || 'mi-empresa'}`;
-
-        updateWhatsAppModalState();
-        modal.classList.remove('hidden');
-
-        let seconds = 40;
-        const timerEl = document.getElementById('wa-qr-timer');
-        if (waTimerInterval) clearInterval(waTimerInterval);
-        waTimerInterval = setInterval(() => {
-          seconds--;
-          if (seconds <= 0) seconds = 45;
-          if (timerEl) timerEl.innerText = `${seconds}s`;
-        }, 1000);
-      }
+      switchStep('step-whatsapp');
+      showToast('Configurá la conexión oficial de Meta. No hay vinculación por QR disponible.');
     }
 
     function closeWhatsAppModal() {
@@ -6660,7 +4783,7 @@
       if (!modal) return;
 
       const depositInput = document.getElementById('citas-cfg-deposit');
-      if (depositInput) depositInput.value = currentCompany.deposit || '5000';
+      if (depositInput) depositInput.value = currentCompany.deposit ?? '';
 
       const hoursInput = document.getElementById('citas-cfg-hours');
       if (hoursInput) hoursInput.value = currentCompany.hours || 'Lunes a Sábado: 09:00 a 20:00 (Turnos cada 45 min)';
@@ -6710,7 +4833,7 @@
 
     function saveCitasConfig() {
       const depInput = document.getElementById('citas-cfg-deposit');
-      if (depInput) currentCompany.deposit = depInput.value.trim() || '5000';
+      if (depInput) currentCompany.deposit = depInput.value.trim() || '0';
 
       const hoursInput = document.getElementById('citas-cfg-hours');
       if (hoursInput) currentCompany.hours = hoursInput.value.trim() || currentCompany.hours;
@@ -6755,7 +4878,7 @@
         const driveIn = document.getElementById('acc-cfg-drive');
         if (driveIn) driveIn.value = currentCompany.driveFolder || '/Facturas_2026/';
         const cuitIn = document.getElementById('acc-cfg-cuit');
-        if (cuitIn) cuitIn.value = currentCompany.cuit || '30-71234567-8';
+        if (cuitIn) cuitIn.value = currentCompany.cuit || '';
         const taxIn = document.getElementById('acc-cfg-tax');
         if (taxIn && currentCompany.taxCondition) taxIn.value = currentCompany.taxCondition;
         modal.classList.remove('hidden');
@@ -6870,7 +4993,7 @@
                 const fecha = String(getVal(['fecha', 'date', 'fec'])).slice(0, 10) || new Date().toISOString().slice(0, 10);
                 const tipo = String(getVal(['tipo', 'comprobante', 'doc'])).trim() || 'Factura A';
                 const num = String(getVal(['numero', 'nro', 'factura', 'comp'])).trim() || `0001-${String(idx + 1).padStart(8, '0')}`;
-                
+
                 let rawTotal = getVal(['total', 'importe', 'monto']);
                 const total = parseFloat(String(rawTotal).replace(/[$.]/g, '').replace(',', '.')) || 0;
                 let rawNeto = getVal(['neto', 'subtotal']);
@@ -7208,12 +5331,12 @@
 
       // Detección de Turnos / Citas (Google Calendar)
       if (q.includes('turno') || q.includes('cita') || q.includes('agendar') || q.includes('reserva') || q.includes('hora')) {
-        return `¡Hola! 📅 Con gusto te agendamos en ${compName}. Contamos con agenda sincronizada con Google Calendar. ¿Para qué día y en qué horario preferís tu cita? (Se confirma automáticamente con una seña de $${Number(currentCompany.deposit || 5000).toLocaleString('es-AR')} vía Mercado Pago).`;
+        return `¡Hola! 📅 Con gusto te agendamos en ${compName}. Contamos con agenda sincronizada con Google Calendar. ¿Para qué día y en qué horario preferís tu cita? (Se confirma automáticamente con una seña de $${Number(currentCompany.deposit || 0).toLocaleString('es-AR')} vía Mercado Pago).`;
       }
 
       // Detección de Cobranzas / Deuda / Mora
       if (q.includes('deuda') || q.includes('cobro') || q.includes('pagar') || q.includes('transferencia') || q.includes('alias') || q.includes('link de pago') || q.includes('metodo de pago')) {
-        const payMethod = currentCompany.paymentMethod || 'pagos.miempresa.mp';
+        const payMethod = currentCompany.paymentMethod || '';
         return `¡Hola! Te contactamos desde administración de ${compName}. Podés cancelar o regularizar tu saldo por Mercado Pago o transferencia bancaria directa usando nuestro medio oficial: <strong>${payMethod}</strong>. ¿Querés que te enviemos el comprobante o link directo en este momento?`;
       }
 
@@ -7274,7 +5397,7 @@
     // =========================================================
     // LÓGICA DEL AGENDADOR DE CITAS & TURNOS (GOOGLE CALENDAR)
     // =========================================================
-    let simulatedCitasCount = 142;
+    let simulatedCitasCount = 0;
 
     function handleCitasEnter(event) {
       if (event.key === 'Enter') {
@@ -7653,6 +5776,7 @@
     let currentCurrency = 'ARS';
 
     function setBillingCurrency(curr) {
+      if (!document.getElementById('btn-curr-ars')) return;
       currentCurrency = curr;
       const isArs = curr === 'ARS';
 
@@ -7663,7 +5787,7 @@
       if (isArs) {
         btnArs.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-900 shadow-subtle border border-slate-200 transition";
         btnUsd.className = "px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 transition";
-        
+
         document.querySelectorAll('.plan-price-mostrador').forEach(el => el.innerText = "$39.000");
         document.querySelectorAll('.plan-price-combo').forEach(el => el.innerText = "$89.000");
         document.querySelectorAll('.plan-price-empresa').forEach(el => el.innerText = "$169.000");
@@ -8222,7 +6346,7 @@
       }
       const headers = [
         ["LIBRO IVA COMPRAS - " + (currentCompany.name || "Mi Empresa").toUpperCase()],
-        ["CUIT: " + (currentCompany.cuit || "30-71234567-8") + " | Condición: " + (currentCompany.taxCondition || "Responsable Inscripto")],
+        ["CUIT: " + (currentCompany.cuit || "") + " | Condición: " + (currentCompany.taxCondition || "Responsable Inscripto")],
         ["Generado el: " + new Date().toLocaleDateString('es-AR')],
         [],
         ["Fecha", "Proveedor / Razón Social", "CUIT Emisor", "Tipo Comprobante", "Punto Vta y Nro", "Neto Gravado", "Alícuota IVA", "Importe IVA", "Percepciones / Otros", "Total Facturado", "Categoría", "Estado", "CAE"]
@@ -8490,7 +6614,7 @@
     // =========================================================
     // LÓGICA DE CENTINELA OPERATIVO (RADAR DE INCIDENTES 24/7)
     // =========================================================
-    let radarRescuesCount = 14;
+    let radarRescuesCount = 0;
     let radarStockAlertsCount = 3;
 
     function simulateRadarIncident(type) {

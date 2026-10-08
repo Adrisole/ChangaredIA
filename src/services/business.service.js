@@ -80,7 +80,7 @@ export class BusinessService {
       email: payload.email !== undefined ? payload.email : (existing?.email || ''),
       hours: payload.hours !== undefined ? payload.hours : (existing?.hours || ''),
       website: payload.website !== undefined ? payload.website : (existing?.website || ''),
-      deposit: Number(payload.deposit) || existing?.deposit || 5000,
+      deposit: payload.deposit !== undefined && Number.isFinite(Number(payload.deposit)) ? Math.max(0, Number(payload.deposit)) : (existing?.deposit ?? 0),
       paymentMethod: payload.paymentMethod !== undefined ? String(payload.paymentMethod).trim() : (existing?.paymentMethod || ''),
       notificationPhone: payload.notificationPhone !== undefined ? String(payload.notificationPhone).trim() : (existing?.notificationPhone || ''),
       toneOfVoice: toneOfVoice || existing?.toneOfVoice || 'amigable, respetuoso y dispuesto a ayudar',
