@@ -4,6 +4,7 @@ import { agentBrainService } from '../services/agentBrain.service.js';
 import { sellerOrdersService } from '../services/sellerOrders.service.js';
 import { businessService } from '../services/business.service.js';
 import { businessRepository } from '../repositories/business.repository.js';
+import { whatsappService } from '../services/whatsapp.service.js';
 import {
   setupBusiness,
   getBusiness,
@@ -61,7 +62,7 @@ router.post('/:businessId/test-message', authenticate, requireBusinessOwner, asy
       return res.status(400).json({ success: false, message: 'Escribí un mensaje de entre 1 y 4000 caracteres.' });
     }
     const result = await agentBrainService.generateReply(req.business, message.trim(), 'Prueba del propietario');
-    if (['SIMULATED_AGENT', 'FALLBACK_SIMULATED'].includes(result.model)) {
+    if (result.model === 'SAFE_FALLBACK') {
       return res.status(503).json({ success: false, message: 'La IA no está disponible en este momento. Revisá la configuración y el saldo de la API e intentá nuevamente.' });
     }
     return res.json({ success: true, reply: result.reply });
@@ -75,6 +76,34 @@ router.get('/', listBusinesses);
 
 // Actualizar configuración de WhatsApp (número, phone_number_id, token) - Protegido por propiedad
 router.post('/:businessId/whatsapp-config', authenticate, requireBusinessOwner, updateWhatsAppConfig);
+
+// El dueño dispara explícitamente una prueba a un número habilitado en Meta.
+// Guardar credenciales no equivale a que Meta acepte ni entregue mensajes.
+router.post('/:businessId/whatsapp-test', authenticate, requireBusinessOwner, async (req, res, next) => {
+  try {
+    const to = String(req.body?.to || '').replace(/[^\d]/g, '');
+    if (to.length < 8 || to.length > 16) {
+      return res.status(400).json({ success: false, message: 'Ingresá un número de prueba válido con código de país.' });
+    }
+
+    const result = await whatsappService.sendTextMessage({
+      business: req.business,
+      to,
+      text: `Prueba de conexión de Changared para ${req.business.name}. Si recibís este mensaje, Meta aceptó el envío.`,
+    });
+
+    if (result.simulated) {
+      return res.status(409).json({ success: false, status: 'NOT_CONFIGURED', message: 'Faltan credenciales de Meta Cloud API; no se envió ningún WhatsApp.' });
+    }
+    if (!result.sent) {
+      return res.status(502).json({ success: false, status: 'FAILED', message: result.error?.message || 'Meta rechazó el mensaje de prueba.' });
+    }
+
+    return res.json({ success: true, status: 'TEST_MESSAGE_ACCEPTED', message: 'Meta aceptó el mensaje de prueba. Revisá el teléfono destinatario para confirmar la recepción.', messageId: result.messageId });
+  } catch (error) {
+    next(error);
+  }
+});
 
 // Consultar un negocio por su ID (sanitizado sin exponer token en texto plano)
 router.get('/:businessId', authenticate, getBusiness);

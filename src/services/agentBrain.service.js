@@ -16,16 +16,17 @@ export class AgentBrainService {
   async generateReply(business, customerMessage, customerId = 'Cliente', options = {}) {
     const startTime = Date.now();
 
-    // 1. Si no hay API key configurada, activamos simulación inteligente para pruebas
+    // Sin proveedor de IA no se simula una venta: sólo se responde con datos
+    // verificables del catálogo o se deriva a una persona.
     if (!config.openai.apiKey) {
-      console.warn(`[AgentBrain] OPENAI_API_KEY no detectada. Generando respuesta simulada para [${business.name}].`);
-      const mockReply = this._generateSimulatedReply(business, customerMessage);
+      console.warn(`[AgentBrain] OPENAI_API_KEY no detectada. Usando respuesta segura para [${business.name}].`);
+      const mockReply = this._generateVerifiedFallback(business, customerMessage);
       return {
         reply: mockReply,
         businessId: business.id,
         businessName: business.name,
         executionTimeMs: Date.now() - startTime,
-        model: 'SIMULATED_AGENT',
+        model: 'SAFE_FALLBACK',
       };
     }
 
@@ -45,14 +46,14 @@ export class AgentBrainService {
       };
     } catch (error) {
       console.error(`[AgentBrain Error] Fallo al consultar OpenAI para ${business.id}:`, error.message);
-      // Fallback seguro para no dejar al cliente sin respuesta en WhatsApp
-      const fallbackReply = this._generateSimulatedReply(business, customerMessage);
+      // Fallback seguro: nunca inventa pagos, disponibilidad, talles ni turnos.
+      const fallbackReply = this._generateVerifiedFallback(business, customerMessage);
       return {
         reply: fallbackReply,
         businessId: business.id,
         businessName: business.name,
         executionTimeMs: Date.now() - startTime,
-        model: 'FALLBACK_SIMULATED',
+        model: 'SAFE_FALLBACK',
         error: error.message,
       };
     }
@@ -170,7 +171,7 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
   /**
    * Motor de simulación inteligente para pruebas sin API Key
    */
-  _generateSimulatedReply(business, userMessage) {
+  _generateVerifiedFallback(business, userMessage) {
     const msg = userMessage.toLowerCase();
     const catalog = Array.isArray(business.catalog) ? business.catalog : [];
 
@@ -183,8 +184,10 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
     // 2. Detección de Cobranzas / Deuda / Enlace de pago (Mercado Pago)
     const isDebtQuery = /\b(deuda|cobranza|saldo|pagar|pago|transferencia|alias|link de pago|mora|cuota)\b/i.test(msg);
     if (isDebtQuery) {
-      const pay = business.paymentMethod || 'pagos.miempresa.mp';
-      return `¡Hola! Te contactamos desde administración de ${business.name}. Podés regularizar o abonar mediante Mercado Pago o transferencia al alias oficial: **${pay}**. ¿Te gustaría que te enviemos el link de pago directo en este momento?`;
+      if (business.paymentMethod) {
+        return `¡Hola! Te contactamos desde administración de ${business.name}. El medio de pago informado es: ${business.paymentMethod}. La acreditación debe ser verificada por el negocio.`;
+      }
+      return `¡Hola! Para no darte un dato equivocado, el equipo de ${business.name} te confirma el medio de pago y el saldo.`;
     }
 
     // 3. Consultas sobre organización de comprobantes para el contador
@@ -196,7 +199,7 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
     // 4. Detección de Moda / Medidas / Talles (TalleExacto)
     const isSizeQuery = /\b(talle|medida|busto|cintura|cadera|size|vestido|prenda|pantalon|tamanho)\b/i.test(msg);
     if (isSizeQuery) {
-      return `¡Hola! ✨ Analizamos tus medidas con el motor inteligente TalleExacto en ${business.name}: tu talle sugerido es M (Calce Ideal). Ofrece el ajuste perfecto y máxima comodidad. ¿Te gustaría reservarlo antes de que se agote el stock?`;
+      return `¡Hola! Para recomendarte un talle correcto necesitamos tus medidas y la tabla específica de la prenda. El equipo de ${business.name} te ayuda a confirmarlo antes de reservar.`;
     }
 
     // 5. Detección de Inglés
@@ -241,7 +244,7 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
       return queryNorm.includes(prodName) || prodName.split(' ').some(w => w.length > 4 && queryNorm.includes(w));
     });
     if (outOfStock) {
-      return `¡Hola! Mil disculpas, pero en este momento ${outOfStock.name} se encuentra agotado o sin disponibilidad de turno. ¿Te gustaría consultar alguna de nuestras otras opciones disponibles en ${business.name}?`;
+      return `¡Hola! Mil disculpas, pero ${outOfStock.name} se encuentra agotado. ¿Te gustaría consultar otras opciones disponibles en ${business.name}?`;
     }
 
     // 8. Catálogo / Precios / Menú en Español
@@ -263,7 +266,7 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
     }
 
     // 10. Saludo genérico institucional
-    return `¡Hola! Te estás comunicando con el asistente de ${business.name}. ¿En qué podemos ayudarte hoy?`;
+    return `¡Hola! Gracias por escribir a ${business.name}. Para no darte información incorrecta, un integrante del equipo continúa tu consulta.`;
   }
 
   /**
