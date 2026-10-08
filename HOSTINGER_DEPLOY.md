@@ -152,3 +152,26 @@ Una vez que tu dominio esté activo en Hostinger (por ejemplo `https://changared
 
 3. **Mercado Pago (Facturación en ARS):**
    - Webhook URL: `https://changared.com/api/billing/webhook/mercadopago`
+
+---
+
+## Variables de pagos (Mercado Pago LATAM, Wise, Payoneer)
+
+El bloque "PAGOS Y COBROS DE SUSCRIPCIONES" de `.env.example` ya esta armado con todas las claves **vacias**. Copialo a tu `.env` de Hostinger (hPanel > Node.js > Environment variables, o `nano .env` en VPS) y completa solo lo que uses:
+
+| Variable | Donde se obtiene |
+|---|---|
+| `PUBLIC_BASE_URL` | Tu dominio HTTPS final, ej. `https://app.tudominio.com` (sin barra final) |
+| `BILLING_ADMIN_KEY` | Generala: `node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"` |
+| `MP_ACCESS_TOKEN_<PAIS>` | Mercado Pago Developers > Tu app > Credenciales de **produccion** (una app por pais: AR, BR, MX, CL, CO, PE, UY) |
+| `MP_WEBHOOK_SECRET_<PAIS>` | Tu app > Webhooks > Clave secreta |
+| `MP_FX_<MONEDA>` | Pesos locales por 1 USD (BRL, MXN, CLP, COP, PEN, UYU). No aplica a AR |
+| `WISE_PAYMENT_LINK` / `WISE_EMAIL` / `WISE_USD_ACCOUNT_DETAILS` / `WISE_ACCOUNT_HOLDER` | Wise > Recibir |
+| `PAYONEER_PAYMENT_LINK` / `PAYONEER_EMAIL` / `PAYONEER_ACCOUNT_HOLDER` | Payoneer > Recibir |
+
+Notas:
+- Un pais de Mercado Pago queda habilitado en el panel solo si tiene token (y `MP_FX_*` fuera de AR). Wise/Payoneer, si tienen al menos un dato de cobro.
+- Registra en cada app de Mercado Pago el webhook `https://TU_DOMINIO/api/billing/webhook/mercadopago?country=<PAIS>` (evento "Pagos").
+- Tras editar el `.env` reinicia la app (`pm2 restart changared` o "Restart" en hPanel).
+- Nunca subas el `.env` a Git (ya esta en `.gitignore`) ni compartas los tokens.
+- Verifica lo habilitado en `GET /api/billing/plans` (no expone secretos).

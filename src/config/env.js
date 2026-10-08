@@ -25,4 +25,40 @@ export const config = Object.freeze({
   mongodb: {
     uri: process.env.MONGODB_URI || '',
   },
+  payments: {
+    // URL pública del backend (para notification_url / back_urls). Ej: https://app.changared.com
+    publicBaseUrl: (process.env.PUBLIC_BASE_URL || '').replace(/\/$/, ''),
+    // Clave para confirmar manualmente pagos recibidos por Wise/Payoneer (header x-admin-key)
+    adminKey: process.env.BILLING_ADMIN_KEY || '',
+    // Mercado Pago LATAM: cada país es una cuenta/aplicación distinta con su propia moneda.
+    // Credenciales: MP_ACCESS_TOKEN_<PAIS>, MP_WEBHOOK_SECRET_<PAIS>. Para AR también vale MP_ACCESS_TOKEN.
+    // Fuera de AR el precio = precio USD del plan x MP_FX_<MONEDA> (pesos locales por 1 USD).
+    mercadopago: {
+      defaultCountry: (process.env.MP_DEFAULT_COUNTRY || 'AR').toUpperCase(),
+      countries: Object.fromEntries(
+        [
+          ['AR', 'ARS', 'Argentina'], ['BR', 'BRL', 'Brasil'], ['MX', 'MXN', 'México'],
+          ['CL', 'CLP', 'Chile'], ['CO', 'COP', 'Colombia'], ['PE', 'PEN', 'Perú'],
+          ['UY', 'UYU', 'Uruguay'],
+        ].map(([cc, currency, name]) => [cc, {
+          name,
+          currency,
+          accessToken: process.env[`MP_ACCESS_TOKEN_${cc}`] || (cc === 'AR' ? process.env.MP_ACCESS_TOKEN : '') || '',
+          webhookSecret: process.env[`MP_WEBHOOK_SECRET_${cc}`] || (cc === 'AR' ? process.env.MP_WEBHOOK_SECRET : '') || '',
+          fxPerUsd: parseFloat(process.env[`MP_FX_${currency}`] || '') || null,
+        }]),
+      ),
+    },
+    wise: {
+      paymentLink: process.env.WISE_PAYMENT_LINK || '',
+      accountHolder: process.env.WISE_ACCOUNT_HOLDER || '',
+      email: process.env.WISE_EMAIL || '',
+      usdAccountDetails: process.env.WISE_USD_ACCOUNT_DETAILS || '',
+    },
+    payoneer: {
+      paymentLink: process.env.PAYONEER_PAYMENT_LINK || '',
+      email: process.env.PAYONEER_EMAIL || '',
+      accountHolder: process.env.PAYONEER_ACCOUNT_HOLDER || '',
+    },
+  },
 });
