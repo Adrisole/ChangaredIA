@@ -5,6 +5,7 @@ import { BusinessModel } from '../models/business.model.js';
 import { UserModel } from '../models/user.model.js';
 import { SessionModel } from '../models/session.model.js';
 import { AppointmentModel } from '../models/appointment.model.js';
+import { InvoiceModel } from '../models/invoice.model.js';
 
 export async function migrateJsonToMongo() {
   if (!isDbConnected()) {
@@ -16,6 +17,7 @@ export async function migrateJsonToMongo() {
   let userCount = 0;
   let sessionCount = 0;
   let appointmentCount = 0;
+  let invoiceCount = 0;
 
   try {
     // 1. Migrar Negocios
@@ -30,6 +32,24 @@ export async function migrateJsonToMongo() {
           { upsert: true, returnDocument: 'after', timestamps: false }
         );
         businessCount++;
+      }
+    }
+
+    // 5. Migrar comprobantes del asistente contable
+    const invoicesPath = path.resolve('./src/data/invoices.json');
+    if (fs.existsSync(invoicesPath)) {
+      const raw = fs.readFileSync(invoicesPath, 'utf-8');
+      const invoices = JSON.parse(raw || '[]');
+      if (Array.isArray(invoices)) {
+        for (const invoice of invoices) {
+          if (!invoice?.id || !invoice?.businessId) continue;
+          await InvoiceModel.findOneAndUpdate(
+            { id: invoice.id },
+            { $setOnInsert: { ...invoice, businessId: String(invoice.businessId).toLowerCase().trim() } },
+            { upsert: true, returnDocument: 'after', timestamps: false }
+          );
+          invoiceCount++;
+        }
       }
     }
 
@@ -85,10 +105,11 @@ export async function migrateJsonToMongo() {
     console.log(`   👤 Usuarios: ${userCount}`);
     console.log(`   🔑 Sesiones: ${sessionCount}`);
     console.log(`   📅 Turnos/Citas: ${appointmentCount}`);
+    console.log(`   🧾 Comprobantes: ${invoiceCount}`);
 
     return {
       migrated: true,
-      stats: { businessCount, userCount, sessionCount, appointmentCount }
+      stats: { businessCount, userCount, sessionCount, appointmentCount, invoiceCount }
     };
   } catch (err) {
     console.error('❌ [Migration] Error durante la migración JSON -> MongoDB:', err.message);

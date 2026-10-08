@@ -583,42 +583,42 @@
             <div class="space-y-4">
               <div class="flex items-center justify-between pb-2 border-b border-slate-100">
                 <span class="text-[10px] font-mono font-semibold tracking-wider text-slate-600 uppercase" data-i18n="emp3Category">
-                  Contabilidad & AFIP
+                  Administración & contador
                 </span>
                 <div class="flex items-center space-x-1.5">
-                  <span class="text-[10px] font-mono text-[#2D6A4F] font-bold">Email & Drive</span>
+                  <span class="text-[10px] font-mono text-[#2D6A4F] font-bold">Orden & revisión</span>
                   <span id="hub-status-accounting" class="text-[10px] font-mono px-2 py-0.5 rounded font-medium bg-slate-100 text-slate-600 border border-slate-200">○ No Contratado</span>
                 </div>
               </div>
               <div>
                 <h3 class="text-base font-serif font-bold text-slate-900" style="font-family: Georgia, serif;" data-i18n="emp3Title">
-                  3. Facturación & Gastos
+                  3. Asesor Contable
                 </h3>
                 <div class="mt-3 p-3 bg-slate-50 border border-slate-200 rounded text-xs text-slate-700 space-y-1">
                   <span class="font-bold text-slate-900 block text-[11px] uppercase tracking-wide text-[#1B4332]" data-i18n="empWhatForTitle">¿Para qué sirve?</span>
                   <p class="leading-relaxed" data-i18n="emp3WhatForDesc">
-                    Lee las facturas en PDF que llegan a tu email, extrae CUIT, neto e IVA discriminado con IA, organiza los archivos en tu Google Drive y llena el Excel de tu contador automáticamente.
+                    Ordená gastos y comprobantes, detectá datos repetidos y exportá un resumen claro para trabajar con tu contador.
                   </p>
                 </div>
               </div>
               <ul class="text-xs text-slate-600 space-y-2 pt-1 font-sans">
                 <li class="flex items-start space-x-2">
                   <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp3F1">Sin carga manual: proveedores envían la factura al email</span>
+                  <span data-i18n="emp3F1">Importá planillas o registrá comprobantes en un solo lugar</span>
                 </li>
                 <li class="flex items-start space-x-2">
                   <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp3F2">Calcula crédito fiscal IVA y gastos por proveedor</span>
+                  <span data-i18n="emp3F2">Revisá CUIT, montos, categorías y duplicados antes de aprobar</span>
                 </li>
                 <li class="flex items-start space-x-2">
                   <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp3F3">Tu contador recibe el Libro IVA en Google Sheets</span>
+                  <span data-i18n="emp3F3">Descargá Excel o CSV y compartilo con tu contador</span>
                 </li>
               </ul>
             </div>
             <div id="hub-actions-accounting" class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-2">
               <button onclick="switchStep('step-accounting')" class="flex-1 py-2 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition" data-i18n="btnOpenAccounting">
-                Ver Excel en Vivo →
+                Abrir Asesor Contable →
               </button>
             </div>
           </div>
@@ -645,7 +645,7 @@
                 <div class="mt-3 p-3 bg-emerald-50/50 border border-emerald-200/70 rounded text-xs text-slate-700 space-y-1">
                   <span class="font-bold text-slate-900 block text-[11px] uppercase tracking-wide text-[#1B4332]" data-i18n="empWhatForTitle">¿Para qué sirve?</span>
                   <p class="leading-relaxed" data-i18n="emp5WhatForDesc">
-                    Coordina y reserva turnos de tu negocio en tiempo real consultando tu Google Calendar o Cal.com. Muestra huecos libres, cobra seña previa con Mercado Pago para erradicar el ausentismo y envía recordatorios automáticos 24h y 2h antes por WhatsApp.
+                    Recibe solicitudes de turno con servicio, fecha y horario. La disponibilidad en Calendar, las señas y los recordatorios se activan sólo al completar esas integraciones.
                   </p>
                 </div>
               </div>
@@ -1604,7 +1604,7 @@
             </button>
           </div>
           <div class="flex items-center space-x-2">
-            <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-700 border border-slate-200 font-medium">Facturación & Comprobantes</span>
+            <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-700 border border-slate-200 font-medium">Asesor Contable</span>
             <button onclick="openBusinessConfigModal()" class="inline-flex items-center space-x-1 px-2.5 py-1 text-xs bg-emerald-50 text-emerald-900 border border-emerald-300 rounded-lg hover:bg-emerald-100 transition shadow-2xs">
               <span>🏢</span>
               <span class="company-display-name font-semibold truncate max-w-[120px] sm:max-w-none">Mi Empresa</span>
@@ -1618,8 +1618,8 @@
           <div class="flex items-start sm:items-center space-x-2.5">
             <span class="text-lg">⚠️</span>
             <div>
-              <span class="text-xs font-bold text-amber-950 block">3. Facturación & Gastos — Empleado No Contratado</span>
-              <p class="text-[11px] text-amber-800 leading-tight">Este asistente contable no está activo actualmente para tu empresa. Podés contratarlo y probarlo gratis 14 días.</p>
+              <span class="text-xs font-bold text-amber-950 block">3. Asesor Contable — Empleado No Contratado</span>
+              <p class="text-[11px] text-amber-800 leading-tight">Ordena comprobantes y prepara un resumen para tu contador. No reemplaza la asesoría profesional.</p>
             </div>
           </div>
           <button onclick="openBusinessConfigModal('accounting')" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-bold rounded-lg transition whitespace-nowrap shadow-xs flex items-center space-x-1 shrink-0">
@@ -1630,11 +1630,11 @@
         <!-- Banner Explicativo Serio & Honestidad Comercial -->
         <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-1.5 shadow-2xs">
           <div class="flex items-center space-x-2">
-            <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-mono font-bold rounded uppercase tracking-wider border border-emerald-200">Centralización & Libro IVA</span>
-            <h3 class="text-xs font-bold text-slate-900">Preparación de Comprobantes de Compras para tu Contador</h3>
+            <span class="px-2 py-0.5 bg-emerald-100 text-emerald-800 text-[10px] font-mono font-bold rounded uppercase tracking-wider border border-emerald-200">Orden & revisión</span>
+            <h3 class="text-xs font-bold text-slate-900">Ordená tus comprobantes y llegá preparado a tu contador</h3>
           </div>
           <p class="text-xs text-slate-600 leading-relaxed">
-            Dejá de buscar PDFs sueltos y copiar importes a mano. Centralizá tus facturas de compras (PDF, Excel, CSV y fotos), extraé y valida los datos fiscales con control de CUIT y duplicados, revisá los importes en la bandeja obligatoria y entregale a tu estudio contable un <strong>Libro IVA Compras</strong> verificado y listo para liquidar.
+            Subí planillas o registrá gastos, revisá CUIT, montos y posibles duplicados. Después descargás un resumen en Excel o CSV para compartir con tu contador. <strong>Vos y tu contador conservan siempre la decisión fiscal.</strong>
           </p>
         </div>
 
@@ -1644,16 +1644,16 @@
             <div>
               <div class="flex items-center space-x-2">
                 <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                <h2 class="text-sm font-semibold text-slate-900">Preparación de Comprobantes & Libro IVA Compras</h2>
+                <h2 class="text-sm font-semibold text-slate-900">Asesor Contable · comprobantes listos para revisar</h2>
               </div>
               <p class="text-xs text-slate-600 mt-0.5">
-                Centraliza, valida y exporta el Libro IVA de compras en formato Excel (.xlsx) y CSV compatible con AFIP y sistemas contables (Bejerman, Tango, Holistor).
+                Reuní gastos y comprobantes de compras, controlá la información antes de aprobarla y exportá el resumen para tu contador.
               </p>
             </div>
             <div class="flex items-center space-x-2">
               <button onclick="downloadAccountingExcel()" class="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-bold text-white bg-emerald-700 hover:bg-emerald-800 rounded-lg transition shadow-2xs">
                 <i data-lucide="sheet" class="w-3.5 h-3.5"></i>
-                <span>Descargar Libro IVA (.xlsx)</span>
+                <span>Descargar resumen (.xlsx)</span>
               </button>
             </div>
           </div>
@@ -1666,31 +1666,15 @@
                 <div class="flex items-center justify-between mb-2">
                   <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
                     <i data-lucide="inbox" class="w-3.5 h-3.5 text-emerald-600"></i>
-                    <span>Bloque 1 · Centralización</span>
+                    <span>Bloque 1 · Carga</span>
                   </span>
                   <span class="text-[10px] font-mono px-2 py-0.5 bg-slate-100 text-slate-700 font-bold rounded border border-slate-200">CARGA DIRECTA</span>
                 </div>
-                <h4 class="text-xs font-bold text-slate-900">Entrada de Comprobantes</h4>
-                <p class="text-[11px] text-slate-600 leading-tight mb-3">Reuní todos los comprobantes físicos y digitales de tu negocio en un solo lugar.</p>
+                <h4 class="text-xs font-bold text-slate-900">Ingresá comprobantes</h4>
+                <p class="text-[11px] text-slate-600 leading-tight mb-3">Cargá una planilla o un comprobante y completá los datos antes de enviarlos a revisión.</p>
                 
                 <div class="space-y-2 text-xs">
-                  <!-- Paso 1: Email de Recepción de Facturas -->
-                  <div class="p-2.5 bg-slate-50 border border-slate-200 rounded-lg space-y-1.5">
-                    <div class="flex items-center justify-between">
-                      <span class="text-[11px] font-semibold text-slate-800 flex items-center space-x-1">
-                        <span>📧</span><span>Casilla para Proveedores:</span>
-                      </span>
-                      <button onclick="copyAccountingEmail()" class="text-[10px] font-bold text-emerald-700 hover:text-emerald-900 bg-white border border-slate-200 px-2 py-0.5 rounded shadow-2xs">
-                        Copiar
-                      </button>
-                    </div>
-                    <input type="text" id="acc-email-input" readonly value="facturas@miempresa.com" class="w-full text-xs font-mono bg-white border border-slate-200 rounded px-2.5 py-1.5 text-slate-800">
-                    <p class="text-[10px] text-slate-500 leading-relaxed">
-                      Entregale este correo a tus proveedores o configura un reenvío en tu casilla de compras para centralizar adjuntos.
-                    </p>
-                  </div>
-
-                  <!-- Paso 2: Carga Directa Manual y Planillas -->
+                  <!-- Carga directa manual y planillas -->
                   <div class="p-2.5 bg-emerald-50/50 border border-emerald-200 rounded-lg space-y-2">
                     <div class="flex items-center justify-between">
                       <span class="font-bold text-emerald-950 text-xs flex items-center space-x-1">
@@ -1712,7 +1696,7 @@
               </div>
               <button onclick="openAccountingModal()" class="w-full py-2 px-3 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg text-xs font-semibold text-slate-800 transition flex items-center justify-center space-x-1.5 shadow-2xs mt-2">
                 <i data-lucide="settings" class="w-3.5 h-3.5 text-slate-600"></i>
-                <span>Ajustar Casilla de Recepción →</span>
+                <span>Configurar datos fiscales →</span>
               </button>
             </div>
 
@@ -1728,8 +1712,8 @@
                     ✏️ EDITAR CUIT
                   </button>
                 </div>
-                <h4 class="text-xs font-bold text-slate-900">Validación Impositiva & Duplicados</h4>
-                <p class="text-[11px] text-slate-600 leading-tight mb-3">Parámetros tributarios de tu negocio y control de consistencia.</p>
+                <h4 class="text-xs font-bold text-slate-900">Control de datos & duplicados</h4>
+                <p class="text-[11px] text-slate-600 leading-tight mb-3">Chequeos de consistencia antes de compartir información con tu contador.</p>
 
                 <div class="space-y-1.5 text-xs">
                   <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
@@ -1748,12 +1732,12 @@
                     <span class="text-[10px] font-semibold text-slate-600 uppercase">Control de Duplicados:</span>
                     <div class="text-[11px] text-slate-700 flex items-center space-x-1">
                       <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                      <span>Bloqueo automático por CUIT + Punto de Venta + N° Factura.</span>
+                      <span>Alerta por CUIT + punto de venta + número de factura repetidos.</span>
                     </div>
                   </div>
                   <div class="p-2 bg-emerald-50 border border-emerald-200 rounded text-[10px] text-emerald-900 flex items-center space-x-1.5">
                     <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-700 shrink-0"></i>
-                    <span>Algoritmo Módulo 11 oficial para CUITs emisores.</span>
+                    <span>Validación del dígito verificador de CUIT.</span>
                   </div>
                 </div>
               </div>
@@ -1771,27 +1755,27 @@
                     <i data-lucide="check-square" class="w-3.5 h-3.5 text-emerald-600"></i>
                     <span>Bloque 3 · Revisión & Salida</span>
                   </span>
-                  <span class="text-[10px] font-mono text-emerald-700 font-bold px-1.5 py-0.5 bg-emerald-50 border border-emerald-200 rounded">LIBRO IVA</span>
+                  <span class="text-[10px] font-mono text-emerald-700 font-bold px-1.5 py-0.5 bg-emerald-50 border border-emerald-200 rounded">PARA TU CONTADOR</span>
                 </div>
-                <h4 class="text-xs font-bold text-slate-900">Bandeja Obligatoria "Revisar y Aprobar"</h4>
-                <p class="text-[11px] text-slate-600 leading-tight mb-2">Flujo transparente: nada va al contador sin tu aprobación:</p>
+                <h4 class="text-xs font-bold text-slate-900">Revisá antes de compartir</h4>
+                <p class="text-[11px] text-slate-600 leading-tight mb-2">Un flujo simple para que tu contador reciba información ordenada:</p>
 
                 <div class="space-y-1.5 text-xs text-slate-800">
                   <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
-                    <strong class="text-slate-900">1. Carga & Detección:</strong> Lee CUIT, Razón Social, Comprobante, Neto e IVA desde PDFs o planillas Excel con SheetJS.
+                    <strong class="text-slate-900">1. Carga:</strong> Importá una planilla o cargá los datos de un comprobante.
                   </div>
                   <div class="p-2 bg-amber-50/70 border border-amber-200 rounded leading-tight text-amber-950">
-                    <strong class="text-amber-900">2. Revisión Humana:</strong> Cada comprobante entra como <span class="font-bold">⚠️ Pendiente</span> para verificar montos y deducciones.
+                    <strong class="text-amber-900">2. Revisión:</strong> Cada comprobante entra como <span class="font-bold">⚠️ Pendiente</span> para confirmar montos y categoría.
                   </div>
                   <div class="p-2 bg-emerald-50 border border-emerald-200 rounded leading-tight text-emerald-950">
-                    <strong class="text-emerald-900">3. Aprobación & Entrega:</strong> Con un clic aprobás y descargás el Libro IVA Compras en Excel (.xlsx) o CSV listo para tu estudio contable.
+                    <strong class="text-emerald-900">3. Entrega:</strong> Aprobá y descargá el resumen en Excel (.xlsx) o CSV para tu estudio contable.
                   </div>
                 </div>
               </div>
               <div class="pt-2 flex flex-wrap gap-1.5">
                 <button onclick="downloadAccountingExcel()" class="flex-1 py-1.5 px-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded text-[11px] font-semibold text-center transition flex items-center justify-center space-x-1 shadow-2xs">
                   <i data-lucide="sheet" class="w-3 h-3"></i>
-                  <span>Libro IVA (.xlsx)</span>
+                  <span>Resumen (.xlsx)</span>
                 </button>
                 <button onclick="downloadAccountingCsv()" class="flex-1 py-1.5 px-2 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded text-[11px] font-medium text-slate-700 text-center transition flex items-center justify-center space-x-1">
                   <i data-lucide="download" class="w-3 h-3"></i>
@@ -1835,10 +1819,10 @@
             <div>
               <h3 class="text-xs font-bold text-slate-900 flex items-center space-x-1.5 uppercase tracking-wide">
                 <i data-lucide="upload-cloud" class="w-4 h-4 text-emerald-600"></i>
-                <span>Carga de Facturas & Planillas (Procesamiento Real)</span>
+                <span>Carga de comprobantes y planillas</span>
               </h3>
               <p class="text-[11px] text-slate-600 mt-0.5">
-                Subí cualquier factura en PDF, planilla Excel (.xlsx, .xls) o CSV desde tu computadora:
+                Importá una planilla Excel/CSV. Si elegís un PDF o una imagen, se abrirá el formulario para completar sus datos.
               </p>
             </div>
             <div class="flex items-center space-x-2">
@@ -1866,7 +1850,7 @@
               Hacé clic aquí para elegir un archivo de tu PC
             </div>
             <p class="text-xs text-slate-600 max-w-md mx-auto">
-              Seleccioná una <strong>Factura en PDF</strong>, <strong>Planilla de gastos en Excel (.xlsx, .xls)</strong> o <strong>CSV</strong>.
+              Seleccioná una <strong>planilla de gastos en Excel (.xlsx, .xls)</strong> o <strong>CSV</strong>. Para PDF o foto, cargás los datos manualmente.
             </p>
             <div class="pt-1 flex items-center justify-center gap-2">
               <button type="button" onclick="event.stopPropagation(); triggerAccountingUpload();" class="inline-flex items-center space-x-2 px-4 py-2 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-bold rounded-lg shadow-sm transition">
@@ -1899,13 +1883,13 @@
           </div>
         </div>
 
-        <!-- Tabla del Libro IVA Compras & Bandeja de Revisión -->
+        <!-- Tabla de comprobantes y bandeja de revisión -->
         <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-subtle space-y-4">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
             <div>
               <div class="flex items-center space-x-2">
-                <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wide">Libro IVA Compras & Bandeja de Revisión</h3>
-                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-100 text-slate-700 border border-slate-200">F. 2002 AFIP / Excel</span>
+                <h3 class="text-xs font-bold text-slate-900 uppercase tracking-wide">Comprobantes y bandeja de revisión</h3>
+                <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-slate-100 text-slate-700 border border-slate-200">EXCEL / CSV</span>
               </div>
               <p class="text-[11px] text-slate-600 mt-0.5">Revisá cada comprobante antes de entregar el informe mensual a tu estudio contable.</p>
             </div>
@@ -1956,10 +1940,10 @@
           <div class="flex flex-wrap items-center justify-end gap-2 w-full sm:w-auto">
             <button type="button" onclick="triggerAccountingUpload()" class="cursor-pointer flex-1 sm:flex-none px-4 py-2.5 text-xs font-semibold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg transition flex items-center justify-center space-x-1.5 shadow-2xs">
               <i data-lucide="upload" class="w-3.5 h-3.5 text-slate-600"></i>
-              <span>Subir Archivo (PDF o Excel)</span>
+              <span>Importar planilla o comprobante</span>
             </button>
             <button onclick="openAccountingModal()" class="flex-1 sm:flex-none px-4 py-2.5 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg transition shadow-subtle flex items-center justify-center space-x-1.5">
-              <span>📧</span><span>Conectar Gmail & Drive</span>
+              <span>⚙️</span><span>Configurar datos fiscales</span>
             </button>
           </div>
         </div>
@@ -2524,7 +2508,7 @@
             <h3 class="text-xs font-bold uppercase tracking-wider text-[#1B4332]" data-i18n="citasWhatForTitle">¿Para qué sirve este empleado?</h3>
           </div>
           <p class="text-xs text-slate-700 leading-relaxed" data-i18n="citasWhatForDesc">
-            Agenda citas de tu negocio en tiempo real consultando tu Google Calendar o Cal.com. Muestra huecos libres por WhatsApp, cobra señas con Mercado Pago para erradicar el ausentismo de clientes y envía recordatorios 24h y 2h antes para que nadie falte.
+            Recibí solicitudes de turno con servicio, fecha y horario. Calendar, señas y recordatorios se habilitan después de completar las integraciones correspondientes.
           </p>
         </div>
 
@@ -2634,7 +2618,7 @@
 
             <div class="space-y-1.5 text-xs text-slate-800">
               <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
-                <strong class="text-slate-900">1. Bloqueo en Calendar:</strong> Crea el evento en tiempo real en tu Google Calendar con datos del cliente.
+                <strong class="text-slate-900">1. Solicitud de turno:</strong> Registrá los datos del cliente y confirmá la disponibilidad antes de considerar la cita agendada.
               </div>
               <div class="p-2 bg-slate-50 border border-slate-200 rounded leading-tight">
                 <strong class="text-slate-900">2. Link de Seña MP:</strong> Envía el link de pago de Mercado Pago por WhatsApp para validar el turno.
@@ -3569,7 +3553,7 @@
     </div>
   </div>
 
-  <!-- MODAL: CONECTAR GOOGLE CALENDAR (OAUTH) -->
+  <!-- MODAL: PREPARAR GOOGLE CALENDAR -->
   <div id="modal-google-calendar" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-white border border-slate-200 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
@@ -3578,8 +3562,8 @@
             <i data-lucide="calendar" class="w-4 h-4 text-blue-700"></i>
           </div>
           <div>
-            <h3 class="text-sm font-bold text-slate-900">Sincronizar Google Calendar</h3>
-            <p class="text-[11px] text-slate-500">Conecta tu cuenta de Google para agendar en tiempo real.</p>
+            <h3 class="text-sm font-bold text-slate-900">Preparar Google Calendar</h3>
+            <p class="text-[11px] text-slate-500">Guardá la cuenta a usar. La conexión OAuth todavía debe implementarse.</p>
           </div>
         </div>
         <button onclick="closeGoogleCalendarModal()" class="text-slate-500 hover:text-slate-700 p-1">
@@ -3594,9 +3578,9 @@
         </div>
 
         <div>
-          <label class="block font-medium text-slate-700 mb-1">Calendario a Utilizar</label>
+          <label class="block font-medium text-slate-700 mb-1">Calendario a utilizar cuando esté conectado</label>
           <select id="cal-modal-calendar" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900">
-            <option value="primary">Calendario Principal (turnos en tiempo real)</option>
+            <option value="primary">Calendario principal</option>
             <option value="changared_citas">Turnos & Citas Changared (Exclusivo)</option>
             <option value="consultorio_1">Consultorio / Box 1</option>
           </select>
@@ -3605,9 +3589,9 @@
         <div class="p-3 bg-blue-50 border border-blue-200 rounded-lg text-[11px] text-blue-900 space-y-1">
           <div class="font-bold flex items-center space-x-1">
             <i data-lucide="shield-check" class="w-3.5 h-3.5 text-blue-600"></i>
-            <span>Sincronización Bidireccional Activa</span>
+            <span>Integración pendiente</span>
           </div>
-          <p class="text-blue-800 leading-tight">Si bloqueas un horario manualmente en tu celular, la IA lo detectará al instante y no ofrecerá ese turno a tus clientes.</p>
+          <p class="text-blue-800 leading-tight">Hasta completar OAuth, Changared no lee horarios, no crea eventos y no envía recordatorios. Guardamos estos datos sólo como preparación.</p>
         </div>
       </div>
 
@@ -3615,7 +3599,7 @@
         <button onclick="closeGoogleCalendarModal()" class="px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg">Cancelar</button>
         <button onclick="saveGoogleCalendarAccount()" class="px-4 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-subtle flex items-center space-x-1.5">
           <i data-lucide="check" class="w-3.5 h-3.5"></i>
-          <span>Guardar y Sincronizar Calendar</span>
+          <span>Guardar cuenta</span>
         </button>
       </div>
     </div>
@@ -3683,7 +3667,7 @@
     </div>
   </div>
 
-  <!-- MODAL: CONFIGURAR PARÁMETROS CONTABLES (GMAIL, DRIVE & AFIP) -->
+  <!-- MODAL: CONFIGURAR DATOS FISCALES PARA REVISIÓN -->
   <div id="modal-accounting-config" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-white border border-slate-200 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
@@ -3692,8 +3676,8 @@
             📄
           </div>
           <div>
-            <h3 class="text-sm font-bold text-slate-900">Configuración de Facturación & Comprobantes</h3>
-            <p class="text-[11px] text-slate-500">Parámetros de lectura de comprobantes y Google Sheets.</p>
+            <h3 class="text-sm font-bold text-slate-900">Configuración del Asesor Contable</h3>
+            <p class="text-[11px] text-slate-500">Datos para ordenar comprobantes. No conecta Gmail, Drive ni presenta impuestos.</p>
           </div>
         </div>
         <button onclick="closeAccountingModal()" class="text-slate-500 hover:text-slate-700 p-1">
@@ -3702,14 +3686,6 @@
       </div>
 
       <div class="space-y-3 text-xs">
-        <div>
-          <label class="block font-medium text-slate-700 mb-1">Casilla Gmail Monitoreada (OAuth)</label>
-          <input type="email" id="acc-cfg-gmail" value="facturas@miempresa.com" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900">
-        </div>
-        <div>
-          <label class="block font-medium text-slate-700 mb-1">Carpeta de Destino en Google Drive</label>
-          <input type="text" id="acc-cfg-drive" value="/Facturas_2026/" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs">
-        </div>
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block font-medium text-slate-700 mb-1">CUIT Empresa</label>
@@ -3729,7 +3705,7 @@
       <div class="flex items-center justify-end space-x-2 pt-2 border-t border-slate-100">
         <button onclick="closeAccountingModal()" class="px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg">Cancelar</button>
         <button onclick="saveAccountingConfig()" class="px-4 py-2 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg shadow-subtle">
-          Guardar Configuración
+          Guardar datos
         </button>
       </div>
     </div>
@@ -3904,7 +3880,7 @@
     </div>
   </div>
 
-  <!-- MODAL: CARGA MANUAL DE COMPROBANTE AL LIBRO IVA -->
+  <!-- MODAL: CARGA MANUAL DE COMPROBANTE -->
   <div id="modal-manual-invoice" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-3 sm:p-4 hidden">
     <div class="bg-white border border-slate-200 rounded-2xl max-w-lg w-full p-5 sm:p-6 shadow-2xl space-y-4 max-h-[92vh] overflow-y-auto">
       <div class="flex items-center justify-between border-b border-slate-100 pb-3">
@@ -3913,7 +3889,7 @@
             ➕
           </div>
           <div>
-            <h3 class="text-sm font-bold text-slate-900">Cargar Comprobante al Libro IVA</h3>
+            <h3 class="text-sm font-bold text-slate-900">Cargar comprobante para revisión</h3>
             <p class="text-[11px] text-slate-500">Registrá una factura física o recibida fuera del sistema para tu contador.</p>
           </div>
         </div>
@@ -4005,7 +3981,7 @@
           <button type="button" onclick="closeManualInvoiceModal()" class="px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg transition">Cancelar</button>
           <button type="submit" class="px-4 py-2 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg shadow-subtle flex items-center space-x-1.5">
             <i data-lucide="plus" class="w-3.5 h-3.5 text-emerald-300"></i>
-            <span>Agregar al Libro IVA</span>
+            <span>Agregar a revisión</span>
           </button>
         </div>
       </form>
@@ -4199,7 +4175,7 @@
         navSectionEmployees: "Empleados Virtuales",
         navStepSimulator: "1. Vendedor IA (WhatsApp 24/7)",
         navStepCobranzas: "2. Gestor de Cobranzas",
-        navStepAccounting: "3. Facturación & Gastos",
+        navStepAccounting: "3. Asesor Contable",
         navStepMultilingual: "4. Asistente Multilingüe (Turismo)",
         navStepCitas: "5. Agendador de Citas (Turnos)",
         navSectionFashion: "Especial Moda",
@@ -4265,13 +4241,13 @@
         emp2F3: "Alerta de deudores silenciados y emisión de recibos",
         btnOpenCobranzas: "Abrir Gestor →",
 
-        emp3Category: "Contabilidad & AFIP",
-        emp3Title: "3. Facturación & Gastos",
-        emp3WhatForDesc: "Lee las facturas en PDF que llegan a tu email, extrae CUIT, neto e IVA discriminado con IA, organiza los archivos en tu Google Drive y llena el Excel de tu contador automáticamente.",
-        emp3F1: "Sin carga manual: proveedores envían la factura al email",
-        emp3F2: "Calcula crédito fiscal IVA y gastos por proveedor",
-        emp3F3: "Tu contador recibe el Libro IVA en Google Sheets",
-        btnOpenAccounting: "Ver Excel en Vivo →",
+        emp3Category: "Administración & contador",
+        emp3Title: "3. Asesor Contable",
+        emp3WhatForDesc: "Ordená gastos y comprobantes, detectá datos repetidos y exportá un resumen claro para trabajar con tu contador.",
+        emp3F1: "Importá planillas o registrá comprobantes en un solo lugar",
+        emp3F2: "Revisá CUIT, montos, categorías y duplicados antes de aprobar",
+        emp3F3: "Descargá Excel o CSV y compartilo con tu contador",
+        btnOpenAccounting: "Abrir Asesor Contable →",
 
         emp4Category: "Turismo & Hotelería",
         emp4Title: "4. Asistente Multilingüe & Turismo",
@@ -4284,7 +4260,7 @@
         emp5Category: "Servicios, Consultorios & Estética",
         emp5Badge: "Google Calendar + WhatsApp",
         emp5Title: "5. Agendador de Citas & Turnos (WhatsApp & Calendar)",
-        emp5WhatForDesc: "Coordina y reserva turnos de tu negocio en tiempo real consultando tu Google Calendar o Cal.com. Muestra huecos libres, cobra seña previa con Mercado Pago para erradicar el ausentismo y envía recordatorios automáticos 24h y 2h antes por WhatsApp.",
+        emp5WhatForDesc: "Recibe solicitudes de turno con servicio, fecha y horario. La disponibilidad en Calendar, las señas y los recordatorios se activan sólo al completar esas integraciones.",
         emp5F1: "Reduce el 85% del ausentismo con seña previa por MP",
         emp5F2: "Sincronización en vivo con Google Calendar sin solapamiento",
         emp5F3: "Reprogramación y cancelaciones automáticas 24/7",
@@ -4298,7 +4274,7 @@
         // Pantalla Agendador de Citas (Turnos)
         citasBadge: "5. Agendador de Citas (Google Calendar)",
         citasWhatForTitle: "¿Para qué sirve este empleado?",
-        citasWhatForDesc: "Agenda citas de tu negocio en tiempo real consultando tu Google Calendar o Cal.com. Muestra huecos libres por WhatsApp, cobra señas con Mercado Pago para erradicar el ausentismo de clientes y envía recordatorios 24h y 2h antes para que nadie falte.",
+        citasWhatForDesc: "Recibí solicitudes de turno con servicio, fecha y horario. Calendar, señas y recordatorios se habilitan después de completar las integraciones correspondientes.",
         citasB1Heading: "WhatsApp + Google Calendar",
         citasB1Sub: "Canal de atención y agenda sincronizada bidireccional.",
         citasCalendarAccount: "Cuenta Sincronizada:",
@@ -4498,13 +4474,13 @@
         emp2F3: "Silenced debtor alerts and automated receipt dispatch",
         btnOpenCobranzas: "Open Manager →",
 
-        emp3Category: "Accounting & Tax",
-        emp3Title: "3. Invoicing & Expenses",
-        emp3WhatForDesc: "Reads incoming PDF invoices from your email, extracts Tax ID, net amounts, and VAT with AI, organizes files in Google Drive, and updates your accountant's Excel sheet automatically.",
-        emp3F1: "Zero manual data entry: suppliers email invoices directly",
-        emp3F2: "Computes VAT tax credit and vendor expense breakdown",
-        emp3F3: "Your accountant receives the VAT ledger on Google Sheets",
-        btnOpenAccounting: "View Live Excel →",
+        emp3Category: "Administration & accountant",
+        emp3Title: "3. Accounting Assistant",
+        emp3WhatForDesc: "Organize expenses and receipts, flag duplicates, and export a clear summary for your accountant.",
+        emp3F1: "Import spreadsheets or register receipts in one place",
+        emp3F2: "Review tax ID, amounts, categories, and duplicates before approving",
+        emp3F3: "Download Excel or CSV and share it with your accountant",
+        btnOpenAccounting: "Open Accounting Assistant →",
 
         emp4Category: "Tourism & Hospitality",
         emp4Title: "4. Multilingual & Tourism Assistant",
@@ -4731,13 +4707,13 @@
         emp2F3: "Alerta de devedores silenciados e emissão de recibos",
         btnOpenCobranzas: "Abrir Gestor →",
 
-        emp3Category: "Contabilidade & Impostos",
-        emp3Title: "3. Faturamento & Despesas",
-        emp3WhatForDesc: "Lê notas fiscais em PDF recebidas por e-mail, extrai CNPJ, valor líquido e impostos com IA, organiza arquivos no Google Drive e preenche a planilha do seu contador automaticamente.",
-        emp3F1: "Sem digitação manual: fornecedores enviam as notas por e-mail",
-        emp3F2: "Calcula crédito tributário e despesas por fornecedor",
-        emp3F3: "Seu contador recebe o livro fiscal no Google Sheets",
-        btnOpenAccounting: "Ver Planilha ao Vivo →",
+        emp3Category: "Administração & contador",
+        emp3Title: "3. Assistente Contábil",
+        emp3WhatForDesc: "Organize gastos e comprovantes, identifique duplicidades e exporte um resumo claro para seu contador.",
+        emp3F1: "Importe planilhas ou registre comprovantes em um só lugar",
+        emp3F2: "Revise identificação fiscal, valores, categorias e duplicidades antes de aprovar",
+        emp3F3: "Baixe Excel ou CSV e compartilhe com seu contador",
+        btnOpenAccounting: "Abrir Assistente Contábil →",
 
         emp4Category: "Turismo & Hotelaria",
         emp4Title: "4. Assistente Multilíngue & Turismo",
@@ -4896,7 +4872,7 @@
       'step-identity': 'Identidad & Reglas',
       'step-whatsapp': 'Conexión WhatsApp & Bandeja',
       'step-cobranzas': '2. Gestor de Cobranzas',
-      'step-accounting': 'Facturación & Comprobantes',
+      'step-accounting': 'Asesor Contable',
       'step-multilingual': '4. Asistente Multilingüe',
       'step-citas': '5. Agendador de Citas (Turnos)',
       'step-talleexacto': 'TalleExacto (Moda)',
@@ -6143,9 +6119,9 @@
     let currentWidgetPlatform = 'tiendanube';
 
     const AGENT_EXPLANATIONS = {
-      contable: `<strong>🧾 Portal de Facturación & Comprobantes en tu Web:</strong> Instala un formulario o buzón web en tu sitio para que tus proveedores o tu equipo administrativo suban facturas (PDF, Excel o fotos de tickets) directamente a tu Google Drive y se registren en Google Sheets sin darles acceso a tus cuentas.`,
+      contable: `<strong>🧾 Asesor Contable:</strong> Organizá comprobantes y gastos en una sola bandeja, revisá datos y exportá un resumen en Excel o CSV para tu contador.`,
       vendedor: `<strong>🛍️ Vendedor IA en tu Web:</strong> Añade un chat flotante inteligente con tu catálogo de productos, stock en tiempo real y atención multilingüe nativa (español, inglés y portugués). Responde dudas técnicas, arma el pedido y cobra mediante Mercado Pago 24/7.`,
-      citas: `<strong>📅 Agendador de Citas en tu Web:</strong> Permite a tus clientes consultar turnos libres sincronizados con Google Calendar, reservar su horario y abonar la seña requerida para confirmarlo.`,
+      citas: `<strong>📅 Agendador de Citas en tu Web:</strong> Permite recibir solicitudes con servicio, fecha y horario. La reserva automática se habilita al conectar Calendar y el medio de pago.`,
       cobranzas: `<strong>💳 Gestor de Cobranzas en tu Web:</strong> Ofrece a tus clientes un canal confidencial para consultar su saldo de cuenta corriente y regularizar cuotas pendientes con link de pago.`,
       talleexacto: `<strong>👗 Asesor TalleExacto en tu Web:</strong> Recomendador inteligente de talles para tiendas de indumentaria y calzado. Reduce devoluciones recomendando el calce exacto según medidas corporales.`
     };
@@ -6200,7 +6176,7 @@
       });
       const badge = document.getElementById('widget-active-agent-badge');
       if (badge) {
-        const names = { contable: 'Facturación & Comprobantes', vendedor: 'Vendedor IA (Multilingüe)', citas: 'Agendador de Citas', cobranzas: 'Gestor de Cobranzas', talleexacto: 'TalleExacto' };
+        const names = { contable: 'Asesor Contable', vendedor: 'Vendedor IA (Multilingüe)', citas: 'Agendador de Citas', cobranzas: 'Gestor de Cobranzas', talleexacto: 'TalleExacto' };
         badge.innerText = `● ${names[currentWidgetAgent] || currentWidgetAgent}`;
       }
       const exp = document.getElementById('widget-agent-explanation-text');
@@ -6459,7 +6435,7 @@
         } else if (q.includes('whatsapp') || q.includes('vender') || q.includes('venta') || q.includes('stock') || q.includes('catalogo')) {
           reply = `El <strong>Vendedor IA para WhatsApp 24/7</strong> atiende a tus clientes día y noche:<br><br>• Consulta tu catálogo y stock en tiempo real (nunca vende lo agotado).<br>• Pasa precios oficiales, alias o links de Mercado Pago.<br>• Toma pedidos y responde dudas frecuentes en segundos.<br>• Vinculación oficial por QR en 30 segundos.<br><br>Incluye 14 días gratis. ¿Qué productos o servicios comercializas?`;
         } else {
-          reply = `¡Hola! Soy el Asesor Comercial de Changared. Te ayudamos a potenciar tu negocio con Empleados Virtuales IA:<br><br>1. <strong>Vendedor WhatsApp 24/7</strong> (atiende stock, precios y pedidos).<br>2. <strong>Turnos en Google Calendar & Señas</strong> (gestiona citas y cobra seña).<br>3. <strong>Gestor de Cobranzas</strong> (recordatorios automáticos de pago).<br>4. <strong>Asistente Contable</strong> (facturas de Gmail/Drive a Google Sheets).<br><br>Todos con <strong>14 días de prueba gratis</strong>. ¿Qué tarea te gustaría automatizar primero?`;
+          reply = `¡Hola! Soy el Asesor Comercial de Changared. Te ayudamos a potenciar tu negocio con empleados virtuales:<br><br>1. <strong>Vendedor por WhatsApp</strong> (atiende stock, precios y pedidos).<br>2. <strong>Agendador de citas</strong> (muestra disponibilidad y toma reservas).<br>3. <strong>Gestor de cobranzas</strong> (recordatorios de pago).<br>4. <strong>Asesor contable</strong> (comprobantes ordenados para tu contador).<br><br>¿Qué tarea te gustaría ordenar primero?`;
         }
       }
 
@@ -6919,29 +6895,14 @@
         return;
       }
       currentCompany.calendarEmail = input.value.trim();
-      currentCompany.calendarConnected = true;
+      currentCompany.calendarConnected = false;
       try {
         localStorage.setItem('changared_company_data', JSON.stringify(currentCompany));
       } catch(e) {}
 
-      // Sincronizar en backend si está autenticado
-      try {
-        const headers = { 'Content-Type': 'application/json' };
-        if (authToken) headers['Authorization'] = `Bearer ${authToken}`;
-        fetch('/api/business/setup', {
-          method: 'POST',
-          headers: headers,
-          body: JSON.stringify({
-            id: currentCompany.slug || 'mi-empresa',
-            name: currentCompany.name,
-            calendarEmail: currentCompany.calendarEmail
-          })
-        }).catch(() => {});
-      } catch(e) {}
-
       applyCompanyDataToUI();
       closeGoogleCalendarModal();
-      showToast(`✓ Google Calendar vinculado para ${currentCompany.calendarEmail}`);
+      showToast(`Cuenta guardada: falta completar la conexión OAuth con Google Calendar.`);
     }
 
     // =========================================================
@@ -7064,10 +7025,6 @@
     }
 
     function saveAccountingConfig() {
-      const gmailIn = document.getElementById('acc-cfg-gmail');
-      if (gmailIn && gmailIn.value.trim()) currentCompany.email = gmailIn.value.trim();
-      const driveIn = document.getElementById('acc-cfg-drive');
-      if (driveIn && driveIn.value.trim()) currentCompany.driveFolder = driveIn.value.trim();
       const cuitIn = document.getElementById('acc-cfg-cuit');
       if (cuitIn && cuitIn.value.trim()) currentCompany.cuit = cuitIn.value.trim();
       const taxIn = document.getElementById('acc-cfg-tax');
@@ -7079,7 +7036,7 @@
 
       applyCompanyDataToUI();
       closeAccountingModal();
-      showToast("✓ Configuración fiscal, Gmail y Google Drive guardada con éxito");
+      showToast("✓ Datos fiscales guardados en este dispositivo.");
     }
 
     function dismissFloatingWidget() {
@@ -7245,13 +7202,21 @@
 
     function syncInvoiceWithBackend(invoice) {
       try {
-        const slug = currentCompany.slug || 'mi-empresa';
+        if (!currentUser || !authToken || !currentCompany.slug) return;
+        const slug = currentCompany.slug;
         fetch(`/api/accounting/invoices/${slug}`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: accountingApiHeaders(),
           body: JSON.stringify(invoice)
         }).catch(() => {});
       } catch(e) {}
+    }
+
+    function accountingApiHeaders() {
+      return {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${authToken}`
+      };
     }
 
     function parseCsvInvoices(csvText, fileName) {
@@ -7502,9 +7467,9 @@
         return `¡Hola! ✨ Analizamos tus medidas con nuestro motor inteligente TalleExacto en ${compName} 👗: tu talle recomendado es el **M (Talle Ideal)**. Te quedará entallado y favorecedor en busto y súper cómodo y holgado en cintura y caderas. ¿Te gustaría que te reservemos uno antes de que se agote el stock?`;
       }
 
-      // Detección de Turnos / Citas (Google Calendar)
+      // Detección de Turnos / Citas: no se promete calendario externo sin OAuth real.
       if (q.includes('turno') || q.includes('cita') || q.includes('agendar') || q.includes('reserva') || q.includes('hora')) {
-        return `¡Hola! 📅 Con gusto te agendamos en ${compName}. Contamos con agenda sincronizada con Google Calendar. ¿Para qué día y en qué horario preferís tu cita? (Se confirma automáticamente con una seña de $${Number(currentCompany.deposit || 5000).toLocaleString('es-AR')} vía Mercado Pago).`;
+        return `¡Hola! 📅 Puedo tomar tu solicitud de turno para ${compName}. Decime qué servicio, día y rango horario preferís; el negocio te confirma la disponibilidad antes de considerar la cita agendada.`;
       }
 
       // Detección de Cobranzas / Deuda / Mora
@@ -8283,7 +8248,7 @@
       const requestUser = currentUser.id;
       const slug = currentCompany.slug || 'mi-empresa';
       try {
-        const res = await fetch(`/api/accounting/invoices/${slug}`);
+        const res = await fetch(`/api/accounting/invoices/${slug}`, { headers: accountingApiHeaders() });
         if (res.ok) {
           const json = await res.json();
           if (!currentUser || currentUser.id !== requestUser || currentCompany.slug !== slug) return;
@@ -8305,7 +8270,7 @@
       try {
         const res = await fetch(`/api/accounting/simulate-email/${slug}`, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: accountingApiHeaders(),
           body: JSON.stringify({ providerType })
         });
         if (res.ok) {
@@ -8455,7 +8420,7 @@
       try {
         await fetch(`/api/accounting/invoices/${slug}/${id}`, {
           method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
+          headers: accountingApiHeaders(),
           body: JSON.stringify(updates)
         });
       } catch(e) {}
@@ -8474,7 +8439,7 @@
       try {
         await fetch(`/api/accounting/invoices/${slug}/${id}`, {
           method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
+          headers: accountingApiHeaders(),
           body: JSON.stringify({ status: 'approved' })
         });
       } catch(e) {}
@@ -8495,7 +8460,7 @@
       if (!confirm("¿Eliminar este comprobante del Libro IVA?")) return;
       const slug = currentCompany.slug || 'mi-empresa';
       try {
-        await fetch(`/api/accounting/invoices/${slug}/${id}`, { method: 'DELETE' });
+        await fetch(`/api/accounting/invoices/${slug}/${id}`, { method: 'DELETE', headers: accountingApiHeaders() });
       } catch(e) {}
       localInvoices = localInvoices.filter(i => i.id !== id);
       renderAccountingView(localInvoices);
@@ -8510,7 +8475,7 @@
 
       const slug = currentCompany.slug || 'mi-empresa';
       try {
-        await fetch(`/api/accounting/invoices/${slug}?onlyDemo=${onlyDemo}`, { method: 'DELETE' });
+        await fetch(`/api/accounting/invoices/${slug}?onlyDemo=${onlyDemo}`, { method: 'DELETE', headers: accountingApiHeaders() });
       } catch(e) {}
 
       if (onlyDemo) {
@@ -8588,7 +8553,7 @@
         return;
       }
       const headers = [
-        ["LIBRO IVA COMPRAS - " + (currentCompany.name || "Mi Empresa").toUpperCase()],
+        ["RESUMEN DE COMPROBANTES - " + (currentCompany.name || "Mi Empresa").toUpperCase()],
         ["CUIT: " + (currentCompany.cuit || "30-71234567-8") + " | Condición: " + (currentCompany.taxCondition || "Responsable Inscripto")],
         ["Generado el: " + new Date().toLocaleDateString('es-AR')],
         [],
@@ -8613,9 +8578,9 @@
 
       const ws = XLSX.utils.aoa_to_sheet([...headers, ...rows]);
       const wb = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(wb, ws, "Libro_IVA_Compras");
-      XLSX.writeFile(wb, `Libro_IVA_Compras_${(currentCompany.slug || 'mi-empresa')}_${new Date().toISOString().slice(0, 10)}.xlsx`);
-      showToast("✓ Archivo Excel del Libro IVA Compras descargado para el estudio contable.");
+      XLSX.utils.book_append_sheet(wb, ws, "Comprobantes");
+      XLSX.writeFile(wb, `Resumen_Comprobantes_${(currentCompany.slug || 'mi-empresa')}_${new Date().toISOString().slice(0, 10)}.xlsx`);
+      showToast("✓ Resumen en Excel descargado para compartir con tu contador.");
     }
 
     function downloadAccountingCsv() {
@@ -8646,7 +8611,7 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `Libro_IVA_Compras_${(currentCompany.slug || 'mi-empresa')}.csv`;
+      a.download = `Resumen_Comprobantes_${(currentCompany.slug || 'mi-empresa')}.csv`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);

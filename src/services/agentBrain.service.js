@@ -174,10 +174,10 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
     const msg = userMessage.toLowerCase();
     const catalog = Array.isArray(business.catalog) ? business.catalog : [];
 
-    // 1. Detección de Turnos / Citas / Reservas (Google Calendar)
+    // 1. Detección de turnos. Sin OAuth de Calendar no se promete disponibilidad externa.
     const isAppointmentQuery = /\b(turno|citas?|agendar?|reservar?|reservas?|consulta|horario disponible|sacar turno|hora)\b/i.test(msg);
     if (isAppointmentQuery) {
-      return `¡Hola! 📅 Con gusto te agendamos en ${business.name}. Tenemos disponibilidad en tiempo real sincronizada con Google Calendar. ¿Para qué día y en qué horario preferís tu cita? (Se confirma automáticamente con una seña mediante Mercado Pago).`;
+      return `¡Hola! 📅 Podemos tomar tu solicitud de turno en ${business.name}. ¿Qué servicio, día y rango horario preferís? El negocio confirma la disponibilidad antes de considerar la cita agendada.`;
     }
 
     // 2. Detección de Cobranzas / Deuda / Enlace de pago (Mercado Pago)
@@ -187,10 +187,10 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
       return `¡Hola! Te contactamos desde administración de ${business.name}. Podés regularizar o abonar mediante Mercado Pago o transferencia al alias oficial: **${pay}**. ¿Te gustaría que te enviemos el link de pago directo en este momento?`;
     }
 
-    // 3. Detección de Facturación / Contabilidad / OCR (Google Drive & Sheets)
+    // 3. Consultas sobre organización de comprobantes para el contador
     const isAccountingQuery = /\b(factura|cuit|afip|comprobante|gasto|impuesto|iva|recibo)\b/i.test(msg);
     if (isAccountingQuery) {
-      return `¡Hola! Recibimos tu comprobante para ${business.name}. El Asistente Contable lo procesa mediante OCR inteligente, extrae CUIT, CAE y desglose de IVA, y lo archiva automáticamente en Google Drive y Google Sheets.`;
+      return `¡Hola! Recibimos tu comprobante para ${business.name}. Podés cargar sus datos en la bandeja de revisión, verificar CUIT y montos, y luego exportar el resumen para tu contador.`;
     }
 
     // 4. Detección de Moda / Medidas / Talles (TalleExacto)
@@ -203,7 +203,7 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
     const isEnglish = /\b(hello|hi|price|how much|available|beer|order|delivery|what|menu|appointment|booking|reserve)\b/i.test(msg);
     if (isEnglish) {
       if (isAppointmentQuery || msg.includes('appointment') || msg.includes('book') || msg.includes('reserve')) {
-        return `Hello! 📅 We would be glad to schedule your appointment at ${business.name}. We sync directly with Google Calendar. Which date and time work best for you?`;
+        return `Hello! 📅 We can take your appointment request at ${business.name}. Which service, date, and time range work best for you? The business confirms availability before the appointment is booked.`;
       }
       const outOfStockEng = catalog.find(p => p.stock === 0 && msg.includes(p.name.toLowerCase()));
       if (outOfStockEng) {
@@ -220,7 +220,7 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
     const isPortuguese = /\b(olá|obrigado|obrigada|quanto custa|boa noite|bom dia|cerveja|cardápio|agendar|reserva)\b/i.test(msg) || (/\bola\b/i.test(msg) && !/\bhola\b/i.test(msg));
     if (isPortuguese) {
       if (isAppointmentQuery || msg.includes('agendar') || msg.includes('reserva')) {
-        return `Olá! 📅 Será um prazer agendar seu horário na ${business.name}. Nosso calendário está sincronizado com o Google Calendar. Para qual dia e horário você prefere?`;
+        return `Olá! 📅 Podemos registrar seu pedido de horário na ${business.name}. Qual serviço, dia e faixa de horário você prefere? O negócio confirma a disponibilidade antes de agendar.`;
       }
       const outOfStockPt = catalog.find(p => p.stock === 0 && msg.includes(p.name.toLowerCase()));
       if (outOfStockPt) {
@@ -284,14 +284,14 @@ Asesorar con calidez, profesionalismo y visión comercial a dueños de negocios,
 CATÁLOGO DE EMPLEADOS VIRTUALES DE CHANGARED:
 1. Vendedor IA (WhatsApp 24/7): Atiende clientes día y noche por WhatsApp, consulta el catálogo y stock en tiempo real, responde preguntas frecuentes, toma pedidos o coordina pagos automáticos por alias/Mercado Pago, e incluye atención multilingüe nativa (español, inglés y portugués) para atender turistas sin costo extra.
 2. Gestor de Cobranzas Automático: Detecta facturas impagas o vencidas, envía recordatorios amistosos por WhatsApp con link de pago directo y concilia cobros.
-3. Facturación & Asistente Contable: Extrae facturas de compra y comprobantes desde correos de Gmail o carpetas de Google Drive mediante OCR inteligente y los registra organizados en Google Sheets para el contador y AFIP/ARCA.
-4. Agendador de Citas (Turnos con Google Calendar): Sincroniza la agenda de turnos en tiempo real, muestra disponibilidad a los clientes, cobra una seña obligatoria por Mercado Pago para garantizar la asistencia y envía recordatorios automáticos por WhatsApp.
+3. Asesor Contable: organiza comprobantes de compras, alerta datos repetidos y permite exportar un resumen en Excel o CSV para que lo revise el contador.
+4. Agendador de Citas: toma solicitudes de turno con servicio, fecha y horario. La sincronización con Google Calendar y los recordatorios se habilitan sólo después de completar su integración.
 5. TalleExacto (Módulo Ropa & Calzado): Asesora sobre medidas y talles en tiendas de moda reduciendo devoluciones hasta un 85%.
 
 REGLAS COMERCIALES Y DE VENTA:
 - Se contrata por empleado: el cliente no paga por cosas que no usa, elige solo el o los empleados que necesita.
 - Prueba gratuita: Todos los empleados incluyen 14 días de prueba gratis sin tarjeta de crédito.
-- Integración en 30 segundos: WhatsApp se vincula escaneando un código QR oficial; Google Calendar se conecta con 1 clic.
+- Integraciones: WhatsApp y Google Calendar requieren configurar sus credenciales oficiales antes de atender clientes reales.
 - Tono: Consultivo, resolutivo, claro y enfocado en el crecimiento y ahorro de tiempo del comerciante.
 - Respuestas concisas, dinámicas y profesionales. Invita al usuario a activar su prueba gratis desde el panel.
 `.trim();
@@ -349,7 +349,7 @@ REGLAS COMERCIALES Y DE VENTA:
   _generateChangaredSalesMock(userMessage) {
     const msg = (userMessage || '').toLowerCase();
     if (msg.includes('turno') || msg.includes('cita') || msg.includes('agenda') || msg.includes('calendar') || msg.includes('peluquer') || msg.includes('barber') || msg.includes('clínic') || msg.includes('clinic') || msg.includes('consultorio')) {
-      return `Para servicios con citas como el tuyo, el empleado ideal es el Agendador de Citas (Turnos en Google Calendar):\n\n• Sincroniza tus horarios reales con Google Calendar.\n• Ofrece turnos libres al cliente por WhatsApp.\n• Cobra una seña automática por Mercado Pago para evitar cancelaciones.\n• Envía recordatorios previos para asegurar asistencia.\n\nPodés activarlo con 14 días de prueba gratis desde el panel. ¿Te gustaría que te ayude a configurarlo?`;
+      return `Para servicios con citas como el tuyo, el Agendador toma solicitudes con servicio, fecha y horario para que no se pierdan consultas.\n\n• Ordena los datos del cliente y su preferencia.\n• Deja la cita pendiente hasta que el negocio la confirme.\n• La disponibilidad en Google Calendar, señas y recordatorios se habilitan al completar sus integraciones oficiales.\n\n¿Querés que te ayude a definir el flujo de confirmación para tu negocio?`;
     }
     if (msg.includes('whatsapp') || msg.includes('vender') || msg.includes('venta') || msg.includes('precio') || msg.includes('catalogo') || msg.includes('stock') || msg.includes('tienda') || msg.includes('local')) {
       return `¡El Vendedor IA para WhatsApp 24/7 es exactamente lo que necesitás!\n\n• Atiende y responde a tus clientes día y noche en segundos.\n• Lee tu catálogo y respeta el stock disponible en tiempo real (nunca vende lo agotado).\n• Pasa precios oficiales, medios de pago (Alias o Mercado Pago) y toma pedidos.\n• Se vincula a tu número escaneando un código QR oficial en 30 segundos.\n\nTenés 14 días gratis para probarlo con tus clientes reales. ¿Qué productos vendés principalmente?`;
@@ -358,12 +358,12 @@ REGLAS COMERCIALES Y DE VENTA:
       return `Para evitar perseguir pagos, te recomendamos el Gestor de Cobranzas Automático:\n\n• Monitorea facturas vencidas o por vencer.\n• Envía recordatorios de pago amables pero firmes por WhatsApp con link directo de pago.\n• Reduce la mora hasta un 65% sin desgastar la relación con tus clientes.\n\n¿Tenés facturas mensuales recurrentes o cuentas corrientes comerciales?`;
     }
     if (msg.includes('factura') || msg.includes('contab') || msg.includes('gasto') || msg.includes('afip') || msg.includes('arca') || msg.includes('drive') || msg.includes('sheet') || msg.includes('excel')) {
-      return `Para tu administración diaria, el Asistente Contable y Facturación te ahorra horas de trabajo:\n\n• Lee facturas y tickets desde tu Gmail o Google Drive mediante OCR inteligente.\n• Extrae CUIT, proveedor, fecha, IVA y montos netos.\n• Registra todo automáticamente en un Google Sheet listo para tu contador.\n\nPodés probarlo gratis por 14 días activándolo desde el panel.`;
+      return `Para ordenar tu administración diaria, el Asesor Contable te ayuda a reunir comprobantes y entregarlos prolijos:\n\n• Importá una planilla o registrá un comprobante manualmente.\n• Revisá CUIT, proveedor, fecha, IVA, totales y posibles duplicados.\n• Exportá un Excel o CSV para que lo revise tu contador.\n\nNo reemplaza a un profesional ni presenta declaraciones ante ARCA.`;
     }
     if (msg.includes('precio') || msg.includes('cuanto') || msg.includes('costo') || msg.includes('plan') || msg.includes('gratis') || msg.includes('tarjeta')) {
       return `En Changared contratas por empleado, para que no pagues por funciones que no usas:\n\n• Tenés 14 días de prueba gratis sin tarjeta de crédito para probar el empleado que elijas con tu negocio real.\n• Podés vincular tu WhatsApp por QR o conectar tu Google Calendar en 30 segundos.\n• Luego de la prueba, los planes inician desde $19 USD/mes por empleado con soporte y actualizaciones continuas.\n\n¿Querés que activemos tu prueba gratis para tu comercio hoy mismo?`;
     }
-    return `¡Hola! Soy el Asesor Comercial de Changared. Te ayudo a potenciar tu negocio con Empleados Virtuales con IA:\n\n1. Vendedor IA WhatsApp 24/7 (atiende consultas, stock y pedidos).\n2. Agendador de Citas (turnos con Google Calendar y seña Mercado Pago).\n3. Gestor de Cobranzas (recordatorios automáticos de pago).\n4. Asistente Contable (facturas de Gmail/Drive a Google Sheets).\n\nTodos cuentan con 14 días de prueba gratis. ¿Qué tipo de negocio tenés y qué tarea te gustaría automatizar primero?`;
+    return `¡Hola! Soy el Asesor Comercial de Changared. Te ayudo a potenciar tu negocio con empleados virtuales:\n\n1. Vendedor IA WhatsApp 24/7 (atiende consultas, stock y pedidos).\n2. Agendador de Citas (turnos y disponibilidad).\n3. Gestor de Cobranzas (recordatorios de pago).\n4. Asesor Contable (comprobantes ordenados para tu contador).\n\n¿Qué tarea te gustaría automatizar primero?`;
   }
 }
 

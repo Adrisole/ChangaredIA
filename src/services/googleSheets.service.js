@@ -1,104 +1,18 @@
-import fs from 'fs';
-import path from 'path';
 import { validateCuit, validateAmounts, detectDuplicate } from './fiscalValidator.service.js';
+import { invoiceRepository } from '../repositories/invoice.repository.js';
 
 /**
- * Servicio de Gestión y Centralización de Comprobantes para el Libro IVA del Contador.
- * Administra el almacenamiento estructurado, validaciones fiscales, control de duplicados y auditoría.
+ * Servicio de comprobantes para preparar la información que recibe el contador.
+ * El nombre histórico se conserva para no romper imports, pero no promete una
+ * integración con Google Sheets: los datos quedan en la cuenta del negocio.
  */
 class GoogleSheetsService {
-  constructor() {
-    this.invoicesFilePath = path.resolve('./src/data/invoices.json');
-    this._ensureFile();
-  }
-
-  _ensureFile() {
-    const dir = path.dirname(this.invoicesFilePath);
-    if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
-    if (!fs.existsSync(this.invoicesFilePath)) {
-      // Pre-sembrar con 2 facturas de demostración identificadas claramente
-      const initial = [
-        {
-          id: 'INV-DEMO-01',
-          businessId: 'mi-empresa',
-          fecha: '2026-10-01',
-          proveedor: 'Telecom Argentina S.A.',
-          cuit: '30-63945373-8',
-          tipoComprobante: 'Factura A',
-          numeroComprobante: '0012-00045891',
-          netoGravado: 42000.0,
-          alicuotaIva: '21%',
-          importeIva: 8820.0,
-          percepcionesOtrosImpuestos: 1200.0,
-          total: 52020.0,
-          categoriaGasto: 'Servicios',
-          resumen: 'Conectividad a internet local comercial.',
-          status: 'pending',
-          isDemo: true,
-          fileName: 'Factura_Telecom_Octubre_2026.pdf',
-          source: 'DEMO',
-          auditTrail: [
-            {
-              timestamp: '2026-10-01T14:22:00.000Z',
-              action: 'CREATED',
-              details: 'Comprobante de demostración pre-cargado para evaluación',
-            },
-          ],
-          processedAt: '2026-10-01T14:22:00.000Z',
-        },
-        {
-          id: 'INV-DEMO-02',
-          businessId: 'mi-empresa',
-          fecha: '2026-10-02',
-          proveedor: 'Edenor S.A.',
-          cuit: '30-65511620-2',
-          tipoComprobante: 'Factura A',
-          numeroComprobante: '0004-00124890',
-          netoGravado: 78500.0,
-          alicuotaIva: '27%',
-          importeIva: 21195.0,
-          percepcionesOtrosImpuestos: 3420.0,
-          total: 103115.0,
-          categoriaGasto: 'Luz/Gas/Tel',
-          resumen: 'Suministro eléctrico período Septiembre/Octubre.',
-          status: 'pending',
-          isDemo: true,
-          fileName: 'Factura_Edenor_Octubre_2026.pdf',
-          source: 'DEMO',
-          auditTrail: [
-            {
-              timestamp: '2026-10-02T10:15:00.000Z',
-              action: 'CREATED',
-              details: 'Comprobante de demostración pre-cargado para evaluación',
-            },
-          ],
-          processedAt: '2026-10-02T10:15:00.000Z',
-        },
-      ];
-      fs.writeFileSync(this.invoicesFilePath, JSON.stringify(initial, null, 2), 'utf-8');
-    }
-  }
-
-  _readAll() {
-    try {
-      this._ensureFile();
-      const raw = fs.readFileSync(this.invoicesFilePath, 'utf-8');
-      return JSON.parse(raw || '[]');
-    } catch {
-      return [];
-    }
-  }
-
-  _saveAll(data) {
-    fs.writeFileSync(this.invoicesFilePath, JSON.stringify(data, null, 2), 'utf-8');
-  }
-
   /**
    * Agrega un nuevo comprobante con validación fiscal y control de duplicados.
    */
-  appendInvoice(businessId, invoiceData, meta = {}) {
-    const all = this._readAll();
-    const existingForBiz = all.filter((inv) => inv.businessId === businessId);
+  async appendInvoice(businessId, invoiceData, meta = {}) {
+    const normalizedBusinessId = String(businessId || '').toLowerCase().trim();
+    const existingForBiz = await invoiceRepository.findByBusinessId(normalizedBusinessId);
 
     // Validación fiscal del CUIT
     const cuitValidation = validateCuit(invoiceData.cuit);
@@ -127,7 +41,7 @@ class GoogleSheetsService {
 
     const entry = {
       id,
-      businessId,
+      businessId: normalizedBusinessId,
       fecha: invoiceData.fecha || nowIso.split('T')[0],
       proveedor: String(invoiceData.proveedor || 'Proveedor General').trim(),
       cuit: cuitValidation.formatted || invoiceData.cuit || '',
@@ -152,22 +66,17 @@ class GoogleSheetsService {
       processedAt: nowIso,
     };
 
-    all.unshift(entry);
-    this._saveAll(all);
-
-    console.log(`[AccountingService] Nuevo comprobante guardado para [${businessId}]: ${entry.proveedor} ($${entry.total}) [${entry.status}]`);
-    return entry;
+    const saved = await invoiceRepository.save(entry);
+    console.log(`[AccountingService] Nuevo comprobante guardado para [${normalizedBusinessId}]: ${saved.proveedor} ($${saved.total}) [${saved.status}]`);
+    return saved;
   }
 
   /**
    * Actualiza los datos de un comprobante existente y registra la auditoría.
    */
-  updateInvoice(businessId, invoiceId, updates, meta = {}) {
-    const all = this._readAll();
-    const idx = all.findIndex((i) => i.id === invoiceId && (i.businessId === businessId || !businessId));
-    if (idx === -1) return null;
-
-    const current = all[idx];
+  async updateInvoice(businessId, invoiceId, updates, meta = {}) {
+    const current = await invoiceRepository.findById(businessId, invoiceId);
+    if (!current) return null;
     const nowIso = new Date().toISOString();
     const trail = Array.isArray(current.auditTrail) ? [...current.auditTrail] : [];
 
@@ -208,21 +117,15 @@ class GoogleSheetsService {
       updatedAt: nowIso,
     };
 
-    all[idx] = updated;
-    this._saveAll(all);
-    return updated;
+    return await invoiceRepository.save(updated);
   }
 
   /**
    * Elimina un comprobante específico por ID.
    */
-  deleteInvoice(businessId, invoiceId) {
-    const all = this._readAll();
-    const idx = all.findIndex((i) => i.id === invoiceId && (i.businessId === businessId || !businessId));
-    if (idx === -1) return false;
-
-    const removed = all.splice(idx, 1)[0];
-    this._saveAll(all);
+  async deleteInvoice(businessId, invoiceId) {
+    const removed = await invoiceRepository.deleteById(businessId, invoiceId);
+    if (!removed) return null;
     console.log(`[AccountingService] Comprobante ${invoiceId} eliminado para [${businessId}]`);
     return removed;
   }
@@ -230,32 +133,19 @@ class GoogleSheetsService {
   /**
    * Elimina todos los comprobantes del negocio, o únicamente los de demostración.
    */
-  clearInvoices(businessId, { onlyDemo = false } = {}) {
-    const all = this._readAll();
-    const remaining = all.filter((i) => {
-      if (businessId && i.businessId !== businessId) return true;
-      if (onlyDemo) return !i.isDemo;
-      return false; // borrar todos los de este businessId
-    });
-
-    const deletedCount = all.length - remaining.length;
-    this._saveAll(remaining);
+  async clearInvoices(businessId, { onlyDemo = false } = {}) {
+    const result = await invoiceRepository.clear(businessId, { onlyDemo });
+    const { deletedCount } = result;
     console.log(`[AccountingService] Se eliminaron ${deletedCount} comprobantes para [${businessId}] (onlyDemo=${onlyDemo})`);
     return { deletedCount };
   }
 
-  getInvoices(businessId, filters = {}) {
-    const all = this._readAll();
-    let list = businessId ? all.filter((inv) => inv.businessId === businessId) : all;
-
-    if (filters.status) {
-      list = list.filter((inv) => inv.status === filters.status);
-    }
-    return list;
+  async getInvoices(businessId, filters = {}) {
+    return await invoiceRepository.findByBusinessId(businessId, filters);
   }
 
-  getStats(businessId) {
-    const list = this.getInvoices(businessId);
+  async getStats(businessId) {
+    const list = await this.getInvoices(businessId);
     const pendingCount = list.filter((i) => i.status === 'pending').length;
     const approvedCount = list.filter((i) => i.status === 'approved').length;
     const demoCount = list.filter((i) => i.isDemo).length;

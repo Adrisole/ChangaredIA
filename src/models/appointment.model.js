@@ -12,8 +12,8 @@ const appointmentSchema = new mongoose.Schema({
   time: { type: String, required: true },
   status: {
     type: String,
-    enum: ['CONFIRMADO', 'PENDIENTE_SENIA', 'CANCELADO', 'COMPLETADO'],
-    default: 'CONFIRMADO',
+    enum: ['PENDIENTE_CONFIRMACION', 'CONFIRMADO', 'PENDIENTE_SENIA', 'CANCELADO', 'COMPLETADO'],
+    default: 'PENDIENTE_CONFIRMACION',
   },
   depositPaid: { type: Boolean, default: true },
   depositAmount: { type: Number, default: 5000 },

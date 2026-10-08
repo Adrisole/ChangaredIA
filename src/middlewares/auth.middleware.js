@@ -61,6 +61,16 @@ export const requireBusinessOwner = async (req, res, next) => {
       });
     }
 
+    // Exigir sesión antes de buscar el negocio evita revelar qué identificadores
+    // existen a visitantes anónimos.
+    if (!req.user) {
+      return res.status(401).json({
+        success: false,
+        error: 'UNAUTHORIZED',
+        message: 'Debes iniciar sesión con la cuenta propietaria para acceder a este negocio.',
+      });
+    }
+
     const business = await businessService.getBusinessById(businessId);
     if (!business) {
       return res.status(404).json({
@@ -70,16 +80,7 @@ export const requireBusinessOwner = async (req, res, next) => {
       });
     }
 
-    // 1. Exigir obligatoriamente sesión activa
-    if (!req.user) {
-      return res.status(401).json({
-        success: false,
-        error: 'UNAUTHORIZED',
-        message: 'Debes iniciar sesión con la cuenta propietaria para acceder a los chats o configurar este negocio.',
-      });
-    }
-
-    // 2. Comprobar que el usuario sea el dueño registrado o admin
+    // Comprobar que el usuario sea el dueño registrado o admin
     if (!business.ownerId || (req.user.id !== business.ownerId && req.user.role !== 'admin')) {
       return res.status(403).json({
         success: false,

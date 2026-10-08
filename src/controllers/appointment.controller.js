@@ -1,4 +1,5 @@
 import { appointmentRepository } from '../repositories/appointment.repository.js';
+import { businessService } from '../services/business.service.js';
 import crypto from 'crypto';
 
 export class AppointmentController {
@@ -19,7 +20,7 @@ export class AppointmentController {
     }
   }
 
-  create(req, res) {
+  async create(req, res) {
     try {
       const { businessId } = req.params;
       const { clientName, clientPhone, clientEmail, service, professional, date, time, depositAmount } = req.body;
@@ -29,6 +30,15 @@ export class AppointmentController {
           success: false,
           error: 'VALIDATION_ERROR',
           message: 'clientName, clientPhone y service son requeridos.',
+        });
+      }
+
+      const business = await businessService.getBusinessById(businessId);
+      if (!business) {
+        return res.status(404).json({
+          success: false,
+          error: 'BUSINESS_NOT_FOUND',
+          message: 'El negocio solicitado no existe.',
         });
       }
 
@@ -43,16 +53,16 @@ export class AppointmentController {
         professional: professional || 'General',
         date: date || new Date().toISOString().split('T')[0],
         time: time || '12:00 hs',
-        status: 'CONFIRMADO',
-        depositPaid: true,
+        status: 'PENDIENTE_CONFIRMACION',
+        depositPaid: false,
         depositAmount: depositAmount ? Number(depositAmount) : 5000,
-        calendarEventId: `cal_evt_${Date.now()}`,
+        calendarEventId: '',
         reminderSent: false,
       });
 
       return res.status(201).json({
         success: true,
-        message: 'Turno agendado exitosamente.',
+        message: 'Solicitud de turno registrada. El negocio debe confirmarla antes de considerarla agendada.',
         data: newApt,
       });
     } catch (error) {
@@ -66,8 +76,26 @@ export class AppointmentController {
 
   updateStatus(req, res) {
     try {
-      const { id } = req.params;
+      const { id, businessId } = req.params;
       const { status } = req.body;
+
+      const allowedStatuses = ['PENDIENTE_CONFIRMACION', 'CONFIRMADO', 'PENDIENTE_SENIA', 'CANCELADO', 'COMPLETADO'];
+      if (!allowedStatuses.includes(status)) {
+        return res.status(400).json({
+          success: false,
+          error: 'VALIDATION_ERROR',
+          message: 'El estado de turno indicado no es válido.',
+        });
+      }
+
+      const current = appointmentRepository.findById(id);
+      if (!current || String(current.businessId).toLowerCase().trim() !== String(businessId).toLowerCase().trim()) {
+        return res.status(404).json({
+          success: false,
+          error: 'NOT_FOUND',
+          message: 'Turno no encontrado.',
+        });
+      }
 
       const updated = appointmentRepository.updateStatus(id, status);
       if (!updated) {
