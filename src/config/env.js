@@ -3,7 +3,9 @@ import path from 'path';
 
 // Cargar variables de entorno desde el archivo .env
 dotenv.config();
-
+if (!process.env.WHATSAPP_VERIFY_TOKEN) {
+  throw new Error('Falta WHATSAPP_VERIFY_TOKEN en las variables de entorno');
+  
 export const config = Object.freeze({
   port: parseInt(process.env.PORT || '3000', 10),
   nodeEnv: process.env.NODE_ENV || 'development',
@@ -12,7 +14,7 @@ export const config = Object.freeze({
     model: process.env.OPENAI_MODEL || 'gpt-4o-mini',
   },
   whatsapp: {
-    verifyToken: process.env.WHATSAPP_VERIFY_TOKEN || 'changared_secret_verify_token_2026',
+    verifyToken: process.env.WHATSAPP_VERIFY_TOKEN,
     accessToken: process.env.WHATSAPP_ACCESS_TOKEN || '',
     phoneNumberId: process.env.WHATSAPP_PHONE_NUMBER_ID || '',
     appSecret: process.env.WHATSAPP_APP_SECRET || '',
