@@ -40,7 +40,7 @@ apiRouter.use('/webhook', webhookRoutes);
 // Rutas de facturación y cobro (Mercado Pago y Lemon Squeezy)
 apiRouter.use('/billing', billingRoutes);
 
-// Rutas del Asistente Contable (Facturas a Google Drive y Sheets)
+// Rutas del Asesor Contable (comprobantes y exportación para el contador)
 apiRouter.use('/accounting', accountingRoutes);
 
 // Rutas de Agenda y Turnos (/api/appointments/:businessId)

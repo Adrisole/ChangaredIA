@@ -3,7 +3,7 @@ import { googleSheetsService } from '../services/googleSheets.service.js';
 import { validateCuit, validateAmounts } from '../services/fiscalValidator.service.js';
 
 /**
- * Controlador de Preparación de Comprobantes para el Estudio Contable / Libro IVA.
+ * Controlador de comprobantes y exportación para el contador.
  */
 
 export const processInboundEmail = async (req, res, next) => {
@@ -16,7 +16,7 @@ export const processInboundEmail = async (req, res, next) => {
     const invoiceContent = rawContent || text || subject || 'Factura de servicios';
     const extractedData = await invoiceExtractorService.extractInvoiceData(invoiceContent);
 
-    const record = googleSheetsService.appendInvoice(businessId, extractedData, {
+    const record = await googleSheetsService.appendInvoice(businessId, extractedData, {
       from,
       subject,
       attachmentName,
@@ -28,7 +28,7 @@ export const processInboundEmail = async (req, res, next) => {
       message: `Comprobante de ${extractedData.proveedor} ingresado a la bandeja de revisión.`,
       data: {
         record,
-        googleSheetsStatus: 'ROW_APPENDED',
+        storageStatus: 'SAVED',
         status: record.status,
       },
     });
@@ -37,12 +37,12 @@ export const processInboundEmail = async (req, res, next) => {
   }
 };
 
-export const getInvoicesList = (req, res, next) => {
+export const getInvoicesList = async (req, res, next) => {
   try {
     const { businessId } = req.params;
     const { status } = req.query; // 'pending' | 'approved' | undefined
-    const invoices = googleSheetsService.getInvoices(businessId, { status });
-    const stats = googleSheetsService.getStats(businessId);
+    const invoices = await googleSheetsService.getInvoices(businessId, { status });
+    const stats = await googleSheetsService.getStats(businessId);
 
     res.status(200).json({
       success: true,
@@ -78,7 +78,7 @@ export const simulateInvoiceReception = async (req, res, next) => {
     }
 
     const extracted = await invoiceExtractorService.extractInvoiceData(simulatedText);
-    const record = googleSheetsService.appendInvoice(
+    const record = await googleSheetsService.appendInvoice(
       businessId,
       { ...extracted, isDemo: true },
       {
@@ -135,7 +135,7 @@ export const createInvoice = async (req, res, next) => {
       fileName: body.fileName || 'Carga manual',
     };
 
-    const record = googleSheetsService.appendInvoice(businessId, invoiceData, {
+    const record = await googleSheetsService.appendInvoice(businessId, invoiceData, {
       source: body.source || 'MANUAL_ENTRY',
       attachmentName: body.fileName || 'Carga manual',
     });
@@ -161,7 +161,7 @@ export const updateInvoice = async (req, res, next) => {
     const { businessId, invoiceId } = req.params;
     const updates = req.body;
 
-    const record = googleSheetsService.updateInvoice(businessId, invoiceId, updates, {
+    const record = await googleSheetsService.updateInvoice(businessId, invoiceId, updates, {
       reason: updates.auditReason,
     });
 
@@ -185,7 +185,7 @@ export const updateInvoice = async (req, res, next) => {
 export const deleteInvoice = async (req, res, next) => {
   try {
     const { businessId, invoiceId } = req.params;
-    const removed = googleSheetsService.deleteInvoice(businessId, invoiceId);
+    const removed = await googleSheetsService.deleteInvoice(businessId, invoiceId);
 
     if (!removed) {
       return res.status(404).json({
@@ -196,7 +196,7 @@ export const deleteInvoice = async (req, res, next) => {
 
     res.status(200).json({
       success: true,
-      message: 'Comprobante eliminado del Libro IVA.',
+      message: 'Comprobante eliminado de la lista de revisión.',
       removed,
     });
   } catch (error) {
@@ -209,7 +209,7 @@ export const clearInvoices = async (req, res, next) => {
     const { businessId } = req.params;
     const onlyDemo = req.query.onlyDemo === 'true' || req.body?.onlyDemo === true;
 
-    const result = googleSheetsService.clearInvoices(businessId, { onlyDemo });
+    const result = await googleSheetsService.clearInvoices(businessId, { onlyDemo });
 
     res.status(200).json({
       success: true,

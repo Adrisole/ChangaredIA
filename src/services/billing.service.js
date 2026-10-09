@@ -6,28 +6,28 @@ import { businessRepository } from '../repositories/business.repository.js';
  */
 export const PLANS_CONFIG = Object.freeze({
   'plan-mostrador': {
-    name: 'Plan Mostrador',
-    priceArs: 39000,
-    priceUsd: 29,
+    name: 'Un empleado virtual',
+    priceArs: 25000,
+    priceUsd: 17,
     monthlyQuota: 600,
-    allowedAssistants: ['whatsapp-employee'],
-    features: ['1 Asistente WhatsApp', 'Catálogo & Stock 24/7', 'Multi-idioma nativo', '600 chats/mes'],
+    allowedAssistants: ['vendedor'],
+    features: ['Elegí 1 empleado virtual', 'Catálogo y pedidos', 'Atención multilingüe', '600 conversaciones/mes'],
   },
   'combo-operativo': {
-    name: 'Plan Operativo (Combo ⭐)',
-    priceArs: 89000,
-    priceUsd: 69,
+    name: 'Dos empleados virtuales',
+    priceArs: 50000,
+    priceUsd: 34,
     monthlyQuota: 2000,
-    allowedAssistants: ['whatsapp-employee', 'radar-operativo'],
-    features: ['2 Asistentes (WhatsApp + Radar)', 'Rescate de pagos caídos', 'Alertas stock crítico', '2.000 chats/mes'],
+    allowedAssistants: ['vendedor', 'cobranzas'],
+    features: ['Elegí 2 empleados virtuales', 'Ventas y seguimiento de cobros', 'Panel de pedidos', '2.000 conversaciones/mes'],
   },
   'full-empresa': {
-    name: 'Plan Full Empresa',
-    priceArs: 169000,
-    priceUsd: 129,
+    name: 'Cuatro empleados virtuales',
+    priceArs: 100000,
+    priceUsd: 68,
     monthlyQuota: 10000,
-    allowedAssistants: ['whatsapp-employee', 'radar-operativo', 'stock-sentinel', 'finance-reconciler'],
-    features: ['Suite completa (4 Asistentes)', 'Chats ilimitados', 'Soporte prioritario', 'Conciliación financiera'],
+    allowedAssistants: ['vendedor', 'cobranzas', 'agenda', 'contable'],
+    features: ['Elegí hasta 4 empleados virtuales', 'Ventas, agenda y administración', 'Panel de seguimiento', '10.000 conversaciones/mes'],
   },
 });
 
