@@ -307,7 +307,7 @@
       <div class="flex items-center space-x-2 sm:space-x-2.5 shrink-0">
         <!-- Indicador de Sesión / Modo Demo vs Mi Negocio -->
         <div id="session-status-container" class="flex items-center">
-          <!-- Renderizado dinámico vía renderSessionUI() -->
+          <button onclick="openAuthModal('header')" class="px-3 py-2 rounded-lg bg-white text-slate-900 text-xs font-semibold">Ingresar</button>
         </div>
 
         <!-- Switch de Idioma Superior -->
@@ -5126,12 +5126,14 @@
           container.innerHTML = `
             <button onclick="openAuthModal('header')" class="inline-flex items-center space-x-1.5 px-2.5 sm:px-3 py-1 text-xs font-bold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg transition shadow-2xs">
               <span>🔑</span>
-              <span>Iniciar Sesión</span>
+              <span>Ingresar</span>
             </button>
           `;
         }
       }
     }
+
+    renderSessionUI();
 
     function switchAuthTab(tab) {
       const tabLogin = document.getElementById('tab-auth-login');
