@@ -5,7 +5,8 @@ import path from 'path';
 dotenv.config();
 if (!process.env.WHATSAPP_VERIFY_TOKEN) {
   throw new Error('Falta WHATSAPP_VERIFY_TOKEN en las variables de entorno');
-  
+}
+
 export const config = Object.freeze({
   port: parseInt(process.env.PORT || '3000', 10),
   nodeEnv: process.env.NODE_ENV || 'development',

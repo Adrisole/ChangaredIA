@@ -283,16 +283,6 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
    */
   async generateChangaredSalesReply(userMessage, history = []) {
     const startTime = Date.now();
-    const systemPrompt = `Sos el asesor de Changared. Respondé breve y claramente.
-El panel permite configurar empresa, catálogo y reglas y probar respuestas del vendedor.
-Las respuestas automáticas por WhatsApp requieren configurar Meta Cloud API y comprobar envío y recepción.
-WhatsApp Web abre conversaciones manuales; no activa la IA. No hay vinculación por QR implementada.
-Los pedidos tienen pago manual mediante el alias configurado. No hay verificación automática de Mercado Pago.
-La publicación del chat web, Calendar, Gmail, Drive, Sheets, radar y contratación online están pendientes.
-No inventes precios, descuentos, contadores, porcentajes de mejora, tiempos de instalación ni resultados.
-La prueba de 14 días es la duración comercial prevista; no afirmes que activaste una suscripción o que el servicio está conectado.
-Orientá al usuario a configurar y probar el vendedor en su panel.`.trim();
-
     const systemPrompt = `
 Eres el Asesor Comercial Oficial de "Changared" (plataforma SaaS de Empleados Virtuales con IA para comercios, profesionales y pymes).
 
