@@ -185,10 +185,14 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
     // 2. Detección de Cobranzas / Deuda / Enlace de pago (Mercado Pago)
     const isDebtQuery = /\b(deuda|cobranza|saldo|pagar|pago|transferencia|alias|link de pago|mora|cuota)\b/i.test(msg);
     if (isDebtQuery) {
+      const pay = business.paymentMethod || 'No configurado';
+      return `¡Hola! Te contactamos desde administración de ${business.name}. Podés regularizar o abonar mediante Mercado Pago o transferencia al alias oficial: **${pay}**. ¿Te gustaría que te enviemos el link de pago directo en este momento?`;
+
       if (business.paymentMethod) {
         return `¡Hola! Te contactamos desde administración de ${business.name}. El medio de pago informado es: ${business.paymentMethod}. La acreditación debe ser verificada por el negocio.`;
       }
       return `¡Hola! Para no darte un dato equivocado, el equipo de ${business.name} te confirma el medio de pago y el saldo.`;
+
     }
 
     // 3. Consultas sobre organización de comprobantes para el contador
@@ -279,6 +283,16 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
    */
   async generateChangaredSalesReply(userMessage, history = []) {
     const startTime = Date.now();
+    const systemPrompt = `Sos el asesor de Changared. Respondé breve y claramente.
+El panel permite configurar empresa, catálogo y reglas y probar respuestas del vendedor.
+Las respuestas automáticas por WhatsApp requieren configurar Meta Cloud API y comprobar envío y recepción.
+WhatsApp Web abre conversaciones manuales; no activa la IA. No hay vinculación por QR implementada.
+Los pedidos tienen pago manual mediante el alias configurado. No hay verificación automática de Mercado Pago.
+La publicación del chat web, Calendar, Gmail, Drive, Sheets, radar y contratación online están pendientes.
+No inventes precios, descuentos, contadores, porcentajes de mejora, tiempos de instalación ni resultados.
+La prueba de 14 días es la duración comercial prevista; no afirmes que activaste una suscripción o que el servicio está conectado.
+Orientá al usuario a configurar y probar el vendedor en su panel.`.trim();
+
     const systemPrompt = `
 Eres el Asesor Comercial Oficial de "Changared" (plataforma SaaS de Empleados Virtuales con IA para comercios, profesionales y pymes).
 
@@ -299,6 +313,7 @@ REGLAS COMERCIALES Y DE VENTA:
 - No prometas códigos QR, pagos automáticos, recordatorios, resultados porcentuales, plazos de activación ni pruebas gratuitas si no están configurados.
 - Tono: Consultivo, resolutivo, claro y enfocado en el crecimiento y ahorro de tiempo del comerciante. Invita a configurar el negocio desde el panel.
 `.trim();
+
 
     if (config.openai.apiKey) {
       try {
@@ -351,6 +366,8 @@ REGLAS COMERCIALES Y DE VENTA:
   }
 
   _generateChangaredSalesMock(userMessage) {
+    return 'El asesor no está disponible en este momento. Podés configurar tu empresa y catálogo y probar el vendedor desde el panel. La conexión automática de WhatsApp requiere configurar Meta.';
+
     const msg = (userMessage || '').toLowerCase();
     if (msg.includes('turno') || msg.includes('cita') || msg.includes('agenda') || msg.includes('calendar') || msg.includes('peluquer') || msg.includes('barber') || msg.includes('clínic') || msg.includes('clinic') || msg.includes('consultorio')) {
       return `Para servicios con citas como el tuyo, el Agendador toma solicitudes con servicio, fecha y horario para que no se pierdan consultas.\n\n• Ordena los datos del cliente y su preferencia.\n• Deja la cita pendiente hasta que el negocio la confirme.\n• La disponibilidad en Google Calendar, señas y recordatorios se habilitan al completar sus integraciones oficiales.\n\n¿Querés que te ayude a definir el flujo de confirmación para tu negocio?`;
@@ -368,7 +385,9 @@ REGLAS COMERCIALES Y DE VENTA:
       return `En Changared contratás por empleado, para no pagar funciones que no usás:\n\n• El precio de referencia es USD 17 por empleado virtual al mes.\n• Podés elegir uno, dos o hasta cuatro empleados según tu operación.\n• WhatsApp y Google Calendar se conectan con credenciales oficiales de tu negocio antes de operar con clientes reales.\n\n¿Querés configurar una demostración privada para tu comercio?`;
     }
     return `¡Hola! Soy el Asesor Comercial de Changared. Te ayudo a potenciar tu negocio con empleados virtuales:\n\n1. Vendedor IA WhatsApp 24/7 (atiende consultas, stock y pedidos).\n2. Agendador de Citas (turnos y disponibilidad).\n3. Gestor de Cobranzas (recordatorios de pago).\n4. Asesor Contable (comprobantes ordenados para tu contador).\n\n¿Qué tarea te gustaría automatizar primero?`;
+
   }
+
 }
 
 export const agentBrainService = new AgentBrainService();

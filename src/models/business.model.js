@@ -10,7 +10,7 @@ const businessSchema = new mongoose.Schema({
   hours: { type: String, default: '' },
   website: { type: String, default: '' },
   authorizedDomain: { type: String, default: '' },
-  deposit: { type: Number, default: 5000 },
+  deposit: { type: Number, default: 0 },
   paymentMethod: { type: String, default: '' },
   notificationPhone: { type: String, default: '' },
   orders: { type: [mongoose.Schema.Types.Mixed], default: [] },

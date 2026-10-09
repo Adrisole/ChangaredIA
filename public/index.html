@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SEO Primario 100/100 -->
+
+  <title>Changared — Empleados Virtuales con IA para WhatsApp y Cobranzas</title>
+  <meta name="description" content="Configurá y probá tu vendedor con el catálogo de tu negocio.">
+  <meta name="keywords" content="empleados virtuales, bot whatsapp ventas, gestor cobranzas mercado pago, cobranzas automatizadas whatsapp, asistente contable facturas excel, ia para negocios, changared b2b">
   <title>Changared | Empleados virtuales con IA para WhatsApp y negocios</title>
   <meta name="description" content="Empleados virtuales con IA para centralizar consultas por WhatsApp, organizar turnos y automatizar tareas comerciales y administrativas de tu negocio.">
   <meta name="keywords" content="empleados virtuales con ia, secretaria virtual whatsapp, automatización whatsapp, agenda de turnos, ia para negocios, changared">
@@ -21,6 +25,10 @@
   <!-- Open Graph / Redes Sociales -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://changared.com/">
+  <meta property="og:title" content="Changared — Empleados Virtuales con IA para WhatsApp y Cobranzas">
+  <meta property="og:description" content="Configurá y probá tu vendedor con el catálogo de tu negocio.">
+  <meta property="og:image" content="https://changared.com/og-image.png">
+
   <meta property="og:title" content="Changared | Empleados virtuales con IA para tu negocio">
   <meta property="og:description" content="Centralizá consultas, turnos y tareas comerciales con empleados virtuales configurables para tu negocio.">
   <meta property="og:image" content="https://changared.com/logo.png">
@@ -34,6 +42,7 @@
   <meta name="twitter:image" content="https://changared.com/logo.png">
 
   <!-- Schema.org Datos Estructurados JSON-LD -->
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -220,35 +229,26 @@
       <!-- Navegación del Dashboard (Solo Texto Limpio, Sin Dibujitos) -->
       <nav class="p-3 space-y-1 bg-[#1B4332] flex-1 overflow-y-auto">
         <div class="px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-emerald-200/70" data-i18n="navSectionMain">Principal</div>
-        
+
         <button onclick="switchStep('step-hub')" id="nav-step-hub" class="nav-item w-full text-left px-3 py-2 text-xs font-semibold rounded-lg text-white bg-white/15 transition-colors" data-i18n="navStepHub">
-          ¿Qué empleado buscas?
+          Inicio
         </button>
 
         <div class="pt-3 px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-emerald-200/70" data-i18n="navSectionEmployees">Empleados Virtuales</div>
 
         <button onclick="switchStep('step-simulator')" id="nav-step-simulator" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
-          <span data-i18n="navStepSimulator">1. Vendedor IA (WhatsApp 24/7)</span>
+          <span data-i18n="navStepSimulator">Vendedor IA</span>
         </button>
 
-        <a href="/cobranzas" id="nav-step-cobranzas" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors flex items-center justify-between">
-          <span data-i18n="navStepCobranzas">2. Gestor de Cobranzas</span>
-          <i data-lucide="external-link" class="w-3.5 h-3.5 text-emerald-300 opacity-80"></i>
-        </a>
 
-        <button onclick="switchStep('step-accounting')" id="nav-step-accounting" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
-          <span data-i18n="navStepAccounting">3. Facturación & Gastos</span>
-        </button>
 
-        <button onclick="switchStep('step-citas')" id="nav-step-citas" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
-          <span data-i18n="navStepCitas">4. Agendador de Citas (Turnos)</span>
-        </button>
 
-        <div class="pt-3 px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-emerald-200/70" data-i18n="navSectionFashion">Especial Moda</div>
 
-        <button onclick="switchStep('step-talleexacto')" id="nav-step-talleexacto" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
-          <span data-i18n="navStepTalleexacto">TalleExacto (Módulo Ropa)</span>
-        </button>
+
+
+
+
+
 
         <div class="pt-3 px-2 py-1 text-[10px] uppercase tracking-wider font-bold text-emerald-200/70" data-i18n="navSectionSettings">Ajustes & Configuración</div>
 
@@ -264,9 +264,7 @@
           Conexión WhatsApp & Bandeja
         </button>
 
-        <button onclick="switchStep('step-billing')" id="nav-step-billing" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-200/90 hover:text-white hover:bg-white/10 transition-colors" data-i18n="navStepBilling">
-          Planes & Suscripción
-        </button>
+
 
         <div class="pt-4 mt-3 px-3 border-t border-white/10 text-[11px] text-emerald-200/70 flex items-center justify-between">
           <span class="flex items-center space-x-1.5">
@@ -301,7 +299,7 @@
           <button onclick="switchStep('step-hub')" class="hover:text-slate-900 font-medium transition cursor-pointer hidden sm:inline">Changared</button>
           <span class="hidden sm:inline">/</span>
           <div id="breadcrumb-dynamic" class="flex items-center space-x-1.5 truncate">
-            <span class="text-slate-900 font-semibold truncate">¿Qué empleado buscas?</span>
+            <span class="text-slate-900 font-semibold truncate">Inicio</span>
           </div>
         </div>
       </div>
@@ -351,6 +349,18 @@
       <!-- ======================================================== -->
       <!-- PANTALLA PRINCIPAL: EMPLEADOS VIRTUALES B2B -->
       <!-- ======================================================== -->
+      <section id="step-hub" class="step-content space-y-5">
+  <h1 class="text-xl font-semibold text-slate-900">Tu vendedor</h1>
+  <p class="text-sm text-slate-600">Guardá tu empresa y catálogo. Probá las respuestas antes de conectar WhatsApp.</p>
+  <div class="grid gap-3 sm:grid-cols-2">
+    <button onclick="openBusinessConfigModal()" class="p-4 rounded-lg border bg-white text-left"><strong>Mi empresa</strong><span class="block text-sm text-slate-600">Nombre, descripción y datos de contacto.</span></button>
+    <button onclick="switchStep('step-catalog')" class="p-4 rounded-lg border bg-white text-left"><strong>Catálogo y precios</strong><span class="block text-sm text-slate-600">Productos, servicios y disponibilidad.</span></button>
+    <button onclick="switchStep('step-simulator')" class="p-4 rounded-lg border bg-white text-left"><strong>Probar vendedor</strong><span class="block text-sm text-slate-600">Conversación privada de prueba.</span></button>
+    <button onclick="switchStep('step-whatsapp')" class="p-4 rounded-lg border bg-white text-left"><strong>Configurar WhatsApp</strong><span class="block text-sm text-slate-600">Conexión oficial de Meta.</span></button>
+    <button onclick="switchStep('step-payments')" class="p-4 rounded-lg border bg-white text-left"><strong>Cobros y pedidos</strong><span class="block text-sm text-slate-600">Alias, pedidos y confirmación manual del pago.</span></button>
+  </div>
+</section>
+
       <section id="step-hub" class="step-content space-y-8">
         
         <!-- Header Limpio y Sobrio -->
@@ -714,6 +724,7 @@
 
       </section>
 
+
       <!-- ======================================================== -->
       <!-- PASO 1: IDENTIDAD Y TONO DE VOZ (CON MULTI-IDIOMA) -->
       <!-- ======================================================== -->
@@ -885,62 +896,7 @@
             </button>
           </div>
 
-          <div id="rules-list-container" class="space-y-2">
-            <div class="flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-800">
-              <div class="flex items-center space-x-2">
-                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                <span>Horario de atención: Lunes a Viernes de 09:00 a 18:00 hs.</span>
-              </div>
-              <button onclick="this.parentElement.remove()" class="text-slate-500 hover:text-red-500 transition">
-                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-              </button>
-            </div>
-            <div class="flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-800">
-              <div class="flex items-center space-x-2">
-                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                <span>Envíos a todo el país coordinados en 24 a 48 hs hábiles.</span>
-              </div>
-              <button onclick="this.parentElement.remove()" class="text-slate-500 hover:text-red-500 transition">
-                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-              </button>
-            </div>
-            <div class="flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-800">
-              <div class="flex items-center space-x-2">
-                <i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-600 shrink-0"></i>
-                <span>Aceptamos transferencias y Mercado Pago (alias: pagos.miempresa.mp).</span>
-              </div>
-              <button onclick="this.parentElement.remove()" class="text-slate-500 hover:text-red-500 transition">
-                <i data-lucide="trash-2" class="w-3.5 h-3.5"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-slate-100">
-          <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-300 rounded-lg transition-colors shadow-2xs">
-            <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
-            <span class="btn-smart-back-text">Volver</span>
-          </button>
-          <button onclick="switchStep('step-catalog')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-semibold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg transition-colors shadow-2xs">
-            <span data-i18n="btnContinueToCatalog">Siguiente: Catálogo & Stock</span>
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </button>
-        </div>
-      
-</section>
-
-      <!-- ======================================================== -->
-      <!-- PASO 2: INVENTARIO Y STOCK -->
-      <!-- ======================================================== -->
-      <section id="step-catalog" class="step-content space-y-6 hidden">
-        <!-- Top Back Navigation -->
-        <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
-          <div class="flex items-center space-x-2">
-            <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 transition shadow-subtle">
-              <i data-lucide="arrow-left" class="w-3.5 h-3.5 text-slate-700"></i>
-              <span class="btn-smart-back-text">Volver</span>
-            </button>
-          </div>
+          <div id="rules-list-container" class="space-y-2"></div>
         </div>
 
         <!-- Barra de Navegación del Vendedor IA (Sub-tabs) -->
@@ -971,7 +927,7 @@
         </div>
 
         <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
-          
+
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 pb-4">
             <div>
               <h2 id="catalog-editor-heading" class="text-sm font-semibold text-slate-900 scroll-mt-24" data-i18n="catalogTitle">Catálogo de Productos y Disponibilidad</h2>
@@ -993,15 +949,15 @@
           <div class="grid grid-cols-3 gap-3">
             <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg">
               <span class="block text-[11px] font-medium text-slate-600" data-i18n="metricTotal">Total Productos</span>
-              <span class="text-base font-semibold text-slate-900" id="stat-total-products">5</span>
+              <span class="text-base font-semibold text-slate-900" id="stat-total-products">—</span>
             </div>
             <div class="p-3 bg-emerald-50/50 border border-emerald-200 rounded-lg">
               <span class="block text-[11px] font-medium text-emerald-800" data-i18n="metricInStock">Con Stock Disponible</span>
-              <span class="text-base font-semibold text-emerald-900" id="stat-in-stock">4</span>
+              <span class="text-base font-semibold text-emerald-900" id="stat-in-stock">—</span>
             </div>
             <div class="p-3 bg-red-50/50 border border-red-200 rounded-lg">
               <span class="block text-[11px] font-medium text-red-800" data-i18n="metricOutOfStock">Agotados (Stock 0)</span>
-              <span class="text-base font-semibold text-red-900" id="stat-out-of-stock">1</span>
+              <span class="text-base font-semibold text-red-900" id="stat-out-of-stock">—</span>
             </div>
           </div>
 
@@ -1018,9 +974,7 @@
                   <th class="px-4 py-3 font-semibold text-right" data-i18n="thAction">Acción</th>
                 </tr>
               </thead>
-              <tbody id="catalog-table-body" class="divide-y divide-slate-100 text-slate-800">
-                <!-- Generado dinámicamente -->
-              </tbody>
+              <tbody id="catalog-table-body" class="divide-y divide-slate-100 text-slate-800"></tbody>
             </table>
           </div>
         </div>
@@ -1116,6 +1070,7 @@
             <div>
               <h2 class="text-sm font-semibold text-slate-900">Conexión Oficial WhatsApp Business (Meta Cloud API)</h2>
               <p class="text-xs text-slate-600 mt-0.5">Conecta tu número oficial para enviar y recibir mensajes reales mediante la API oficial de Meta.</p>
+              <p class="text-xs text-slate-600 mt-2">WhatsApp Web abre una conversación para atención manual. No conecta al vendedor automático. Para que la IA reciba y responda mensajes de WhatsApp, necesitás configurar la API oficial y probar el envío y la recepción.</p>
             </div>
             <span id="wa-connection-badge" class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200">
               <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
@@ -1129,7 +1084,7 @@
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label class="block text-xs font-medium text-slate-700 mb-1">Número de WhatsApp Oficial</label>
-                  <input type="text" id="meta-wa-phone" placeholder="+54 9 11 4455-6677" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs focus:bg-white focus:border-emerald-600 transition">
+                  <input type="text" id="meta-wa-phone" placeholder="Tu número con código de país" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs focus:bg-white focus:border-emerald-600 transition">
                   <span class="text-[10px] text-slate-500">Formato internacional con código de país.</span>
                 </div>
                 <div>
@@ -1149,7 +1104,7 @@
                 <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
                   <span class="block text-[10px] uppercase font-mono text-slate-600">Webhook URL (Callback)</span>
                   <div class="flex items-center space-x-1">
-                    <input type="text" id="webhook-endpoint-input" readonly value="http://localhost:3000/api/webhook/mi-empresa" class="w-full text-[11px] font-mono px-2 py-1 bg-white border border-slate-200 rounded text-slate-800">
+                    <input type="text" id="webhook-endpoint-input" readonly value="/api/webhook/mi-empresa" class="w-full text-[11px] font-mono px-2 py-1 bg-white border border-slate-200 rounded text-slate-800">
                     <button onclick="copyWebhookUrl()" class="px-2 py-1 text-[11px] bg-slate-100 hover:bg-slate-200 text-slate-700 rounded border border-slate-200">
                       Copiar
                     </button>
@@ -1292,10 +1247,7 @@
             <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
             <span class="btn-smart-back-text">Volver</span>
           </button>
-          <button onclick="switchStep('step-billing')" class="inline-flex items-center space-x-1.5 px-4 py-2 text-xs font-semibold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg transition-colors shadow-2xs">
-            <span>Siguiente: Planes & Suscripción</span>
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-          </button>
+
         </div>
       <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle flex flex-col justify-between">
             <div>
@@ -1307,7 +1259,7 @@
               </div>
               <h4 class="text-xs font-bold text-slate-900">Vincular Línea de WhatsApp</h4>
               <p class="text-[11px] text-slate-600 leading-tight mb-2">Canal por donde los clientes te escriben y reciben respuestas.</p>
-              
+
               <div class="space-y-1.5 text-xs">
                 <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
                   <span class="flex items-center space-x-1.5 truncate">
@@ -1318,7 +1270,7 @@
                 </div>
                 <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
                   <span class="text-[10px] font-semibold text-slate-600 uppercase">Número guardado:</span>
-                  <div class="text-[11px] font-mono text-slate-900 font-semibold truncate" id="sim-wa-active-phone">+54 9 11 4455-6677</div>
+                  <div class="text-[11px] font-mono text-slate-900 font-semibold truncate" id="sim-wa-active-phone">Sin configurar</div>
                 </div>
               </div>
             </div>
@@ -1337,8 +1289,36 @@
       <!-- ======================================================== -->
       <!-- PASO 4: PLANES, COBRO Y FACTURACIÓN (MERCADO PAGO + LEMON SQUEEZY) -->
       <!-- ======================================================== -->
-      <section id="step-billing" class="step-content space-y-6 hidden">
-        <!-- Top Back Navigation -->
+      <section id="step-billing" class="step-content space-y-4 hidden"><h2 class="text-lg font-semibold">Función pendiente de implementación</h2><p class="text-sm text-slate-600">Este módulo todavía no está habilitado para operar con tus datos.</p><button onclick="switchStep('step-simulator')" class="px-4 py-2 rounded bg-[#1B4332] text-white">Volver al vendedor</button></section>
+
+      <!-- ======================================================== -->
+      <!-- PASO 5: ASISTENTE CONTABLE (EMAIL -> DRIVE -> SHEETS) -->
+      <!-- ======================================================== -->
+      <section id="step-accounting" class="step-content space-y-4 hidden"><h2 class="text-lg font-semibold">Función pendiente de implementación</h2><p class="text-sm text-slate-600">Este módulo todavía no está habilitado para operar con tus datos.</p><button onclick="switchStep('step-simulator')" class="px-4 py-2 rounded bg-[#1B4332] text-white">Volver al vendedor</button></section>
+
+      <!-- ======================================================== -->
+      <!-- PASO 6: ASESOR DE TALLES & PROBADOR INTELIGENTE (TALLEEXACTO) -->
+      <!-- ======================================================== -->
+      <section id="step-talleexacto" class="step-content space-y-4 hidden"><h2 class="text-lg font-semibold">Función pendiente de implementación</h2><p class="text-sm text-slate-600">Este módulo todavía no está habilitado para operar con tus datos.</p><button onclick="switchStep('step-simulator')" class="px-4 py-2 rounded bg-[#1B4332] text-white">Volver al vendedor</button></section>
+
+      <!-- ======================================================== -->
+      <!-- PASO 6: SIMULADOR INTERACTIVO CON PRUEBAS MULTILINGÜES -->
+      <!-- ======================================================== -->
+      <section id="step-payments" class="step-content space-y-6 hidden">
+<button onclick="switchStep('step-simulator')" class="px-3 py-2 text-xs rounded bg-emerald-700 text-white">Volver al chat</button>
+<div class="bg-white border border-slate-200 rounded-xl p-5 space-y-4">
+<h2 class="text-lg font-semibold">Cobros y pedidos</h2>
+<p class="text-sm text-slate-600">Tu vendedor consulta stock, toma el pedido y pasa tu alias o enlace. Cuando verificás el pago, confirmás la compra: se descuenta stock y se intenta enviar el aviso al cliente y a tu equipo por WhatsApp.</p>
+<label class="block text-sm">Alias o enlace de Mercado Pago / transferencia<input id="seller-payment-method" class="block w-full p-3 border rounded-lg mt-2" placeholder="Tu alias o enlace de pago"></label>
+<label class="block text-sm">WhatsApp para avisarte pedidos y compras<input id="seller-notification-phone" class="block w-full p-3 border rounded-lg mt-2" placeholder="+54 9 …" type="tel"></label>
+<button onclick="saveSellerSettings()" class="px-4 py-2 bg-emerald-700 text-white rounded-lg text-sm">Guardar configuración</button>
+<span id="sim-display-payment-method" class="text-xs text-slate-600"></span>
+<p class="text-xs text-slate-600">Con alias, el pago se verifica manualmente. Los avisos requieren WhatsApp conectado con la API oficial. El chat de prueba no crea pedidos reales.</p>
+</div>
+<div class="bg-white border border-slate-200 rounded-xl p-5"><div class="flex justify-between gap-3"><h3 class="font-semibold">Pedidos recibidos</h3><button onclick="loadSellerOrders()" class="text-sm text-emerald-700">Actualizar</button></div><div id="seller-orders-list" class="space-y-3 mt-4" aria-live="polite">Abrí esta sección para cargar tus pedidos.</div></div>
+</section>
+<section id="step-simulator" class="step-content space-y-6 hidden">
+        <!-- Top Navigation Banner -->
         <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-200">
           <div class="flex items-center space-x-2">
             <button onclick="goBack()" class="btn-smart-back inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-800 bg-white hover:bg-slate-100 border border-slate-300 transition shadow-subtle">
@@ -1346,6 +1326,20 @@
               <span class="btn-smart-back-text">Volver</span>
             </button>
           </div>
+        </div>
+
+        <!-- Banner de Empleado No Contratado -->
+        <div id="uncontracted-banner-vendedor" class="hidden p-3.5 bg-amber-50 border border-amber-300 rounded-xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-2xs">
+          <div class="flex items-start sm:items-center space-x-2.5">
+            <span class="text-lg">⚠️</span>
+            <div>
+              <span class="text-xs font-bold text-amber-950 block">1. Vendedor IA — Empleado No Contratado</span>
+              <p class="text-[11px] text-amber-800 leading-tight">Este empleado virtual no está activo actualmente para tu empresa. Podés contratarlo para atender WhatsApp 24/7 con 14 días gratis.</p>
+            </div>
+          </div>
+          <button onclick="openBusinessConfigModal('vendedor')" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white text-xs font-bold rounded-lg transition whitespace-nowrap shadow-xs flex items-center space-x-1 shrink-0">
+            <span>+ Contratar este Empleado</span>
+          </button>
           <span class="text-xs font-mono px-2.5 py-1 rounded bg-slate-100 text-slate-700 border border-slate-200 font-medium">Planes & Suscripción</span>
         </div>
 
@@ -2647,211 +2641,135 @@
           </a>
         </div>
 
-        <!-- La operación de la agenda se abre en una pestaña independiente. -->
-        <div class="hidden grid grid-cols-2 md:grid-cols-4 gap-3">
-          <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
-            <span class="block text-[11px] font-medium text-slate-600" data-i18n="citasStatBooked">Citas Agendadas (Mes)</span>
-            <span class="text-xl font-bold text-slate-900" id="stat-citas-count">142 turnos</span>
-            <span class="text-[10px] text-emerald-600 font-medium block mt-0.5">100% por WhatsApp</span>
-          </div>
-          <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
-            <span class="block text-[11px] font-medium text-slate-600" data-i18n="citasStatShowup">Tasa de Asistencia</span>
-            <span class="text-xl font-bold text-emerald-700" id="stat-citas-showup">94.2%</span>
-            <span class="text-[10px] text-slate-600 block mt-0.5">vs 68% sin seña previa</span>
-          </div>
-          <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
-            <span class="block text-[11px] font-medium text-slate-600" data-i18n="citasStatDeposits">Señas Cobradas con MP</span>
-            <span class="text-xl font-bold text-slate-900" id="stat-citas-deposits">$710.000</span>
-            <span class="text-[10px] text-slate-600 block mt-0.5">Dinero asegurado</span>
-          </div>
-          <div class="p-4 bg-white border border-slate-200 rounded-xl shadow-subtle">
-            <span class="block text-[11px] font-medium text-slate-600" data-i18n="citasStatHours">Horas de Teléfono Ahorradas</span>
-            <span class="text-xl font-bold text-blue-700" id="stat-citas-hours">32 Horas</span>
-            <span class="text-[10px] text-slate-600 block mt-0.5">Recepción libre</span>
+        <!-- Barra de Navegación del Vendedor IA (Sub-tabs) -->
+        <div class="vendedor-nav-bar bg-[#F0F5F2] border border-[#CDE0D5] rounded-xl p-2 flex flex-col md:flex-row md:items-center justify-between gap-2 shadow-subtle">
+          <div class="flex flex-wrap items-center gap-1.5 text-xs">
+            <div class="inline-flex bg-white p-0.5 rounded-lg border border-slate-200 shadow-2xs">
+              <button onclick="switchStep('step-simulator')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-semibold bg-[#1B4332] text-white shadow-xs transition" data-vstep="step-simulator">
+                Chat en Vivo
+              </button>
+              <button onclick="switchStep('step-catalog')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-catalog">
+                Catálogo & Precios
+              </button>
+              <button onclick="switchStep('step-identity')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-identity">
+                Identidad & Reglas
+              </button>
+              <button onclick="switchStep('step-whatsapp')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-whatsapp">
+                Conexión WhatsApp & Bandeja
+              </button>
+<button onclick="switchStep('step-payments')" class="vendedor-tab px-3 py-1.5 rounded-md text-xs font-medium text-slate-600 hover:text-slate-900 transition" data-vstep="step-payments">Cobros y pedidos</button>
+            </div>
           </div>
         </div>
 
-        <!-- AGENDA ELEGIBLE: DISPONIBILIDAD POR DÍA Y HORARIO -->
-        <div class="hidden bg-white border border-slate-200 rounded-xl p-5 shadow-subtle space-y-4">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
-            <div>
-              <h2 class="text-sm font-semibold text-slate-900">Elegí tu turno</h2>
-              <p class="text-[11px] text-slate-600 mt-0.5">Los horarios apagados ya están ocupados o están fuera de atención.</p>
-            </div>
-            <div class="flex items-center gap-3 text-[10px] text-slate-600">
-              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-emerald-500"></span>Disponible</span>
-              <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-slate-300"></span>No disponible</span>
-            </div>
+        <!-- Banner Explicativo: ¿Para qué sirve este empleado? -->
+        <div class="p-4 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
+          <div class="flex items-center space-x-2">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-[#1B4332]">¿Para qué sirve este empleado?</h3>
           </div>
-          <div id="appointment-day-list" class="grid grid-cols-2 sm:grid-cols-4 gap-2" aria-label="Días disponibles"></div>
-          <div>
-            <p id="appointment-slot-title" class="text-xs font-semibold text-slate-800 mb-2">Elegí un día para ver horarios</p>
-            <div id="appointment-slot-list" class="grid grid-cols-3 sm:grid-cols-6 gap-2" aria-live="polite"></div>
-          </div>
-          <div class="grid grid-cols-1 md:grid-cols-[1fr_1fr_auto] gap-2 pt-2 border-t border-slate-100">
-            <input id="appointment-client-name" type="text" placeholder="Nombre del cliente" class="text-xs px-3 py-2 border border-slate-200 rounded-lg focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500">
-            <input id="appointment-client-phone" type="tel" placeholder="WhatsApp del cliente" class="text-xs px-3 py-2 border border-slate-200 rounded-lg focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500">
-            <button id="appointment-confirm-button" onclick="confirmAgendaAppointment()" disabled class="px-4 py-2 bg-slate-200 text-slate-500 rounded-lg text-xs font-bold cursor-not-allowed">Elegí un horario</button>
-          </div>
-          <div id="appointment-notification-status" class="hidden rounded-lg bg-emerald-50 border border-emerald-200 px-3 py-2 text-[11px] text-emerald-900" role="status"></div>
+          <p class="text-xs text-slate-700 leading-relaxed">
+            Atiende a tus clientes en WhatsApp día y noche. Pasa precios de tu catálogo, responde dudas frecuentes, verifica stock disponible en tiempo real y toma pedidos en cualquier idioma (español, inglés o portugués) sin que tengas que atender el teléfono ni perder ventas fuera de horario.
+          </p>
         </div>
 
-        <!-- CONSOLA DE SIMULACIÓN DE AGENDAMIENTO EN VIVO -->
-        <div class="hidden bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-3 text-xs text-slate-600"><span>Chat de prueba · No envía mensajes a clientes por WhatsApp.</span><button onclick="switchStep('step-whatsapp')" class="text-emerald-800 font-semibold">Configurar WhatsApp →</button></div>
+
+        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-4">
           <div class="flex items-center justify-between border-b border-slate-100 pb-3">
             <div>
-              <h2 class="text-sm font-semibold text-slate-900" data-i18n="citasSimTitle">Simulador de Agendamiento en Vivo (WhatsApp)</h2>
-              <p class="text-xs text-slate-600 mt-0.5" data-i18n="citasSimSub">Prueba cómo la IA consulta los huecos libres en Google Calendar y toma el turno paso a paso.</p>
+              <h2 class="text-sm font-semibold text-slate-900" data-i18n="simTitle">Chat de prueba del vendedor</h2>
+              <p class="text-xs text-slate-600 mt-0.5" data-i18n="simSubtitle">Prueba cómo responde tu empleado en Español, Inglés o Portugués respetando las reglas de stock.</p>
             </div>
-            <button onclick="resetCitasChat()" class="text-xs text-slate-600 hover:text-slate-800 transition flex items-center space-x-1">
+            <button onclick="clearChatSimulator()" class="text-xs text-slate-600 hover:text-slate-800 transition flex items-center space-x-1">
               <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
               <span data-i18n="btnResetChat">Reiniciar chat</span>
             </button>
           </div>
 
           <!-- Ventana de Chat Estilo WhatsApp Moderno -->
-          <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50 flex flex-col h-[400px]">
+          <div class="border border-slate-200 rounded-xl overflow-hidden bg-slate-50 flex flex-col h-[430px]">
             <!-- Header de Chat -->
             <div class="bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between">
               <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center font-bold text-xs">
-                  📅
+                  ME
                 </div>
                 <div>
-                  <h3 class="text-xs font-semibold text-slate-900" id="citas-chat-title">Agendador de Citas IA</h3>
+                  <h3 class="text-xs font-semibold text-slate-900" id="sim-chat-title">Mi Empresa</h3>
                   <p class="text-[10px] text-emerald-600 font-medium flex items-center space-x-1">
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                    <span data-i18n="citasOnline">Sincronizado con Google Calendar en tiempo real</span>
+                    <span data-i18n="simOnline">Empleado Virtual en línea (Multi-idioma)</span>
                   </p>
                 </div>
               </div>
               <div class="flex items-center space-x-2 text-[10px] font-mono text-slate-600">
-                <span class="px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">Google Calendar Sync ON</span>
+                <span class="px-1.5 py-0.5 rounded bg-slate-100 border border-slate-200">🌐 Auto-Detect ON</span>
               </div>
             </div>
 
             <!-- Cuerpo de Mensajes -->
-            <div id="citas-messages" class="flex-1 p-4 overflow-y-auto space-y-3">
+            <div id="simulator-messages" class="flex-1 p-4 overflow-y-auto space-y-3">
               <div class="flex justify-center">
-                <span class="text-[10px] bg-slate-200/60 text-slate-600 px-2.5 py-1 rounded-full font-medium" data-i18n="citasSimWelcome">
-                  Chat de prueba inicializado • Pide un turno para cualquier servicio
+                <span class="text-[10px] bg-slate-200/60 text-slate-600 px-2.5 py-1 rounded-full font-medium" data-i18n="simWelcome">
+                  Chat de prueba inicializado • Escribe en cualquier idioma
                 </span>
               </div>
 
               <!-- Mensaje Inicial del Bot -->
               <div class="flex items-start space-x-2 max-w-[80%]">
-                <div class="bg-white border border-slate-200 text-slate-800 text-xs p-3 rounded-2xl rounded-tl-sm shadow-subtle leading-relaxed">
-                  ¡Hola! 📅 Soy el asistente de citas y turnos de <strong class="company-display-name">Mi Empresa</strong>. ¿Qué servicio te gustaría agendar y para qué día preferís tu turno?
+                <div class="bg-white border border-slate-200 text-slate-800 text-xs p-3 rounded-2xl rounded-tl-sm shadow-subtle leading-relaxed" id="sim-initial-msg">
+                  ¡Hola! 👋 Bienvenidos a Mi Empresa. ¿En qué podemos ayudarte hoy? (You can also ask in English / Pode falar em português).
                 </div>
               </div>
             </div>
 
             <!-- Barra de Entrada de Mensaje -->
             <div class="p-3 bg-white border-t border-slate-200 flex items-center space-x-2">
-              <input type="text" id="citas-input-text" onkeypress="handleCitasEnter(event)" placeholder="Ej: Hola, quiero un turno para mañana a la tarde..." data-i18n-placeholder="placeholderCitas" class="flex-1 text-xs px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:border-slate-400">
-              <button onclick="sendCitasMessage()" class="px-3.5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition shadow-subtle flex items-center justify-center">
+              <input type="text" id="sim-input-text" onkeypress="handleSimEnter(event)" placeholder="Escribe en español, inglés o portugués..." data-i18n-placeholder="placeholderSim" class="flex-1 text-xs px-3 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 focus:bg-white focus:border-slate-400">
+              <button onclick="sendSimulatedMessage()" class="px-3.5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg transition shadow-subtle flex items-center justify-center">
                 <i data-lucide="send" class="w-3.5 h-3.5"></i>
               </button>
             </div>
           </div>
 
-          <!-- Sugerencias Rápidas de Prueba -->
+          <!-- Sugerencias Rápidas de Prueba en Varios Idiomas -->
           <div class="space-y-1.5">
-            <span class="text-slate-600 text-[11px] font-medium block" data-i18n="citasQuickQueries">Pruebas rápidas de agendamiento:</span>
+            <span class="text-slate-600 text-[11px] font-medium block" data-i18n="simQuickTests">Pruebas rápidas multilingües:</span>
             <div class="flex flex-wrap gap-2 text-xs">
-              <button onclick="setCitasQuery('Hola! Tenés turno para mañana a la tarde para corte y barba?')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[11px] transition flex items-center space-x-1 border border-slate-200">
-                <span>💈</span>
-                <span>"Turno mañana a la tarde para corte y barba"</span>
+              <!-- Test Español -->
+              <button onclick="setSimQuery('¿Qué servicios ofrecen y cuáles son los medios de pago?')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[11px] transition flex items-center space-x-1 border border-slate-200">
+                <span>🇪🇸</span>
+                <span>"¿Qué servicios ofrecen?" (Consulta comercial)</span>
               </button>
-              <button onclick="setCitasQuery('Hola, necesito una consulta médica para el viernes por la mañana')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[11px] transition flex items-center space-x-1 border border-slate-200">
-                <span>🩺</span>
-                <span>"Consulta médica para el viernes por la mañana"</span>
+              <!-- Test Inglés -->
+              <button onclick="setSimQuery('Hi! What services do you offer and what are your business hours?')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[11px] transition flex items-center space-x-1 border border-slate-200">
+                <span>🇺🇸</span>
+                <span>"What services do you offer?" (English query)</span>
               </button>
-              <button onclick="setCitasQuery('Quiero agendar turno de estética para el sábado a las 11 hs')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[11px] transition flex items-center space-x-1 border border-slate-200">
-                <span>💆</span>
-                <span>"Turno de estética sábado 11:00 hs"</span>
+              <!-- Test Portugués -->
+              <button onclick="setSimQuery('Olá! Quais serviços vocês oferecem e quais são as formas de pagamento?')" class="px-2.5 py-1 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-[11px] transition flex items-center space-x-1 border border-slate-200">
+                <span>🇧🇷</span>
+                <span>"Quais serviços oferecem?" (Português)</span>
+              </button>
+              <!-- Test TalleExacto Moda -->
+              <button onclick="setSimQuery('Hola! Mido 1.65, tengo 90 de busto y 70 de cintura. ¿Qué talle me conviene en el vestido?')" class="px-2.5 py-1 bg-amber-50 hover:bg-amber-100 text-amber-800 rounded-lg text-[11px] transition flex items-center space-x-1 border border-amber-200">
+                <span>👗</span>
+                <span>"Mido 1.65 y 90 de busto, qué talle soy?" (TalleExacto)</span>
               </button>
             </div>
-          </div>
-        </div>
-
-        <!-- TABLA DE TURNOS SINCRONIZADOS EN GOOGLE CALENDAR -->
-        <div class="hidden bg-white border border-slate-200 rounded-xl p-5 shadow-subtle space-y-4">
-          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
-            <div>
-              <h3 class="text-xs font-semibold text-slate-900" data-i18n="citasCalendarTableTitle">Citas Agendadas Sincronizadas (Google Calendar)</h3>
-              <p class="text-[11px] text-slate-600 mt-0.5" data-i18n="citasCalendarTableSub">Eventos creados automáticamente desde WhatsApp con seña verificada en Mercado Pago.</p>
-            </div>
-            <button onclick="addSimulatedAppointment()" class="inline-flex items-center space-x-1.5 px-3 py-1.5 text-xs font-medium text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-lg transition shadow-subtle">
-              <i data-lucide="plus" class="w-3.5 h-3.5"></i>
-              <span data-i18n="btnAddCita">+ Simular Nueva Cita</span>
-            </button>
-          </div>
-
-          <div class="border border-slate-200 rounded-lg overflow-x-auto">
-            <table class="w-full text-left text-xs whitespace-nowrap">
-              <thead class="bg-slate-50 border-b border-slate-200 text-slate-600 uppercase font-mono text-[10px]">
-                <tr>
-                  <th class="px-3 py-2.5 font-semibold">Fecha & Hora</th>
-                  <th class="px-3 py-2.5 font-semibold">Cliente</th>
-                  <th class="px-3 py-2.5 font-semibold">WhatsApp</th>
-                  <th class="px-3 py-2.5 font-semibold">Servicio</th>
-                  <th class="px-3 py-2.5 font-semibold">Profesional</th>
-                  <th class="px-3 py-2.5 font-semibold">Estado de Seña</th>
-                  <th class="px-3 py-2.5 font-semibold text-right">Calendar</th>
-                </tr>
-              </thead>
-              <tbody id="citas-table-body" class="divide-y divide-slate-100 text-slate-800 font-mono text-[11px]">
-                <tr>
-                  <td class="px-3 py-2.5 font-semibold text-slate-900">Mañana 16:30 hs</td>
-                  <td class="px-3 py-2.5 font-sans font-medium text-slate-900">Matías Romero</td>
-                  <td class="px-3 py-2.5 text-slate-600">+54 9 11 5566-7788</td>
-                  <td class="px-3 py-2.5 font-sans">Corte & Barba Clásico</td>
-                  <td class="px-3 py-2.5 text-slate-600">Sillón 1 (Lucas)</td>
-                  <td class="px-3 py-2.5">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
-                      ✓ Seña $5.000 Pagada
-                    </span>
-                  </td>
-                  <td class="px-3 py-2.5 text-right font-sans">
-                    <span class="text-[10px] text-blue-600 font-semibold cursor-pointer hover:underline">Google Calendar ↗</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="px-3 py-2.5 font-semibold text-slate-900">Viernes 11:00 hs</td>
-                  <td class="px-3 py-2.5 font-sans font-medium text-slate-900">Dra. Lucía Menéndez</td>
-                  <td class="px-3 py-2.5 text-slate-600">+54 9 11 4433-2211</td>
-                  <td class="px-3 py-2.5 font-sans">Limpieza Facial Profunda</td>
-                  <td class="px-3 py-2.5 text-slate-600">Gabinete 2 (Valentina)</td>
-                  <td class="px-3 py-2.5">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-800 border border-emerald-200">
-                      ✓ Seña $5.000 Pagada
-                    </span>
-                  </td>
-                  <td class="px-3 py-2.5 text-right font-sans">
-                    <span class="text-[10px] text-blue-600 font-semibold cursor-pointer hover:underline">Google Calendar ↗</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td class="px-3 py-2.5 font-semibold text-slate-900">Sábado 18:00 hs</td>
-                  <td class="px-3 py-2.5 font-sans font-medium text-slate-900">Federico Gómez</td>
-                  <td class="px-3 py-2.5 text-slate-600">+54 9 11 9988-1122</td>
-                  <td class="px-3 py-2.5 font-sans">Consulta Nutricional</td>
-                  <td class="px-3 py-2.5 text-slate-600">Consultorio 3 (Dr. Pérez)</td>
-                  <td class="px-3 py-2.5">
-                    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-800 border border-amber-200 animate-pulse">
-                      ⏳ Esperando Seña (11 min)
-                    </span>
-                  </td>
-                  <td class="px-3 py-2.5 text-right font-sans">
-                    <span class="text-[10px] text-blue-600 font-semibold cursor-pointer hover:underline">Google Calendar ↗</span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
           </div>
         </div>
       </section>
+
+      <!-- ======================================================== -->
+      <!-- 2. GESTOR DE COBRANZAS (WHATSAPP & MERCADO PAGO) -->
+      <!-- ======================================================== -->
+      <section id="step-cobranzas" class="step-content space-y-4 hidden"><h2 class="text-lg font-semibold">Función pendiente de implementación</h2><p class="text-sm text-slate-600">Este módulo todavía no está habilitado para operar con tus datos.</p><button onclick="switchStep('step-simulator')" class="px-4 py-2 rounded bg-[#1B4332] text-white">Volver al vendedor</button></section>
+
+      <!-- ======================================================== -->
+      <!-- 4. AGENDADOR DE CITAS & TURNOS (WHATSAPP & GOOGLE CALENDAR) -->
+      <!-- ======================================================== -->
+      <section id="step-citas" class="step-content space-y-4 hidden"><h2 class="text-lg font-semibold">Función pendiente de implementación</h2><p class="text-sm text-slate-600">Este módulo todavía no está habilitado para operar con tus datos.</p><button onclick="switchStep('step-simulator')" class="px-4 py-2 rounded bg-[#1B4332] text-white">Volver al vendedor</button></section>
 
       <!-- ======================================================== -->
       <!-- PIE DE PÁGINA INSTITUCIONAL & ENLACES INTERNOS (SEO GOOGLE) -->
@@ -2869,37 +2787,18 @@
           </div>
 
           <div class="space-y-2">
-            <h4 class="font-bold text-slate-900 uppercase tracking-wider text-[10px]">Módulos Oficiales</h4>
-            <ul class="space-y-1.5 text-slate-600">
-              <li><a href="/cobranzas" class="hover:text-emerald-700 transition">Gestor de Cobranzas Automático</a></li>
-              <li><a href="/agenda" class="hover:text-emerald-700 transition">Agendador de Citas & Turnos</a></li>
-              <li><a href="/talleexacto" class="hover:text-emerald-700 transition">TalleExacto (Recomendador Moda)</a></li>
-              <li><a href="/" class="hover:text-emerald-700 transition">Hub de Empleados Virtuales</a></li>
-            </ul>
-          </div>
-
-          <div class="space-y-2">
-            <h4 class="font-bold text-slate-900 uppercase tracking-wider text-[10px]">Integraciones</h4>
-            <ul class="space-y-1.5 text-slate-600">
-              <li><a href="https://web.whatsapp.com" target="_blank" rel="noopener" class="hover:text-emerald-700 transition">WhatsApp Web & Business</a></li>
-              <li><a href="https://www.mercadopago.com.ar" target="_blank" rel="noopener" class="hover:text-emerald-700 transition">Mercado Pago Checkout</a></li>
-              <li><a href="https://calendar.google.com" target="_blank" rel="noopener" class="hover:text-emerald-700 transition">Google Calendar Turnos</a></li>
-              <li><a href="https://docs.google.com/spreadsheets" target="_blank" rel="noopener" class="hover:text-emerald-700 transition">Google Sheets Contabilidad</a></li>
-            </ul>
-          </div>
-
-          <div class="space-y-2">
-            <h4 class="font-bold text-slate-900 uppercase tracking-wider text-[10px]">Rastreo & Verificación</h4>
-            <ul class="space-y-1.5 text-slate-600">
-              <li><a href="/sitemap.xml" class="hover:text-emerald-700 transition">Sitemap XML Oficial</a></li>
-              <li><a href="/robots.txt" class="hover:text-emerald-700 transition">Directivas Robots.txt</a></li>
-              <li><a href="https://wa.me/5491144556677" target="_blank" rel="noopener" class="text-emerald-700 font-semibold hover:underline">Atención al Cliente WhatsApp</a></li>
+            <h4 class="font-bold text-slate-900">Tu vendedor</h4>
+            <ul class="space-y-1.5">
+              <li><button onclick="switchStep('step-simulator')">Probar conversación</button></li>
+              <li><button onclick="switchStep('step-catalog')">Catálogo y precios</button></li>
+              <li><button onclick="switchStep('step-whatsapp')">Configurar WhatsApp</button></li>
+              <li><button onclick="switchStep('step-payments')">Cobros y pedidos</button></li>
             </ul>
           </div>
         </div>
 
         <div class="pt-4 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-500">
-          <span>© 2026 Changared. Marca Registrada. Todos los derechos reservados.</span>
+          <span>© 2026 Changared. Todos los derechos reservados.</span>
           <div class="flex items-center space-x-4">
             <a href="/sitemap.xml" class="hover:text-slate-800">Sitemap</a>
             <a href="/robots.txt" class="hover:text-slate-800">Robots</a>
@@ -3255,7 +3154,7 @@
           </div>
           <div>
             <label class="block font-medium text-slate-700 mb-1">Seña sugerida para turnos ($)</label>
-            <input type="number" id="cfg-custom-deposit" placeholder="5000" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-bold text-xs">
+            <input type="number" id="cfg-custom-deposit" placeholder="Importe, si corresponde" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-bold text-xs">
           </div>
         </div>
 
@@ -3293,7 +3192,7 @@
           </div>
           <div>
             <h3 class="text-sm font-bold text-slate-900">Vincular Asistente Virtual a Tu Página Web o E-commerce</h3>
-            <p class="text-[11px] text-slate-500">Agrega el chat de <span class="company-display-name font-semibold text-slate-800">Mi Empresa</span> en tu tienda o sitio en 2 minutos.</p>
+            <p class="text-[11px] text-slate-500">Consultá el estado de la instalación en tu sitio.</p>
           </div>
         </div>
         <button onclick="closeWebsiteWidgetModal()" class="text-slate-500 hover:text-slate-700 p-1 rounded-lg">
@@ -3301,159 +3200,11 @@
         </button>
       </div>
 
-      <!-- Paso 1: Selector del Asistente a Vincular -->
-      <div class="space-y-2">
-        <div class="flex items-center justify-between">
-          <label class="block text-[11px] uppercase font-mono font-bold text-slate-700">1. ¿Qué empleado o asistente querés vincular a tu web?</label>
-          <span class="text-[10px] text-emerald-800 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200" id="widget-active-agent-badge">Asistente Activo</span>
-        </div>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
-          <button type="button" onclick="selectWidgetAgent('contable')" class="widget-agent-tab p-2.5 rounded-lg border text-left transition flex items-center space-x-2" data-agent="contable">
-            <span class="text-lg">🧾</span>
-            <div>
-              <strong class="block text-xs text-slate-900">Facturación & Gastos</strong>
-              <span class="text-[10px] text-slate-500 block">Portal Proveedores</span>
-            </div>
-          </button>
-          <button type="button" onclick="selectWidgetAgent('vendedor')" class="widget-agent-tab p-2.5 rounded-lg border text-left transition flex items-center space-x-2" data-agent="vendedor">
-            <span class="text-lg">🛍️</span>
-            <div>
-              <strong class="block text-xs text-slate-900">Vendedor IA</strong>
-              <span class="text-[10px] text-slate-500 block">Catálogo y Carrito</span>
-            </div>
-          </button>
-          <button type="button" onclick="selectWidgetAgent('citas')" class="widget-agent-tab p-2.5 rounded-lg border text-left transition flex items-center space-x-2" data-agent="citas">
-            <span class="text-lg">📅</span>
-            <div>
-              <strong class="block text-xs text-slate-900">Agendador Citas</strong>
-              <span class="text-[10px] text-slate-500 block">Turnos con Calendar</span>
-            </div>
-          </button>
-          <button type="button" onclick="selectWidgetAgent('cobranzas')" class="widget-agent-tab p-2.5 rounded-lg border text-left transition flex items-center space-x-2" data-agent="cobranzas">
-            <span class="text-lg">💳</span>
-            <div>
-              <strong class="block text-xs text-slate-900">Gestor Cobranzas</strong>
-              <span class="text-[10px] text-slate-500 block">Saldos & Pagos MP</span>
-            </div>
-          </button>
-          <button type="button" onclick="selectWidgetAgent('talleexacto')" class="widget-agent-tab p-2.5 rounded-lg border text-left transition flex items-center space-x-2" data-agent="talleexacto">
-            <span class="text-lg">👗</span>
-            <div>
-              <strong class="block text-xs text-slate-900">TalleExacto</strong>
-              <span class="text-[10px] text-slate-500 block">Probador de Talles</span>
-            </div>
-          </button>
-        </div>
-        <!-- Explicación de la función del asistente en la web del usuario -->
-        <div id="widget-agent-explanation" class="p-2.5 bg-emerald-50/70 border border-emerald-200 rounded-lg text-xs text-emerald-950 flex items-start space-x-2">
-          <span class="text-base leading-none">💡</span>
-          <div id="widget-agent-explanation-text">
-            El asistente seleccionado atenderá a los usuarios en tu sitio web según su especialidad.
-          </div>
-        </div>
-      </div>
-
-      <!-- Paso 2: Selector de Plataformas -->
-      <div class="space-y-2">
-        <label class="block text-[11px] uppercase font-mono font-bold text-slate-600">2. Selecciona tu plataforma:</label>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
-          <button onclick="selectWidgetPlatform('tiendanube')" class="widget-plat-tab px-3 py-2 rounded-lg border border-emerald-600 bg-emerald-50 text-emerald-950 text-xs font-bold transition flex items-center justify-center space-x-1.5 shadow-2xs" data-plat="tiendanube">
-            <span>🛒</span><span>Tiendanube</span>
-          </button>
-          <button onclick="selectWidgetPlatform('shopify')" class="widget-plat-tab px-3 py-2 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-medium transition flex items-center justify-center space-x-1.5" data-plat="shopify">
-            <span>🛍️</span><span>Shopify</span>
-          </button>
-          <button onclick="selectWidgetPlatform('wordpress')" class="widget-plat-tab px-3 py-2 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-medium transition flex items-center justify-center space-x-1.5" data-plat="wordpress">
-            <span>📝</span><span>WordPress</span>
-          </button>
-          <button onclick="selectWidgetPlatform('custom')" class="widget-plat-tab px-3 py-2 rounded-lg border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-medium transition flex items-center justify-center space-x-1.5" data-plat="custom">
-            <span>💻</span><span>Web Propia</span>
-          </button>
-        </div>
-      </div>
-
-      <!-- Paso 3: Confirmación de Dominio y Autorizaciones Oficiales antes de Publicar -->
-      <div class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl space-y-2.5 text-xs">
-        <div class="flex items-center justify-between">
-          <span class="font-bold text-slate-900 uppercase font-mono text-[11px] flex items-center space-x-1.5">
-            <span>🔒</span><span>Seguridad: Dominio Web Autorizado</span>
-          </span>
-          <span id="widget-domain-status-badge" class="px-2 py-0.5 rounded text-[10px] font-bold font-mono bg-amber-100 text-amber-900 border border-amber-200">
-            ○ Pendiente de Confirmar
-          </span>
-        </div>
-        <p class="text-[11px] text-slate-600 leading-tight">
-          Para que nadie más pueda usar tu asistente en páginas no autorizadas, confirma el dominio oficial de tu tienda o web:
-        </p>
-        <div class="flex items-center space-x-2">
-          <input type="text" id="widget-authorized-domain-input" placeholder="ej: mitienda.com o www.minegocio.com.ar" class="flex-1 px-3 py-1.5 bg-white border border-slate-300 rounded text-xs font-mono text-slate-800">
-          <button type="button" onclick="confirmAuthorizedDomain()" class="px-3 py-1.5 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold whitespace-nowrap shadow-2xs">
-            Confirmar Dominio
-          </button>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1 text-[11px]">
-          <div class="flex items-center space-x-1.5 text-slate-700 bg-white p-2 rounded border border-slate-200">
-            <span id="chk-domain-verified" class="text-amber-600 font-bold">○</span>
-            <span>Dominio verificado y protegido</span>
-          </div>
-          <div class="flex items-center space-x-1.5 text-slate-700 bg-white p-2 rounded border border-slate-200">
-            <span id="chk-official-auth" class="text-emerald-600 font-bold">✓</span>
-            <span id="chk-official-auth-text">Canales oficiales autorizados</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Snippet HTML Listo para Copiar -->
-      <div class="space-y-1.5">
-        <div class="flex items-center justify-between">
-          <label class="block text-[11px] uppercase font-mono font-bold text-slate-600">Código HTML para tu sitio (pegar antes de &lt;/body&gt;):</label>
-          <button onclick="copyWidgetCode()" class="inline-flex items-center space-x-1 text-xs font-bold text-emerald-700 hover:text-emerald-900">
-            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-            <span id="btn-copy-widget-text">Copiar Código HTML</span>
-          </button>
-        </div>
-        <div class="relative">
-          <textarea id="widget-code-textarea" readonly rows="3" class="w-full text-xs font-mono p-3 bg-slate-900 text-emerald-300 rounded-lg border border-slate-700 focus:outline-none"></textarea>
-        </div>
-      </div>
-
-      <!-- Instrucciones según plataforma -->
-      <div id="widget-plat-instructions" class="p-3.5 bg-slate-50 border border-slate-200 rounded-xl text-xs space-y-1.5 text-slate-700 leading-relaxed">
-        <strong class="text-slate-900 block font-semibold mb-1">🛒 Cómo instalar en Tiendanube (1 minuto):</strong>
-        <ol class="list-decimal list-inside space-y-1 text-slate-700">
-          <li>Entrá a tu Administrador de Tiendanube &gt; <strong>Configuraciones</strong> &gt; <strong>Códigos de seguimiento</strong>.</li>
-          <li>Buscá la sección <strong>"Código para pie de página"</strong> y pegá el código copiado arriba.</li>
-          <li>Hacé clic en <strong>Guardar cambios</strong>. ¡El botón de WhatsApp flotará en tu tienda de inmediato!</li>
-        </ol>
-      </div>
-
-      <!-- Enlace Directo Web -->
-      <div class="p-3 bg-emerald-50 border border-emerald-200 rounded-xl space-y-1.5 text-xs">
-        <div class="flex items-center justify-between">
-          <span class="font-bold text-emerald-950 flex items-center space-x-1.5">
-            <span>🔗</span><span>Link Directo a Pantalla Completa (Ideal para historias de Instagram o bio):</span>
-          </span>
-          <button onclick="copyDirectChatLink()" class="font-bold text-emerald-800 hover:text-emerald-950 text-[11px]">
-            Copiar Link
-          </button>
-        </div>
-        <div class="flex items-center space-x-2">
-          <input type="text" id="widget-direct-link-input" readonly value="https://changared.com/chat/mi-empresa" class="flex-1 text-xs font-mono px-3 py-1.5 bg-white border border-emerald-200 rounded text-slate-800">
-          <a id="widget-direct-link-btn" href="#" target="_blank" class="px-3 py-1.5 bg-[#1B4332] text-white rounded text-xs font-semibold hover:bg-[#2D6A4F] transition whitespace-nowrap">
-            Abrir ↗
-          </a>
-        </div>
-      </div>
-
-      <!-- Botón Destacado: Probar Widget Flotante en Pantalla -->
-      <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3 border-t border-slate-100">
-        <button onclick="toggleFloatingChat(true); closeWebsiteWidgetModal();" class="w-full sm:w-auto px-4 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-lg transition shadow-subtle flex items-center justify-center space-x-2">
-          <i data-lucide="eye" class="w-4 h-4"></i>
-          <span>👁️ Probar Widget Flotante en Esta Pantalla (Ver Cómo Queda)</span>
-        </button>
-        <button onclick="closeWebsiteWidgetModal()" class="w-full sm:w-auto px-4 py-2 text-xs font-medium text-slate-600 hover:bg-slate-100 rounded-lg">
-          Cerrar
-        </button>
+      <div class="space-y-3 text-sm text-slate-700">
+        <p><strong>La instalación en otras páginas todavía no está disponible.</strong> El enlace público y el widget necesitan una conexión real con tu negocio antes de publicarse.</p>
+        <p>Cuando esté disponible, podrás copiar un enlace para tu bio de Instagram sin tocar código. Para mostrar el chat dentro de una página, necesitaremos indicar los pasos según la plataforma que uses.</p>
+        <p>Si no administrás tu página, la instalación deberá hacerla quien tenga acceso a su editor. No necesitás modificar archivos para usar el futuro enlace público.</p>
+        <button onclick="closeWebsiteWidgetModal(); switchStep('step-simulator');" class="px-4 py-2 bg-[#1B4332] text-white rounded">Probar mi vendedor en el panel</button>
       </div>
     </div>
   </div>
@@ -3482,7 +3233,7 @@
       <div class="space-y-3 text-xs">
         <div>
           <label class="block font-medium text-slate-700 mb-1">Tu Número de WhatsApp Comercial</label>
-          <input type="text" id="wa-modal-phone" value="+54 9 11 4455-6677" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs">
+          <input type="text" id="wa-modal-phone" value="" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs">
           <p class="text-[10px] text-slate-500 mt-1">Funciona con tu número comercial o línea de atención al cliente.</p>
         </div>
 
@@ -3538,7 +3289,7 @@
           <span class="font-bold text-slate-800 block">¿Usas WhatsApp Cloud API o Bot Multi-agente?</span>
           <span>Webhook para eventos entrantes:</span>
           <div class="font-mono text-emerald-800 bg-white p-1 rounded border border-slate-200 truncate" id="wa-modal-webhook-text">
-            http://localhost:3000/api/webhook/mi-empresa
+            /api/webhook/mi-empresa
           </div>
         </div>
       </div>
@@ -3632,7 +3383,7 @@
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block font-medium text-slate-700 mb-1">Monto de Seña Previa ($)</label>
-            <input type="number" id="citas-cfg-deposit" value="5000" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-bold">
+            <input type="number" id="citas-cfg-deposit" value="" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-bold">
             <span class="text-[10px] text-slate-500">Cobro obligatorio vía Mercado Pago</span>
           </div>
           <div>
@@ -3694,7 +3445,7 @@
         <div class="grid grid-cols-2 gap-2">
           <div>
             <label class="block font-medium text-slate-700 mb-1">CUIT Empresa</label>
-            <input type="text" id="acc-cfg-cuit" value="30-71234567-8" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs">
+            <input type="text" id="acc-cfg-cuit" value="" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs">
           </div>
           <div>
             <label class="block font-medium text-slate-700 mb-1">Condición Fiscal</label>
@@ -4007,7 +3758,7 @@
             <div class="text-xs font-bold leading-tight">Asesor Comercial Changared</div>
             <div class="text-[10px] text-emerald-300 font-medium flex items-center space-x-1">
               <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>En línea 24/7 · Asesoramiento & Ventas</span>
+              <span>Asesor de Changared</span>
             </div>
           </div>
         </div>
@@ -4176,9 +3927,11 @@
 
         // Navegación Sidebar
         navSectionMain: "Principal",
+        navStepHub: "Inicio",
+
         navStepHub: "Empleados virtuales",
         navSectionEmployees: "Empleados Virtuales",
-        navStepSimulator: "1. Vendedor IA (WhatsApp 24/7)",
+        navStepSimulator: "Vendedor IA",
         navStepCobranzas: "2. Gestor de Cobranzas",
         navStepAccounting: "3. Asesor Contable",
         navStepMultilingual: "4. Asistente Multilingüe (Turismo)",
@@ -4224,7 +3977,7 @@
 
         // Banner de Tranquilidad y Seguridad
         safetyTitle: "🛡️ Tu Tranquilidad Comercial Primero:",
-        safetyControl: "Control Humano 100%",
+        safetyControl: "Control humano",
         safetyDesc: "<strong>✓ Tu mismo número de siempre:</strong> Funciona sobre tu WhatsApp actual sin comprar otro chip (igual que WhatsApp Web). Podés seguir chateando vos desde tu celular cuando quieras.<br><strong>✓ Red de seguridad anti-errores:</strong> Si un cliente escribe <em>\"humano\"</em>, hace una queja o pide hablar con alguien, la IA se silencia de inmediato y hace sonar una alerta en tu teléfono.",
         btnPersonalizeBusiness: "⚙️ Personalizar Mi Negocio",
 
@@ -4257,7 +4010,7 @@
         emp4Category: "Turismo & Hotelería",
         emp4Title: "4. Asistente Multilingüe & Turismo",
         emp4WhatForDesc: "Atiende turistas 24/7 en +10 idiomas por WhatsApp y cartelería QR física en mesas o recepción. Cierra reservas directas ahorrando comisiones de plataformas externas, envía cartas en PDF y gestiona pagos con Pix y USD.",
-        emp4F1: "Cierra reservas directas sin comisiones (0% vs 18% Booking)",
+        emp4F1: "Función pendiente de implementación",
         emp4F2: "Fluidez nativa inmediata en portugués, inglés, francés y español",
         emp4F3: "Envía carta en PDF, Wi-Fi, check-in y cobros en Pix / USD",
         btnTestTourist: "Probar Asistente →",
@@ -4265,6 +4018,9 @@
         emp5Category: "Servicios, Consultorios & Estética",
         emp5Badge: "Google Calendar + WhatsApp",
         emp5Title: "5. Agendador de Citas & Turnos (WhatsApp & Calendar)",
+        emp5WhatForDesc: "Coordina y reserva turnos de tu negocio en tiempo real consultando tu Google Calendar o Cal.com. Muestra huecos libres, cobra seña previa con Mercado Pago para erradicar el ausentismo y envía recordatorios automáticos 24h y 2h antes por WhatsApp.",
+        emp5F1: "Función pendiente de implementación",
+
         emp5WhatForDesc: "Recibe solicitudes de turno con servicio, fecha y horario. La disponibilidad en Calendar, las señas y los recordatorios se activan sólo al completar esas integraciones.",
         emp5F1: "Reduce el 85% del ausentismo con seña previa por MP",
         emp5F2: "Sincronización en vivo con Google Calendar sin solapamiento",
@@ -4409,9 +4165,12 @@
 
         // Sidebar Navigation
         navSectionMain: "Main",
+        navStepHub: "Inicio",
+
         navStepHub: "Virtual employees",
+
         navSectionEmployees: "Virtual Employees",
-        navStepSimulator: "1. AI Sales Rep (WhatsApp 24/7)",
+        navStepSimulator: "AI Sales Rep",
         navStepCobranzas: "2. Debt Collection Manager",
         navStepAccounting: "3. Invoicing & Expenses",
         navStepMultilingual: "4. Multilingual Assistant (Tourism)",
@@ -4457,7 +4216,7 @@
 
         // Safety Banner
         safetyTitle: "🛡️ Your Commercial Peace of Mind First:",
-        safetyControl: "100% Human Control",
+        safetyControl: "Human control",
         safetyDesc: "<strong>✓ Your same existing phone number:</strong> Works directly on your current WhatsApp without buying a new SIM (just like WhatsApp Web). You can keep chatting from your phone whenever you want.<br><strong>✓ Anti-error safety net:</strong> If a customer types <em>\"human\"</em>, complains, or asks to speak with someone, the AI mutes itself immediately and triggers an alert on your phone.",
         btnPersonalizeBusiness: "⚙️ Customize My Business",
 
@@ -4490,7 +4249,7 @@
         emp4Category: "Tourism & Hospitality",
         emp4Title: "4. Multilingual & Tourism Assistant",
         emp4WhatForDesc: "Assists foreign tourists 24/7 in 10+ languages via WhatsApp and tabletop QR codes. Closes direct bookings saving OTA commissions, sends digital menus, and takes Pix & USD payments.",
-        emp4F1: "Closes direct reservations commission-free (0% vs 18% OTA)",
+        emp4F1: "Función pendiente de implementación",
         emp4F2: "Native fluency in Portuguese, English, French, and Spanish",
         emp4F3: "Sends PDF menu, Wi-Fi credentials, check-in guide, and Pix/USD",
         btnTestTourist: "Test Assistant →",
@@ -4499,7 +4258,7 @@
         emp5Badge: "Google Calendar + WhatsApp",
         emp5Title: "5. Appointment Scheduler (WhatsApp & Calendar)",
         emp5WhatForDesc: "Schedules appointments in real-time by checking your Google Calendar or Cal.com. Shares open slots, collects deposits via Mercado Pago to eliminate no-shows, and sends automatic 24h & 2h WhatsApp reminders.",
-        emp5F1: "Reduces 85% of no-shows with advance MP deposits",
+        emp5F1: "Función pendiente de implementación",
         emp5F2: "Live Google Calendar synchronization without double-booking",
         emp5F3: "24/7 automated rescheduling and cancellations",
         btnTestCitas: "Test Live Appointment Scheduler →",
@@ -4642,9 +4401,12 @@
 
         // Navegação Sidebar
         navSectionMain: "Principal",
+        navStepHub: "Inicio",
+
         navStepHub: "Funcionários virtuais",
+
         navSectionEmployees: "Funcionários Virtuais",
-        navStepSimulator: "1. Vendedor IA (WhatsApp 24/7)",
+        navStepSimulator: "Vendedor IA",
         navStepCobranzas: "2. Gestor de Cobranças",
         navStepAccounting: "3. Faturamento & Despesas",
         navStepMultilingual: "4. Assistente Multilíngue (Turismo)",
@@ -4690,7 +4452,7 @@
 
         // Banner de Tranquilidade e Segurança
         safetyTitle: "🛡️ Sua Tranquilidade Comercial Primeiro:",
-        safetyControl: "Controle Humano 100%",
+        safetyControl: "Controle humano",
         safetyDesc: "<strong>✓ Seu mesmo número de sempre:</strong> Funciona no seu WhatsApp atual sem comprar outro chip (como o WhatsApp Web). Você pode continuar conversando pelo celular quando quiser.<br><strong>✓ Rede de segurança contra erros:</strong> Se o cliente digitar <em>\"humano\"</em>, fizer uma reclamação ou pedir um atendente, a IA silencia imediatamente e notifica você no celular.",
         btnPersonalizeBusiness: "⚙️ Personalizar Meu Negócio",
 
@@ -4723,7 +4485,7 @@
         emp4Category: "Turismo & Hotelaria",
         emp4Title: "4. Assistente Multilíngue & Turismo",
         emp4WhatForDesc: "Atende turistas 24/7 em mais de 10 idiomas pelo WhatsApp e QR codes em mesas ou balcão. Fecha reservas diretas sem comissões de terceiros, envia cardápios em PDF e aceita Pix e USD.",
-        emp4F1: "Fecha reservas diretas sem comissões (0% vs 18% plataformas)",
+        emp4F1: "Función pendiente de implementación",
         emp4F2: "Fluência nativa em português, inglês, francês e espanhol",
         emp4F3: "Envia cardápio em PDF, senha do Wi-Fi, check-in e pagamentos via Pix / USD",
         btnTestTourist: "Testar Assistente →",
@@ -4732,7 +4494,7 @@
         emp5Badge: "Google Calendar + WhatsApp",
         emp5Title: "5. Agendador de Consultas e Horários (WhatsApp & Calendar)",
         emp5WhatForDesc: "Coordena e agenda horários em tempo real consultando seu Google Calendar ou Cal.com. Mostra horários livres, cobra sinal via Mercado Pago para zerar faltas e envia lembretes 24h e 2h antes pelo WhatsApp.",
-        emp5F1: "Reduz 85% das faltas com sinal prévio via Mercado Pago",
+        emp5F1: "Función pendiente de implementación",
         emp5F2: "Sincronização em tempo real com Google Calendar sem conflitos",
         emp5F3: "Reagendamento e cancelamento automáticos 24/7",
         btnTestCitas: "Testar Agendador de Consultas ao Vivo →",
@@ -4842,24 +4604,8 @@
 
     // Estado reactivo local
     let currentBusiness = {
-      id: "mi-empresa",
-      name: "Mi Empresa",
-      description: "Empresa dedicada a la comercialización y servicios profesionales. Horario: Lunes a Viernes de 09:00 a 18:00 hs. Envíos y atención personalizada a todo el país.",
-      language: "Español",
-      autoDetectLanguage: true,
-      toneOfVoice: "amigable, profesional y orientado a resolver consultas con rapidez",
-      businessRules: [
-        "Horario de atención: Lunes a Viernes de 09:00 a 18:00.",
-        "Envíos coordinados en 24 a 48 hs hábiles.",
-        "Aceptamos transferencias y Mercado Pago (alias: pagos.miempresa.mp)."
-      ],
-      catalog: [
-        { id: "SRV-01", name: "Consulta y Asesoramiento General", price: 8500, stock: 25, description: "Sesión de diagnóstico y plan de trabajo inicial.", category: "Servicios" },
-        { id: "SRV-02", name: "Servicio Profesional Integral", price: 18500, stock: 12, description: "Implementación completa y seguimiento técnico.", category: "Servicios" },
-        { id: "PRD-01", name: "Pack Insumos Comerciales Premium", price: 12500, stock: 20, description: "Kit con entrega inmediata y garantía oficial.", category: "Productos" },
-        { id: "PRD-02", name: "Membresía Mensual de Soporte", price: 25000, stock: 40, description: "Acceso prioritario y soporte 24/7.", category: "Suscripciones" },
-        { id: "PRD-03", name: "Pack Especial Limitado", price: 9500, stock: 0, description: "Edición especial agotada temporalmente.", category: "Promociones" }
-      ]
+      id: 'mi-empresa', name: 'Mi Empresa', description: '', language: 'Español',
+      autoDetectLanguage: true, toneOfVoice: 'amigable y claro', businessRules: [], catalog: []
     };
 
     const DEMO_BUSINESS_DATA = JSON.parse(JSON.stringify(currentBusiness));
@@ -5001,6 +4747,7 @@
 
     function switchStep(stepId, pushHistory = true) {
       if (!stepId) return;
+      if (['step-billing','step-accounting','step-talleexacto','step-citas','step-cobranzas','step-multilingual'].includes(stepId)) { showToast('Este módulo todavía no está habilitado.'); return; }
       if (stepId === 'step-cobranzas') {
         window.location.href = '/cobranzas';
         return;
@@ -5435,7 +5182,10 @@
         } else if (reason === 'personalizar' || reason === 'config' || reason === 'save') {
           reasonEl.innerHTML = `<strong>Personalizar tu Negocio:</strong> Para personalizar el nombre, empleados y configuración comercial de tu negocio, inicia sesión o crea tu cuenta gratuita.`;
         } else if (reason === 'contratar') {
+          reasonEl.innerHTML = `<strong>Contratar Empleado Virtual:</strong> Activa 14 días de prueba sin tarjeta creando tu cuenta comercial.`;
+
           reasonEl.innerHTML = `<strong>Configurar Empleado Virtual:</strong> Creá tu cuenta comercial para cargar los datos de tu negocio y activar integraciones oficiales.`;
+
         } else {
           reasonEl.innerHTML = `<strong>Protección de Datos & Canales Oficiales:</strong> Tu cuenta privada garantiza que nadie más pueda modificar tus asistentes ni ver tus facturas.`;
         }
@@ -5618,29 +5368,10 @@
     // GESTIÓN GLOBAL DE EMPRESA Y CONFIGURACIÓN DINÁMICA
     // =========================================================
     const DEFAULT_COMPANY_DATA = {
-      name: "Mi Empresa",
-      slug: "mi-empresa",
-      rubro: "Comercio & Servicios",
-      phone: "+54 9 11 4455-6677",
-      email: "contacto@miempresa.com",
-      website: "https://miempresa.com",
-      hours: "Lunes a Viernes: 09:00 a 18:00",
-      currency: "ARS",
-      deposit: "5000",
-      paymentMethod: "pagos.miempresa.mp",
-      desc: "Atención comercial, servicios profesionales y ventas directas.",
-      whatsappConnected: false,
-      calendarConnected: false,
-      calendarEmail: "contacto@miempresa.com",
-      cuit: "30-71234567-8",
-      taxCondition: "Responsable Inscripto",
-      driveFolder: "/Facturas_2026/",
-      activeEmployees: ['vendedor'],
-      services: [
-        { id: 1, name: "Consulta / Atención Estándar", duration: "45 min", price: 8500 },
-        { id: 2, name: "Servicio Especializado", duration: "60 min", price: 14000 },
-        { id: 3, name: "Asesoramiento Personalizado", duration: "30 min", price: 12000 }
-      ]
+      name: 'Mi Empresa', slug: '', rubro: '', phone: '', email: '', website: '', hours: '',
+      currency: 'ARS', deposit: 0, paymentMethod: '', desc: '', whatsappConnected: false,
+      calendarConnected: false, calendarEmail: '', cuit: '', taxCondition: '', driveFolder: '',
+      activeEmployees: ['vendedor'], services: [], catalog: []
     };
 
     function emptyCompany() {
@@ -5715,7 +5446,7 @@
       if (accEmailInput) accEmailInput.value = `facturas+${currentCompany.slug}@changared.com`;
 
       const accCuit = document.getElementById('acc-display-cuit');
-      if (accCuit) accCuit.innerText = currentCompany.cuit || '30-71234567-8';
+      if (accCuit) accCuit.innerText = currentCompany.cuit || '';
 
       const accDrive = document.getElementById('acc-display-drive');
       if (accDrive) accDrive.innerText = `📁 ${currentCompany.driveFolder || '/Facturas_2026/'}`;
@@ -5727,7 +5458,7 @@
       if (accCond) accCond.innerText = currentCompany.taxCondition || 'Responsable Inscripto';
 
       const webhookInput = document.getElementById('webhook-endpoint-input');
-      if (webhookInput) webhookInput.value = `http://localhost:3000/api/webhook/${currentCompany.slug}`;
+      if (webhookInput) webhookInput.value = `${location.origin}/api/webhook/${currentCompany.slug}`;
 
       const citasEmail = document.getElementById('citas-account-email');
       if (citasEmail) citasEmail.innerText = currentCompany.calendarEmail || currentCompany.email;
@@ -5736,7 +5467,7 @@
       if (citasHours) citasHours.innerText = currentCompany.hours;
 
       const depositEl = document.getElementById('citas-display-deposit-text');
-      if (depositEl) depositEl.innerText = `Seña $${Number(currentCompany.deposit || 5000).toLocaleString('es-AR')} con Mercado Pago para reservar`;
+      if (depositEl) depositEl.innerText = `Seña $${Number(currentCompany.deposit || 0).toLocaleString('es-AR')} con Mercado Pago para reservar`;
 
       const servicesCountEl = document.getElementById('citas-display-services-count');
       if (servicesCountEl) servicesCountEl.innerText = `${currentCompany.services.length} prestaciones`;
@@ -5767,7 +5498,7 @@
       const simWaStatus = document.getElementById('sim-wa-status-text');
       const simWaPhone = document.getElementById('sim-wa-active-phone');
       const simWaBtnText = document.getElementById('sim-wa-btn-text');
-      if (simWaPhone) simWaPhone.innerText = currentCompany.phone || '+54 9 11 4455-6677';
+      if (simWaPhone) simWaPhone.innerText = currentCompany.phone || '';
       if (simWaStatus) {
         if (currentCompany.whatsappConnected) {
           simWaStatus.innerText = 'Vinculado';
@@ -5861,9 +5592,7 @@
           name: '3. Facturación & Gastos',
           step: 'step-accounting',
           renderActiveActions: () => `
-            <button onclick="switchStep('step-accounting')" class="flex-1 py-2 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition" data-i18n="btnOpenAccounting">
-              Ver Excel en Vivo →
-            </button>
+
           `
         },
         {
@@ -5871,10 +5600,7 @@
           name: '4. Agendador de Citas',
           step: 'step-citas',
           renderActiveActions: () => `
-            <button onclick="switchStep('step-citas')" class="flex-1 py-2 px-4 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition shadow-subtle flex items-center justify-center space-x-1.5" data-i18n="btnTestCitas">
-              <i data-lucide="calendar" class="w-3.5 h-3.5 text-emerald-300"></i>
-              <span>Probar Agendador de Citas en Vivo →</span>
-            </button>
+
           `
         },
         {
@@ -5882,9 +5608,7 @@
           name: 'TalleExacto (Moda)',
           step: 'step-talleexacto',
           renderActiveActions: () => `
-            <button onclick="switchStep('step-talleexacto')" class="py-2 px-3.5 bg-[#8A5A1E] hover:bg-[#6E4817] text-white rounded text-xs font-semibold transition">
-              Probar Módulo →
-            </button>
+
             <a href="/talleexacto" class="py-2 px-3 bg-white hover:bg-slate-100 text-slate-800 border border-[#E6DCC3] rounded text-xs font-medium transition">
               Ver Módulo Completo ↗
             </a>
@@ -6003,8 +5727,8 @@
         if (document.getElementById('cfg-custom-email')) document.getElementById('cfg-custom-email').value = currentCompany.email || '';
         if (document.getElementById('cfg-custom-website')) document.getElementById('cfg-custom-website').value = currentCompany.website || '';
         if (document.getElementById('cfg-custom-hours')) document.getElementById('cfg-custom-hours').value = currentCompany.hours || '';
-        if (document.getElementById('cfg-custom-deposit')) document.getElementById('cfg-custom-deposit').value = currentCompany.deposit || '5000';
-        if (document.getElementById('cfg-custom-payment')) document.getElementById('cfg-custom-payment').value = currentCompany.paymentMethod || 'pagos.miempresa.mp';
+        if (document.getElementById('cfg-custom-deposit')) document.getElementById('cfg-custom-deposit').value = currentCompany.deposit ?? '';
+        if (document.getElementById('cfg-custom-payment')) document.getElementById('cfg-custom-payment').value = currentCompany.paymentMethod || '';
         if (document.getElementById('cfg-custom-desc')) document.getElementById('cfg-custom-desc').value = currentCompany.desc || '';
 
         // Sincronizar opción multilingüe
@@ -6104,7 +5828,7 @@
           `Horario de atención: ${currentCompany.hours}`,
           `Teléfono de contacto: ${currentCompany.phone}`,
           `Rubro: ${currentCompany.rubro}`,
-          `Link de pago / Alias: ${currentCompany.paymentMethod || 'pagos.miempresa.mp'}`
+          `Link de pago / Alias: ${currentCompany.paymentMethod || ''}`
         ];
       }
 
@@ -6123,7 +5847,7 @@
         hours: currentCompany.hours,
         website: currentCompany.website,
         deposit: currentCompany.deposit,
-        paymentMethod: currentCompany.paymentMethod || 'pagos.miempresa.mp',
+        paymentMethod: currentCompany.paymentMethod || '',
         toneOfVoice: currentCompany.tone || 'amigable, respetuoso y dispuesto a ayudar',
         language: 'Español',
         autoDetectLanguage: autoDetectLang,
@@ -6133,7 +5857,7 @@
           `Teléfono de contacto: ${currentCompany.phone}`,
           `Rubro: ${currentCompany.rubro}`,
           `Seña de reserva: $${currentCompany.deposit}`,
-          `Método de pago / Alias: ${currentCompany.paymentMethod || 'pagos.miempresa.mp'}`
+          `Método de pago / Alias: ${currentCompany.paymentMethod || ''}`
         ],
         services: currentCompany.services || []
       };
@@ -6168,42 +5892,7 @@
     };
 
     function openWebsiteWidgetModal(agent) {
-      if (!currentUser) {
-        openAuthModal('widget', () => openWebsiteWidgetModal(agent));
-        return;
-      }
-
-      if (!agent || agent === 'context' || agent === 'general') {
-        const activeSection = document.querySelector('.step-content:not(.hidden)');
-        const secId = activeSection ? activeSection.id : 'step-accounting';
-        if (secId === 'step-accounting') currentWidgetAgent = 'contable';
-        else if (secId === 'step-citas') currentWidgetAgent = 'citas';
-        else if (secId === 'step-cobranzas') currentWidgetAgent = 'cobranzas';
-        else if (secId === 'step-talleexacto') currentWidgetAgent = 'talleexacto';
-        else currentWidgetAgent = 'vendedor';
-      } else {
-        currentWidgetAgent = agent;
-      }
-      selectWidgetAgent(currentWidgetAgent);
-      selectWidgetPlatform(currentWidgetPlatform);
-
-      const domInput = document.getElementById('widget-authorized-domain-input');
-      const badge = document.getElementById('widget-domain-status-badge');
-      const chkDomain = document.getElementById('chk-domain-verified');
-      if (domInput && currentCompany.authorizedDomain) {
-        domInput.value = currentCompany.authorizedDomain;
-        if (badge) {
-          badge.className = "px-2 py-0.5 rounded text-[10px] font-bold font-mono bg-emerald-100 text-emerald-900 border border-emerald-300";
-          badge.innerText = `● Dominio Confirmado (${currentCompany.authorizedDomain})`;
-        }
-        if (chkDomain) {
-          chkDomain.innerText = "✓";
-          chkDomain.className = "text-emerald-600 font-bold";
-        }
-      }
-
-      const modal = document.getElementById('modal-website-widget');
-      if (modal) modal.classList.remove('hidden');
+      document.getElementById('modal-website-widget')?.classList.remove('hidden');
     }
 
     function selectWidgetAgent(agent) {
@@ -6285,59 +5974,11 @@
     }
 
     function updateWidgetCodeSnippet() {
-      const codeArea = document.getElementById('widget-code-textarea');
-      const directLinkInput = document.getElementById('widget-direct-link-input');
-      const directLinkBtn = document.getElementById('widget-direct-link-btn');
-
-      const slug = currentCompany.slug || 'mi-empresa';
-      const agent = currentWidgetAgent || 'general';
-      const domainAttr = currentCompany.authorizedDomain ? ` data-domain="${currentCompany.authorizedDomain}"` : '';
-
-      const snippet = `<!-- Widget Changared IA - ${currentCompany.name} -->\n<script src="https://cdn.changared.com/widget.js" data-tenant="${slug}" data-agent="${agent}"${domainAttr} data-color="#1B4332" defer><\/script>`;
-
-      if (codeArea) codeArea.value = snippet;
-
-      const directUrl = `https://changared.com/chat/${slug}?agent=${agent}`;
-      if (directLinkInput) directLinkInput.value = directUrl;
-      if (directLinkBtn) directLinkBtn.href = directUrl;
+      // No publicar URLs ni scripts hasta que exista el chat público del negocio.
     }
 
     function confirmAuthorizedDomain() {
-      const input = document.getElementById('widget-authorized-domain-input');
-      const badge = document.getElementById('widget-domain-status-badge');
-      const chkDomain = document.getElementById('chk-domain-verified');
-      const chkAuth = document.getElementById('chk-official-auth');
-      const chkAuthText = document.getElementById('chk-official-auth-text');
-
-      const domain = input ? input.value.trim().toLowerCase().replace(/^https?:\/\//, '').replace(/\/.*$/, '') : '';
-      if (!domain || !domain.includes('.')) {
-        alert("Por favor ingresa un dominio web válido (ej: mitienda.com o minegocio.com.ar).");
-        return;
-      }
-
-      currentCompany.authorizedDomain = domain;
-      try {
-        localStorage.setItem('changared_company_data', JSON.stringify(currentCompany));
-      } catch(e) {}
-
-      if (badge) {
-        badge.className = "px-2 py-0.5 rounded text-[10px] font-bold font-mono bg-emerald-100 text-emerald-900 border border-emerald-300";
-        badge.innerText = `● Dominio Confirmado (${domain})`;
-      }
-      if (chkDomain) {
-        chkDomain.innerText = "✓";
-        chkDomain.className = "text-emerald-600 font-bold";
-      }
-      if (chkAuth) {
-        chkAuth.innerText = "✓";
-        chkAuth.className = "text-emerald-600 font-bold";
-      }
-      if (chkAuthText) {
-        chkAuthText.innerText = `Canales autorizados para ${domain}`;
-      }
-
-      updateWidgetCodeSnippet();
-      showToast(`✓ Dominio ${domain} verificado y protegido contra usos no autorizados.`);
+      showToast('La verificación de dominio todavía no está disponible.');
     }
 
     function copyWidgetCode() {
@@ -6469,6 +6110,8 @@
       // Fallback comercial de Changared si no hay conexión
       if (!reply) {
         const q = text.toLowerCase();
+        reply = 'No pudimos consultar al asesor. Intentá nuevamente más tarde.';
+
         if (q.includes('turno') || q.includes('cita') || q.includes('agenda') || q.includes('calendar') || q.includes('barber') || q.includes('peluquer') || q.includes('clinic')) {
           reply = `Para negocios con citas o agenda, el empleado ideal es el <strong>Agendador de Citas</strong>:<br><br>• Registra la solicitud con servicio, fecha y horario.<br>• Deja el turno pendiente hasta que el negocio lo confirme.<br>• La disponibilidad real, los eventos y los recordatorios se habilitan al conectar Google Calendar y WhatsApp con tus credenciales oficiales.<br><br>Podés configurarlo desde tu panel.`;
         } else if (q.includes('precio') || q.includes('cuanto') || q.includes('costo') || q.includes('plan') || q.includes('gratis') || q.includes('tarjeta')) {
@@ -6478,6 +6121,7 @@
         } else {
           reply = `¡Hola! Soy el Asesor Comercial de Changared. Te ayudamos a potenciar tu negocio con empleados virtuales:<br><br>1. <strong>Vendedor por WhatsApp</strong> (atiende stock, precios y pedidos).<br>2. <strong>Agendador de citas</strong> (muestra disponibilidad y toma reservas).<br>3. <strong>Gestor de cobranzas</strong> (recordatorios de pago).<br>4. <strong>Asesor contable</strong> (comprobantes ordenados para tu contador).<br><br>¿Qué tarea te gustaría ordenar primero?`;
         }
+
       }
 
       const existingTyping = document.getElementById(typingId);
@@ -6500,30 +6144,8 @@
     let waTimerInterval = null;
 
     function openWhatsAppModal(context) {
-      if (!currentUser) {
-        openAuthModal('whatsapp', () => openWhatsAppModal(context));
-        return;
-      }
-      const modal = document.getElementById('modal-whatsapp-qr');
-      if (modal) {
-        const phoneInput = document.getElementById('wa-modal-phone');
-        if (phoneInput) phoneInput.value = currentCompany.phone || '+54 9 11 4455-6677';
-
-        const webhookEl = document.getElementById('wa-modal-webhook-text');
-        if (webhookEl) webhookEl.innerText = `http://localhost:3000/api/webhook/${currentCompany.slug || 'mi-empresa'}`;
-
-        updateWhatsAppModalState();
-        modal.classList.remove('hidden');
-
-        let seconds = 40;
-        const timerEl = document.getElementById('wa-qr-timer');
-        if (waTimerInterval) clearInterval(waTimerInterval);
-        waTimerInterval = setInterval(() => {
-          seconds--;
-          if (seconds <= 0) seconds = 45;
-          if (timerEl) timerEl.innerText = `${seconds}s`;
-        }, 1000);
-      }
+      switchStep('step-whatsapp');
+      showToast('Configurá la conexión oficial de Meta. No hay vinculación por QR disponible.');
     }
 
     function closeWhatsAppModal() {
@@ -6545,14 +6167,19 @@
     }
 
     function testWhatsAppDirectly() {
-      const raw = currentCompany.phone || '+54 9 11 4455-6677';
+      const raw = currentCompany.phone || '';
+      if (!raw.replace(/[^\d]/g, '')) { showToast('Guardá tu número de WhatsApp antes de abrir la conversación.'); return; }
       const clean = raw.replace(/[^\d]/g, '');
       const url = `https://wa.me/${clean}?text=${encodeURIComponent('Hola! Quiero hacer una consulta sobre sus servicios.')}`;
       window.open(url, '_blank');
-      showToast("Abriendo chat en WhatsApp Web...");
+      showToast("Abriendo una conversación manual. Esto no activa al vendedor automático.");
     }
 
     function toggleWhatsAppConnection() {
+      showToast('Guardar un número no conecta al vendedor. Configurá la conexión oficial de Meta en Conexión WhatsApp.');
+      closeWhatsAppModal();
+      switchStep('step-whatsapp');
+
       const phoneInput = document.getElementById('wa-modal-phone');
       if (phoneInput && phoneInput.value.trim()) {
         currentCompany.phone = phoneInput.value.trim();
@@ -6566,6 +6193,7 @@
       closeWhatsAppModal();
       switchStep('step-whatsapp');
       showToast("El QR es sólo una vista demo. Completá Phone Number ID y token de Meta para una conexión real.");
+
     }
 
     // =========================================================
@@ -6954,7 +6582,7 @@
       if (!modal) return;
 
       const depositInput = document.getElementById('citas-cfg-deposit');
-      if (depositInput) depositInput.value = currentCompany.deposit || '5000';
+      if (depositInput) depositInput.value = currentCompany.deposit ?? '';
 
       const hoursInput = document.getElementById('citas-cfg-hours');
       if (hoursInput) hoursInput.value = currentCompany.hours || 'Lunes a Sábado: 09:00 a 20:00 (Turnos cada 45 min)';
@@ -7004,7 +6632,7 @@
 
     function saveCitasConfig() {
       const depInput = document.getElementById('citas-cfg-deposit');
-      if (depInput) currentCompany.deposit = depInput.value.trim() || '5000';
+      if (depInput) currentCompany.deposit = depInput.value.trim() || '0';
 
       const hoursInput = document.getElementById('citas-cfg-hours');
       if (hoursInput) currentCompany.hours = hoursInput.value.trim() || currentCompany.hours;
@@ -7049,7 +6677,7 @@
         const driveIn = document.getElementById('acc-cfg-drive');
         if (driveIn) driveIn.value = currentCompany.driveFolder || '/Facturas_2026/';
         const cuitIn = document.getElementById('acc-cfg-cuit');
-        if (cuitIn) cuitIn.value = currentCompany.cuit || '30-71234567-8';
+        if (cuitIn) cuitIn.value = currentCompany.cuit || '';
         const taxIn = document.getElementById('acc-cfg-tax');
         if (taxIn && currentCompany.taxCondition) taxIn.value = currentCompany.taxCondition;
         modal.classList.remove('hidden');
@@ -7160,7 +6788,7 @@
                 const fecha = String(getVal(['fecha', 'date', 'fec'])).slice(0, 10) || new Date().toISOString().slice(0, 10);
                 const tipo = String(getVal(['tipo', 'comprobante', 'doc'])).trim() || 'Factura A';
                 const num = String(getVal(['numero', 'nro', 'factura', 'comp'])).trim() || `0001-${String(idx + 1).padStart(8, '0')}`;
-                
+
                 let rawTotal = getVal(['total', 'importe', 'monto']);
                 const total = parseFloat(String(rawTotal).replace(/[$.]/g, '').replace(',', '.')) || 0;
                 let rawNeto = getVal(['neto', 'subtotal']);
@@ -7506,12 +7134,15 @@
 
       // Detección de Turnos / Citas: no se promete calendario externo sin OAuth real.
       if (q.includes('turno') || q.includes('cita') || q.includes('agendar') || q.includes('reserva') || q.includes('hora')) {
+        return `¡Hola! 📅 Con gusto te agendamos en ${compName}. Contamos con agenda sincronizada con Google Calendar. ¿Para qué día y en qué horario preferís tu cita? (Se confirma automáticamente con una seña de $${Number(currentCompany.deposit || 0).toLocaleString('es-AR')} vía Mercado Pago).`;
+
         return `¡Hola! 📅 Puedo tomar tu solicitud de turno para ${compName}. Decime qué servicio, día y rango horario preferís; el negocio te confirma la disponibilidad antes de considerar la cita agendada.`;
+
       }
 
       // Detección de Cobranzas / Deuda / Mora
       if (q.includes('deuda') || q.includes('cobro') || q.includes('pagar') || q.includes('transferencia') || q.includes('alias') || q.includes('link de pago') || q.includes('metodo de pago')) {
-        const payMethod = currentCompany.paymentMethod || 'pagos.miempresa.mp';
+        const payMethod = currentCompany.paymentMethod || '';
         return `¡Hola! Te contactamos desde administración de ${compName}. Podés cancelar o regularizar tu saldo por Mercado Pago o transferencia bancaria directa usando nuestro medio oficial: <strong>${payMethod}</strong>. ¿Querés que te enviemos el comprobante o link directo en este momento?`;
       }
 
@@ -7572,7 +7203,7 @@
     // =========================================================
     // LÓGICA DEL AGENDADOR DE CITAS & TURNOS (GOOGLE CALENDAR)
     // =========================================================
-    let simulatedCitasCount = 142;
+    let simulatedCitasCount = 0;
 
     function handleCitasEnter(event) {
       if (event.key === 'Enter') {
@@ -7947,6 +7578,31 @@
       }
     }
 
+    // Lógica de Facturación y Cambio de Moneda (ARS / USD)
+    let currentCurrency = 'ARS';
+
+    function setBillingCurrency(curr) {
+      if (!document.getElementById('btn-curr-ars')) return;
+      currentCurrency = curr;
+      const isArs = curr === 'ARS';
+
+      // Actualizar botones de toggle
+      const btnArs = document.getElementById('btn-curr-ars');
+      const btnUsd = document.getElementById('btn-curr-usd');
+
+      if (isArs) {
+        btnArs.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-900 shadow-subtle border border-slate-200 transition";
+        btnUsd.className = "px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 transition";
+
+        document.querySelectorAll('.plan-price-mostrador').forEach(el => el.innerText = "$39.000");
+        document.querySelectorAll('.plan-price-combo').forEach(el => el.innerText = "$89.000");
+        document.querySelectorAll('.plan-price-empresa').forEach(el => el.innerText = "$169.000");
+        document.querySelectorAll('.plan-period').forEach(el => el.innerText = "ARS / mes");
+
+        document.getElementById('billing-provider-title').innerText = "Procesamiento Seguro con Mercado Pago (Argentina)";
+        document.getElementById('billing-provider-desc').innerText = "Suscripción mensual recurrente con tarjeta o saldo de Mercado Pago en pesos argentinos. Cancela en cualquier momento.";
+        showToast("Moneda seleccionada: Pesos Argentinos (Mercado Pago)");
+
     // Lógica de Facturación: Mercado Pago (LATAM, moneda local) / Wise / Payoneer (USD)
     let currentPayMethod = 'mercadopago';
     let currentMpCountry = 'AR';
@@ -8002,6 +7658,7 @@
       if (method === 'mercadopago') {
         title.innerText = "Procesamiento Seguro con Mercado Pago (LATAM)";
         desc.innerText = "Pagá en tu moneda local con tarjeta, saldo o medios locales. Disponible en AR, BR, MX, CL, CO, PE y UY.";
+
       } else {
         const label = method === 'wise' ? 'Wise' : 'Payoneer';
         title.innerText = `Pago internacional en USD vía ${label}`;
@@ -8009,6 +7666,9 @@
       }
       renderBillingPrices();
     }
+
+    function triggerCheckout(planId) {
+      showToast('La contratación y el pago online todavía no están habilitados. No se realizó ningún cobro.');
 
     function setMpCountry(cc) {
       currentMpCountry = cc;
@@ -8050,6 +7710,7 @@
       } catch (err) {
         showToast(`Error: ${err.message}`);
       }
+
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -8590,8 +8251,12 @@
         return;
       }
       const headers = [
+        ["LIBRO IVA COMPRAS - " + (currentCompany.name || "Mi Empresa").toUpperCase()],
+        ["CUIT: " + (currentCompany.cuit || "") + " | Condición: " + (currentCompany.taxCondition || "Responsable Inscripto")],
+
         ["RESUMEN DE COMPROBANTES - " + (currentCompany.name || "Mi Empresa").toUpperCase()],
         ["CUIT: " + (currentCompany.cuit || "30-71234567-8") + " | Condición: " + (currentCompany.taxCondition || "Responsable Inscripto")],
+
         ["Generado el: " + new Date().toLocaleDateString('es-AR')],
         [],
         ["Fecha", "Proveedor / Razón Social", "CUIT Emisor", "Tipo Comprobante", "Punto Vta y Nro", "Neto Gravado", "Alícuota IVA", "Importe IVA", "Percepciones / Otros", "Total Facturado", "Categoría", "Estado", "CAE"]
@@ -8859,7 +8524,7 @@
     // =========================================================
     // LÓGICA DE CENTINELA OPERATIVO (RADAR DE INCIDENTES 24/7)
     // =========================================================
-    let radarRescuesCount = 14;
+    let radarRescuesCount = 0;
     let radarStockAlertsCount = 3;
 
     function simulateRadarIncident(type) {
