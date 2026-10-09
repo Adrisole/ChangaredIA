@@ -40,7 +40,9 @@ export class SellerOrdersService {
     if (isDbConnected()) {
       await BusinessModel.updateOne({ id: business.id, 'orders.id': order.id }, { $set: { 'orders.$': order } });
     } else {
-      await businessRepository.save({ ...business, orders: (business.orders || []).map((item) => item.id === order.id ? order : item) });
+      const latest = await businessRepository.findById(business.id);
+      if (!latest) throw new Error('Negocio inexistente.');
+      await businessRepository.save({ ...latest, orders: (latest.orders || []).map((item) => item.id === order.id ? order : item) });
     }
   }
   async saveNotifications(business, order, notifications) { await this.persistOrder(business, { ...order, notifications }); }
