@@ -307,7 +307,7 @@
       <div class="flex items-center space-x-2 sm:space-x-2.5 shrink-0">
         <!-- Indicador de Sesión / Modo Demo vs Mi Negocio -->
         <div id="session-status-container" class="flex items-center">
-          <!-- Renderizado dinámico vía renderSessionUI() -->
+          <button onclick="openAuthModal('header')" class="px-3 py-2 rounded-lg bg-white text-slate-900 text-xs font-semibold">Ingresar</button>
         </div>
 
         <!-- Switch de Idioma Superior -->
@@ -349,17 +349,7 @@
       <!-- ======================================================== -->
       <!-- PANTALLA PRINCIPAL: EMPLEADOS VIRTUALES B2B -->
       <!-- ======================================================== -->
-      <section id="step-hub" class="step-content space-y-5">
-  <h1 class="text-xl font-semibold text-slate-900">Tu vendedor</h1>
-  <p class="text-sm text-slate-600">Guardá tu empresa y catálogo. Probá las respuestas antes de conectar WhatsApp.</p>
-  <div class="grid gap-3 sm:grid-cols-2">
-    <button onclick="openBusinessConfigModal()" class="p-4 rounded-lg border bg-white text-left"><strong>Mi empresa</strong><span class="block text-sm text-slate-600">Nombre, descripción y datos de contacto.</span></button>
-    <button onclick="switchStep('step-catalog')" class="p-4 rounded-lg border bg-white text-left"><strong>Catálogo y precios</strong><span class="block text-sm text-slate-600">Productos, servicios y disponibilidad.</span></button>
-    <button onclick="switchStep('step-simulator')" class="p-4 rounded-lg border bg-white text-left"><strong>Probar vendedor</strong><span class="block text-sm text-slate-600">Conversación privada de prueba.</span></button>
-    <button onclick="switchStep('step-whatsapp')" class="p-4 rounded-lg border bg-white text-left"><strong>Configurar WhatsApp</strong><span class="block text-sm text-slate-600">Conexión oficial de Meta.</span></button>
-    <button onclick="switchStep('step-payments')" class="p-4 rounded-lg border bg-white text-left"><strong>Cobros y pedidos</strong><span class="block text-sm text-slate-600">Alias, pedidos y confirmación manual del pago.</span></button>
-  </div>
-</section>
+      
 
       <section id="step-hub" class="step-content space-y-8">
         
@@ -5136,12 +5126,14 @@
           container.innerHTML = `
             <button onclick="openAuthModal('header')" class="inline-flex items-center space-x-1.5 px-2.5 sm:px-3 py-1 text-xs font-bold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg transition shadow-2xs">
               <span>🔑</span>
-              <span>Iniciar Sesión</span>
+              <span>Ingresar</span>
             </button>
           `;
         }
       }
     }
+
+    renderSessionUI();
 
     function switchAuthTab(tab) {
       const tabLogin = document.getElementById('tab-auth-login');
@@ -7581,28 +7573,6 @@
     // Lógica de Facturación y Cambio de Moneda (ARS / USD)
     let currentCurrency = 'ARS';
 
-    function setBillingCurrency(curr) {
-      if (!document.getElementById('btn-curr-ars')) return;
-      currentCurrency = curr;
-      const isArs = curr === 'ARS';
-
-      // Actualizar botones de toggle
-      const btnArs = document.getElementById('btn-curr-ars');
-      const btnUsd = document.getElementById('btn-curr-usd');
-
-      if (isArs) {
-        btnArs.className = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-900 shadow-subtle border border-slate-200 transition";
-        btnUsd.className = "px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 transition";
-
-        document.querySelectorAll('.plan-price-mostrador').forEach(el => el.innerText = "$39.000");
-        document.querySelectorAll('.plan-price-combo').forEach(el => el.innerText = "$89.000");
-        document.querySelectorAll('.plan-price-empresa').forEach(el => el.innerText = "$169.000");
-        document.querySelectorAll('.plan-period').forEach(el => el.innerText = "ARS / mes");
-
-        document.getElementById('billing-provider-title').innerText = "Procesamiento Seguro con Mercado Pago (Argentina)";
-        document.getElementById('billing-provider-desc').innerText = "Suscripción mensual recurrente con tarjeta o saldo de Mercado Pago en pesos argentinos. Cancela en cualquier momento.";
-        showToast("Moneda seleccionada: Pesos Argentinos (Mercado Pago)");
-
     // Lógica de Facturación: Mercado Pago (LATAM, moneda local) / Wise / Payoneer (USD)
     let currentPayMethod = 'mercadopago';
     let currentMpCountry = 'AR';
@@ -7666,9 +7636,6 @@
       }
       renderBillingPrices();
     }
-
-    function triggerCheckout(planId) {
-      showToast('La contratación y el pago online todavía no están habilitados. No se realizó ningún cobro.');
 
     function setMpCountry(cc) {
       currentMpCountry = cc;
