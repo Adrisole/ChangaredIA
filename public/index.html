@@ -4553,7 +4553,9 @@
       }
 
       if (stepId === 'step-payments') loadSellerOrders();
+      // El contenido scrollea dentro de <main>, no en la ventana
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      document.querySelector('main')?.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
 
