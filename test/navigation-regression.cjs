@@ -1,6 +1,6 @@
 const fs=require('fs'),assert=require('node:assert/strict');
 const html=fs.readFileSync('public/index.html','utf8');
-for(const step of ['hub','catalog','simulator','identity','whatsapp','billing','accounting','citas','talleexacto','payments']) {
+for(const step of ['hub','catalog','simulator','identity','whatsapp','billing','accounting','citas','payments']) {
  assert.equal((html.match(new RegExp('<section id="step-'+step+'"','g'))||[]).length,1,step+' must exist once');
  assert.match(html,new RegExp('id="nav-step-'+step+'"'));
 }

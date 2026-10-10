@@ -28,11 +28,6 @@ export const createApp = () => {
     next();
   });
 
-  // Ruta dedicada para TalleExacto
-  app.get('/talleexacto', (req, res) => {
-    res.sendFile(path.resolve('./public/talleexacto.html'));
-  });
-
   // Ruta dedicada para Gestor de Cobranzas
   app.get('/cobranzas', (req, res) => {
     res.sendFile(path.resolve('./public/cobranzas.html'));
@@ -40,11 +35,6 @@ export const createApp = () => {
 
   app.get('/agenda', (req, res) => {
     res.sendFile(path.resolve('./public/agenda.html'));
-  });
-
-  // Ruta dedicada para Asistente Multilingüe y Turismo
-  app.get('/multilingue', (req, res) => {
-    res.sendFile(path.resolve('./public/multilingue.html'));
   });
 
   // Rutas SEO (Google & Motores de Búsqueda)

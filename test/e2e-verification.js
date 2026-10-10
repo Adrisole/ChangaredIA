@@ -290,18 +290,18 @@ async function runTests() {
     const sitemapText = await resSitemap.text();
     assert.ok(sitemapText.includes('<urlset'));
     assert.ok(sitemapText.includes('https://changared.com/cobranzas'));
-    assert.ok(sitemapText.includes('https://changared.com/multilingue'));
-    assert.ok(sitemapText.includes('https://changared.com/talleexacto'));
+    assert.ok(!sitemapText.includes('https://changared.com/multilingue'), 'Multilingüe se retiró del producto');
+    assert.ok(!sitemapText.includes('https://changared.com/talleexacto'), 'TalleExacto se retiró del producto');
   });
 
   // 14. Rutas HTML Dedicadas
-  await test('GET /, /cobranzas, /multilingue, /talleexacto - Páginas dedicadas responden 200 HTML', async () => {
-    const pages = ['/', '/cobranzas', '/multilingue', '/talleexacto'];
+  await test('GET /, /cobranzas, /agenda - Páginas dedicadas responden 200 HTML', async () => {
+    const pages = ['/', '/cobranzas', '/agenda'];
     for (const page of pages) {
       const res = await fetch(`${BASE_URL}${page}`);
       assert.equal(res.status, 200, `Página ${page} debe responder 200`);
       const html = await res.text();
-      assert.ok(html.includes('<!DOCTYPE html>'), `Página ${page} debe ser HTML válido`);
+      assert.ok(/<!doctype html>/i.test(html), `Página ${page} debe ser HTML válido`);
     }
   });
 
@@ -645,10 +645,6 @@ async function runTests() {
     const hCob = getHash('cobranzas.html');
     const hPubCob = getHash('public/cobranzas.html');
     assert.equal(hCob, hPubCob, 'cobranzas.html debe ser idéntico a public/cobranzas.html');
-
-    const hMulti = getHash('multilingue.html');
-    const hPubMulti = getHash('public/multilingue.html');
-    assert.equal(hMulti, hPubMulti, 'multilingue.html debe ser idéntico a public/multilingue.html');
   });
 
   // 28. Asistente Contable: Validación Fiscal AFIP, Bandeja de Revisión, Aprobación y Borrado Real
