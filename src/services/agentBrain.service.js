@@ -201,7 +201,7 @@ DIRECTIVAS CLAVE PARA RESPONDER EN WHATSAPP:
       return `¡Hola! Recibimos tu comprobante para ${business.name}. Podés cargar sus datos en la bandeja de revisión, verificar CUIT y montos, y luego exportar el resumen para tu contador.`;
     }
 
-    // 4. Detección de Moda / Medidas / Talles (TalleExacto)
+    // 4. Consultas de talles y medidas (tiendas de ropa)
     const isSizeQuery = /\b(talle|medida|busto|cintura|cadera|size|vestido|prenda|pantalon|tamanho)\b/i.test(msg);
     if (isSizeQuery) {
       return `¡Hola! Para recomendarte un talle correcto necesitamos tus medidas y la tabla específica de la prenda. El equipo de ${business.name} te ayuda a confirmarlo antes de reservar.`;
@@ -294,7 +294,6 @@ CATÁLOGO DE EMPLEADOS VIRTUALES DE CHANGARED:
 2. Gestor de Cobranzas: Ordena deudas y prepara recordatorios. El envío real requiere conectar WhatsApp Cloud API y el cobro requiere su integración de pago.
 3. Asesor Contable: organiza comprobantes de compras, alerta datos repetidos y permite exportar un resumen en Excel o CSV para que lo revise el contador.
 4. Agendador de Citas: toma solicitudes de turno con servicio, fecha y horario. La sincronización con Google Calendar y los recordatorios se habilitan sólo después de completar su integración.
-5. TalleExacto (Módulo Ropa & Calzado): orienta sobre medidas y talles en tiendas de moda.
 
 REGLAS COMERCIALES Y DE VENTA:
 - Se contrata por empleado: el cliente no paga por cosas que no usa, elige solo el o los empleados que necesita.

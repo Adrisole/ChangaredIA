@@ -13,7 +13,7 @@ assert.equal(ctx.business.businessRules.length, 0);
 for (const field of ['phone','email','paymentMethod','cuit']) assert.equal(ctx.company[field], '');
 assert.equal(ctx.company.services.length, 0);
 assert.equal(ctx.company.deposit, 0);
-for (const step of ['billing','citas','accounting','talleexacto']) {
+for (const step of ['billing','citas','accounting']) {
   const section = html.match(new RegExp('<section id="step-' + step + '"[\\s\\S]*?</section>'))[0];
   assert.match(section, /<button|<input|<select/);
   assert.doesNotMatch(section, /142|710\.000|94\.2|98\.4|39\.000|30%|85%/);
