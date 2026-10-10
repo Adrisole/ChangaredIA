@@ -6,11 +6,8 @@
 
   <!-- SEO Primario 100/100 -->
 
-  <title>Changared — Empleados Virtuales con IA para WhatsApp y Cobranzas</title>
-  <meta name="description" content="Configurá y probá tu vendedor con el catálogo de tu negocio.">
-  <meta name="keywords" content="empleados virtuales, bot whatsapp ventas, gestor cobranzas mercado pago, cobranzas automatizadas whatsapp, asistente contable facturas excel, ia para negocios, changared b2b">
-  <title>Changared | Empleados virtuales con IA para WhatsApp y negocios</title>
-  <meta name="description" content="Empleados virtuales con IA para centralizar consultas por WhatsApp, organizar turnos y automatizar tareas comerciales y administrativas de tu negocio.">
+  <title>Changared | Vendé, cobrá y organizá turnos por WhatsApp con IA</title>
+  <meta name="description" content="Empleados virtuales con IA para comercios y profesionales: responden precios y stock por WhatsApp, preparan recordatorios de cobro y toman pedidos de turno. Probá la demo.">
   <meta name="keywords" content="empleados virtuales con ia, secretaria virtual whatsapp, automatización whatsapp, agenda de turnos, ia para negocios, changared">
   <meta name="author" content="Changared">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -25,20 +22,17 @@
   <!-- Open Graph / Redes Sociales -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://changared.com/">
-  <meta property="og:title" content="Changared — Empleados Virtuales con IA para WhatsApp y Cobranzas">
-  <meta property="og:description" content="Configurá y probá tu vendedor con el catálogo de tu negocio.">
-  <meta property="og:image" content="https://changared.com/og-image.png">
+  <meta property="og:title" content="Changared | Vendé, cobrá y organizá turnos por WhatsApp con IA">
+  <meta property="og:description" content="Empleados virtuales con IA para comercios y profesionales: responden precios y stock por WhatsApp, preparan recordatorios de cobro y toman pedidos de turno.">
 
-  <meta property="og:title" content="Changared | Empleados virtuales con IA para tu negocio">
-  <meta property="og:description" content="Centralizá consultas, turnos y tareas comerciales con empleados virtuales configurables para tu negocio.">
   <meta property="og:image" content="https://changared.com/logo.png">
   <meta property="og:locale" content="es_AR">
   <meta property="og:site_name" content="Changared">
 
   <!-- Twitter / X Cards -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Changared | Empleados virtuales con IA para tu negocio">
-  <meta name="twitter:description" content="Centralizá consultas, turnos y tareas comerciales con empleados virtuales configurables.">
+  <meta name="twitter:title" content="Changared | Vendé, cobrá y organizá turnos por WhatsApp con IA">
+  <meta name="twitter:description" content="Empleados virtuales con IA para comercios y profesionales: responden precios y stock por WhatsApp, preparan recordatorios de cobro y toman pedidos de turno.">
   <meta name="twitter:image" content="https://changared.com/logo.png">
 
   <!-- Schema.org Datos Estructurados JSON-LD -->
@@ -145,6 +139,79 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
+    /* Primer vistazo: titular con la letra del sistema (SF en Apple) */
+    .hero-title {
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      font-size: clamp(2.1rem, 1.3rem + 2.2vw, 3.35rem);
+      line-height: 1.04;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      text-wrap: balance;
+    }
+    .hero-title-quiet { color: #64748B; }
+
+    /* Teléfono con la conversación de ejemplo, en los colores reales de WhatsApp */
+    .chat-phone-screen {
+      border-radius: 2.25rem;
+      padding: 0.5rem;
+      background: #0F172A;
+      box-shadow: 0 30px 60px -20px rgba(15, 23, 42, 0.35), 0 12px 24px -12px rgba(15, 23, 42, 0.25);
+    }
+    .chat-phone-bar {
+      display: flex; align-items: center; gap: 0.625rem;
+      padding: 0.875rem 0.875rem 0.75rem;
+      background: #1B4332;
+      border-radius: 1.75rem 1.75rem 0 0;
+    }
+    .chat-phone-avatar {
+      width: 2.25rem; height: 2.25rem; border-radius: 9999px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: #D9FDD3; color: #1B4332; font-size: 12px; font-weight: 700;
+    }
+    .chat-thread {
+      display: flex; flex-direction: column; gap: 0.5rem;
+      min-height: 21rem;
+      padding: 1rem 0.75rem 1.25rem;
+      background: #EFEAE2;
+      border-radius: 0 0 1.75rem 1.75rem;
+    }
+    .chat-msg {
+      position: relative; max-width: 82%;
+      padding: 0.5rem 3.1rem 0.5rem 0.7rem;
+      border-radius: 0.875rem;
+      font-size: 14px; line-height: 1.35; color: #111B21;
+      box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13);
+    }
+    .chat-in { align-self: flex-start; background: #FFFFFF; border-top-left-radius: 0.25rem; }
+    .chat-out { align-self: flex-end; background: #D9FDD3; border-top-right-radius: 0.25rem; }
+    .chat-time { position: absolute; right: 0.6rem; bottom: 0.35rem; font-size: 11px; color: #54656F; }
+    .chat-note {
+      align-self: center; margin-top: 0.25rem;
+      display: inline-flex; align-items: center; gap: 0.375rem;
+      padding: 0.375rem 0.75rem; border-radius: 9999px;
+      background: #FFFFFF; color: #1B4332; font-size: 12px; font-weight: 600;
+      box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13);
+    }
+    /* El momento animado de la página: la conversación se escribe una vez */
+    .chat-play .chat-msg, .chat-play .chat-note {
+      animation: chat-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: calc(var(--i) * 0.85s + 0.35s);
+    }
+    .chat-play .chat-out { transform-origin: 100% 0; }
+    .chat-play .chat-in { transform-origin: 0 0; }
+    @keyframes chat-in {
+      from { opacity: 0; transform: translateY(12px) scale(0.94); filter: blur(6px); }
+      to { opacity: 1; transform: none; filter: none; }
+    }
+
+    /* Nómina del inicio: iniciales de cada empleado; se encienden al activarlo */
+    .roster-avatar {
+      width: 40px; height: 40px; border-radius: 9999px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.02em;
+      background: #F1F5F9; color: #475569;
+    }
+    .roster-avatar.is-on { background: #1B4332; color: #FFFFFF; }
     /* Foco visible para teclado en todos los controles */
     :focus:not(:focus-visible) {
       outline: none;
@@ -161,6 +228,8 @@
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
       }
+      /* La conversación se muestra completa de entrada, sin esperas */
+      .chat-play .chat-msg, .chat-play .chat-note { animation: none !important; }
     }
     ::-webkit-scrollbar {
       width: 6px;
@@ -226,7 +295,6 @@
       <div class="h-16 px-4 sm:px-5 border-b border-white/10 flex items-center justify-between bg-[#1B4332] shrink-0">
         <div class="flex items-center space-x-2.5">
           <img src="/logo-white.png" alt="ChangaRed" class="h-7 w-auto object-contain">
-          <span class="text-[11px] uppercase font-mono tracking-wider font-semibold px-1.5 py-0.5 rounded bg-white/10 text-emerald-200 border border-white/10">B2B</span>
         </div>
         <!-- Botones para ocultar menú según resolución -->
         <div class="flex items-center space-x-1">
@@ -247,7 +315,7 @@
             <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
             <span class="truncate font-semibold" id="sidebar-business-name">Mi Empresa</span>
           </div>
-          <span class="text-emerald-300 text-xs">⚙️</span>
+          <i data-lucide="settings" class="w-3.5 h-3.5 text-emerald-200" aria-hidden="true"></i>
         </button>
       </div>
 
@@ -262,20 +330,20 @@
         <div class="pt-3 px-2 py-1 text-[11px] uppercase tracking-wider font-bold text-emerald-200/70" data-i18n="navSectionEmployees">Empleados Virtuales</div>
 
         <button onclick="switchStep('step-simulator')" id="nav-step-simulator" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
-          <span data-i18n="navStepSimulator">1. Vendedor IA (WhatsApp 24/7)</span>
+          <span data-i18n="navStepSimulator">Vendedor IA</span>
         </button>
 
         <a href="/cobranzas" id="nav-step-cobranzas" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors flex items-center justify-between">
-          <span data-i18n="navStepCobranzas">2. Gestor de Cobranzas</span>
+          <span data-i18n="navStepCobranzas">Gestor de Cobranzas</span>
           <i data-lucide="external-link" class="w-3.5 h-3.5 text-emerald-300 opacity-80"></i>
         </a>
 
         <button onclick="switchStep('step-accounting')" id="nav-step-accounting" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
-          <span data-i18n="navStepAccounting">3. Facturación & Gastos</span>
+          <span data-i18n="navStepAccounting">Asesor Contable</span>
         </button>
 
         <button onclick="switchStep('step-citas')" id="nav-step-citas" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-100 hover:text-white hover:bg-white/10 transition-colors">
-          <span data-i18n="navStepCitas">4. Agendador de Citas (Turnos)</span>
+          <span data-i18n="navStepCitas">Agendador de turnos</span>
         </button>
 
         <div class="pt-3 px-2 py-1 text-[11px] uppercase tracking-wider font-bold text-emerald-200/70" data-i18n="navSectionFashion">Especial Moda</div>
@@ -302,18 +370,10 @@
           Planes & Suscripción
         </button>
 
-        <div class="pt-4 mt-3 px-3 border-t border-white/10 text-[11px] text-emerald-200/70 flex items-center justify-between">
-          <span class="flex items-center space-x-1.5">
-            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-            <span class="font-medium text-white">Changared B2B</span>
-          </span>
-          <button onclick="toggleDesktopSidebar()" class="hidden md:flex items-center space-x-1 text-[11px] text-emerald-300 hover:text-white py-0.5 px-1.5 rounded hover:bg-white/10 transition cursor-pointer" title="Ocultar menú lateral">
-            <span>Ocultar</span>
-            <i data-lucide="chevron-left" class="w-3 h-3"></i>
-          </button>
-          <span class="font-mono text-[11px] text-emerald-300 md:hidden">v1.0</span>
-        </div>
-      <button onclick="switchStep('step-payments')" id="nav-step-payments" class="nav-item w-full text-left px-3 py-2 text-xs text-emerald-100">Cobros y pedidos</button></nav>
+        <button onclick="switchStep('step-payments')" id="nav-step-payments" class="nav-item w-full text-left px-3 py-2 text-xs font-medium rounded-lg text-emerald-200/90 hover:text-white hover:bg-white/10 transition-colors">
+          Cobros y pedidos
+        </button>
+      </nav>
     </div>
   </aside>
 
@@ -325,7 +385,7 @@
     <!-- Topbar con Breadcrumb Dinámico y Acciones Globales -->
     <header id="main-header" class="h-16 px-3 sm:px-6 md:px-8 border-b border-slate-200 bg-white/90 backdrop-blur sticky top-0 z-20 flex items-center justify-between">
       <div class="flex items-center space-x-2 sm:space-x-3 min-w-0">
-        <img src="/images/changared-logo.jpeg" alt="Changared" class="w-10 h-10 rounded-lg object-cover shrink-0">
+        <img src="/images/changared-logo.jpeg" alt="Changared" class="w-9 h-9 rounded-lg object-cover shrink-0 md:hidden">
         <!-- Botón Toggle Menú (Móvil y Escritorio) -->
         <button id="btn-toggle-sidebar" onclick="toggleSidebar()" class="p-2 -ml-1 text-slate-700 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition shrink-0 flex items-center justify-center cursor-pointer" aria-label="Alternar menú lateral" title="Ocultar menú lateral">
           <i id="icon-toggle-sidebar" data-lucide="panel-left-close" class="w-5 h-5 text-slate-700"></i>
@@ -347,36 +407,30 @@
         </div>
 
         <!-- Switch de Idioma Superior -->
-        <div class="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200 text-xs font-medium">
-          <button onclick="setUiLanguage('es')" class="lang-pill px-1.5 sm:px-2 py-1 rounded text-[11px] font-semibold transition" data-lang="es">🇪🇸 ES</button>
-          <button onclick="setUiLanguage('en')" class="lang-pill px-1.5 sm:px-2 py-1 rounded text-[11px] font-medium text-slate-600 hover:text-slate-900 transition" data-lang="en">🇺🇸 EN</button>
-          <button onclick="setUiLanguage('pt')" class="lang-pill px-1.5 sm:px-2 py-1 rounded text-[11px] font-medium text-slate-600 hover:text-slate-900 transition" data-lang="pt">🇧🇷 PT</button>
+        <div class="flex items-center p-0.5 rounded-lg bg-white/10 text-xs font-medium" role="group" aria-label="Idioma">
+          <button onclick="setUiLanguage('es')" class="lang-pill px-2 py-1 rounded text-[11px] font-semibold bg-white text-[#1B4332] transition" data-lang="es">ES</button>
+          <button onclick="setUiLanguage('en')" class="lang-pill px-2 py-1 rounded text-[11px] font-medium text-emerald-50 hover:text-white transition" data-lang="en">EN</button>
+          <button onclick="setUiLanguage('pt')" class="lang-pill px-2 py-1 rounded text-[11px] font-medium text-emerald-50 hover:text-white transition" data-lang="pt">PT</button>
         </div>
 
         <!-- Botón Vincular a Mi Web -->
-        <button onclick="openWebsiteWidgetModal('context')" class="inline-flex items-center space-x-1.5 px-2.5 sm:px-3 py-1.5 text-xs font-bold text-emerald-950 bg-emerald-100 hover:bg-emerald-200 border border-emerald-300 rounded-lg transition shadow-2xs">
-          <span>🌐</span>
-          <span class="hidden sm:inline">Mi Web</span>
+        <button onclick="openWebsiteWidgetModal('context')" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-white hover:bg-white/10 rounded-lg transition" aria-label="Mi web">
+          <i data-lucide="globe" class="w-4 h-4" aria-hidden="true"></i>
+          <span class="hidden sm:inline">Mi web</span>
         </button>
 
         <!-- Botón Cargar / Cambiar Mi Empresa -->
-        <button onclick="openBusinessConfigModal()" class="inline-flex items-center space-x-1.5 px-2.5 sm:px-3.5 py-1.5 text-xs font-bold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg transition-colors shadow-subtle shrink-0">
-          <span class="text-sm">🏢</span>
+        <button onclick="openBusinessConfigModal()" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-medium text-white hover:bg-white/10 rounded-lg transition shrink-0">
+          <i data-lucide="store" class="w-4 h-4" aria-hidden="true"></i>
           <span class="company-display-name truncate max-w-[100px] sm:max-w-[160px]">Mi Empresa</span>
-          <span class="text-[11px] text-emerald-300 hidden sm:inline">✏️</span>
         </button>
       </div>
     </header>
 
     <!-- Banner Informativo: Modo Demo vs Mi Negocio Privado -->
-    <div id="banner-demo-mode" class="bg-amber-500/10 border-b border-amber-300/60 px-4 py-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs text-amber-950 shadow-2xs">
-      <div class="flex items-center space-x-2">
-        <span class="px-2 py-0.5 rounded bg-amber-200 text-amber-950 font-mono font-bold text-[11px] uppercase shrink-0">🧪 Modo Demo</span>
-        <span>Estás explorando en modo demostración pública (datos temporales, no se guardan).</span>
-      </div>
-      <button onclick="openAuthModal('banner')" class="font-bold text-amber-950 underline hover:no-underline whitespace-nowrap text-xs flex items-center space-x-1 shrink-0">
-        <span>🔑 Iniciar Sesión o Crear Cuenta Privada →</span>
-      </button>
+    <div id="banner-demo-mode" class="bg-amber-50 border-b border-amber-200 px-4 sm:px-8 py-2 text-xs text-amber-950">
+      <span data-i18n="demoBanner">Estás viendo una demo con datos de ejemplo; lo que cargues no se guarda.</span>
+      <button onclick="openAuthModal('banner')" class="font-semibold underline underline-offset-2 hover:no-underline whitespace-nowrap" data-i18n="demoBannerCta">Crear cuenta o ingresar</button>
     </div>
 
     <!-- Contenedor Principal Adaptable a Pantalla Completa -->
@@ -387,300 +441,132 @@
       <!-- ======================================================== -->
 
 
-      <section id="step-hub" class="step-content space-y-8">
+      <section id="step-hub" class="step-content space-y-6">
 
-        <!-- Header Limpio y Sobrio -->
-        <div class="space-y-2 pb-4 border-b border-slate-200">
-          <p class="text-sm font-medium text-[#2D6A4F]" data-i18n="hubBadge">
-            Empleados virtuales con IA para empresas y comercios
-          </p>
-          <h1 class="text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900" data-i18n="hubTitle">
-            Empleados virtuales con IA para tu negocio
-          </h1>
-          <p class="text-sm text-slate-600 max-w-3xl leading-relaxed" data-i18n="hubSubtitle">
-            Configurá asistentes para centralizar consultas, organizar turnos y automatizar tareas comerciales y administrativas con el control de tu equipo.
-          </p>
+        <!-- Primer vistazo: qué resuelve para el negocio, demostrado en una conversación -->
+        <div class="grid lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)] gap-10 lg:gap-12 items-center pt-1 sm:pt-4">
+          <div>
+            <h1 class="hero-title text-slate-900" data-i18n="hubTitle">Vendé, cobrá y organizá tus turnos por WhatsApp.</h1>
+            <p class="hero-title hero-title-quiet" data-i18n="hubTitle2">Sin vivir pegado al celular.</p>
+            <p class="mt-5 text-base sm:text-lg text-slate-600 leading-relaxed max-w-[38rem]" data-i18n="hubSubtitle">Changared suma empleados virtuales con IA a tu comercio o consultorio: responden precios y stock, preparan recordatorios de cobro y toman pedidos de turno. Vos revisás y confirmás.</p>
+            <div class="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
+              <button onclick="openBusinessConfigModal()" class="min-h-[48px] px-6 bg-[#1B4332] hover:bg-[#2D6A4F] active:bg-[#143225] text-white font-semibold text-base rounded-full transition" data-i18n="btnConfigBusiness">Configurar mi negocio</button>
+              <button onclick="switchStep('step-simulator')" class="min-h-[44px] inline-flex items-center gap-1.5 text-base font-medium text-[#1B4332] hover:underline underline-offset-4" data-i18n="btnTryChat">Probar el chat</button>
+            </div>
+            <p class="mt-5 text-sm text-slate-600" data-i18n="hubPriceLine">USD 17 por empleado al mes (ARS 25.000 con Mercado Pago Argentina). Activás sólo los que necesitás.</p>
+          </div>
+
+          <figure class="chat-phone mx-auto w-full max-w-[340px]" aria-label="Conversación de ejemplo entre un cliente y el vendedor virtual">
+            <div class="chat-phone-screen">
+              <div class="chat-phone-bar">
+                <div class="chat-phone-avatar" aria-hidden="true">AL</div>
+                <div class="min-w-0">
+                  <div class="text-sm font-semibold text-white truncate">Almacén La Esquina</div>
+                  <div class="text-[11px] text-emerald-100">Vendedor virtual · ejemplo</div>
+                </div>
+              </div>
+              <ol class="chat-thread" role="list">
+                <li class="chat-msg chat-in" style="--i:0">Hola! ¿Tienen yerba de 1 kg?<span class="chat-time">17:42</span></li>
+                <li class="chat-msg chat-out" style="--i:1">¡Hola! Sí, quedan 12 a $4.850 cada una. ¿Te reservo?<span class="chat-time">17:42</span></li>
+                <li class="chat-msg chat-in" style="--i:2">Dale, 2. Paso a las 18.<span class="chat-time">17:43</span></li>
+                <li class="chat-msg chat-out" style="--i:3">Anoté 2 yerbas para retirar a las 18 h. El local te confirma en un momento.<span class="chat-time">17:43</span></li>
+                <li class="chat-note" style="--i:4">
+                  <i data-lucide="clipboard-check" class="w-3.5 h-3.5" aria-hidden="true"></i>
+                  <span data-i18n="chatNote">Pedido anotado en tu panel, esperando tu confirmación</span>
+                </li>
+              </ol>
+            </div>
+            <figcaption class="mt-3 text-center text-xs text-slate-600" data-i18n="chatCaption">Conversación de ejemplo con un catálogo de prueba.</figcaption>
+          </figure>
         </div>
 
-        <!-- PRIMEROS PASOS: una sola acción principal y el estado del comercio -->
+        <h2 class="pt-6 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900" data-i18n="hubTeamTitle">Elegí a quién sumar a tu equipo</h2>
+
+        <!-- TU EQUIPO: el comercio arriba y sus empleados como una nómina -->
         <div class="bg-white border border-slate-200 rounded-2xl shadow-card overflow-hidden">
-          <div class="p-5 sm:p-6 flex flex-col lg:flex-row lg:items-center justify-between gap-5">
-            <div class="space-y-1.5 max-w-2xl">
-              <p class="text-xs font-medium text-[#2D6A4F]" data-i18n="trialNoCard">Probá la demo sin registrarte</p>
-              <h2 class="text-lg font-semibold text-slate-900" data-i18n="trialTitle">
-                Configurá los empleados que necesita tu negocio
-              </h2>
-              <p class="text-sm text-slate-600 leading-relaxed" data-i18n="trialDesc">
-                Elegí ventas, cobranzas, agenda o comprobantes. Las integraciones se activan con las credenciales oficiales de tu negocio.
+          <div class="bg-slate-50 border-b border-slate-200 px-4 sm:px-5 py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div class="min-w-0">
+              <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+                <span class="text-sm font-semibold text-slate-900 company-display-name">Mi Empresa</span>
+                <span id="hub-company-badge" class="text-[11px] font-medium px-2 py-0.5 rounded-full text-slate-700 bg-slate-200">Comercio de ejemplo</span>
+                <span class="text-xs text-slate-600 inline-flex items-center gap-1.5">
+                  <span id="hub-company-state-dot" class="w-1.5 h-1.5 rounded-full bg-slate-400" aria-hidden="true"></span>
+                  <span id="hub-company-state">Datos de ejemplo</span>
+                </span>
+              </div>
+              <p class="text-xs text-slate-600 mt-0.5 truncate">
+                Rubro: <span id="hub-company-rubro" class="font-medium text-slate-800">Comercio &amp; Servicios</span> ·
+                WhatsApp: <span id="hub-company-phone" class="tabular-nums text-slate-800">+54 9 11 4455-6677</span>
               </p>
             </div>
-            <div class="flex flex-col sm:flex-row gap-2 shrink-0">
-              <button onclick="openBusinessConfigModal()" class="min-h-[44px] px-5 py-2.5 bg-[#1B4332] hover:bg-[#2D6A4F] active:bg-[#143225] text-white font-semibold text-sm rounded-xl transition whitespace-nowrap" data-i18n="btnConfigBusiness">
-                Configurar mi negocio
-              </button>
-              <button onclick="switchStep('step-billing')" class="min-h-[44px] px-4 py-2.5 bg-white hover:bg-slate-50 active:bg-slate-100 text-slate-800 font-medium text-sm rounded-xl border border-slate-300 transition whitespace-nowrap" data-i18n="btnViewPlans">
-                Ver planes y precios
-              </button>
-            </div>
-          </div>
-          <div class="border-t border-slate-200 bg-slate-50 px-5 sm:px-6 py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div class="flex items-center gap-3 min-w-0">
-              <div class="w-9 h-9 rounded-lg bg-[#1B4332] text-white flex items-center justify-center shrink-0" aria-hidden="true">
-                <i data-lucide="store" class="w-4 h-4"></i>
-              </div>
-              <div class="min-w-0">
-                <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
-                  <span class="text-sm font-semibold text-slate-900 company-display-name">Mi Empresa</span>
-                  <span id="hub-company-badge" class="text-[11px] font-medium px-2 py-0.5 rounded-full text-slate-700 bg-slate-200">Comercio de ejemplo</span>
-                  <span class="text-xs text-slate-600 inline-flex items-center gap-1.5">
-                    <span id="hub-company-state-dot" class="w-1.5 h-1.5 rounded-full bg-slate-400" aria-hidden="true"></span>
-                    <span id="hub-company-state">Datos de ejemplo</span>
-                  </span>
-                </div>
-                <p class="text-xs text-slate-600 mt-0.5 truncate">
-                  Rubro: <span id="hub-company-rubro" class="font-medium text-slate-800">Comercio &amp; Servicios</span> ·
-                  WhatsApp: <span id="hub-company-phone" class="font-mono text-slate-800">+54 9 11 4455-6677</span>
-                </p>
-              </div>
-            </div>
-            <button onclick="openWebsiteWidgetModal('general')" class="self-start sm:self-auto min-h-[44px] sm:min-h-0 inline-flex items-center gap-1.5 text-sm font-medium text-[#1B4332] hover:underline underline-offset-2 whitespace-nowrap">
-              <i data-lucide="globe" class="w-4 h-4" aria-hidden="true"></i>
-              <span>Vincular a mi página web</span>
+            <button onclick="openWebsiteWidgetModal('general')" class="self-start sm:self-auto inline-flex items-center gap-1.5 text-xs font-medium text-[#1B4332] hover:underline underline-offset-2 whitespace-nowrap py-1">
+              <i data-lucide="globe" class="w-3.5 h-3.5" aria-hidden="true"></i>
+              <span data-i18n="hubLinkWeb">Vincular a mi página web</span>
             </button>
           </div>
+
+          <ul class="divide-y divide-slate-100">
+            <li class="px-4 sm:px-5 py-4 flex flex-wrap sm:flex-nowrap items-center gap-x-4 gap-y-3">
+              <div id="hub-avatar-vendedor" class="roster-avatar" aria-hidden="true">V</div>
+              <div class="min-w-0 flex-1">
+                <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                  <h3 class="text-sm font-semibold text-slate-900" data-i18n="emp1Title">Vendedor IA</h3>
+                  <span id="hub-status-vendedor" class="text-xs font-medium text-slate-600">Sin activar</span>
+                </div>
+                <p class="text-sm text-slate-600 mt-0.5 leading-snug" data-i18n="emp1Role">Responde consultas de precios y stock por WhatsApp y anota pedidos para que vos los confirmes.</p>
+              </div>
+              <div id="hub-actions-vendedor" class="w-full sm:w-auto pl-14 sm:pl-0 flex items-center gap-3 shrink-0"></div>
+            </li>
+            <li class="px-4 sm:px-5 py-4 flex flex-wrap sm:flex-nowrap items-center gap-x-4 gap-y-3">
+              <div id="hub-avatar-cobranzas" class="roster-avatar" aria-hidden="true">C</div>
+              <div class="min-w-0 flex-1">
+                <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                  <h3 class="text-sm font-semibold text-slate-900" data-i18n="emp2Title">Gestor de Cobranzas</h3>
+                  <span id="hub-status-cobranzas" class="text-xs font-medium text-slate-600">Sin activar</span>
+                </div>
+                <p class="text-sm text-slate-600 mt-0.5 leading-snug" data-i18n="emp2Role">Prepara recordatorios de pago con el link de tu Mercado Pago y registra lo que cobrás.</p>
+              </div>
+              <div id="hub-actions-cobranzas" class="w-full sm:w-auto pl-14 sm:pl-0 flex items-center gap-3 shrink-0"></div>
+            </li>
+            <li class="px-4 sm:px-5 py-4 flex flex-wrap sm:flex-nowrap items-center gap-x-4 gap-y-3">
+              <div id="hub-avatar-accounting" class="roster-avatar" aria-hidden="true">A</div>
+              <div class="min-w-0 flex-1">
+                <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                  <h3 class="text-sm font-semibold text-slate-900" data-i18n="emp3Title">Asesor Contable</h3>
+                  <span id="hub-status-accounting" class="text-xs font-medium text-slate-600">Sin activar</span>
+                </div>
+                <p class="text-sm text-slate-600 mt-0.5 leading-snug" data-i18n="emp3Role">Ordena tus comprobantes y arma un resumen para tu contador.</p>
+              </div>
+              <div id="hub-actions-accounting" class="w-full sm:w-auto pl-14 sm:pl-0 flex items-center gap-3 shrink-0"></div>
+            </li>
+            <li class="px-4 sm:px-5 py-4 flex flex-wrap sm:flex-nowrap items-center gap-x-4 gap-y-3">
+              <div id="hub-avatar-citas" class="roster-avatar" aria-hidden="true">T</div>
+              <div class="min-w-0 flex-1">
+                <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                  <h3 class="text-sm font-semibold text-slate-900" data-i18n="emp5Title">Agendador de turnos</h3>
+                  <span id="hub-status-citas" class="text-xs font-medium text-slate-600">Sin activar</span>
+                </div>
+                <p class="text-sm text-slate-600 mt-0.5 leading-snug" data-i18n="emp5Role">Toma pedidos de turno con servicio, día y horario para que los confirmes.</p>
+              </div>
+              <div id="hub-actions-citas" class="w-full sm:w-auto pl-14 sm:pl-0 flex items-center gap-3 shrink-0"></div>
+            </li>
+            <li class="px-4 sm:px-5 py-4 flex flex-wrap sm:flex-nowrap items-center gap-x-4 gap-y-3">
+              <div id="hub-avatar-talleexacto" class="roster-avatar" aria-hidden="true">TE</div>
+              <div class="min-w-0 flex-1">
+                <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                  <h3 class="text-sm font-semibold text-slate-900" data-i18n="empTalleTitle">TalleExacto</h3>
+                  <span id="hub-status-talleexacto" class="text-xs font-medium text-slate-600">Sin activar</span>
+                </div>
+                <p class="text-sm text-slate-600 mt-0.5 leading-snug" data-i18n="empTalleRole">Recomienda talles a tus clientas con las medidas reales de tus prendas.</p>
+              </div>
+              <div id="hub-actions-talleexacto" class="w-full sm:w-auto pl-14 sm:pl-0 flex items-center gap-3 shrink-0"></div>
+            </li>
+          </ul>
         </div>
 
-        <!-- Los 5 Empleados Virtuales Universales -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-
-          <!-- 1. Vendedor IA -->
-          <div class="bg-white border border-slate-200 hover:border-[#2D6A4F] rounded-lg p-5 flex flex-col justify-between transition-all">
-            <div class="space-y-4">
-              <div class="flex items-center justify-between pb-2 border-b border-slate-100">
-                <span class="text-xs font-medium text-slate-600" data-i18n="emp1Category">
-                  Atención & Ventas
-                </span>
-                <div class="flex items-center space-x-1.5">
-                  <span class="text-[11px] font-mono text-[#2D6A4F] font-bold">24/7</span>
-                  <span id="hub-status-vendedor" class="text-[11px] font-medium px-2 py-0.5 rounded font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">● En demo</span>
-                </div>
-              </div>
-              <div>
-                <h3 class="text-base font-semibold text-slate-900" data-i18n="emp1Title">
-                  1. Vendedor IA (WhatsApp)
-                </h3>
-                <div class="mt-3 p-3 bg-slate-50 border border-slate-200 rounded text-xs text-slate-700 space-y-1">
-                  <span class="font-bold text-slate-900 block text-[11px] uppercase tracking-wide text-[#1B4332]" data-i18n="empWhatForTitle">¿Para qué sirve?</span>
-                  <p class="leading-relaxed" data-i18n="emp1WhatForDesc">
-                    Atiende a tus clientes en WhatsApp día y noche. Consulta precios y stock en tiempo real, informa horarios y toma pedidos en cualquier idioma sin intervención manual.
-                  </p>
-                </div>
-              </div>
-              <ul class="text-xs text-slate-600 space-y-2 pt-1 font-sans">
-                <li class="flex items-start space-x-2">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp1F1">No pierde ventas fuera de horario comercial</span>
-                </li>
-                <li class="flex items-start space-x-2">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp1F2">Nunca ofrece productos sin stock disponible</span>
-                </li>
-                <li class="flex items-start space-x-2">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp1F3">Respuestas con los datos de tu catálogo</span>
-                </li>
-              </ul>
-            </div>
-            <div id="hub-actions-vendedor" class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-2">
-              <button onclick="switchStep('step-simulator')" class="flex-1 py-2 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition" data-i18n="btnTestChat">
-                Probar Chat en Vivo →
-              </button>
-              <button onclick="switchStep('step-catalog')" class="py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded text-xs font-medium transition" data-i18n="btnCatalog">
-                Catálogo
-              </button>
-            </div>
-          </div>
-
-          <!-- 2. Gestor de Cobranzas -->
-          <div class="bg-white border border-slate-200 hover:border-[#2D6A4F] rounded-lg p-5 flex flex-col justify-between transition-all">
-            <div class="space-y-4">
-              <div class="flex items-center justify-between pb-2 border-b border-slate-100">
-                <span class="text-xs font-medium text-slate-600" data-i18n="emp2Category">
-                  Cobranzas Recurrentes
-                </span>
-                <div class="flex items-center space-x-1.5">
-                  <span class="text-[11px] font-mono text-[#2D6A4F] font-bold">Mercado Pago</span>
-                  <span id="hub-status-cobranzas" class="text-[11px] font-medium px-2 py-0.5 rounded font-medium bg-slate-100 text-slate-600 border border-slate-200">○ Sin activar</span>
-                </div>
-              </div>
-              <div>
-                <h3 class="text-base font-semibold text-slate-900" data-i18n="emp2Title">
-                  2. Gestor de Cobranzas
-                </h3>
-                <div class="mt-3 p-3 bg-slate-50 border border-slate-200 rounded text-xs text-slate-700 space-y-1">
-                  <span class="font-bold text-slate-900 block text-[11px] uppercase tracking-wide text-[#1B4332]" data-i18n="empWhatForTitle">¿Para qué sirve?</span>
-                  <p class="leading-relaxed" data-i18n="emp2WhatForDesc">
-                    Prepara hasta 3 recordatorios de pago para WhatsApp con link a tu cuenta de Mercado Pago, registra los pagos recibidos y deja de avisar después del tercero.
-                  </p>
-                </div>
-              </div>
-              <ul class="text-xs text-slate-600 space-y-2 pt-1 font-sans">
-                <li class="flex items-start space-x-2">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp2F1">Calendario de avisos: Día 0, Día +3 y Día +7</span>
-                </li>
-                <li class="flex items-start space-x-2">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp2F2">Cobro directo a tu propia cuenta de Mercado Pago</span>
-                </li>
-                <li class="flex items-start space-x-2">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp2F3">Pausa después del tercer aviso y registro de pagos</span>
-                </li>
-              </ul>
-            </div>
-            <div id="hub-actions-cobranzas" class="pt-5 mt-4 border-t border-slate-100 flex items-center">
-              <a href="/cobranzas" class="w-full py-2.5 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded-lg text-xs font-semibold transition text-center flex items-center justify-center space-x-1.5 shadow-subtle" data-i18n="btnOpenCobranzas">
-                <span>Abrir Gestor de Cobranzas</span>
-                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- 3. Facturación & Gastos -->
-          <div class="bg-white border border-slate-200 hover:border-[#2D6A4F] rounded-lg p-5 flex flex-col justify-between transition-all">
-            <div class="space-y-4">
-              <div class="flex items-center justify-between pb-2 border-b border-slate-100">
-                <span class="text-xs font-medium text-slate-600" data-i18n="emp3Category">
-                  Administración & contador
-                </span>
-                <div class="flex items-center space-x-1.5">
-                  <span class="text-[11px] font-mono text-[#2D6A4F] font-bold">Orden & revisión</span>
-                  <span id="hub-status-accounting" class="text-[11px] font-medium px-2 py-0.5 rounded font-medium bg-slate-100 text-slate-600 border border-slate-200">○ Sin activar</span>
-                </div>
-              </div>
-              <div>
-                <h3 class="text-base font-semibold text-slate-900" data-i18n="emp3Title">
-                  3. Asesor Contable
-                </h3>
-                <div class="mt-3 p-3 bg-slate-50 border border-slate-200 rounded text-xs text-slate-700 space-y-1">
-                  <span class="font-bold text-slate-900 block text-[11px] uppercase tracking-wide text-[#1B4332]" data-i18n="empWhatForTitle">¿Para qué sirve?</span>
-                  <p class="leading-relaxed" data-i18n="emp3WhatForDesc">
-                    Ordená gastos y comprobantes, detectá datos repetidos y exportá un resumen claro para trabajar con tu contador.
-                  </p>
-                </div>
-              </div>
-              <ul class="text-xs text-slate-600 space-y-2 pt-1 font-sans">
-                <li class="flex items-start space-x-2">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp3F1">Importá planillas o registrá comprobantes en un solo lugar</span>
-                </li>
-                <li class="flex items-start space-x-2">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp3F2">Revisá CUIT, montos, categorías y duplicados antes de aprobar</span>
-                </li>
-                <li class="flex items-start space-x-2">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp3F3">Descargá Excel o CSV y compartilo con tu contador</span>
-                </li>
-              </ul>
-            </div>
-            <div id="hub-actions-accounting" class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-2">
-              <button onclick="switchStep('step-accounting')" class="flex-1 py-2 px-3 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition" data-i18n="btnOpenAccounting">
-                Abrir Asesor Contable →
-              </button>
-            </div>
-          </div>
-
-          <!-- 4. Agendador de Citas & Turnos (Google Calendar & WhatsApp) -->
-          <div class="bg-white border-2 border-emerald-600/70 hover:border-emerald-700 rounded-lg p-5 flex flex-col justify-between transition-all md:col-span-2 shadow-subtle">
-            <div class="space-y-4">
-              <div class="flex items-center justify-between pb-2 border-b border-slate-100">
-                <span class="text-xs font-medium text-emerald-800" data-i18n="emp5Category">
-                  Servicios, Consultorios & Estética
-                </span>
-                <div class="flex items-center space-x-1.5">
-                  <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 font-bold border border-emerald-200" data-i18n="emp5Badge">Google Calendar + WhatsApp</span>
-                  <span id="hub-status-citas" class="text-[11px] font-medium px-2 py-0.5 rounded font-medium bg-slate-100 text-slate-600 border border-slate-200">○ Sin activar</span>
-                </div>
-              </div>
-              <div>
-                <div class="flex items-center space-x-2">
-                  <h3 class="text-base font-bold text-slate-900" data-i18n="emp5Title">
-                    4. Agendador de Citas & Turnos (WhatsApp & Calendar)
-                  </h3>
-                  <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-amber-100 text-amber-900 font-bold uppercase" data-i18n="badgeNew">Nuevo</span>
-                </div>
-                <div class="mt-3 p-3 bg-emerald-50/50 border border-emerald-200/70 rounded text-xs text-slate-700 space-y-1">
-                  <span class="font-bold text-slate-900 block text-[11px] uppercase tracking-wide text-[#1B4332]" data-i18n="empWhatForTitle">¿Para qué sirve?</span>
-                  <p class="leading-relaxed" data-i18n="emp5WhatForDesc">
-                    Recibe solicitudes de turno con servicio, fecha y horario. La disponibilidad en Calendar, las señas y los recordatorios se activan sólo al completar esas integraciones.
-                  </p>
-                </div>
-              </div>
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
-                <div class="flex items-start space-x-2 text-xs text-slate-600">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp5F1">Organizá citas y registrá señas</span>
-                </div>
-                <div class="flex items-start space-x-2 text-xs text-slate-600">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp5F2">Consultá la agenda de tu negocio</span>
-                </div>
-                <div class="flex items-start space-x-2 text-xs text-slate-600">
-                  <span class="text-[#2D6A4F] font-bold select-none">—</span>
-                  <span data-i18n="emp5F3">Administrá reprogramaciones y cancelaciones</span>
-                </div>
-              </div>
-            </div>
-            <div id="hub-actions-citas" class="pt-5 mt-4 border-t border-slate-100 flex items-center gap-3">
-              <button onclick="switchStep('step-citas')" class="flex-1 py-2 px-4 bg-[#1B4332] hover:bg-[#2D6A4F] text-white rounded text-xs font-semibold transition shadow-subtle flex items-center justify-center space-x-1.5" data-i18n="btnTestCitas">
-                <i data-lucide="calendar" class="w-3.5 h-3.5 text-emerald-300"></i>
-                <span>Probar Agendador de Citas en Vivo →</span>
-              </button>
-            </div>
-          </div>
-
-        </div>
-
-        <!-- Módulo Especializado: TalleExacto -->
-        <div class="p-5 bg-[#FAF7EE] border border-[#E6DCC3] rounded-lg flex flex-col md:flex-row md:items-center justify-between gap-4">
-          <div class="space-y-1 max-w-2xl">
-            <div class="flex items-center space-x-2">
-              <span class="text-[11px] font-mono uppercase tracking-wider font-bold text-[#8A5A1E]">Módulo Especializado Moda</span>
-              <span id="hub-status-talleexacto" class="text-[11px] font-medium px-2 py-0.5 rounded font-medium bg-slate-100 text-slate-600 border border-slate-200">○ Sin activar</span>
-              <span class="text-slate-300">•</span>
-              <span class="text-xs text-slate-600 font-medium">Tiendanube, Shopify, WooCommerce o WhatsApp</span>
-            </div>
-            <h4 class="text-base font-semibold text-slate-900">
-              TalleExacto — Probador Virtual & Recomendador de Medidas
-            </h4>
-            <p class="text-xs text-slate-700 leading-relaxed">
-              Resuelve las dudas de medidas de tus clientas con un probador virtual interactivo y recomendaciones automáticas por WhatsApp.
-            </p>
-          </div>
-          <div id="hub-actions-talleexacto" class="flex items-center gap-2 shrink-0">
-            <button onclick="switchStep('step-talleexacto')" class="py-2 px-3.5 bg-[#8A5A1E] hover:bg-[#6E4817] text-white rounded text-xs font-semibold transition">
-              Probar Módulo →
-            </button>
-            <a href="/talleexacto" class="py-2 px-3 bg-white hover:bg-slate-100 text-slate-800 border border-[#E6DCC3] rounded text-xs font-medium transition">
-              Ver Módulo Completo ↗
-            </a>
-          </div>
-        </div>
-
-        <!-- Banner de Planes & Precios (Combo) -->
-        <div class="p-5 bg-[#1B4332] text-white rounded-lg flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div class="space-y-1">
-            <span class="text-emerald-300 font-mono text-[11px] font-bold uppercase tracking-wider">Contratación Flexible</span>
-            <h4 class="text-base font-semibold">Arma tu esquema personalizado de empleados</h4>
-            <p class="text-xs text-emerald-100/80">USD 17 por empleado virtual al mes (ARS 25.000 con Mercado Pago Argentina). Elegí sólo los empleados que necesitás.</p>
-          </div>
-          <button onclick="switchStep('step-billing')" class="px-4 py-2 bg-white hover:bg-emerald-50 text-[#1B4332] font-semibold text-xs rounded transition shrink-0">
-            Ver Planes & Facturación →
-          </button>
-        </div>
-
+        <p class="text-sm text-slate-600">
+          <button onclick="switchStep('step-billing')" class="font-medium text-[#1B4332] hover:underline underline-offset-2">Ver planes y formas de pago</button>
+        </p>
       </section>
 
 <section id="step-identity" class="step-content space-y-6 hidden">
@@ -3910,10 +3796,10 @@
         navStepHub: "Empleados virtuales",
         navSectionEmployees: "Empleados Virtuales",
         navStepSimulator: "Vendedor IA",
-        navStepCobranzas: "2. Gestor de Cobranzas",
-        navStepAccounting: "3. Asesor Contable",
-        navStepMultilingual: "4. Asistente Multilingüe (Turismo)",
-        navStepCitas: "5. Agendador de Citas (Turnos)",
+        navStepCobranzas: "Gestor de Cobranzas",
+        navStepAccounting: "Asesor Contable",
+        navStepMultilingual: "Asistente Multilingüe (Turismo)",
+        navStepCitas: "Agendador de turnos",
         navSectionFashion: "Especial Moda",
         navStepTalleexacto: "TalleExacto (Módulo Ropa)",
         navSectionSettings: "Ajustes & Configuración",
@@ -3931,8 +3817,23 @@
 
         // Hub principal y configuración inicial
         hubBadge: "EMPLEADOS VIRTUALES CON IA",
-        hubTitle: "Empleados virtuales con IA para tu negocio",
-        hubSubtitle: "Configurá asistentes para centralizar consultas, organizar turnos y automatizar tareas comerciales y administrativas con el control de tu equipo.",
+        hubTitle: "Vendé, cobrá y organizá tus turnos por WhatsApp.",
+        hubTitle2: "Sin vivir pegado al celular.",
+        btnTryChat: "Probar el chat",
+        hubPriceLine: "USD 17 por empleado al mes (ARS 25.000 con Mercado Pago Argentina). Activás sólo los que necesitás.",
+        hubSubtitle: "Changared suma empleados virtuales con IA a tu comercio o consultorio: responden precios y stock, preparan recordatorios de cobro y toman pedidos de turno. Vos revisás y confirmás.",
+        hubTeamTitle: "Elegí a quién sumar a tu equipo",
+        hubLinkWeb: "Vincular a mi página web",
+        hubStateOff: "Sin activar",
+        hubStateDemo: "En demo",
+        hubStateOn: "Activo",
+        hubOpen: "Abrir",
+        hubViewDemo: "Ver demo",
+        hubActivate: "Activar",
+        demoBanner: "Estás viendo una demo con datos de ejemplo; lo que cargues no se guarda.",
+        demoBannerCta: "Crear cuenta o ingresar",
+        chatNote: "Pedido anotado en tu panel, esperando tu confirmación",
+        chatCaption: "Conversación de ejemplo con un catálogo de prueba.",
         trialNoCard: "Probá la demo sin registrarte",
         trialTitle: "Configurá los empleados que necesita tu negocio",
         trialDesc: "Elegí ventas, cobranzas, agenda o comprobantes. Las integraciones se activan con las credenciales oficiales de tu negocio.",
@@ -3945,7 +3846,13 @@
 
         // Tarjetas de los 5 Empleados en Hub
         emp1Category: "Atención & Ventas",
-        emp1Title: "1. Vendedor IA (WhatsApp)",
+        emp1Role: "Responde consultas de precios y stock por WhatsApp y anota pedidos para que vos los confirmes.",
+        emp2Role: "Prepara recordatorios de pago con el link de tu Mercado Pago y registra lo que cobrás.",
+        emp3Role: "Ordena tus comprobantes y arma un resumen para tu contador.",
+        emp5Role: "Toma pedidos de turno con servicio, día y horario para que los confirmes.",
+        empTalleTitle: "TalleExacto",
+        empTalleRole: "Recomienda talles a tus clientas con las medidas reales de tus prendas.",
+        emp1Title: "Vendedor IA (WhatsApp)",
         emp1WhatForDesc: "Atiende a tus clientes en WhatsApp día y noche. Consulta precios y stock en tiempo real, informa horarios y toma pedidos en cualquier idioma sin intervención manual.",
         emp1F1: "No pierde ventas fuera de horario comercial",
         emp1F2: "Nunca ofrece productos sin stock disponible",
@@ -3954,7 +3861,7 @@
         btnCatalog: "Catálogo",
 
         emp2Category: "Cobranzas Recurrentes",
-        emp2Title: "2. Gestor de Cobranzas",
+        emp2Title: "Gestor de Cobranzas",
         emp2WhatForDesc: "Prepara hasta 3 recordatorios de pago para WhatsApp con link a tu cuenta de Mercado Pago, registra los pagos recibidos y deja de avisar después del tercero.",
         emp2F1: "Calendario de avisos: Día 0, Día +3 y Día +7",
         emp2F2: "Cobro directo a tu propia cuenta de Mercado Pago",
@@ -3962,7 +3869,7 @@
         btnOpenCobranzas: "Abrir Gestor →",
 
         emp3Category: "Administración & contador",
-        emp3Title: "3. Asesor Contable",
+        emp3Title: "Asesor Contable",
         emp3WhatForDesc: "Ordená gastos y comprobantes, detectá datos repetidos y exportá un resumen claro para trabajar con tu contador.",
         emp3F1: "Importá planillas o registrá comprobantes en un solo lugar",
         emp3F2: "Revisá CUIT, montos, categorías y duplicados antes de aprobar",
@@ -3970,7 +3877,7 @@
         btnOpenAccounting: "Abrir Asesor Contable →",
 
         emp4Category: "Turismo & Hotelería",
-        emp4Title: "4. Asistente Multilingüe & Turismo",
+        emp4Title: "Asistente Multilingüe & Turismo",
         emp4WhatForDesc: "Atiende turistas 24/7 en +10 idiomas por WhatsApp y cartelería QR física en mesas o recepción. Cierra reservas directas ahorrando comisiones de plataformas externas, envía cartas en PDF y gestiona pagos con Pix y USD.",
         emp4F1: "Función pendiente de implementación",
         emp4F2: "Fluidez nativa inmediata en portugués, inglés, francés y español",
@@ -3979,7 +3886,7 @@
 
         emp5Category: "Servicios, Consultorios & Estética",
         emp5Badge: "Google Calendar + WhatsApp",
-        emp5Title: "5. Agendador de Citas & Turnos (WhatsApp & Calendar)",
+        emp5Title: "Agendador de turnos",
         emp5F1: "Función pendiente de implementación",
 
         emp5WhatForDesc: "Recibe solicitudes de turno con servicio, fecha y horario. La disponibilidad en Calendar, las señas y los recordatorios se activan sólo al completar esas integraciones.",
@@ -4132,10 +4039,10 @@
 
         navSectionEmployees: "Virtual Employees",
         navStepSimulator: "AI Sales Rep",
-        navStepCobranzas: "2. Debt Collection Manager",
-        navStepAccounting: "3. Invoicing & Expenses",
-        navStepMultilingual: "4. Multilingual Assistant (Tourism)",
-        navStepCitas: "5. Appointment Scheduler",
+        navStepCobranzas: "Debt Collection Manager",
+        navStepAccounting: "Invoicing & Expenses",
+        navStepMultilingual: "Multilingual Assistant (Tourism)",
+        navStepCitas: "Appointment Scheduler",
         navSectionFashion: "Fashion Special",
         navStepTalleexacto: "TalleExacto (Apparel Sizing)",
         navSectionSettings: "Settings & Configuration",
@@ -4153,8 +4060,23 @@
 
         // Hub Hero & Free Trial Banner
         hubBadge: "AI VIRTUAL EMPLOYEES",
-        hubTitle: "AI virtual employees for your business",
-        hubSubtitle: "Configure assistants to centralize inquiries, organize appointments, and automate commercial and administrative tasks while keeping your team in control.",
+        hubTitle: "Sell, collect payments and manage bookings on WhatsApp.",
+        hubTitle2: "Without living on your phone.",
+        btnTryChat: "Try the chat",
+        hubPriceLine: "USD 17 per employee per month. Turn on only the ones you need.",
+        hubSubtitle: "Changared adds AI virtual employees to your shop or practice: they answer price and stock questions, prepare payment reminders and take booking requests. You review and confirm.",
+        hubTeamTitle: "Choose who joins your team",
+        hubLinkWeb: "Link to my website",
+        hubStateOff: "Not active",
+        hubStateDemo: "In demo",
+        hubStateOn: "Active",
+        hubOpen: "Open",
+        hubViewDemo: "View demo",
+        hubActivate: "Activate",
+        demoBanner: "You are viewing a demo with sample data; nothing you add is saved.",
+        demoBannerCta: "Create account or sign in",
+        chatNote: "Order noted in your dashboard, waiting for your confirmation",
+        chatCaption: "Sample conversation with a test catalog.",
         trialNoCard: "Try the demo without signing up",
         trialTitle: "Configure the virtual employees your business needs",
         trialDesc: "Choose sales, collections, scheduling, or receipts. Integrations activate with your business's official credentials.",
@@ -4167,7 +4089,13 @@
 
         // Hub Cards
         emp1Category: "Customer Care & Sales",
-        emp1Title: "1. AI Sales Rep (WhatsApp)",
+        emp1Role: "Answers price and stock questions on WhatsApp and logs orders for you to confirm.",
+        emp2Role: "Prepares payment reminders with your Mercado Pago link and logs what you collect.",
+        emp3Role: "Organizes your receipts and builds a summary for your accountant.",
+        emp5Role: "Takes booking requests with service, day and time for you to confirm.",
+        empTalleTitle: "TalleExacto",
+        empTalleRole: "Recommends sizes to your customers using your garments’ real measurements.",
+        emp1Title: "AI Sales Rep (WhatsApp)",
         emp1WhatForDesc: "Serves your customers on WhatsApp day and night. Checks prices and stock in real-time, shares opening hours, and takes orders in any language without human effort.",
         emp1F1: "Never loses sales outside store hours",
         emp1F2: "Never offers out-of-stock items",
@@ -4176,7 +4104,7 @@
         btnCatalog: "Catalog",
 
         emp2Category: "Recurring Collections",
-        emp2Title: "2. Debt Collection Manager",
+        emp2Title: "Debt Collection Manager",
         emp2WhatForDesc: "Prepares up to 3 WhatsApp payment reminders with a link to your Mercado Pago account, logs the payments you receive and stops reminding after the third one.",
         emp2F1: "Reminder schedule: Day 0, Day +3, and Day +7",
         emp2F2: "Direct payment to your own Mercado Pago account",
@@ -4184,7 +4112,7 @@
         btnOpenCobranzas: "Open Manager →",
 
         emp3Category: "Administration & accountant",
-        emp3Title: "3. Accounting Assistant",
+        emp3Title: "Accounting Assistant",
         emp3WhatForDesc: "Organize expenses and receipts, flag duplicates, and export a clear summary for your accountant.",
         emp3F1: "Import spreadsheets or register receipts in one place",
         emp3F2: "Review tax ID, amounts, categories, and duplicates before approving",
@@ -4192,7 +4120,7 @@
         btnOpenAccounting: "Open Accounting Assistant →",
 
         emp4Category: "Tourism & Hospitality",
-        emp4Title: "4. Multilingual & Tourism Assistant",
+        emp4Title: "Multilingual & Tourism Assistant",
         emp4WhatForDesc: "Assists foreign tourists 24/7 in 10+ languages via WhatsApp and tabletop QR codes. Closes direct bookings saving OTA commissions, sends digital menus, and takes Pix & USD payments.",
         emp4F1: "Función pendiente de implementación",
         emp4F2: "Native fluency in Portuguese, English, French, and Spanish",
@@ -4201,7 +4129,7 @@
 
         emp5Category: "Services, Clinics & Salons",
         emp5Badge: "Google Calendar + WhatsApp",
-        emp5Title: "5. Appointment Scheduler (WhatsApp & Calendar)",
+        emp5Title: "Appointment scheduler",
         emp5WhatForDesc: "Receives appointment requests with service, date and time. Calendar availability, deposits and reminders turn on only once those integrations are set up.",
         emp5F1: "Función pendiente de implementación",
         emp5F2: "Live Google Calendar synchronization without double-booking",
@@ -4352,10 +4280,10 @@
 
         navSectionEmployees: "Funcionários Virtuais",
         navStepSimulator: "Vendedor IA",
-        navStepCobranzas: "2. Gestor de Cobranças",
-        navStepAccounting: "3. Faturamento & Despesas",
-        navStepMultilingual: "4. Assistente Multilíngue (Turismo)",
-        navStepCitas: "5. Agendador de Consultas e Horários",
+        navStepCobranzas: "Gestor de Cobranças",
+        navStepAccounting: "Faturamento & Despesas",
+        navStepMultilingual: "Assistente Multilíngue (Turismo)",
+        navStepCitas: "Agendador de Consultas e Horários",
         navSectionFashion: "Especial Moda",
         navStepTalleexacto: "TalleExacto (Módulo Roupas)",
         navSectionSettings: "Configurações & Ajustes",
@@ -4373,8 +4301,23 @@
 
         // Hub principal e configuração inicial
         hubBadge: "FUNCIONÁRIOS VIRTUAIS COM IA",
-        hubTitle: "Funcionários virtuais com IA para o seu negócio",
-        hubSubtitle: "Configure assistentes para centralizar consultas, organizar horários e automatizar tarefas comerciais e administrativas com sua equipe no controle.",
+        hubTitle: "Venda, cobre e organize seus horários pelo WhatsApp.",
+        hubTitle2: "Sem viver grudado no celular.",
+        btnTryChat: "Testar o chat",
+        hubPriceLine: "USD 17 por funcionário por mês. Ative só os que você precisa.",
+        hubSubtitle: "A Changared coloca funcionários virtuais com IA no seu comércio ou consultório: respondem preços e estoque, preparam lembretes de cobrança e recebem pedidos de horário. Você revisa e confirma.",
+        hubTeamTitle: "Escolha quem entra na sua equipe",
+        hubLinkWeb: "Vincular ao meu site",
+        hubStateOff: "Inativo",
+        hubStateDemo: "Em demo",
+        hubStateOn: "Ativo",
+        hubOpen: "Abrir",
+        hubViewDemo: "Ver demo",
+        hubActivate: "Ativar",
+        demoBanner: "Você está vendo uma demo com dados de exemplo; o que você carregar não é salvo.",
+        demoBannerCta: "Criar conta ou entrar",
+        chatNote: "Pedido anotado no seu painel, aguardando sua confirmação",
+        chatCaption: "Conversa de exemplo com um catálogo de teste.",
         trialNoCard: "Teste a demo sem cadastro",
         trialTitle: "Configure os funcionários virtuais que sua empresa precisa",
         trialDesc: "Escolha vendas, cobranças, agenda ou comprovantes. As integrações são ativadas com as credenciais oficiais da sua empresa.",
@@ -4387,7 +4330,13 @@
 
         // Cartões dos 5 Funcionários no Hub
         emp1Category: "Atendimento & Vendas",
-        emp1Title: "1. Vendedor IA (WhatsApp)",
+        emp1Role: "Responde dúvidas de preço e estoque no WhatsApp e anota pedidos para você confirmar.",
+        emp2Role: "Prepara lembretes de pagamento com o link do seu Mercado Pago e registra o que você recebe.",
+        emp3Role: "Organiza seus comprovantes e monta um resumo para o seu contador.",
+        emp5Role: "Recebe pedidos de horário com serviço, dia e hora para você confirmar.",
+        empTalleTitle: "TalleExacto",
+        empTalleRole: "Recomenda tamanhos às suas clientes com as medidas reais das suas peças.",
+        emp1Title: "Vendedor IA (WhatsApp)",
         emp1WhatForDesc: "Atende seus clientes no WhatsApp dia e noite. Consulta preços e estoque em tempo real, informa horários e recebe pedidos em qualquer idioma sem esforço manual.",
         emp1F1: "Não perde vendas fora do horário comercial",
         emp1F2: "Nunca oferece produtos sem estoque",
@@ -4396,7 +4345,7 @@
         btnCatalog: "Catálogo",
 
         emp2Category: "Cobranças Recorrentes",
-        emp2Title: "2. Gestor de Cobranças",
+        emp2Title: "Gestor de Cobranças",
         emp2WhatForDesc: "Prepara até 3 lembretes de pagamento para o WhatsApp com link para sua conta Mercado Pago, registra os pagamentos recebidos e para de avisar depois do terceiro.",
         emp2F1: "Calendário de avisos: Dia 0, Dia +3 e Dia +7",
         emp2F2: "Recebimento direto na sua conta do Mercado Pago",
@@ -4404,7 +4353,7 @@
         btnOpenCobranzas: "Abrir Gestor →",
 
         emp3Category: "Administração & contador",
-        emp3Title: "3. Assistente Contábil",
+        emp3Title: "Assistente Contábil",
         emp3WhatForDesc: "Organize gastos e comprovantes, identifique duplicidades e exporte um resumo claro para seu contador.",
         emp3F1: "Importe planilhas ou registre comprovantes em um só lugar",
         emp3F2: "Revise identificação fiscal, valores, categorias e duplicidades antes de aprovar",
@@ -4412,7 +4361,7 @@
         btnOpenAccounting: "Abrir Assistente Contábil →",
 
         emp4Category: "Turismo & Hotelaria",
-        emp4Title: "4. Assistente Multilíngue & Turismo",
+        emp4Title: "Assistente Multilíngue & Turismo",
         emp4WhatForDesc: "Atende turistas 24/7 em mais de 10 idiomas pelo WhatsApp e QR codes em mesas ou balcão. Fecha reservas diretas sem comissões de terceiros, envia cardápios em PDF e aceita Pix e USD.",
         emp4F1: "Función pendiente de implementación",
         emp4F2: "Fluência nativa em português, inglês, francês e espanhol",
@@ -4421,7 +4370,7 @@
 
         emp5Category: "Serviços, Clínicas & Estética",
         emp5Badge: "Google Calendar + WhatsApp",
-        emp5Title: "5. Agendador de Consultas e Horários (WhatsApp & Calendar)",
+        emp5Title: "Agendador de horários",
         emp5WhatForDesc: "Recebe pedidos de horário com serviço, data e hora. A disponibilidade no Calendar, os sinais e os lembretes só funcionam depois de concluir essas integrações.",
         emp5F1: "Función pendiente de implementación",
         emp5F2: "Sincronização em tempo real com Google Calendar sem conflitos",
@@ -4469,6 +4418,11 @@
 
     let currentUiLang = 'es';
 
+    // Texto de interfaz en el idioma activo (con español de respaldo)
+    function uiT(key) {
+      return (translations[currentUiLang] && translations[currentUiLang][key]) || translations.es[key] || key;
+    }
+
     function setUiLanguage(lang) {
       if (!translations[lang]) return;
       currentUiLang = lang;
@@ -4476,9 +4430,9 @@
       // Actualizar pills superiores
       document.querySelectorAll('.lang-pill').forEach(btn => {
         if (btn.dataset.lang === lang) {
-          btn.className = "lang-pill px-2 py-1 rounded text-[11px] font-semibold bg-white text-emerald-800 shadow-subtle border border-slate-200 transition";
+          btn.className = "lang-pill px-2 py-1 rounded text-[11px] font-semibold bg-white text-[#1B4332] transition";
         } else {
-          btn.className = "lang-pill px-2 py-1 rounded text-[11px] font-medium text-slate-600 hover:text-slate-900 transition";
+          btn.className = "lang-pill px-2 py-1 rounded text-[11px] font-medium text-emerald-50 hover:text-white transition";
         }
       });
 
@@ -4512,6 +4466,7 @@
 
       updateBackButtons();
       updateDynamicBreadcrumb(currentStepId);
+      applyCompanyDataToUI();
 
       lucide.createIcons();
 
@@ -5062,9 +5017,8 @@
         if (demoBanner) demoBanner.classList.remove('hidden');
         if (container) {
           container.innerHTML = `
-            <button onclick="openAuthModal('header')" class="inline-flex items-center space-x-1.5 px-2.5 sm:px-3 py-1 text-xs font-bold text-slate-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg transition shadow-2xs">
-              <span>🔑</span>
-              <span>Ingresar</span>
+            <button onclick="openAuthModal('header')" class="px-3 py-1.5 text-xs font-semibold text-[#1B4332] bg-white hover:bg-emerald-50 rounded-lg transition">
+              Ingresar
             </button>
           `;
         }
@@ -5591,33 +5545,23 @@
         // Sin sesión es la demo pública: nada está activado de verdad.
         const isDemo = !currentUser;
 
-        // 1. Hub Status Badge
+        // 1. Estado en la nómina: el avatar se "enciende" con el color de la marca
         const statusEl = document.getElementById(`hub-status-${emp.key}`);
         if (statusEl) {
-          if (isHired) {
-            statusEl.className = "text-[11px] px-2 py-0.5 rounded font-bold bg-emerald-100 text-emerald-800 border border-emerald-300";
-            statusEl.innerText = isDemo ? "● En demo" : "● Activo";
-          } else {
-            statusEl.className = "text-[11px] px-2 py-0.5 rounded font-medium bg-slate-100 text-slate-600 border border-slate-200";
-            statusEl.innerText = "○ Sin activar";
-          }
+          statusEl.className = isHired ? "text-xs font-medium text-emerald-800" : "text-xs font-medium text-slate-600";
+          statusEl.innerText = isHired ? (isDemo ? uiT('hubStateDemo') : uiT('hubStateOn')) : uiT('hubStateOff');
         }
+        document.getElementById(`hub-avatar-${emp.key}`)?.classList.toggle('is-on', isHired);
 
         // 2. Hub Action Container
         const actionsEl = document.getElementById(`hub-actions-${emp.key}`);
         if (actionsEl) {
-          if (isHired) {
-            actionsEl.innerHTML = emp.renderActiveActions();
-          } else {
-            actionsEl.innerHTML = `
-              <button onclick="openBusinessConfigModal('${emp.key}')" class="flex-1 min-h-[40px] py-2 px-3 bg-white hover:bg-slate-50 active:bg-slate-100 text-[#1B4332] border border-slate-300 rounded-lg text-xs font-semibold transition flex items-center justify-center">
-                <span>Activar este empleado</span>
-              </button>
-              <button onclick="switchStep('${emp.step}')" class="min-h-[40px] py-2 px-3 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-xs font-medium transition">
-                Explorar demo
-              </button>
-            `;
-          }
+          const open = emp.key === 'cobranzas'
+            ? `<a href="/cobranzas" class="text-xs font-medium text-[#1B4332] hover:underline underline-offset-2">${isHired ? uiT('hubOpen') : uiT('hubViewDemo')}</a>`
+            : `<button onclick="switchStep('${emp.step}')" class="text-xs font-medium text-[#1B4332] hover:underline underline-offset-2">${isHired ? uiT('hubOpen') : uiT('hubViewDemo')}</button>`;
+          actionsEl.innerHTML = isHired
+            ? open
+            : `<button onclick="openBusinessConfigModal('${emp.key}')" class="min-h-[36px] px-3 bg-white hover:bg-slate-50 active:bg-slate-100 text-slate-800 border border-slate-300 rounded-lg text-xs font-medium transition">${uiT('hubActivate')}</button>${open}`;
         }
 
         // 3. Step Uncontracted Banner
@@ -7716,6 +7660,7 @@
     }
 
     document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('.chat-phone')?.classList.add('chat-play');
       loadBillingCatalog();
       const p = new URLSearchParams(location.search).get('pago');
       if (p === 'ok') showToast('¡Pago recibido! Tu plan se activará en instantes.');
