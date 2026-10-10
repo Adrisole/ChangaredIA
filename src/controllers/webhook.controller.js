@@ -5,6 +5,11 @@ import { conversationRepository } from '../repositories/conversation.repository.
 import { encryptionService } from '../services/encryption.service.js';
 import { config } from '../config/env.js';
 
+const maskPhone = (phone) => {
+  const digits = String(phone || '').replace(/\D/g, '');
+  return digits ? `***${digits.slice(-4)}` : 'desconocido';
+};
+
 /**
  * Controlador de Webhooks de WhatsApp Multi-Tenant.
  * Gestiona verificación GET (Meta) y procesamiento de mensajes POST con Meta Cloud API oficial.
@@ -148,7 +153,7 @@ export const handleIncomingMessage = async (req, res, next) => {
       });
     }
 
-    console.log(`[WhatsApp Webhook] Mensaje recibido para [${business.name}] de [${sender}] (${customerName || 'Sin nombre'}): "${messageText}"`);
+    console.log(`[WhatsApp Webhook] Mensaje recibido para tenant ${business.id} de ${maskPhone(sender)}`);
 
     // 5. Obtener o crear la conversación en la persistencia dual (JSON + MongoDB)
     const conversation = await conversationRepository.getOrCreate(business.id, sender, customerName);
@@ -165,7 +170,7 @@ export const handleIncomingMessage = async (req, res, next) => {
 
     // 7. Evaluar si la conversación está en control humano (IA pausada)
     if (conversation.status === 'human_takeover') {
-      console.log(`[WhatsApp Webhook] Conversación con [${sender}] está en modo 'human_takeover' (Pausada). La IA se silencia.`);
+      console.log(`[WhatsApp Webhook] Conversación con ${maskPhone(sender)} está en modo 'human_takeover' (Pausada). La IA se silencia.`);
       return res.status(200).json({
         success: true,
         status: 'human_takeover',
