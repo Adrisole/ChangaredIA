@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- SEO Primario 100/100 -->
-  <title>Gestor de Cobranzas Automático por WhatsApp & Mercado Pago — Changared</title>
-  <meta name="description" content="Automatiza la gestión de deudas y cobranzas recurrentes por WhatsApp con link directo de Mercado Pago. Secuencia en 3 avisos, apertura directa de WhatsApp Web, emisión de recibos y control de deudores.">
+  <title>Gestor de Cobranzas por WhatsApp — Changared</title>
+  <meta name="description" content="Ordená deudas, prepará hasta 3 recordatorios por WhatsApp con tu link o alias de Mercado Pago y registrá los pagos que verificás.">
   <meta name="keywords" content="gestor de cobranzas, cobranzas whatsapp, cobrar por mercado pago, cobranzas automaticas gimnasios, cobranzas alquileres, recordatorio pago whatsapp, whatsapp web cobranzas, changared cobranzas">
   <meta name="author" content="Changared">
   <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
@@ -21,16 +21,16 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://changared.com/cobranzas">
-  <meta property="og:title" content="Gestor de Cobranzas Automático por WhatsApp & Mercado Pago — Changared">
-  <meta property="og:description" content="Automatiza el cobro de cuotas y servicios por WhatsApp. Secuencias de aviso, apertura directa de WhatsApp Web, links de Mercado Pago y recibos automáticos.">
+  <meta property="og:title" content="Gestor de Cobranzas por WhatsApp — Changared">
+  <meta property="og:description" content="Ordená deudas, prepará recordatorios por WhatsApp con tu link o alias de Mercado Pago y registrá los pagos que verificás.">
   <meta property="og:image" content="https://changared.com/og-image.png">
   <meta property="og:locale" content="es_AR">
   <meta property="og:site_name" content="Changared">
 
   <!-- Twitter / X -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Gestor de Cobranzas Automático por WhatsApp & Mercado Pago — Changared">
-  <meta name="twitter:description" content="Automatiza el cobro de cuotas y servicios por WhatsApp. Secuencias de aviso, apertura directa de WhatsApp Web, links de Mercado Pago y recibos automáticos.">
+  <meta name="twitter:title" content="Gestor de Cobranzas por WhatsApp — Changared">
+  <meta name="twitter:description" content="Ordená deudas, prepará recordatorios por WhatsApp con tu link o alias de Mercado Pago y registrá los pagos que verificás.">
   <meta name="twitter:image" content="https://changared.com/og-image.png">
 
   <!-- Schema.org JSON-LD -->
@@ -42,7 +42,7 @@
     "operatingSystem": "All",
     "applicationCategory": "FinanceApplication",
     "url": "https://changared.com/cobranzas",
-    "description": "Automatización de cobranzas recurrentes por WhatsApp con cobro directo vía Mercado Pago y recibos oficiales.",
+    "description": "Organización de deudas y recordatorios de pago por WhatsApp con link o alias de Mercado Pago.",
     "publisher": {
       "@type": "Organization",
       "name": "Changared",
@@ -487,8 +487,8 @@
       <div style="display: flex; align-items: center; gap: 14px;">
         <img src="/logo-icon-white.png" alt="ChangaRed" style="height: 38px; width: auto;">
         <div>
-          <h1 class="brand-title">Gestor de Cobranzas Automático</h1>
-          <p class="brand-sub" id="header-subtitle">WhatsApp Web & Mercado Pago · Gimnasio Fuerza</p>
+          <h1 class="brand-title">Gestor de Cobranzas</h1>
+          <p class="brand-sub" id="header-subtitle">Recordatorios por WhatsApp y registro de pagos · Gimnasio Fuerza</p>
         </div>
       </div>
       <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
@@ -507,6 +507,13 @@
       <button class="tab-btn" onclick="setTab('cobros')" id="tab-btn-cobros">Cobros & Recibos</button>
       <button class="tab-btn" onclick="setTab('config')" id="tab-btn-config">Configuración & MP</button>
     </nav>
+
+    <!-- Aviso permanente: esta pantalla es una demo manual -->
+    <div class="card" role="note" style="background: #FFF3CF; border: 1px solid #E8D49A; margin-bottom: 16px; font-size: 13px; line-height: 1.5;">
+      <strong>Demo con datos de ejemplo.</strong> Los deudores y montos son ficticios y nada se guarda al cerrar la página.
+      Cada recordatorio se abre en tu WhatsApp para que lo envíes vos, y los pagos se registran a mano después de verificarlos en tu cuenta de Mercado Pago.
+      Todavía no hay envío ni acreditación automática.
+    </div>
 
     <!-- Notificación Flash -->
     <div id="flash-banner" class="alert-banner" style="display: none;"></div>
@@ -538,28 +545,18 @@
         <div class="card" style="margin-bottom: 0; background: #FFFFFF; border: 1px solid var(--line); padding: 16px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
             <span style="font-size: 11px; font-weight: 700; color: var(--verde); text-transform: uppercase; letter-spacing: 0.04em;">Bloque 1 · Integración & Canales</span>
-            <span class="mp-badge-connected" style="font-size: 10px; padding: 2px 6px;">● 1-CLIC LISTO</span>
+            <span style="font-size: 11px; font-family: monospace; color: var(--mute); font-weight: 700;">MANUAL</span>
           </div>
           <h3 style="font-family: var(--font-serif); font-size: 14px; font-weight: 700; margin-bottom: 4px; color: var(--ink);">¿De dónde entran las deudas?</h3>
-          <p style="font-size: 12px; color: var(--mute); margin-bottom: 10px;">Canales de entrada de comprobantes y conexión de cobro.</p>
+          <p style="font-size: 12px; color: var(--mute); margin-bottom: 10px;">Las cargás a mano o importando una planilla.</p>
           <div style="display: flex; flex-direction: column; gap: 6px; font-size: 12px;">
             <div style="padding: 6px 10px; background: #FAF8F2; border-radius: 4px; border: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center;">
-              <span>📱 WhatsApp Web / Envíos</span>
-              <button onclick="conectarWhatsAppCobranzas()" class="btn-light" style="padding: 2px 8px; font-size: 10px; font-weight: 700; color: var(--verde); cursor: pointer;">
-                <span id="txt-wa-cobranzas">● Conectado (+54 9 11 4455-6677)</span>
-              </button>
+              <span>📱 WhatsApp</span>
+              <span id="txt-wa-cobranzas" style="font-size: 11px; color: var(--mute);">Abrís cada aviso en tu WhatsApp</span>
             </div>
             <div style="padding: 6px 10px; background: #FAF8F2; border-radius: 4px; border: 1px solid var(--line); display: flex; justify-content: space-between; align-items: center;">
-              <span>💳 Mercado Pago (OAuth)</span>
-              <button onclick="conectarMercadoPagoCobranzas()" class="btn-light" style="padding: 2px 8px; font-size: 10px; font-weight: 700; color: var(--verde); cursor: pointer;">
-                <span id="txt-mp-cobranzas">● Vinculado</span>
-              </button>
-            </div>
-            <div style="padding: 6px 10px; background: #DDEBDD; border-radius: 4px; border: 1px solid var(--verde); display: flex; justify-content: space-between; align-items: center;">
-              <span style="font-weight: 600; color: var(--verde-osc);">🌐 Vincular a Mi Página Web</span>
-              <button onclick="abrirModalWebCobranzas()" class="btn-dark" style="padding: 3px 8px; font-size: 10px; font-weight: 700; cursor: pointer;">
-                Código Web →
-              </button>
+              <span>💳 Mercado Pago</span>
+              <span id="txt-mp-cobranzas" style="font-size: 11px; color: var(--mute);">Tu link o alias de cobro</span>
             </div>
             <button onclick="document.getElementById('file-import-deudas').click()" class="btn-light" style="width: 100%; justify-content: center; font-size: 11px; padding: 6px 8px; cursor: pointer;">
               📁 Importar Excel / CSV de Deudores
@@ -575,7 +572,7 @@
             <span style="font-size: 10px; font-family: monospace; color: var(--mute);">MÁQUINA 3 PASOS</span>
           </div>
           <h3 style="font-family: var(--font-serif); font-size: 14px; font-weight: 700; margin-bottom: 4px; color: var(--ink);">Cálculo de Atraso & Plantillas</h3>
-          <p style="font-size: 12px; color: var(--mute); margin-bottom: 10px;">Secuencia gradual de 3 avisos con protección de línea.</p>
+          <p style="font-size: 12px; color: var(--mute); margin-bottom: 10px;">Hasta 3 avisos por deuda; después del tercero no se preparan más.</p>
           <div style="display: flex; flex-direction: column; gap: 6px; font-size: 11px;">
             <div style="padding: 6px 8px; background: #FAF8F2; border-radius: 4px; border: 1px solid var(--line); display: flex; justify-content: space-between;">
               <span><strong>Aviso 1 (Día 0):</strong> Aviso amistoso</span>
@@ -596,19 +593,19 @@
         <div class="card" style="margin-bottom: 0; background: #FFFFFF; border: 1px solid var(--line); padding: 16px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
             <span style="font-size: 11px; font-weight: 700; color: var(--verde); text-transform: uppercase; letter-spacing: 0.04em;">Bloque 3 · Acción de Salida</span>
-            <span style="font-size: 10px; font-family: monospace; color: var(--verde); font-weight: 700;">CONCILIACIÓN IPN</span>
+            <span style="font-size: 10px; font-family: monospace; color: var(--verde); font-weight: 700;">MANUAL</span>
           </div>
           <h3 style="font-family: var(--font-serif); font-size: 14px; font-weight: 700; margin-bottom: 4px; color: var(--ink);">¿Qué pasa cuando pagan?</h3>
-          <p style="font-size: 12px; color: var(--mute); margin-bottom: 10px;">Acreditación y emisión de comprobantes en tiempo real.</p>
+          <p style="font-size: 12px; color: var(--mute); margin-bottom: 10px;">Por ahora el pago se registra a mano.</p>
           <div style="display: flex; flex-direction: column; gap: 6px; font-size: 11px; color: var(--ink);">
             <div style="padding: 5px 8px; background: #FAF8F2; border-radius: 4px; border: 1px solid var(--line);">
-              <strong>1. Webhook detecta el cobro:</strong> Notificación IPN en milisegundos.
+              <strong>1. Verificás el pago</strong> en tu cuenta de Mercado Pago.
             </div>
             <div style="padding: 5px 8px; background: #FAF8F2; border-radius: 4px; border: 1px solid var(--line);">
-              <strong>2. Emite Recibo N° XXXX:</strong> Pasa a la solapa de Cobros automáticamente.
+              <strong>2. Tocás "Registrar pago":</strong> la deuda pasa a Cobros con un número de comprobante interno.
             </div>
             <div style="padding: 5px 8px; background: #FAF8F2; border-radius: 4px; border: 1px solid var(--line);">
-              <strong>3. Notifica al cliente y dueño:</strong> Envía el comprobante por WhatsApp.
+              <strong>3. Si querés, le confirmás el pago</strong> al cliente por WhatsApp.
             </div>
           </div>
         </div>
@@ -632,7 +629,7 @@
           </div>
           <div>
             <label style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 4px;">Teléfono de WhatsApp (con cód. de país)</label>
-            <input type="tel" id="input-new-telefono" class="input-field" placeholder="Ej. 5491144556677">
+            <input type="tel" id="input-new-telefono" class="input-field" placeholder="Ej. 5491112345678">
           </div>
         </div>
         <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 10px;">
@@ -647,9 +644,9 @@
         </div>
         <div>
           <label style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 4px;">Link de Mercado Pago personalizado (opcional)</label>
-          <input type="text" id="input-new-link" class="input-field" placeholder="Opcional: se autogenera mpago.la/fuerza-... si se deja vacío">
+          <input type="text" id="input-new-link" class="input-field" placeholder="Opcional: si lo dejás vacío se usa tu link o alias general">
         </div>
-        <button class="btn-dark" onclick="agregarDeuda()">Agregar deuda y preparar WhatsApp</button>
+        <button class="btn-dark" onclick="agregarDeuda()">Agregar deuda</button>
       </div>
     </section>
 
@@ -674,90 +671,36 @@
         <input type="text" id="input-cfg-negocio" class="input-field" value="Gimnasio Fuerza" oninput="actualizarNegocio(this.value)">
       </div>
 
-      <!-- Integración Real con Mercado Pago -->
-      <div class="card" style="border: 1px solid #bbf7d0;">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; margin-bottom: 14px;">
-          <div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <h2 class="form-title" style="margin-bottom: 0;">Integración con Mercado Pago</h2>
-              <span id="cfg-mp-badge" class="mp-badge-connected">● Conectado (Producción)</span>
-            </div>
-            <p style="font-size: 13px; color: var(--mute); margin-top: 4px;">
-              Tus cobros ingresan de forma directa a tu propia cuenta de Mercado Pago. El gestor crea las preferencias y actualiza el estado automáticamente.
-            </p>
-          </div>
-          <button id="btn-oauth-mp" class="btn-mp" onclick="conectarMPOAuth()">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2v-2zm0-10h2v8h-2V6z"/>
-            </svg>
-            Reconectar con OAuth Oficial
-          </button>
-        </div>
-
-        <!-- Credenciales de Producción de Mercado Pago -->
-        <div style="background: #FAF8F2; border: 1px solid var(--line); border-radius: 8px; padding: 14px; margin-top: 10px;">
-          <h3 style="font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--ink);">
-            Credenciales de Producción de Mercado Pago (API Checkout Pro)
-          </h3>
-
-          <div style="margin-bottom: 10px;">
-            <label style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 3px;">
-              Production Access Token (APP_USR-...)
-            </label>
-            <div style="display: flex; gap: 6px;">
-              <input type="password" id="mp-access-token" class="input-field" style="margin-bottom: 0;" value="APP_USR-7128392182938129-100315-a7b29c91d8e74620f1827492-149204918">
-              <button class="btn-light" type="button" onclick="toggleTokenVisibility()">Ver</button>
-            </div>
-            <span style="font-size: 11px; color: var(--mute);">Obtenelo en Tu cuenta de Mercado Pago Developers &gt; Credenciales de producción.</span>
-          </div>
-
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
-            <div>
-              <label style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 3px;">
-                Public Key (APP_USR-...)
-              </label>
-              <input type="text" id="mp-public-key" class="input-field" style="margin-bottom: 0;" value="APP_USR-88273619-3829-4102-bf89-281938192834">
-            </div>
-            <div>
-              <label style="font-size: 12px; font-weight: 600; display: block; margin-bottom: 3px;">
-                Alias o CVU de Cobro Inmediato
-              </label>
-              <input type="text" id="mp-alias" class="input-field" style="margin-bottom: 0;" value="gimnasiofuerza.mp">
-            </div>
-          </div>
-
-          <div style="display: flex; gap: 10px; align-items: center; margin-top: 12px;">
-            <button class="btn-solid" onclick="guardarCredencialesMP()">Guardar y Validar Credenciales MP</button>
-            <button class="btn-light" onclick="probarLinkMPPrueba()">Generar Link de Prueba ($1.000)</button>
-          </div>
-        </div>
-
-        <!-- Webhook Info -->
-        <div style="margin-top: 12px; font-size: 12px; color: var(--mute); display: flex; align-items: center; gap: 6px;">
-          <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #22c55e;"></span>
-          <span>Webhook IPN Activo: <code>https://changared.com/api/webhooks/mercadopago</code> (Notificación en segundo plano sin demoras)</span>
-        </div>
+      <!-- Link o alias de cobro (sin integración automática) -->
+      <div class="card">
+        <h2 class="form-title">Tu link o alias de cobro</h2>
+        <label for="mp-alias" style="display:block; font-size: 13px; margin-bottom: 6px;">Link de Mercado Pago, alias o CVU</label>
+        <input type="text" id="mp-alias" class="input-field" value="" placeholder="Ej: tu.alias.mp o https://mpago.la/..." oninput="renderPreviews(); renderDeudas();">
+        <p style="font-size: 12px; color: var(--mute); margin-top: 8px; line-height: 1.5;">
+          Se agrega a los recordatorios cuando una deuda no tiene su propio link. Changared no se conecta a tu cuenta de Mercado Pago:
+          verificás cada pago ahí y lo registrás acá.
+        </p>
       </div>
 
       <!-- Secuencia de 3 Avisos con Silenciado -->
       <div class="card">
-        <h2 class="form-title">Secuencia de 3 recordatorios automáticos por WhatsApp</h2>
+        <h2 class="form-title">Secuencia de 3 recordatorios por WhatsApp</h2>
         <div style="background: #FDF4E7; border-left: 4px solid var(--rojo); padding: 10px 14px; border-radius: 4px; margin-bottom: 14px; font-size: 13px;">
           <strong style="color: var(--rojo);">Regla de Reputación Comercial Estricta:</strong> 
-          Al enviar el tercer mensaje, el cliente pasa inmediatamente a estado <strong style="color: var(--rojo);">Silenciado</strong>. Se bloquean los avisos automáticos adicionales para no hostigar al deudor ni exponer el número a sanciones de WhatsApp.
+          Al enviar el tercer mensaje, el cliente pasa inmediatamente a estado <strong style="color: var(--rojo);">Silenciado</strong>. No se preparan más avisos, para no hostigar al deudor ni exponer tu número a bloqueos de WhatsApp.
         </div>
 
         <!-- Plantilla 1 -->
         <div style="margin-bottom: 16px;">
           <label style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Mensaje 1 · Día 0 (Aviso amistoso)</label>
-          <textarea id="tpl-0" class="input-field" rows="2" oninput="actualizarPlantilla(0, this.value)">Hola {nombre}, te escribimos de {negocio}. Tenés pendiente {monto}. Podés pagar en un toque acá: {link}</textarea>
+          <textarea id="tpl-0" class="input-field" rows="2" oninput="actualizarPlantilla(0, this.value)">Hola {nombre}, te escribimos de {negocio}. Tenés pendiente {monto}. Podés pagar con este link o alias: {link}</textarea>
           <div class="preview-bubble" id="preview-0"></div>
         </div>
 
         <!-- Plantilla 2 -->
         <div style="margin-bottom: 16px;">
           <label style="font-size: 13px; font-weight: 600; display: block; margin-bottom: 4px;">Mensaje 2 · Día +3 (Segundo recordatorio)</label>
-          <textarea id="tpl-1" class="input-field" rows="2" oninput="actualizarPlantilla(1, this.value)">Hola {nombre}, te recordamos que sigue pendiente {monto} en {negocio}. Link directo de Mercado Pago: {link}</textarea>
+          <textarea id="tpl-1" class="input-field" rows="2" oninput="actualizarPlantilla(1, this.value)">Hola {nombre}, te recordamos que sigue pendiente {monto} en {negocio}. Podés pagar con este link o alias: {link}</textarea>
           <div class="preview-bubble" id="preview-1"></div>
         </div>
 
@@ -792,7 +735,6 @@
         <ul style="list-style: none; padding: 0; margin: 0; font-size: 13px; display: flex; flex-direction: column; gap: 8px;">
           <li><a href="/sitemap.xml" style="color: rgba(255,251,241,0.85); text-decoration: none;">Mapa del Sitio (Sitemap)</a></li>
           <li><a href="/robots.txt" style="color: rgba(255,251,241,0.85); text-decoration: none;">Directivas Robots.txt</a></li>
-          <li><a href="https://wa.me/5491144556677" target="_blank" style="color: #68D391; text-decoration: none; font-weight: 600;">Soporte por WhatsApp</a></li>
         </ul>
       </div>
     </div>
@@ -805,25 +747,26 @@
   <script>
     // Estado de la aplicación en memoria
     let negocio = "Gimnasio Fuerza";
-    let mpConectado = true;
-    let mpCredenciales = {
-      accessToken: "APP_USR-7128392182938129-100315-a7b29c91d8e74620f1827492-149204918",
-      publicKey: "APP_USR-88273619-3829-4102-bf89-281938192834",
-      alias: "gimnasiofuerza.mp"
-    };
-
+    // Datos de ejemplo (ficticios). Sin link propio: usan el link o alias general.
     let deudas = [
-      { id: 1, nombre: "Lucía Benítez", telefono: "5491144556677", concepto: "Cuota gimnasio - septiembre", monto: 28000, atraso: 2, paso: 1, link: "https://mpago.la/fuerza-cuota-28k" },
-      { id: 2, nombre: "Martín Duarte", telefono: "5491133221100", concepto: "Alquiler depto 3B", monto: 185000, atraso: 5, paso: 2, link: "https://mpago.la/alquiler-3b-185k" },
-      { id: 3, nombre: "Instituto Horizonte", telefono: "5491155443322", concepto: "Cuota curso de inglés", monto: 42000, atraso: 9, paso: 3, link: "https://mpago.la/horizonte-ingles-42k" },
-      { id: 4, nombre: "Carolina Ríos", telefono: "5491166778899", concepto: "Cuota gimnasio - septiembre", monto: 28000, atraso: 0, paso: 0, link: "https://mpago.la/fuerza-cuota-28k" }
+      { id: 1, nombre: "Lucía Benítez", telefono: "5491100000001", concepto: "Cuota gimnasio - septiembre", monto: 28000, atraso: 2, paso: 1, link: "" },
+      { id: 2, nombre: "Martín Duarte", telefono: "5491100000002", concepto: "Alquiler depto 3B", monto: 185000, atraso: 5, paso: 2, link: "" },
+      { id: 3, nombre: "Instituto Horizonte", telefono: "5491100000003", concepto: "Cuota curso de inglés", monto: 42000, atraso: 9, paso: 3, link: "" },
+      { id: 4, nombre: "Carolina Ríos", telefono: "5491100000004", concepto: "Cuota gimnasio - septiembre", monto: 28000, atraso: 0, paso: 0, link: "" }
     ];
+
+    // Link o alias que va en el mensaje: el de la deuda o el general de Configuración.
+    function linkDeCobro(d) {
+      if (d && d.link) return d.link;
+      const general = document.getElementById('mp-alias');
+      return general ? general.value.trim() : '';
+    }
 
     let cobros = [];
 
     let plantillas = [
-      "Hola {nombre}, te escribimos de {negocio}. Tenés pendiente {monto}. Podés pagar en un toque acá: {link}",
-      "Hola {nombre}, te recordamos que sigue pendiente {monto} en {negocio}. Link directo de Mercado Pago: {link}",
+      "Hola {nombre}, te escribimos de {negocio}. Tenés pendiente {monto}. Podés pagar con este link o alias: {link}",
+      "Hola {nombre}, te recordamos que sigue pendiente {monto} en {negocio}. Podés pagar con este link o alias: {link}",
       "{nombre}, último aviso de {negocio} por {monto}. Si ya abonaste, por favor desestimá este mensaje. Podés regularizar acá: {link}"
     ];
 
@@ -887,15 +830,15 @@
           statusHtml = '<span class="debt-status status-silenced">⚠ Silenciado (3 mensajes enviados · pausado para proteger reputación)</span>';
         }
 
-        const linkPago = d.link || `https://mpago.la/pago-${d.id}`;
+        const linkPago = linkDeCobro(d);
         const phoneFormatted = formatPhone(d.telefono);
 
         const btnWhatsApp = d.paso < 3 
-          ? `<button class="btn-solid" onclick="enviarPorWhatsAppWeb(${d.id})" title="Abre WhatsApp Web con el mensaje pre-cargado para enviar en un clic">
+          ? `<button class="btn-solid" onclick="enviarPorWhatsAppWeb(${d.id})" title="Abre tu WhatsApp con el mensaje escrito; lo enviás vos">
                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.652c1.746.951 3.71 1.454 5.711 1.454h.005c6.554 0 11.89-5.336 11.893-11.893a11.821 11.821 0 00-3.48-8.411z"/>
                </svg>
-               Abrir WhatsApp Web (Aviso ${d.paso + 1}) →
+               Abrir en WhatsApp (Aviso ${d.paso + 1}) →
              </button>`
           : `<button disabled class="btn-solid" style="background:#6C7568; border-color:#6C7568; opacity:0.5; cursor:not-allowed;" title="Máximo de 3 avisos alcanzado">
                Silenciado (3/3 enviados)
@@ -908,7 +851,7 @@
               <div class="debt-concept">${escapeHtml(d.concepto)} · ${d.atraso} días de atraso</div>
               <div class="debt-meta-row">
                 <span class="debt-phone">📱 ${phoneFormatted}</span>
-                <a href="${linkPago}" target="_blank" class="debt-mplink" title="Link oficial de cobro Mercado Pago">💳 ${linkPago.replace('https://', '')}</a>
+                ${linkPago ? (/^https:\/\//.test(linkPago) ? `<a href="${escapeHtml(linkPago)}" target="_blank" rel="noopener" class="debt-mplink">💳 ${escapeHtml(linkPago.replace('https://', ''))}</a>` : `<span class="debt-mplink">💳 ${escapeHtml(linkPago)}</span>`) : '<span class="debt-mplink">💳 Sin link: cargalo en Configuración</span>'}
               </div>
               <div>${statusHtml}</div>
             </div>
@@ -930,7 +873,7 @@
     function renderCobros() {
       const container = document.getElementById('receipts-container');
       if (cobros.length === 0) {
-        container.innerHTML = '<div class="empty-state">Todavía no registraste cobros en esta sesión. Cuando marques una deuda como pagada, se emitirá el recibo oficial con comprobante aquí.</div>';
+        container.innerHTML = '<div class="empty-state">Todavía no registraste cobros en esta sesión. Cuando marques una deuda como pagada, quedará acá con un número de comprobante interno.</div>';
         syncIframeHeight();
         return;
       }
@@ -938,14 +881,14 @@
       container.innerHTML = cobros.map(c => `
         <div class="debt-item">
           <div>
-            <div class="debt-name">Recibo Oficial N° ${c.recibo}</div>
+            <div class="debt-name">Comprobante interno N° ${c.recibo}</div>
             <div class="debt-concept">${escapeHtml(c.nombre)} · ${escapeHtml(c.concepto)} · ${c.fecha}</div>
-            <div style="font-size: 12px; color: var(--mute); margin-top: 4px;">Cobrado vía Mercado Pago (Acreditación Inmediata)</div>
+            <div style="font-size: 12px; color: var(--mute); margin-top: 4px;">Pago registrado a mano después de verificarlo</div>
           </div>
           <div>
             <div class="debt-amount stat-val-verde">${ars(c.monto)}</div>
             <div class="actions-row">
-              <button class="btn-light" onclick="enviarReciboWhatsApp('${c.telefono}', '${c.nombre}', '${ars(c.monto)}', '${c.recibo}')">Enviar Recibo por WhatsApp Web</button>
+              <button class="btn-light" onclick="enviarReciboWhatsApp('${c.telefono}', '${c.nombre}', '${ars(c.monto)}', '${c.recibo}')">Confirmar pago por WhatsApp</button>
             </div>
           </div>
         </div>
@@ -956,7 +899,7 @@
 
     /**
      * Enviar mensaje directo por WhatsApp Web
-     * Abre https://web.whatsapp.com/send?phone=...&text=... con el mensaje pre-cargado
+     * Abre https://wa.me/...?text=... con el mensaje pre-cargado
      * Avanza el contador de aviso y aplica la regla de silenciado estricta al 3er aviso.
      */
     function enviarPorWhatsAppWeb(id) {
@@ -969,7 +912,11 @@
       }
 
       const idxTpl = d.paso; // 0, 1 o 2
-      const linkPago = d.link || `https://mpago.la/fuerza-cuota-${d.id}`;
+      const linkPago = linkDeCobro(d);
+      if (!linkPago) {
+        alert("Cargá tu link o alias de cobro en Configuración, o un link para esta deuda, antes de enviar el aviso.");
+        return;
+      }
       
       let msg = plantillas[idxTpl]
         .replace(/{nombre}/g, d.nombre)
@@ -984,7 +931,7 @@
       }
 
       // Generar URL directa de WhatsApp Web
-      const waUrl = `https://web.whatsapp.com/send?phone=${cleanPhone}&text=${encodeURIComponent(msg)}`;
+      const waUrl = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`;
       
       // Abrir en nueva pestaña
       window.open(waUrl, '_blank');
@@ -993,9 +940,9 @@
       d.paso += 1;
       
       if (d.paso === 3) {
-        flash(`<strong>Aviso 3 enviado por WhatsApp Web a ${d.nombre}.</strong> Cliente pasa a estado <span style="color:var(--rojo);">SILENCIADO</span> (límite de avisos alcanzado).`);
+        flash(`<strong>Aviso 3 abierto en WhatsApp para ${d.nombre}.</strong> Cliente pasa a estado <span style="color:var(--rojo);">SILENCIADO</span> (límite de avisos alcanzado).`);
       } else {
-        flash(`<strong>WhatsApp Web abierto para ${d.nombre} (${formatPhone(cleanPhone)}).</strong> Aviso ${d.paso} de 3 cargado listo para enviar.`);
+        flash(`<strong>WhatsApp abierto para ${d.nombre} (${formatPhone(cleanPhone)}).</strong> Aviso ${d.paso} de 3 escrito; envialo desde tu WhatsApp.`);
       }
 
       renderDeudas();
@@ -1003,10 +950,10 @@
 
     function enviarReciboWhatsApp(tel, nombre, monto, nroRecibo) {
       const cleanPhone = String(tel).replace(/[^0-9]/g, '');
-      const msg = `Hola ${nombre}! Confirmamos la recepción de tu pago de ${monto} en ${negocio}. Se emitió el Recibo Oficial N° ${nroRecibo}. Muchas gracias!`;
-      const url = `https://web.whatsapp.com/send?phone=${cleanPhone}&text=${encodeURIComponent(msg)}`;
+      const msg = `Hola ${nombre}! Confirmamos la recepción de tu pago de ${monto} en ${negocio}. Comprobante N° ${nroRecibo}. ¡Muchas gracias!`;
+      const url = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`;
       window.open(url, '_blank');
-      flash(`WhatsApp Web abierto con el comprobante de pago N° ${nroRecibo}.`);
+      flash(`WhatsApp abierto con la confirmación del pago N° ${nroRecibo}.`);
     }
 
     function copiarLinkPago(link) {
@@ -1031,31 +978,12 @@
       };
 
       cobros.unshift(nuevoRecibo);
-      flash(`Pago de ${deuda.nombre} registrado correctamente. Recibo Oficial N° ${nuevoRecibo.recibo} emitido.`);
+      flash(`Pago de ${deuda.nombre} registrado correctamente. Comprobante interno N° ${nuevoRecibo.recibo}.`);
       renderDeudas();
       renderCobros();
     }
 
     
-    function conectarWhatsAppCobranzas() {
-      const txt = document.getElementById('txt-wa-cobranzas');
-      const tel = prompt("Ingresa el número de WhatsApp comercial para cobranzas:", "5491144556677");
-      if (tel) {
-        if (txt) txt.innerText = "● Conectado (+" + tel.replace(/[^0-9]/g, '') + ")";
-        flash("✓ Línea de WhatsApp vinculada para cobranzas");
-      }
-    }
-
-    function conectarMercadoPagoCobranzas() {
-      flash("✓ Cuenta de Mercado Pago vinculada. Acreditación automática IPN activa.");
-    }
-
-    function abrirModalWebCobranzas() {
-      const code = '<!-- Widget Cobranzas Changared -->\n<script src="https://cdn.changared.com/widget.js" data-tenant="cobranzas" data-agent="cobranzas" defer><\/script>';
-      navigator.clipboard.writeText(code);
-      flash("✓ Código HTML para tu página web copiado al portapapeles. Pégalo en tu web o tienda.");
-    }
-
     function agregarDeuda() {
       const nombreInput = document.getElementById('input-new-nombre');
       const telefonoInput = document.getElementById('input-new-telefono');
@@ -1075,12 +1003,8 @@
       }
 
       if (!telefono) {
-        telefono = "5491100000000";
-      }
-
-      if (!link) {
-        const slug = nombre.toLowerCase().replace(/[^a-z0-9]/g, '');
-        link = `https://mpago.la/${slug}-${monto}`;
+        alert("Ingresá el teléfono de WhatsApp del cliente, con código de país.");
+        return;
       }
 
       deudas.unshift({
@@ -1100,7 +1024,7 @@
       montoInput.value = '';
       linkInput.value = '';
 
-      flash(`Deuda de <strong>${nombre}</strong> agregada al Gestor con link de Mercado Pago listo.`);
+      flash(`Deuda de <strong>${nombre}</strong> agregada.`);
       renderDeudas();
     }
 
@@ -1118,83 +1042,40 @@
           const cols = lines[i].split(/[,;\t]/).map(c => c.trim().replace(/^["']|["']$/g, ''));
           if (cols.length >= 2 && !isNaN(cols[cols.length - 1].replace(/[^0-9]/g, '')) && Number(cols[cols.length - 1].replace(/[^0-9]/g, '')) > 0) {
             const nombre = cols[0];
-            const tel = cols.length >= 3 ? cols[1].replace(/[^0-9]/g, '') : "5491144556677";
+            const tel = cols.length >= 3 ? cols[1].replace(/[^0-9]/g, '') : "";
             const concepto = cols.length >= 4 ? cols[2] : "Cuota mensual";
             const monto = Number(cols[cols.length - 1].replace(/[^0-9]/g, ''));
             
             deudas.unshift({
               id: Date.now() + i,
               nombre: nombre,
-              telefono: tel || "5491144556677",
+              telefono: tel,
               concepto: concepto,
               monto: monto,
-              atraso: Math.floor(Math.random() * 8) + 1,
+              atraso: 0,
               paso: 0,
-              link: `https://mpago.la/${nombre.toLowerCase().replace(/[^a-z0-9]/g, '')}-${monto}`
+              link: ""
             });
             agregadas++;
           }
         }
 
         if (agregadas === 0) {
-          deudas.unshift({
-            id: Date.now(),
-            nombre: "Estudio Jurídico Alvear",
-            telefono: "5491177889900",
-            concepto: "Servicio Mensual Servidores",
-            monto: 95000,
-            atraso: 3,
-            paso: 0,
-            link: "https://mpago.la/alvear-95k"
-          });
-          agregadas = 1;
+          flash(`No encontramos filas válidas en <strong>${file.name}</strong>. Usá columnas: nombre, teléfono, concepto, monto.`);
+          event.target.value = '';
+          return;
         }
 
-        flash(`Planilla <strong>${file.name}</strong> importada con éxito: ${agregadas} deudas añadidas.`);
+        flash(`Planilla <strong>${file.name}</strong> importada: ${agregadas} deudas añadidas. Revisá que cada una tenga teléfono.`);
         renderDeudas();
         event.target.value = '';
       };
       reader.readAsText(file);
     }
 
-    function conectarMPOAuth() {
-      flash(`<strong>Conectando con Mercado Pago...</strong> Redirección OAuth simulada OK. Cuenta <strong>${negocio}</strong> vinculada con Webhook activo.`);
-      mpConectado = true;
-      document.getElementById('cfg-mp-badge').className = "mp-badge-connected";
-      document.getElementById('cfg-mp-badge').innerText = "● Conectado (Producción)";
-      document.getElementById('mp-status-pill').className = "mp-badge-connected";
-      document.getElementById('mp-status-pill').innerText = "● Mercado Pago Vinculado";
-      renderDeudas();
-    }
-
-    function guardarCredencialesMP() {
-      const token = document.getElementById('mp-access-token').value.trim();
-      const pubKey = document.getElementById('mp-public-key').value.trim();
-      const alias = document.getElementById('mp-alias').value.trim();
-
-      if (!token) {
-        alert("Por favor ingresa tu Production Access Token de Mercado Pago.");
-        return;
-      }
-
-      mpCredenciales = { accessToken: token, publicKey: pubKey, alias: alias };
-      flash("Credenciales de Mercado Pago guardadas y validadas con éxito. Webhooks sincronizados.");
-    }
-
-    function toggleTokenVisibility() {
-      const input = document.getElementById('mp-access-token');
-      input.type = input.type === 'password' ? 'text' : 'password';
-    }
-
-    function probarLinkMPPrueba() {
-      const testLink = "https://mpago.la/fuerza-test-1000";
-      window.open(testLink, '_blank');
-      flash(`Link de prueba de $1.000 abierto: <strong>${testLink}</strong>`);
-    }
-
     function actualizarNegocio(val) {
       negocio = val.trim() || "Tu Negocio";
-      document.getElementById('header-subtitle').innerText = `WhatsApp Web & Mercado Pago · ${negocio}`;
+      document.getElementById('header-subtitle').innerText = `Recordatorios por WhatsApp y registro de pagos · ${negocio}`;
       renderPreviews();
     }
 
@@ -1209,7 +1090,7 @@
           .replace("{nombre}", "Lucía Benítez")
           .replace("{negocio}", negocio)
           .replace("{monto}", ars(28000))
-          .replace("{link}", "https://mpago.la/fuerza-cuota-28k");
+          .replace("{link}", linkDeCobro(null) || "tu-link-o-alias");
         
         const previewEl = document.getElementById(`preview-${i}`);
         if (previewEl) {
