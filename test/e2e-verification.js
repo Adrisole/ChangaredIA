@@ -3,6 +3,7 @@ import fs from 'node:fs';
 import crypto from 'node:crypto';
 
 const BASE_URL = 'http://localhost:3000';
+const VERIFY_TOKEN = process.env.WHATSAPP_VERIFY_TOKEN;
 
 function getHash(filePath) {
   const content = fs.readFileSync(filePath);
@@ -963,7 +964,8 @@ async function runTests() {
   // 34. Webhook Global Meta con Resolución Automática por Phone Number ID
   await test('Webhook Global Meta - Reconocimiento de tenant por Phone Number ID y Challenge GET', async () => {
     // 1. GET /api/webhook con challenge de Meta
-    const challengeRes = await fetch(`${BASE_URL}/api/webhook?hub.mode=subscribe&hub.verify_token=changared_secret_verify_token_2026&hub.challenge=META_CHALLENGE_OK_2026`);
+    assert.ok(VERIFY_TOKEN, 'Falta WHATSAPP_VERIFY_TOKEN: exportala con el mismo valor que usa el servidor antes de correr los tests');
+    const challengeRes = await fetch(`${BASE_URL}/api/webhook?hub.mode=subscribe&hub.verify_token=${encodeURIComponent(VERIFY_TOKEN)}&hub.challenge=META_CHALLENGE_OK_2026`);
     assert.equal(challengeRes.status, 200);
     const challengeText = await challengeRes.text();
     assert.equal(challengeText, 'META_CHALLENGE_OK_2026');

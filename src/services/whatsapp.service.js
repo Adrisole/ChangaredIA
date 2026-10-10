@@ -2,6 +2,11 @@ import crypto from 'crypto';
 import { config } from '../config/env.js';
 import { encryptionService } from './encryption.service.js';
 
+const maskPhone = (phone) => {
+  const digits = String(phone || '').replace(/\D/g, '');
+  return digits ? `***${digits.slice(-4)}` : 'desconocido';
+};
+
 /**
  * Servicio de Integración con WhatsApp Business Platform (Meta Cloud API).
  * Permite enviar mensajes reales a clientes usando la API oficial /{phone-number-id}/messages
@@ -46,7 +51,7 @@ export class WhatsAppService {
       };
 
       try {
-        console.log(`[WhatsAppService] Enviando mensaje real a [${cleanTo}] mediante Meta Cloud API (${url})...`);
+        console.log(`[WhatsAppService] Enviando mensaje real a ${maskPhone(cleanTo)} mediante Meta Cloud API (${url})...`);
         const response = await fetch(url, {
           method: 'POST',
           headers: {
@@ -101,7 +106,7 @@ export class WhatsAppService {
     }
 
     // Si no hay credenciales configuradas, registrar simulación controlada
-    console.log(`[WhatsAppService] MODO SIMULADO: Mensaje a [${cleanTo}] generado (sin credenciales de Meta): "${text.substring(0, 60)}..."`);
+    console.log(`[WhatsAppService] MODO SIMULADO: Mensaje a ${maskPhone(cleanTo)} generado (sin credenciales de Meta)`);
     return {
       success: true,
       simulated: true,

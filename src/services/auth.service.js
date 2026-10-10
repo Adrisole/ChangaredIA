@@ -87,7 +87,7 @@ export class AuthService {
       return { success: true, user: this._sanitize(user), message: "El correo ya estaba verificado." };
     }
 
-    if (user.verificationCode !== String(code).trim() && String(code).trim() !== '123456') {
+    if (!user.verificationCode || user.verificationCode !== String(code).trim()) {
       throw new Error("Código de verificación incorrecto.");
     }
 
