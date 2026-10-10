@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { register, login, me, verifyEmail, logout } from '../controllers/auth.controller.js';
+import { register, login, me, verifyEmail, logout, deleteAccount } from '../controllers/auth.controller.js';
 import { authenticate, requireAuth } from '../middlewares/auth.middleware.js';
 
 const router = Router();
@@ -18,5 +18,8 @@ router.get('/me', authenticate, requireAuth, me);
 
 // Cerrar sesión
 router.post('/logout', authenticate, logout);
+
+// Eliminar la cuenta del comercio y todos sus datos (pide la contraseña)
+router.delete('/account', authenticate, requireAuth, deleteAccount);
 
 export default router;

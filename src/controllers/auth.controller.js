@@ -55,6 +55,15 @@ export const me = async (req, res, next) => {
   }
 };
 
+export const deleteAccount = async (req, res, next) => {
+  try {
+    const result = await authService.deleteAccount(req.user.id, req.body?.password);
+    res.status(200).json(result);
+  } catch (err) {
+    next(err);
+  }
+};
+
 export const logout = async (req, res, next) => {
   try {
     const result = await authService.logout(req.token);

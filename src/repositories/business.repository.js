@@ -207,6 +207,18 @@ class BusinessRepository {
     this._writeAllLocal(all);
     return saved;
   }
+
+  /** Borra un negocio en MongoDB y en la réplica JSON. */
+  async deleteById(businessId) {
+    const key = String(businessId || '').toLowerCase().trim();
+    if (!key) return;
+    if (isDbConnected()) {
+      await BusinessModel.deleteOne({ id: key });
+    }
+    const all = this._readAllLocal();
+    delete all[key];
+    this._writeAllLocal(all);
+  }
 }
 
 export const businessRepository = new BusinessRepository();

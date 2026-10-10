@@ -324,6 +324,41 @@ class ConversationRepository {
     conv.unreadCount = 0;
     return await this.save(conv);
   }
+
+  /** Borra todas las conversaciones de un negocio (MongoDB y JSON). */
+  async deleteByBusinessId(businessId) {
+    const bId = String(businessId || '').toLowerCase().trim();
+    if (!bId) return 0;
+    if (isDbConnected()) {
+      await ConversationModel.deleteMany({ businessId: bId });
+    }
+    const all = this._readAllLocal();
+    const kept = all.filter(c => String(c.businessId).toLowerCase().trim() !== bId);
+    this._writeAllLocal(kept);
+    return all.length - kept.length;
+  }
+
+  /**
+   * Borra las conversaciones sin actividad desde antes de `cutoffIso` (fecha ISO).
+   * Se usa la fecha del último mensaje; si falta, la de última actualización.
+   */
+  async deleteInactiveBefore(cutoffIso) {
+    let deleted = 0;
+    if (isDbConnected()) {
+      const result = await ConversationModel.deleteMany({
+        $or: [
+          { lastMessageAt: { $lt: cutoffIso } },
+          { lastMessageAt: { $in: [null, ''] }, updatedAt: { $lt: cutoffIso } },
+          { lastMessageAt: { $in: [null, ''] }, updatedAt: { $lt: new Date(cutoffIso) } },
+        ],
+      });
+      deleted = result.deletedCount || 0;
+    }
+    const all = this._readAllLocal();
+    const kept = all.filter(c => (c.lastMessageAt || c.updatedAt || '') >= cutoffIso);
+    if (kept.length !== all.length) this._writeAllLocal(kept);
+    return Math.max(deleted, all.length - kept.length);
+  }
 }
 
 export const conversationRepository = new ConversationRepository();

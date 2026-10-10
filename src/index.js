@@ -2,6 +2,7 @@ import { createApp } from './app.js';
 import { config } from './config/env.js';
 import { connectDatabase, disconnectDatabase } from './config/database.js';
 import { businessService } from './services/business.service.js';
+import { scheduleDataRetention } from './services/dataRetention.service.js';
 
 // Inicializar conexión a base de datos (MongoDB o fallback JSON)
 connectDatabase().catch(err => {
@@ -9,6 +10,9 @@ connectDatabase().catch(err => {
 });
 
 const app = createApp();
+
+// Borrado automático de datos de clientes finales con más de 24 meses sin actividad
+scheduleDataRetention();
 
 const server = app.listen(config.port, async () => {
   const businesses = await businessService.getAllBusinesses();
