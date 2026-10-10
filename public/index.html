@@ -385,10 +385,10 @@
             </div>
             <div>
               <div class="flex items-center space-x-2">
-                <span class="text-[10px] font-mono uppercase font-bold text-emerald-800 bg-emerald-100 px-2 py-0.5 rounded">Comercio Activo</span>
-                <span class="text-[10px] text-emerald-600 font-semibold flex items-center space-x-1">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-                  <span>Configuración pendiente</span>
+                <span id="hub-company-badge" class="text-[10px] font-mono uppercase font-bold text-slate-700 bg-slate-100 px-2 py-0.5 rounded">Comercio de ejemplo</span>
+                <span class="text-[10px] text-slate-600 font-semibold flex items-center space-x-1">
+                  <span id="hub-company-state-dot" class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+                  <span id="hub-company-state">Datos de ejemplo</span>
                 </span>
               </div>
               <h3 class="text-base font-bold text-slate-900 mt-0.5 company-display-name">Mi Empresa</h3>
@@ -657,7 +657,7 @@
           <div class="space-y-1">
             <span class="text-emerald-300 font-mono text-[10px] font-bold uppercase tracking-wider">Contratación Flexible</span>
             <h4 class="text-base font-serif font-bold" style="font-family: Georgia, serif;">Arma tu esquema personalizado de empleados</h4>
-            <p class="text-xs text-emerald-100/80">Desde USD 17 por empleado virtual al mes. Elegí sólo los empleados que necesitás.</p>
+            <p class="text-xs text-emerald-100/80">USD 17 por empleado virtual al mes (ARS 25.000 con Mercado Pago Argentina). Elegí sólo los empleados que necesitás.</p>
           </div>
           <button onclick="switchStep('step-billing')" class="px-4 py-2 bg-white hover:bg-emerald-50 text-[#1B4332] font-semibold text-xs rounded transition shrink-0">
             Ver Planes & Facturación →
@@ -1299,7 +1299,7 @@
             </div>
 
             <!-- Selector de método de pago: Mercado Pago (LATAM, moneda local) / Wise / Payoneer (USD) -->
-            <div class="flex flex-col items-stretch sm:items-end gap-2">
+            <div id="payment-method-picker" class="flex flex-col items-stretch sm:items-end gap-2">
               <div class="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-medium">
                 <button onclick="setPaymentMethod('mercadopago')" id="btn-pay-mercadopago" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-900 shadow-subtle border border-slate-200 transition">
                   🌎 Mercado Pago (moneda local)
@@ -1336,7 +1336,7 @@
                 <span class="text-xs text-emerald-200">· Configuración privada por negocio</span>
               </div>
               <h3 class="text-base sm:text-lg font-serif font-bold text-white">
-                Empleados virtuales desde USD 17 por mes
+                Empleados virtuales desde USD 17 (ARS 25.000) por mes
               </h3>
               <p class="text-xs text-emerald-100/90 max-w-xl leading-relaxed">
                 Elegí qué tarea querés resolver primero: ventas, cobros, agenda o comprobantes. Las integraciones se activan con las credenciales oficiales de tu negocio.
@@ -1358,7 +1358,7 @@
                   <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-600">1 empleado virtual</span>
                 </div>
                 <div class="mb-4">
-                  <span class="text-2xl font-black text-slate-900 plan-price-mostrador">USD 17</span>
+                  <span class="text-2xl font-black text-slate-900 plan-price-mostrador">$25.000</span>
                   <span class="text-xs text-slate-600 plan-period">ARS / mes</span>
                 </div>
                 <p class="text-xs text-slate-600 mb-4 leading-relaxed">Para empezar con la tarea que más tiempo te consume.</p>
@@ -1397,7 +1397,7 @@
                   <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-semibold">2 empleados virtuales</span>
                 </div>
                 <div class="mb-4">
-                  <span class="text-2xl font-black text-slate-900 plan-price-combo">USD 34</span>
+                  <span class="text-2xl font-black text-slate-900 plan-price-combo">$50.000</span>
                   <span class="text-xs text-slate-600 plan-period">ARS / mes</span>
                 </div>
                 <p class="text-xs text-slate-600 mb-4 leading-relaxed">Combiná, por ejemplo, ventas y cobranzas para no dejar tareas críticas sueltas.</p>
@@ -1437,7 +1437,7 @@
                   <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-slate-100 text-slate-600">4 empleados virtuales</span>
                 </div>
                 <div class="mb-4">
-                  <span class="text-2xl font-black text-slate-900 plan-price-empresa">USD 68</span>
+                  <span class="text-2xl font-black text-slate-900 plan-price-empresa">$100.000</span>
                   <span class="text-xs text-slate-600 plan-period">ARS / mes</span>
                 </div>
                 <p class="text-xs text-slate-600 mb-4 leading-relaxed">Para coordinar ventas, cobranzas, agenda y comprobantes desde un mismo panel.</p>
@@ -3915,14 +3915,16 @@
         // Hub principal y configuración inicial
         hubBadge: "EMPLEADOS VIRTUALES CON IA",
         hubTitle: "Empleados virtuales con IA para tu negocio",
-        hubSubtitle: "Configurá asistentes para centralizar consultas, organizar turnos y automatizar tareas comerciales y administrativas con el control de tu equipo.",        trialNoCard: "· Probá la demo sin registrarte",
+        hubSubtitle: "Configurá asistentes para centralizar consultas, organizar turnos y automatizar tareas comerciales y administrativas con el control de tu equipo.",
+        trialNoCard: "· Probá la demo sin registrarte",
         trialTitle: "Configurá los empleados que necesita tu negocio",
         trialDesc: "Elegí ventas, cobranzas, agenda o comprobantes. Las integraciones se activan con las credenciales oficiales de tu negocio.",
         btnConfigBusiness: "Configurar mi negocio",
         btnViewPlans: "Ver Planes y Precios",
 
         // Tablero de Retorno (ROI)
-        // Banner de Tranquilidad y Seguridad        btnPersonalizeBusiness: "⚙️ Personalizar Mi Negocio",
+        // Banner de Tranquilidad y Seguridad
+        btnPersonalizeBusiness: "⚙️ Personalizar Mi Negocio",
 
         // Tarjetas de los 5 Empleados en Hub
         emp1Category: "Atención & Ventas",
@@ -4135,14 +4137,16 @@
         // Hub Hero & Free Trial Banner
         hubBadge: "AI VIRTUAL EMPLOYEES",
         hubTitle: "AI virtual employees for your business",
-        hubSubtitle: "Configure assistants to centralize inquiries, organize appointments, and automate commercial and administrative tasks while keeping your team in control.",        trialNoCard: "· Try the demo without signing up",
+        hubSubtitle: "Configure assistants to centralize inquiries, organize appointments, and automate commercial and administrative tasks while keeping your team in control.",
+        trialNoCard: "· Try the demo without signing up",
         trialTitle: "Configure the virtual employees your business needs",
         trialDesc: "Choose sales, collections, scheduling, or receipts. Integrations activate with your business's official credentials.",
         btnConfigBusiness: "Configure my business",
         btnViewPlans: "View Plans & Pricing",
 
         // ROI Board
-        // Safety Banner        btnPersonalizeBusiness: "⚙️ Customize My Business",
+        // Safety Banner
+        btnPersonalizeBusiness: "⚙️ Customize My Business",
 
         // Hub Cards
         emp1Category: "Customer Care & Sales",
@@ -4353,14 +4357,16 @@
         // Hub principal e configuração inicial
         hubBadge: "FUNCIONÁRIOS VIRTUAIS COM IA",
         hubTitle: "Funcionários virtuais com IA para o seu negócio",
-        hubSubtitle: "Configure assistentes para centralizar consultas, organizar horários e automatizar tarefas comerciais e administrativas com sua equipe no controle.",        trialNoCard: "· Teste a demo sem cadastro",
+        hubSubtitle: "Configure assistentes para centralizar consultas, organizar horários e automatizar tarefas comerciais e administrativas com sua equipe no controle.",
+        trialNoCard: "· Teste a demo sem cadastro",
         trialTitle: "Configure os funcionários virtuais que sua empresa precisa",
         trialDesc: "Escolha vendas, cobranças, agenda ou comprovantes. As integrações são ativadas com as credenciais oficiais da sua empresa.",
         btnConfigBusiness: "Configurar minha empresa",
         btnViewPlans: "Ver Planos e Preços",
 
         // Tabuleiro de Retorno (ROI)
-        // Banner de Tranquilidade e Segurança        btnPersonalizeBusiness: "⚙️ Personalizar Meu Negócio",
+        // Banner de Tranquilidade e Segurança
+        btnPersonalizeBusiness: "⚙️ Personalizar Meu Negócio",
 
         // Cartões dos 5 Funcionários no Hub
         emp1Category: "Atendimento & Vendas",
@@ -5331,6 +5337,28 @@
         .replace(/\-\-+/g, '-');
     }
 
+    // Estado de la tarjeta del comercio: sin sesión son datos de ejemplo.
+    // Guardar credenciales de Meta no las valida, así que nunca dice "conectado".
+    function renderCompanyCardState() {
+      const badge = document.getElementById('hub-company-badge');
+      const state = document.getElementById('hub-company-state');
+      const dot = document.getElementById('hub-company-state-dot');
+      if (!badge || !state || !dot) return;
+      let label = 'Comercio de ejemplo', text = 'Datos de ejemplo', tone = 'slate';
+      if (currentUser) {
+        label = 'Tu comercio';
+        const saved = Boolean(currentCompany.whatsappConnected && currentCompany.whatsappPhoneNumberId);
+        text = saved ? 'Credenciales de WhatsApp guardadas · falta probar envío' : 'Configuración pendiente';
+        tone = 'amber';
+      }
+      const badgeTone = currentUser ? 'text-emerald-800 bg-emerald-100' : 'text-slate-700 bg-slate-100';
+      const dotTone = { slate: 'bg-slate-400', amber: 'bg-amber-500' }[tone];
+      badge.className = `text-[10px] font-mono uppercase font-bold px-2 py-0.5 rounded ${badgeTone}`;
+      badge.innerText = label;
+      dot.className = `w-1.5 h-1.5 rounded-full ${dotTone}`;
+      state.innerText = text;
+    }
+
     function applyCompanyDataToUI() {
       renderSessionUI();
       document.querySelectorAll('.company-display-name').forEach(el => {
@@ -5341,10 +5369,12 @@
       if (sidebarName) sidebarName.innerText = currentCompany.name;
 
       const hubRubro = document.getElementById('hub-company-rubro');
-      if (hubRubro) hubRubro.innerText = currentCompany.rubro;
+      if (hubRubro) hubRubro.innerText = currentCompany.rubro || 'Sin cargar';
 
       const hubPhone = document.getElementById('hub-company-phone');
-      if (hubPhone) hubPhone.innerText = currentCompany.phone;
+      if (hubPhone) hubPhone.innerText = currentCompany.phone || 'Sin cargar';
+
+      renderCompanyCardState();
 
       const simChatTitle = document.getElementById('sim-chat-title');
       if (simChatTitle) simChatTitle.innerText = currentCompany.name;
@@ -6036,11 +6066,11 @@
         if (q.includes('turno') || q.includes('cita') || q.includes('agenda') || q.includes('calendar') || q.includes('barber') || q.includes('peluquer') || q.includes('clinic')) {
           reply = `Para negocios con citas o agenda, el empleado ideal es el <strong>Agendador de Citas</strong>:<br><br>• Registra la solicitud con servicio, fecha y horario.<br>• Deja el turno pendiente hasta que el negocio lo confirme.<br>• La disponibilidad real, los eventos y los recordatorios se habilitan al conectar Google Calendar y WhatsApp con tus credenciales oficiales.<br><br>Podés configurarlo desde tu panel.`;
         } else if (q.includes('precio') || q.includes('cuanto') || q.includes('costo') || q.includes('plan') || q.includes('gratis') || q.includes('tarjeta')) {
-          reply = `En Changared contratás <strong>por empleado</strong>:<br><br>• El precio de referencia es <strong>USD 17 por empleado virtual al mes</strong>.<br>• Elegís uno, dos o hasta cuatro empleados según tu operación.<br>• WhatsApp y Calendar se activan únicamente con las credenciales oficiales de tu negocio.<br><br>¿Qué tarea te gustaría resolver primero?`;
+          reply = `En Changared contratás <strong>por empleado</strong>:<br><br>• El precio es <strong>USD 17 por empleado virtual al mes</strong> (ARS 25.000 con Mercado Pago Argentina).<br>• No hay prueba gratis: podés recorrer la demo sin registrarte.<br>• Elegís uno, dos o hasta cuatro empleados según tu operación.<br>• WhatsApp y Calendar se activan únicamente con las credenciales oficiales de tu negocio.<br><br>¿Qué tarea te gustaría resolver primero?`;
         } else if (q.includes('whatsapp') || q.includes('vender') || q.includes('venta') || q.includes('stock') || q.includes('catalogo')) {
           reply = `El <strong>Vendedor IA para WhatsApp</strong> ordena la atención comercial:<br><br>• Consulta el catálogo y stock que cargaste.<br>• Comparte precios y el medio de pago configurado, sin confirmar transferencias.<br>• Registra pedidos para que vos verifiques el pago y avances la entrega.<br>• Para atender clientes reales necesitás conectar WhatsApp Cloud API.<br><br>¿Qué productos o servicios comercializás?`;
         } else {
-          reply = `¡Hola! Soy el Asesor Comercial de Changared. Te ayudamos a potenciar tu negocio con empleados virtuales:<br><br>1. <strong>Vendedor por WhatsApp</strong> (atiende stock, precios y pedidos).<br>2. <strong>Agendador de citas</strong> (muestra disponibilidad y toma reservas).<br>3. <strong>Gestor de cobranzas</strong> (recordatorios de pago).<br>4. <strong>Asesor contable</strong> (comprobantes ordenados para tu contador).<br><br>¿Qué tarea te gustaría ordenar primero?`;
+          reply = `¡Hola! Soy el Asesor Comercial de Changared. Te ayudamos a potenciar tu negocio con empleados virtuales:<br><br>1. <strong>Vendedor por WhatsApp</strong> (atiende stock, precios y pedidos).<br>2. <strong>Agendador de citas</strong> (registra solicitudes de turno).<br>3. <strong>Gestor de cobranzas</strong> (recordatorios de pago).<br>4. <strong>Asesor contable</strong> (comprobantes ordenados para tu contador).<br><br>¿Qué tarea te gustaría ordenar primero?`;
         }
 
       }
@@ -6167,6 +6197,7 @@
           currentCompany.whatsappConnected = json.data.whatsappConnected;
           currentCompany.hasAccessToken = json.data.hasAccessToken;
           delete currentCompany.whatsappAccessToken;
+          renderCompanyCardState();
           if (tokenInput) {
             tokenInput.value = '';
             tokenInput.placeholder = '✓ Token configurado y protegido (cifrado en reposo)';
@@ -7519,7 +7550,62 @@
         const r = await fetch(`${API_BASE}/api/billing/plans`);
         billingCatalog = await r.json();
       } catch (e) { billingCatalog = null; }
+      applyPaymentAvailability();
       renderBillingPrices();
+    }
+
+    // Muestra sólo los métodos y países de pago que el servidor tiene configurados.
+    // Sin catálogo (demo sin servidor) se deja la vista completa.
+    function paymentAvailability() {
+      const methods = billingCatalog?.paymentMethods;
+      if (!methods) return null;
+      return {
+        mercadopago: Boolean(methods.mercadopago?.enabled),
+        wise: Boolean(methods.wise?.enabled),
+        payoneer: Boolean(methods.payoneer?.enabled),
+        mpCountries: (methods.mercadopago?.countries || []).map(c => c.country),
+      };
+    }
+
+    function applyPaymentAvailability() {
+      const av = paymentAvailability();
+      if (!av) return;
+      ['mercadopago', 'wise', 'payoneer'].forEach(m => {
+        document.getElementById(`btn-pay-${m}`)?.classList.toggle('hidden', !av[m]);
+      });
+      const select = document.getElementById('mp-country-select');
+      if (select) {
+        Array.from(select.options).forEach(o => { o.hidden = o.disabled = !av.mpCountries.includes(o.value); });
+        if (av.mpCountries.length && !av.mpCountries.includes(currentMpCountry)) {
+          currentMpCountry = av.mpCountries[0];
+          select.value = currentMpCountry;
+        }
+      }
+      const firstEnabled = ['mercadopago', 'wise', 'payoneer'].find(m => av[m]);
+      document.querySelectorAll('button[onclick^="triggerCheckout"]').forEach(btn => {
+        btn.disabled = !firstEnabled;
+        btn.classList.toggle('opacity-50', !firstEnabled);
+        btn.classList.toggle('cursor-not-allowed', !firstEnabled);
+        btn.title = firstEnabled ? '' : 'Los pagos en línea todavía no están habilitados';
+      });
+      if (!firstEnabled) {
+        document.getElementById('payment-method-picker')?.classList.add('hidden');
+        document.getElementById('billing-provider-title').innerText = 'Pagos en línea todavía no habilitados';
+        document.getElementById('billing-provider-desc').innerText = 'Por ahora no se puede pagar desde el panel. Escribinos y te contamos cómo activar tu plan.';
+        return;
+      }
+      setPaymentMethod(av[currentPayMethod] ? currentPayMethod : firstEnabled);
+    }
+
+    function mpCountriesText() {
+      const select = document.getElementById('mp-country-select');
+      const av = paymentAvailability();
+      const codes = av ? av.mpCountries : Object.keys(MP_CURRENCY);
+      if (!select) return codes.join(', ');
+      const names = Array.from(select.options)
+        .filter(o => codes.includes(o.value))
+        .map(o => o.text.replace(/^\S+\s/, '').replace(/\s*\(.*\)$/, ''));
+      return names.length > 1 ? `${names.slice(0, -1).join(', ')} y ${names[names.length - 1]}` : names.join('');
     }
 
     function planPrice(planId) {
@@ -7547,7 +7633,10 @@
       const on = "px-3 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-900 shadow-subtle border border-slate-200 transition";
       const off = "px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 hover:text-slate-900 transition";
       ['mercadopago', 'wise', 'payoneer'].forEach(m => {
-        document.getElementById(`btn-pay-${m}`).className = (m === method) ? on : off;
+        const btn = document.getElementById(`btn-pay-${m}`);
+        const hidden = btn.classList.contains('hidden');
+        btn.className = (m === method) ? on : off;
+        btn.classList.toggle('hidden', hidden);
       });
       document.getElementById('mp-country-select').classList.toggle('hidden', method !== 'mercadopago');
       document.getElementById('transfer-instructions').classList.add('hidden');
@@ -7556,7 +7645,7 @@
       const desc = document.getElementById('billing-provider-desc');
       if (method === 'mercadopago') {
         title.innerText = "Procesamiento Seguro con Mercado Pago (LATAM)";
-        desc.innerText = "Pagá en tu moneda local con tarjeta, saldo o medios locales. Disponible en AR, BR, MX, CL, CO, PE y UY.";
+        desc.innerText = `Pagá en tu moneda local con tarjeta, saldo o medios locales. Disponible en ${mpCountriesText()}.`;
 
       } else {
         const label = method === 'wise' ? 'Wise' : 'Payoneer';
