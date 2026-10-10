@@ -102,18 +102,16 @@ export const handleIncomingMessage = async (req, res, next) => {
           message: 'La firma del webhook no coincide con el App Secret configurado en Meta.',
         });
       }
-    } else if (signature) {
-      // Si el cliente envía una firma explícita para verificar integridad:
-      const rawPayload = req.rawBody || JSON.stringify(req.body);
-      const fallbackSecret = config.whatsapp.appSecret || 'changared_default_app_secret';
-      const isValid = whatsappService.validateSignature(rawPayload, signature, fallbackSecret);
-      if (!isValid) {
-        return res.status(401).json({
-          success: false,
-          error: 'INVALID_SIGNATURE',
-          message: 'La firma criptográfica proporcionada es inválida.',
-        });
-      }
+    } else if (process.env.NODE_ENV === 'production') {
+      // Sin App Secret no hay forma de verificar que el mensaje viene de Meta.
+      console.warn(`[WhatsApp Webhook] Rechazado: no hay App Secret configurado para tenant: ${business.id}`);
+      return res.status(401).json({
+        success: false,
+        error: 'APP_SECRET_NOT_CONFIGURED',
+        message: 'El webhook no puede verificar la firma de Meta porque no hay App Secret configurado.',
+      });
+    } else {
+      console.warn(`[WhatsApp Webhook] Sin App Secret para tenant: ${business.id}. Firma no verificada (solo fuera de producción).`);
     }
 
     // 3. Manejo de eventos de estado de entrega de Meta (sent, delivered, read, failed)
