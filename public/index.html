@@ -244,6 +244,36 @@
       .hub-rot, .hub-p1 { transition: none; }
     }
 
+    /* Tu equipo: tarjetas con el color de cada empleado, en la misma línea que la portada */
+    .hub-team { margin-top: 1.25rem; padding: 3rem; border-radius: 2rem; background: #FFFFFF; border: 1px solid #E3E8E4; font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #0B1F17; }
+    .hub-team-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 1rem 2rem; }
+    .hub-team-plans { min-height: 44px; font-size: 15px; font-weight: 600; color: #1B4332; text-decoration: underline; text-underline-offset: 4px; }
+    .hub-company { margin-top: 2rem; padding: 1rem 1.25rem; border-radius: 1.25rem; background: #F7F8F6; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.75rem 1.5rem; }
+    .hub-company-name { font-size: 16px; font-weight: 600; }
+    .hub-link { display: inline-flex; align-items: center; gap: 0.4rem; min-height: 44px; font-size: 15px; font-weight: 600; color: #1B4332; text-underline-offset: 4px; }
+    .hub-link:hover { text-decoration: underline; }
+    .hub-members { list-style: none; margin: 1.25rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .hub-member { display: flex; flex-direction: column; padding: 1.5rem; border-radius: 1.5rem; min-height: 15rem; }
+    .hub-member-vendedor { background: #E6F2EA; }
+    .hub-member-cobranzas { background: #E4EAEF; }
+    .hub-member-accounting { background: #F1ECE3; }
+    .hub-member-citas { background: #F5EFE4; }
+    .hub-member-head { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+    .hub-member .roster-avatar { width: 48px; height: 48px; font-size: 15px; background: #FFFFFF; color: #0B1F17; }
+    .hub-member .roster-avatar.is-on { background: #1B4332; color: #FFFFFF; }
+    .hub-member h3 { margin: 1.25rem 0 0; font-size: 1.4rem; line-height: 1.15; letter-spacing: -0.02em; font-weight: 700; }
+    .hub-member p { margin: 0.5rem 0 0; font-size: 15px; line-height: 1.45; color: #3D5047; }
+    .hub-chip { padding: 4px 10px; border-radius: 9999px; font-size: 13px; font-weight: 600; background: rgba(255, 255, 255, .7); color: #3D5047; }
+    .hub-chip.is-on { background: #1B4332; color: #FFFFFF; }
+    .hub-member-actions { margin-top: auto; padding-top: 1.25rem; display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem 1.25rem; }
+    .hub-btn { min-height: 44px; padding: 0 1.25rem; border-radius: 9999px; background: #0B1F17; color: #FFFFFF; font-size: 15px; font-weight: 600; transition: background-color .2s ease; }
+    .hub-btn:hover { background: #1B4332; }
+    @media (max-width: 860px) {
+      .hub-team { padding: 2rem 1.25rem; border-radius: 1.5rem; }
+      .hub-members { grid-template-columns: minmax(0, 1fr); }
+      .hub-member { min-height: 0; }
+    }
+
     /* Pie: cierra la página como una capa más de la portada */
     .site-foot { margin-top: 3rem; padding: 3rem 3rem 1.75rem; border-radius: 2rem; background: #0B1F17; color: #F2F7F4; font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
     .site-foot-top { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 3rem; align-items: start; }
@@ -555,82 +585,76 @@
           </div></div>
         </div>
 
-        <h2 class="pt-6 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900" data-i18n="hubTeamTitle">Elegí a quién sumar a tu equipo</h2>
+        <!-- Tu equipo: el comercio arriba y cada empleado como una tarjeta con su color -->
+        <section class="hub-team" aria-labelledby="hub-team-title">
+          <div class="hub-team-head">
+            <div>
+              <p class="hub-k" data-i18n="hubTeamKicker">Tu equipo</p>
+              <h2 id="hub-team-title" class="hub-h2" data-i18n="hubTeamTitle">Elegí a quién sumar a tu equipo</h2>
+            </div>
+            <button onclick="switchStep('step-billing')" class="hub-team-plans" data-i18n="hubSeePlans">Ver planes y formas de pago</button>
+          </div>
 
-        <!-- TU EQUIPO: el comercio arriba y sus empleados como una nómina -->
-        <div class="bg-white border border-slate-200 rounded-2xl shadow-card overflow-hidden">
-          <div class="bg-slate-50 border-b border-slate-200 px-4 sm:px-5 py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div class="hub-company">
             <div class="min-w-0">
               <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
-                <span class="text-sm font-semibold text-slate-900 company-display-name">Mi Empresa</span>
+                <span class="hub-company-name company-display-name">Mi Empresa</span>
                 <span id="hub-company-badge" class="text-[11px] font-medium px-2 py-0.5 rounded-full text-slate-700 bg-slate-200">Comercio de ejemplo</span>
-                <span class="text-xs text-slate-600 inline-flex items-center gap-1.5">
+                <span class="text-sm text-slate-600 inline-flex items-center gap-1.5">
                   <span id="hub-company-state-dot" class="w-1.5 h-1.5 rounded-full bg-slate-400" aria-hidden="true"></span>
                   <span id="hub-company-state">Datos de ejemplo</span>
                 </span>
               </div>
-              <p class="text-xs text-slate-600 mt-0.5 truncate">
-                Rubro: <span id="hub-company-rubro" class="font-medium text-slate-800">Comercio &amp; Servicios</span> ·
-                WhatsApp: <span id="hub-company-phone" class="tabular-nums text-slate-800">+54 9 11 4455-6677</span>
+              <p class="text-sm text-slate-600 mt-1 truncate">
+                Rubro: <span id="hub-company-rubro" class="font-medium text-slate-900">Comercio &amp; Servicios</span> ·
+                WhatsApp: <span id="hub-company-phone" class="tabular-nums text-slate-900">+54 9 11 4455-6677</span>
               </p>
             </div>
-            <button onclick="openWebsiteWidgetModal('general')" class="self-start sm:self-auto inline-flex items-center gap-1.5 text-xs font-medium text-[#1B4332] hover:underline underline-offset-2 whitespace-nowrap py-1">
-              <i data-lucide="globe" class="w-3.5 h-3.5" aria-hidden="true"></i>
+            <button onclick="openWebsiteWidgetModal('general')" class="hub-link shrink-0">
+              <i data-lucide="globe" class="w-4 h-4" aria-hidden="true"></i>
               <span data-i18n="hubLinkWeb">Vincular a mi página web</span>
             </button>
           </div>
 
-          <ul class="divide-y divide-slate-100">
-            <li class="px-4 sm:px-5 py-4 flex flex-wrap sm:flex-nowrap items-center gap-x-4 gap-y-3">
-              <div id="hub-avatar-vendedor" class="roster-avatar" aria-hidden="true">V</div>
-              <div class="min-w-0 flex-1">
-                <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5">
-                  <h3 class="text-sm font-semibold text-slate-900" data-i18n="emp1Title">Vendedor IA</h3>
-                  <span id="hub-status-vendedor" class="text-xs font-medium text-slate-600">Sin activar</span>
-                </div>
-                <p class="text-sm text-slate-600 mt-0.5 leading-snug" data-i18n="emp1Role">Responde consultas de precios y stock por WhatsApp y anota pedidos para que vos los confirmes.</p>
+          <ul class="hub-members" role="list">
+            <li class="hub-member hub-member-vendedor">
+              <div class="hub-member-head">
+                <div id="hub-avatar-vendedor" class="roster-avatar" aria-hidden="true">V</div>
+                <span id="hub-status-vendedor" class="hub-chip">Sin activar</span>
               </div>
-              <div id="hub-actions-vendedor" class="w-full sm:w-auto pl-14 sm:pl-0 flex items-center gap-3 shrink-0"></div>
+              <h3 data-i18n="emp1Title">Vendedor IA</h3>
+              <p data-i18n="emp1Role">Responde consultas de precios y stock por WhatsApp y anota pedidos para que vos los confirmes.</p>
+              <div id="hub-actions-vendedor" class="hub-member-actions"></div>
             </li>
-            <li class="px-4 sm:px-5 py-4 flex flex-wrap sm:flex-nowrap items-center gap-x-4 gap-y-3">
-              <div id="hub-avatar-cobranzas" class="roster-avatar" aria-hidden="true">C</div>
-              <div class="min-w-0 flex-1">
-                <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5">
-                  <h3 class="text-sm font-semibold text-slate-900" data-i18n="emp2Title">Gestor de Cobranzas</h3>
-                  <span id="hub-status-cobranzas" class="text-xs font-medium text-slate-600">Sin activar</span>
-                </div>
-                <p class="text-sm text-slate-600 mt-0.5 leading-snug" data-i18n="emp2Role">Prepara recordatorios de pago con el link de tu Mercado Pago y registra lo que cobrás.</p>
+            <li class="hub-member hub-member-cobranzas">
+              <div class="hub-member-head">
+                <div id="hub-avatar-cobranzas" class="roster-avatar" aria-hidden="true">C</div>
+                <span id="hub-status-cobranzas" class="hub-chip">Sin activar</span>
               </div>
-              <div id="hub-actions-cobranzas" class="w-full sm:w-auto pl-14 sm:pl-0 flex items-center gap-3 shrink-0"></div>
+              <h3 data-i18n="emp2Title">Gestor de Cobranzas</h3>
+              <p data-i18n="emp2Role">Prepara recordatorios de pago con el link de tu Mercado Pago y registra lo que cobrás.</p>
+              <div id="hub-actions-cobranzas" class="hub-member-actions"></div>
             </li>
-            <li class="px-4 sm:px-5 py-4 flex flex-wrap sm:flex-nowrap items-center gap-x-4 gap-y-3">
-              <div id="hub-avatar-accounting" class="roster-avatar" aria-hidden="true">A</div>
-              <div class="min-w-0 flex-1">
-                <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5">
-                  <h3 class="text-sm font-semibold text-slate-900" data-i18n="emp3Title">Asesor Contable</h3>
-                  <span id="hub-status-accounting" class="text-xs font-medium text-slate-600">Sin activar</span>
-                </div>
-                <p class="text-sm text-slate-600 mt-0.5 leading-snug" data-i18n="emp3Role">Ordena tus comprobantes y arma un resumen para tu contador.</p>
+            <li class="hub-member hub-member-accounting">
+              <div class="hub-member-head">
+                <div id="hub-avatar-accounting" class="roster-avatar" aria-hidden="true">A</div>
+                <span id="hub-status-accounting" class="hub-chip">Sin activar</span>
               </div>
-              <div id="hub-actions-accounting" class="w-full sm:w-auto pl-14 sm:pl-0 flex items-center gap-3 shrink-0"></div>
+              <h3 data-i18n="emp3Title">Asesor Contable</h3>
+              <p data-i18n="emp3Role">Ordena tus comprobantes y arma un resumen para tu contador.</p>
+              <div id="hub-actions-accounting" class="hub-member-actions"></div>
             </li>
-            <li class="px-4 sm:px-5 py-4 flex flex-wrap sm:flex-nowrap items-center gap-x-4 gap-y-3">
-              <div id="hub-avatar-citas" class="roster-avatar" aria-hidden="true">T</div>
-              <div class="min-w-0 flex-1">
-                <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5">
-                  <h3 class="text-sm font-semibold text-slate-900" data-i18n="emp5Title">Agendador de turnos</h3>
-                  <span id="hub-status-citas" class="text-xs font-medium text-slate-600">Sin activar</span>
-                </div>
-                <p class="text-sm text-slate-600 mt-0.5 leading-snug" data-i18n="emp5Role">Toma pedidos de turno con servicio, día y horario para que los confirmes.</p>
+            <li class="hub-member hub-member-citas">
+              <div class="hub-member-head">
+                <div id="hub-avatar-citas" class="roster-avatar" aria-hidden="true">T</div>
+                <span id="hub-status-citas" class="hub-chip">Sin activar</span>
               </div>
-              <div id="hub-actions-citas" class="w-full sm:w-auto pl-14 sm:pl-0 flex items-center gap-3 shrink-0"></div>
+              <h3 data-i18n="emp5Title">Agendador de turnos</h3>
+              <p data-i18n="emp5Role">Toma pedidos de turno con servicio, día y horario para que los confirmes.</p>
+              <div id="hub-actions-citas" class="hub-member-actions"></div>
             </li>
           </ul>
-        </div>
-
-        <p class="text-sm text-slate-600">
-          <button onclick="switchStep('step-billing')" class="font-medium text-[#1B4332] hover:underline underline-offset-2">Ver planes y formas de pago</button>
-        </p>
+        </section>
       </section>
 
 <section id="step-identity" class="step-content space-y-6 hidden">
@@ -3587,6 +3611,8 @@
         footTerms: "Términos",
         footDeletion: "Eliminar mis datos",
         footMade: "© 2026 Changared · Hecho en Argentina",
+        hubTeamKicker: "Tu equipo",
+        hubSeePlans: "Ver planes y formas de pago",
         hubWhile: "Mientras vos",
         hubSubtitle: "Responde precios y stock, prepara los recordatorios de cobro y anota pedidos de turno. Lo importante te espera para que lo confirmes.",
         hubTallyTitle: "Hoy, mientras tanto <span>(ejemplo)</span>",
@@ -3852,6 +3878,8 @@
         footTerms: "Terms",
         footDeletion: "Delete my data",
         footMade: "© 2026 Changared · Made in Argentina",
+        hubTeamKicker: "Your team",
+        hubSeePlans: "See plans and payment options",
         hubWhile: "While you",
         hubSubtitle: "It answers price and stock questions, prepares payment reminders and notes booking requests. The important things wait for you to confirm.",
         hubTallyTitle: "Today, meanwhile <span>(example)</span>",
@@ -4115,6 +4143,8 @@
         footTerms: "Termos",
         footDeletion: "Excluir meus dados",
         footMade: "© 2026 Changared · Feito na Argentina",
+        hubTeamKicker: "Sua equipe",
+        hubSeePlans: "Ver planos e formas de pagamento",
         hubWhile: "Enquanto você",
         hubSubtitle: "Responde preços e estoque, prepara os lembretes de cobrança e anota pedidos de horário. O importante espera você confirmar.",
         hubTallyTitle: "Hoje, enquanto isso <span>(exemplo)</span>",
@@ -5396,7 +5426,7 @@
         // 1. Estado en la nómina: el avatar se "enciende" con el color de la marca
         const statusEl = document.getElementById(`hub-status-${emp.key}`);
         if (statusEl) {
-          statusEl.className = isHired ? "text-xs font-medium text-emerald-800" : "text-xs font-medium text-slate-600";
+          statusEl.className = isHired ? 'hub-chip is-on' : 'hub-chip';
           statusEl.innerText = isHired ? (isDemo ? uiT('hubStateDemo') : uiT('hubStateOn')) : uiT('hubStateOff');
         }
         document.getElementById(`hub-avatar-${emp.key}`)?.classList.toggle('is-on', isHired);
@@ -5405,11 +5435,11 @@
         const actionsEl = document.getElementById(`hub-actions-${emp.key}`);
         if (actionsEl) {
           const open = emp.key === 'cobranzas'
-            ? `<a href="/cobranzas" class="text-xs font-medium text-[#1B4332] hover:underline underline-offset-2">${isHired ? uiT('hubOpen') : uiT('hubViewDemo')}</a>`
-            : `<button onclick="switchStep('${emp.step}')" class="text-xs font-medium text-[#1B4332] hover:underline underline-offset-2">${isHired ? uiT('hubOpen') : uiT('hubViewDemo')}</button>`;
+            ? `<a href="/cobranzas" class="hub-link">${isHired ? uiT('hubOpen') : uiT('hubViewDemo')}</a>`
+            : `<button onclick="switchStep('${emp.step}')" class="hub-link">${isHired ? uiT('hubOpen') : uiT('hubViewDemo')}</button>`;
           actionsEl.innerHTML = isHired
             ? open
-            : `<button onclick="openBusinessConfigModal('${emp.key}')" class="min-h-[36px] px-3 bg-white hover:bg-slate-50 active:bg-slate-100 text-slate-800 border border-slate-300 rounded-lg text-xs font-medium transition">${uiT('hubActivate')}</button>${open}`;
+            : `<button onclick="openBusinessConfigModal('${emp.key}')" class="hub-btn">${uiT('hubActivate')}</button>${open}`;
         }
 
         // 3. Step Uncontracted Banner
