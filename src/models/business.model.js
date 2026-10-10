@@ -39,6 +39,8 @@ const businessSchema = new mongoose.Schema({
   whatsappAccessToken: { type: String, default: '' },
   whatsappAppSecret: { type: String, default: '' },
   whatsappBusinessAccountId: { type: String, default: '' },
+  // PIN de verificación en dos pasos que Changared fija al registrar el número (cifrado).
+  whatsappTwoStepPin: { type: String, default: '' },
   calendarConnected: { type: Boolean, default: false },
   calendarEmail: { type: String, default: '' },
   driveFolder: { type: String, default: '' },

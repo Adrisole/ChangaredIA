@@ -22,6 +22,13 @@ export const config = Object.freeze({
     businessAccountId: process.env.WHATSAPP_BUSINESS_ACCOUNT_ID || '',
     apiVersion: process.env.WHATSAPP_API_VERSION || 'v20.0',
   },
+  // Registro integrado de WhatsApp (Embedded Signup): conexión en un clic para los comercios.
+  // Se activa solo cuando están las tres variables de la app de Meta de Changared.
+  meta: {
+    appId: process.env.META_APP_ID || '',
+    appSecret: process.env.META_APP_SECRET || process.env.WHATSAPP_APP_SECRET || '',
+    embeddedSignupConfigId: process.env.META_ES_CONFIG_ID || '',
+  },
   storage: {
     filePath: path.resolve(process.env.DATA_STORAGE_PATH || './src/data/businesses.json'),
   },

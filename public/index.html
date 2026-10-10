@@ -961,98 +961,128 @@
           </div>
         </div>
 
-        <!-- Panel 1: Estado y Conexión Oficial Meta Cloud API -->
-        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-5">
-          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
-            <div>
-              <h2 class="text-sm font-semibold text-slate-900">Conexión Oficial WhatsApp Business (Meta Cloud API)</h2>
-              <p class="text-xs text-slate-600 mt-0.5">Conecta tu número oficial para enviar y recibir mensajes reales mediante la API oficial de Meta.</p>
+        <!-- Panel 1: Conexión oficial de WhatsApp Business, guiada en 3 pasos -->
+        <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-subtle space-y-6">
+          <div class="flex flex-wrap items-start justify-between gap-3 border-b border-slate-100 pb-4">
+            <div class="max-w-2xl">
+              <h2 class="text-base font-semibold text-slate-900">Conectá el WhatsApp de tu negocio</h2>
+              <p class="text-sm text-slate-600 mt-1">Tu vendedor responde desde el número oficial de tu negocio, a través de la plataforma de WhatsApp Business de Meta.</p>
             </div>
-            <span id="wa-connection-badge" class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200">
-              <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
-              <span>Sin vincular</span>
+            <span id="wa-connection-badge" role="status" class="inline-flex items-center space-x-1.5 px-2.5 py-1 rounded text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-500" aria-hidden="true"></span>
+              <span>Sin conectar</span>
             </span>
           </div>
 
-          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <!-- Formulario de Configuración Oficial (2 columnas) -->
-            <div class="lg:col-span-2 space-y-4">
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label class="block text-xs font-medium text-slate-700 mb-1">Número de WhatsApp Oficial</label>
-                  <input type="text" id="meta-wa-phone" placeholder="+54 9 11 4455-6677" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs focus:bg-white focus:border-emerald-600 transition">
-                  <span class="text-[11px] text-slate-500">Formato internacional con código de país.</span>
-                </div>
-                <div>
-                  <label class="block text-xs font-medium text-slate-700 mb-1">Phone Number ID (Meta Graph API)</label>
-                  <input type="text" id="meta-wa-phone-id" placeholder="Ej: 109876543210987" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs focus:bg-white focus:border-emerald-600 transition">
-                  <span class="text-[11px] text-slate-500">ID del número provisto en Meta Developer Portal.</span>
-                </div>
-              </div>
-
-              <div>
-                <label class="block text-xs font-medium text-slate-700 mb-1">Access Token Permanente (Meta Cloud API)</label>
-                <input type="password" id="meta-wa-token" placeholder="EAAG... (Token de sistema de Meta)" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs focus:bg-white focus:border-emerald-600 transition">
-                <span class="text-[11px] text-slate-500">Token con permisos whatsapp_business_messaging. Si no lo especificas, usará el token global configurado.</span>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs pt-1">
-                <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
-                  <span class="block text-[11px] uppercase font-mono text-slate-600">Webhook URL (Callback)</span>
-                  <div class="flex items-center space-x-1">
-                    <input type="text" id="webhook-endpoint-input" readonly value="" placeholder="Se completa al cargar tu negocio" class="w-full text-[11px] font-mono px-2 py-1 bg-white border border-slate-200 rounded text-slate-800">
-                    <button onclick="copyWebhookUrl()" class="px-2 py-1 text-[11px] bg-slate-100 hover:bg-slate-200 text-slate-700 rounded border border-slate-200">
-                      Copiar
-                    </button>
-                  </div>
-                </div>
-                <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg space-y-1">
-                  <span class="block text-[11px] uppercase font-mono text-slate-600">Verify Token</span>
-                  <div class="font-mono text-slate-900 font-semibold text-[11px] bg-white px-2 py-1 border border-slate-200 rounded">
-                    Configurado en el servidor (WHATSAPP_VERIFY_TOKEN). No se muestra por seguridad.
-                  </div>
-                </div>
-              </div>
-
-              <div class="pt-2 flex flex-wrap items-center gap-2">
-                <button onclick="saveMetaWhatsAppConfig()" class="inline-flex items-center space-x-2 px-4 py-2.5 text-xs font-semibold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg shadow-subtle transition">
-                  <i data-lucide="check" class="w-4 h-4"></i>
-                  <span>Guardar credenciales de Meta</span>
-                </button>
-                <button onclick="testWhatsAppDirectly()" class="inline-flex items-center space-x-1.5 px-3 py-2.5 text-xs font-medium text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-lg shadow-2xs transition">
-                  <i data-lucide="external-link" class="w-3.5 h-3.5 text-slate-500"></i>
-                  <span>Abrir Chat Directo</span>
-                </button>
-              </div>
-              <div class="pt-3 mt-1 border-t border-slate-100 flex flex-col sm:flex-row gap-2">
-                <input type="text" id="meta-wa-test-recipient" placeholder="Número de prueba habilitado en Meta, ej. 54911..." class="flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 font-mono text-xs focus:bg-white focus:border-emerald-600 transition">
-                <button onclick="sendMetaWhatsAppTest()" class="px-3 py-2 text-xs font-semibold text-emerald-900 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 rounded-lg transition whitespace-nowrap">Enviar prueba real</button>
-              </div>
-              <p class="text-[11px] text-slate-500">Meta debe tener habilitado este destinatario. “Aceptado” confirma que Meta recibió la solicitud; verificá también la llegada en el teléfono.</p>
+          <!-- Conexión en un clic (registro integrado de Meta) -->
+          <div class="rounded-xl border border-emerald-200 bg-emerald-50/60 p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-5">
+            <div class="flex-1 space-y-1.5">
+              <h3 class="text-base font-semibold text-slate-900">Conexión en un clic</h3>
+              <p class="text-sm text-slate-700">Iniciá sesión con tu Facebook, elegí o creá el número de tu negocio y listo. No tenés que copiar ningún dato.</p>
+              <p id="wa-es-status" role="status" aria-live="polite" class="text-sm text-slate-600"></p>
             </div>
-
-            <!-- Simulador QR (Modo Demo) (1 columna) -->
-            <div class="border border-slate-200 bg-slate-50 rounded-xl p-5 flex flex-col justify-between text-center space-y-3">
-              <div>
-                <span class="inline-flex items-center space-x-1 px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-200 text-slate-700 mb-2">
-                  MODO DEMO
-                </span>
-                <h3 class="text-xs font-bold text-slate-900">Simulador de Vinculación</h3>
-                <p class="text-[11px] text-slate-600 mt-1 leading-relaxed">
-                  Permite experimentar la vinculación en modo de prueba local sin credenciales de Meta.
-                </p>
-              </div>
-
-              <div onclick="openWhatsAppModal('vendedor')" class="cursor-pointer border border-dashed border-slate-300 bg-white hover:bg-emerald-50/50 hover:border-emerald-400 transition rounded-lg p-3 flex flex-col items-center justify-center">
-                <i data-lucide="qr-code" class="w-10 h-10 text-slate-700 mb-1"></i>
-                <span class="text-[11px] font-mono font-bold text-slate-700">ABRIR SIMULADOR QR</span>
-              </div>
-
-              <button onclick="openWhatsAppModal('vendedor')" class="w-full py-1.5 px-3 text-xs font-medium text-slate-700 bg-white hover:bg-slate-100 border border-slate-300 rounded-lg transition shadow-2xs">
-                Probar Simulador QR (Demo)
-              </button>
-            </div>
+            <button id="btn-wa-es" onclick="startWhatsAppEmbeddedSignup()" disabled class="shrink-0 inline-flex items-center justify-center space-x-2 px-5 py-3 text-sm font-semibold text-white bg-[#1B4332] hover:bg-[#2D6A4F] disabled:bg-slate-300 disabled:text-slate-600 disabled:cursor-not-allowed rounded-lg shadow-subtle transition">
+              <i data-lucide="message-circle" class="w-4 h-4" aria-hidden="true"></i>
+              <span>Conectar con WhatsApp</span>
+            </button>
           </div>
+
+          <details id="wa-manual-connect" class="group/manual border-t border-slate-100 pt-4">
+            <summary class="cursor-pointer list-none inline-flex items-center space-x-1.5 text-sm font-medium text-slate-700 hover:text-slate-900">
+              <i data-lucide="chevron-right" class="w-4 h-4 transition-transform group-open/manual:rotate-90" aria-hidden="true"></i>
+              <span>Conexión manual, para quien ya configuró Meta por su cuenta</span>
+            </summary>
+          <ol class="space-y-6 mt-5">
+            <!-- Paso 1 -->
+            <li class="flex gap-4">
+              <span class="w-7 h-7 shrink-0 rounded-full bg-[#1B4332] text-white text-sm font-semibold flex items-center justify-center" aria-hidden="true">1</span>
+              <div class="flex-1 space-y-2">
+                <h3 class="text-sm font-semibold text-slate-900">Prepará tu número en Meta</h3>
+                <p class="text-sm text-slate-600">Necesitás una cuenta de WhatsApp Business en Meta con el número de tu negocio. Si ya la tenés, pasá al paso 2. Si no, la crea quien administra tu cuenta de Meta.</p>
+                <a href="https://business.facebook.com/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-1.5 text-sm font-semibold text-[#1B4332] hover:text-[#2D6A4F] underline underline-offset-4">
+                  <span>Abrir Meta Business</span>
+                  <i data-lucide="external-link" class="w-3.5 h-3.5" aria-hidden="true"></i>
+                </a>
+              </div>
+            </li>
+
+            <!-- Paso 2 -->
+            <li class="flex gap-4">
+              <span class="w-7 h-7 shrink-0 rounded-full bg-[#1B4332] text-white text-sm font-semibold flex items-center justify-center" aria-hidden="true">2</span>
+              <div class="flex-1 space-y-4">
+                <div>
+                  <h3 class="text-sm font-semibold text-slate-900">Cargá los datos de tu número</h3>
+                  <p class="text-sm text-slate-600 mt-1">Los tres datos están en Meta, en la sección de WhatsApp de tu cuenta.</p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label for="meta-wa-phone" class="block text-sm font-medium text-slate-800 mb-1">Número de WhatsApp del negocio</label>
+                    <input type="tel" id="meta-wa-phone" autocomplete="tel" placeholder="+54 9 11 1234-5678" class="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 text-sm placeholder:text-slate-500 focus:border-emerald-600 transition">
+                    <p class="text-xs text-slate-600 mt-1">Con código de país.</p>
+                  </div>
+                  <div>
+                    <label for="meta-wa-phone-id" class="block text-sm font-medium text-slate-800 mb-1">Identificador del número</label>
+                    <input type="text" id="meta-wa-phone-id" inputmode="numeric" placeholder="Solo números" class="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 font-mono text-sm placeholder:text-slate-500 focus:border-emerald-600 transition">
+                    <p class="text-xs text-slate-600 mt-1">En Meta figura como «Phone number ID».</p>
+                  </div>
+                </div>
+                <div>
+                  <label for="meta-wa-token" class="block text-sm font-medium text-slate-800 mb-1">Clave de acceso</label>
+                  <input type="password" id="meta-wa-token" autocomplete="off" placeholder="Pegá la clave permanente de Meta" class="w-full px-3 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 font-mono text-sm placeholder:text-slate-500 focus:border-emerald-600 transition">
+                  <p class="text-xs text-slate-600 mt-1">La genera el administrador de tu cuenta de Meta. Se guarda cifrada y no se vuelve a mostrar.</p>
+                </div>
+                <button onclick="saveMetaWhatsAppConfig()" class="inline-flex items-center space-x-2 px-4 py-2.5 text-sm font-semibold text-white bg-[#1B4332] hover:bg-[#2D6A4F] rounded-lg shadow-subtle transition">
+                  <i data-lucide="check" class="w-4 h-4" aria-hidden="true"></i>
+                  <span>Guardar datos</span>
+                </button>
+              </div>
+            </li>
+
+            <!-- Paso 3 -->
+            <li class="flex gap-4">
+              <span class="w-7 h-7 shrink-0 rounded-full bg-[#1B4332] text-white text-sm font-semibold flex items-center justify-center" aria-hidden="true">3</span>
+              <div class="flex-1 space-y-3">
+                <div>
+                  <h3 class="text-sm font-semibold text-slate-900">Probá que funcione</h3>
+                  <p class="text-sm text-slate-600 mt-1">Enviá un mensaje de prueba a tu propio celular. Meta tiene que tener ese número habilitado para pruebas.</p>
+                </div>
+                <div class="flex flex-col sm:flex-row gap-2">
+                  <label for="meta-wa-test-recipient" class="sr-only">Número que recibe la prueba</label>
+                  <input type="tel" id="meta-wa-test-recipient" placeholder="Tu número, ej. 54 9 11 1234-5678" class="flex-1 px-3 py-2 bg-white border border-slate-300 rounded-lg text-slate-900 text-sm placeholder:text-slate-500 focus:border-emerald-600 transition">
+                  <button onclick="sendMetaWhatsAppTest()" class="px-4 py-2 text-sm font-semibold text-[#1B4332] bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 rounded-lg transition whitespace-nowrap">Enviar mensaje de prueba</button>
+                </div>
+                <p class="text-xs text-slate-600">Si Meta responde «Aceptado», recibió el pedido. Confirmá que el mensaje llegó al celular.</p>
+                <button onclick="testWhatsAppDirectly()" class="inline-flex items-center space-x-1.5 text-left text-sm font-medium text-slate-700 hover:text-slate-900 underline underline-offset-4">
+                  <span>Abrir el chat de tu negocio en WhatsApp</span>
+                  <i data-lucide="external-link" class="w-3.5 h-3.5" aria-hidden="true"></i>
+                </button>
+              </div>
+            </li>
+          </ol>
+
+          <!-- Datos técnicos, fuera de la vista principal -->
+          <details class="group border-t border-slate-100 pt-4">
+            <summary class="cursor-pointer list-none inline-flex items-center space-x-1.5 text-sm font-medium text-slate-700 hover:text-slate-900">
+              <i data-lucide="chevron-right" class="w-4 h-4 transition-transform group-open:rotate-90" aria-hidden="true"></i>
+              <span>Datos técnicos para quien configura Meta</span>
+            </summary>
+            <div class="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="space-y-1">
+                <label for="webhook-endpoint-input" class="block text-sm font-medium text-slate-800">URL del webhook</label>
+                <div class="flex items-center gap-2">
+                  <input type="text" id="webhook-endpoint-input" readonly value="" placeholder="Se completa al cargar tu negocio" class="w-full px-3 py-2 bg-slate-50 border border-slate-300 rounded-lg text-slate-900 font-mono text-xs">
+                  <button onclick="copyWebhookUrl()" class="px-3 py-2 text-xs font-medium bg-white hover:bg-slate-100 text-slate-800 rounded-lg border border-slate-300 transition">
+                    <span id="copy-btn-text">Copiar</span>
+                  </button>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <span class="block text-sm font-medium text-slate-800">Token de verificación</span>
+                <p class="text-sm text-slate-600">Está configurado en el servidor y no se muestra en el panel. Pedíselo al equipo de Changared si lo necesitás.</p>
+              </div>
+            </div>
+          </details>
+          </details>
         </div>
 
         <!-- Panel 2: Bandeja de Chats en Vivo & Control Humano ("Pausar IA / Responder yo") -->
@@ -1061,7 +1091,7 @@
             <div>
               <h2 class="text-sm font-semibold text-slate-900">Bandeja de Chats en Vivo & Control Humano</h2>
               <p class="text-xs text-slate-600 mt-0.5">
-                Observa los mensajes que llegan por WhatsApp. Si deseas atender personalmente a un cliente, presiona <strong>"Pausar IA / Responder yo"</strong>.
+                Mirá los mensajes que llegan por WhatsApp. Para atender vos a un cliente, tocá <strong>"Pausar IA / Responder yo"</strong>.
               </p>
             </div>
             <div class="flex items-center space-x-2">
@@ -1096,7 +1126,7 @@
                     <span id="wa-chat-avatar-letter">C</span>
                   </div>
                   <div>
-                    <h4 class="text-xs font-bold text-slate-900" id="wa-active-contact-title">Selecciona una conversación</h4>
+                    <h3 class="text-xs font-bold text-slate-900" id="wa-active-contact-title">Elegí una conversación</h3>
                     <span class="text-[11px] text-slate-500 font-mono" id="wa-active-contact-subtitle">Sin cliente seleccionado</span>
                   </div>
                 </div>
@@ -1116,14 +1146,14 @@
               <div id="wa-chat-thread" class="flex-1 p-4 overflow-y-auto space-y-3 bg-slate-50/40 text-xs">
                 <div class="h-full flex flex-col items-center justify-center text-center text-slate-500 space-y-2">
                   <i data-lucide="message-square" class="w-8 h-8 text-slate-500"></i>
-                  <p class="text-xs">Selecciona un chat de la lista izquierda para ver el historial y tomar el control.</p>
+                  <p class="text-xs">Elegí un chat de la lista para ver el historial y responder vos.</p>
                 </div>
               </div>
 
               <!-- Operator Reply Box -->
               <div class="p-3 border-t border-slate-200 bg-white space-y-1.5">
                 <div class="flex items-center space-x-2">
-                  <input type="text" id="wa-operator-input" onkeypress="handleOperatorEnter(event)" placeholder="Escribe tu mensaje como operador humano a WhatsApp..." class="flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:bg-white focus:border-emerald-600 transition" disabled>
+                  <input type="text" id="wa-operator-input" aria-label="Tu respuesta al cliente" onkeypress="handleOperatorEnter(event)" placeholder="Escribí tu respuesta al cliente…" class="flex-1 px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-900 focus:bg-white focus:border-emerald-600 transition" disabled>
                   <button id="btn-send-operator-msg" onclick="sendOperatorReply()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-xs rounded-lg transition shadow-subtle flex items-center space-x-1.5 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
                     <i data-lucide="send" class="w-3.5 h-3.5"></i>
                     <span>Enviar</span>
@@ -1148,41 +1178,6 @@
             <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
           </button>
         </div>
-      <div class="p-4 bg-white border border-slate-200 rounded-xl space-y-2.5 shadow-subtle flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-[11px] font-bold text-emerald-800 uppercase tracking-wider flex items-center space-x-1">
-                  <i data-lucide="link" class="w-3.5 h-3.5 text-emerald-700"></i>
-                  <span>Bloque 1 · Integración & Canales</span>
-                </span>
-              </div>
-              <h4 class="text-xs font-bold text-slate-900">Vincular Línea de WhatsApp</h4>
-              <p class="text-[11px] text-slate-600 leading-tight mb-2">Canal por donde los clientes te escriben y reciben respuestas.</p>
-
-              <div class="space-y-1.5 text-xs">
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded flex items-center justify-between">
-                  <span class="flex items-center space-x-1.5 truncate">
-                    <i data-lucide="smartphone" class="w-3.5 h-3.5 text-emerald-700 shrink-0"></i>
-                    <span class="truncate">WhatsApp Business</span>
-                  </span>
-                  <span class="text-[11px] font-semibold text-rose-700 bg-rose-50 border border-rose-200 px-2 py-0.5 rounded shrink-0" id="sim-wa-status-text">Sin vincular</span>
-                </div>
-                <div class="p-2 bg-slate-50 border border-slate-200 rounded space-y-0.5">
-                  <span class="text-[11px] font-semibold text-slate-600 uppercase">Número guardado:</span>
-                  <div class="text-[11px] font-mono text-slate-900 font-semibold truncate" id="sim-wa-active-phone">+54 9 11 4455-6677</div>
-                </div>
-              </div>
-            </div>
-            <div class="pt-2 flex flex-wrap gap-1.5" id="sim-wa-actions-container">
-              <button onclick="openWhatsAppModal('vendedor')" class="flex-1 py-1.5 px-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded text-[11px] font-semibold text-center transition flex items-center justify-center space-x-1 shadow-2xs">
-                <i data-lucide="smartphone" class="w-3 h-3"></i>
-                <span id="sim-wa-btn-text">Configurar WhatsApp</span>
-              </button>
-              <button onclick="testWhatsAppDirectly()" id="sim-wa-btn-test" class="py-1.5 px-2.5 bg-slate-100 hover:bg-slate-200 text-slate-800 rounded text-[11px] font-medium transition" title="Abrir en WhatsApp Web">
-                WhatsApp Web
-              </button>
-            </div>
-          </div>
 </section>
 
 <section id="step-billing" class="step-content space-y-6 hidden">
@@ -5445,10 +5440,10 @@
       const metaTokenInput = document.getElementById('meta-wa-token');
       if (metaTokenInput) {
         if (currentCompany.hasAccessToken || currentCompany.whatsappAccessToken) {
-          metaTokenInput.placeholder = '✓ Token configurado y protegido (cifrado en reposo)';
+          metaTokenInput.placeholder = 'Clave guardada (cifrada). Pegá una nueva solo para reemplazarla.';
           metaTokenInput.value = '';
         } else {
-          metaTokenInput.placeholder = 'EAAG... (Token de sistema de Meta Developers)';
+          metaTokenInput.placeholder = 'Pegá la clave permanente de Meta';
         }
       }
 
@@ -5457,10 +5452,10 @@
         const isConn = Boolean(currentCompany.whatsappConnected && currentCompany.whatsappPhoneNumberId);
         if (isConn) {
           waConnBadge.className = "inline-flex items-center space-x-1.5 px-2.5 py-1 rounded text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200";
-          waConnBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span><span>Credenciales Meta guardadas (${currentCompany.phone || 'Oficial'}) · falta probar envío</span>`;
+          waConnBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span><span>Número conectado · enviá una prueba para confirmar</span>`;
         } else {
           waConnBadge.className = "inline-flex items-center space-x-1.5 px-2.5 py-1 rounded text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200";
-          waConnBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span><span>Modo Simulado / Sin vincular</span>`;
+          waConnBadge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span><span>Sin conectar</span>`;
         }
       }
 
@@ -6182,6 +6177,139 @@
       loadWhatsAppConversations();
     }
 
+    // =========================================================
+    // CONEXIÓN DE WHATSAPP EN UN CLIC (Embedded Signup de Meta)
+    // =========================================================
+    let waEsConfig = { enabled: false };
+    let waEsSession = null;
+    let fbSdkPromise = null;
+
+    function setWhatsAppEsStatus(text) {
+      const el = document.getElementById('wa-es-status');
+      if (el) el.textContent = text;
+    }
+
+    async function loadWhatsAppEsConfig() {
+      try {
+        const res = await fetch('/api/business/whatsapp/embedded-signup/config');
+        const json = await res.json();
+        waEsConfig = json.data || { enabled: false };
+      } catch (error) {
+        waEsConfig = { enabled: false };
+      }
+      const btn = document.getElementById('btn-wa-es');
+      if (btn) btn.disabled = !waEsConfig.enabled;
+      if (!waEsConfig.enabled) {
+        setWhatsAppEsStatus('Disponible cuando Changared complete la aprobación de Meta. Mientras tanto podés usar la conexión manual.');
+      } else if (currentCompany.whatsappConnected) {
+        setWhatsAppEsStatus('Tu WhatsApp ya está conectado. Podés volver a conectarlo si cambiaste de número.');
+      }
+    }
+
+    function loadFacebookSdk() {
+      if (window.FB) return Promise.resolve();
+      if (fbSdkPromise) return fbSdkPromise;
+      fbSdkPromise = new Promise((resolve, reject) => {
+        window.fbAsyncInit = () => {
+          FB.init({ appId: waEsConfig.appId, autoLogAppEvents: true, xfbml: false, version: waEsConfig.graphVersion });
+          resolve();
+        };
+        const script = document.createElement('script');
+        script.src = 'https://connect.facebook.net/es_LA/sdk.js';
+        script.async = true;
+        script.defer = true;
+        script.crossOrigin = 'anonymous';
+        script.onerror = () => { fbSdkPromise = null; reject(new Error('No se pudo cargar Facebook.')); };
+        document.body.appendChild(script);
+      });
+      return fbSdkPromise;
+    }
+
+    // Meta avisa por postMessage qué cuenta y número eligió el comercio.
+    window.addEventListener('message', (event) => {
+      let host = '';
+      try { host = new URL(event.origin).hostname; } catch (e) { return; }
+      if (host !== 'facebook.com' && !host.endsWith('.facebook.com')) return;
+      let payload = event.data;
+      if (typeof payload === 'string') {
+        try { payload = JSON.parse(payload); } catch (e) { return; }
+      }
+      if (!payload || payload.type !== 'WA_EMBEDDED_SIGNUP') return;
+      const ev = String(payload.event || '');
+      if (ev.startsWith('FINISH')) {
+        waEsSession = { wabaId: payload.data?.waba_id, phoneNumberId: payload.data?.phone_number_id };
+      } else if (ev === 'CANCEL') {
+        setWhatsAppEsStatus('Cerraste la ventana de Meta antes de terminar. Podés intentarlo de nuevo.');
+      } else if (ev === 'ERROR') {
+        setWhatsAppEsStatus('Meta informó un error durante la conexión. Intentá de nuevo.');
+      }
+    });
+
+    async function startWhatsAppEmbeddedSignup() {
+      if (!waEsConfig.enabled) return;
+      if (!authToken || !currentCompany.slug) {
+        showToast('Iniciá sesión y guardá tu negocio antes de conectar WhatsApp.');
+        return;
+      }
+      waEsSession = null;
+      setWhatsAppEsStatus('Abriendo la ventana de Meta…');
+      try {
+        await loadFacebookSdk();
+      } catch (error) {
+        setWhatsAppEsStatus('No se pudo abrir la ventana de Meta. Revisá tu conexión e intentá de nuevo.');
+        return;
+      }
+      FB.login((response) => {
+        const code = response && response.authResponse && response.authResponse.code;
+        if (!code) {
+          setWhatsAppEsStatus('La conexión no se completó. Podés intentarlo de nuevo.');
+          return;
+        }
+        finishWhatsAppEmbeddedSignup(code);
+      }, {
+        config_id: waEsConfig.configId,
+        response_type: 'code',
+        override_default_response_type: true,
+        extras: { setup: {} },
+      });
+    }
+
+    async function finishWhatsAppEmbeddedSignup(code) {
+      // El aviso de Meta con los IDs puede llegar un instante después del código.
+      for (let i = 0; i < 20 && !waEsSession; i++) await new Promise(r => setTimeout(r, 250));
+      if (!waEsSession || !waEsSession.wabaId || !waEsSession.phoneNumberId) {
+        setWhatsAppEsStatus('Meta no devolvió los datos del número. Intentá de nuevo.');
+        return;
+      }
+      setWhatsAppEsStatus('Conectando tu número…');
+      const btn = document.getElementById('btn-wa-es');
+      if (btn) btn.disabled = true;
+      try {
+        const res = await fetch(`/api/business/${currentCompany.slug}/whatsapp/embedded-signup`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${authToken}` },
+          body: JSON.stringify({ code, ...waEsSession }),
+        });
+        const json = await res.json();
+        if (!json.success) {
+          setWhatsAppEsStatus(json.message || 'No se pudo conectar el número.');
+          return;
+        }
+        const b = json.data.business || {};
+        currentCompany.whatsappConnected = true;
+        currentCompany.whatsappPhoneNumberId = b.whatsappPhoneNumberId || waEsSession.phoneNumberId;
+        currentCompany.hasAccessToken = true;
+        if (b.phone) currentCompany.phone = b.phone;
+        applyCompanyDataToUI();
+        setWhatsAppEsStatus(`Listo: ${currentCompany.phone || 'tu número'} quedó conectado.`);
+        showToast('✓ WhatsApp conectado.');
+      } catch (error) {
+        setWhatsAppEsStatus('No se pudo contactar al servidor. Intentá de nuevo.');
+      } finally {
+        if (btn) btn.disabled = !waEsConfig.enabled;
+      }
+    }
+
     async function sendMetaWhatsAppTest() {
       if (!authToken || !currentCompany.slug) {
         showToast("Iniciá sesión y guardá tu negocio antes de enviar una prueba.");
@@ -6193,6 +6321,7 @@
         showToast("Ingresá el número de prueba habilitado en Meta.");
         return;
       }
+      if (!confirm(`Se va a enviar un mensaje real de WhatsApp al ${to}. ¿Continuar?`)) return;
       try {
         const res = await fetch(`/api/business/${currentCompany.slug}/whatsapp-test`, {
           method: 'POST',
@@ -7665,6 +7794,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelector('.chat-phone')?.classList.add('chat-play');
+      loadWhatsAppEsConfig();
       loadBillingCatalog();
       const p = new URLSearchParams(location.search).get('pago');
       if (p === 'ok') showToast('¡Pago recibido! Tu plan se activará en instantes.');
