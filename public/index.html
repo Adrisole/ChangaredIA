@@ -5337,8 +5337,8 @@
         .replace(/\-\-+/g, '-');
     }
 
-    // Estado de la tarjeta del comercio: sin sesión son datos de ejemplo;
-    // con sesión sólo dice "conectado" si WhatsApp está conectado de verdad.
+    // Estado de la tarjeta del comercio: sin sesión son datos de ejemplo.
+    // Guardar credenciales de Meta no las valida, así que nunca dice "conectado".
     function renderCompanyCardState() {
       const badge = document.getElementById('hub-company-badge');
       const state = document.getElementById('hub-company-state');
@@ -5347,12 +5347,12 @@
       let label = 'Comercio de ejemplo', text = 'Datos de ejemplo', tone = 'slate';
       if (currentUser) {
         label = 'Tu comercio';
-        const connected = Boolean(currentCompany.whatsappConnected && currentCompany.whatsappPhoneNumberId);
-        text = connected ? 'WhatsApp conectado' : 'Configuración pendiente';
-        tone = connected ? 'emerald' : 'amber';
+        const saved = Boolean(currentCompany.whatsappConnected && currentCompany.whatsappPhoneNumberId);
+        text = saved ? 'Credenciales de WhatsApp guardadas · falta probar envío' : 'Configuración pendiente';
+        tone = 'amber';
       }
       const badgeTone = currentUser ? 'text-emerald-800 bg-emerald-100' : 'text-slate-700 bg-slate-100';
-      const dotTone = { slate: 'bg-slate-400', emerald: 'bg-emerald-500', amber: 'bg-amber-500' }[tone];
+      const dotTone = { slate: 'bg-slate-400', amber: 'bg-amber-500' }[tone];
       badge.className = `text-[10px] font-mono uppercase font-bold px-2 py-0.5 rounded ${badgeTone}`;
       badge.innerText = label;
       dot.className = `w-1.5 h-1.5 rounded-full ${dotTone}`;
@@ -7582,6 +7582,12 @@
         }
       }
       const firstEnabled = ['mercadopago', 'wise', 'payoneer'].find(m => av[m]);
+      document.querySelectorAll('button[onclick^="triggerCheckout"]').forEach(btn => {
+        btn.disabled = !firstEnabled;
+        btn.classList.toggle('opacity-50', !firstEnabled);
+        btn.classList.toggle('cursor-not-allowed', !firstEnabled);
+        btn.title = firstEnabled ? '' : 'Los pagos en línea todavía no están habilitados';
+      });
       if (!firstEnabled) {
         document.getElementById('payment-method-picker')?.classList.add('hidden');
         document.getElementById('billing-provider-title').innerText = 'Pagos en línea todavía no habilitados';
