@@ -33,6 +33,10 @@ export const createApp = () => {
     res.sendFile(path.resolve('./public/cobranzas.html'));
   });
 
+  app.get('/privacidad', (req, res) => {
+    res.sendFile(path.resolve('./public/privacidad.html'));
+  });
+
   app.get('/agenda', (req, res) => {
     res.sendFile(path.resolve('./public/agenda.html'));
   });
