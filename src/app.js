@@ -41,6 +41,10 @@ export const createApp = () => {
     res.sendFile(path.resolve('./public/eliminacion-de-datos.html'));
   });
 
+  app.get('/terminos', (req, res) => {
+    res.sendFile(path.resolve('./public/terminos.html'));
+  });
+
   app.get('/agenda', (req, res) => {
     res.sendFile(path.resolve('./public/agenda.html'));
   });
