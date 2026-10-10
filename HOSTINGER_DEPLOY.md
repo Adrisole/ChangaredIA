@@ -48,7 +48,7 @@ Hostinger incluye el gestor de aplicaciones Node.js directamente en el panel de 
      NODE_ENV=production
      OPENAI_API_KEY=tu_api_key_real
      OPENAI_MODEL=gpt-4o-mini
-     WHATSAPP_VERIFY_TOKEN=changared_secret_verify_token_2026
+     WHATSAPP_VERIFY_TOKEN=<guardado solo en Hostinger>
      DATA_STORAGE_PATH=./src/data/businesses.json
      MONGODB_URI=mongodb+srv://<usuario>:<password>@cluster0.xxxxx.mongodb.net/changared?retryWrites=true&w=majority
      ```
@@ -144,7 +144,7 @@ Una vez que tu dominio esté activo en Hostinger (por ejemplo `https://changared
 
 1. **Meta WhatsApp Cloud API:**
    - Callback URL: `https://changared.com/api/webhook/{businessId}`
-   - Verify Token: `changared_secret_verify_token_2026`
+   - Verify Token: `WHATSAPP_VERIFY_TOKEN=<guardado solo en Hostinger>`
 
 2. **Lemon Squeezy (Facturación en USD):**
    - Webhook URL: `https://changared.com/api/billing/webhook/lemonsqueezy`
