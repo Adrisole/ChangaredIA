@@ -226,6 +226,26 @@ class UserRepository {
     }
     return Object.values(this._readUsersLocal());
   }
+
+  /**
+   * Borra un usuario y todas sus sesiones, en MongoDB y en la réplica JSON.
+   * Si MongoDB falla, no se toca el JSON: la migración de arranque lo volvería a subir.
+   */
+  async deleteUserAndSessions(userId) {
+    if (!userId) return;
+    if (isDbConnected()) {
+      await SessionModel.deleteMany({ userId });
+      await UserModel.deleteOne({ id: userId });
+    }
+    const users = this._readUsersLocal();
+    delete users[userId];
+    this._writeUsersLocal(users);
+    const sessions = this._readSessionsLocal();
+    for (const [token, session] of Object.entries(sessions)) {
+      if (session && session.userId === userId) delete sessions[token];
+    }
+    this._writeSessionsLocal(sessions);
+  }
 }
 
 export const userRepository = new UserRepository();

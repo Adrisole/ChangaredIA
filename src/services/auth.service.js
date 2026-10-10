@@ -1,6 +1,9 @@
 import crypto from 'crypto';
 import { userRepository } from '../repositories/user.repository.js';
 import { businessRepository } from '../repositories/business.repository.js';
+import { conversationRepository } from '../repositories/conversation.repository.js';
+import { appointmentRepository } from '../repositories/appointment.repository.js';
+import { invoiceRepository } from '../repositories/invoice.repository.js';
 
 export class AuthService {
   /**
@@ -147,6 +150,40 @@ export class AuthService {
       await userRepository.removeSession(token);
     }
     return { success: true, message: "Sesión cerrada correctamente." };
+  }
+
+  /**
+   * Elimina la cuenta del comercio y todos sus datos: negocios (con pedidos y
+   * catálogo), conversaciones, turnos, comprobantes, sesiones y el usuario.
+   * Pide la contraseña para confirmar que es el titular.
+   */
+  async deleteAccount(userId, password) {
+    const user = await userRepository.findById(userId);
+    if (!user) {
+      throw Object.assign(new Error('Usuario no encontrado.'), { status: 404 });
+    }
+    if (!password || this._hashPassword(String(password), user.salt) !== user.passwordHash) {
+      throw Object.assign(new Error('La contraseña no es correcta.'), { status: 401 });
+    }
+
+    const businessIds = new Set(Array.isArray(user.businessIds) ? user.businessIds : []);
+    for (const b of await businessRepository.findByOwnerId(userId)) businessIds.add(b.id);
+
+    for (const businessId of businessIds) {
+      const business = await businessRepository.findById(businessId);
+      // Nunca borrar un negocio que pertenece a otra cuenta.
+      if (business && business.ownerId && business.ownerId !== userId) continue;
+      await conversationRepository.deleteByBusinessId(businessId);
+      await appointmentRepository.deleteByBusinessId(businessId);
+      await invoiceRepository.clear(businessId);
+      if ((await invoiceRepository.findByBusinessId(businessId)).length) {
+        throw Object.assign(new Error('No se pudieron borrar los comprobantes. Intentá de nuevo.'), { status: 503 });
+      }
+      await businessRepository.deleteById(businessId);
+    }
+
+    await userRepository.deleteUserAndSessions(userId);
+    return { success: true, message: 'Tu cuenta y todos sus datos fueron eliminados.' };
   }
 
   /**

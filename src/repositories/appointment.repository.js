@@ -102,6 +102,34 @@ class AppointmentRepository {
 
     return item;
   }
+
+  /** Borra todos los turnos de un negocio (JSON y MongoDB). */
+  async deleteByBusinessId(businessId) {
+    const bId = String(businessId || '').toLowerCase().trim();
+    if (!bId) return 0;
+    if (isDbConnected()) {
+      await AppointmentModel.deleteMany({ businessId: bId });
+    }
+    const all = this._readAll();
+    const kept = all.filter(a => String(a.businessId).toLowerCase().trim() !== bId);
+    this._writeAll(kept);
+    return all.length - kept.length;
+  }
+
+  /** Borra los turnos cuya última actualización es anterior a `cutoffIso`. */
+  async deleteInactiveBefore(cutoffIso) {
+    let deleted = 0;
+    if (isDbConnected()) {
+      const result = await AppointmentModel.deleteMany({
+        $or: [{ updatedAt: { $lt: cutoffIso } }, { updatedAt: { $lt: new Date(cutoffIso) } }],
+      });
+      deleted = result.deletedCount || 0;
+    }
+    const all = this._readAll();
+    const kept = all.filter(a => (a.updatedAt || a.createdAt || '') >= cutoffIso);
+    if (kept.length !== all.length) this._writeAll(kept);
+    return Math.max(deleted, all.length - kept.length);
+  }
 }
 
 export const appointmentRepository = new AppointmentRepository();
