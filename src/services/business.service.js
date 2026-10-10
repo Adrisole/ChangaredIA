@@ -192,6 +192,7 @@ export class BusinessService {
       : '';
     delete clean.whatsappAccessToken;
     delete clean.whatsappAppSecret;
+    delete clean.whatsappTwoStepPin;
     return clean;
   }
 

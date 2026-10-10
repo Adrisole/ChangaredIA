@@ -5,6 +5,7 @@ import { sellerOrdersService } from '../services/sellerOrders.service.js';
 import { businessService } from '../services/business.service.js';
 import { businessRepository } from '../repositories/business.repository.js';
 import { whatsappService } from '../services/whatsapp.service.js';
+import { metaEmbeddedSignupService } from '../services/metaEmbeddedSignup.service.js';
 import {
   setupBusiness,
   getBusiness,
@@ -18,6 +19,11 @@ const router = Router();
 
 // Onboarding de nuevo negocio (requiere autenticación obligatoria y asocia al usuario)
 router.post('/setup', authenticate, requireAuth, setupBusiness);
+
+// Datos públicos para abrir la conexión de WhatsApp en un clic (Embedded Signup de Meta)
+router.get('/whatsapp/embedded-signup/config', (req, res) => {
+  res.json({ success: true, data: metaEmbeddedSignupService.publicConfig() });
+});
 
 // Consultar los negocios privados del usuario autenticado
 router.get('/my', authenticate, requireAuth, listMyBusinesses);
@@ -92,6 +98,25 @@ router.get('/', listBusinesses);
 
 // Actualizar configuración de WhatsApp (número, phone_number_id, token) - Protegido por propiedad
 router.post('/:businessId/whatsapp-config', authenticate, requireBusinessOwner, updateWhatsAppConfig);
+
+// Completa la conexión en un clic después de la ventana de Meta - Protegido por propiedad
+router.post('/:businessId/whatsapp/embedded-signup', authenticate, requireBusinessOwner, async (req, res, next) => {
+  try {
+    const { code, wabaId, phoneNumberId } = req.body || {};
+    const business = await metaEmbeddedSignupService.completeSignup(req.business.id, { code, wabaId, phoneNumberId });
+    res.json({ success: true, message: 'WhatsApp conectado. Ya podés recibir mensajes de tus clientes.', data: { business: businessService.sanitizeBusiness(business) } });
+  } catch (error) {
+    if (!error.status) return next(error);
+    const messages = {
+      token: 'Meta no aceptó la autorización. Volvé a tocar "Conectar con WhatsApp".',
+      subscribe: 'Conectamos tu cuenta, pero Meta no habilitó la recepción de mensajes. Intentá de nuevo en unos minutos.',
+      register: 'Conectamos tu cuenta, pero Meta no pudo activar el número. Si el número tiene verificación en dos pasos, desactivala en WhatsApp Manager e intentá de nuevo.',
+      phone: 'Tu número quedó activado, pero no pudimos leer sus datos. Actualizá la página.',
+    };
+    console.warn(`[EmbeddedSignup] Falló el paso '${error.step || 'validación'}' para tenant ${req.business.id}: ${error.message}`);
+    res.status(error.status).json({ success: false, step: error.step || 'validation', message: messages[error.step] || error.message });
+  }
+});
 
 // El dueño dispara explícitamente una prueba a un número habilitado en Meta.
 // Guardar credenciales no equivale a que Meta acepte ni entregue mensajes.
