@@ -94,7 +94,7 @@
   <!-- Tipografía Inter Oficial -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN con configuración personalizada -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -150,58 +150,98 @@
     }
     .hero-title-quiet { color: #64748B; }
 
-    /* Teléfono con la conversación de ejemplo, en los colores reales de WhatsApp */
-    .chat-phone-screen {
-      border-radius: 2.25rem;
-      padding: 0.5rem;
-      background: #0F172A;
-      box-shadow: 0 30px 60px -20px rgba(15, 23, 42, 0.35), 0 12px 24px -12px rgba(15, 23, 42, 0.25);
+    /* Inicio en capas: cada sección queda quieta arriba y la siguiente sube y se apoya encima */
+    .hub-stack { --hub-top: 76px; font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #0B1F17; display: flex; flex-direction: column; gap: 1.25rem; }
+    .hub-panel {
+      position: sticky; top: var(--hub-top);
+      min-height: calc(100dvh - var(--hub-top) - 1rem);
+      display: flex; align-items: center; overflow: hidden;
+      border-radius: 2rem;
+      box-shadow: 0 -18px 40px -24px rgba(11, 31, 23, 0.35);
     }
-    .chat-phone-bar {
-      display: flex; align-items: center; gap: 0.625rem;
-      padding: 0.875rem 0.875rem 0.75rem;
-      background: #1B4332;
-      border-radius: 1.75rem 1.75rem 0 0;
+    .hub-panel:first-child { box-shadow: none; }
+    .hub-inner {
+      width: 100%; max-width: 1200px; margin: 0 auto; padding: 2.75rem 3rem;
+      display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 3.5rem; align-items: center;
+      transform-origin: 50% 0; will-change: transform;
     }
-    .chat-phone-avatar {
-      width: 2.25rem; height: 2.25rem; border-radius: 9999px; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
-      background: #D9FDD3; color: #1B4332; font-size: 12px; font-weight: 700;
+    .hub-veil { position: absolute; inset: 0; background: #0B1F17; opacity: 0; pointer-events: none; }
+    .hub-p1 { background: #F7F8F6; transition: background-color 1.2s ease; }
+    .hub-p1.s2 { background: #F5EFE4; }
+    .hub-p1.s3 { background: #E4EAEF; }
+    .hub-p2 { background: #FFFFFF; border: 1px solid #E3E8E4; }
+    .hub-p3 { background: #1B4332; color: #F2F7F4; }
+    .hub-p4 { background: #F1ECE3; }
+    .hub-p1 .hub-inner { grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr); }
+    .hub-clock {
+      display: inline-flex; gap: 6px; margin: 0 0 1.1rem; padding: 7px 14px;
+      font-size: 15px; font-weight: 600; color: #1B4332; font-variant-numeric: tabular-nums;
+      background: #FFFFFF; border: 1px solid #E3E8E4; border-radius: 9999px;
     }
-    .chat-thread {
-      display: flex; flex-direction: column; gap: 0.5rem;
-      min-height: 21rem;
-      padding: 1rem 0.75rem 1.25rem;
-      background: #EFEAE2;
-      border-radius: 0 0 1.75rem 1.75rem;
+    .hub-h1 { margin: 0; font-size: clamp(2.25rem, 4.6vw, 3.9rem); line-height: 1.04; letter-spacing: -0.045em; font-weight: 700; }
+    .hub-h1 > span { display: block; }
+    .hub-h1 .hub-l3 { color: #1B4332; }
+    .hub-rot { white-space: nowrap; min-height: 1.04em; color: #4B5F55; transition: opacity .35s ease, transform .35s ease, filter .35s ease; }
+    .hub-rot.out { opacity: 0; transform: translateY(-14px); filter: blur(4px); }
+    .hub-rot.pre { opacity: 0; transform: translateY(14px); filter: blur(4px); transition: none; }
+    .hub-k { margin: 0 0 0.9rem; font-size: 15px; font-weight: 600; color: #1B4332; }
+    .hub-p3 .hub-k { color: #8FE3B0; }
+    .hub-h2 { margin: 0; font-size: clamp(2rem, 4.2vw, 3.6rem); line-height: 1.04; letter-spacing: -0.04em; font-weight: 700; text-wrap: balance; }
+    .hub-sub { margin: 1.25rem 0 0; max-width: 34rem; font-size: 1.15rem; line-height: 1.5; color: #4B5F55; }
+    .hub-p3 .hub-sub { color: #C5D6CC; }
+    .hub-tl { margin: 2rem 0 0; font-size: 14px; font-weight: 600; }
+    .hub-tl span { font-weight: 400; color: #4B5F55; }
+    .hub-tally { margin-top: 0.6rem; display: flex; flex-wrap: wrap; gap: 1.75rem; }
+    .hub-tally b { display: block; font-size: 2.1rem; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+    .hub-tally span { font-size: 14px; color: #4B5F55; }
+    .hub-tally b.bump { animation: hub-bump .5s cubic-bezier(.16, 1, .3, 1); }
+    @keyframes hub-bump { from { transform: translateY(6px); opacity: .3; } to { transform: none; opacity: 1; } }
+    .hub-price { margin-top: 1rem; font-size: 14px; color: #4B5F55; }
+    /* Teléfono del inicio, en los colores reales de WhatsApp */
+    .hub-phone { justify-self: center; width: 100%; max-width: 340px; margin: 0; border-radius: 2.5rem; padding: 9px; background: #0F172A; box-shadow: 0 30px 60px -24px rgba(11, 31, 23, .45); }
+    .hub-phone-bar { background: #1B4332; color: #FFFFFF; border-radius: 2rem 2rem 0 0; padding: 14px 16px; font-weight: 600; font-size: 15px; }
+    .hub-phone-bar small { display: block; font-weight: 400; font-size: 12px; color: #BFE3CC; }
+    .hub-chat {
+      list-style: none; margin: 0; padding: 14px 12px 18px; height: 380px; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: flex-end; gap: 8px;
+      background: #EFEAE2; border-radius: 0 0 2rem 2rem; font-size: 15px; line-height: 1.38;
     }
-    .chat-msg {
-      position: relative; max-width: 82%;
-      padding: 0.5rem 3.1rem 0.5rem 0.7rem;
-      border-radius: 0.875rem;
-      font-size: 14px; line-height: 1.35; color: #111B21;
-      box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13);
+    .hub-chat li { max-width: 82%; padding: 9px 12px; border-radius: 14px; background: #FFFFFF; color: #111B21; animation: hub-msg .55s cubic-bezier(.16, 1, .3, 1) both; }
+    .hub-chat li.o { align-self: flex-end; background: #D9FDD3; }
+    .hub-chat li.n { align-self: center; color: #1B4332; font-weight: 600; font-size: 13px; border-radius: 9999px; }
+    .hub-chat li.t { align-self: center; background: transparent; color: #54656F; font-size: 12px; font-weight: 600; padding: 2px; }
+    @keyframes hub-msg { from { opacity: 0; transform: translateY(12px) scale(.94); filter: blur(4px); } to { opacity: 1; transform: none; filter: none; } }
+    /* Tarjetas de cada empleado, con datos de ejemplo */
+    .hub-card { justify-self: center; width: 100%; max-width: 420px; padding: 1.6rem; border-radius: 1.5rem; background: #FFFFFF; color: #0B1F17; box-shadow: 0 24px 48px -28px rgba(11, 31, 23, .45); }
+    .hub-p2 .hub-card { border: 1px solid #E3E8E4; }
+    .hub-card small { font-size: 14px; color: #4B5F55; }
+    .hub-amount { margin: 6px 0 14px; font-size: 2.75rem; font-weight: 700; letter-spacing: -0.03em; }
+    .hub-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    .hub-steps div { padding: 10px; font-size: 13px; border: 1px solid #E3E8E4; border-radius: 14px; }
+    .hub-steps b { display: block; font-size: 15px; }
+    .hub-steps .on { background: #EAF3EE; border-color: #CFE5D8; }
+    .hub-week { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; text-align: center; font-size: 13px; color: #4B5F55; }
+    .hub-slot { height: 38px; border-radius: 10px; background: #F4F1EA; }
+    .hub-slot.busy { background: #E4DCCD; }
+    .hub-slot.new { background: #1B4332; }
+    .hub-pill { display: inline-block; margin-top: 14px; padding: 6px 12px; font-size: 14px; font-weight: 600; color: #1B4332; background: #EAF3EE; border-radius: 9999px; }
+    @media (max-width: 860px) {
+      .hub-inner, .hub-p1 .hub-inner { grid-template-columns: minmax(0, 1fr); gap: 2rem; padding: 2.25rem 1.25rem; }
+      .hub-panel { border-radius: 1.5rem; }
+      .hub-h1 { font-size: clamp(1.75rem, 8vw, 2.5rem); }
+      .hub-tally { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+      .hub-tally b { font-size: 1.75rem; }
+      .hub-tally span { font-size: 13px; line-height: 1.3; display: block; }
+      .hub-phone { max-width: 300px; }
+      .hub-chat { height: 320px; font-size: 14px; }
     }
-    .chat-in { align-self: flex-start; background: #FFFFFF; border-top-left-radius: 0.25rem; }
-    .chat-out { align-self: flex-end; background: #D9FDD3; border-top-right-radius: 0.25rem; }
-    .chat-time { position: absolute; right: 0.6rem; bottom: 0.35rem; font-size: 11px; color: #54656F; }
-    .chat-note {
-      align-self: center; margin-top: 0.25rem;
-      display: inline-flex; align-items: center; gap: 0.375rem;
-      padding: 0.375rem 0.75rem; border-radius: 9999px;
-      background: #FFFFFF; color: #1B4332; font-size: 12px; font-weight: 600;
-      box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13);
-    }
-    /* El momento animado de la página: la conversación se escribe una vez */
-    .chat-play .chat-msg, .chat-play .chat-note {
-      animation: chat-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
-      animation-delay: calc(var(--i) * 0.85s + 0.35s);
-    }
-    .chat-play .chat-out { transform-origin: 100% 0; }
-    .chat-play .chat-in { transform-origin: 0 0; }
-    @keyframes chat-in {
-      from { opacity: 0; transform: translateY(12px) scale(0.94); filter: blur(6px); }
-      to { opacity: 1; transform: none; filter: none; }
+    /* Movimiento reducido: sin apilar ni animar; el inicio muestra un momento fijo */
+    @media (prefers-reduced-motion: reduce) {
+      .hub-panel { position: relative; top: auto; min-height: 0; }
+      .hub-inner { transform: none !important; }
+      .hub-veil { display: none; }
+      .hub-chat li, .hub-tally b.bump { animation: none !important; }
+      .hub-rot, .hub-p1 { transition: none; }
     }
 
     /* Nómina del inicio: iniciales de cada empleado; se encienden al activarlo */
@@ -232,8 +272,6 @@
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
       }
-      /* La conversación se muestra completa de entrada, sin esperas */
-      .chat-play .chat-msg, .chat-play .chat-note { animation: none !important; }
     }
     ::-webkit-scrollbar {
       width: 6px;
@@ -441,41 +479,60 @@
 
       <section id="step-hub" class="step-content space-y-6">
 
-        <!-- Primer vistazo: qué resuelve para el negocio, demostrado en una conversación -->
-        <div class="grid lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)] gap-10 lg:gap-12 items-center pt-1 sm:pt-4">
-          <div>
-            <h1 class="hero-title text-slate-900" data-i18n="hubTitle">Vendé, cobrá y organizá tus turnos por WhatsApp.</h1>
-            <p class="hero-title hero-title-quiet" data-i18n="hubTitle2">Sin vivir pegado al celular.</p>
-            <p class="mt-5 text-base sm:text-lg text-slate-600 leading-relaxed max-w-[38rem]" data-i18n="hubSubtitle">Changared suma empleados virtuales con IA a tu comercio o consultorio: responden precios y stock, preparan recordatorios de cobro y toman pedidos de turno. Vos revisás y confirmás.</p>
-            <div class="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
-              <button onclick="openBusinessConfigModal()" class="min-h-[48px] px-6 bg-[#1B4332] hover:bg-[#2D6A4F] active:bg-[#143225] text-white font-semibold text-base rounded-full transition" data-i18n="btnConfigBusiness">Configurar mi negocio</button>
-              <button onclick="switchStep('step-simulator')" class="min-h-[44px] inline-flex items-center gap-1.5 text-base font-medium text-[#1B4332] hover:underline underline-offset-4" data-i18n="btnTryChat">Probar el chat</button>
-            </div>
-            <p class="mt-5 text-sm text-slate-600" data-i18n="hubPriceLine">USD 17 por empleado al mes (ARS 25.000 con Mercado Pago Argentina). Activás sólo los que necesitás.</p>
-          </div>
-
-          <figure class="chat-phone mx-auto w-full max-w-[340px]" aria-label="Conversación de ejemplo entre un cliente y el vendedor virtual">
-            <div class="chat-phone-screen">
-              <div class="chat-phone-bar">
-                <div class="chat-phone-avatar" aria-hidden="true">AL</div>
-                <div class="min-w-0">
-                  <div class="text-sm font-semibold text-white truncate">Almacén La Esquina</div>
-                  <div class="text-[11px] text-emerald-100">Vendedor virtual · ejemplo</div>
-                </div>
+        <!-- Primer vistazo: tu día pasa y Changared sigue atendiendo; debajo, cada empleado en una capa que se apila al bajar -->
+        <div class="hub-stack" id="hub-stack">
+          <div class="hub-panel hub-p1" id="hub-hero"><div class="hub-inner">
+            <div>
+              <p class="hub-clock"><span id="hub-time">10:15</span> · <span id="hub-moment">mañana</span></p>
+              <h1 class="hub-h1"><span data-i18n="hubWhile">Mientras vos</span><span class="hub-rot" id="hub-act">atendés el mostrador,</span><span class="hub-l3" data-i18n="hubTitle">Changared atiende tu WhatsApp.</span></h1>
+              <p class="hub-sub" data-i18n="hubSubtitle">Responde precios y stock, prepara los recordatorios de cobro y anota pedidos de turno. Lo importante te espera para que lo confirmes.</p>
+              <div class="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
+                <button onclick="openBusinessConfigModal()" class="min-h-[48px] px-6 bg-[#1B4332] hover:bg-[#2D6A4F] active:bg-[#143225] text-white font-semibold text-base rounded-full transition" data-i18n="btnConfigBusiness">Configurar mi negocio</button>
+                <button onclick="switchStep('step-simulator')" class="min-h-[44px] inline-flex items-center gap-1.5 text-base font-medium text-[#1B4332] hover:underline underline-offset-4" data-i18n="btnTryChat">Probar el chat</button>
               </div>
-              <ol class="chat-thread" role="list">
-                <li class="chat-msg chat-in" style="--i:0">Hola! ¿Tienen yerba de 1 kg?<span class="chat-time">17:42</span></li>
-                <li class="chat-msg chat-out" style="--i:1">¡Hola! Sí, quedan 12 a $4.850 cada una. ¿Te reservo?<span class="chat-time">17:42</span></li>
-                <li class="chat-msg chat-in" style="--i:2">Dale, 2. Paso a las 18.<span class="chat-time">17:43</span></li>
-                <li class="chat-msg chat-out" style="--i:3">Anoté 2 yerbas para retirar a las 18 h. El local te confirma en un momento.<span class="chat-time">17:43</span></li>
-                <li class="chat-note" style="--i:4">
-                  <i data-lucide="clipboard-check" class="w-3.5 h-3.5" aria-hidden="true"></i>
-                  <span data-i18n="chatNote">Pedido anotado en tu panel, esperando tu confirmación</span>
-                </li>
-              </ol>
+              <p class="hub-tl" data-i18n="hubTallyTitle">Hoy, mientras tanto <span>(ejemplo)</span></p>
+              <div class="hub-tally">
+                <div><b id="hub-t-q">0</b><span data-i18n="hubTallyQ">consultas respondidas</span></div>
+                <div><b id="hub-t-o">0</b><span data-i18n="hubTallyO">pedidos anotados</span></div>
+                <div><b id="hub-t-t">0</b><span data-i18n="hubTallyT">turnos pedidos</span></div>
+              </div>
+              <p class="hub-price" data-i18n="hubPriceLine">USD 17 por empleado al mes (ARS 25.000 con Mercado Pago Argentina). Activás sólo los que necesitás.</p>
             </div>
-            <figcaption class="mt-3 text-center text-xs text-slate-600" data-i18n="chatCaption">Conversación de ejemplo con un catálogo de prueba.</figcaption>
-          </figure>
+            <figure class="hub-phone" aria-hidden="true">
+              <div class="hub-phone-bar">Almacén La Esquina<small data-i18n="hubPhoneSub">Vendedor virtual · ejemplo</small></div>
+              <ol class="hub-chat" id="hub-chat"></ol>
+            </figure>
+          </div><div class="hub-veil"></div></div>
+
+          <div class="hub-panel hub-p2"><div class="hub-inner">
+            <div>
+              <p class="hub-k" data-i18n="emp1Title">Vendedor IA</p>
+              <h2 class="hub-h2" data-i18n="hubP2Title">Contesta precio y stock aunque estés atendiendo.</h2>
+              <p class="hub-sub" data-i18n="hubP2Sub">Usa tu catálogo real. Si el cliente quiere comprar, anota el pedido y te lo deja listo para confirmar.</p>
+            </div>
+            <div class="hub-card"><small data-i18n="hubP2Card">Pedido nuevo · ejemplo</small><div class="hub-amount" data-i18n="hubP2Amount">2 yerbas</div><small data-i18n="hubP2Detail">Retira hoy 18 h · $9.700</small><br><span class="hub-pill" data-i18n="hubPending">Esperando tu confirmación</span></div>
+          </div><div class="hub-veil"></div></div>
+
+          <div class="hub-panel hub-p3"><div class="hub-inner">
+            <div>
+              <p class="hub-k" data-i18n="emp2Title">Gestor de Cobranzas</p>
+              <h2 class="hub-h2" data-i18n="hubP3Title">Cada cobro, recordado a tiempo.</h2>
+              <p class="hub-sub" data-i18n="hubP3Sub">Prepara los recordatorios con tu link de Mercado Pago y registra quién ya pagó.</p>
+            </div>
+            <div class="hub-card"><small data-i18n="hubP3Card">Laura G. · cuota de octubre · ejemplo</small><div class="hub-amount">$25.000</div>
+              <div class="hub-steps"><div class="on"><b data-i18n="hubDay0">Día 0</b><span data-i18n="hubSent">Enviado</span></div><div class="on"><b data-i18n="hubDay3">Día 3</b><span data-i18n="hubReady">Listo</span></div><div><b data-i18n="hubDay7">Día 7</b><span data-i18n="hubIfNeeded">Si hace falta</span></div></div></div>
+          </div><div class="hub-veil"></div></div>
+
+          <div class="hub-panel hub-p4"><div class="hub-inner">
+            <div>
+              <p class="hub-k" data-i18n="emp5Title">Agendador de turnos</p>
+              <h2 class="hub-h2" data-i18n="hubP4Title">Pedidos de turno, ordenados para que confirmes.</h2>
+              <p class="hub-sub" data-i18n="hubP4Sub">Toma servicio, día y horario por WhatsApp. Vos aceptás o proponés otro horario.</p>
+            </div>
+            <div class="hub-card"><div class="hub-week" data-i18n="hubWeek"><span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span></div>
+              <div class="hub-week" style="margin-top:8px" aria-hidden="true"><span class="hub-slot"></span><span class="hub-slot busy"></span><span class="hub-slot"></span><span class="hub-slot new"></span><span class="hub-slot busy"></span><span class="hub-slot busy"></span><span class="hub-slot"></span><span class="hub-slot"></span><span class="hub-slot"></span><span class="hub-slot busy"></span></div>
+              <span class="hub-pill" data-i18n="hubP4Pill">Jueves 17 h · corte y color · ejemplo</span></div>
+          </div></div>
         </div>
 
         <h2 class="pt-6 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900" data-i18n="hubTeamTitle">Elegí a quién sumar a tu equipo</h2>
@@ -3501,11 +3558,35 @@
 
         // Hub principal y configuración inicial
         hubBadge: "EMPLEADOS VIRTUALES CON IA",
-        hubTitle: "Vendé, cobrá y organizá tus turnos por WhatsApp.",
-        hubTitle2: "Sin vivir pegado al celular.",
+        hubTitle: "Changared atiende tu WhatsApp.",
+        hubWhile: "Mientras vos",
+        hubSubtitle: "Responde precios y stock, prepara los recordatorios de cobro y anota pedidos de turno. Lo importante te espera para que lo confirmes.",
+        hubTallyTitle: "Hoy, mientras tanto <span>(ejemplo)</span>",
+        hubTallyQ: "consultas respondidas",
+        hubTallyO: "pedidos anotados",
+        hubTallyT: "turnos pedidos",
+        hubPhoneSub: "Vendedor virtual · ejemplo",
+        hubP2Title: "Contesta precio y stock aunque estés atendiendo.",
+        hubP2Sub: "Usa tu catálogo real. Si el cliente quiere comprar, anota el pedido y te lo deja listo para confirmar.",
+        hubP2Card: "Pedido nuevo · ejemplo",
+        hubP2Amount: "2 yerbas",
+        hubP2Detail: "Retira hoy 18 h · $9.700",
+        hubPending: "Esperando tu confirmación",
+        hubP3Title: "Cada cobro, recordado a tiempo.",
+        hubP3Sub: "Prepara los recordatorios con tu link de Mercado Pago y registra quién ya pagó.",
+        hubP3Card: "Laura G. · cuota de octubre · ejemplo",
+        hubDay0: "Día 0",
+        hubDay3: "Día 3",
+        hubDay7: "Día 7",
+        hubSent: "Enviado",
+        hubReady: "Listo",
+        hubIfNeeded: "Si hace falta",
+        hubP4Title: "Pedidos de turno, ordenados para que confirmes.",
+        hubP4Sub: "Toma servicio, día y horario por WhatsApp. Vos aceptás o proponés otro horario.",
+        hubWeek: "<span>Lun</span><span>Mar</span><span>Mié</span><span>Jue</span><span>Vie</span>",
+        hubP4Pill: "Jueves 17 h · corte y color · ejemplo",
         btnTryChat: "Probar el chat",
         hubPriceLine: "USD 17 por empleado al mes (ARS 25.000 con Mercado Pago Argentina). Activás sólo los que necesitás.",
-        hubSubtitle: "Changared suma empleados virtuales con IA a tu comercio o consultorio: responden precios y stock, preparan recordatorios de cobro y toman pedidos de turno. Vos revisás y confirmás.",
         hubTeamTitle: "Elegí a quién sumar a tu equipo",
         hubLinkWeb: "Vincular a mi página web",
         hubStateOff: "Sin activar",
@@ -3516,8 +3597,6 @@
         hubActivate: "Activar",
         demoBanner: "Estás viendo una demo con datos de ejemplo; lo que cargues no se guarda.",
         demoBannerCta: "Crear cuenta o ingresar",
-        chatNote: "Pedido anotado en tu panel, esperando tu confirmación",
-        chatCaption: "Conversación de ejemplo con un catálogo de prueba.",
         trialNoCard: "Probá la demo sin registrarte",
         trialTitle: "Configurá los empleados que necesita tu negocio",
         trialDesc: "Elegí ventas, cobranzas, agenda o comprobantes. Las integraciones se activan con las credenciales oficiales de tu negocio.",
@@ -3733,11 +3812,35 @@
 
         // Hub Hero & Free Trial Banner
         hubBadge: "AI VIRTUAL EMPLOYEES",
-        hubTitle: "Sell, collect payments and manage bookings on WhatsApp.",
-        hubTitle2: "Without living on your phone.",
+        hubTitle: "Changared answers your WhatsApp.",
+        hubWhile: "While you",
+        hubSubtitle: "It answers price and stock questions, prepares payment reminders and notes booking requests. The important things wait for you to confirm.",
+        hubTallyTitle: "Today, meanwhile <span>(example)</span>",
+        hubTallyQ: "questions answered",
+        hubTallyO: "orders noted",
+        hubTallyT: "bookings requested",
+        hubPhoneSub: "Virtual salesperson · example",
+        hubP2Title: "Answers price and stock while you serve customers.",
+        hubP2Sub: "It uses your real catalog. If the customer wants to buy, it notes the order and leaves it ready for you to confirm.",
+        hubP2Card: "New order · example",
+        hubP2Amount: "2 bags of yerba",
+        hubP2Detail: "Pickup today 6 pm · $9,700",
+        hubPending: "Waiting for your confirmation",
+        hubP3Title: "Every payment, reminded on time.",
+        hubP3Sub: "It prepares reminders with your Mercado Pago link and records who has already paid.",
+        hubP3Card: "Laura G. · October fee · example",
+        hubDay0: "Day 0",
+        hubDay3: "Day 3",
+        hubDay7: "Day 7",
+        hubSent: "Sent",
+        hubReady: "Ready",
+        hubIfNeeded: "If needed",
+        hubP4Title: "Booking requests, organized for you to confirm.",
+        hubP4Sub: "It takes service, day and time over WhatsApp. You accept or suggest another time.",
+        hubWeek: "<span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span>",
+        hubP4Pill: "Thursday 5 pm · cut and color · example",
         btnTryChat: "Try the chat",
         hubPriceLine: "USD 17 per employee per month. Turn on only the ones you need.",
-        hubSubtitle: "Changared adds AI virtual employees to your shop or practice: they answer price and stock questions, prepare payment reminders and take booking requests. You review and confirm.",
         hubTeamTitle: "Choose who joins your team",
         hubLinkWeb: "Link to my website",
         hubStateOff: "Not active",
@@ -3748,8 +3851,6 @@
         hubActivate: "Activate",
         demoBanner: "You are viewing a demo with sample data; nothing you add is saved.",
         demoBannerCta: "Create account or sign in",
-        chatNote: "Order noted in your dashboard, waiting for your confirmation",
-        chatCaption: "Sample conversation with a test catalog.",
         trialNoCard: "Try the demo without signing up",
         trialTitle: "Configure the virtual employees your business needs",
         trialDesc: "Choose sales, collections, scheduling, or receipts. Integrations activate with your business's official credentials.",
@@ -3963,11 +4064,35 @@
 
         // Hub principal e configuração inicial
         hubBadge: "FUNCIONÁRIOS VIRTUAIS COM IA",
-        hubTitle: "Venda, cobre e organize seus horários pelo WhatsApp.",
-        hubTitle2: "Sem viver grudado no celular.",
+        hubTitle: "a Changared atende seu WhatsApp.",
+        hubWhile: "Enquanto você",
+        hubSubtitle: "Responde preços e estoque, prepara os lembretes de cobrança e anota pedidos de horário. O importante espera você confirmar.",
+        hubTallyTitle: "Hoje, enquanto isso <span>(exemplo)</span>",
+        hubTallyQ: "consultas respondidas",
+        hubTallyO: "pedidos anotados",
+        hubTallyT: "horários pedidos",
+        hubPhoneSub: "Vendedor virtual · exemplo",
+        hubP2Title: "Responde preço e estoque enquanto você atende.",
+        hubP2Sub: "Usa seu catálogo real. Se o cliente quer comprar, anota o pedido e deixa pronto para você confirmar.",
+        hubP2Card: "Pedido novo · exemplo",
+        hubP2Amount: "2 ervas-mate",
+        hubP2Detail: "Retira hoje 18 h · $9.700",
+        hubPending: "Aguardando sua confirmação",
+        hubP3Title: "Cada cobrança, lembrada na hora certa.",
+        hubP3Sub: "Prepara os lembretes com seu link do Mercado Pago e registra quem já pagou.",
+        hubP3Card: "Laura G. · mensalidade de outubro · exemplo",
+        hubDay0: "Dia 0",
+        hubDay3: "Dia 3",
+        hubDay7: "Dia 7",
+        hubSent: "Enviado",
+        hubReady: "Pronto",
+        hubIfNeeded: "Se precisar",
+        hubP4Title: "Pedidos de horário, organizados para você confirmar.",
+        hubP4Sub: "Recebe serviço, dia e horário pelo WhatsApp. Você aceita ou propõe outro horário.",
+        hubWeek: "<span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span>",
+        hubP4Pill: "Quinta 17 h · corte e cor · exemplo",
         btnTryChat: "Testar o chat",
         hubPriceLine: "USD 17 por funcionário por mês. Ative só os que você precisa.",
-        hubSubtitle: "A Changared coloca funcionários virtuais com IA no seu comércio ou consultório: respondem preços e estoque, preparam lembretes de cobrança e recebem pedidos de horário. Você revisa e confirma.",
         hubTeamTitle: "Escolha quem entra na sua equipe",
         hubLinkWeb: "Vincular ao meu site",
         hubStateOff: "Inativo",
@@ -3978,8 +4103,6 @@
         hubActivate: "Ativar",
         demoBanner: "Você está vendo uma demo com dados de exemplo; o que você carregar não é salvo.",
         demoBannerCta: "Criar conta ou entrar",
-        chatNote: "Pedido anotado no seu painel, aguardando sua confirmação",
-        chatCaption: "Conversa de exemplo com um catálogo de teste.",
         trialNoCard: "Teste a demo sem cadastro",
         trialTitle: "Configure os funcionários virtuais que sua empresa precisa",
         trialDesc: "Escolha vendas, cobranças, agenda ou comprovantes. As integrações são ativadas com as credenciais oficiais da sua empresa.",
@@ -4121,6 +4244,7 @@
       updateBackButtons();
       updateDynamicBreadcrumb(currentStepId);
       applyCompanyDataToUI();
+      window.hubRefreshText?.();
 
       lucide.createIcons();
 
@@ -7453,8 +7577,122 @@
 
     }
 
+
+    // =========================================================
+    // INICIO: un día del comercio (mañana, tarde, noche) mientras Changared responde.
+    // Mensajes y números de ejemplo. Debajo, las secciones se apilan al bajar.
+    // =========================================================
+    const HUB_SCENES = {
+      es: [
+        { time: '10:15', moment: 'mañana', act: 'atendés el mostrador,', msgs: [['i', '¿Tienen yerba de 1 kg?'], ['o', 'Sí, quedan 12 a $4.850. ¿Te reservo?'], ['i', 'Dale, 2. Paso a las 18.'], ['n', 'Pedido anotado · esperando tu confirmación']], add: [3, 1, 0] },
+        { time: '14:30', moment: 'tarde', act: 'comés con tu familia,', msgs: [['i', '¿Tenés turno el jueves para corte y color?'], ['o', 'Jueves 17 h está libre. ¿Te lo anoto?'], ['i', '¡Sí, gracias!'], ['n', 'Turno pedido · esperando tu confirmación']], add: [4, 0, 1] },
+        { time: '23:40', moment: 'noche', act: 'dormís,', msgs: [['i', '¿Mañana abren temprano?'], ['o', 'Sí, desde las 9 h. ¿Te separo algo?'], ['i', '2 kg de harina 000 porfa'], ['n', 'Pedido anotado para mañana']], add: [5, 2, 1] },
+      ],
+      en: [
+        { time: '10:15', moment: 'morning', act: 'serve the counter,', msgs: [['i', 'Do you have 1 kg yerba?'], ['o', 'Yes, 12 left at $4,850. Should I set some aside?'], ['i', 'Sure, 2. I\'ll come by at 6.'], ['n', 'Order noted · waiting for your confirmation']], add: [3, 1, 0] },
+        { time: '14:30', moment: 'afternoon', act: 'have lunch with family,', msgs: [['i', 'Any slot Thursday for cut and color?'], ['o', 'Thursday 5 pm is free. Shall I note it?'], ['i', 'Yes, thanks!'], ['n', 'Booking requested · waiting for your confirmation']], add: [4, 0, 1] },
+        { time: '23:40', moment: 'night', act: 'sleep,', msgs: [['i', 'Do you open early tomorrow?'], ['o', 'Yes, from 9 am. Want me to set something aside?'], ['i', '2 kg of flour please'], ['n', 'Order noted for tomorrow']], add: [5, 2, 1] },
+      ],
+      pt: [
+        { time: '10:15', moment: 'manhã', act: 'atende o balcão,', msgs: [['i', 'Tem erva-mate de 1 kg?'], ['o', 'Sim, restam 12 a $4.850. Quer que eu separe?'], ['i', 'Pode ser, 2. Passo às 18.'], ['n', 'Pedido anotado · aguardando sua confirmação']], add: [3, 1, 0] },
+        { time: '14:30', moment: 'tarde', act: 'almoça com a família,', msgs: [['i', 'Tem horário quinta para corte e cor?'], ['o', 'Quinta 17 h está livre. Posso anotar?'], ['i', 'Sim, obrigada!'], ['n', 'Horário pedido · aguardando sua confirmação']], add: [4, 0, 1] },
+        { time: '23:40', moment: 'noite', act: 'dorme,', msgs: [['i', 'Amanhã abrem cedo?'], ['o', 'Sim, a partir das 9 h. Quer que eu separe algo?'], ['i', '2 kg de farinha, por favor'], ['n', 'Pedido anotado para amanhã']], add: [5, 2, 1] },
+      ],
+    };
+    let hubSceneIdx = 0;
+
+    function initHubHero() {
+      const stack = document.getElementById('hub-stack');
+      const hero = document.getElementById('hub-hero');
+      if (!stack || !hero) return;
+      const chat = document.getElementById('hub-chat');
+      const actEl = document.getElementById('hub-act');
+      const timeEl = document.getElementById('hub-time');
+      const momentEl = document.getElementById('hub-moment');
+      const counters = ['hub-t-q', 'hub-t-o', 'hub-t-t'].map(id => document.getElementById(id));
+      const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const scenes = () => HUB_SCENES[currentUiLang] || HUB_SCENES.es;
+      let totals = [0, 0, 0], timers = [], running = false;
+      const later = (fn, ms) => timers.push(setTimeout(fn, ms));
+      const setCount = (i, v) => { const el = counters[i]; el.textContent = v; el.classList.remove('bump'); void el.offsetWidth; el.classList.add('bump'); };
+      const addMsg = (kind, text, still) => {
+        const li = document.createElement('li');
+        li.className = kind === 'i' ? '' : kind;
+        if (still) li.style.animation = 'none';
+        li.textContent = text;
+        chat.appendChild(li);
+        while (chat.children.length > 7) chat.firstElementChild.remove();
+      };
+      const showScene = sc => {
+        hero.classList.remove('s2', 's3');
+        if (hubSceneIdx % 3) hero.classList.add('s' + (hubSceneIdx % 3 + 1));
+        timeEl.textContent = sc.time;
+        momentEl.textContent = sc.moment;
+        actEl.textContent = sc.act;
+      };
+      window.hubRefreshText = () => showScene(scenes()[hubSceneIdx % 3]);
+
+      // El celular nunca arranca vacío: muestra lo que respondió anoche
+      const night = scenes()[2];
+      addMsg('t', night.time, true);
+      night.msgs.forEach(([k, t]) => addMsg(k, t, true));
+
+      if (reduce) {
+        window.hubRefreshText();
+        [12, 3, 2].forEach((v, i) => { counters[i].textContent = v; });
+      } else {
+        const play = () => {
+          const i = hubSceneIdx % 3, sc = scenes()[i];
+          if (i === 0) { totals = [0, 0, 0]; counters.forEach(el => { el.textContent = 0; }); }
+          actEl.classList.add('out');
+          later(() => { showScene(sc); actEl.classList.remove('out'); actEl.classList.add('pre'); void actEl.offsetWidth; actEl.classList.remove('pre'); }, 350);
+          later(() => addMsg('t', sc.time), 500);
+          sc.msgs.forEach(([k, txt], j) => later(() => {
+            addMsg(k, txt);
+            if (k === 'o') { totals[0] += sc.add[0]; setCount(0, totals[0]); }
+            if (k === 'n') { totals[1] += sc.add[1]; totals[2] += sc.add[2]; setCount(1, totals[1]); setCount(2, totals[2]); }
+          }, 900 + j * 900));
+          later(() => { hubSceneIdx++; play(); }, 900 + sc.msgs.length * 900 + 1600);
+        };
+        new IntersectionObserver(([e]) => {
+          if (e.isIntersecting && !running) { running = true; play(); }
+          else if (!e.isIntersecting && running) {
+            running = false; timers.forEach(clearTimeout); timers = [];
+            actEl.classList.remove('out', 'pre');
+            showScene(scenes()[hubSceneIdx % 3]);
+          }
+        }, { threshold: 0.4 }).observe(hero);
+      }
+
+      // Pila: la capa que sube achica y oscurece apenas la de arriba
+      const scroller = document.querySelector('main');
+      const panels = [...stack.querySelectorAll('.hub-panel')];
+      const header = document.getElementById('main-header');
+      const tick = () => {
+        if (!stack.offsetParent) return;
+        const top = (header ? header.getBoundingClientRect().height : 64) + 12;
+        stack.style.setProperty('--hub-top', top + 'px');
+        if (reduce) return;
+        const range = scroller.clientHeight - top;
+        // Una capa más alta que la pantalla se deja leer entera y recién ahí queda quieta
+        panels.forEach(p => { p.style.top = Math.min(top, scroller.clientHeight - p.offsetHeight) + 'px'; });
+        panels.forEach((p, i) => {
+          const next = panels[i + 1], veil = p.querySelector('.hub-veil');
+          if (!next || !veil) return;
+          const t = Math.min(1, Math.max(0, 1 - (next.getBoundingClientRect().top - top) / range));
+          p.querySelector('.hub-inner').style.transform = `scale(${1 - 0.05 * t}) translateY(${-20 * t}px)`;
+          veil.style.opacity = (0.3 * t).toFixed(3);
+        });
+      };
+      scroller.addEventListener('scroll', () => requestAnimationFrame(tick), { passive: true });
+      addEventListener('resize', tick);
+      // La barra superior cambia de alto cuando cargan los estilos o se acomodan los botones
+      if (header && 'ResizeObserver' in window) new ResizeObserver(tick).observe(header);
+      tick();
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
-      document.querySelector('.chat-phone')?.classList.add('chat-play');
+      initHubHero();
       loadWhatsAppEsConfig();
       loadBillingCatalog();
       const p = new URLSearchParams(location.search).get('pago');
