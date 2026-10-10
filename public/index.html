@@ -192,6 +192,74 @@
       background: #FFFFFF; color: #1B4332; font-size: 12px; font-weight: 600;
       box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13);
     }
+    /* Escenario del inicio: brillo verde detrás del teléfono y tarjetas con lo que hace cada empleado */
+    .hero-stage { position: relative; padding: 1.5rem 0 2.5rem; }
+    .hero-glow {
+      position: absolute; inset: -2rem -1rem; z-index: 0; pointer-events: none;
+      background:
+        radial-gradient(closest-side, rgba(45,106,79,0.28), rgba(45,106,79,0) 72%) 50% 45% / 115% 95% no-repeat,
+        radial-gradient(rgba(27,67,50,0.10) 1px, transparent 1.2px) 0 0 / 18px 18px;
+      -webkit-mask-image: radial-gradient(closest-side, #000 55%, transparent);
+              mask-image: radial-gradient(closest-side, #000 55%, transparent);
+    }
+    .hero-card {
+      position: absolute; z-index: 20;
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.6rem 0.85rem 0.6rem 0.6rem; border-radius: 0.9rem;
+      background: #FFFFFF; border: 1px solid #E2E8F0;
+      box-shadow: 0 12px 30px -12px rgba(15,23,42,0.28), 0 2px 6px rgba(15,23,42,0.06);
+      font-size: 12px; line-height: 1.3; color: #475569; white-space: nowrap;
+      opacity: 0; transform: translateY(10px) scale(0.96);
+      transition: opacity 0.5s cubic-bezier(0.16,1,0.3,1), transform 0.5s cubic-bezier(0.16,1,0.3,1);
+    }
+    .hero-card strong { color: #0F172A; font-weight: 600; font-size: 13px; }
+    .hero-card-icon {
+      width: 32px; height: 32px; border-radius: 0.6rem; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: #ECFDF3; color: #1B4332;
+    }
+    .hero-card.is-shown { opacity: 1; transform: none; }
+    .hero-card.is-shown > * { animation: hero-float 6s ease-in-out 0.6s infinite; }
+    .hero-card-order { left: -2.25rem; top: 52%; }
+    .hero-card-pay { right: -1.5rem; top: 14%; }
+    .hero-card-turn { right: -0.75rem; bottom: 15%; }
+    @keyframes hero-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+    @media (max-width: 1279px) { .hero-card-order { left: -1rem; } .hero-card-pay { right: -0.5rem; } }
+    @media (max-width: 1023px) {
+      .hero-card-order { left: 0; } .hero-card-pay { right: 0; } .hero-card-turn { right: 0; }
+    }
+    @media (max-width: 479px) { .hero-card-pay, .hero-card-turn { display: none; } .hero-card-order { left: -0.25rem; top: auto; bottom: 9%; } }
+
+    /* "Escribiendo…" antes de cada respuesta del vendedor */
+    .chat-typing {
+      display: none; align-self: flex-end; gap: 4px; padding: 0.7rem 0.8rem;
+      background: #D9FDD3; border-radius: 0.875rem; border-top-right-radius: 0.25rem;
+      box-shadow: 0 1px 0.5px rgba(11,20,26,0.13);
+    }
+    .chat-typing span { width: 6px; height: 6px; border-radius: 9999px; background: #54656F; animation: chat-dot 1s infinite ease-in-out; }
+    .chat-typing span:nth-child(2) { animation-delay: 0.15s; } .chat-typing span:nth-child(3) { animation-delay: 0.3s; }
+    @keyframes chat-dot { 0%,80%,100% { opacity: 0.3; transform: translateY(0); } 40% { opacity: 1; transform: translateY(-3px); } }
+
+    /* Conversación en vivo: los mensajes aparecen de a uno y la escena se repite */
+    .chat-live .chat-msg, .chat-live .chat-note { display: none; }
+    .chat-live .is-shown { display: block; animation: chat-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .chat-live .chat-note.is-shown { display: inline-flex; }
+    .chat-live .chat-typing.is-shown { display: inline-flex; }
+    .chat-live .chat-out { transform-origin: 100% 0; }
+    .chat-live .chat-in { transform-origin: 0 0; }
+    .chat-live .chat-thread { transition: opacity 0.4s ease; min-height: 25.5rem; }
+    .chat-live.is-resetting .chat-thread { opacity: 0; }
+
+    /* Entrada del texto principal */
+    .hero-copy > * { animation: hero-rise 0.8s cubic-bezier(0.16,1,0.3,1) both; }
+    .hero-copy > *:nth-child(2) { animation-delay: 0.08s; } .hero-copy > *:nth-child(3) { animation-delay: 0.16s; }
+    .hero-copy > *:nth-child(4) { animation-delay: 0.24s; } .hero-copy > *:nth-child(5) { animation-delay: 0.32s; }
+    @keyframes hero-rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+    /* Aparición suave al hacer scroll */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+    .reveal.is-in { opacity: 1; transform: none; }
+
     /* El momento animado de la página: la conversación se escribe una vez */
     .chat-play .chat-msg, .chat-play .chat-note {
       animation: chat-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
@@ -234,6 +302,9 @@
       }
       /* La conversación se muestra completa de entrada, sin esperas */
       .chat-play .chat-msg, .chat-play .chat-note { animation: none !important; }
+      .hero-card { opacity: 1; transform: none; }
+      .hero-card > * { animation: none !important; }
+      .reveal { opacity: 1; transform: none; }
     }
     ::-webkit-scrollbar {
       width: 6px;
@@ -442,8 +513,8 @@
       <section id="step-hub" class="step-content space-y-6">
 
         <!-- Primer vistazo: qué resuelve para el negocio, demostrado en una conversación -->
-        <div class="grid lg:grid-cols-[minmax(0,1.35fr)_minmax(0,0.65fr)] gap-10 lg:gap-12 items-center pt-1 sm:pt-4">
-          <div>
+        <div class="hero-wrap grid lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] gap-10 lg:gap-12 items-center pt-1 sm:pt-4">
+          <div class="hero-copy">
             <h1 class="hero-title text-slate-900" data-i18n="hubTitle">Vendé, cobrá y organizá tus turnos por WhatsApp.</h1>
             <p class="hero-title hero-title-quiet" data-i18n="hubTitle2">Sin vivir pegado al celular.</p>
             <p class="mt-5 text-base sm:text-lg text-slate-600 leading-relaxed max-w-[38rem]" data-i18n="hubSubtitle">Changared suma empleados virtuales con IA a tu comercio o consultorio: responden precios y stock, preparan recordatorios de cobro y toman pedidos de turno. Vos revisás y confirmás.</p>
@@ -454,7 +525,9 @@
             <p class="mt-5 text-sm text-slate-600" data-i18n="hubPriceLine">USD 17 por empleado al mes (ARS 25.000 con Mercado Pago Argentina). Activás sólo los que necesitás.</p>
           </div>
 
-          <figure class="chat-phone mx-auto w-full max-w-[340px]" aria-label="Conversación de ejemplo entre un cliente y el vendedor virtual">
+          <div class="hero-stage">
+          <div class="hero-glow" aria-hidden="true"></div>
+          <figure class="chat-phone relative z-10 mx-auto w-full max-w-[320px]" aria-label="Conversación de ejemplo entre un cliente y el vendedor virtual">
             <div class="chat-phone-screen">
               <div class="chat-phone-bar">
                 <div class="chat-phone-avatar" aria-hidden="true">AL</div>
@@ -464,6 +537,7 @@
                 </div>
               </div>
               <ol class="chat-thread" role="list">
+                <li class="chat-typing" aria-hidden="true"><span></span><span></span><span></span></li>
                 <li class="chat-msg chat-in" style="--i:0">Hola! ¿Tienen yerba de 1 kg?<span class="chat-time">17:42</span></li>
                 <li class="chat-msg chat-out" style="--i:1">¡Hola! Sí, quedan 12 a $4.850 cada una. ¿Te reservo?<span class="chat-time">17:42</span></li>
                 <li class="chat-msg chat-in" style="--i:2">Dale, 2. Paso a las 18.<span class="chat-time">17:43</span></li>
@@ -476,12 +550,25 @@
             </div>
             <figcaption class="mt-3 text-center text-xs text-slate-600" data-i18n="chatCaption">Conversación de ejemplo con un catálogo de prueba.</figcaption>
           </figure>
+          <div class="hero-card hero-card-order" data-step="note" aria-hidden="true">
+            <span class="hero-card-icon"><i data-lucide="shopping-bag" class="w-4 h-4"></i></span>
+            <span><strong>Pedido nuevo</strong><br>2 × Yerba 1 kg · $9.700</span>
+          </div>
+          <div class="hero-card hero-card-pay" data-step="pay" aria-hidden="true">
+            <span class="hero-card-icon"><i data-lucide="wallet" class="w-4 h-4"></i></span>
+            <span><strong>Recordatorio de cobro</strong><br>Link de Mercado Pago listo</span>
+          </div>
+          <div class="hero-card hero-card-turn" data-step="turn" aria-hidden="true">
+            <span class="hero-card-icon"><i data-lucide="calendar-check" class="w-4 h-4"></i></span>
+            <span><strong>Turno pedido</strong><br>Jueves 10:30 · Corte</span>
+          </div>
+          </div>
         </div>
 
-        <h2 class="pt-6 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900" data-i18n="hubTeamTitle">Elegí a quién sumar a tu equipo</h2>
+        <h2 class="reveal pt-6 text-xl sm:text-2xl font-semibold tracking-tight text-slate-900" data-i18n="hubTeamTitle">Elegí a quién sumar a tu equipo</h2>
 
         <!-- TU EQUIPO: el comercio arriba y sus empleados como una nómina -->
-        <div class="bg-white border border-slate-200 rounded-2xl shadow-card overflow-hidden">
+        <div class="reveal bg-white border border-slate-200 rounded-2xl shadow-card overflow-hidden">
           <div class="bg-slate-50 border-b border-slate-200 px-4 sm:px-5 py-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
             <div class="min-w-0">
               <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
@@ -7453,8 +7540,62 @@
 
     }
 
+    // Escena del inicio: la conversación se escribe en vivo y, al anotarse el pedido,
+    // aparecen las tarjetas de lo que hacen los otros empleados. Se repite mientras se ve.
+    function startHeroScene() {
+      const phone = document.querySelector('.chat-phone');
+      if (!phone) return;
+      const stage = phone.closest('.hero-stage');
+      const cards = stage ? [...stage.querySelectorAll('.hero-card')] : [];
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) { cards.forEach(c => c.classList.add('is-shown')); return; }
+      phone.classList.add('chat-live');
+      const thread = phone.querySelector('.chat-thread');
+      const typing = thread.querySelector('.chat-typing');
+      const items = [...thread.querySelectorAll('.chat-msg, .chat-note')];
+      const card = step => cards.find(c => c.dataset.step === step);
+      const wait = ms => new Promise(r => setTimeout(r, ms));
+      let visible = true;
+      new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(phone);
+      const until = async () => { while (!visible || document.hidden) await wait(400); };
+      const show = el => { if (el.classList.contains('chat-out')) thread.insertBefore(typing, el); el.classList.add('is-shown'); };
+      const typeThen = async el => {
+        thread.insertBefore(typing, el); typing.classList.add('is-shown');
+        await wait(1100); typing.classList.remove('is-shown'); show(el);
+      };
+      (async function loop() {
+        for (;;) {
+          await until();
+          items.forEach(el => el.classList.remove('is-shown')); cards.forEach(c => c.classList.remove('is-shown'));
+          phone.classList.remove('is-resetting');
+          await wait(500);
+          for (const el of items) {
+            await until();
+            if (el.classList.contains('chat-out')) await typeThen(el); else show(el);
+            await wait(el.classList.contains('chat-in') ? 900 : 700);
+          }
+          card('note')?.classList.add('is-shown'); await wait(900);
+          card('pay')?.classList.add('is-shown'); await wait(900);
+          card('turn')?.classList.add('is-shown');
+          await wait(5000);
+          phone.classList.add('is-resetting'); cards.forEach(c => c.classList.remove('is-shown'));
+          await wait(500);
+        }
+      })();
+    }
+
+    function setupReveal() {
+      const els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) { els.forEach(el => el.classList.add('is-in')); return; }
+      const io = new IntersectionObserver(entries => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      }), { threshold: 0.12 });
+      els.forEach(el => io.observe(el));
+    }
+
     document.addEventListener('DOMContentLoaded', () => {
-      document.querySelector('.chat-phone')?.classList.add('chat-play');
+      startHeroScene();
+      setupReveal();
       loadWhatsAppEsConfig();
       loadBillingCatalog();
       const p = new URLSearchParams(location.search).get('pago');
