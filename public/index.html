@@ -244,6 +244,26 @@
       .hub-rot, .hub-p1 { transition: none; }
     }
 
+    /* Pie: cierra la página como una capa más de la portada */
+    .site-foot { margin-top: 3rem; padding: 3rem 3rem 1.75rem; border-radius: 2rem; background: #0B1F17; color: #F2F7F4; font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .site-foot-top { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 3rem; align-items: start; }
+    .site-foot-line { margin: 0; font-size: clamp(1.75rem, 3.4vw, 2.75rem); line-height: 1.05; letter-spacing: -0.04em; font-weight: 700; }
+    .site-foot-line span { color: #8FE3B0; }
+    .site-foot-cta { margin-top: 1.75rem; min-height: 48px; padding: 0 1.5rem; border-radius: 9999px; background: #F2F7F4; color: #0B1F17; font-weight: 600; font-size: 1rem; transition: background-color .2s ease; }
+    .site-foot-cta:hover { background: #D9FDD3; }
+    .site-foot-cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+    .site-foot-cols h2 { margin: 0 0 0.9rem; font-size: 13px; font-weight: 600; color: #9FB8AA; }
+    .site-foot-cols ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 0.6rem; }
+    .site-foot-cols a, .site-foot-cols button { font-size: 15px; color: #F2F7F4; text-decoration: none; text-align: left; text-underline-offset: 4px; }
+    .site-foot-cols a:hover, .site-foot-cols button:hover { text-decoration: underline; }
+    .site-foot :focus-visible { outline-color: #FFFFFF; }
+    .site-foot-bottom { margin-top: 2.75rem; padding-top: 1.25rem; border-top: 1px solid rgba(242, 247, 244, .14); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.75rem; font-size: 13px; color: #9FB8AA; }
+    .site-foot-brand { display: inline-flex; align-items: center; gap: 0.5rem; font-weight: 600; color: #F2F7F4; }
+    @media (max-width: 860px) {
+      .site-foot { padding: 2.25rem 1.25rem 1.5rem; border-radius: 1.5rem; }
+      .site-foot-top { grid-template-columns: minmax(0, 1fr); gap: 2.25rem; }
+    }
+
     /* Nómina del inicio: iniciales de cada empleado; se encienden al activarlo */
     .roster-avatar {
       width: 40px; height: 40px; border-radius: 9999px; flex-shrink: 0;
@@ -2392,39 +2412,36 @@
         </div>
       </section>
 
-<footer class="mt-12 pt-8 border-t border-slate-200 text-xs text-slate-600 space-y-6">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-          <div class="space-y-2 md:col-span-1">
-            <div class="flex items-center space-x-2">
-              <img src="/logo-icon.png" alt="Changared" class="h-6 w-auto">
-              <span class="font-semibold text-slate-900 text-sm">Changared</span>
+<footer class="site-foot">
+        <div class="site-foot-top">
+          <div>
+            <p class="site-foot-line" data-i18n="footLine">Tu WhatsApp atendido.<br><span>Vos, en lo tuyo.</span></p>
+            <button onclick="openBusinessConfigModal()" class="site-foot-cta" data-i18n="btnConfigBusiness">Configurar mi negocio</button>
+          </div>
+          <nav class="site-foot-cols" aria-label="Pie de página">
+            <div>
+              <h2 data-i18n="footColSeller">Tu vendedor</h2>
+              <ul>
+                <li><button onclick="switchStep('step-simulator')" data-i18n="footTry">Probar conversación</button></li>
+                <li><button onclick="switchStep('step-catalog')" data-i18n="footCatalog">Catálogo y precios</button></li>
+                <li><button onclick="switchStep('step-whatsapp')" data-i18n="footWhatsapp">Configurar WhatsApp</button></li>
+                <li><button onclick="switchStep('step-payments')" data-i18n="footPayments">Cobros y pedidos</button></li>
+              </ul>
             </div>
-            <p class="text-[11px] text-slate-500 leading-relaxed">
-              Plataforma de empleados virtuales con inteligencia artificial para comercios y empresas. Automatización de atención, cobranzas y administración.
-            </p>
-          </div>
-
-          <div class="space-y-2">
-            <h4 class="font-bold text-slate-900">Tu vendedor</h4>
-            <ul class="space-y-1.5">
-              <li><button onclick="switchStep('step-simulator')">Probar conversación</button></li>
-              <li><button onclick="switchStep('step-catalog')">Catálogo y precios</button></li>
-              <li><button onclick="switchStep('step-whatsapp')">Configurar WhatsApp</button></li>
-              <li><button onclick="switchStep('step-payments')">Cobros y pedidos</button></li>
-            </ul>
-          </div>
+            <div>
+              <h2>Changared</h2>
+              <ul>
+                <li><button onclick="switchStep('step-billing')" data-i18n="footPlans">Planes y precios</button></li>
+                <li><a href="/privacidad" data-i18n="footPrivacy">Privacidad</a></li>
+                <li><a href="/terminos" data-i18n="footTerms">Términos</a></li>
+                <li><a href="/eliminacion-de-datos" data-i18n="footDeletion">Eliminar mis datos</a></li>
+              </ul>
+            </div>
+          </nav>
         </div>
-
-        <div class="pt-4 border-t border-slate-200/80 flex flex-col sm:flex-row items-center justify-between gap-3 text-[11px] text-slate-500">
-          <span>© 2026 Changared. Todos los derechos reservados.</span>
-          <div class="flex items-center space-x-4">
-            <a href="/privacidad" class="hover:text-slate-800">Políticas de Changared</a>
-            <a href="/terminos" class="hover:text-slate-800">Términos</a>
-            <a href="/sitemap.xml" class="hover:text-slate-800">Sitemap</a>
-            <a href="/robots.txt" class="hover:text-slate-800">Robots</a>
-            <span class="text-slate-400">·</span>
-            <span>Hecho con IA en Argentina 🇦🇷</span>
-          </div>
+        <div class="site-foot-bottom">
+          <span class="site-foot-brand"><img src="/logo-icon-white.png" alt="" width="20" height="20">Changared</span>
+          <span data-i18n="footMade">© 2026 Changared · Hecho en Argentina</span>
         </div>
       </footer>
 
@@ -3559,6 +3576,17 @@
         // Hub principal y configuración inicial
         hubBadge: "EMPLEADOS VIRTUALES CON IA",
         hubTitle: "Changared atiende tu WhatsApp.",
+        footLine: "Tu WhatsApp atendido.<br><span>Vos, en lo tuyo.</span>",
+        footColSeller: "Tu vendedor",
+        footTry: "Probar conversación",
+        footCatalog: "Catálogo y precios",
+        footWhatsapp: "Configurar WhatsApp",
+        footPayments: "Cobros y pedidos",
+        footPlans: "Planes y precios",
+        footPrivacy: "Privacidad",
+        footTerms: "Términos",
+        footDeletion: "Eliminar mis datos",
+        footMade: "© 2026 Changared · Hecho en Argentina",
         hubWhile: "Mientras vos",
         hubSubtitle: "Responde precios y stock, prepara los recordatorios de cobro y anota pedidos de turno. Lo importante te espera para que lo confirmes.",
         hubTallyTitle: "Hoy, mientras tanto <span>(ejemplo)</span>",
@@ -3813,6 +3841,17 @@
         // Hub Hero & Free Trial Banner
         hubBadge: "AI VIRTUAL EMPLOYEES",
         hubTitle: "Changared answers your WhatsApp.",
+        footLine: "Your WhatsApp, answered.<br><span>You, on your own work.</span>",
+        footColSeller: "Your salesperson",
+        footTry: "Try a conversation",
+        footCatalog: "Catalog and prices",
+        footWhatsapp: "Set up WhatsApp",
+        footPayments: "Payments and orders",
+        footPlans: "Plans and pricing",
+        footPrivacy: "Privacy",
+        footTerms: "Terms",
+        footDeletion: "Delete my data",
+        footMade: "© 2026 Changared · Made in Argentina",
         hubWhile: "While you",
         hubSubtitle: "It answers price and stock questions, prepares payment reminders and notes booking requests. The important things wait for you to confirm.",
         hubTallyTitle: "Today, meanwhile <span>(example)</span>",
@@ -4065,6 +4104,17 @@
         // Hub principal e configuração inicial
         hubBadge: "FUNCIONÁRIOS VIRTUAIS COM IA",
         hubTitle: "a Changared atende seu WhatsApp.",
+        footLine: "Seu WhatsApp atendido.<br><span>Você, no que é seu.</span>",
+        footColSeller: "Seu vendedor",
+        footTry: "Testar conversa",
+        footCatalog: "Catálogo e preços",
+        footWhatsapp: "Configurar WhatsApp",
+        footPayments: "Cobranças e pedidos",
+        footPlans: "Planos e preços",
+        footPrivacy: "Privacidade",
+        footTerms: "Termos",
+        footDeletion: "Excluir meus dados",
+        footMade: "© 2026 Changared · Feito na Argentina",
         hubWhile: "Enquanto você",
         hubSubtitle: "Responde preços e estoque, prepara os lembretes de cobrança e anota pedidos de horário. O importante espera você confirmar.",
         hubTallyTitle: "Hoje, enquanto isso <span>(exemplo)</span>",
